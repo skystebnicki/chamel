@@ -1,0 +1,43 @@
+{
+  "name": "Chamel",
+  "version": "0.0.1",
+  "devDependencies": {
+    "bootstrap-slider": "^4.8.0",
+    "browserify": "^9.0.3",
+    "classnames": "^1.2.0",
+    "grunt": "0.4.5",
+    "grunt-browserify": "^3.5.0",
+    "grunt-contrib-copy": "~0.6.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-file-blocks": "~0.3.3",
+    "grunt-react": "^0.10.0",
+    "grunt-sass": "^0.12.1",
+    "grunt-wiredep": "1.9.0",
+    "http-server": "^0.6.1",
+    "karma": "~0.12.23",
+    "karma-browserify": "^4.0.0",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jasmine": "~0.2.0",
+    "protractor": "~1.0.0",
+    "react": "^0.13.1",
+    "react-bootstrap": "^0.21.0",
+    "react-slider": "^0.4.2",
+    "react-tap-event-plugin": "^0.1.6",
+    "reactify": "^1.1.0",
+    "request": "^2.55.0",
+    "shelljs": "^0.2.6",
+    "tmp": "0.0.23"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server . -a 0.0.0.0 -p 8000",
+    "pretest": "npm install",
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+    "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js"
+  }
+}
