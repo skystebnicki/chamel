@@ -25,5 +25,5 @@ Inside JSX
 
 ## Dependencies
 
-	- bootstrap-sass: https://github.com/twbs/bootstrap-sass
-	- react-bootstrap: https://github.com/react-bootstrap/react-bootstrap
+- bootstrap-sass: https://github.com/twbs/bootstrap-sass
+- react-bootstrap: https://github.com/react-bootstrap/react-bootstrap
