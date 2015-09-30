@@ -1,0 +1,9 @@
+.grouping-chip {
+	display: inline-block;
+	margin: 10px 5px 10px 0;
+	background-color: $grey-100;
+	padding: 0 5px 0 5px;
+	border: 1px solid $border-color;
+
+	@extend .font-style-caption;
+}

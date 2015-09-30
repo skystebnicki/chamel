@@ -1,0 +1,27 @@
+.app-header {
+	background-color: #141414;
+	color: #e3e3e3;
+	vertical-align: middle;
+
+	/* Clearfix mixin */
+	@include clearfix();
+}
+
+/**
+ * Import different device types
+ */
+@import 'application/base';
+@import 'application/large';
+@import 'application/small';
+
+/**
+ * Import entity classes
+ */
+@import 'entity/grouping-chip';
+@import 'entity/form';
+@import 'entitybrowser/entitybrowser';
+
+/**
+ * Import login style
+ */
+@import 'login/base';

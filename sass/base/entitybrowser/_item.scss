@@ -1,0 +1,165 @@
+.entity-browser-item {
+  border-bottom: 1px solid $border-color;
+
+  /**
+   * Row view for medium and large devices
+   */
+  &.entity-browser-item-trow {
+
+    .entity-browser-item-trow-icon {
+      margin-right: $gutter-less;
+      width: $icon-size;
+
+      @media #{$device-medium} {
+        margin-right: $gutter;
+      }
+
+      @media #{$device-large} {
+        margin-right: $gutter;
+      }
+    }
+
+    &:hover {
+      background-color: #e3e3e3;
+    }
+
+    td {
+      cursor: pointer;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      padding-left: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @extend .font-style-body-1;
+    }
+
+    td:first-child {
+      cursor: default;
+      padding-left: $gutter-less;
+
+      @media #{$device-large} {
+        padding-left: $gutter;
+      }
+    }
+
+    .entity-browser-item-trow-name {
+      @extend .font-style-body-1;
+    }
+  }
+
+  /**
+   * Compressed/detailed view
+   */
+  &.entity-browser-item-cmp {
+    padding: 0 $gutter-less 0 $gutter-less;
+    @media #{$device-medium} {
+      padding: 0 $gutter 0 $gutter;
+    }
+    @media #{$device-large} {
+      padding: 0 $gutter 0 $gutter;
+    }
+
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+
+    &:hover {
+      background-color: #e3e3e3;
+    }
+
+    .entity-browser-item-cmp-icon {
+      -webkit-flex: initial;
+      flex: initial;
+      margin-right: $gutter-less;
+      width: $thumb-size;
+
+      @media #{$device-medium} {
+        margin-right: $gutter;
+      }
+
+      @media #{$device-large} {
+        margin-right: $gutter;
+      }
+    }
+
+    .entity-browser-item-cmp-body {
+      padding: $gutter-less 0 $gutter-less 0;
+      @media #{$device-medium} {
+        padding: $gutter 0 $gutter 0;
+      }
+      @media #{$device-large} {
+        padding: $gutter 0 $gutter 0;
+      }
+      cursor: pointer;
+      -webkit-flex: 1;
+      flex: 1;
+
+      .entity-browser-item-cmp-header {
+        @extend .font-style-subhead-1;
+        line-height: 17px;
+        padding-top: 0px;
+        margin-bottom: 0px;
+
+      }
+
+      .entity-browser-item-cmp-time {
+        @extend .font-style-caption;
+        padding: 0;
+        margin: 0;
+        float: right;
+
+      }
+
+      .entity-browser-item-cmp-subheader {
+        @extend .font-style-body-1;
+        line-height: 15px;
+        padding-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      .entity-browser-item-cmp-caption {
+        @extend .font-style-caption;
+        line-height: 14px;
+        padding-top: 0px;
+        margin: 3px 0;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
+  /**
+   * Comment view
+   */
+  &.entity-browser-item-comment {
+
+  }
+
+  /**
+   * Activity view
+   */
+  &.entity-browser-item-activity {
+
+  }
+
+  /**
+   * Generic selected state
+   */
+  &.selected,
+  &.selected:hover{
+    background-color:#e3e3e3;
+    color:#000;
+  }
+
+  /**
+   * Generic unread state
+   */
+  &.unseen,
+  &.unseen:hover{
+    background-color:#00b2d9;
+    color:#fff;
+  }
+}

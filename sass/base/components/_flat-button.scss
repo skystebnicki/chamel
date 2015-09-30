@@ -1,0 +1,92 @@
+.flat-button {
+
+  @include ease-out();
+  @extend .font-style-button;
+  border-radius: 2px;
+  user-select: none;
+
+  position: relative;
+  overflow: hidden;
+  background-color: $flat-button-color;
+  color: $flat-button-text-color;
+  line-height: $button-height;
+  min-width: $button-min-width;
+  padding: 0 $desktop-gutter-less;
+  margin: 0;
+
+  //This is need so that ripples do not bleed
+  //past border radius.
+  //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
+  @include transform(translate3d(0, 0, 0));
+
+  .touch-ripple {
+    .ripple-circle-inner {
+      background-color: $flat-button-ripple-color;
+    }
+  }
+
+  .focus-ripple {
+    .focus-ripple-inner {
+      background-color: $flat-button-focus-ripple-color;
+    }
+  }
+
+  .flat-button-label {
+    position: relative;
+  }
+
+  &:hover,
+  &.is-keyboard-focused {
+    background-color: $flat-button-hover-color;
+  }
+
+  &.is-disabled {
+    color: $flat-button-disabled-text-color;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
+
+  &.is-primary {
+    color: $flat-button-primary-text-color;
+
+    &:hover,
+    &.is-keyboard-focused {
+      background-color: $flat-button-primary-hover-color;
+    }
+
+    .touch-ripple {
+      .ripple-circle-inner {
+        background-color: $flat-button-primary-ripple-color;
+      }
+    }
+
+    .focus-ripple {
+      .focus-ripple-inner {
+        background-color: $flat-button-primary-focus-ripple-color;
+      }
+    }
+  }
+
+  &.is-secondary {
+    color: $flat-button-secondary-text-color;
+
+    &:hover,
+    &.is-keyboard-focused {
+      background-color: $flat-button-secondary-hover-color;
+    }
+
+    .touch-ripple {
+      .ripple-circle-inner {
+        background-color: $flat-button-secondary-ripple-color;
+      }
+    }
+
+    .focus-ripple {
+      .focus-ripple-inner {
+        background-color: $flat-button-secondary-focus-ripple-color;
+      }
+    }
+  }
+}
