@@ -1,10 +1,10 @@
 # Chamel (short for chameleon)
 
-This is a web UI framework designed to provide the most native experience possible automatically across common platforms and devices.
+This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.
 
 ## Using chamel
 
-Include sass
+Include sass in your built sass
 
 	vendor/chamel/sass/
 
@@ -25,5 +25,4 @@ Inside JSX
 
 ## Dependencies
 
-- bootstrap-sass: https://github.com/twbs/bootstrap-sass
-- react-bootstrap: https://github.com/react-bootstrap/react-bootstrap
+None yet

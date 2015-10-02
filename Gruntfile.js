@@ -96,7 +96,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'css/style.css': 'sass/style.scss',
+                    'css/chamel-base.css': 'sass/style.scss',
                     'css/font-awesome.css': 'sass/font-awesome/font-awesome.scss'
                 }
             }

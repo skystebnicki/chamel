@@ -3,76 +3,7 @@
  */
 @import "variables/media-queries";
 
-body {
-  font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif;
-  margin: 0px;
-  padding: 0px;
-}
-
-/**
- * Load up netric font
- */
-@font-face {
-  font-family: "Casper";
-  src: url('../fonts/Casper_R.ttf') format("truetype");
-}
-
-/**
- * Utility classes
- */
-.pull-left { float: left; }
-.pull-right { float: left; }
-@mixin clearfix() {
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
-.show {
-  display: block !important;
-}
-.hidden {
-  display: none !important;
-  visibility: hidden !important;
-}
-.invisible {
-  visibility: hidden;
-}
-.clear {
-  clear: both;
-}
-
-/** 
- * Common effects
- */
-@mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
-}
-
-/**
- * Load the grid
- */
-@import 'grid';
-
 /**
  * Include base theme
  */
 @import "base/main";
-
-/**
- * Add base application classes
- */
-@import 'base/application';
-
-/**
- * Add module layouts
- */
-@import 'base/module';
-
