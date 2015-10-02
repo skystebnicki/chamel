@@ -135,7 +135,8 @@ var Menu = React.createClass({
       autoWidth: true,
       hideable: false,
       visible: true,
-      zDepth: 1
+      zDepth: 1,
+      menuItems: []
     };
   },
 

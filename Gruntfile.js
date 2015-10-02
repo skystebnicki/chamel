@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                   //alias: ['react:']  // Make React available externally for dev tools
                 },
                 //cwd: 'js',
-                src: ['src/demo/main.js'],
+                src: ['demo/main.js'],
                 dest: 'build/js/chamel-demo.js'
             },
             production: {
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
             
             // Build browserfly bundle
             browserify: {
-                files: ['src/**/*.js', 'src/**/*.jsx'],
+                files: ['src/**/*.js', 'src/**/*.jsx', 'demo/**/*.js', 'demo/**/*.jsx'],
                 tasks: ['browserify:dev']
             },
 
@@ -70,10 +70,12 @@ module.exports = function(grunt) {
             // Reload the browser if any of these files change
             livereload: {
                 files: [
-                    '*.html', 
+                    '*.html',
                     'css/*.css',
                     'src/**/*.js',
                     'src/**/*.jsx',
+                    'demo/**/*.js',
+                    'demo/**/*.jsx',
                     'img/**/*.{png,jpg,jpeg,gif,webp,svg}'
                 ],
                 options: {
@@ -90,7 +92,7 @@ module.exports = function(grunt) {
                 sourceComments: 'map',
                 outputStyle: 'compressed',
                 includePaths: [
-                    'vendor/bootstrap-sass/assets/stylesheets', 
+                    //'vendor/bootstrap-sass/assets/stylesheets',
                     'sass'
                 ]
             },
@@ -151,7 +153,7 @@ module.exports = function(grunt) {
                 }
             },
             dev: {
-                src: 'index.html',
+                src: 'demo/index.html',
                 blocks: {
                     'app': { 
                         src: 'build/js/**/*.js'
