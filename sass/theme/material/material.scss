@@ -1,0 +1,20 @@
+/**
+ * This is the theme to make chameleon look like Google's Material UI
+ */
+
+/**
+ * Include global variables
+ */
+@import "../variables/media-queries";
+
+// Core variables and mixins
+@import "../variables/colors";
+@import "../variables/spacing";
+@import "../variables/theme-variables";
+
+// Common mixins
+@import "../mixins/mixins";
+
+
+// Components
+@import "components/components";

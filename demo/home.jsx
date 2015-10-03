@@ -33,13 +33,6 @@ var Home = React.createClass({
 						</div>
 					</div>
 				</div>
-				<div className="col-xs-12 cold-md-6">
-                    <h3>{"DropDown"}</h3>
-					<DropDownMenuDemo />
-
-                    <h3>{"Menu"}</h3>
-                    <MenuDemo />
-				</div>
 			</div>
     	</div>
     );

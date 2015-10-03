@@ -1,0 +1,22 @@
+/**
+ * Include global variables
+ */
+@import "variables/media-queries";
+
+// Reset and dependencies
+@import "resets/normalize";
+@import "resets/typography-resets";
+
+// Core variables and mixins
+@import "variables/colors";
+@import "variables/spacing";
+@import "variables/theme-variables";
+
+// Common mixins
+@import "mixins/mixins";
+
+// Core CSS
+@import "core/core";
+
+// Components
+@import "components/components";

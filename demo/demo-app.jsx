@@ -26,13 +26,31 @@ var App = React.createClass({
   render: function () {
     return (
       <div>
-      	<header>
-			<h1>{"Demo Here"}</h1>
-		</header>
+        <div className="container">
+          <header>
+              <div className='pull-right'>
+                <select ref="themes" onChange={this.handleThemeChange_}>
+                  <option value='material'>Material (android)</option>
+                  <option value='flat'>Flat (ios)</option>
+                  <option value='modern'>Modern (windows)</option>
+                </select>
+              </div>
+              <h1>Chameleon Demo</h1>
+          </header>
+        </div>
 		
         <Home/>
       </div>
     );
+  },
+
+  /**
+   * Change the theme css
+   */
+  handleThemeChange_: function() {
+    var theme = React.findDOMNode(this.refs.themes).value;
+    var themeScriptTag = document.getElementById("css-theme");
+    themeScriptTag.href = '../css/chamel-theme-' + theme + '.css';
   }
 });
 

@@ -1,0 +1,24 @@
+.enhanced-button {
+
+  border: 0;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+  
+  &.is-link-button {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.is-disabled {
+      cursor: default;
+    }
+  }
+
+}

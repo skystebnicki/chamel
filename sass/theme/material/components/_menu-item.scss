@@ -1,0 +1,75 @@
+.menu-item {
+
+  * { user-select: none }
+
+  cursor: pointer;
+  line-height: $menu-item-height;
+  padding-left: $menu-item-padding;
+  padding-right: $menu-item-padding;
+  background-color: rgba($menu-item-hover-color, 0);
+
+  &:hover {
+    &:not(.is-disabled) {
+      background-color: $menu-item-hover-color;
+    }
+  }
+
+  .menu-item-number {
+    float: right;
+    width: 24px;
+    text-align: center;
+  }
+
+  .menu-item-attribute {
+    float: right;
+  }
+
+  .menu-item-icon-right {
+    line-height: $menu-item-height;
+    float: right;
+  }
+
+  .menu-item-icon {
+    float: left;
+    line-height: $menu-item-height;
+    margin-right: $desktop-gutter;
+  }
+
+  .menu-item-indent {
+    float: left;
+    width: 10px;
+    line-height: $menu-item-height;
+  }
+
+  .menu-item-data {
+    display: block;
+    padding-left: ($desktop-gutter * 2);
+    line-height: $menu-item-data-height;
+    height: $menu-item-data-height;
+    vertical-align: top;
+    top: -12px;
+    position: relative;
+    @extend .font-weight-light;
+  }
+
+  .muidocs-icon-custom-arrow-drop-right {
+    margin-right: ($desktop-gutter-mini * -1);
+    color: $drop-down-menu-icon-color;
+  }
+
+  .toggle {
+    margin-top: (($menu-item-height - $radio-button-size) / 2);
+    float: right;
+    width: 42px;
+  }
+
+  &.is-selected {
+    color: $menu-item-selected-text-color;
+  }
+
+  &.is-disabled {
+    color: $disabled-color !important;
+    cursor: default;
+  }
+
+}

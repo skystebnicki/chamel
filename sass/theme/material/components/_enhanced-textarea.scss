@@ -1,0 +1,16 @@
+.enhanced-textarea {
+  .enhanced-textarea-shadow,
+  .enhanced-textarea-input {
+    width: 100%;
+    resize: none;
+  }
+
+  .enhanced-textarea-input {
+    overflow: hidden;
+  }
+
+  .enhanced-textarea-shadow {
+    @include transform(scale(0));
+    position: absolute;
+  }
+}

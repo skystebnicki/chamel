@@ -1,0 +1,90 @@
+.left-nav {
+
+  /*
+   * Left nav header classes
+   */
+  .left-nav-header {
+
+    height: $app-bar-height-small;
+
+    @media #{$device-medium} {
+      height: $app-bar-height-medium;
+    }
+
+    @media #{$device-large} {
+      height: $app-bar-height-large;
+    }
+
+    h2 {
+      font-family: "Casper";
+      @extend .font-style-title;
+      padding: 0 $gutter-less 0 $gutter-less;
+      line-height: $app-bar-height-small;
+      margin: 0;
+
+      @media #{$device-medium} {
+        line-height: $app-bar-height-medium;
+        padding: 0 $gutter 0 $gutter;
+      }
+      @media #{$device-large} {
+        line-height: $app-bar-height-large;
+        padding: 0 $gutter 0 $gutter;
+      }
+    }
+
+    .left-nav-header-menu {
+
+      height: 100%;
+      position: fixed;
+      width: $left-nav-width;
+      z-index: 20;
+      display: block;
+      background-color: $left-nav-color;
+      
+      &.is-closed {
+        display: none;
+      }
+    }
+  }
+
+  .left-nav-menu {
+    overflow: auto;
+    height: 100%;
+    position: fixed;
+    width: $left-nav-width;
+    background-color: $left-nav-color;
+    z-index: 10;
+    @include ease-out();
+
+    .menu {
+      .menu-item {
+        height: $desktop-left-nav-menu-item-height;
+        line-height: $desktop-left-nav-menu-item-height;
+      }
+      a.menu-item {
+        display: block;
+        text-decoration: none;
+        color: $body-text-color;
+      }
+    }
+  }
+
+  &.floating {
+    .left-nav-menu {
+      left: 0px;
+      top: 0px;
+    }
+  }
+
+  &.docked {
+    .left-nav-menu {
+      
+    }
+  }
+
+  &.closed {
+    .left-nav-menu {
+      @include transform(translate3d((-1 * $left-nav-width) - 10px, 0, 0));
+    }
+  }
+}
