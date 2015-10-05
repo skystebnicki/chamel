@@ -51,7 +51,7 @@ var App = React.createClass({
   handleThemeChange_: function() {
     var theme = React.findDOMNode(this.refs.themes).value;
     var themeScriptTag = document.getElementById("css-theme");
-    themeScriptTag.href = '../css/chamel-' + theme + '.css';
+    themeScriptTag.href = '../build/css/chamel-' + theme + '.css';
   }
 });
 

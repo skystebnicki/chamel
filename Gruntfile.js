@@ -54,13 +54,6 @@ module.exports = function(grunt) {
                 tasks: ['browserify:dev']
             },
 
-            // Make sure any new scripts are included in the html documents
-            blocks: {
-                //files: ['js/**/*.js', 'build/js/ui/**/*.js'],
-                files: ['build/js/**/*.js'],
-                tasks: ['fileblocks:dev']
-            },
-
             // Render jsx filse into js files
             // react: {
             //     files: ['js/ui/**/*.jsx'],
@@ -92,17 +85,16 @@ module.exports = function(grunt) {
                 sourceComments: 'map',
                 outputStyle: 'compressed',
                 includePaths: [
-                    //'vendor/bootstrap-sass/assets/stylesheets',
                     'sass'
                 ]
             },
             dist: {
                 files: {
-                    'css/chamel-base.css': 'sass/theme/base/base.scss',
-                    'css/chamel-human.css': 'sass/theme/human/human.scss',
-                    'css/chamel-material.css': 'sass/theme/material/material.scss',
-                    'css/chamel-modern.css': 'sass/theme/modern/modern.scss',
-                    'css/font-awesome.css': 'sass/font-awesome/font-awesome.scss'
+                    'build/css/chamel-base.css': 'sass/theme/base/base.scss',
+                    'build/css/chamel-human.css': 'sass/theme/human/human.scss',
+                    'build/css/chamel-material.css': 'sass/theme/material/material.scss',
+                    'build/css/chamel-modern.css': 'sass/theme/modern/modern.scss',
+                    'build/css/font-awesome.css': 'sass/font-awesome/font-awesome.scss'
                 }
             }
         },
@@ -130,7 +122,7 @@ module.exports = function(grunt) {
                     {expand: true, cwd: '.', src: ['images/**'], dest: 'dist/'},
 
                     // Copy css
-                    {expand: true, cwd: '.', src: ['css/**'], dest: 'dist/'},
+                    {expand: true, cwd: '.', src: ['build/css/**'], dest: 'dist/'},
 
                     // Copy fonts
                     {expand: true, cwd: '.', src: ['fonts/**'], dest: 'dist/'},
@@ -140,45 +132,6 @@ module.exports = function(grunt) {
                 files: [
                     // Copy all js to build dir so we can merge with jsx
                     {expand: true, cwd: '.', src: ['src/**'], dest: 'build/'},
-                ]
-            }
-        },
-        
-        /*
-         * Automatically insert script tags into index.html
-         */
-        fileblocks: {
-            /* Task options */
-            options: {
-                templates: {
-                    'jsx': '<script type="text/jsx" src="${file}"></script>',
-                    md: '+ ${file}' // Add a custom template
-                }
-            },
-            dev: {
-                src: 'demo/index.html',
-                blocks: {
-                    'app': { 
-                        src: 'build/js/**/*.js'
-                    },
-                    'components': {
-                        src: 'build/js/ui/**/*.js'
-                    }
-                }
-            }
-        },
-
-        /*
-         * Wire in bower dependencies
-         */
-        wiredep: {
-
-            target: {
-
-                // Point to the files that should be updated when
-                // you run `grunt wiredep`
-                src: [
-                    '**/*.html'
                 ]
             }
         }
@@ -191,23 +144,17 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-file-blocks');
-    grunt.loadNpmTasks('grunt-wiredep');
-    //grunt.loadNpmTasks('grunt-svn-fetch');
     grunt.loadNpmTasks('grunt-react');
 
     /*
      * Now register callable tasks
      */
-
-    // Insert script tags into index test file
-    grunt.registerTask('includes', ['wiredep', 'fileblocks:dev']);
     
-    // Compine and put built application in dist
-    grunt.registerTask('compile', ['copy:build', 'react', 'sass:dist', 'copy:main']);
+    // Build all artifacts for distribution and ptu in ./dist
+    grunt.registerTask('build', ['copy:build', 'react', 'sass:dist', 'copy:main']);
     
-    // Default will build sass, update js includes and then sit and watch for changes
-    grunt.registerTask('default', ['sass:dist', 'browserify:dev', 'includes', 'watch']);
+    // Default will build sass, update js and then sit and watch for changes
+    grunt.registerTask('default', ['sass:dist', 'browserify:dev', 'watch']);
 
     // We are utilizing browserify for react components
     grunt.loadNpmTasks('grunt-browserify');

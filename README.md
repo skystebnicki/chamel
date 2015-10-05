@@ -30,6 +30,43 @@ Now use in a your component like:
 	  }
 	});
 
-## Dependencies
+## Developing & Building
 
-- FontAwesome
+If you would like to build the probject or develop it locally then follow these steps. 
+
+First make sure you have the latest version of node installed and working locally: https://nodejs.org
+
+#### 1. If you do not have grunt installed, then install it with:
+
+    npm install -g grunt-cli
+
+#### 2. Install node dependencies
+    
+    npm install
+    
+Now you are ready to either develop or build chamel.
+
+### To build the latest source for distribution
+
+
+    grunt build
+
+This will put all the files needed for deployment in the ./dist directory
+
+### To develop locally
+
+We recommend running three seperate console windows in parallel while developing.
+
+#### 1. Watcher that builds the project then sits and waits for changes and automatically builds (pretty cool)
+
+    grunt
+
+#### 2. The http server used to display the demo app for development
+
+    npm start
+    
+#### 3. The test suite that also watches for changes and runs automatically
+
+    npm test
+    
+Again, I recommend running all these at the same time in different tabs (or windows).
