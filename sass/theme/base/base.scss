@@ -1,5 +1,5 @@
 /**
- * This is the theme to make chameleon look like Google's Material UI
+ * This is the base theme with no styles beyond the default base styles
  */
 
 // Theme specific variables
@@ -24,7 +24,7 @@
 @import "../../mixins/mixins";
 
 // Theme core CSS
-@import "core/core";
+@import "../../core/core";
 
 // Components
 @import "../../components/components";

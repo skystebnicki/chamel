@@ -45,7 +45,7 @@
   }
 
   .app-bar-title {
-    @extend .font-style-title;
+    @extend .cml-font-style-title;
     color: $app-bar-text-color;
     padding: 0;
     margin: 0;

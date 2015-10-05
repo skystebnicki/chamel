@@ -1,8 +1,8 @@
 .flat-button {
 
   @include ease-out();
-  @extend .font-style-button;
-  border-radius: 2px;
+  @extend .cml-font-style-button;
+  border-radius: $button-border-radius;
   user-select: none;
 
   position: relative;

@@ -2,16 +2,23 @@
 
 This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.
 
-## Using chamel
+## Using Chamel
 
-Include sass in your built sass
+### 1. Include the CSS in the head of your document
 
-	vendor/chamel/sass/
+All the themes can be found in /dist/css/chamel-[themename].cmp.css
 
-Inside JSX
+### 2. Use the components in your React Component
 
-	var Chamel = require("chamel");
+First install chamel with npm
+
+    npm install chamel --save-dev
+
+Now use in a your component like:
+
 	var React = require('react');
+	var Chamel = require("chamel");
+	var FlatButton = Chamel.FlatButton;
 
 	var App = React.createClass({
 	  render: function () {
@@ -25,4 +32,4 @@ Inside JSX
 
 ## Dependencies
 
-None yet
+- FontAwesome

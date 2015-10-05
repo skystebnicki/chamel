@@ -1,3 +1,30 @@
 /**
  * This is the theme to make chameleon look like Windows Modern UI
  */
+
+// Theme specific variables
+@import "../../variables/colors";
+@import "../../variables/spacing";
+@import "../../variables/theme-variables";
+
+/**
+ * Include global variables
+ */
+@import "../../variables/media-queries";
+
+// Reset and dependencies
+@import "../../resets/normalize";
+@import "../../resets/typography-resets";
+
+// Global variables and mixins
+
+@import "../../variables/theme-variables";
+
+// Common mixins
+@import "../../mixins/mixins";
+
+// Theme core CSS
+@import "core/core";
+
+// Components
+@import "../../components/components";

@@ -50,7 +50,6 @@ $menu-subheader-padding: $desktop-gutter !default;
 // buttons
 $button-height: 36px !default;
 $button-min-width: 88px !default;
-$button-border-radius: 2px !default;
 
 $flat-button-color: $white !default;
 $flat-button-hover-color: darken($flat-button-color, 10%) !default;
@@ -172,4 +171,4 @@ $snackbar-action-color: $accent-1-color !default;
 $left-nav-width: ($desktop-keyline-increment * 4) !default;
 
 // paper
-$paper-container-radius: 3px !default;
+$paper-container-radius: 2px;

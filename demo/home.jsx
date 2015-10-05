@@ -4,6 +4,7 @@ var FlatButton = require("../src/FlatButton.jsx");
 var RaisedButton = require("../src/RaisedButton.jsx");
 var DropDownMenuDemo = require("./DropDownMenuDemo.jsx")
 var MenuDemo = require("./MenuDemo.jsx");
+var AppBarDemo = require("./AppBarDemo.jsx");
 
 var Home = React.createClass({
   render: function () {
@@ -32,6 +33,12 @@ var Home = React.createClass({
 							<RaisedButton label="Disabled" disabled={true} />
 						</div>
 					</div>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-xs-12 col-md-6">
+					<h2>{"AppBar"}</h2>
+					<AppBarDemo />
 				</div>
 			</div>
     	</div>

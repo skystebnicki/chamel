@@ -1,6 +1,36 @@
 {
-  "name": "Chamel",
-  "version": "0.0.1",
+  "name": "chamel",
+  "version": "0.0.11",
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "modern ui",
+    "metro ui",
+    "human ui",
+    "native ui theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skystebnicki/chamel.git"
+  },
+  "license": "MIT",
+  "author": "Sky Stebnicki",
+  "bugs": {
+    "url": "https://github.com/skystebnicki/chamel/issues"
+  },
+  "homepage": "http://skystebnicki.com/",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server . -a 0.0.0.0 -p 8000",
+    "pretest": "npm install",
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+    "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js"
+  },
   "devDependencies": {
     "browserify": "*",
     "classnames": "^1.2.0",
@@ -29,16 +59,5 @@
     "bootstrap-slider": "*",
     "shelljs": "^0.2.6",
     "tmp": "0.0.23"
-  },
-  "scripts": {
-    "prestart": "npm install",
-    "start": "http-server . -a 0.0.0.0 -p 8000",
-    "pretest": "npm install",
-    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
-    "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
-    "preupdate-webdriver": "npm install",
-    "update-webdriver": "webdriver-manager update",
-    "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor test/protractor-conf.js"
   }
 }

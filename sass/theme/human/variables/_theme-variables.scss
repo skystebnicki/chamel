@@ -1,8 +1,8 @@
 // Use these variables (and this file) to easily customize themes
 
 //Typography
-$headingFontFamily: Tahoma, Arial, Verdana, Helvetica, sans-serif !default;
-$contentFontFamily: Tahoma, Arial, Verdana, Helvetica, sans-serif !default;
+$headingFontFamily: Helvetica Neue, Helvetica, sans-serif;
+$contentFontFamily: Helvetica Neue, Helvetica, sans-serif;
 
 //App Colors
 $primary-1-color: $cyan-500 !default;
@@ -47,58 +47,58 @@ $menu-item-selected-text-color: $accent-1-color !default;
 $menu-container-background-color: white !default;
 $menu-subheader-padding: $desktop-gutter !default;
 
-// buttons
-$button-height: 36px !default;
-$button-min-width: 88px !default;
-$button-border-radius: 2px !default;
+// buttons - turn off all ripples
+$button-height: 32px;
+$button-min-width: 50px !default;
+$button-border-radius: 8px;
 
-$flat-button-color: $white !default;
-$flat-button-hover-color: darken($flat-button-color, 10%) !default;
-$flat-button-text-color: $body-text-color !default;
-$flat-button-ripple-color: rgba(0,0,0,0.1) !default;
-$flat-button-focus-ripple-color: rgba($flat-button-ripple-color, 0.07) !default;
-$flat-button-primary-hover-color: lighten($accent-1-color, 32%) !default;
-$flat-button-primary-text-color: $accent-1-color !default;
-$flat-button-primary-ripple-color: rgba($flat-button-primary-text-color, 0.2) !default;
-$flat-button-primary-focus-ripple-color: rgba($flat-button-primary-ripple-color, 0.2) !default;
-$flat-button-secondary-hover-color: lighten($primary-1-color, 52%) !default;
-$flat-button-secondary-text-color: $primary-1-color !default;
-$flat-button-secondary-ripple-color: rgba($flat-button-secondary-text-color, 0.2) !default;
-$flat-button-secondary-focus-ripple-color: rgba($flat-button-secondary-ripple-color, 0.2) !default;
-$flat-button-disabled-text-color: rgba($flat-button-text-color, 0.3) !default;
+$flat-button-color: $white;
+$flat-button-hover-color: darken($flat-button-color, 10%);
+$flat-button-text-color: $body-text-color;
+$flat-button-ripple-color: $flat-button-hover-color;
+$flat-button-focus-ripple-color: $flat-button-hover-color;
+$flat-button-primary-hover-color: lighten($accent-1-color, 32%);
+$flat-button-primary-text-color: $accent-1-color;
+$flat-button-primary-ripple-color: $flat-button-primary-hover-color;
+$flat-button-primary-focus-ripple-color: rgba($flat-button-primary-ripple-color, 0.2);
+$flat-button-secondary-hover-color: lighten($primary-1-color, 52%);
+$flat-button-secondary-text-color: $primary-1-color;
+$flat-button-secondary-ripple-color: $flat-button-secondary-hover-color;
+$flat-button-secondary-focus-ripple-color: rgba($flat-button-secondary-ripple-color, 0.2);
+$flat-button-disabled-text-color: rgba($flat-button-text-color, 0.3);
 
-$raised-button-color: $white !default;
-$raised-button-hover-color: darken($raised-button-color, 10%) !default;
-$raised-button-text-color: $body-text-color !default;
-$raised-button-ripple-color: rgba(0,0,0,0.1) !default;
-$raised-button-focus-ripple-color: rgba($raised-button-ripple-color, 0.7) !default;
-$raised-button-primary-color: $accent-1-color !default;
-$raised-button-primary-hover-color: darken($accent-1-color, 15%) !default;
-$raised-button-primary-text-color: $white !default;
-$raised-button-primary-ripple-color: rgba($white, 0.50) !default;
-$raised-button-primary-focus-ripple-color: $raised-button-primary-ripple-color !default;
-$raised-button-secondary-color: $primary-1-color !default;
-$raised-button-secondary-hover-color: darken($primary-1-color, 4%) !default;
-$raised-button-secondary-text-color: $white !default;
-$raised-button-secondary-ripple-color: rgba($white, 0.50) !default;
-$raised-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color !default;
-$raised-button-disabled-color: $raised-button-hover-color !default;
-$raised-button-disabled-text-color: rgba($raised-button-text-color, 0.3) !default;
+$raised-button-color: $white;
+$raised-button-hover-color: darken($raised-button-color, 10%);
+$raised-button-text-color: $body-text-color;
+$raised-button-ripple-color: $raised-button-hover-color;
+$raised-button-focus-ripple-color: rgba($raised-button-ripple-color, 0.7);
+$raised-button-primary-color: $accent-1-color;
+$raised-button-primary-hover-color: darken($accent-1-color, 15%);
+$raised-button-primary-text-color: $white;
+$raised-button-primary-ripple-color: $raised-button-primary-hover-color;
+$raised-button-primary-focus-ripple-color: $raised-button-primary-ripple-color;
+$raised-button-secondary-color: $primary-1-color;
+$raised-button-secondary-hover-color: darken($primary-1-color, 4%);
+$raised-button-secondary-text-color: $white;
+$raised-button-secondary-ripple-color: $raised-button-secondary-hover-color;
+$raised-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color;
+$raised-button-disabled-color: $raised-button-hover-color;
+$raised-button-disabled-text-color: rgba($raised-button-text-color, 0.3);
 
-$floating-action-button-size: 56px !default;
-$floating-action-button-mini-size: 40px !default;
-$floating-action-button-color: $accent-1-color !default;
-$floating-action-button-icon-color: $white !default;
-$floating-action-button-hover-color: $raised-button-primary-hover-color !default;
-$floating-action-button-ripple-color: $raised-button-primary-ripple-color !default;
-$floating-action-button-focus-ripple-color: $raised-button-primary-ripple-color !default;
-$floating-action-button-secondary-color: $primary-1-color !default;
-$floating-action-button-secondary-icon-color: $white !default;
-$floating-action-button-secondary-hover-color: $raised-button-secondary-hover-color !default;
-$floating-action-button-secondary-ripple-color: $raised-button-secondary-ripple-color !default;
-$floating-action-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color !default;
-$floating-action-button-disabled-color: $raised-button-disabled-color !default;
-$floating-action-button-disabled-text-color: $raised-button-disabled-text-color !default;
+$floating-action-button-size: 56px;
+$floating-action-button-mini-size: 40px;
+$floating-action-button-color: $accent-1-color;
+$floating-action-button-icon-color: $white;
+$floating-action-button-hover-color: $raised-button-primary-hover-color;
+$floating-action-button-ripple-color: $floating-action-button-hover-color;
+$floating-action-button-focus-ripple-color: $raised-button-primary-ripple-color;
+$floating-action-button-secondary-color: $primary-1-color;
+$floating-action-button-secondary-icon-color: $white;
+$floating-action-button-secondary-hover-color: $raised-button-secondary-hover-color;
+$floating-action-button-secondary-ripple-color: $raised-button-secondary-ripple-color;
+$floating-action-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color;
+$floating-action-button-disabled-color: $raised-button-disabled-color;
+$floating-action-button-disabled-text-color: $raised-button-disabled-text-color;
 
 // input
 $input-width: 320px !default;
@@ -172,4 +172,4 @@ $snackbar-action-color: $accent-1-color !default;
 $left-nav-width: ($desktop-keyline-increment * 4) !default;
 
 // paper
-$paper-container-radius: 3px !default;
+$paper-container-radius: 8px;

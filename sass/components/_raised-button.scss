@@ -11,7 +11,7 @@
     width: 100%;
     padding: 0;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: $button-border-radius;
     background-color: $raised-button-color;
     
     //This is need so that ripples do not bleed
@@ -50,7 +50,7 @@
 
   .raised-button-label {
     position: relative;
-    @extend .font-style-button;
+    @extend .cml-font-style-button;
     margin: 0;
     padding: 0 $desktop-gutter-less;
     user-select: none;

@@ -30,8 +30,9 @@ var App = React.createClass({
           <header>
               <div className='pull-right'>
                 <select ref="themes" onChange={this.handleThemeChange_}>
+                  <option value='base'>Base (none)</option>
                   <option value='material'>Material (android)</option>
-                  <option value='flat'>Flat (ios)</option>
+                  <option value='human'>Human (ios)</option>
                   <option value='modern'>Modern (windows)</option>
                 </select>
               </div>
@@ -50,7 +51,7 @@ var App = React.createClass({
   handleThemeChange_: function() {
     var theme = React.findDOMNode(this.refs.themes).value;
     var themeScriptTag = document.getElementById("css-theme");
-    themeScriptTag.href = '../css/chamel-theme-' + theme + '.css';
+    themeScriptTag.href = '../css/chamel-' + theme + '.css';
   }
 });
 
