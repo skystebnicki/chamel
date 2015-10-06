@@ -1,7 +1,7 @@
 var React = require("react");
-var AppBar = require("../src/AppBar.jsx");
-var IconButton = require("../src/IconButton.jsx");
-var CodeExample = require("./CodeExample.jsx");
+var AppBar = require("../../src/AppBar.jsx");
+var IconButton = require("../../src/IconButton.jsx");
+var CodeExample = require("../CodeExample.jsx");
 
 var AppBarDemo = React.createClass({
 

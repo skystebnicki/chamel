@@ -64,6 +64,8 @@ We recommend running three seperate console windows in parallel while developing
 #### 2. The http server used to display the demo app for development
 
     npm start
+
+Now load up http://localhost/demo in your browser of choice to see the demo of each component
     
 #### 3. The test suite that also watches for changes and runs automatically
 

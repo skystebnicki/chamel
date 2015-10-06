@@ -2,6 +2,9 @@
 var React = require('react');
 var Home = require('./home.jsx');
 
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
+
 /** Once we use the route again
 var Router = require('react-router');
 var RouteLink = Router.Link;
@@ -23,6 +26,7 @@ var App = React.createClass({
 */
 
 var App = React.createClass({
+
   render: function () {
     return (
       <div>
@@ -39,8 +43,10 @@ var App = React.createClass({
               <h1>Chameleon Demo</h1>
           </header>
         </div>
-		
-        <Home/>
+
+        <div className="container">
+          <RouteHandler/>
+        </div>
       </div>
     );
   },

@@ -2,14 +2,14 @@ var React = require("react");
 
 var FlatButton = require("../src/FlatButton.jsx");
 var RaisedButton = require("../src/RaisedButton.jsx");
-var DropDownMenuDemo = require("./DropDownMenuDemo.jsx")
-var MenuDemo = require("./MenuDemo.jsx");
-var AppBarDemo = require("./AppBarDemo.jsx");
+var DropDownMenuDemo = require("./controls/DropDownMenuDemo.jsx")
+var MenuDemo = require("./controls/MenuDemo.jsx");
+var AppBarDemo = require("./controls/AppBarDemo.jsx");
 
 var Home = React.createClass({
   render: function () {
     return (
-		<div className="container">
+		<div>
 			<div className="row">
 				<div className="col-xs-12 col-md-6">
 					<h2>{"Buttons"}</h2>

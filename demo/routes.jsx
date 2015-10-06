@@ -1,18 +1,18 @@
 var React = require("react");
 var App = require("./demo-app.jsx");
 var Home = require("./home.jsx");
+var AppBarDemo = require("./controls/AppBarDemo.jsx");
 
 var Router = require('react-router');
 var DefaultRoute = Router.DefaultRoute;
 var Route = Router.Route;
 
 var routes = (
-  <Router>
-	  <Route name="app" path="/" component={App}>
-	    <Route name="home" component={Home}/>
-	    <Route path="*" component={Home}/>
-	  </Route>
-  </Router>
+	<Route handler={App} path="/">
+		<DefaultRoute handler={Home}/>
+		<Route name="home" path="home" handler={Home}/>
+		<Route name="app-bar" path="app-bar" handler={AppBarDemo}/>
+	</Route>
 );
 
 

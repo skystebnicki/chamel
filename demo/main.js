@@ -1,14 +1,11 @@
-'use strict';
-
 var React = require("react");
-//var Router = require("react-router");
-//var routes = require("./routes.jsx");
-var App = require("./demo-app.jsx");
+var Router = require("react-router");
+var routes = require("./routes.jsx");
 
 /**
  * Demo app used to test and demonstrate UI components
  */
-var demo = {
+var chamel = {
 
 	/**
 	 * Run demo application
@@ -20,17 +17,13 @@ var demo = {
 	 */
 	run: function(domEntry, opt_path) {
 
-		/**
-		 * TODO: We need to move this over to a react router before the demo can
-		 * be more robust. However, for the sake of just getting things going
-		 * we are going to keep all the comonents on a single page for now.
-		 */
-		React.render(
-			React.createElement(App), 
-			domEntry
-		);
+
+		Router.run(routes, function (Handler) {
+			React.render(React.createElement(Handler), domEntry);
+		});
+
 	}
 	
 };
 
-module.exports = demo;
+module.exports = chamel;

@@ -4,11 +4,15 @@ module.exports = function(grunt) {
         distFolder: 'dist',
         pkg: grunt.file.readJSON('package.json'),
 
+        /**
+         * Browserfly packs all scripts following require statements into
+         * a single file to be served through the browser.
+         * */
         browserify: {
             options: {
                 debug: true,
                 transform: [
-                    ['reactify', {"harmony": true}] 
+                    ['babelify', {loose: "all", nonStandard: true}]
                 ],
                 extensions: ['.jsx'],
                 browserifyOptions : {
@@ -23,14 +27,14 @@ module.exports = function(grunt) {
                 src: ['demo/main.js'],
                 dest: 'build/js/chamel-demo.js'
             },
-            production: {
+            dist: {
                 options: {
                   debug: false
                 },
                 //cwd: 'js',
                 //src: ['**/*.jsx'],
                 src: ['src/main.js'],
-                dest: 'build/js/chamel.js'
+                dest: 'dist/js/chamel.js'
             }
         },
         
@@ -45,7 +49,7 @@ module.exports = function(grunt) {
                     'sass/**/*.{scss,sass}',
                     'sass/_partials/**/*.{scss,sass}'
                 ],
-                tasks: ['sass:dist']
+                tasks: ['sass:dev']
             },
             
             // Build browserfly bundle
@@ -77,24 +81,50 @@ module.exports = function(grunt) {
             }
         },
         
-        /*
+        /**
          * Compile sass into CSS
          */
         sass: {
             options: {
-                sourceComments: 'map',
-                outputStyle: 'compressed',
                 includePaths: [
                     'sass'
                 ]
             },
-            dist: {
+            dev: {
+                options: {
+                    outputStyle: 'expanded',
+                    sourceComments: 'map'
+                },
                 files: {
                     'build/css/chamel-base.css': 'sass/theme/base/base.scss',
                     'build/css/chamel-human.css': 'sass/theme/human/human.scss',
                     'build/css/chamel-material.css': 'sass/theme/material/material.scss',
                     'build/css/chamel-modern.css': 'sass/theme/modern/modern.scss',
                     'build/css/font-awesome.css': 'sass/font-awesome/font-awesome.scss'
+                }
+            },
+            dist: {
+                options: {
+                    outputStyle: 'compact'
+                },
+                files: {
+                    'dist/css/chamel-base.css': 'sass/theme/base/base.scss',
+                    'dist/css/chamel-human.css': 'sass/theme/human/human.scss',
+                    'dist/css/chamel-material.css': 'sass/theme/material/material.scss',
+                    'dist/css/chamel-modern.css': 'sass/theme/modern/modern.scss',
+                    'dist/css/font-awesome.css': 'sass/font-awesome/font-awesome.scss'
+                }
+            },
+            distcmp: {
+                options: {
+                    outputStyle: 'compressed'
+                },
+                files: {
+                    'dist/css/chamel-base.cmp.css': 'sass/theme/base/base.scss',
+                    'dist/css/chamel-human.cmp.css': 'sass/theme/human/human.scss',
+                    'dist/css/chamel-material.cmp.css': 'sass/theme/material/material.scss',
+                    'dist/css/chamel-modern.cmp.css': 'sass/theme/modern/modern.scss',
+                    'dist/css/font-awesome.css': 'sass/font-awesome/font-awesome.scss'
                 }
             }
         },
@@ -116,13 +146,13 @@ module.exports = function(grunt) {
          * Task settings to copy published files to the dist directory
          */
         copy: {
-            main: {
+            dist: {
                 files: [
                     // Copy images
                     {expand: true, cwd: '.', src: ['images/**'], dest: 'dist/'},
 
                     // Copy css
-                    {expand: true, cwd: '.', src: ['build/css/**'], dest: 'dist/'},
+                    //{expand: true, cwd: '.', src: ['build/css/**'], dest: 'dist/'},
 
                     // Copy fonts
                     {expand: true, cwd: '.', src: ['fonts/**'], dest: 'dist/'},
@@ -133,6 +163,12 @@ module.exports = function(grunt) {
                     // Copy all js to build dir so we can merge with jsx
                     {expand: true, cwd: '.', src: ['src/**'], dest: 'build/'},
                 ]
+            }
+        },
+
+        clean: {
+            dist: {
+                src: ["dist"]
             }
         }
 
@@ -151,11 +187,14 @@ module.exports = function(grunt) {
      */
     
     // Build all artifacts for distribution and ptu in ./dist
-    grunt.registerTask('build', ['copy:build', 'react', 'sass:dist', 'copy:main']);
+    grunt.registerTask('build', ['clean:dist', 'sass:dist', 'sass:distcmp', 'browserify:dist', 'copy:dist']);
     
     // Default will build sass, update js and then sit and watch for changes
-    grunt.registerTask('default', ['sass:dist', 'browserify:dev', 'watch']);
+    grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'watch']);
 
     // We are utilizing browserify for react components
     grunt.loadNpmTasks('grunt-browserify');
+
+    // Clean out dist directory before building
+    grunt.loadNpmTasks('grunt-contrib-clean');
 };
