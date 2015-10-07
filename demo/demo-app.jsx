@@ -2,34 +2,23 @@
 var React = require('react');
 var Home = require('./home.jsx');
 var LeftNav = require("../src/LeftNav.jsx");
+var IconButton = require("../src/IconButton.jsx");
 
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
 
-/** Once we use the route again
-var Router = require('react-router');
-var RouteLink = Router.Link;
-var RouteHandler = Router.RouteHandler;
-
-var App = React.createClass({
-  render: function () {
-    return (
-      <div>
-      	<header>
-			<h1>{"Demo Here"}</h1>
-		</header>
-		
-        <RouteHandler/>
-      </div>
-    );
-  }
-});
-*/
-
+/**
+ * Define menu items for the main left nav.
+ *
+ * The 'route' property must correlate to a named route in ./routes.jsx
+ * which is where the control demo component is defined.
+ */
 var menuItems = [
   { route: 'home', text: 'Home' },
   { route: 'button', text: 'Button' },
-  { route: 'app-bar', text: 'AppBar' }
+  { route: 'app-bar', text: 'AppBar' },
+  { route: 'toolbar', text: 'Toolbar' },
+  { route: 'editor', text: 'Editor' }
 ];
 
 var App = React.createClass({
@@ -69,7 +58,11 @@ var App = React.createClass({
                   <option value='modern'>Modern (windows)</option>
                 </select>
               </div>
-              <span className='visible-xs-inline' onClick={this.handleMenuToggle_}>Menu</span>
+              <span className='visible-xs-inline'>
+                <IconButton
+                    iconClassName="fa fa-bars"
+                    onClick={this.handleMenuToggle_}/>
+              </span>
               <h1>Chameleon Demo</h1>
           </header>
         </div>

@@ -8,7 +8,7 @@ var FontIcon = React.createClass({
   render: function() {
 
     var className = this.props.className;
-    var classes = this.getClasses('font-icon');
+    var classes = this.getClasses('chamel-font-icon');
 
     return (
       <span {...this.props} className={classes} />

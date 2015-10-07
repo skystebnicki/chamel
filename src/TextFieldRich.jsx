@@ -1,4 +1,7 @@
 var React = require('react');
+var UAParser = require('ua-parser-js');
+
+var uaParser = new UAParser();
 
 var RichText = React.createClass({
 
@@ -16,24 +19,27 @@ var RichText = React.createClass({
 
   getDefaultProps: function() {
     return {
-      autoGrow: true
+      autoGrow: true,
+      value: ""
     };
   },
 
   componentDidMount: function() {
 
+    // If height has been passed then set the iframe height
     if (this.props.height) {
       var iframe = this.refs.rte.getDOMNode();
-      alib.dom.styleSet(iframe, "height", height);
+      iframe.style.height = height;
     }
 
+    // Make the contents of the iframe editable
     this._enableDesign();
     this.setValue(this.props.value);
   },
 
   render: function() {
     return ( 
-      <div className="text-field-rich" >
+      <div className="chamel-text-field-rich" >
         <iframe ref='rte' src="about:blank" />
       </div> 
     );
@@ -173,45 +179,36 @@ var RichText = React.createClass({
 
     // Set blur event
     // TODO: For some reason it is always firing twice... we should investigate
-    var evtObj = (alib.userAgent.ie) ? this.refs.rte.getDOMNode() : this._getIframeWindow();
-    alib.events.listen(evtObj, "blur", function(evt) {
-      this._handleInputBlur(evt);
-    }.bind(this));
+    var evtObj = (uaParser.getBrowser().name == "IE")
+        ? this.refs.rte.getDOMNode() : this._getIframeWindow();
+
+    // W3C DOM
+    if (evtObj.addEventListener) {
+      evtObj.addEventListener("blur",function(evt) {
+        this._handleInputBlur(evt);
+      }.bind(this),false);
+    } else if (evtObj.attachEvent) {
+      // IE DOM
+      evtObj.attachEvent("onblur", function(evt) {
+        this._handleInputBlur(evt);
+      }.bind(this));
+    }
 
     // Set keydown event
-    var evtObj = (alib.userAgent.ie) ? this.refs.rte.getDOMNode() : this._getIframeWindow();
-    alib.events.listen(evtObj, "keydown", function(evt) {
-      this._handleInputKeyDown(evt);
-    }.bind(this));
+    var evtObj = (uaParser.getBrowser().name == "IE")
+        ? this.refs.rte.getDOMNode() : this._getIframeWindow();
 
-    // TODO: Handle default blockElement if set
-    /*
-    if (this.defaultBlockElement) {
-      this.listen("keydown", function(e) {
-        var currentElem = me.currentCaretElem();
-        if(!currentElem)
-          me.setFont("formatBlock", me.defaultBlockElement)
-      });
+    // W3C DOM
+    if (evtObj.addEventListener) {
+      evtObj.addEventListener("keydown",function(evt) {
+        this._handleInputKeyDown(evt);
+      }.bind(this),false);
+    } else if (evtObj.attachEvent) {
+      // IE DOM
+      evtObj.attachEvent("onkeydown", function(evt) {
+        this._handleInputKeyDown(evt);
+      }.bind(this));
     }
-    */
-
-    /*
-    if (alib.userAgent.ie) 
-    {
-      this.idoc.designMode = (designModeOn) ? "On" : "Off";
-    } 
-    else 
-    {
-      this.ifrm.contentDocument.designMode = "on";
-      
-      if (alib.userAgent.gecko || alib.userAgent.webkit) 
-      {
-        //attach a keyboard handler for gecko browsers to make keyboard shortcuts work
-        //oRTE.addEventListener("keypress", kb_handler, true);
-        this.idoc.body.spellcheck = true;
-      }
-    }
-    */
       
     return true;
   },
@@ -227,11 +224,10 @@ var RichText = React.createClass({
     }
 
     var idoc = this._getIframDoc();
-    //var contentHeight = alib.dom.getElementHeight(idoc, true);
     var contentHeight = idoc.body.scrollHeight;
 
     var iframe = this.refs.rte.getDOMNode();
-    alib.dom.styleSet(iframe, "height", contentHeight + "px");
+    iframe.style.height = contentHeight + "px";
   }
 
 });

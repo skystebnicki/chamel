@@ -58,7 +58,8 @@
     "react-tap-event-plugin": "^0.1.6",
     "reactify": "^1.1.0",
     "shelljs": "^0.2.6",
-    "tmp": "0.0.23"
+    "tmp": "0.0.23",
+    "ua-parser-js": "^0.7.9"
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
   "main": "src/main.js",
