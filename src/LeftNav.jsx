@@ -67,8 +67,7 @@ var LeftNav = React.createClass({
 
     classes += (this.props.docked) ? " docked" : " floating";
 
-    var selectedIndex = this.props.selectedIndex,
-      overlay;
+    var selectedIndex = this.props.selectedIndex, overlay;
 
     if (!this.props.docked) 
       overlay = <Overlay show={this.state.open} onClick={this._onOverlayTouchTap} />;
@@ -82,25 +81,28 @@ var LeftNav = React.createClass({
             onItemClick={this._onMenuItemClick} />
             */
 
-    // Add each menu item
-    var selectedIndex = null;
-    for (var i = 0; i < this.props.menuItems.length; i++) {
+    // Set the index based on the selected route if the selectedIndex was not passed as prop
+    if (this.state.selected && selectedIndex === null) {
+      selectedIndex = null;
+      for (var i = 0; i < this.props.menuItems.length; i++) {
 
-      // Put in variables for readability
-      var selected = this.state.selected;
-      var route = this.props.menuItems[i].route;
+        // Put in variables for readability
+        var selected = this.state.selected;
+        var route = this.props.menuItems[i].route;
 
-      // Selected could extend beyond the route path since a route can be
-      // multiple levels deep like /my/path/to/100
-      if (selected.length >= route.length) {
-        if (selected.substring(0, route.length) == route) {
-          selectedIndex = i;
+        // Selected could extend beyond the route path since a route can be
+        // multiple levels deep like /my/path/to/100
+        if (selected.length >= route.length) {
+          if (selected.substring(0, route.length) == route) {
+            selectedIndex = i;
+          }
         }
-      }
 
         //var sltd =  ? "*" : "";
         //items.push(<div onClick={this._sendClick.bind(null, i)}>{this.props.menuItems[i].name} {sltd}</div>);
+      }
     }
+
 
     var zDept = (this.props.docked) ? 0 : 2;
 
