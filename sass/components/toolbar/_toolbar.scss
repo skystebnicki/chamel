@@ -56,7 +56,7 @@
       color: $toolbar-icon-color;
       cursor: pointer;
       line-height: $toolbar-height;
-      padding-left: $desktop-gutter;
+      margin-left: $desktop-gutter;
 
       &:hover {
         color: $dark-black;

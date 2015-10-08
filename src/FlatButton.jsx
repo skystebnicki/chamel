@@ -24,13 +24,13 @@ var FlatButton = React.createClass({
         secondary,
         ...other
       } = this.props;
-    var classes = this.getClasses('flat-button', {
+    var classes = this.getClasses('chamel-flat-button', {
       'is-primary': !this.props.disabled && primary,
       'is-secondary': !this.props.disabled && !primary && secondary
     });
     var children;
 
-    if (label) children = <span className="flat-button-label">{label}</span>;
+    if (label) children = <span className="chamel-flat-button-label">{label}</span>;
     else children = this.props.children;
 
     return (

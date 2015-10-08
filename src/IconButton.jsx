@@ -39,7 +39,7 @@ var IconButton = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('icon-button');
+    var classes = this.getClasses('chamel-icon-button');
     var tooltip = this.props.tooltip;
     var touch = this.props.touch;
     var fonticon;
@@ -48,7 +48,7 @@ var IconButton = React.createClass({
       tooltip = (
         <Tooltip
           ref="tooltip"
-          className="icon-button-tooltip"
+          className="chamel-icon-button-tooltip"
           label={tooltip}
           show={this.state.tooltipShown}
           touch={touch} />

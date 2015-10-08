@@ -43,7 +43,7 @@ var EnhancedButton = React.createClass({
     var onFocus = this.props.onFocus;
     var onClick = this.props.onClick;
 
-    var classes = this.getClasses('enhanced-button', {
+    var classes = this.getClasses('chamel-enhanced-button', {
       'is-disabled': disabled,
       'is-keyboard-focused': this.state.isKeyboardFocused,
       'is-link-button': linkButton

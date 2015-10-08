@@ -1,7 +1,7 @@
 $icon-button-size: ($icon-size * 2);
 @include pulsate("icon-button-focus-ripple-pulsate");
 
-.icon-button {
+.chamel-icon-button {
 
   * { @include ease-out(); }
   position: relative;
@@ -19,7 +19,7 @@ $icon-button-size: ($icon-size * 2);
     }
   }
 
-  .icon-button-tooltip {
+  .chamel-icon-button-tooltip {
     margin-top: ($icon-button-size + 4);
   }
 

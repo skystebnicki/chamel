@@ -22,8 +22,8 @@
       width: 1px;
     }
 
-    .raised-button,
-    .flat-button {
+    .chamel-raised-button,
+    .chamel-flat-button {
       margin: 0 $desktop-gutter;
       margin-top: (($toolbar-height - $button-height) / 2);
       position: relative;
@@ -52,7 +52,7 @@
       }
     }
 
-    .font-icon {
+    .chamel-font-icon {
       color: $toolbar-icon-color;
       cursor: pointer;
       line-height: $toolbar-height;

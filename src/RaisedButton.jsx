@@ -45,19 +45,19 @@ var RaisedButton = React.createClass({
       primary,
       secondary,
       ...other } = this.props;
-    var classes = this.getClasses('raised-button', {
+    var classes = this.getClasses('chamel-raised-button', {
       'is-primary': !this.props.disabled && primary,
       'is-secondary': !this.props.disabled && !primary && secondary
     });
     var children;
 
-    if (label) children = <span className="raised-button-label">{label}</span>;
+    if (label) children = <span className="chamel-raised-button-label">{label}</span>;
     else children = this.props.children;
 
     return (
       <Paper className={classes} zDepth={this.state.zDepth}>
         <EnhancedButton {...other}
-          className="raised-button-container" 
+          className="chamel-raised-button-container"
           onMouseUp={this._handleMouseUp}
           onMouseDown={this._handleMouseDown}
           onMouseOut={this._handleMouseOut}
