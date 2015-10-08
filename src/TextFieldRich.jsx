@@ -69,7 +69,7 @@ var RichText = React.createClass({
     //   this.hdntxt.value = this.codeMirror.getValue();
     // } else {
       var idoc = this._getIframDoc();
-      return bodyHtml = idoc.body.innerHTML;
+      return idoc.body.innerHTML;
     //}
 
   },
@@ -85,7 +85,8 @@ var RichText = React.createClass({
 
   _handleInputBlur: function(e) {
 
-    e.target = e.target || {};
+    if (typeof e.target === "undefied")
+      e.target = {};
     e.target.value = this.getValue();
 
     this._handleInputChange(e);
