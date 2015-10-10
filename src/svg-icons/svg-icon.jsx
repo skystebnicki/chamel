@@ -6,7 +6,7 @@ var SvgIcon = React.createClass({
   mixins: [Classable],
 
   render: function() {
-    var classes = this.getClasses('svg-icon');
+    var classes = this.getClasses('chamel-svg-icon');
 
     return (
       <svg

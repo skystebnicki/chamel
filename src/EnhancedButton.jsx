@@ -43,10 +43,10 @@ var EnhancedButton = React.createClass({
     var onFocus = this.props.onFocus;
     var onClick = this.props.onClick;
 
-    var classes = this.getClasses('enhanced-button', {
-      'is-disabled': disabled,
-      'is-keyboard-focused': this.state.isKeyboardFocused,
-      'is-link-button': linkButton
+    var classes = this.getClasses('chamel-enhanced-button', {
+      'chamel-is-disabled': disabled,
+      'chamel-is-keyboard-focused': this.state.isKeyboardFocused,
+      'chamel-is-link-button': linkButton
     });
     var touchRipple = (
       <TouchRipple

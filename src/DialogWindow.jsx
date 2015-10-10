@@ -56,10 +56,10 @@ var DialogWindow = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('dialog-window', { 
-      'is-shown': this.state.open
+    var classes = this.getClasses('chamel-dialog-window', {
+      'chamel-is-shown': this.state.open
     });
-    var contentClasses = 'dialog-window-contents';
+    var contentClasses = 'chamel-dialog-window-contents';
     var actions = this._getActionsContainer(this.props.actions);
 
     if (this.props.contentClassName) {
@@ -136,12 +136,12 @@ var DialogWindow = React.createClass({
           currentAction = this._getAction(currentAction, i);
         }
 
-        currentAction = this._addClassName(currentAction, 'dialog-window-action');
+        currentAction = this._addClassName(currentAction, 'chamel-dialog-window-action');
         actionObjects.push(currentAction);
       };
 
       actionContainer = (
-        <div className="dialog-window-actions">
+        <div className="chamel-dialog-window-actions">
           {actionObjects}
         </div>
       );

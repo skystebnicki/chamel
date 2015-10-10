@@ -1,12 +1,12 @@
-.checkbox {
-  .checkbox-icon {
+.chamel-checkbox {
+  .chamel-checkbox-icon {
     $checkbox-size: 24px;
 
     height: $checkbox-size;
     width: $checkbox-size;
     margin-right: $gutter-less;
 
-    .checkbox-check {
+    .chamel-checkbox-check {
       position: absolute;
       opacity: 0;
       @include transform(scale(0));
@@ -18,7 +18,7 @@
       * { fill: $checkbox-checked-color; }
     }
 
-    .checkbox-box {
+    .chamel-checkbox-box {
       position: absolute;
       * {
         fill: $checkbox-box-color;
@@ -27,9 +27,9 @@
     }
   }
 
-  &.is-switched {
-    .checkbox-icon {
-      .checkbox-check {
+  &.chamel-is-switched {
+    .chamel-checkbox-icon {
+      .chamel-checkbox-check {
         @include ease-out($duration: .45s, $delay: 0s);
         opacity: 1;
         @include transform(scale(1));
@@ -38,25 +38,25 @@
 
         @include transition(opacity 0ms $ease-out-function 0ms, transform 800ms $ease-out-function 0ms);
       }
-      .checkbox-box {
+      .chamel-checkbox-box {
         @include ease-out($duration: 100s, $delay: 0ms);
         * { fill: $checkbox-checked-color; }
       }
     }
   }
 
-  &.is-disabled {
-    .checkbox-icon {
-      .checkbox-check,
-      .checkbox-box {
+  &.chamel-is-disabled {
+    .chamel-checkbox-icon {
+      .chamel-checkbox-check,
+      .chamel-checkbox-box {
         * { fill: $checkbox-disabled-color; }
       }
     }
   }
 
-  &.is-required {
-    .checkbox-icon {
-      .checkbox-box {
+  &.chamel-is-required {
+    .chamel-checkbox-icon {
+      .chamel-checkbox-box {
         * { fill: $checkbox-required-color; }
       }
     }

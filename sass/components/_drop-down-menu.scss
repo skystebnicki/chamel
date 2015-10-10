@@ -1,4 +1,4 @@
-.drop-down-menu {
+.chamel-drop-down-menu {
 
   * {
     @include ease-out();
@@ -9,33 +9,33 @@
   height: $icon-size * 2;
   font-size: $desktop-drop-down-menu-font-size;
 
-  &.open {
-    .menu-control {
+  &.chamel-open {
+    .chamel-menu-control {
       &:hover,
       &:focus {
 
-        .menu-control-bg {
+        .chamel-menu-control-bg {
           opacity: 0;
         }
 
-        .menu-label {
+        .chamel-menu-label {
           top: ($desktop-toolbar-height / 2);
           opacity: 0;
         }
       }
     }
 
-    .menu {
+    .chamel-menu {
       opacity: 1;
     }
   }
 
-  .menu-control {
+  .chamel-menu-control {
     cursor: pointer;
     @include clearfix();
     height: 100%;
 
-    .menu-control-bg {
+    .chamel-menu-control-bg {
       background-color: $menu-background-color;
       height: 100%;
       width: 100%;
@@ -44,12 +44,12 @@
 
     &:hover,
     &:focus {
-      .menu-control-bg {
+      .chamel-menu-control-bg {
         opacity: 1;
       }
     }
 
-    .menu-label {
+    .chamel-menu-label {
       line-height: $desktop-toolbar-height;
       position: absolute;
       padding-left: $desktop-gutter;
@@ -57,7 +57,7 @@
       opacity: 1;
     }
 
-    .menu-drop-down-icon {
+    .chamel-menu-drop-down-icon {
       line-height: $desktop-toolbar-height;
       position: absolute;
       top: 0;
@@ -65,14 +65,14 @@
       color: $drop-down-menu-icon-color;
     }
 
-    .menu-control-underline {
+    .chamel-menu-control-underline {
       border-top: solid 1px $border-color;
       margin: 0 $desktop-gutter;
     }
   }
 
-  .menu {
-    .menu-item {
+  .chamel-menu {
+    .chamel-menu-item {
       padding-right: ($icon-size + $desktop-gutter-less + $desktop-gutter-mini);
       height: $desktop-drop-down-menu-item-height;
       line-height: $desktop-drop-down-menu-item-height;

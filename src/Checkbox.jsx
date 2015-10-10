@@ -18,12 +18,12 @@ var Checkbox = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses("checkbox");
+    var classes = this.getClasses("chamel-checkbox");
 
     var checkboxElement = (
       <div>
-        <CheckboxOutline className="checkbox-box" />
-        <CheckboxChecked className="checkbox-check" />
+        <CheckboxOutline className="chamel-checkbox-box" />
+        <CheckboxChecked className="chamel-checkbox-check" />
       </div>
     );
 
@@ -32,7 +32,7 @@ var Checkbox = React.createClass({
       inputType: "checkbox",
       switchElement: checkboxElement,
       className: classes,
-      iconClassName: "checkbox-icon",
+      iconClassName: "chamel-checkbox-icon",
       onSwitch: this._handleCheck,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
     };

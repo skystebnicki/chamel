@@ -22,7 +22,7 @@ var InkBar = React.createClass({
         }
 
         return (
-            <div className='ink-bar' style={styles}>
+            <div className='chamel-ink-bar' style={styles}>
             &nbsp;
             </div>
         );

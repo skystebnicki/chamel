@@ -14,7 +14,7 @@ var TabTemplate = React.createClass({
     render: function(){
 
         return (
-            <div className='tab-template'>
+            <div className='chamel-tab-template'>
                 {this.props.children}
             </div>
         );

@@ -14,13 +14,13 @@ var FocusRipple = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('focus-ripple', {
-      'is-shown': this.props.show
+    var classes = this.getClasses('chamel-focus-ripple', {
+      'chamel-is-shown': this.props.show
     });
 
     return (
       <div className={classes}>
-        <div className="focus-ripple-inner" />
+        <div className="chamel-focus-ripple-inner" />
       </div>
     );
   },

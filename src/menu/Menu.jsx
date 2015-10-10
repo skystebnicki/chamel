@@ -49,14 +49,14 @@ var NestedMenuItem = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('nested-menu-item', {
-      'open': this.state.open,
-      'is-disabled': this.props.disabled
+    var classes = this.getClasses('chamel-nested-menu-item', {
+      'chamel-open': this.state.open,
+      'chamel-is-disabled': this.props.disabled
     });
 
     return (
       <div className={classes} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
-        <MenuItem index={this.props.index} disabled={this.props.disabled} iconRightClassName="muidocs-icon-custom-arrow-drop-right" onClick={this._onParentItemClick}>
+        <MenuItem index={this.props.index} disabled={this.props.disabled} iconRightClassName="chamel-icon-custom-arrow-drop-right" onClick={this._onParentItemClick}>
           {this.props.text}
         </MenuItem>
         <Menu
@@ -159,9 +159,9 @@ var Menu = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('menu', {
-      'menu-hideable': this.props.hideable,
-      'visible': this.props.visible
+    var classes = this.getClasses('chamel-menu', {
+      'chamel-menu-hideable': this.props.hideable,
+      'chamel-visible': this.props.visible
     });
 
     return (

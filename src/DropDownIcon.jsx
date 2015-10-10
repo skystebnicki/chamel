@@ -33,8 +33,8 @@ var DropDownIcon = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('drop-down-icon', {
-      'open': this.state.open
+    var classes = this.getClasses('chamel-drop-down-icon', {
+      'chamel-open': this.state.open
     });
 
     var icon;
@@ -42,7 +42,7 @@ var DropDownIcon = React.createClass({
    
     return (
       <div className={classes}>
-          <div className="menu-control" onClick={this._onControlClick}>
+          <div className="chamel-menu-control" onClick={this._onControlClick}>
               {icon}
               {this.props.children}
           </div>

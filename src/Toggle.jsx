@@ -21,8 +21,8 @@ var Toggle = React.createClass({
 
     var toggleElement = (
       <div>
-        <div className="toggle-track" />
-        <Paper className="toggle-thumb" zDepth={1}/>
+        <div className="chamel-toggle-track" />
+        <Paper className="chamel-toggle-thumb" zDepth={1}/>
       </div>
     );
 
@@ -31,7 +31,7 @@ var Toggle = React.createClass({
       inputType: "checkbox",
       switchElement: toggleElement,
       className: "toggle",
-      iconClassName: "toggle-icon",
+      iconClassName: "chamel-toggle-icon",
       onSwitch: this._handleToggle,
       defaultSwitched: this.props.defaultToggled,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "left"

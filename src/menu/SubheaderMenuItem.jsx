@@ -9,7 +9,7 @@ var SubheaderMenuItem = React.createClass({
     
     render: function() {
         return (
-            <div key={this.props.index} className="subheader">{this.props.text}</div>
+            <div key={this.props.index} className="chamel-subheader">{this.props.text}</div>
         );
     }
     

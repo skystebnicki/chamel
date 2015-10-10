@@ -26,8 +26,8 @@ var Overlay = React.createClass({
         className,
         ...other
       } = this.props,
-      classes = this.getClasses('overlay', {
-        'is-shown': this.props.show
+      classes = this.getClasses('chamel-overlay', {
+        'chamel-is-shown': this.props.show
       });
 
     return (

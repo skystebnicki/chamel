@@ -1,4 +1,4 @@
-.enhanced-button {
+.chamel-enhanced-button {
 
   border: 0;
   background: none;
@@ -7,7 +7,7 @@
     outline: none;
   }
   
-  &.is-link-button {
+  &.chamel-is-link-button {
     display: inline-block;
     cursor: pointer;
     text-decoration: none;
@@ -16,7 +16,7 @@
       text-decoration: none;
     }
 
-    &.is-disabled {
+    &.chamel-is-disabled {
       cursor: default;
     }
   }

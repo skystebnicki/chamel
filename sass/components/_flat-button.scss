@@ -1,4 +1,4 @@
-.flat-button {
+.chamel-flat-button {
 
   @include ease-out();
   @extend .cml-font-style-button;
@@ -14,16 +14,16 @@
   padding: 0 $desktop-gutter-less;
   margin: 0;
 
-  .flat-button-label {
+  .chamel-flat-button-label {
     position: relative;
   }
 
   &:hover,
-  &.is-keyboard-focused {
+  &.chamel-is-keyboard-focused {
     background-color: $flat-button-hover-color;
   }
 
-  &.is-disabled {
+  &.chamel-is-disabled {
     color: $flat-button-disabled-text-color;
 
     &:hover {
@@ -31,43 +31,43 @@
     }
   }
 
-  &.is-primary {
+  &.chamel-is-primary {
     color: $flat-button-primary-text-color;
 
     &:hover,
-    &.is-keyboard-focused {
+    &.chamel-is-keyboard-focused {
       background-color: $flat-button-primary-hover-color;
     }
 
-    .touch-ripple {
-      .ripple-circle-inner {
+    .chamel-touch-ripple {
+      .chamel-ripple-circle-inner {
         background-color: $flat-button-primary-ripple-color;
       }
     }
 
-    .focus-ripple {
-      .focus-ripple-inner {
+    .chamel-focus-ripple {
+      .chamel-focus-ripple-inner {
         background-color: $flat-button-primary-focus-ripple-color;
       }
     }
   }
 
-  &.is-secondary {
+  &.chamel-is-secondary {
     color: $flat-button-secondary-text-color;
 
     &:hover,
-    &.is-keyboard-focused {
+    &.chamel-is-keyboard-focused {
       background-color: $flat-button-secondary-hover-color;
     }
 
-    .touch-ripple {
-      .ripple-circle-inner {
+    .chamel-touch-ripple {
+      .chamel-ripple-circle-inner {
         background-color: $flat-button-secondary-ripple-color;
       }
     }
 
-    .focus-ripple {
-      .focus-ripple-inner {
+    .chamel-focus-ripple {
+      .chamel-focus-ripple-inner {
         background-color: $flat-button-secondary-focus-ripple-color;
       }
     }

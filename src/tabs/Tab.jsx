@@ -26,9 +26,9 @@ var Tab = React.createClass({
             width: this.props.width
         };
 
-        var classes = "tab-item";
+        var classes = "chamel-tab-item";
         if (this.props.selected) {
-            classes += " tab-is-active";
+            classes += " chamel-tab-is-active";
         }
 
         return (

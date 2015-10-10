@@ -1,4 +1,4 @@
-.menu-item {
+.chamel-menu-item {
 
   * { user-select: none }
 
@@ -14,34 +14,34 @@
     }
   }
 
-  .menu-item-number {
+  .chamel-menu-item-number {
     float: right;
     width: 24px;
     text-align: center;
   }
 
-  .menu-item-attribute {
+  .chamel-menu-item-attribute {
     float: right;
   }
 
-  .menu-item-icon-right {
+  .chamel-menu-item-icon-right {
     line-height: $menu-item-height;
     float: right;
   }
 
-  .menu-item-icon {
+  .chamel-menu-item-icon {
     float: left;
     line-height: $menu-item-height;
     margin-right: $desktop-gutter;
   }
 
-  .menu-item-indent {
+  .chamel-menu-item-indent {
     float: left;
     width: 10px;
     line-height: $menu-item-height;
   }
 
-  .menu-item-data {
+  .chamel-menu-item-data {
     display: block;
     padding-left: ($desktop-gutter * 2);
     line-height: $menu-item-data-height;
@@ -52,22 +52,22 @@
     @extend .cml-font-weight-light;
   }
 
-  .muidocs-icon-custom-arrow-drop-right {
+  .chamel-icon-custom-arrow-drop-right {
     margin-right: ($desktop-gutter-mini * -1);
     color: $drop-down-menu-icon-color;
   }
 
-  .toggle {
+  .chamel-toggle {
     margin-top: (($menu-item-height - $radio-button-size) / 2);
     float: right;
     width: 42px;
   }
 
-  &.is-selected {
+  &.chamel-is-selected {
     color: $menu-item-selected-text-color;
   }
 
-  &.is-disabled {
+  &.chamel-is-disabled {
     color: $disabled-color !important;
     cursor: default;
   }

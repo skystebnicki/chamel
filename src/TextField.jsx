@@ -69,7 +69,7 @@ var TextField = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses('text-field', {
+    var classes = this.getClasses('chamel-text-field', {
       'has-error': this.props.errorText,
       'has-floating-labels': this.props.floatingLabelText,
       'has-value': this.state.hasValue,
@@ -81,16 +81,16 @@ var TextField = React.createClass({
     var inputId = this.props.id || UniqueId.generate();
 
     var errorTextElement = this.state.errorText ? (
-      <div className="text-field-error">{this.state.errorText}</div>
+      <div className="chamel-text-field-error">{this.state.errorText}</div>
     ) : null;
 
     var hintTextElement = this.props.hintText ? (
-      <div className="text-field-hint">{this.props.hintText}</div>
+      <div className="chamel-text-field-hint">{this.props.hintText}</div>
     ) : null;
 
     var floatingLabelTextElement = this.props.floatingLabelText ? (
       <label
-        className="text-field-floating-label"
+        className="chamel-text-field-floating-label"
         htmlFor={inputId}>
         {this.props.floatingLabelText}
       </label>
@@ -101,7 +101,7 @@ var TextField = React.createClass({
 
     inputProps = {
       ref: 'input',
-      className: 'text-field-input',
+      className: 'chamel-text-field-input',
       id: inputId,
       onBlur: this._handleInputBlur,
       onFocus: this._handleInputFocus,
@@ -117,7 +117,7 @@ var TextField = React.createClass({
         {...other}
         {...inputProps}
         onHeightChange={this._handleTextAreaHeightChange}
-        textareaClassName="text-field-textarea" />
+        textareaClassName="chamel-text-field-textarea" />
     ) : (
       <input
         {...other}
@@ -132,8 +132,8 @@ var TextField = React.createClass({
         {hintTextElement}
         {inputElement}
 
-        <hr className="text-field-underline" />
-        <hr className="text-field-focus-underline" />
+        <hr className="chamel-text-field-underline" />
+        <hr className="chamel-text-field-focus-underline" />
 
         {errorTextElement}
 

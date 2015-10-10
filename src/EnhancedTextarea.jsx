@@ -40,8 +40,8 @@ var EnhancedTextarea = React.createClass({
       ...other,
     } = this.props;
 
-    var classes = this.getClasses('enhanced-textarea');
-    var textareaClassName = 'enhanced-textarea-input';
+    var classes = this.getClasses('chamel-enhanced-textarea');
+    var textareaClassName = 'chamel-enhanced-textarea-input';
     var style = {
       height: this.state.height + 'px'
     };
@@ -58,7 +58,7 @@ var EnhancedTextarea = React.createClass({
       <div className={classes}>
         <textarea
           ref="shadow"
-          className="enhanced-textarea-shadow"
+          className="chamel-enhanced-textarea-shadow"
           tabIndex="-1"
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}

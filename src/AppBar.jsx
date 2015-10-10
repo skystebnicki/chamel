@@ -50,7 +50,7 @@ var AppBar = React.createClass({
 
             if (this.props.iconElementLeft) {
                 menuElementLeft = (
-                    <div className="app-bar-navigation-icon-button"> 
+                    <div className="chamel-app-bar-navigation-icon-button">
                         {this.props.iconElementLeft} 
                     </div>
                 );
@@ -58,7 +58,7 @@ var AppBar = React.createClass({
                 var child = (this.props.iconClassNameLeft) ? '' : <NavigationMenu/>;
                 menuElementLeft = (
                     <IconButton
-                        className="app-bar-navigation-icon-button" 
+                        className="chamel-app-bar-navigation-icon-button"
                         iconClassName={this.props.iconClassNameLeft}
                         onClick={this.props.onNavBtnClick}>
                         {child}
@@ -67,7 +67,7 @@ var AppBar = React.createClass({
             }
 		}
 
-        var classes = 'app-bar', title, menuElementLeft, menuElementRight;
+        var classes = 'chamel-app-bar', title, menuElementLeft, menuElementRight;
 
         if (this.props.className) {
             classes += " " + this.props.className;
@@ -81,7 +81,7 @@ var AppBar = React.createClass({
             // If the title is a string, wrap in an h1 tag.
             // If not, just use it as a node.
             title = toString.call(this.props.title) === '[object String]' ?
-                <h1 className="app-bar-title">{this.props.title}</h1> :
+                <h1 className="chamel-app-bar-title">{this.props.title}</h1> :
                 this.props.title;
         }
 
@@ -89,10 +89,10 @@ var AppBar = React.createClass({
             <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
                 {menuElementLeft}
                 {title}
-                <div className="app-bar-toolbar">
+                <div className="chamel-app-bar-toolbar">
                     {menuElementRight}
                 </div>
-                <div className="clear" />
+                <div className="chamel-clear" />
             </Paper>
 		);
 	}

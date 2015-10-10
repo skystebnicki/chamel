@@ -1,49 +1,49 @@
-.paper {
+.chamel-paper {
 
-  &.rounded {
+  &.chamel-rounded {
     border-radius: $paper-container-radius;
 
-    & > .paper-container {
+    & > .chamel-paper-container {
       border-radius: $paper-container-radius;
     }
   }
 
-  &.circle {
+  &.chamel-circle {
     border-radius: 50%;
 
-    & > .paper-container {
+    & > .chamel-paper-container {
       border-radius: 50%;
     }
   }
 
-  & > .paper-container {
+  & > .chamel-paper-container {
     height: 100%;
     width: 100%;
   }
 
-  &.z-depth-1 {
+  &.chamel-z-depth-1 {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
-    & > .z-depth-bottom { box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12); }
+    & > .chamel-z-depth-bottom { box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12); }
   }
 
-  &.z-depth-2 {
+  &.chamel-z-depth-2 {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
-    & > .z-depth-bottom { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16); }
+    & > .chamel-z-depth-bottom { box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16); }
   }
 
-  &.z-depth-3 {
+  &.chamel-z-depth-3 {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23);
-    & > .z-depth-bottom { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19); }
+    & > .chamel-z-depth-bottom { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.19); }
   }
 
-  &.z-depth-4 {
+  &.chamel-z-depth-4 {
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
-    & > .z-depth-bottom { box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25); }
+    & > .chamel-z-depth-bottom { box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25); }
   }
 
-  &.z-depth-5 {
+  &.chamel-z-depth-5 {
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.22);
-    & > .z-depth-bottom { box-shadow: 0 19px 60px rgba(0, 0, 0, 0.30); }
+    & > .chamel-z-depth-bottom { box-shadow: 0 19px 60px rgba(0, 0, 0, 0.30); }
   }
 
 }

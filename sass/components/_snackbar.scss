@@ -1,4 +1,4 @@
-.snackbar {
+.chamel-snackbar {
 
   color: $snackbar-text-color;
   background-color: $snackbar-background-color;
@@ -18,7 +18,7 @@
   opacity: 0;
   @include transform(translate3d(0, 8px, 0));
 
-  .snackbar-action {
+  .chamel-snackbar-action {
     color: $snackbar-action-color;
     float: right;
     margin-top: 6px;
@@ -27,7 +27,7 @@
     background-color: transparent;
   }
 
-  &.is-open {
+  &.chamel-is-open {
     opacity: 1;
     @include transform(translate3d(0, 0, 0));
   }

@@ -42,9 +42,9 @@ var MenuItem = React.createClass({
 
   render: function() {
     
-    var classes = this.getClasses('menu-item', {
-      'is-selected': this.props.selected,
-      'is-disabled': this.props.disabled
+    var classes = this.getClasses('chamel-menu-item', {
+      'chamel-is-selected': this.props.selected,
+      'chamel-is-disabled': this.props.disabled
     });
     var icon;
     var data;
@@ -53,18 +53,18 @@ var MenuItem = React.createClass({
     var number;
     var toggle;
 
-    if (this.props.iconClassName) icon = <FontIcon className={'menu-item-icon ' + this.props.iconClassName} />;
-    if (this.props.iconRightClassName) iconRight = <FontIcon className={'menu-item-icon-right ' + this.props.iconRightClassName} />;
-    if (this.props.data) data = <span className="menu-item-data">{this.props.data}</span>;
-    if (this.props.number !== undefined) number = <span className="menu-item-number">{this.props.number}</span>;
-    if (this.props.attribute !== undefined) attribute = <span className="menu-item-attribute">{this.props.attribute}</span>;
+    if (this.props.iconClassName) icon = <FontIcon className={'chamel-menu-item-icon ' + this.props.iconClassName} />;
+    if (this.props.iconRightClassName) iconRight = <FontIcon className={'chamel-menu-item-icon-right ' + this.props.iconRightClassName} />;
+    if (this.props.data) data = <span className="chamel-menu-item-data">{this.props.data}</span>;
+    if (this.props.number !== undefined) number = <span className="chamel-menu-item-number">{this.props.number}</span>;
+    if (this.props.attribute !== undefined) attribute = <span className="chamel-menu-item-attribute">{this.props.attribute}</span>;
 
       // Add indentations for hierarchical menus
       var numIndents = this.props.indent || 0;
       var indentItems = (numIndents) ? [] : null;
       for (var i = 0; i < numIndents; i++) {
           indentItems.push(
-              <span className="menu-item-indent" key={i}>{"\u00a0"}</span>
+              <span className="chamel-menu-item-indent" key={i}>{"\u00a0"}</span>
           );
       }
 
