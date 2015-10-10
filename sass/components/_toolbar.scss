@@ -1,18 +1,18 @@
-.chamel-toolbar {
+.toolbar {
   background-color: $toolbar-background-color;
   height: $toolbar-height;
   width: 100%;
   padding: 0 $desktop-gutter;
 
-  .chamel-toolbar-group {
+  .toolbar-group {
     position: relative;
 
-    .chamel-toolbar-title {
+    .toolbar-title {
       padding-right: $desktop-gutter-less;
       line-height: $toolbar-height;
     }
 
-    .chamel-toolbar-separator {
+    .toolbar-separator {
       background-color: $toolbar-separator-color;
       display: inline-block;
       height: $desktop-gutter-more;
@@ -29,23 +29,23 @@
       position: relative;
     }
 
-    .chamel-drop-down-menu {
+    .drop-down-menu {
       color: $light-black;
       display: inline-block;
       margin-right: $desktop-gutter;
 
-      .chamel-menu-control-bg {
+      .menu-control-bg {
         background-color: $toolbar-menu-hover-color;
         border-radius: 0;
       }
 
-      .chamel-menu-control {
-        .chamel-menu-control-underline {
+      .menu-control {
+        .menu-control-underline {
           display: none;
         }
       }
 
-      .chamel-font-icon {
+      .font-icon {
         &:hover {
           color: $toolbar-icon-color;
         }
@@ -56,7 +56,7 @@
       color: $toolbar-icon-color;
       cursor: pointer;
       line-height: $toolbar-height;
-      margin-left: $desktop-gutter;
+      padding-left: $desktop-gutter;
 
       &:hover {
         color: $dark-black;
@@ -64,23 +64,23 @@
       }
     }
 
-    &.chamel-left {
+    &.left {
       float: left;
 
-      .chamel-drop-down-menu, .chamel-font-icon, .chamel-toolbar-separator, .chamel-drop-down-icon  {
+      .drop-down-menu, .font-icon, .toolbar-separator, .drop-down-icon  {
         float: left;
       }
 
       &:first-child {
         margin-left: -24px;
 
-        .chamel-toolbar-title {
+        .toolbar-title {
           margin-left: 24px;
         }
       }
     }
 
-    &.chamel-right {
+    &.right {
       float: right;
 
       * {
