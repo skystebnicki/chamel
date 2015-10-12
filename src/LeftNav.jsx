@@ -60,12 +60,12 @@ var LeftNav = React.createClass({
 
   render: function() {
     // Set the classes
-    var classes = "left-nav";
+    var classes = "chamel-left-nav";
     if (!this.state.open) {
-      classes += " closed";
+      classes += " chamel-closed";
     } 
 
-    classes += (this.props.docked) ? " docked" : " floating";
+    classes += (this.props.docked) ? " chamel-docked" : " chamel-floating";
 
     var selectedIndex = this.props.selectedIndex, overlay;
 
@@ -112,7 +112,7 @@ var LeftNav = React.createClass({
         {overlay}
         <Paper
           ref="clickAwayableElement"
-          className="left-nav-menu"
+          className="chamel-left-nav-menu"
           zDepth={zDept}
           rounded={false}>
           

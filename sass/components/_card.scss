@@ -1,14 +1,14 @@
-.mui-card {
+.chamel-card {
   $card-padding: 24px;
 
   background-color: $white;
   padding: $card-padding;
 
-  .mui-card-toolbar {
+  .chamel-card-toolbar {
     margin: ($card-padding * -1) ($card-padding * -1) ($card-padding * -1) $card-padding;
     line-height: 56px;
     height: 56px;
     padding-left: 0 $card-padding;
-    @extend %mui-font-style-menu;
+    @extend %chamel-font-style-menu;
   }
 }

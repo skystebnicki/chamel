@@ -24,15 +24,15 @@ var Tooltip = React.createClass({
 
     var className = this.props.className;
     var label = this.props.label;
-    var classes = this.getClasses('tooltip', {
+    var classes = this.getClasses('chamel-tooltip', {
       'is-shown': this.props.show,
       'is-touch': this.props.touch
     });
 
     return (
       <div {...other} className={classes}>
-        <div ref="ripple" className="tooltip-ripple" />
-        <span className="tooltip-label">{this.props.label}</span>
+        <div ref="ripple" className="chamel-tooltip-ripple" />
+        <span className="chamel-tooltip-label">{this.props.label}</span>
       </div>
     );
   },

@@ -1,4 +1,4 @@
-.dialog-window {
+.chamel-dialog-window {
   position: fixed;
   z-index: 10;
   top: 0px;
@@ -8,7 +8,7 @@
 
   @include transition(left 0ms $ease-out-function 450ms);
 
-  .dialog-window-contents {
+  .chamel-dialog-window-contents {
     @include ease-out();
     position: relative;
     width: 75%;
@@ -19,22 +19,22 @@
     opacity: 0;
   }
 
-  .dialog-window-actions {
+  .chamel-dialog-window-actions {
     padding: 8px;
     margin-bottom: 8px;
     width: 100%;
     text-align: right;
 
-    .dialog-window-action {
+    .chamel-dialog-window-action {
       margin-right: 8px;
     }
   }
 
-  &.is-shown {
+  &.chamel-is-shown {
     left: 0px;
     @include transition(left 0ms $ease-out-function 0ms);
 
-    .dialog-window-contents {
+    .chamel-dialog-window-contents {
       opacity: 1;
       top: 0px;
       @include transform(translate3d(0, $desktop-keyline-increment, 0));

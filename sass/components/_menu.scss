@@ -1,48 +1,48 @@
-.menu {
+.chamel-menu {
 
   * {@include ease-out(); }
 
   background-color: $menu-background-color;
 
-  &.menu-hideable {
+  &.chamel-menu-hideable {
     opacity: 0;
     position: absolute;
     top: 0;
     z-index: 1;
 
-    .paper-container {
+    .chamel-paper-container {
       overflow: hidden;
       padding: 0;
     }
 
-    &.visible {
-      & > .paper-container {
+    &.chamel-visible {
+      & > .chamel-paper-container {
         padding-top: $desktop-gutter-mini;
         padding-bottom: $desktop-gutter-mini;
       }
     }
   }
 
-  .paper-container {
+  .chamel-paper-container {
     padding-top: $desktop-gutter-mini;
     padding-bottom: $desktop-gutter-mini;
   }
 
-  .subheader {
+  .chamel-subheader {
     padding-left: $menu-subheader-padding;
     padding-right: $menu-subheader-padding;
   }
 
-  .nested-menu-item {
+  .chamel-nested-menu-item {
     position: relative;
 
-    &.is-disabled {
+    &.chamel-is-disabled {
       color: $disabled-color;
       cursor: default;
     }
 
-    &.open {
-      & > .menu {
+    &.chamel-open {
+      & > .chamel-menu {
         opacity: 1;
       }
     }

@@ -1,9 +1,9 @@
-.left-nav {
+.chamel-left-nav {
 
   /*
    * Left nav header classes
    */
-  .left-nav-header {
+  .chamel-left-nav-header {
 
     height: $app-bar-height-small;
 
@@ -32,7 +32,7 @@
       }
     }
 
-    .left-nav-header-menu {
+    .chamel-left-nav-header-menu {
 
       height: 100%;
       position: fixed;
@@ -41,13 +41,13 @@
       display: block;
       background-color: $left-nav-color;
       
-      &.is-closed {
+      &.chamel-is-closed {
         display: none;
       }
     }
   }
 
-  .left-nav-menu {
+  .chamel-left-nav-menu {
     overflow: auto;
     height: 100%;
     position: fixed;
@@ -56,12 +56,12 @@
     z-index: 10;
     @include ease-out();
 
-    .menu {
-      .menu-item {
+    .chamel-menu {
+      .chamel-menu-item {
         height: $desktop-left-nav-menu-item-height;
         line-height: $desktop-left-nav-menu-item-height;
       }
-      a.menu-item {
+      a.chamel-menu-item {
         display: block;
         text-decoration: none;
         color: $body-text-color;
@@ -69,21 +69,21 @@
     }
   }
 
-  &.floating {
-    .left-nav-menu {
+  &.chamel-floating {
+    .chamel-left-nav-menu {
       left: 0px;
       top: 0px;
     }
   }
 
-  &.docked {
-    .left-nav-menu {
+  &.chamel-docked {
+    .chamel-left-nav-menu {
       
     }
   }
 
-  &.closed {
-    .left-nav-menu {
+  &.chamel-closed {
+    .chamel-left-nav-menu {
       @include transform(translate3d((-1 * $left-nav-width) - 10px, 0, 0));
     }
   }

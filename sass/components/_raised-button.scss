@@ -19,11 +19,11 @@
     //See: http://stackoverflow.com/questions/17298739/css-overflow-hidden-not-working-in-chrome-when-parent-has-border-radius-and-chil
     @include transform(translate3d(0, 0, 0));
 
-    &.is-keyboard-focused {
+    &.chamel-is-keyboard-focused {
       background-color: $raised-button-hover-color;
     }
 
-    &.is-disabled {
+    &.chamel-is-disabled {
       background-color: $raised-button-disabled-color;
 
       .chamel-raised-button-label {
@@ -36,14 +36,14 @@
     }
   }
 
-  .touch-ripple {
-    .ripple-circle-inner {
+  .chamel-touch-ripple {
+    .rchamel-ipple-circle-inner {
       background-color: $raised-button-ripple-color;
     }
   }
 
-  .focus-ripple {
-    .focus-ripple-inner {
+  .chamel-focus-ripple {
+    .chamel-focus-ripple-inner {
       background-color: $raised-button-focus-ripple-color;
     }
   }
@@ -64,24 +64,24 @@
     }
   }
 
-  &.is-primary {
+  &.chamel-is-primary {
 
     .chamel-raised-button-container {
       background-color: $raised-button-primary-color;
 
-      &.is-keyboard-focused {
+      &.chamel-is-keyboard-focused {
         background-color: $raised-button-primary-hover-color;
       }
     }
 
-    .touch-ripple {
-      .ripple-circle-inner {
+    .chamel-touch-ripple {
+      .chamel-ripple-circle-inner {
         background-color: $raised-button-primary-ripple-color;
       }
     }
 
-    .focus-ripple {
-      .focus-ripple-inner {
+    .chamel-focus-ripple {
+      .chamel-focus-ripple-inner {
         background-color: $raised-button-primary-focus-ripple-color;
       }
     }
@@ -97,24 +97,24 @@
     }
   }
 
-  &.is-secondary {
+  &.chamel-is-secondary {
 
     .chamel-raised-button-container {
       background-color: $raised-button-secondary-color;
 
-      &.is-keyboard-focused {
+      &.chamel-is-keyboard-focused {
         background-color: $raised-button-secondary-hover-color;
       }
     }
 
-    .touch-ripple {
-      .ripple-circle-inner {
+    .chamel-touch-ripple {
+      .chamel-ripple-circle-inner {
         background-color: $raised-button-secondary-ripple-color;
       }
     }
 
-    .focus-ripple {
-      .focus-ripple-inner {
+    .chamel-focus-ripple {
+      .chamel-focus-ripple-inner {
         background-color: $raised-button-secondary-focus-ripple-color;
       }
     }

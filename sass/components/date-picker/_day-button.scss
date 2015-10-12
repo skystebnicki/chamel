@@ -1,10 +1,10 @@
-.mui-date-picker-day-button {
+.chamel-date-picker-day-button {
   position: relative;
   float: left;
   width: 36px;
   padding: 4px 2px;
 
-  .mui-date-picker-day-button-select {
+  .chamel-date-picker-day-button-select {
     position: absolute;
     background-color: $date-picker-select-color;
     height: 32px;
@@ -15,21 +15,21 @@
     @include transform(scale(0));
   }
 
-  .mui-date-picker-day-button-label {
+  .chamel-date-picker-day-button-label {
     position: relative;
   }
 
-  &.mui-is-selected {
-    .mui-date-picker-day-button-label {
+  &.chamel-is-selected {
+    .chamel-date-picker-day-button-label {
       color: $date-picker-select-text-color;
     }
-    .mui-date-picker-day-button-select {
+    .chamel-date-picker-day-button-select {
       opacity: 1;
       @include transform(scale(1));
     }
   }
 
-  &.mui-is-current-date {
+  &.chamel-is-current-date {
     color: $date-picker-color;
   }
 }

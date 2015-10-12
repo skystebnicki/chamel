@@ -1,7 +1,7 @@
 var React = require('react');
 var DropDownIcon = require("../../src/DropDownIcon.jsx");
 var DropDownMenu = require("../../src/DropDownMenu.jsx");
-var IconButton = require("../../src/IconButton.jsx");
+var FontIcon = require("../../src/FontIcon.jsx");
 var RaisedButton = require("../../src/RaisedButton.jsx");
 var Toolbar = require("../../src/toolbar/Toolbar.jsx");
 var ToolbarGroup = require("../../src/toolbar/ToolbarGroup.jsx");
@@ -31,7 +31,7 @@ var ToolbarPage = React.createClass({
             '    <DropDownMenu menuItems={filterOptions} />\n' +
             '  </ToolbarGroup>\n' +
             '  <ToolbarGroup key={1} float="right">\n' +
-            '    <IconButton className="fa fa-align-center" />\n' +
+            '    <FontIcon className="fa fa-align-center" />\n' +
             '    <DropDownIcon iconClassName="fa fa-caret-square-o-down" menuItems={iconMenuItems} />\n' +
             '    <span className="chamel-toolbar-separator">&nbsp;</span>\n' +
             '  </ToolbarGroup>\n' +
@@ -71,8 +71,8 @@ var ToolbarPage = React.createClass({
                         <DropDownMenu menuItems={filterOptions} />
                     </ToolbarGroup>
                     <ToolbarGroup key={1} float="right">
-                        <IconButton className="fa fa-align-center" />
-                        <DropDownIcon iconClassName="fa fa-caret-square-o-down" menuItems={iconMenuItems} />
+                        <FontIcon className="cfi cfi-align-center" />
+                        <DropDownIcon iconClassName="cfi cfi-caret-square-o-down" menuItems={iconMenuItems} />
                         <span className="chamel-toolbar-separator">&nbsp;</span>
                     </ToolbarGroup>
                 </Toolbar>

@@ -1,5 +1,5 @@
-.radio-button {
-  .radio-button-icon {
+.chamel-radio-button {
+  .chamel-radio-button-icon {
     $radio-button-size: 24px;
 
     height: $radio-button-size;
@@ -7,7 +7,7 @@
     margin-right: $desktop-gutter-less;
 
 
-    .radio-button-fill {
+    .chamel-radio-button-fill {
       position: absolute;
       opacity: 0;
       @include transform(scale(0));
@@ -17,7 +17,7 @@
       * { fill: $radio-button-checked-color; }
     }
 
-    .radio-button-target {
+    .chamel-radio-button-target {
       @include ease-out();
       position: absolute;
       opacity: 1;
@@ -29,14 +29,14 @@
     }
   }
 
-  &.is-switched {
-    .radio-button-icon {
-      .radio-button-fill {
+  &.chamel-is-switched {
+    .chamel-radio-button-icon {
+      .chamel-radio-button-fill {
         opacity: 1;
         @include transform(scale(1));
       }
 
-      .radio-button-target {
+      .chamel-radio-button-target {
         opacity: 0;
         @include transform(scale(0));
         * {
@@ -47,18 +47,18 @@
     }
   }
 
-  &.is-disabled {
-    .radio-button-icon {
-      .radio-button-fill,
-      .radio-button-target {
+  &.chamel-is-disabled {
+    .chamel-radio-button-icon {
+      .chamel-radio-button-fill,
+      .chamel-radio-button-target {
         * { fill: $radio-button-disabled-color; }
       }
     }
   }
 
-  &.is-required {
-    .radio-button-icon {
-      .radio-button-target {
+  &.chamel-is-required {
+    .chamel-radio-button-icon {
+      .chamel-radio-button-target {
         * { fill: $radio-button-required-color; }
       }
     }

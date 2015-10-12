@@ -1,15 +1,15 @@
-.enhanced-textarea {
-  .enhanced-textarea-shadow,
-  .enhanced-textarea-input {
+.chamel-enhanced-textarea {
+  .chamel-enhanced-textarea-shadow,
+  .chamel-enhanced-textarea-input {
     width: 100%;
     resize: none;
   }
 
-  .enhanced-textarea-input {
+  .chamel-enhanced-textarea-input {
     overflow: hidden;
   }
 
-  .enhanced-textarea-shadow {
+  .chamel-enhanced-textarea-shadow {
     @include transform(scale(0));
     position: absolute;
   }

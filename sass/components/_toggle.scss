@@ -1,14 +1,14 @@
-.toggle {
-  $switch-width: 60px;
+.chamel-toggle {
+  $chamel-switch-width: 60px;
 
-  .toggle-icon {
+  .chamel-toggle-icon {
     $toggle-track-width: 36px;
-    // $toggle-padding-right: calc($switch-width - $toggle-track-width);
+    // $toggle-padding-right: calc($chamel-switch-width - $toggle-track-width);
 
     padding: 4px 0px 6px 2px;
     margin-right: $desktop-gutter-mini;
 
-    .toggle-track {
+    .chamel-toggle-track {
       @include ease-out();
       width: $toggle-track-width;
       height: 14px;
@@ -16,7 +16,7 @@
       background-color: $toggle-track-off-color;
     }
 
-    .toggle-thumb {
+    .chamel-toggle-thumb {
       @include ease-out();
       position: absolute;
       top: 1px;
@@ -27,12 +27,12 @@
       border-radius: 50%;
       background-color: $toggle-thumb-off-color;
 
-      .paper-container {
+      .chamel-paper-container {
         border-radius: 50%;
       }
 
-      .touch-ripple,
-      .focus-ripple-inner {
+      .chamel-touch-ripple,
+      .chamel-focus-ripple-inner {
         width: 200%;
         height: 200%;
         top: -10px;
@@ -41,37 +41,37 @@
     }
   }
 
-  &.is-switched {
-    .toggle-icon {
-      .toggle-track {
+  &.chamel-is-switched {
+    .chamel-toggle-icon {
+      .chamel-toggle-track {
         background-color: $toggle-track-on-color;
       }
-      .toggle-thumb {
+      .chamel-toggle-thumb {
         left: 18px;
         background-color: $toggle-thumb-on-color;
       }
     }
   }
 
-  &.is-disabled {
-    .toggle-icon {
+  &.chamel-is-disabled {
+    .chamel-toggle-icon {
       cursor: default;
-      .toggle-track {
+      .chamel-toggle-track {
         background-color: $toggle-track-disabled-color;
       }
-      .toggle-thumb {
+      .chamel-toggle-thumb {
         background-color: $toggle-thumb-disabled-color;
       }
     }
   }
 
-  &.is-required {
-    .toggle-icon {
-      .toggle-track {
+  &.chamel-is-required {
+    .chamel-toggle-icon {
+      .chamel-toggle-track {
         background-color: $toggle-track-required-color;
       }
 
-      .toggle-thumb {
+      .chamel-toggle-thumb {
         background-color: $toggle-thumb-required-color;
       }
     }

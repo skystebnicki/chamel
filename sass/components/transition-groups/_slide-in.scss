@@ -1,9 +1,9 @@
-.mui-transition-slide-in {
+.chamel-transition-slide-in {
   position: relative;
   overflow: hidden;
   height: 100%;
 
-  .mui-transition-slide-in-child {
+  .chamel-transition-slide-in-child {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -12,79 +12,79 @@
     @include ease-out();
   }
 
-  .mui-transition-slide-in-enter {
+  .chamel-transition-slide-in-enter {
     opacity: 0;
   }
 
-  .mui-transition-slide-in-enter-active {
+  .chamel-transition-slide-in-enter-active {
     opacity: 1;
   }
 
-  .mui-transition-slide-in-leave {
+  .chamel-transition-slide-in-leave {
     opacity: 1;
   }
 
-  .mui-transition-slide-in-leave-active {
+  .chamel-transition-slide-in-leave-active {
     opacity: 0;
   }
 
-  &.mui-is-left {
-    .mui-transition-slide-in-enter {
+  &.chamel-is-left {
+    .chamel-transition-slide-in-enter {
       @include transform(translate3d(100%,0,0));
     }
-    .mui-transition-slide-in-enter-active {
+    .chamel-transition-slide-in-enter-active {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave {
+    .chamel-transition-slide-in-leave {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave-active {
+    .chamel-transition-slide-in-leave-active {
       @include transform(translate3d(-100%,0,0));
     }
 
   }
 
-  &.mui-is-right {
-    .mui-transition-slide-in-enter {
+  &.chamel-is-right {
+    .chamel-transition-slide-in-enter {
       @include transform(translate3d(-100%,0,0));
     }
-    .mui-transition-slide-in-enter-active {
+    .chamel-transition-slide-in-enter-active {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave {
+    .chamel-transition-slide-in-leave {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave-active {
+    .chamel-transition-slide-in-leave-active {
       @include transform(translate3d(100%,0,0));
     }
   }
 
-  &.mui-is-up {
-    .mui-transition-slide-in-enter {
+  &.chamel-is-up {
+    .chamel-transition-slide-in-enter {
       @include transform(translate3d(0,100%,0));
     }
-    .mui-transition-slide-in-enter-active {
+    .chamel-transition-slide-in-enter-active {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave {
+    .chamel-transition-slide-in-leave {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave-active {
+    .chamel-transition-slide-in-leave-active {
       @include transform(translate3d(0,-100%,0));
     }
   }
 
-  &.mui-is-down {
-    .mui-transition-slide-in-enter {
+  &.chamel-is-down {
+    .chamel-transition-slide-in-enter {
       @include transform(translate3d(0,-100%,0));
     }
-    .mui-transition-slide-in-enter-active {
+    .chamel-transition-slide-in-enter-active {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave {
+    .chamel-transition-slide-in-leave {
       @include transform(translate3d(0,0,0));
     }
-    .mui-transition-slide-in-leave-active {
+    .chamel-transition-slide-in-leave-active {
       @include transform(translate3d(0,100%,0));
     }
   }

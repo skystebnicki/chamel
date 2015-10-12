@@ -1,4 +1,4 @@
-.focus-ripple {
+.chamel-focus-ripple {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -9,7 +9,7 @@
   @include transform(scale(0));
   opacity: 0;
 
-  .focus-ripple-inner {
+  .chamel-focus-ripple-inner {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -24,7 +24,7 @@
 
   }
 
-  &.is-shown {
+  &.chamel-is-shown {
     @include transform(scale(1));
     opacity: 1;
   }

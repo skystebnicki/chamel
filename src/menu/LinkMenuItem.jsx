@@ -20,8 +20,8 @@ var LinkMenuItem = React.createClass({
     },
     
     render: function() {
-        var classes = this.getClasses('menu-item', {
-          'is-disabled': this.props.disabled
+        var classes = this.getClasses('chamel-menu-item', {
+          'chamel-is-disabled': this.props.disabled
         });
         var onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
         // Prevent context menu 'Open In New Tab/Window'

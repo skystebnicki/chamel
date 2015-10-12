@@ -1,4 +1,4 @@
-.enhanced-switch {
+.chamel-enhanced-switch {
   $switch-width: 60px;
 
   position: relative;
@@ -8,7 +8,7 @@
   height: auto;
   width: 100%;
 
-  .enhanced-switch-input {
+  .chamel-enhanced-switch-input {
     position: absolute;
     cursor: pointer;
     pointer-events: all;
@@ -19,15 +19,14 @@
     left: 0;
   }
 
-  .enhanced-switch-wrap {
+  .chamel-enhanced-switch-wrap {
     @include ease-out();
     float: left;
     position: relative;
     display: table-column;
 
-
-    .touch-ripple,
-    .focus-ripple-inner {
+    .chamel-touch-ripple,
+    .chamel-focus-ripple-inner {
       width: 200%;
       height: 200%;
       top: -12px;
@@ -35,7 +34,7 @@
     }
   }
 
-  .switch-label {
+  .chamel-switch-label {
     float: left;
     position: relative;
     display: table-column;
@@ -43,9 +42,9 @@
     line-height: 24px;
   }
 
-  &.is-switched {
-    .focus-ripple-inner,
-    .ripple-circle-inner {
+  &.chamel-is-switched {
+    .chamel-focus-ripple-inner,
+    .chamel-ripple-circle-inner {
       background-color: $switches-ripple-color;
     }
   }

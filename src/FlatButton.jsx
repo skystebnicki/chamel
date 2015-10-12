@@ -25,8 +25,8 @@ var FlatButton = React.createClass({
         ...other
       } = this.props;
     var classes = this.getClasses('chamel-flat-button', {
-      'is-primary': !this.props.disabled && primary,
-      'is-secondary': !this.props.disabled && !primary && secondary
+      'chamel-is-primary': !this.props.disabled && primary,
+      'chamel-is-secondary': !this.props.disabled && !primary && secondary
     });
     var children;
 

@@ -1,4 +1,4 @@
-.app-bar {
+.chamel-app-bar {
   width: 100%;
   background-color: $app-bar-color;
   z-index: 5;
@@ -12,7 +12,7 @@
     height: $app-bar-height-large;
   }
 
-  .paper-container {
+  .chamel-paper-container {
     padding-left: $gutter-less;
     padding-right: $gutter-less;
 
@@ -27,7 +27,7 @@
     }
   }
 
-  .icon-button {
+  .chamel-icon-button {
     margin-top: (($app-bar-height-small - $icon-button-size) / 2);
 
     @media #{$device-medium} {
@@ -44,7 +44,7 @@
     }
   }
 
-  .app-bar-title {
+  .chamel-app-bar-title {
     @extend .cml-font-style-title;
     color: $app-bar-text-color;
     padding: 0;
@@ -61,7 +61,7 @@
     }
   }
 
-  .app-bar-toolbar {
+  .chamel-app-bar-toolbar {
     float: right;
     margin: 0 ($gutter-less * -1) 0 $gutter-less;
 
@@ -74,7 +74,7 @@
     }
   }
 
-  .app-bar-navigation-icon-button {
+  .chamel-app-bar-navigation-icon-button {
     float: left;
     margin-right: $gutter-less - ($gutter-less - ($icon-size / 2));
     margin-left: ($icon-size / 2) * -1;
@@ -91,15 +91,15 @@
 
   }
 
-  .app-bar-input-search-box {
+  .chamel-app-bar-input-search-box {
     float: left;
 
-    .text-field-hint {
+    .chamel-text-field-hint {
       color: white;
     }
   }
 
-  &.search {
+  &.chamel-search {
     background-color: $transparent;
 
     * {
@@ -108,7 +108,7 @@
     }
   }
 
-  &.detail {
+  &.chamel-detail {
     background-color: $transparent;
 
     * {
@@ -117,7 +117,7 @@
     }
   }
 
-  &.edit {
+  &.chamel-edit {
     background-color: $red-500;
   }
 

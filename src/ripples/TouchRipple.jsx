@@ -23,7 +23,7 @@ var TouchRipple = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('touch-ripple');
+    var classes = this.getClasses('chamel-touch-ripple');
 
     return (
       <div

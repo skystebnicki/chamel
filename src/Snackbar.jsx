@@ -48,15 +48,15 @@ var Snackbar = React.createClass({
   },
 
   render: function() {
-    var classes = this.getClasses('snackbar', {
-      'is-open': this.state.open
+    var classes = this.getClasses('chamel-snackbar', {
+      'chamel-is-open': this.state.open
     }); 
     var action;
 
     if (this.props.action) {
       action = (
         <FlatButton
-          className="snackbar-action"
+          className="chamel-snackbar-action"
           label={this.props.action}
           onClick={this.props.onActionClick} />
       );
@@ -64,7 +64,7 @@ var Snackbar = React.createClass({
 
     return (
       <span className={classes}>
-        <span className="snackbar-message">{this.props.message}</span>
+        <span className="chamel-snackbar-message">{this.props.message}</span>
         {action}
       </span>
     );

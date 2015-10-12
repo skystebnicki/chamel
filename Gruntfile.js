@@ -162,6 +162,8 @@ module.exports = function(grunt) {
                 files: [
                     // Copy all js to build dir so we can merge with jsx
                     {expand: true, cwd: '.', src: ['src/**'], dest: 'build/'},
+                    // Copy fonts
+                    {expand: true, cwd: '.', src: ['fonts/**'], dest: 'dist/'},
                 ]
             }
         },

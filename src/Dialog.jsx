@@ -15,14 +15,14 @@ var Dialog = React.createClass({
       className,
       ...other
     } = this.props;
-    var classes = this.getClasses('dialog');
+    var classes = this.getClasses('chamel-dialog');
     var title;
 
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
       title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h3 className="dialog-title">{this.props.title}</h3> :
+        <h3 className="chamel-dialog-title">{this.props.title}</h3> :
         this.props.title;
     }
 
@@ -33,7 +33,7 @@ var Dialog = React.createClass({
         className={classes}>
 
         {title}
-        <div ref="dialogContent" className="dialog-content">
+        <div ref="dialogContent" className="chamel-dialog-content">
           {this.props.children}
         </div>
 

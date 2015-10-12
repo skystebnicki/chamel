@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.0.11",
+  "version": "0.0.14",
   "keywords": [
     "react",
     "react-component",
@@ -56,13 +56,17 @@
     "react": "^0.13.1",
     "react-router": "^0.13.4",
     "react-tap-event-plugin": "^0.1.6",
-    "reactify": "^1.1.0",
     "shelljs": "^0.2.6",
     "tmp": "0.0.23",
     "ua-parser-js": "^0.7.9"
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
   "main": "src/main.js",
+  "browserify": {
+    "transform": [
+      ["babelify", {"loose": "all", "nonStandard": true}]
+    ]
+  },
   "dependencies": {
     "classnames": "^1.2.2",
     "bootstrap-slider": "^5.1.0",
@@ -71,6 +75,8 @@
     "react": "^0.13.3",
     "object-hash": "^0.8.0",
     "react-dom": "^0.14.0-rc1",
-    "react-tap-event-plugin": "^0.1.8"
+    "react-tap-event-plugin": "^0.1.8",
+    "babelify": "^6.3.0",
+    "browserify": "*"
   }
 }

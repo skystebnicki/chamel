@@ -93,16 +93,16 @@ var EnhancedSwitch = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses('enhanced-switch', {
-      'is-switched': this.state.switched,
-      'is-disabled': this.props.disabled,
-      'is-required': this.props.required
+    var classes = this.getClasses('chamel-enhanced-switch', {
+      'chamel-is-switched': this.state.switched,
+      'chamel-is-disabled': this.props.disabled,
+      'chamel-is-required': this.props.required
     });
 
     var inputId = this.props.id || UniqueId.generate();
 
     var labelElement = this.props.label ? (
-      <label className="switch-label" htmlFor={inputId}>
+      <label className="chamel-switch-label" htmlFor={inputId}>
         {this.props.label}
       </label>
     ) : null;
@@ -135,7 +135,7 @@ var EnhancedSwitch = React.createClass({
       <input
         {...other}
         {...inputProps}
-        className="enhanced-switch-input"/>
+        className="chamel-enhanced-switch-input"/>
     );
 
     var touchRipple = (
@@ -156,17 +156,17 @@ var EnhancedSwitch = React.createClass({
       this.props.disabled || disableFocusRipple ? null : focusRipple
     ];
 
-    iconClassName += ' enhanced-switch-wrap';
+    iconClassName += ' chamel-enhanced-switch-wrap';
 
-    var switchElement = (this.props.iconClassName.indexOf("toggle") == -1) ? (
+    var switchElement = (this.props.iconClassName.indexOf("chamel-toggle") == -1) ? (
         <div className={iconClassName}>
           {this.props.switchElement}
           {ripples}
         </div>
       ) : (
         <div className={iconClassName}>
-          <div className="toggle-track" />
-          <Paper className="toggle-thumb" zDepth={1}> {ripples} </Paper>
+          <div className="chamel-toggle-track" />
+          <Paper className="chamel-toggle-thumb" zDepth={1}> {ripples} </Paper>
         </div>
     );
 

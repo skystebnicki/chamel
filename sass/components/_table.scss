@@ -1,18 +1,18 @@
 $column-width: 200px;
 
-.mui-table {
+.chamel-table {
   padding: 0 $desktop-gutter;
 
-  .mui-table-header {
+  .chamel-table-header {
 
-    .mui-table-header-column {
+    .chamel-table-header-column {
       display: inline-block;
       height: 48px;
       line-height: 48px;
       width: $column-width;
     }
 
-    .mui-table-header-pagify {
+    .chamel-table-header-pagify {
       display: inline-block;
       height: 48px;
       line-height: 48px;
@@ -20,16 +20,16 @@ $column-width: 200px;
     }
   }
 
-  .mui-table-rows {
+  .chamel-table-rows {
 
-    .mui-table-rows-item {
+    .chamel-table-rows-item {
       height: 48px;
       line-height: 48px;
       display: block;
       width: 100%;
     }
 
-    .mui-table-rows-actions {
+    .chamel-table-rows-actions {
       height: 48px;
       line-height: 48px;
       display: inline-block;

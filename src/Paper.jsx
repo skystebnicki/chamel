@@ -36,20 +36,20 @@ var Paper = React.createClass({
         classes += this.props.className + " ";
       } 
 
-      classes += "paper z-depth-" + this.props.zDepth;
+      classes += "chamel-paper chamel-z-depth-" + this.props.zDepth;
       
       if (this.props.rounded) {
-        classes += " rounded";
+        classes += " chamel-rounded";
       }
       
       if (this.props.circle) {
-        classes += " circle"; 
+        classes += " chamel-circle";
       }
       
       var insideClasses = 
         this.props.innerClassName + ' ' +
-        'paper-container ' +
-        'z-depth-bottom';
+        'chamel-paper-container ' +
+        'chamel-z-depth-bottom';
 
     return (
       <div {...this.props} className={classes}>

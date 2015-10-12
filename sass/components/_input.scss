@@ -1,4 +1,4 @@
-.input {
+.chamel-input {
   position: relative;
   margin-top: 24px;
   margin-bottom: 48px;
@@ -18,43 +18,43 @@
       width: $input-width;
     }
 
-    &:focus, &.is-not-empty, &:disabled[value]:not([value=""]) {
+    &:focus, &.chamel-is-not-empty, &:disabled[value]:not([value=""]) {
       outline: none;
       box-shadow: none;
-      &~.input-placeholder {
+      &~.chamel-input-placeholder {
         color: blue;
         font-size: $input-placeholder-size !important;
         font-weight: 300;
         top: -32px;
         @include ease-out();
       }
-      &~.input-highlight {
+      &~.chamel-input-highlight {
         width: 0;
         background-color: blue;
         @include ease-out();
       }
-      &~.input-bar {
+      &~.chamel-input-bar {
         &::before, &::after {
           background-color: blue;
           width: 50%;
         }
       }
-      &~.input-description {
+      &~.chamel-input-description {
         display: block;
       }
     }
 
-    &:not(:focus).is-not-empty, &:disabled[value]:not([value=""]) {
-      &+.input-placeholder {
+    &:not(:focus).chamel-is-not-empty, &:disabled[value]:not([value=""]) {
+      &+.chamel-input-placeholder {
         color: gray;
 
-        &+.input-highlight {
-          &+.input-bar {
+        &+.chamel-input-highlight {
+          &+.chamel-input-bar {
             &::before, &::after {
               width: 0;
             }
 
-            &+.input-description {
+            &+.chamel-input-description {
               display: none;
             }
           }
@@ -62,7 +62,7 @@
       }
     }
 
-    &+.input-placeholder {
+    &+.chamel-input-placeholder {
       font-size: $input-font-size;
       color: gray;
       position: absolute;
@@ -72,7 +72,7 @@
     }
   }
 
-  .input-highlight {
+  .chamel-input-highlight {
     content: '';
     position: absolute;
     background-color: transparent;
@@ -83,7 +83,7 @@
     z-index: -1;
   }
 
-  .input-bar {
+  .chamel-input-bar {
     position: relative;
     display: block;
     width: $input-width;
@@ -106,35 +106,35 @@
     }
   }
 
-  .input-description {
+  .chamel-input-description {
     display: none;
     color: blue;
     position: absolute;
   }
 
-  .input-error {
+  .chamel-input-error {
     display: none;
     color: $input-error-color;
     position: absolute;
   }
 
-  &.error {
+  &.chamel-error {
     input, textarea {
-      &:focus, &.is-not-empty {
-        &+.input-placeholder {
+      &:focus, &.chamel-is-not-empty {
+        &+.chamel-input-placeholder {
           color: $input-error-color;
 
-          &+.input-highlight {
+          &+.chamel-input-highlight {
             width: 0;
             background-color: red;
 
-            &+.input-bar {
+            &+.chamel-input-bar {
 
               &::before, &::after {
                 background-color: $input-error-color;
               }
 
-              &+.input-description {
+              &+.chamel-input-description {
                 display: none;
               }
             }
@@ -144,16 +144,16 @@
 
     }
 
-    .input-error {
+    .chamel-input-error {
       display: block;
     }
   }
 
-  &.floating {
+  &.chamel-floating {
     margin-top: $desktop-gutter;
     input, textarea {
       &:focus {
-        &+.input-placeholder {
+        &+.chamel-input-placeholder {
           display: block;
           color: gray;
           font-size: 16px !important;
@@ -161,22 +161,22 @@
           top: -4px;
         }
 
-        &.is-not-empty {
-          &+.input-placeholder {
+        &.chamel-is-not-empty {
+          &+.chamel-input-placeholder {
             display: none;
           }
         }
       }
 
-      &.is-not-empty {
-        &+.input-placeholder {
+      &.chamel-is-not-empty {
+        &+.chamel-input-placeholder {
           display: none;
         }
       }
     }
   }
   
-  &.disabled { opacity: 0.4 }
+  &.chamel-disabled { opacity: 0.4 }
 }
 
 ::-webkit-input-placeholder {

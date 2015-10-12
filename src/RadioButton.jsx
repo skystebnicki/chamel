@@ -21,8 +21,8 @@ var RadioButton = React.createClass({
 
     var radioButtonElement = (
       <div>
-          <RadioButtonOff className="radio-button-target" />
-          <RadioButtonOn className="radio-button-fill" />
+          <RadioButtonOff className="chamel-radio-button-target" />
+          <RadioButtonOn className="chamel-radio-button-fill" />
       </div>
     );
 
@@ -30,8 +30,8 @@ var RadioButton = React.createClass({
       ref: "enhancedSwitch",
       inputType: "radio",
       switchElement: radioButtonElement,
-      className: "radio-button",
-      iconClassName: "radio-button-icon",
+      className: "chamel-radio-button",
+      iconClassName: "chamel-radio-button-icon",
       onSwitch: this._handleCheck,
       labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
     };

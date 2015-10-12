@@ -17,14 +17,14 @@ var RippleCircle = React.createClass({
     var started = this.props.started;
     var ending = this.props.ending;
 
-    var classes = this.getClasses('ripple-circle', {
-      'is-started': this.props.started,
-      'is-ending': this.props.ending
+    var classes = this.getClasses('chamel-ripple-circle', {
+      'chamel-is-started': this.props.started,
+      'chamel-is-ending': this.props.ending
     });
 
     return (
       <div {...this.props} className={classes}>
-        <div className="ripple-circle-inner" />
+        <div className="chamel-ripple-circle-inner" />
       </div>
     );
   }

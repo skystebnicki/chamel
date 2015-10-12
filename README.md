@@ -17,18 +17,25 @@ First install chamel with npm
 Now use in a your component like:
 
 	var React = require('react');
-	var Chamel = require("chamel");
+	var Chamel = require('chamel');
 	var FlatButton = Chamel.FlatButton;
 
 	var App = React.createClass({
 	  render: function () {
 	    return (
 	      <div>
-	      	<Chamel.Button />
+	      	<FlatButton />
 	      </div>
 	    );
 	  }
 	});
+	
+### 3. Add the right CSS to your html document
+
+Copy the css files in ./dist to your project /css directory and
+load them into your document head with:
+
+	<link rel="stylesheet" href="/css/chamel-human.css" />
 
 ## Developing & Building
 

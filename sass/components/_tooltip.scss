@@ -1,4 +1,4 @@
-.mui-tooltip {
+.chamel-tooltip {
   position: absolute;
 
   font-family: $contentFontFamily;  
@@ -16,12 +16,12 @@
               transform 450ms $ease-out-function 0ms,
               opacity 450ms $ease-out-function 0ms);
 
-  .mui-tooltip-label {
+  .chamel-tooltip-label {
     position: relative;
     white-space: nowrap;
   }
 
-  .mui-tooltip-ripple {
+  .chamel-tooltip-ripple {
     position: absolute;
     left: 50%;
     top: 0px;
@@ -36,7 +36,7 @@
       background-color 450ms $ease-out-function 0ms);
   }
 
-  &.mui-is-shown {
+  &.chamel-is-shown {
     top: -16px;
 
     opacity: 1;
@@ -46,7 +46,7 @@
       transform 450ms $ease-out-function 0ms,
       opacity 450ms $ease-out-function 0ms);
 
-    .mui-tooltip-ripple {
+    .chamel-tooltip-ripple {
       background-color: $grey-600;
       @include transition(
         width 450ms $ease-out-function 0ms,
@@ -56,13 +56,13 @@
 
   }
 
-  &.mui-is-touch {
+  &.chamel-is-touch {
     font-size: 14px;
     line-height: 44px;
     padding: 0 16px;
 
-    &.mui-is-shown {
-      .mui-tooltip-ripple {
+    &.chamel-is-shown {
+      .chamel-tooltip-ripple {
         height: 105px;
         width: 105px;
       }

@@ -2,6 +2,11 @@
  * This is the theme to make chameleon look like Google's Material UI
  */
 
+// TODO: When we want to use material specific designs, we will need to
+// Uncomment the below and remove the default root icons.
+//@import "icons/icons";
+@import "../../icons/icons";
+
 // Theme specific variables
 @import "../../variables/colors";
 @import "../../variables/spacing";

@@ -119,8 +119,8 @@ var Tabs = React.createClass({
         });
 
         return (
-            <div className="tabs-container">
-                <div className="tab-item-container">
+            <div className="chamel-tabs-container">
+                <div className="chamel-tab-item-container">
                     {tabs}
                 </div>
                 <InkBar left={left} width={width}/>

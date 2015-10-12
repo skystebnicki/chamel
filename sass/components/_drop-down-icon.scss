@@ -1,6 +1,6 @@
 $icon-width: 48px;
 
-.drop-down-icon {
+.chamel-drop-down-icon {
   display: inline-block;
   width: $icon-width !important;
   position: relative;
@@ -8,33 +8,33 @@ $icon-width: 48px;
   font-size: $desktop-drop-down-menu-font-size;
   cursor: pointer;
 
-  &.open {
-    .icon-highlight {
+  &.chamel-open {
+    .chamel-icon-highlight {
       background-color: rgba(0, 0, 0, .1);
     }
 
-    .menu-control,
-    .menu-control:hover {
-      .menu-control-bg {
+    .chamel-menu-control,
+    .chamel-menu-control:hover {
+      .chamel-menu-control-bg {
         opacity: 0;
       }
-      .menu-label {
+      .chamel-menu-label {
         top: ($desktop-toolbar-height / 2);
         opacity: 0;
       }
     }
 
-    .menu {
+    .chamel-menu {
       opacity: 1;
     }
   }
 
-  .menu {
+  .chamel-menu {
    @include ease-out();
     right: -14px !important;
     top: 9px !important;
 
-    .menu-item {
+    .chamel-menu-item {
       padding-right: ($icon-size + ($desktop-gutter-less*2));
       height: $desktop-drop-down-menu-item-height;
       line-height: $desktop-drop-down-menu-item-height;
