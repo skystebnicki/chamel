@@ -1,0 +1,72 @@
+/**
+ * These are the default icons built using font-awesome.
+ */
+
+@import "font-awesome/variables";
+@import "font-awesome/mixins";
+@import "font-awesome/path";
+@import "font-awesome/core";
+@import "font-awesome/larger";
+@import "font-awesome/fixed-width";
+@import "font-awesome/list";
+@import "font-awesome/bordered-pulled";
+@import "font-awesome/animated";
+@import "font-awesome/rotated-flipped";
+@import "font-awesome/stacked";
+@import "font-awesome/icons";
+
+/* chanel font icon namespace */
+.cfi {
+  @extend .fa;
+}
+
+/**
+ * Navigation Icons
+ */
+.cfi-close {
+  @extend .fa-times;
+}
+
+.cfi-pencil {
+  @extend .fa-pencil;
+}
+
+/**
+ * Text Icons
+ */
+
+.cfi-align-center {
+  @extend .fa-align-center;
+}
+
+.cfi-align-left {
+  @extend .fa-align-left;
+}
+
+.cfi-align-right {
+  @extend .fa-align-right;
+}
+
+.cfi-bold {
+  @extend .fa-bold;
+}
+
+.cfi-italic {
+  @extend .fa-italic;
+}
+
+.cfi-underline {
+  @extend .fa-underline;
+}
+
+.cfi-font {
+  @extend .fa-font;
+}
+
+/**
+ * Directional icons
+ */
+.cfi-caret-square-o-down {
+  @extend .fa-caret-square-o-down;
+}
+

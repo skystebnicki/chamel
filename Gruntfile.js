@@ -162,6 +162,9 @@ module.exports = function(grunt) {
                 files: [
                     // Copy all js to build dir so we can merge with jsx
                     {expand: true, cwd: '.', src: ['src/**'], dest: 'build/'},
+
+                    // Copy fonts
+                    {expand: true, cwd: '.', src: ['fonts/**'], dest: 'build/'},
                 ]
             }
         },
@@ -190,7 +193,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['clean:dist', 'sass:dist', 'sass:distcmp', 'browserify:dist', 'copy:dist']);
     
     // Default will build sass, update js and then sit and watch for changes
-    grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'watch']);
+    grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'copy:build', 'watch']);
 
     // We are utilizing browserify for react components
     grunt.loadNpmTasks('grunt-browserify');

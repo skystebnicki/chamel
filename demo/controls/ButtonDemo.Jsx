@@ -15,20 +15,10 @@ var Button = React.createClass({
                     <FlatButton label="Secondary" secondary={true} />
                     <FlatButton label="Disabled" disabled={true} />
                     <h3>{"Raised"}</h3>
-                    <div className="row">
-                        <div className="col-xs-3">
-                            <RaisedButton label="Default" />
-                        </div>
-                        <div className="col-xs-3">
-                            <RaisedButton label="Primary" primary={true} />
-                        </div>
-                        <div className="col-xs-3">
-                            <RaisedButton label="Secondary" secondary={true} />
-                        </div>
-                        <div className="col-xs-3">
-                            <RaisedButton label="Disabled" disabled={true} />
-                        </div>
-                    </div>
+                    <RaisedButton label="Default" />
+                    <RaisedButton label="Primary" primary={true} />
+                    <RaisedButton label="Secondary" secondary={true} />
+                    <RaisedButton label="Disabled" disabled={true} />
                 </div>
             </div>
         );

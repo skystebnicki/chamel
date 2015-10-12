@@ -8,11 +8,11 @@ var AppBarDemo = React.createClass({
     render: function() {
 
         var leftIcon = (<IconButton
-            iconClassName="fa fa-times">
+            iconClassName="cfi cfi-close">
         </IconButton>);
 
         var rightIcon = (<IconButton
-            iconClassName="fa fa-pencil">
+            iconClassName="cfi cfi-pencil">
         </IconButton>);
 
         return (

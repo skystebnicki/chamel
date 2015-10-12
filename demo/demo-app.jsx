@@ -18,7 +18,9 @@ var menuItems = [
   { route: 'button', text: 'Button' },
   { route: 'app-bar', text: 'AppBar' },
   { route: 'toolbar', text: 'Toolbar' },
-  { route: 'editor', text: 'Editor' }
+  { route: 'editor', text: 'Editor' },
+  { route: 'icon', text: 'Icon' },
+  { route: 'checkbox', text: 'Checkbox' }
 ];
 
 var App = React.createClass({
@@ -45,12 +47,15 @@ var App = React.createClass({
       contentClasses += " with-leftnav";
     }
 
+    var themeOptionStyle = {
+      float: "right"
+    };
     return (
       <div>
 
         <div className="container-fluid">
           <header>
-              <div className='pull-right'>
+              <div style={ themeOptionStyle }>
                 <select ref="themes" onChange={this.handleThemeChange_}>
                   <option value='base'>Base (none)</option>
                   <option value='material'>Material (android)</option>

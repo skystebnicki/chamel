@@ -29,17 +29,17 @@ var Checkbox = React.createClass({
             <div>
                 <Toolbar>
                     <ToolbarGroup key={1} float="left">
-                        <IconButton className="fa fa-bold" />
-                        <FontIcon className="fa fa-italic" />
-                        <FontIcon className="fa fa-underline" />
+                        <FontIcon className="cfi cfi-bold" />
+                        <FontIcon className="cfi cfi-italic" />
+                        <FontIcon className="cfi cfi-underline" />
                     </ToolbarGroup>
                     <ToolbarGroup key={2} float="left">
-                        <FontIcon className="fa fa-align-left" />
-                        <FontIcon className="fa fa-align-center" />
-                        <FontIcon className="fa fa-align-right" />
+                        <FontIcon className="cfi cfi-align-left" />
+                        <FontIcon className="cfi cfi-align-center" />
+                        <FontIcon className="cfi cfi-align-right" />
                     </ToolbarGroup>
                     <ToolbarGroup key={3} float="right">
-                        <DropDownIcon iconClassName="fa fa-font" menuItems={fontStyleOptions} />
+                        <DropDownIcon iconClassName="cfi cfi-font" menuItems={fontStyleOptions} />
                     </ToolbarGroup>
                 </Toolbar>
                 <div>

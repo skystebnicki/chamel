@@ -915,7 +915,7 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-toolbar .chamel-toolbar-group .chamel-drop-down-menu .chamel-font-icon:hover { color: rgba(0, 0, 0, 0.4); }
 
-.chamel-toolbar .chamel-toolbar-group .chamel-font-icon { color: rgba(0, 0, 0, 0.4); cursor: pointer; line-height: 56px; padding-left: 24px; }
+.chamel-toolbar .chamel-toolbar-group .chamel-font-icon { color: rgba(0, 0, 0, 0.4); cursor: pointer; line-height: 56px; margin-left: 24px; }
 
 .chamel-toolbar .chamel-toolbar-group .chamel-font-icon:hover { color: rgba(0, 0, 0, 0.87); z-index: 1; }
 
