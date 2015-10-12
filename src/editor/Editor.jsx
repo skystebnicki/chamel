@@ -16,12 +16,16 @@ var fontStyleOptions = [
     { payload: 'h4', text: 'Heading 4' }
 ];
 
-var Checkbox = React.createClass({
+var Editor = React.createClass({
 
     mixins: [Classable],
 
     propTypes: {
-        onCheck: React.PropTypes.func,
+        onCheck: React.PropTypes.func
+    },
+    
+    _handleClick: function(type) {
+        this.props.btnClick(type);
     },
 
     render: function() {
@@ -29,21 +33,21 @@ var Checkbox = React.createClass({
             <div>
                 <Toolbar>
                     <ToolbarGroup key={1} float="left">
-                        <IconButton className="fa fa-bold" />
-                        <FontIcon className="fa fa-italic" />
-                        <FontIcon className="fa fa-underline" />
+                        <FontIcon onClick={this._handleClick("bold")} className="cfi cfi-bold" />
+                        <FontIcon className="cfi cfi-italic" />
+                        <FontIcon className="cfi cfi-underline" />
                     </ToolbarGroup>
                     <ToolbarGroup key={2} float="left">
-                        <FontIcon className="fa fa-align-left" />
-                        <FontIcon className="fa fa-align-center" />
-                        <FontIcon className="fa fa-align-right" />
+                        <FontIcon className="cfi cfi-align-left" />
+                        <FontIcon className="cfi cfi-align-center" />
+                        <FontIcon className="cfi cfi-align-right" />
                     </ToolbarGroup>
                     <ToolbarGroup key={3} float="right">
-                        <DropDownIcon iconClassName="fa fa-font" menuItems={fontStyleOptions} />
+                        <DropDownIcon iconClassName="cfi cfi-font" menuItems={fontStyleOptions} />
                     </ToolbarGroup>
                 </Toolbar>
                 <div>
-                    <TextFieldRich />
+                    <TextFieldRich btnClick={this._handleClick} />
                 </div>
             </div>
         )
@@ -51,4 +55,4 @@ var Checkbox = React.createClass({
 
 });
 
-module.exports = Checkbox;
+module.exports = Editor;

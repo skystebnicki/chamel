@@ -14,7 +14,8 @@ var RichText = React.createClass({
     onEnterKeyDown: React.PropTypes.func,
     autoGrow: React.PropTypes.bool,
     height: React.PropTypes.number,
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    btnClick: React.PropTypes.func,
   },
 
   getDefaultProps: function() {
@@ -36,13 +37,17 @@ var RichText = React.createClass({
     this._enableDesign();
     this.setValue(this.props.value);
   },
+  
+  _btnClick: function (type) {
+	  console.log(type);
+  },
 
   render: function() {
-    return ( 
-      <div className="chamel-text-field-rich" >
-        <iframe ref='rte' src="about:blank" />
-      </div> 
-    );
+	  return ( 
+			  <div className="chamel-text-field-rich" >
+			  	<iframe ref="rte" src="about:blank" />
+			  </div>
+	  		);
   },
 
   blur: function() {
@@ -68,14 +73,14 @@ var RichText = React.createClass({
     // if (this.f_src && this.codeMirror) {
     //   this.hdntxt.value = this.codeMirror.getValue();
     // } else {
-      var idoc = this._getIframDoc();
+      var idoc = this._getIframeDoc();
       return idoc.body.innerHTML;
     //}
 
   },
 
   setValue: function(newValue) {
-    var idoc = this._getIframDoc();
+    var idoc = this._getIframeDoc();
     idoc.body.innerHTML = newValue;
     
     if (this.isMounted()) {
@@ -134,7 +139,7 @@ var RichText = React.createClass({
     return ifrm.contentWindow || ifrm.contentDocument;
   },
 
-  _getIframDoc: function() {
+  _getIframeDoc: function() {
     var iwnd = this._getIframeWindow();
 
     if (iwnd && iwnd.document) {
@@ -152,12 +157,14 @@ var RichText = React.createClass({
     }
 
     // Get the iframe document
-    var idoc = this._getIframDoc();
+    var idoc = this._getIframeDoc();
 
     // Make sure document is defined
     if (!idoc) {
       throw "Could not get the document of the iframe";
     } 
+    
+    idoc.write('<html><body contenteditable="true" spellcheck="true"><div><script type="text/javascript" src="..."></script></div> Enter description here.');
 
     var designModeOn = on || true;
 
@@ -171,11 +178,12 @@ var RichText = React.createClass({
     // Make content editable
     if ('contentEditable' in editorBody && designModeOn) {
       editorBody.contentEditable = true;
-    } else {  
+    }
+    else {  
       // Firefox earlier than version 3 uses document rather than body
-      if ('designMode' in idoc && designModeOn) {
-        idoc.designMode = "on";                
-      }
+    	if ('designMode' in idoc && designModeOn) {
+    		idoc.designMode = "on";                
+    	}
     }
 
     // Set blur event
@@ -224,11 +232,31 @@ var RichText = React.createClass({
       return false;
     }
 
-    var idoc = this._getIframDoc();
+    var idoc = this._getIframeDoc();
     var contentHeight = idoc.body.scrollHeight;
 
     var iframe = this.refs.rte.getDOMNode();
     iframe.style.height = contentHeight + "px";
+  },
+  
+  _rteCommand: function(command, option) {
+		try 
+		{
+			var idoc = this._getIframeDoc();
+			var iwnd = this._getIframeWindow();
+		
+			this.iwnd.focus();
+		  	this.idoc.execCommand(command, false, option);
+			this.iwnd.focus();
+		} 
+		catch (e) 
+		{
+			alert(e);
+		}
+  },
+  
+  _buttonClick: function() {
+	  console.log("test");
   }
 
 });
