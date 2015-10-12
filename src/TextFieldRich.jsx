@@ -37,9 +37,14 @@ var RichText = React.createClass({
     this._enableDesign();
     this.setValue(this.props.value);
   },
-  
-  _btnClick: function (type) {
-	  console.log(type);
+
+  /**
+   * Public interface to send commands to the RTE
+   *
+   * @param {string} command The name of the RTE command to execute
+   */
+  sendCommand: function (command) {
+	  console.log("Apply command:", command);
   },
 
   render: function() {
@@ -163,8 +168,10 @@ var RichText = React.createClass({
     if (!idoc) {
       throw "Could not get the document of the iframe";
     } 
-    
-    idoc.write('<html><body contenteditable="true" spellcheck="true"><div><script type="text/javascript" src="..."></script></div> Enter description here.');
+
+    // TODO: This was in the html below and causing an error
+    // <script type="text/javascript" src="..."></script>
+    //idoc.write('<html><body contenteditable="true" spellcheck="true"><div></div> Enter description here.');
 
     var designModeOn = on || true;
 

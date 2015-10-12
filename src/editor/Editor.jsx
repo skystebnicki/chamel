@@ -23,17 +23,13 @@ var Editor = React.createClass({
     propTypes: {
         onCheck: React.PropTypes.func
     },
-    
-    _handleClick: function(type) {
-        this.props.btnClick(type);
-    },
 
     render: function() {
         return (
             <div>
                 <Toolbar>
                     <ToolbarGroup key={1} float="left">
-                        <FontIcon onClick={this._handleClick("bold")} className="cfi cfi-bold" />
+                        <FontIcon onClick={this._handleBoldClick} className="cfi cfi-bold" />
                         <FontIcon className="cfi cfi-italic" />
                         <FontIcon className="cfi cfi-underline" />
                     </ToolbarGroup>
@@ -47,10 +43,20 @@ var Editor = React.createClass({
                     </ToolbarGroup>
                 </Toolbar>
                 <div>
-                    <TextFieldRich btnClick={this._handleClick} />
+                    <TextFieldRich ref="rte" />
                 </div>
             </div>
         )
+    },
+
+    /**
+     * Callback used to handle commands when bold is clicked on the toolbar
+     *
+     * @param {string} cmd The name of the command to execute
+     * @private
+     */
+    _handleBoldClick: function(evt) {
+        this.refs.rte.sendCommand("bold");
     },
 
 });
