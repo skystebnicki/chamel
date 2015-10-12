@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "keywords": [
     "react",
     "react-component",
@@ -63,6 +63,11 @@
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
   "main": "src/main.js",
+  "browserify": {
+    "transform": [
+      ["babelify", {"loose": "all", "nonStandard": true}]
+    ]
+  },
   "dependencies": {
     "classnames": "^1.2.2",
     "bootstrap-slider": "^5.1.0",

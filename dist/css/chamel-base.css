@@ -109,7 +109,7 @@
 
 .fa-check:before { content: ""; }
 
-.fa-remove:before, .fa-close:before, .fa-times:before { content: ""; }
+.fa-remove:before, .fa-close:before, .fa-times:before, .cfi-close:before { content: ""; }
 
 .fa-search-plus:before { content: ""; }
 
@@ -203,7 +203,7 @@
 
 .fa-photo:before, .fa-image:before, .fa-picture-o:before { content: ""; }
 
-.fa-pencil:before { content: ""; }
+.fa-pencil:before, .cfi-pencil:before { content: ""; }
 
 .fa-map-marker:before { content: ""; }
 
@@ -1254,6 +1254,7 @@
 .fa-fonticons:before { content: ""; }
 
 /* chanel font icon namespace */
+/** Navigation Icons */
 /** Text Icons */
 /** Directional icons */
 /** Gutters */
