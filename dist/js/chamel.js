@@ -21990,7 +21990,7 @@ var AppBar = React.createClass({
             title = toString.call(this.props.title) === '[object String]' ? React.createElement('h1', { className: 'chamel-app-bar-title' }, this.props.title) : this.props.title;
         }
 
-        return React.createElement(Paper, { rounded: false, className: classes, zDepth: this.props.zDepth }, menuElementLeft, title, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), React.createElement('div', { className: 'chamel-clear' }));
+        return React.createElement(Paper, { rounded: false, className: classes, zDepth: this.props.zDepth }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' }));
     }
 });
 
