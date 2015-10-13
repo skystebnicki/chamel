@@ -63,6 +63,22 @@
   @extend .fa-font;
 }
 
+.cfi-file-text-o {
+  @extend .fa-file-text-o;
+}
+
+.cfi-minus {
+  @extend .fa-minus;
+}
+
+.cfi-link {
+  @extend .fa-link;
+}
+
+.cfi-table {
+  @extend .fa-table;
+}
+
 /**
  * Directional icons
  */
