@@ -5,51 +5,51 @@ $headingFontFamily: Helvetica Neue, Helvetica, sans-serif;
 $contentFontFamily: Helvetica Neue, Helvetica, sans-serif;
 
 //App Colors
-$primary-1-color: $cyan-500 !default;
-$primary-2-color: $cyan-700 !default;
-$primary-3-color: $cyan-100 !default;
-$accent-1-color: $pink-A200 !default;
-$accent-2-color: $pink-A400 !default;
-$accent-3-color: $pink-A100 !default;
+$primary-1-color: $cyan-500;
+$primary-2-color: $cyan-700;
+$primary-3-color: $cyan-100;
+$accent-1-color: $pink-A200;
+$accent-2-color: $pink-A400;
+$accent-3-color: $pink-A100;
 
 //Text Colors
-$body-text-color: $dark-black !default;
+$body-text-color: $dark-black;
 
 //Border Colors
-$border-color: $grey-300 !default;
+$border-color: $grey-300;
 
 //Component Colors
-$app-bar-color: $primary-1-color !default;
-$app-bar-text-color: $dark-white !default;
-$canvas-color: $white !default;
-$drop-down-menu-icon-color: $min-black !default;
-$left-nav-color: $white !default;
-$subheader-border-color: $border-color !default;
-$subheader-text-color: $primary-1-color !default;
+$app-bar-color: $primary-1-color;
+$app-bar-text-color: $dark-white;
+$canvas-color: $white;
+$drop-down-menu-icon-color: $min-black;
+$left-nav-color: $white;
+$subheader-border-color: $border-color;
+$subheader-text-color: $primary-1-color;
 
 //Disabled Colors
 $disabled-color: rgba($body-text-color, 0.3);
 
 //Date Picker
-$date-picker-color: $primary-1-color !default;
-$date-picker-text-color: $white !default;
-$date-picker-calendar-text-color: $body-text-color !default;
-$date-picker-select-color: $primary-2-color !default;
-$date-picker-select-text-color: $white !default;
+$date-picker-color: $primary-1-color;
+$date-picker-text-color: $white;
+$date-picker-calendar-text-color: $body-text-color;
+$date-picker-select-color: $primary-2-color;
+$date-picker-select-text-color: $white;
 
 // menu
-$menu-background-color: $white !default;
-$menu-item-data-height: 32px !default;
-$menu-item-height: 48px !default;
-$menu-item-hover-color: rgba(0, 0, 0, .035) !default;
-$menu-item-padding: $desktop-gutter !default;
-$menu-item-selected-text-color: $accent-1-color !default;
-$menu-container-background-color: white !default;
-$menu-subheader-padding: $desktop-gutter !default;
+$menu-background-color: $white;
+$menu-item-data-height: 32px;
+$menu-item-height: 48px;
+$menu-item-hover-color: rgba(0, 0, 0, .035);
+$menu-item-padding: $desktop-gutter;
+$menu-item-selected-text-color: $accent-1-color;
+$menu-container-background-color: white;
+$menu-subheader-padding: $desktop-gutter;
 
 // buttons - turn off all ripples
 $button-height: 32px;
-$button-min-width: 50px !default;
+$button-min-width: 50px;
 $button-border-radius: 8px;
 
 $flat-button-color: $white;
@@ -101,75 +101,75 @@ $floating-action-button-disabled-color: $raised-button-disabled-color;
 $floating-action-button-disabled-text-color: $raised-button-disabled-text-color;
 
 // input
-$input-width: 320px !default;
-$input-font-size: 16px !default;
-$input-placeholder-size: 13px !default;
-$input-error-color: red !default;
-$input-bar-height: 2px !default;
+$input-width: 320px;
+$input-font-size: 16px;
+$input-placeholder-size: 13px;
+$input-error-color: red;
+$input-bar-height: 2px;
 
 // switches
-$switches-ripple-color: rgba($primary-1-color, 0.2) !default;
+$switches-ripple-color: rgba($primary-1-color, 0.2);
 
 // radio button
-$radio-button-size: 24px !default;
-$radio-button-border-color:  $body-text-color !default;
-$radio-button-background-color: white !default;
-$radio-button-checked-color: $primary-1-color !default;
-$radio-button-required-color: $primary-1-color !default;
-$radio-button-disabled-color: $disabled-color !default;
+$radio-button-size: 24px;
+$radio-button-border-color:  $body-text-color;
+$radio-button-background-color: white;
+$radio-button-checked-color: $primary-1-color;
+$radio-button-required-color: $primary-1-color;
+$radio-button-disabled-color: $disabled-color;
 
 // checkbox
-$checkbox-box-color: $body-text-color !default;
-$checkbox-checked-color: $primary-1-color !default;
-$checkbox-required-color: $primary-1-color !default;
-$checkbox-disabled-color: $disabled-color !default;
+$checkbox-box-color: $body-text-color;
+$checkbox-checked-color: $primary-1-color;
+$checkbox-required-color: $primary-1-color;
+$checkbox-disabled-color: $disabled-color;
 
 // toast
-$mui-toast-color: white !default;
-$mui-toast-background-color: #323232 !default;
-$mui-toast-action-color: yellow !default;
+$mui-toast-color: white;
+$mui-toast-background-color: #323232;
+$mui-toast-action-color: yellow;
 
 // snackbar
-$snackbar-text-color: white !default;
-$snackbar-background-color: #323232 !default;
-$snackbar-action-color: $accent-1-color !default;
+$snackbar-text-color: white;
+$snackbar-background-color: #323232;
+$snackbar-action-color: $accent-1-color;
 
 // toggle
-$toggle-size: 20px !default;
-$toggle-thumb-on-color: $primary-1-color !default;
-$toggle-thumb-off-color: $grey-50 !default;
-$toggle-thumb-disabled-color: $grey-400 !default;
-$toggle-thumb-required-color: $primary-1-color !default;
-$toggle-track-on-color: fade-out($toggle-thumb-on-color, 0.5) !default;
-$toggle-track-off-color: $min-black !default;
-$toggle-track-disabled-color: $faint-black !default;
-$toggle-track-required-color: fade-out($toggle-thumb-required-color, 0.5) !default;
+$toggle-size: 20px;
+$toggle-thumb-on-color: $primary-1-color;
+$toggle-thumb-off-color: $grey-50;
+$toggle-thumb-disabled-color: $grey-400;
+$toggle-thumb-required-color: $primary-1-color;
+$toggle-track-on-color: fade-out($toggle-thumb-on-color, 0.5);
+$toggle-track-off-color: $min-black;
+$toggle-track-disabled-color: $faint-black;
+$toggle-track-required-color: fade-out($toggle-thumb-required-color, 0.5);
 
 // toolbar
-$toolbar-background-color: darken(#eeeeee, 5%) !default;
-$toolbar-height: 56px !default;
-$toolbar-icon-color: rgba(0, 0, 0, .40) !default;
-$toolbar-separator-color: rgba(0, 0, 0, .175) !default;
-$toolbar-menu-hover-color: rgba(0, 0, 0, .10) !default;
-$toolbar-menu-hover-color: $white !default;
+$toolbar-background-color: darken(#eeeeee, 5%);
+$toolbar-height: 56px;
+$toolbar-icon-color: rgba(0, 0, 0, .40);
+$toolbar-separator-color: rgba(0, 0, 0, .175);
+$toolbar-menu-hover-color: rgba(0, 0, 0, .10);
+$toolbar-menu-hover-color: $white;
 
 // slider
-$slider-track-size: 2px !default;
-$slider-track-color: $min-black !default;
-$slider-track-color-selected: $grey-500 !default;
-$slider-handle-size: 12px !default;
-$slider-handle-size-active: $slider-handle-size * 2 !default;
-$slider-handle-size-disabled: 8px !default;
-$slider-handle-color-zero: $grey-400 !default;
-$slider-selection-color: $primary-3-color !default;
+$slider-track-size: 2px;
+$slider-track-color: $min-black;
+$slider-track-color-selected: $grey-500;
+$slider-handle-size: 12px;
+$slider-handle-size-active: $slider-handle-size * 2;
+$slider-handle-size-disabled: 8px;
+$slider-handle-color-zero: $grey-400;
+$slider-selection-color: $primary-3-color;
 
 // snackbar
-$snackbar-text-color: white !default;
-$snackbar-background-color: #323232 !default;
-$snackbar-action-color: $accent-1-color !default;
+$snackbar-text-color: white;
+$snackbar-background-color: #323232;
+$snackbar-action-color: $accent-1-color;
 
 // layout
-$left-nav-width: ($desktop-keyline-increment * 4) !default;
+$left-nav-width: ($desktop-keyline-increment * 4);
 
 // paper
 $paper-container-radius: 8px;

@@ -88,10 +88,11 @@ var AppBar = React.createClass({
 		return (
             <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
                 {menuElementLeft}
-                {title}
+
                 <div className="chamel-app-bar-toolbar">
                     {menuElementRight}
                 </div>
+                {title}
                 <div className="chamel-clear" />
             </Paper>
 		);

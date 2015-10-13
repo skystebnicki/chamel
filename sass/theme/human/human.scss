@@ -19,7 +19,8 @@
 @import "../../resets/normalize";
 
 // Global variables and mixins
-
+@import "variables/spacing";
+@import "../../variables/spacing";
 @import "../../variables/theme-variables";
 
 // Common mixins
