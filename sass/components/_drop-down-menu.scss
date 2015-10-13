@@ -6,7 +6,7 @@
 
   position: relative;
   display: inline-block;
-  height: $icon-size * 2;
+  height: $toolbar-height;
   font-size: $desktop-drop-down-menu-font-size;
 
   &.chamel-open {
@@ -19,7 +19,7 @@
         }
 
         .chamel-menu-label {
-          top: ($desktop-toolbar-height / 2);
+          top: ($toolbar-height / 2);
           opacity: 0;
         }
       }
@@ -50,7 +50,7 @@
     }
 
     .chamel-menu-label {
-      line-height: $desktop-toolbar-height;
+      line-height: $toolbar-height;;
       position: absolute;
       padding-left: $desktop-gutter;
       top: 0;
@@ -58,7 +58,7 @@
     }
 
     .chamel-menu-drop-down-icon {
-      line-height: $desktop-toolbar-height;
+      line-height: $toolbar-height;
       position: absolute;
       top: 0;
       right: $desktop-gutter-less;

@@ -30,7 +30,7 @@ var Toggle = React.createClass({
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
-      className: "toggle",
+      className: "chamel-toggle",
       iconClassName: "chamel-toggle-icon",
       onSwitch: this._handleToggle,
       defaultSwitched: this.props.defaultToggled,

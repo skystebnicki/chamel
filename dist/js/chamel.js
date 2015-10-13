@@ -22373,6 +22373,7 @@ var DropDownIcon = React.createClass({
   },
 
   _onControlClick: function _onControlClick(e) {
+    console.log("IconClicked");
     this.setState({ open: !this.state.open });
   },
 
@@ -24261,7 +24262,7 @@ var Toggle = React.createClass({
       ref: "enhancedSwitch",
       inputType: "checkbox",
       switchElement: toggleElement,
-      className: "toggle",
+      className: "chamel-toggle",
       iconClassName: "chamel-toggle-icon",
       onSwitch: this._handleToggle,
       defaultSwitched: this.props.defaultToggled,

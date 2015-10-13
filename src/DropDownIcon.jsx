@@ -52,6 +52,7 @@ var DropDownIcon = React.createClass({
   },
 
   _onControlClick: function(e) {
+    console.log("IconClicked");
     this.setState({ open: !this.state.open });
   },
 

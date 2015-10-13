@@ -20,7 +20,8 @@ var menuItems = [
   { route: 'toolbar', text: 'Toolbar' },
   { route: 'editor', text: 'Editor' },
   { route: 'icon', text: 'Icon' },
-  { route: 'checkbox', text: 'Checkbox' }
+  { route: 'checkbox', text: 'Checkbox' },
+  { route: 'dialog', text: 'Dialog' }
 ];
 
 var App = React.createClass({

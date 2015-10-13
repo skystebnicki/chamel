@@ -7,6 +7,7 @@ var ToolbarDemo = require("./controls/ToolbarDemo.jsx");
 var EditorDemo = require("./controls/EditorDemo.jsx");
 var IconsDemo = require("./controls/IconsDemo.jsx");
 var CheckboxDemo = require("./controls/CheckboxDemo.jsx");
+var DialogDemo = require("./controls/DialogDemo.jsx");
 
 var Router = require('react-router');
 var DefaultRoute = Router.DefaultRoute;
@@ -22,6 +23,7 @@ var routes = (
 		<Route name="editor" path="editor" handler={EditorDemo}/>
 		<Route name="icon" path="icon" handler={IconsDemo}/>
 		<Route name="checkbox" path="checkbox" handler={CheckboxDemo}/>
+		<Route name="dialog" path="dialog" handler={DialogDemo}/>
 	</Route>
 );
 

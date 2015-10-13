@@ -9,9 +9,9 @@
     position: absolute;
     top: 0;
     z-index: 1;
+    overflow: hidden;
 
     .chamel-paper-container {
-      overflow: hidden;
       padding: 0;
     }
 
