@@ -36,6 +36,7 @@
     "bootstrap-slider": "*",
     "browserify": "*",
     "classnames": "^1.2.0",
+    "codemirror": "^5.7.0",
     "grunt": "0.4.5",
     "grunt-browserify": "^3.5.0",
     "grunt-contrib-clean": "^0.6.0",
@@ -64,7 +65,13 @@
   "main": "src/main.js",
   "browserify": {
     "transform": [
-      ["babelify", {"loose": "all", "nonStandard": true}]
+      [
+        "babelify",
+        {
+          "loose": "all",
+          "nonStandard": true
+        }
+      ]
     ]
   },
   "dependencies": {
