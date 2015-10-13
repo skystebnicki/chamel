@@ -70,12 +70,12 @@ var TextField = React.createClass({
     } = this.props;
 
     var classes = this.getClasses('chamel-text-field', {
-      'has-error': this.props.errorText,
-      'has-floating-labels': this.props.floatingLabelText,
-      'has-value': this.state.hasValue,
-      'is-disabled': this.props.disabled,
-      'is-focused': this.state.isFocused,
-      'is-multiLine': this.props.multiLine
+      'chamel-has-error': this.props.errorText,
+      'chamel-has-floating-labels': this.props.floatingLabelText,
+      'chamel-has-value': this.state.hasValue,
+      'chamel-is-disabled': this.props.disabled,
+      'chamel-is-focused': this.state.isFocused,
+      'chamel-is-multiLine': this.props.multiLine
     });
 
     var inputId = this.props.id || UniqueId.generate();
