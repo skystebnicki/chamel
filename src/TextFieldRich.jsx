@@ -47,7 +47,7 @@ var RichText = React.createClass({
 					cls._setValue(cls.props.value);
 				}, 1);
 		
-		//this._setupIframeDocument(true); // this has issue when executing the function instantly
+		//this._setupIframeDocument(true); // this has issue when executing the function instantly 
 	},
 	
 	componentDidUpdate: function() {
