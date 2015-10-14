@@ -1,13 +1,15 @@
 var React = require('react');
-var CM = require('codemirror');
+var CodeMirror = require('codemirror');
 
-var CodeMirror = React.createClass({
+var ContentSrc = React.createClass({
 	propTypes: {
+		onBlur: React.PropTypes.func,
+		onFocus: React.PropTypes.func,
 		options: React.PropTypes.object,
 		value: React.PropTypes.string
 	},
 
-	getInitialState: function getInitialState() {
+	getInitialState: function() {
 		return {
 			value: ""
 		};
@@ -15,45 +17,63 @@ var CodeMirror = React.createClass({
 
 	componentDidMount: function componentDidMount() {
 		var textareaNode = this.refs.textarea.getDOMNode();
-		this.codeMirror = CM.fromTextArea(textareaNode, this.props.options);
+		
+		this._codeMirror = CodeMirror.fromTextArea(textareaNode, this.props.options);
+		this._codeMirror.on('focus', this._handleFocus);
+		this._codeMirror.on('blur', this._handleBlur);
 	},
 
 	componentWillUnmount: function componentWillUnmount() {
-		if (this.codeMirror) {
-			this.codeMirror.toTextArea();
+		if (this._codeMirror) {
+			this._codeMirror.toTextArea();
 		}
 	},
 	
 	render: function render() {
-		var className = 'ReactCodeMirror';
-		if (this.state.isFocused) {
-			className += ' ReactCodeMirror--focused';
-		}
-		
-		return React.createElement('textarea', 
-				{ ref: 'textarea', defaultValue: this.props.value, autoComplete: 'off' }
-				);
+		return React.createElement('textarea', { ref: 'textarea', defaultValue: this.props.value, autoComplete: 'off' })
 	},
 	
 	/**
 	 * Get the current value of the iframe document / code mirror editor
 	 * 
-	 * @private
+	 * @public
 	 */
-	_getValue: function() {
-		return this.codeMirror.getDoc().getValue();
+	getValue: function() {
+		return this._codeMirror.getDoc().getValue();
 	},
 	
 	/**
 	 * Set the value of the iframe document / code mirror editor
 	 *
 	 * @param {string} newValue		The value to be saved in the editor 
-	 * @private
+	 * @public
 	 */
-	_setValue: function(newValue) {
-		this.codeMirror.getDoc().setValue(newValue);
+	setValue: function(newValue) {
+		this._codeMirror.getDoc().setValue(newValue);
+	},
+	
+	/**
+     * Callback used to handle onblur on textarea
+     *
+     * @param {DOMEvent} e 		Reference to the DOM event being sent
+     * @private
+     */
+	_handleBlur: function(e) {
+	    this.setState({isFocused: false});
+	    if (this.props.onBlur) this.props.onBlur(e);
+	},
+	
+	/**
+     * Callback used to handle onfocus on textarea
+     *
+     * @param {DOMEvent} e 		Reference to the DOM event being sent
+     * @private
+     */
+	_handleFocus: function(e) {
+		this.setState({isFocused: true});
+		if (this.props.onFocus) this.props.onFocus(e);
 	},
 
 });
 
-module.exports = CodeMirror;
+module.exports = ContentSrc;

@@ -2,13 +2,14 @@ var React = require('react');
 var Classable = require("../mixins/classable.jsx");
 var Toolbar = require("../toolbar/Toolbar.jsx");
 var ToolbarGroup = require("../toolbar/ToolbarGroup.jsx");
-var TextFieldRich = require("../TextFieldRich.jsx");
 var FontIcon = require("../FontIcon.jsx");
 var IconButton = require("../IconButton.jsx");
 var DropDownIcon = require("../DropDownIcon.jsx");
 var Dialog = require("../Dialog.jsx");
 var TextField = require("../TextField.jsx");
-var ColorPicker = require('react-colorpickr');
+var ColorPicker = require("../ColorPicker.jsx");
+var ContentRte = require("./ContentRte.jsx");
+var ContentSrc = require("./ContentSrc.jsx");
 
 var fontStyleOptions = [
     { payload: '<p>', text: 'Body' },
@@ -42,65 +43,82 @@ var Editor = React.createClass({
     mixins: [Classable],
 
     propTypes: {
-        onCheck: React.PropTypes.func
+        value: React.PropTypes.string,
+    },
+    
+    getDefaultProps: function() {
+		return {
+    		value: "Enter description here.",
+		};
+	},
+    
+    getInitialState: function() {
+    	return {
+    		sourceViewMode: false,
+    		value: this.props.value,
+    	};
     },
     
     render: function() {
     	var dialogActions = [
     	                     { text: 'Cancel' },
-    	                     { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
+    	                     { text: 'Submit', onClick: this._handleDialogSubmit, ref: 'submit' }
     	                 ]; 
+    	
+    	var displayEditor = null;
+		
+		// Determine what should be displayed
+		if(this.state.sourceViewMode) {
+			displayEditor = <ContentSrc ref="contentSource" onFocus={this._handleFocus} value={this.state.value} options={{lineNumbers: true,  mode: "text/html"}} />
+		}
+		else {
+			displayEditor = <ContentRte ref="rte" value={this.state.value} />
+		}
     	
         return (
             <div>
                 <Toolbar>
                     <ToolbarGroup key={1} float="left">
-                        <FontIcon onClick={this._onToolbarClick.bind(this, "bold")} className="cfi cfi-bold" />
-                        <FontIcon onClick={this._onToolbarClick.bind(this, "italic")} className="cfi cfi-italic" />
-                        <FontIcon onClick={this._onToolbarClick.bind(this, "underline")} className="cfi cfi-underline" />
+                        <FontIcon onClick={this._handleToolbarClick.bind(this, "bold")} className="cfi cfi-bold" />
+                        <FontIcon onClick={this._handleToolbarClick.bind(this, "italic")} className="cfi cfi-italic" />
+                        <FontIcon onClick={this._handleToolbarClick.bind(this, "underline")} className="cfi cfi-underline" />
                     </ToolbarGroup>
                     <ToolbarGroup key={2} float="left">
-                        <FontIcon onClick={this._onToolbarClick.bind(this, "justifyleft")} className="cfi cfi-align-left" />
-                        <FontIcon onClick={this._onToolbarClick.bind(this, "justifycenter")} className="cfi cfi-align-center" />
-                        <FontIcon onClick={this._onToolbarClick.bind(this, "justifyright")} className="cfi cfi-align-right" />
+                        <FontIcon onClick={this._handleToolbarClick.bind(this, "justifyleft")} className="cfi cfi-align-left" />
+                        <FontIcon onClick={this._handleToolbarClick.bind(this, "justifycenter")} className="cfi cfi-align-center" />
+                        <FontIcon onClick={this._handleToolbarClick.bind(this, "justifyright")} className="cfi cfi-align-right" />
                     </ToolbarGroup>
                     <ToolbarGroup key={3} float="left">
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "src")} className="cfi cfi-files-o" />
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "inserthorizontalrule")} className="cfi cfi-minus" />
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "link")} className="cfi cfi-link" />
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "table")} className="cfi cfi-table" />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "src")} className="cfi cfi-files-o" />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "inserthorizontalrule")} className="cfi cfi-minus" />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "link")} className="cfi cfi-link" />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "table")} className="cfi cfi-table" />
                     </ToolbarGroup>
                     <ToolbarGroup key={4} float="left">
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "insertorderedlist")} className="cfi cfi-list-ol" />
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "insertunorderedlist")} className="cfi cfi-list-ul" />
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "forecolor")} className="cfi cfi-eyedropper" />
-                    	<FontIcon onClick={this._onToolbarClick.bind(this, "backcolor")} className="cfi cfi-magic" />
-                    	<div ref="colorPickerContainer" className="chamel-color-picker">
-                    		<div className="chamel-color-picker-close">
-                    			<FontIcon onClick={this._displayColorPicker.bind(this, false, true)} className="cfi cfi-times" />
-                    		</div>
-                    		<div>
-                    			<ColorPicker onChange={this._onColorPick} />
-                    		</div>
-                    	</div>
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "insertorderedlist")} className="cfi cfi-list-ol" />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "insertunorderedlist")} className="cfi cfi-list-ul" />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "forecolor")} className="cfi cfi-eyedropper" />
+                    	<ColorPicker ref="forecolorPicker" label="Pick a font color" onColorPick={this._handleColorPick} />
+                    	<FontIcon onClick={this._handleToolbarClick.bind(this, "backcolor")} className="cfi cfi-magic" />
+                    	<ColorPicker ref="backcolorPicker" label="Pick a background color" onColorPick={this._handleColorPick} />
                 	</ToolbarGroup>
                     <ToolbarGroup key={5} float="right">
                         <DropDownIcon 
                         	iconClassName="cfi cfi-header" 
                         	menuItems={fontStyleOptions}
-                        	onChange={this._onMenuClick.bind(this, "formatblock")} />
+                        	onChange={this._handleMenuClick.bind(this, "formatblock")} />
                         <DropDownIcon 
 	                    	iconClassName="cfi cfi-text-height" 
 	                    	menuItems={fontSizeOptions}
-	                    	onChange={this._onMenuClick.bind(this, "fontsize")} />
+	                    	onChange={this._handleMenuClick.bind(this, "fontsize")} />
                         <DropDownIcon 
                         	iconClassName="cfi cfi-font" 
                         	menuItems={fontNameOptions}
-                    		onChange={this._onMenuClick.bind(this, "fontname")} />
+                    		onChange={this._handleMenuClick.bind(this, "fontname")} />
                 </ToolbarGroup>
                 </Toolbar>
                 <div>
-                    <TextFieldRich ref="rte" />
+                    {displayEditor}
                 </div>
                 <Dialog ref="linkDialog" title="Enter the link path" actions={dialogActions} modal={true} >
                 	<TextField ref="linkInput" />
@@ -115,28 +133,37 @@ var Editor = React.createClass({
      * @param {string} type		The name of the command to execute
      * @private
      */
-    _onToolbarClick: function(type) {
+    _handleToolbarClick: function(type) {
     	if (!this.isMounted()) { 
     		return;
     	}
     	
+    	// If current display is source view, we dont need to continue unless toggle src is clicked
+    	if(this.state.sourceViewMode && type != "src") {
+    		return;
+    	}	
+    	
     	switch(type) {
     		case "src":
-    			this.refs.rte._toggleSrc();
+    			this._toggleEditorView();
     			break;
     		case "link":
     			this.refs.linkDialog.show();
     			break;
     		case "table":
-    			this.refs.rte._insertHtml('<table style="border: 1px solid; padding: 10px;"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>');
+    			this.refs.rte.insertHtml('<table style="border: 1px solid; padding: 10px;"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>');
     			break;
     		case "backcolor":
+    			this.refs["forecolorPicker"].close();
     		case "forecolor":
-    			this._displayColorPicker(this._colorFontType == type, false);
+    			// Hide the currently opened color pickers
+    			this.refs["backcolorPicker"].close();
+    			
+    			this.refs[type + "Picker"].show();
     			this._colorFontType = type;
     			break;
     		default: 
-    			this.refs.rte._sendCommand(type, '');
+    			this.refs.rte.sendCommand(type, '');
     			break;
     	}
     },
@@ -150,51 +177,54 @@ var Editor = React.createClass({
      * @param {Object} payload	The object value of the menu clicked
      * @private
      */
-    _onMenuClick: function(type, e, key, payload) {
-    	this.refs.rte._sendCommand(type, payload.payload);
+    _handleMenuClick: function(type, e, key, payload) {
+    	this.refs.rte.sendCommand(type, payload.payload);
     },
     
     /**
-     * Callback used to handle commands when button is clicked on the toolbar
-     *
-     * @param {string} color	The color that was selected
-     * @private
-     */
-    _onColorPick: function (color) {
-    	this.refs.rte._sendCommand(this._colorFontType, "#" + color.hex);
-    	this._colorFontType = null;
-    },
-    
-    /**
-     * Callback used to handle commands when button is clicked on the toolbar
+     * Accepts the link from the dialog box and sends a command to create the a href link
      *
      * @private
      */
-    _onDialogSubmit: function() {
+    _handleDialogSubmit: function() {
     	var input = this.refs.linkInput.getValue();
     	
-    	this.refs.rte._insertLink(input);
+    	this.refs.rte.insertLink(input);
     	this.refs.linkInput.clearValue();
     	this.refs.linkDialog.dismiss();
     },
     
     /**
-     * Displays the color picker
+     * Toggles the view to either RTE or View Source (Code Mirror)
      *
-     * @param {bool} sameEvent		Check if the event was triggerred in same button
-     * @param {bool} forceHide 		Force to hide the color picker
      * @private
      */
-    _displayColorPicker: function(sameEvent, forceHide) {
-    	
-    	var cpStyle = this.refs.colorPickerContainer.getDOMNode().style;
-		var style = "block";
+    _toggleEditorView: function () {
+    	var currentValue = null;
 		
-		if(forceHide || (cpStyle.display == "block" && sameEvent))
-			style = "none";
+		if(this.state.sourceViewMode) { // Current display is source view
+			currentValue = this.refs.contentSource.getValue();
+		}
+		else { // Current display is RTE
+			currentValue = this.refs.rte.getValue();
+		}
 		
-		cpStyle.display = style;
-    }
+		// Update the state values
+		this.setState({ 
+					sourceViewMode: !this.state.sourceViewMode,
+					value: currentValue
+				});
+    },
+    
+    /**
+     * Handles the color picking event. This will trigger when the user chooses a color
+     *
+     * @param {string} color	The color that was selected
+     * @private
+     */
+    _handleColorPick: function(color) {
+    	this.refs.rte.setColor(this._colorFontType, "#" + color.hex);
+    },
 });
 
 module.exports = Editor;
