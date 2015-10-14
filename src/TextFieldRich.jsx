@@ -1,6 +1,6 @@
 var React = require('react');
-var CodeMirror = require('CodeMirror');
 var UAParser = require('ua-parser-js');
+var CodeMirror = require("./editor/ContentSrc.jsx");
 
 var uaParser = new UAParser();
 
@@ -16,18 +16,20 @@ var RichText = React.createClass({
 		autoGrow: React.PropTypes.bool,
 		height: React.PropTypes.number,
 		value: React.PropTypes.string,
-		btnClick: React.PropTypes.func,
-		cmEditor: React.PropTypes.object,
-		displayEditor: React.PropTypes.bool,
 	},
 
 	getDefaultProps: function() {
 		return {
 			autoGrow: true,
 			value: "Enter description here.",
-			displayEditor: false
 		};
 	},
+	
+	getInitialState: function() {
+    	return {
+    		displayCodeMirror: false,
+    	};
+    },
 
 	componentDidMount: function() {
 		var iframe = this.refs.rte.getDOMNode();
@@ -37,28 +39,42 @@ var RichText = React.createClass({
 		if (this.props.height) {
 			iframe.style.height = height;
 		}
-
+				
 		// Make the contents of the iframe editable
-		this._enableDesign();
-		this._setValue(this.props.value);
+		var cls = this;
+		setTimeout(function() { 
+					cls._enableDesign(true);
+					cls._setValue(cls.props.value);
+				}, 1);
 		
-		this.props.cmEditor = CodeMirror.fromTextArea(this.refs.cmEditor.getDOMNode(), {
-            lineNumbers: true,
-            extraKeys: {"Ctrl-Space": "autocomplete"},
-            mode: "text/html",
-          });
+		//this._setupIframeDocument(true); // this has issue when executing the function instantly
+	},
+	
+	componentDidUpdate: function() {
 		
-		this.refs.cmContainer.getDOMNode().style.display = "none";
+		// Re enable the content editable of the iframe document
+		var cls = this;
+		setTimeout(function() {
+					cls._enableDesign(true);
+					cls._setValue(cls._currentValue);
+				}, 1);
 		
-		console.log("component mounted");
 	},
 
 	render: function() {
+		
+		var display = null;
+		
+		// Determine what should be displayed
+		if(this.state.displayCodeMirror) {
+			display = <CodeMirror ref="codemirror" options={{lineNumbers: true,  mode: "text/html"}} />;
+		}
+		else {
+			display = <iframe ref="rte" src="about:blank" />;
+		}
+		
 		return ( 
-				<div className="chamel-text-field-rich" >
-					<div ref="rteContainer"><iframe ref="rte" src="about:blank" /></div>
-					<div ref="cmContainer"><textarea ref="cmEditor" /></div>
-				</div>
+				<div className="chamel-text-field-rich" >{display}</div>
 		);
 	},
 	
@@ -70,7 +86,6 @@ var RichText = React.createClass({
 	 */
 	_sendCommand: function (command, option) {
 		try {
-			
 			var idoc = this._getIframeDoc();
 			var iwnd = this._getIframeWindow();
 		
@@ -122,8 +137,8 @@ var RichText = React.createClass({
 			return undefined;
 		}
 		
-		if(this.props.displayEditor) {
-			return this.props.cmEditor.getDoc().getValue();
+		if(this.state.displayCodeMirror) {
+			return this.refs.codemirror._getValue();
 		}
 		else {
 			var idoc = this._getIframeDoc();
@@ -139,8 +154,8 @@ var RichText = React.createClass({
 	 */
 	_setValue: function(newValue) {
 		
-		if(this.props.displayEditor) {
-			return this.props.cmEditor.getDoc().setValue(newValue);
+		if(this.state.displayCodeMirror) {
+			return this.refs.codemirror._setValue(newValue);
 		}
 		else {
 			var idoc = this._getIframeDoc();
@@ -189,8 +204,6 @@ var RichText = React.createClass({
 	 * @private
 	 */
 	_handleInputFocus: function(e) {
-		this.setState({isFocused: true});
-		
 		if (this.props.onFocus) {
 			this.props.onFocus(e);
 		}
@@ -232,7 +245,7 @@ var RichText = React.createClass({
 	},
 
 	/**
-	 * Need description here: TODO
+	 * Check if the component is controlled
 	 * 
 	 * @private
 	 */
@@ -272,16 +285,14 @@ var RichText = React.createClass({
 	 * @private
 	 */
 	_enableDesign: function(on) {
-
+		
 		// Only enable after mounted into the dom
-		if (!this.isMounted()) {
+		if (!this.isMounted() || this.state.displayCodeMirror) {
 			return false;
 		}
 
 		// Get the iframe document
 		var idoc = this._getIframeDoc();
-    
-		idoc.write('<html><body contenteditable="true" spellcheck="true"></body></html>');
 
 		// Make sure document is defined
 		if (!idoc) {
@@ -291,7 +302,7 @@ var RichText = React.createClass({
 		var designModeOn = on || true;
 
 		var editorBody = idoc.body;
-
+		
 		// Turn on spellcheck if available
 		if ('spellcheck' in editorBody && designModeOn) {
 			editorBody.spellcheck = true;
@@ -300,6 +311,7 @@ var RichText = React.createClass({
 		// Make content editable
 		if ('contentEditable' in editorBody && designModeOn) {
 			editorBody.contentEditable = true;
+			
 		}
 		else {  
 			// Firefox earlier than version 3 uses document rather than body
@@ -307,7 +319,7 @@ var RichText = React.createClass({
 				idoc.designMode = "on";                
 			}
 		}
-
+		
 		// Set blur event
 		// TODO: For some reason it is always firing twice... we should investigate
 		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
@@ -324,11 +336,10 @@ var RichText = React.createClass({
 				this._handleInputBlur(evt);
 			}.bind(this));
 		}
-
-		// Set keydown event
+		
 		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
 
-		// W3C DOM
+		// Set keydown event
 		if (evtObj.addEventListener) {
 			evtObj.addEventListener("keydown",function(evt) {
 				this._handleInputKeyDown(evt);
@@ -338,6 +349,21 @@ var RichText = React.createClass({
 			// IE DOM
 			evtObj.attachEvent("onkeydown", function(evt) {
 				this._handleInputKeyDown(evt);
+			}.bind(this));
+		}
+		
+		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
+		
+		// Set onfocus event
+		if (evtObj.addEventListener) {
+			evtObj.addEventListener("focus",function(evt) {
+				this._handleInputFocus(evt);
+			}.bind(this),false);
+		}
+		else if (evtObj.attachEvent) {
+			// IE DOM
+			evtObj.attachEvent("onfocus", function(evt) {
+				this._handleInputFocus(evt);
 			}.bind(this));
 		}
       
@@ -350,32 +376,11 @@ var RichText = React.createClass({
 	 * @private
 	 */
 	_toggleSrc: function() {
-		var currentValue = this._getValue();
-		
-		if(this.props.displayEditor === true) {
-			this.refs.cmContainer.getDOMNode().style.display = "none";
-			this.refs.rteContainer.getDOMNode().style.display = "block";
-		}
-		else {
-			this.refs.cmContainer.getDOMNode().style.display = "block";
-			this.refs.rteContainer.getDOMNode().style.display = "none";
-		}
-		
-		this.props.displayEditor = !this.props.displayEditor;
-		this._setValue(currentValue);
-	},
-	
-	/**
-	 * Prompts the dialog box for user input
-	 * 
-	 * @private
-	 */
-	_promptDialog: function() {
-		var input = window.prompt("Enter the link path.")
-		
-		if(input) {
-			this._insertLink(input);
-		}
+		this._currentValue = this._getValue();
+		this.setState(
+				{ 
+					displayCodeMirror: !this.state.displayCodeMirror,
+				});
 	},
 	
 	/**
@@ -403,13 +408,18 @@ var RichText = React.createClass({
 		this._sendCommand("createlink", path);
 	},
 	
+	/**
+	 * Inserts the html string
+	 * 
+	 * @param {string} html		The string that will be inserted		
+	 * @private
+	 */
 	_insertHtml: function(html) {
 		if (uaParser.getBrowser().name == "IE") {
 			
 			//retrieve selected range
 			var sel = this._getIframeDoc().selection; 
-			if (sel != null) 
-			{
+			if (sel != null) {
 				var newRng = sel.createRange();
 				newRng = this.rng;
 				newRng.select();
@@ -417,8 +427,7 @@ var RichText = React.createClass({
 			
 			this._sendCommand('paste', html);
 		}
-		else
-		{
+		else {
 			this._sendCommand('insertHtml', html);
 		}
 	},

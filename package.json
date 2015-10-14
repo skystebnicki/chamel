@@ -55,6 +55,7 @@
     "object-hash": "^0.8.0",
     "protractor": "~1.0.0",
     "react": "^0.13.1",
+    "react-colorpickr": "^2.0.4",
     "react-router": "^0.13.4",
     "react-tap-event-plugin": "^0.1.6",
     "shelljs": "^0.2.6",
@@ -75,15 +76,15 @@
     ]
   },
   "dependencies": {
-    "classnames": "^1.2.2",
+    "babelify": "^6.3.0",
     "bootstrap-slider": "^5.1.0",
+    "browserify": "*",
+    "classnames": "^1.2.2",
     "fbjs": "^0.2.1",
     "localforage": "^1.2.10",
-    "react": "^0.13.3",
     "object-hash": "^0.8.0",
+    "react": "^0.13.3",
     "react-dom": "^0.14.0-rc1",
-    "react-tap-event-plugin": "^0.1.8",
-    "babelify": "^6.3.0",
-    "browserify": "*"
+    "react-tap-event-plugin": "^0.1.8"
   }
 }
