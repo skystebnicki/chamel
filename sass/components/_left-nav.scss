@@ -17,6 +17,53 @@
 
     h2 {
       font-family: "Casper";
+      @extend .font-style-title;
+      padding: 0 $gutter-less 0 $gutter-less;
+      line-height: $app-bar-height-small;
+      margin: 0;
+
+      @media #{$device-medium} {
+        line-height: $app-bar-height-medium;
+        padding: 0 $gutter 0 $gutter;
+      }
+      @media #{$device-large} {
+        line-height: $app-bar-height-large;
+        padding: 0 $gutter 0 $gutter;
+      }
+    }
+
+    .chamel-left-nav-header-menu {
+
+      height: 100%;
+      position: fixed;
+      width: $left-nav-width;
+      z-index: 20;
+      display: block;
+      background-color: $left-nav-color;
+
+      &.is-closed {
+        display: none;
+      }
+    }
+  }
+
+  /*
+   * Left nav header classes
+   */
+  .chamel-left-nav-header {
+
+    height: $app-bar-height-small;
+
+    @media #{$device-medium} {
+      height: $app-bar-height-medium;
+    }
+
+    @media #{$device-large} {
+      height: $app-bar-height-large;
+    }
+
+    h2 {
+      font-family: "Casper";
       @extend .cml-font-style-title;
       padding: 0 $gutter-less 0 $gutter-less;
       line-height: $app-bar-height-small;

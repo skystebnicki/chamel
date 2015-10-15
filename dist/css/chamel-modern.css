@@ -1793,7 +1793,23 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 ::-webkit-input-placeholder { position: absolute !important; top: -20px !important; }
 
-.chamel-left-nav { /* Left nav header classes */ }
+.chamel-left-nav { /* Left nav header classes */ /* Left nav header classes */ }
+
+.chamel-left-nav .chamel-left-nav-header { height: 48px; }
+
+@media only screen and (min-width: 768px) { .chamel-left-nav .chamel-left-nav-header { height: 56px; } }
+
+@media only screen and (min-width: 992px) { .chamel-left-nav .chamel-left-nav-header { height: 64px; } }
+
+.chamel-left-nav .chamel-left-nav-header h2 { font-family: "Casper"; padding: 0 16px 0 16px; line-height: 48px; margin: 0; }
+
+@media only screen and (min-width: 768px) { .chamel-left-nav .chamel-left-nav-header h2 { line-height: 56px; padding: 0 24px 0 24px; } }
+
+@media only screen and (min-width: 992px) { .chamel-left-nav .chamel-left-nav-header h2 { line-height: 64px; padding: 0 24px 0 24px; } }
+
+.chamel-left-nav .chamel-left-nav-header .chamel-left-nav-header-menu { height: 100%; position: fixed; width: 256px; z-index: 20; display: block; background-color: #ffffff; }
+
+.chamel-left-nav .chamel-left-nav-header .chamel-left-nav-header-menu.is-closed { display: none; }
 
 .chamel-left-nav .chamel-left-nav-header { height: 48px; }
 
