@@ -45,6 +45,7 @@ var Editor = React.createClass({
     propTypes: {
     	onBlur: React.PropTypes.func,
 		onFocus: React.PropTypes.func,
+		onChange: React.PropTypes.func,
         value: React.PropTypes.string,
     },
     
@@ -71,10 +72,21 @@ var Editor = React.createClass({
 		
 		// Determine what should be displayed
 		if(this.state.sourceViewMode) {
-			displayEditor = <ContentSrc ref="contentSource" onFocus={this._handleFocus} onBlur={this._handleBlur} value={this.state.value} options={{lineNumbers: true,  mode: "text/html"}} />
+			displayEditor = <ContentSrc 
+								ref="contentSource" 
+								onFocus={this._handleFocus} 
+								onBlur={this._handleBlur}
+								onChange={this._handleChange}
+								value={this.state.value} 
+								options={{lineNumbers: true,  mode: "text/html"}} />
 		}
 		else {
-			displayEditor = <ContentRte ref="rte" value={this.state.value} onFocus={this._handleFocus} onBlur={this._handleBlur} />
+			displayEditor = <ContentRte 
+								ref="rte"
+								onFocus={this._handleFocus} 
+								onBlur={this._handleBlur}
+								onChange={this._handleChange}
+								value={this.state.value} />
 		}
     	
         return (
@@ -180,7 +192,11 @@ var Editor = React.createClass({
      * @private
      */
     _handleMenuClick: function(type, e, key, payload) {
-    	this.refs.rte.sendCommand(type, payload.payload);
+    	
+    	// Only send commands if the display is RTE
+    	if(!this.state.sourceViewMode) {
+    		this.refs.rte.sendCommand(type, payload.payload);
+    	}
     },
     
     /**
@@ -189,6 +205,12 @@ var Editor = React.createClass({
      * @private
      */
     _handleDialogSubmit: function() {
+    	
+    	// Do not process the action if the RTE is NOT displayed
+    	if(this.state.sourceViewMode) {
+    		return;
+    	}
+    	
     	var input = this.refs.linkInput.getValue();
     	
     	this.refs.rte.insertLink(input);
@@ -247,6 +269,16 @@ var Editor = React.createClass({
 	_handleFocus: function(e) {
 		if (this.props.onFocus) this.props.onFocus(e);
 	},
+	
+	/**
+     * Callback used to handle onchange on the current editor displayed
+     *
+     * @param {DOMEvent} e 		Reference to the DOM event being sent
+     * @private
+     */
+	_handleChange: function(e) {
+		if (this.props.onChange) this.props.onChange(e); 
+	}
 });
 
 module.exports = Editor;

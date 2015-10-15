@@ -5,6 +5,7 @@ var ContentSrc = React.createClass({
 	propTypes: {
 		onBlur: React.PropTypes.func,
 		onFocus: React.PropTypes.func,
+		onChange: React.PropTypes.func,
 		options: React.PropTypes.object,
 		value: React.PropTypes.string
 	},
@@ -19,6 +20,7 @@ var ContentSrc = React.createClass({
 		var textareaNode = this.refs.textarea.getDOMNode();
 		
 		this._codeMirror = CodeMirror.fromTextArea(textareaNode, this.props.options);
+		this._codeMirror.on('change', this._handleChange);
 		this._codeMirror.on('focus', this._handleFocus);
 		this._codeMirror.on('blur', this._handleBlur);
 	},
@@ -72,6 +74,16 @@ var ContentSrc = React.createClass({
 	_handleFocus: function(e) {
 		this.setState({isFocused: true});
 		if (this.props.onFocus) this.props.onFocus(e);
+	},
+	
+	/**
+     * Callback used to handle onchange on the textarea
+     *
+     * @param {DOMEvent} e 		Reference to the DOM event being sent
+     * @private
+     */
+	_handleChange: function(e) {
+		if (this.props.onChange) this.props.onChange(e);
 	},
 
 });

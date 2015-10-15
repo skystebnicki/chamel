@@ -246,8 +246,14 @@ var ContentRte = React.createClass({
 			this.props.onEnterKeyDown(e);
 		}
     
+		// Handle onkeydown event
 		if (this.props.onKeyDown) {
 			this.props.onKeyDown(e);
+		}
+		
+		// Handle onChange event
+		if (this.props.onChange) {
+			this.props.onChange(e);
 		}
 	},
 
@@ -362,10 +368,13 @@ var ContentRte = React.createClass({
 				this._handleInputFocus(evt);
 			}.bind(this),false);
 			
-			// on change
+			/*
+			 * For some reason onchange is not working. We will be using onkeydown function instead.
+			 *
 			evtObj.addEventListener("change",function(evt) {
 				this._handleInputChange(evt);
 			}.bind(this),false);
+			*/
 		}
 		else if (evtObj.attachEvent) { // IE DOM
 			
@@ -384,10 +393,13 @@ var ContentRte = React.createClass({
 				this._handleInputFocus(evt);
 			}.bind(this));
 			
-			// on change
+			/*
+			 * For some reason onchange is not working. We will be using onkeydown function instead.
+			 *
 			evtObj.attachEvent("onchange",function(evt) {
 				this._handleInputChange(evt);
 			}.bind(this),false);
+			*/
 		}		
       
 		return true;

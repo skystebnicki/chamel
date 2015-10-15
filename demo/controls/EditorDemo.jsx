@@ -12,7 +12,7 @@ var EditorDemo = React.createClass({
         return (
             <div>
                 <CodeExample code={code}>
-                    <Editor onFocus={this._handleFocus} onBlur={this._handleBlur} />
+                    <Editor onFocus={this._handleFocus} onBlur={this._handleBlur} onChange={this._handleChange} />
                 </CodeExample>
             </div>
         );
@@ -24,6 +24,10 @@ var EditorDemo = React.createClass({
     
     _handleFocus: function(e) {
     	console.log("editor on focus");
+    },
+    
+    _handleChange: function(e) {
+    	console.log("editor onChange event");
     }
 
 });
