@@ -43,6 +43,8 @@ var Editor = React.createClass({
     mixins: [Classable],
 
     propTypes: {
+    	onBlur: React.PropTypes.func,
+		onFocus: React.PropTypes.func,
         value: React.PropTypes.string,
     },
     
@@ -69,10 +71,10 @@ var Editor = React.createClass({
 		
 		// Determine what should be displayed
 		if(this.state.sourceViewMode) {
-			displayEditor = <ContentSrc ref="contentSource" onFocus={this._handleFocus} value={this.state.value} options={{lineNumbers: true,  mode: "text/html"}} />
+			displayEditor = <ContentSrc ref="contentSource" onFocus={this._handleFocus} onBlur={this._handleBlur} value={this.state.value} options={{lineNumbers: true,  mode: "text/html"}} />
 		}
 		else {
-			displayEditor = <ContentRte ref="rte" value={this.state.value} />
+			displayEditor = <ContentRte ref="rte" value={this.state.value} onFocus={this._handleFocus} onBlur={this._handleBlur} />
 		}
     	
         return (
@@ -225,6 +227,26 @@ var Editor = React.createClass({
     _handleColorPick: function(color) {
     	this.refs.rte.setColor(this._colorFontType, "#" + color.hex);
     },
+    
+    /**
+     * Callback used to handle onblur on the current editor displayed
+     *
+     * @param {DOMEvent} e 		Reference to the DOM event being sent
+     * @private
+     */
+	_handleBlur: function(e) {
+	    if (this.props.onBlur) this.props.onBlur(e);
+	},
+    
+    /**
+     * Callback used to handle onfocus on the current editor displayed
+     *
+     * @param {DOMEvent} e 		Reference to the DOM event being sent
+     * @private
+     */
+	_handleFocus: function(e) {
+		if (this.props.onFocus) this.props.onFocus(e);
+	},
 });
 
 module.exports = Editor;
