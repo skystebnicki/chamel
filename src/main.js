@@ -41,6 +41,7 @@ module.exports = {
     Toggle: require('./Toggle.jsx'),
     Snackbar: require('./Snackbar.jsx'),
     TextField: require('./TextField.jsx'),
+    TextFieldRich: require('./TextFieldRich.jsx'),
     Toolbar: require('./toolbar/Toolbar.jsx'),
     ToolbarGroup: require('./toolbar/ToolbarGroup.jsx'),
     //Tooltip: require('./tooltip'),
