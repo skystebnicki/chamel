@@ -42,7 +42,7 @@ var TextFieldRich = React.createClass({
 		 * If we are not going to use setTimeout, the body settings are still set but will not reflect in the iframe document body
 		 */
 		setTimeout(function() { 
-					cls._designEnabled = cls._enableDesign(true);
+					cls._enableDesign(true);
 					cls.setValue(cls.props.value);
 				}, 1); 
 	},
@@ -51,13 +51,12 @@ var TextFieldRich = React.createClass({
 		// Re enable the content editable of the iframe document
 		var cls = this;
 		setTimeout(function() {
-					cls._designEnabled = cls._enableDesign(true);
+					cls._enableDesign(true);
 				}, 1);
 		
 	},
 
 	render: function() {
-		this._designEnabled = false;
 		return (<div className="chamel-text-field-rich" ><iframe ref="rte" src="about:blank" /></div>);
 	},
 	
