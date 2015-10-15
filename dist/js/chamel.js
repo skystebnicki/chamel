@@ -21911,6 +21911,878 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":33}],176:[function(require,module,exports){
 /**
+ * UAParser.js v0.7.9
+ * Lightweight JavaScript-based User-Agent string parser
+ * https://github.com/faisalman/ua-parser-js
+ *
+ * Copyright © 2012-2015 Faisal Salman <fyzlman@gmail.com>
+ * Dual licensed under GPLv2 & MIT
+ */
+
+(function (window, undefined) {
+
+    'use strict';
+
+    //////////////
+    // Constants
+    /////////////
+
+
+    var LIBVERSION  = '0.7.9',
+        EMPTY       = '',
+        UNKNOWN     = '?',
+        FUNC_TYPE   = 'function',
+        UNDEF_TYPE  = 'undefined',
+        OBJ_TYPE    = 'object',
+        STR_TYPE    = 'string',
+        MAJOR       = 'major', // deprecated
+        MODEL       = 'model',
+        NAME        = 'name',
+        TYPE        = 'type',
+        VENDOR      = 'vendor',
+        VERSION     = 'version',
+        ARCHITECTURE= 'architecture',
+        CONSOLE     = 'console',
+        MOBILE      = 'mobile',
+        TABLET      = 'tablet',
+        SMARTTV     = 'smarttv',
+        WEARABLE    = 'wearable',
+        EMBEDDED    = 'embedded';
+
+
+    ///////////
+    // Helper
+    //////////
+
+
+    var util = {
+        extend : function (regexes, extensions) {
+            for (var i in extensions) {
+                if ("browser cpu device engine os".indexOf(i) !== -1 && extensions[i].length % 2 === 0) {
+                    regexes[i] = extensions[i].concat(regexes[i]);
+                }
+            }
+            return regexes;
+        },
+        has : function (str1, str2) {
+          if (typeof str1 === "string") {
+            return str2.toLowerCase().indexOf(str1.toLowerCase()) !== -1;
+          } else {
+            return false;
+          }
+        },
+        lowerize : function (str) {
+            return str.toLowerCase();
+        },
+        major : function (version) {
+            return typeof(version) === STR_TYPE ? version.split(".")[0] : undefined;
+        }
+    };
+
+
+    ///////////////
+    // Map helper
+    //////////////
+
+
+    var mapper = {
+
+        rgx : function () {
+
+            var result, i = 0, j, k, p, q, matches, match, args = arguments;
+
+            // loop through all regexes maps
+            while (i < args.length && !matches) {
+
+                var regex = args[i],       // even sequence (0,2,4,..)
+                    props = args[i + 1];   // odd sequence (1,3,5,..)
+
+                // construct object barebones
+                if (typeof result === UNDEF_TYPE) {
+                    result = {};
+                    for (p in props) {
+                        q = props[p];
+                        if (typeof q === OBJ_TYPE) {
+                            result[q[0]] = undefined;
+                        } else {
+                            result[q] = undefined;
+                        }
+                    }
+                }
+
+                // try matching uastring with regexes
+                j = k = 0;
+                while (j < regex.length && !matches) {
+                    matches = regex[j++].exec(this.getUA());
+                    if (!!matches) {
+                        for (p = 0; p < props.length; p++) {
+                            match = matches[++k];
+                            q = props[p];
+                            // check if given property is actually array
+                            if (typeof q === OBJ_TYPE && q.length > 0) {
+                                if (q.length == 2) {
+                                    if (typeof q[1] == FUNC_TYPE) {
+                                        // assign modified match
+                                        result[q[0]] = q[1].call(this, match);
+                                    } else {
+                                        // assign given value, ignore regex match
+                                        result[q[0]] = q[1];
+                                    }
+                                } else if (q.length == 3) {
+                                    // check whether function or regex
+                                    if (typeof q[1] === FUNC_TYPE && !(q[1].exec && q[1].test)) {
+                                        // call function (usually string mapper)
+                                        result[q[0]] = match ? q[1].call(this, match, q[2]) : undefined;
+                                    } else {
+                                        // sanitize match using given regex
+                                        result[q[0]] = match ? match.replace(q[1], q[2]) : undefined;
+                                    }
+                                } else if (q.length == 4) {
+                                        result[q[0]] = match ? q[3].call(this, match.replace(q[1], q[2])) : undefined;
+                                }
+                            } else {
+                                result[q] = match ? match : undefined;
+                            }
+                        }
+                    }
+                }
+                i += 2;
+            }
+            return result;
+        },
+
+        str : function (str, map) {
+
+            for (var i in map) {
+                // check if array
+                if (typeof map[i] === OBJ_TYPE && map[i].length > 0) {
+                    for (var j = 0; j < map[i].length; j++) {
+                        if (util.has(map[i][j], str)) {
+                            return (i === UNKNOWN) ? undefined : i;
+                        }
+                    }
+                } else if (util.has(map[i], str)) {
+                    return (i === UNKNOWN) ? undefined : i;
+                }
+            }
+            return str;
+        }
+    };
+
+
+    ///////////////
+    // String map
+    //////////////
+
+
+    var maps = {
+
+        browser : {
+            oldsafari : {
+                version : {
+                    '1.0'   : '/8',
+                    '1.2'   : '/1',
+                    '1.3'   : '/3',
+                    '2.0'   : '/412',
+                    '2.0.2' : '/416',
+                    '2.0.3' : '/417',
+                    '2.0.4' : '/419',
+                    '?'     : '/'
+                }
+            }
+        },
+
+        device : {
+            amazon : {
+                model : {
+                    'Fire Phone' : ['SD', 'KF']
+                }
+            },
+            sprint : {
+                model : {
+                    'Evo Shift 4G' : '7373KT'
+                },
+                vendor : {
+                    'HTC'       : 'APA',
+                    'Sprint'    : 'Sprint'
+                }
+            }
+        },
+
+        os : {
+            windows : {
+                version : {
+                    'ME'        : '4.90',
+                    'NT 3.11'   : 'NT3.51',
+                    'NT 4.0'    : 'NT4.0',
+                    '2000'      : 'NT 5.0',
+                    'XP'        : ['NT 5.1', 'NT 5.2'],
+                    'Vista'     : 'NT 6.0',
+                    '7'         : 'NT 6.1',
+                    '8'         : 'NT 6.2',
+                    '8.1'       : 'NT 6.3',
+                    '10'        : ['NT 6.4', 'NT 10.0'],
+                    'RT'        : 'ARM'
+                }
+            }
+        }
+    };
+
+
+    //////////////
+    // Regex map
+    /////////////
+
+
+    var regexes = {
+
+        browser : [[
+
+            // Presto based
+            /(opera\smini)\/([\w\.-]+)/i,                                       // Opera Mini
+            /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i,                      // Opera Mobi/Tablet
+            /(opera).+version\/([\w\.]+)/i,                                     // Opera > 9.80
+            /(opera)[\/\s]+([\w\.]+)/i                                          // Opera < 9.80
+
+            ], [NAME, VERSION], [
+
+            /\s(opr)\/([\w\.]+)/i                                               // Opera Webkit
+            ], [[NAME, 'Opera'], VERSION], [
+
+            // Mixed
+            /(kindle)\/([\w\.]+)/i,                                             // Kindle
+            /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]+)*/i,
+                                                                                // Lunascape/Maxthon/Netfront/Jasmine/Blazer
+
+            // Trident based
+            /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i,
+                                                                                // Avant/IEMobile/SlimBrowser/Baidu
+            /(?:ms|\()(ie)\s([\w\.]+)/i,                                        // Internet Explorer
+
+            // Webkit/KHTML based
+            /(rekonq)\/([\w\.]+)*/i,                                            // Rekonq
+            /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium)\/([\w\.-]+)/i
+                                                                                // Chromium/Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt/Iron/Iridium
+            ], [NAME, VERSION], [
+
+            /(trident).+rv[:\s]([\w\.]+).+like\sgecko/i                         // IE11
+            ], [[NAME, 'IE'], VERSION], [
+
+            /(edge)\/((\d+)?[\w\.]+)/i                                          // Microsoft Edge
+            ], [NAME, VERSION], [
+
+            /(yabrowser)\/([\w\.]+)/i                                           // Yandex
+            ], [[NAME, 'Yandex'], VERSION], [
+
+            /(comodo_dragon)\/([\w\.]+)/i                                       // Comodo Dragon
+            ], [[NAME, /_/g, ' '], VERSION], [
+
+            /(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i,
+                                                                                // Chrome/OmniWeb/Arora/Tizen/Nokia
+            /(uc\s?browser|qqbrowser)[\/\s]?([\w\.]+)/i
+                                                                                // UCBrowser/QQBrowser
+            ], [NAME, VERSION], [
+
+            /(dolfin)\/([\w\.]+)/i                                              // Dolphin
+            ], [[NAME, 'Dolphin'], VERSION], [
+
+            /((?:android.+)crmo|crios)\/([\w\.]+)/i                             // Chrome for Android/iOS
+            ], [[NAME, 'Chrome'], VERSION], [
+
+            /XiaoMi\/MiuiBrowser\/([\w\.]+)/i                                   // MIUI Browser
+            ], [VERSION, [NAME, 'MIUI Browser']], [
+
+            /android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)/i         // Android Browser
+            ], [VERSION, [NAME, 'Android Browser']], [
+
+            /FBAV\/([\w\.]+);/i                                                 // Facebook App for iOS
+            ], [VERSION, [NAME, 'Facebook']], [
+
+            /version\/([\w\.]+).+?mobile\/\w+\s(safari)/i                       // Mobile Safari
+            ], [VERSION, [NAME, 'Mobile Safari']], [
+
+            /version\/([\w\.]+).+?(mobile\s?safari|safari)/i                    // Safari & Safari Mobile
+            ], [VERSION, NAME], [
+
+            /webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i                     // Safari < 3.0
+            ], [NAME, [VERSION, mapper.str, maps.browser.oldsafari.version]], [
+
+            /(konqueror)\/([\w\.]+)/i,                                          // Konqueror
+            /(webkit|khtml)\/([\w\.]+)/i
+            ], [NAME, VERSION], [
+
+            // Gecko based
+            /(navigator|netscape)\/([\w\.-]+)/i                                 // Netscape
+            ], [[NAME, 'Netscape'], VERSION], [
+            /fxios\/([\w\.-]+)/i                                                // Firefox for iOS
+            ], [VERSION, [NAME, 'Firefox']], [
+            /(swiftfox)/i,                                                      // Swiftfox
+            /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i,
+                                                                                // IceDragon/Iceweasel/Camino/Chimera/Fennec/Maemo/Minimo/Conkeror
+            /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix)\/([\w\.-]+)/i,
+                                                                                // Firefox/SeaMonkey/K-Meleon/IceCat/IceApe/Firebird/Phoenix
+            /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i,                          // Mozilla
+
+            // Other
+            /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf)[\/\s]?([\w\.]+)/i,
+                                                                                // Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf
+            /(links)\s\(([\w\.]+)/i,                                            // Links
+            /(gobrowser)\/?([\w\.]+)*/i,                                        // GoBrowser
+            /(ice\s?browser)\/v?([\w\._]+)/i,                                   // ICE Browser
+            /(mosaic)[\/\s]([\w\.]+)/i                                          // Mosaic
+            ], [NAME, VERSION]
+
+            /* /////////////////////
+            // Media players BEGIN
+            ////////////////////////
+
+            , [
+
+            /(apple(?:coremedia|))\/((\d+)[\w\._]+)/i,                          // Generic Apple CoreMedia
+            /(coremedia) v((\d+)[\w\._]+)/i
+            ], [NAME, VERSION], [
+
+            /(aqualung|lyssna|bsplayer)\/((\d+)?[\w\.-]+)/i                     // Aqualung/Lyssna/BSPlayer
+            ], [NAME, VERSION], [
+
+            /(ares|ossproxy)\s((\d+)[\w\.-]+)/i                                 // Ares/OSSProxy
+            ], [NAME, VERSION], [
+
+            /(audacious|audimusicstream|amarok|bass|core|dalvik|gnomemplayer|music on console|nsplayer|psp-internetradioplayer|videos)\/((\d+)[\w\.-]+)/i,
+                                                                                // Audacious/AudiMusicStream/Amarok/BASS/OpenCORE/Dalvik/GnomeMplayer/MoC
+                                                                                // NSPlayer/PSP-InternetRadioPlayer/Videos
+            /(clementine|music player daemon)\s((\d+)[\w\.-]+)/i,               // Clementine/MPD
+            /(lg player|nexplayer)\s((\d+)[\d\.]+)/i,
+            /player\/(nexplayer|lg player)\s((\d+)[\w\.-]+)/i                   // NexPlayer/LG Player
+            ], [NAME, VERSION], [
+            /(nexplayer)\s((\d+)[\w\.-]+)/i                                     // Nexplayer
+            ], [NAME, VERSION], [
+
+            /(flrp)\/((\d+)[\w\.-]+)/i                                          // Flip Player
+            ], [[NAME, 'Flip Player'], VERSION], [
+
+            /(fstream|nativehost|queryseekspider|ia-archiver|facebookexternalhit)/i
+                                                                                // FStream/NativeHost/QuerySeekSpider/IA Archiver/facebookexternalhit
+            ], [NAME], [
+
+            /(gstreamer) souphttpsrc (?:\([^\)]+\)){0,1} libsoup\/((\d+)[\w\.-]+)/i
+                                                                                // Gstreamer
+            ], [NAME, VERSION], [
+
+            /(htc streaming player)\s[\w_]+\s\/\s((\d+)[\d\.]+)/i,              // HTC Streaming Player
+            /(java|python-urllib|python-requests|wget|libcurl)\/((\d+)[\w\.-_]+)/i,
+                                                                                // Java/urllib/requests/wget/cURL
+            /(lavf)((\d+)[\d\.]+)/i                                             // Lavf (FFMPEG)
+            ], [NAME, VERSION], [
+
+            /(htc_one_s)\/((\d+)[\d\.]+)/i                                      // HTC One S
+            ], [[NAME, /_/g, ' '], VERSION], [
+
+            /(mplayer)(?:\s|\/)(?:(?:sherpya-){0,1}svn)(?:-|\s)(r\d+(?:-\d+[\w\.-]+){0,1})/i
+                                                                                // MPlayer SVN
+            ], [NAME, VERSION], [
+
+            /(mplayer)(?:\s|\/|[unkow-]+)((\d+)[\w\.-]+)/i                      // MPlayer
+            ], [NAME, VERSION], [
+
+            /(mplayer)/i,                                                       // MPlayer (no other info)
+            /(yourmuze)/i,                                                      // YourMuze
+            /(media player classic|nero showtime)/i                             // Media Player Classic/Nero ShowTime
+            ], [NAME], [
+
+            /(nero (?:home|scout))\/((\d+)[\w\.-]+)/i                           // Nero Home/Nero Scout
+            ], [NAME, VERSION], [
+
+            /(nokia\d+)\/((\d+)[\w\.-]+)/i                                      // Nokia
+            ], [NAME, VERSION], [
+
+            /\s(songbird)\/((\d+)[\w\.-]+)/i                                    // Songbird/Philips-Songbird
+            ], [NAME, VERSION], [
+
+            /(winamp)3 version ((\d+)[\w\.-]+)/i,                               // Winamp
+            /(winamp)\s((\d+)[\w\.-]+)/i,
+            /(winamp)mpeg\/((\d+)[\w\.-]+)/i
+            ], [NAME, VERSION], [
+
+            /(ocms-bot|tapinradio|tunein radio|unknown|winamp|inlight radio)/i  // OCMS-bot/tap in radio/tunein/unknown/winamp (no other info)
+                                                                                // inlight radio
+            ], [NAME], [
+
+            /(quicktime|rma|radioapp|radioclientapplication|soundtap|totem|stagefright|streamium)\/((\d+)[\w\.-]+)/i
+                                                                                // QuickTime/RealMedia/RadioApp/RadioClientApplication/
+                                                                                // SoundTap/Totem/Stagefright/Streamium
+            ], [NAME, VERSION], [
+
+            /(smp)((\d+)[\d\.]+)/i                                              // SMP
+            ], [NAME, VERSION], [
+
+            /(vlc) media player - version ((\d+)[\w\.]+)/i,                     // VLC Videolan
+            /(vlc)\/((\d+)[\w\.-]+)/i,
+            /(xbmc|gvfs|xine|xmms|irapp)\/((\d+)[\w\.-]+)/i,                    // XBMC/gvfs/Xine/XMMS/irapp
+            /(foobar2000)\/((\d+)[\d\.]+)/i,                                    // Foobar2000
+            /(itunes)\/((\d+)[\d\.]+)/i                                         // iTunes
+            ], [NAME, VERSION], [
+
+            /(wmplayer)\/((\d+)[\w\.-]+)/i,                                     // Windows Media Player
+            /(windows-media-player)\/((\d+)[\w\.-]+)/i
+            ], [[NAME, /-/g, ' '], VERSION], [
+
+            /windows\/((\d+)[\w\.-]+) upnp\/[\d\.]+ dlnadoc\/[\d\.]+ (home media server)/i
+                                                                                // Windows Media Server
+            ], [VERSION, [NAME, 'Windows']], [
+
+            /(com\.riseupradioalarm)\/((\d+)[\d\.]*)/i                          // RiseUP Radio Alarm
+            ], [NAME, VERSION], [
+
+            /(rad.io)\s((\d+)[\d\.]+)/i,                                        // Rad.io
+            /(radio.(?:de|at|fr))\s((\d+)[\d\.]+)/i
+            ], [[NAME, 'rad.io'], VERSION]
+
+            //////////////////////
+            // Media players END
+            ////////////////////*/
+
+        ],
+
+        cpu : [[
+
+            /(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i                     // AMD64
+            ], [[ARCHITECTURE, 'amd64']], [
+
+            /(ia32(?=;))/i                                                      // IA32 (quicktime)
+            ], [[ARCHITECTURE, util.lowerize]], [
+
+            /((?:i[346]|x)86)[;\)]/i                                            // IA32
+            ], [[ARCHITECTURE, 'ia32']], [
+
+            // PocketPC mistakenly identified as PowerPC
+            /windows\s(ce|mobile);\sppc;/i
+            ], [[ARCHITECTURE, 'arm']], [
+
+            /((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i                           // PowerPC
+            ], [[ARCHITECTURE, /ower/, '', util.lowerize]], [
+
+            /(sun4\w)[;\)]/i                                                    // SPARC
+            ], [[ARCHITECTURE, 'sparc']], [
+
+            /((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i
+                                                                                // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
+            ], [[ARCHITECTURE, util.lowerize]]
+        ],
+
+        device : [[
+
+            /\((ipad|playbook);[\w\s\);-]+(rim|apple)/i                         // iPad/PlayBook
+            ], [MODEL, VENDOR, [TYPE, TABLET]], [
+
+            /applecoremedia\/[\w\.]+ \((ipad)/                                  // iPad
+            ], [MODEL, [VENDOR, 'Apple'], [TYPE, TABLET]], [
+
+            /(apple\s{0,1}tv)/i                                                 // Apple TV
+            ], [[MODEL, 'Apple TV'], [VENDOR, 'Apple']], [
+
+            /(archos)\s(gamepad2?)/i,                                           // Archos
+            /(hp).+(touchpad)/i,                                                // HP TouchPad
+            /(kindle)\/([\w\.]+)/i,                                             // Kindle
+            /\s(nook)[\w\s]+build\/(\w+)/i,                                     // Nook
+            /(dell)\s(strea[kpr\s\d]*[\dko])/i                                  // Dell Streak
+            ], [VENDOR, MODEL, [TYPE, TABLET]], [
+
+            /(kf[A-z]+)\sbuild\/[\w\.]+.*silk\//i                               // Kindle Fire HD
+            ], [MODEL, [VENDOR, 'Amazon'], [TYPE, TABLET]], [
+            /(sd|kf)[0349hijorstuw]+\sbuild\/[\w\.]+.*silk\//i                  // Fire Phone
+            ], [[MODEL, mapper.str, maps.device.amazon.model], [VENDOR, 'Amazon'], [TYPE, MOBILE]], [
+
+            /\((ip[honed|\s\w*]+);.+(apple)/i                                   // iPod/iPhone
+            ], [MODEL, VENDOR, [TYPE, MOBILE]], [
+            /\((ip[honed|\s\w*]+);/i                                            // iPod/iPhone
+            ], [MODEL, [VENDOR, 'Apple'], [TYPE, MOBILE]], [
+
+            /(blackberry)[\s-]?(\w+)/i,                                         // BlackBerry
+            /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|huawei|meizu|motorola|polytron)[\s_-]?([\w-]+)*/i,
+                                                                                // BenQ/Palm/Sony-Ericsson/Acer/Asus/Dell/Huawei/Meizu/Motorola/Polytron
+            /(hp)\s([\w\s]+\w)/i,                                               // HP iPAQ
+            /(asus)-?(\w+)/i                                                    // Asus
+            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
+            /\(bb10;\s(\w+)/i                                                   // BlackBerry 10
+            ], [MODEL, [VENDOR, 'BlackBerry'], [TYPE, MOBILE]], [
+                                                                                // Asus Tablets
+            /android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7)/i
+            ], [MODEL, [VENDOR, 'Asus'], [TYPE, TABLET]], [
+
+            /(sony)\s(tablet\s[ps])\sbuild\//i,                                  // Sony
+            /(sony)?(?:sgp.+)\sbuild\//i
+            ], [[VENDOR, 'Sony'], [MODEL, 'Xperia Tablet'], [TYPE, TABLET]], [
+            /(?:sony)?(?:(?:(?:c|d)\d{4})|(?:so[-l].+))\sbuild\//i
+            ], [[VENDOR, 'Sony'], [MODEL, 'Xperia Phone'], [TYPE, MOBILE]], [
+
+            /\s(ouya)\s/i,                                                      // Ouya
+            /(nintendo)\s([wids3u]+)/i                                          // Nintendo
+            ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
+
+            /android.+;\s(shield)\sbuild/i                                      // Nvidia
+            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, CONSOLE]], [
+
+            /(playstation\s[3portablevi]+)/i                                    // Playstation
+            ], [MODEL, [VENDOR, 'Sony'], [TYPE, CONSOLE]], [
+
+            /(sprint\s(\w+))/i                                                  // Sprint Phones
+            ], [[VENDOR, mapper.str, maps.device.sprint.vendor], [MODEL, mapper.str, maps.device.sprint.model], [TYPE, MOBILE]], [
+
+            /(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i                         // Lenovo tablets
+            ], [VENDOR, MODEL, [TYPE, TABLET]], [
+
+            /(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i,                               // HTC
+            /(zte)-(\w+)*/i,                                                    // ZTE
+            /(alcatel|geeksphone|huawei|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]+)*/i
+                                                                                // Alcatel/GeeksPhone/Huawei/Lenovo/Nexian/Panasonic/Sony
+            ], [VENDOR, [MODEL, /_/g, ' '], [TYPE, MOBILE]], [
+                
+            /(nexus\s9)/i                                                       // HTC Nexus 9
+            ], [MODEL, [VENDOR, 'HTC'], [TYPE, TABLET]], [
+
+            /[\s\(;](xbox(?:\sone)?)[\s\);]/i                                   // Microsoft Xbox
+            ], [MODEL, [VENDOR, 'Microsoft'], [TYPE, CONSOLE]], [
+            /(kin\.[onetw]{3})/i                                                // Microsoft Kin
+            ], [[MODEL, /\./g, ' '], [VENDOR, 'Microsoft'], [TYPE, MOBILE]], [
+
+                                                                                // Motorola
+            /\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?(:?\s4g)?)[\w\s]+build\//i,
+            /mot[\s-]?(\w+)*/i,
+            /(XT\d{3,4}) build\//i
+            ], [MODEL, [VENDOR, 'Motorola'], [TYPE, MOBILE]], [
+            /android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i
+            ], [MODEL, [VENDOR, 'Motorola'], [TYPE, TABLET]], [
+
+            /android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n8000|sgh-t8[56]9|nexus 10))/i,
+            /((SM-T\w+))/i
+            ], [[VENDOR, 'Samsung'], MODEL, [TYPE, TABLET]], [                  // Samsung
+            /((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-n900))/i,
+            /(sam[sung]*)[\s-]*(\w+-?[\w-]*)*/i,
+            /sec-((sgh\w+))/i
+            ], [[VENDOR, 'Samsung'], MODEL, [TYPE, MOBILE]], [
+            /(samsung);smarttv/i
+            ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
+
+            /\(dtv[\);].+(aquos)/i                                              // Sharp
+            ], [MODEL, [VENDOR, 'Sharp'], [TYPE, SMARTTV]], [
+            /sie-(\w+)*/i                                                       // Siemens
+            ], [MODEL, [VENDOR, 'Siemens'], [TYPE, MOBILE]], [
+
+            /(maemo|nokia).*(n900|lumia\s\d+)/i,                                // Nokia
+            /(nokia)[\s_-]?([\w-]+)*/i
+            ], [[VENDOR, 'Nokia'], MODEL, [TYPE, MOBILE]], [
+
+            /android\s3\.[\s\w;-]{10}(a\d{3})/i                                 // Acer
+            ], [MODEL, [VENDOR, 'Acer'], [TYPE, TABLET]], [
+
+            /android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i                     // LG Tablet
+            ], [[VENDOR, 'LG'], MODEL, [TYPE, TABLET]], [
+            /(lg) netcast\.tv/i                                                 // LG SmartTV
+            ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
+            /(nexus\s[45])/i,                                                   // LG
+            /lg[e;\s\/-]+(\w+)*/i
+            ], [MODEL, [VENDOR, 'LG'], [TYPE, MOBILE]], [
+
+            /android.+(ideatab[a-z0-9\-\s]+)/i                                  // Lenovo
+            ], [MODEL, [VENDOR, 'Lenovo'], [TYPE, TABLET]], [
+
+            /linux;.+((jolla));/i                                               // Jolla
+            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
+
+            /((pebble))app\/[\d\.]+\s/i                                         // Pebble
+            ], [VENDOR, MODEL, [TYPE, WEARABLE]], [
+
+            /android.+;\s(glass)\s\d/i                                          // Google Glass
+            ], [MODEL, [VENDOR, 'Google'], [TYPE, WEARABLE]], [
+
+            /android.+(\w+)\s+build\/hm\1/i,                                        // Xiaomi Hongmi 'numeric' models
+            /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i,                   // Xiaomi Hongmi
+            /android.+(mi[\s\-_]*(?:one|one[\s_]plus)?[\s_]*(?:\d\w)?)\s+build/i    // Xiaomi Mi
+            ], [[MODEL, /_/g, ' '], [VENDOR, 'Xiaomi'], [TYPE, MOBILE]], [
+
+            /(mobile|tablet);.+rv\:.+gecko\//i                                  // Unidentifiable
+            ], [[TYPE, util.lowerize], VENDOR, MODEL]
+
+            /*//////////////////////////
+            // TODO: move to string map
+            ////////////////////////////
+
+            /(C6603)/i                                                          // Sony Xperia Z C6603
+            ], [[MODEL, 'Xperia Z C6603'], [VENDOR, 'Sony'], [TYPE, MOBILE]], [
+            /(C6903)/i                                                          // Sony Xperia Z 1
+            ], [[MODEL, 'Xperia Z 1'], [VENDOR, 'Sony'], [TYPE, MOBILE]], [
+
+            /(SM-G900[F|H])/i                                                   // Samsung Galaxy S5
+            ], [[MODEL, 'Galaxy S5'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
+            /(SM-G7102)/i                                                       // Samsung Galaxy Grand 2
+            ], [[MODEL, 'Galaxy Grand 2'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
+            /(SM-G530H)/i                                                       // Samsung Galaxy Grand Prime
+            ], [[MODEL, 'Galaxy Grand Prime'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
+            /(SM-G313HZ)/i                                                      // Samsung Galaxy V
+            ], [[MODEL, 'Galaxy V'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
+            /(SM-T805)/i                                                        // Samsung Galaxy Tab S 10.5
+            ], [[MODEL, 'Galaxy Tab S 10.5'], [VENDOR, 'Samsung'], [TYPE, TABLET]], [
+            /(SM-G800F)/i                                                       // Samsung Galaxy S5 Mini
+            ], [[MODEL, 'Galaxy S5 Mini'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
+            /(SM-T311)/i                                                        // Samsung Galaxy Tab 3 8.0
+            ], [[MODEL, 'Galaxy Tab 3 8.0'], [VENDOR, 'Samsung'], [TYPE, TABLET]], [
+
+            /(R1001)/i                                                          // Oppo R1001
+            ], [MODEL, [VENDOR, 'OPPO'], [TYPE, MOBILE]], [
+            /(X9006)/i                                                          // Oppo Find 7a
+            ], [[MODEL, 'Find 7a'], [VENDOR, 'Oppo'], [TYPE, MOBILE]], [
+            /(R2001)/i                                                          // Oppo YOYO R2001
+            ], [[MODEL, 'Yoyo R2001'], [VENDOR, 'Oppo'], [TYPE, MOBILE]], [
+            /(R815)/i                                                           // Oppo Clover R815
+            ], [[MODEL, 'Clover R815'], [VENDOR, 'Oppo'], [TYPE, MOBILE]], [
+             /(U707)/i                                                          // Oppo Find Way S
+            ], [[MODEL, 'Find Way S'], [VENDOR, 'Oppo'], [TYPE, MOBILE]], [
+
+            /(T3C)/i                                                            // Advan Vandroid T3C
+            ], [MODEL, [VENDOR, 'Advan'], [TYPE, TABLET]], [
+            /(ADVAN T1J\+)/i                                                    // Advan Vandroid T1J+
+            ], [[MODEL, 'Vandroid T1J+'], [VENDOR, 'Advan'], [TYPE, TABLET]], [
+            /(ADVAN S4A)/i                                                      // Advan Vandroid S4A
+            ], [[MODEL, 'Vandroid S4A'], [VENDOR, 'Advan'], [TYPE, MOBILE]], [
+
+            /(V972M)/i                                                          // ZTE V972M
+            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, MOBILE]], [
+
+            /(i-mobile)\s(IQ\s[\d\.]+)/i                                        // i-mobile IQ
+            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
+            /(IQ6.3)/i                                                          // i-mobile IQ IQ 6.3
+            ], [[MODEL, 'IQ 6.3'], [VENDOR, 'i-mobile'], [TYPE, MOBILE]], [
+            /(i-mobile)\s(i-style\s[\d\.]+)/i                                   // i-mobile i-STYLE
+            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
+            /(i-STYLE2.1)/i                                                     // i-mobile i-STYLE 2.1
+            ], [[MODEL, 'i-STYLE 2.1'], [VENDOR, 'i-mobile'], [TYPE, MOBILE]], [
+            
+            /(mobiistar touch LAI 512)/i                                        // mobiistar touch LAI 512
+            ], [[MODEL, 'Touch LAI 512'], [VENDOR, 'mobiistar'], [TYPE, MOBILE]], [
+
+            /////////////
+            // END TODO
+            ///////////*/
+
+        ],
+
+        engine : [[
+
+            /windows.+\sedge\/([\w\.]+)/i                                       // EdgeHTML
+            ], [VERSION, [NAME, 'EdgeHTML']], [
+
+            /(presto)\/([\w\.]+)/i,                                             // Presto
+            /(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i,     // WebKit/Trident/NetFront/NetSurf/Amaya/Lynx/w3m
+            /(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i,                          // KHTML/Tasman/Links
+            /(icab)[\/\s]([23]\.[\d\.]+)/i                                      // iCab
+            ], [NAME, VERSION], [
+
+            /rv\:([\w\.]+).*(gecko)/i                                           // Gecko
+            ], [VERSION, NAME]
+        ],
+
+        os : [[
+
+            // Windows based
+            /microsoft\s(windows)\s(vista|xp)/i                                 // Windows (iTunes)
+            ], [NAME, VERSION], [
+            /(windows)\snt\s6\.2;\s(arm)/i,                                     // Windows RT
+            /(windows\sphone(?:\sos)*|windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i
+            ], [NAME, [VERSION, mapper.str, maps.os.windows.version]], [
+            /(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i
+            ], [[NAME, 'Windows'], [VERSION, mapper.str, maps.os.windows.version]], [
+
+            // Mobile/Embedded OS
+            /\((bb)(10);/i                                                      // BlackBerry 10
+            ], [[NAME, 'BlackBerry'], VERSION], [
+            /(blackberry)\w*\/?([\w\.]+)*/i,                                    // Blackberry
+            /(tizen)[\/\s]([\w\.]+)/i,                                          // Tizen
+            /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]+)*/i,
+                                                                                // Android/WebOS/Palm/QNX/Bada/RIM/MeeGo/Contiki
+            /linux;.+(sailfish);/i                                              // Sailfish OS
+            ], [NAME, VERSION], [
+            /(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]+)*/i                 // Symbian
+            ], [[NAME, 'Symbian'], VERSION], [
+            /\((series40);/i                                                    // Series 40
+            ], [NAME], [
+            /mozilla.+\(mobile;.+gecko.+firefox/i                               // Firefox OS
+            ], [[NAME, 'Firefox OS'], VERSION], [
+
+            // Console
+            /(nintendo|playstation)\s([wids3portablevu]+)/i,                    // Nintendo/Playstation
+
+            // GNU/Linux based
+            /(mint)[\/\s\(]?(\w+)*/i,                                           // Mint
+            /(mageia|vectorlinux)[;\s]/i,                                       // Mageia/VectorLinux
+            /(joli|[kxln]?ubuntu|debian|[open]*suse|gentoo|arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?([\w\.-]+)*/i,
+                                                                                // Joli/Ubuntu/Debian/SUSE/Gentoo/Arch/Slackware
+                                                                                // Fedora/Mandriva/CentOS/PCLinuxOS/RedHat/Zenwalk/Linpus
+            /(hurd|linux)\s?([\w\.]+)*/i,                                       // Hurd/Linux
+            /(gnu)\s?([\w\.]+)*/i                                               // GNU
+            ], [NAME, VERSION], [
+
+            /(cros)\s[\w]+\s([\w\.]+\w)/i                                       // Chromium OS
+            ], [[NAME, 'Chromium OS'], VERSION],[
+
+            // Solaris
+            /(sunos)\s?([\w\.]+\d)*/i                                           // Solaris
+            ], [[NAME, 'Solaris'], VERSION], [
+
+            // BSD based
+            /\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]+)*/i                   // FreeBSD/NetBSD/OpenBSD/PC-BSD/DragonFly
+            ], [NAME, VERSION],[
+
+            /(ip[honead]+)(?:.*os\s*([\w]+)*\slike\smac|;\sopera)/i             // iOS
+            ], [[NAME, 'iOS'], [VERSION, /_/g, '.']], [
+
+            /(mac\sos\sx)\s?([\w\s\.]+\w)*/i,
+            /(macintosh|mac(?=_powerpc)\s)/i                                    // Mac OS
+            ], [[NAME, 'Mac OS'], [VERSION, /_/g, '.']], [
+
+            // Other
+            /((?:open)?solaris)[\/\s-]?([\w\.]+)*/i,                            // Solaris
+            /(haiku)\s(\w+)/i,                                                  // Haiku
+            /(aix)\s((\d)(?=\.|\)|\s)[\w\.]*)*/i,                               // AIX
+            /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i,
+                                                                                // Plan9/Minix/BeOS/OS2/AmigaOS/MorphOS/RISCOS/OpenVMS
+            /(unix)\s?([\w\.]+)*/i                                              // UNIX
+            ], [NAME, VERSION]
+        ]
+    };
+
+
+    /////////////////
+    // Constructor
+    ////////////////
+
+
+    var UAParser = function (uastring, extensions) {
+
+        if (!(this instanceof UAParser)) {
+            return new UAParser(uastring, extensions).getResult();
+        }
+
+        var ua = uastring || ((window && window.navigator && window.navigator.userAgent) ? window.navigator.userAgent : EMPTY);
+        var rgxmap = extensions ? util.extend(regexes, extensions) : regexes;
+
+        this.getBrowser = function () {
+            var browser = mapper.rgx.apply(this, rgxmap.browser);
+            browser.major = util.major(browser.version);
+            return browser;
+        };
+        this.getCPU = function () {
+            return mapper.rgx.apply(this, rgxmap.cpu);
+        };
+        this.getDevice = function () {
+            return mapper.rgx.apply(this, rgxmap.device);
+        };
+        this.getEngine = function () {
+            return mapper.rgx.apply(this, rgxmap.engine);
+        };
+        this.getOS = function () {
+            return mapper.rgx.apply(this, rgxmap.os);
+        };
+        this.getResult = function() {
+            return {
+                ua      : this.getUA(),
+                browser : this.getBrowser(),
+                engine  : this.getEngine(),
+                os      : this.getOS(),
+                device  : this.getDevice(),
+                cpu     : this.getCPU()
+            };
+        };
+        this.getUA = function () {
+            return ua;
+        };
+        this.setUA = function (uastring) {
+            ua = uastring;
+            return this;
+        };
+        this.setUA(ua);
+        return this;
+    };
+
+    UAParser.VERSION = LIBVERSION;
+    UAParser.BROWSER = {
+        NAME    : NAME,
+        MAJOR   : MAJOR, // deprecated
+        VERSION : VERSION
+    };
+    UAParser.CPU = {
+        ARCHITECTURE : ARCHITECTURE
+    };
+    UAParser.DEVICE = {
+        MODEL   : MODEL,
+        VENDOR  : VENDOR,
+        TYPE    : TYPE,
+        CONSOLE : CONSOLE,
+        MOBILE  : MOBILE,
+        SMARTTV : SMARTTV,
+        TABLET  : TABLET,
+        WEARABLE: WEARABLE,
+        EMBEDDED: EMBEDDED
+    };
+    UAParser.ENGINE = {
+        NAME    : NAME,
+        VERSION : VERSION
+    };
+    UAParser.OS = {
+        NAME    : NAME,
+        VERSION : VERSION
+    };
+
+
+    ///////////
+    // Export
+    //////////
+
+
+    // check js environment
+    if (typeof(exports) !== UNDEF_TYPE) {
+        // nodejs env
+        if (typeof module !== UNDEF_TYPE && module.exports) {
+            exports = module.exports = UAParser;
+        }
+        exports.UAParser = UAParser;
+    } else {
+        // requirejs env (optional)
+        if (typeof(define) === FUNC_TYPE && define.amd) {
+            define(function () {
+                return UAParser;
+            });
+        } else {
+            // browser env
+            window.UAParser = UAParser;
+        }
+    }
+
+    // jQuery/Zepto specific (optional)
+    // Note: 
+    //   In AMD env the global scope should be kept clean, but jQuery is an exception.
+    //   jQuery always exports to global scope, unless jQuery.noConflict(true) is used,
+    //   and we should catch that.
+    var $ = window.jQuery || window.Zepto;
+    if (typeof $ !== UNDEF_TYPE) {
+        var parser = new UAParser();
+        $.ua = parser.getResult();
+        $.ua.get = function() {
+            return parser.getUA();
+        };
+        $.ua.set = function (uastring) {
+            parser.setUA(uastring);
+            var result = parser.getResult();
+            for (var prop in result) {
+                $.ua[prop] = result[prop];
+            }
+        };
+    }
+
+})(typeof window === 'object' ? window : this);
+
+},{}],177:[function(require,module,exports){
+/**
  * Main application toolbar
  *
  * @jsx React.DOM
@@ -21996,7 +22868,7 @@ var AppBar = React.createClass({
 
 module.exports = AppBar;
 
-},{"./IconButton.jsx":187,"./Paper.jsx":191,"react":175}],177:[function(require,module,exports){
+},{"./IconButton.jsx":188,"./Paper.jsx":192,"react":175}],178:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22068,7 +22940,7 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"./EnhancedSwitch.jsx":183,"./mixins/classable.jsx":206,"./svg-icons/toggle-check-box-checked.jsx":215,"./svg-icons/toggle-check-box-outline-blank.jsx":216,"react":175}],178:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":184,"./mixins/classable.jsx":208,"./svg-icons/toggle-check-box-checked.jsx":217,"./svg-icons/toggle-check-box-outline-blank.jsx":218,"react":175}],179:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22132,7 +23004,7 @@ var Dialog = React.createClass({
 
 module.exports = Dialog;
 
-},{"./DialogWindow.jsx":179,"./mixins/classable.jsx":206,"react":175}],179:[function(require,module,exports){
+},{"./DialogWindow.jsx":180,"./mixins/classable.jsx":208,"react":175}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22323,7 +23195,7 @@ var DialogWindow = React.createClass({
 
 module.exports = DialogWindow;
 
-},{"./FlatButton.jsx":185,"./Overlay.jsx":190,"./Paper.jsx":191,"./mixins/WindowListenable.jsx":205,"./mixins/classable.jsx":206,"./utils/CssEvent.jsx":224,"./utils/KeyCode.jsx":227,"react":175}],180:[function(require,module,exports){
+},{"./FlatButton.jsx":186,"./Overlay.jsx":191,"./Paper.jsx":192,"./mixins/WindowListenable.jsx":207,"./mixins/classable.jsx":208,"./utils/CssEvent.jsx":226,"./utils/KeyCode.jsx":229,"react":175}],181:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22389,7 +23261,7 @@ var DropDownIcon = React.createClass({
 
 module.exports = DropDownIcon;
 
-},{"./FontIcon.jsx":186,"./Paper.jsx":191,"./menu/Menu.jsx":201,"./mixins/ClickAwayable.jsx":204,"./mixins/classable.jsx":206,"./utils/KeyLine.jsx":228,"react":175}],181:[function(require,module,exports){
+},{"./FontIcon.jsx":187,"./Paper.jsx":192,"./menu/Menu.jsx":203,"./mixins/ClickAwayable.jsx":206,"./mixins/classable.jsx":208,"./utils/KeyLine.jsx":230,"react":175}],182:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22486,7 +23358,7 @@ var DropDownMenu = React.createClass({
 module.exports = DropDownMenu;
 
 }).call(this,require('_process'))
-},{"./Paper.jsx":191,"./menu/Menu.jsx":201,"./mixins/ClickAwayable.jsx":204,"./mixins/classable.jsx":206,"./svg-icons/drop-down-arrow.jsx":210,"_process":2,"react":175}],182:[function(require,module,exports){
+},{"./Paper.jsx":192,"./menu/Menu.jsx":203,"./mixins/ClickAwayable.jsx":206,"./mixins/classable.jsx":208,"./svg-icons/drop-down-arrow.jsx":212,"_process":2,"react":175}],183:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22627,7 +23499,7 @@ var EnhancedButton = React.createClass({
 
 module.exports = EnhancedButton;
 
-},{"./mixins/WindowListenable.jsx":205,"./mixins/classable.jsx":206,"./ripples/FocusRipple.jsx":208,"./ripples/TouchRipple.jsx":209,"./utils/KeyCode.jsx":227,"react":175}],183:[function(require,module,exports){
+},{"./mixins/WindowListenable.jsx":207,"./mixins/classable.jsx":208,"./ripples/FocusRipple.jsx":210,"./ripples/TouchRipple.jsx":211,"./utils/KeyCode.jsx":229,"react":175}],184:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22906,7 +23778,7 @@ var EnhancedSwitch = React.createClass({
 module.exports = EnhancedSwitch;
 
 }).call(this,require('_process'))
-},{"./Paper.jsx":191,"./mixins/WindowListenable.jsx":205,"./mixins/classable.jsx":206,"./ripples/FocusRipple.jsx":208,"./ripples/TouchRipple.jsx":209,"./utils/KeyCode.jsx":227,"./utils/UniqueId.jsx":229,"_process":2,"react":175}],184:[function(require,module,exports){
+},{"./Paper.jsx":192,"./mixins/WindowListenable.jsx":207,"./mixins/classable.jsx":208,"./ripples/FocusRipple.jsx":210,"./ripples/TouchRipple.jsx":211,"./utils/KeyCode.jsx":229,"./utils/UniqueId.jsx":231,"_process":2,"react":175}],185:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23033,7 +23905,7 @@ var EnhancedTextarea = React.createClass({
 
 module.exports = EnhancedTextarea;
 
-},{"./mixins/classable.jsx":206,"react":175}],185:[function(require,module,exports){
+},{"./mixins/classable.jsx":208,"react":175}],186:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23096,7 +23968,7 @@ var FlatButton = React.createClass({
 
 module.exports = FlatButton;
 
-},{"./EnhancedButton.jsx":182,"./mixins/classable.jsx":206,"react":175}],186:[function(require,module,exports){
+},{"./EnhancedButton.jsx":183,"./mixins/classable.jsx":208,"react":175}],187:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23129,7 +24001,7 @@ var FontIcon = React.createClass({
 
 module.exports = FontIcon;
 
-},{"./mixins/classable.jsx":206,"react":175}],187:[function(require,module,exports){
+},{"./mixins/classable.jsx":208,"react":175}],188:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -23252,7 +24124,7 @@ var IconButton = React.createClass({
 module.exports = IconButton;
 
 }).call(this,require('_process'))
-},{"./EnhancedButton.jsx":182,"./FontIcon.jsx":186,"./Tooltip.jsx":198,"./mixins/classable.jsx":206,"_process":2,"react":175}],188:[function(require,module,exports){
+},{"./EnhancedButton.jsx":183,"./FontIcon.jsx":187,"./Tooltip.jsx":200,"./mixins/classable.jsx":208,"_process":2,"react":175}],189:[function(require,module,exports){
 /**
  * The ink bar is a thin bar that floats below tabs to indicate which is active
  *
@@ -23285,7 +24157,7 @@ var InkBar = React.createClass({
 
 module.exports = InkBar;
 
-},{"react":175}],189:[function(require,module,exports){
+},{"react":175}],190:[function(require,module,exports){
 /**
  * LeftNav componenet
  *
@@ -23460,7 +24332,7 @@ var LeftNav = React.createClass({
 
 module.exports = LeftNav;
 
-},{"./Overlay.jsx":190,"./Paper.jsx":191,"./menu/Menu.jsx":201,"react":175}],190:[function(require,module,exports){
+},{"./Overlay.jsx":191,"./Paper.jsx":192,"./menu/Menu.jsx":203,"react":175}],191:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23536,7 +24408,7 @@ var Overlay = React.createClass({
 
 module.exports = Overlay;
 
-},{"./mixins/classable.jsx":206,"react":175}],191:[function(require,module,exports){
+},{"./mixins/classable.jsx":208,"react":175}],192:[function(require,module,exports){
 /**
  * Paper is a concept taken from google Material design standards
  *
@@ -23610,7 +24482,7 @@ var Paper = React.createClass({
 
 module.exports = Paper;
 
-},{"react":175}],192:[function(require,module,exports){
+},{"react":175}],193:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23686,7 +24558,7 @@ var RadioButton = React.createClass({
 
 module.exports = RadioButton;
 
-},{"./EnhancedSwitch.jsx":183,"./mixins/classable.jsx":206,"./svg-icons/toggle-radio-button-off.jsx":217,"./svg-icons/toggle-radio-button-on.jsx":218,"react":175}],193:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":184,"./mixins/classable.jsx":208,"./svg-icons/toggle-radio-button-off.jsx":219,"./svg-icons/toggle-radio-button-on.jsx":220,"react":175}],194:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -23812,7 +24684,7 @@ var RadioButtonGroup = React.createClass({
 module.exports = RadioButtonGroup;
 
 }).call(this,require('_process'))
-},{"./EnhancedSwitch.jsx":183,"./Paper.jsx":191,"./RadioButton.jsx":192,"./mixins/classable.jsx":206,"_process":2,"react":175}],194:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":184,"./Paper.jsx":192,"./RadioButton.jsx":193,"./mixins/classable.jsx":208,"_process":2,"react":175}],195:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23930,7 +24802,7 @@ var RaisedButton = React.createClass({
 
 module.exports = RaisedButton;
 
-},{"./EnhancedButton.jsx":182,"./Paper.jsx":191,"./mixins/classable.jsx":206,"react":175}],195:[function(require,module,exports){
+},{"./EnhancedButton.jsx":183,"./Paper.jsx":192,"./mixins/classable.jsx":208,"react":175}],196:[function(require,module,exports){
 /**
  * Render a tranient snackbar
  *
@@ -24009,7 +24881,7 @@ var Snackbar = React.createClass({
 
 module.exports = Snackbar;
 
-},{"./FlatButton.jsx":185,"./mixins/ClickAwayable.jsx":204,"./mixins/classable.jsx":206,"./utils/CssEvent.jsx":224,"react":175}],196:[function(require,module,exports){
+},{"./FlatButton.jsx":186,"./mixins/ClickAwayable.jsx":206,"./mixins/classable.jsx":208,"./utils/CssEvent.jsx":226,"react":175}],197:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -24215,7 +25087,237 @@ var TextField = React.createClass({
 module.exports = TextField;
 
 }).call(this,require('_process'))
-},{"./EnhancedTextarea.jsx":184,"./mixins/classable.jsx":206,"./utils/UniqueId.jsx":229,"_process":2,"react":175}],197:[function(require,module,exports){
+},{"./EnhancedTextarea.jsx":185,"./mixins/classable.jsx":208,"./utils/UniqueId.jsx":231,"_process":2,"react":175}],198:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var UAParser = require('ua-parser-js');
+
+var uaParser = new UAParser();
+
+var RichText = React.createClass({
+  displayName: 'RichText',
+
+  propTypes: {
+    id: React.PropTypes.string,
+    onBlur: React.PropTypes.func,
+    onChange: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onKeyDown: React.PropTypes.func,
+    onEnterKeyDown: React.PropTypes.func,
+    autoGrow: React.PropTypes.bool,
+    height: React.PropTypes.number,
+    value: React.PropTypes.string
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      autoGrow: true,
+      value: ""
+    };
+  },
+
+  componentDidMount: function componentDidMount() {
+
+    // If height has been passed then set the iframe height
+    if (this.props.height) {
+      var iframe = this.refs.rte.getDOMNode();
+      iframe.style.height = height;
+    }
+
+    // Make the contents of the iframe editable
+    this._enableDesign();
+    this.setValue(this.props.value);
+  },
+
+  render: function render() {
+    return React.createElement('div', { className: 'chamel-text-field-rich' }, React.createElement('iframe', { ref: 'rte', src: 'about:blank' }));
+  },
+
+  blur: function blur() {
+    if (this.isMounted()) {
+      //this._getInputNode().blur();
+    }
+  },
+
+  clearValue: function clearValue() {
+    this.setValue('');
+  },
+
+  focus: function focus() {
+    if (this.isMounted()) {}
+  },
+
+  getValue: function getValue() {
+    if (!this.isMounted()) {
+      return undefined;
+    }
+
+    // if (this.f_src && this.codeMirror) {
+    //   this.hdntxt.value = this.codeMirror.getValue();
+    // } else {
+    var idoc = this._getIframDoc();
+    return idoc.body.innerHTML;
+    //}
+  },
+
+  setValue: function setValue(newValue) {
+    var idoc = this._getIframDoc();
+    idoc.body.innerHTML = newValue;
+
+    if (this.isMounted()) {
+      this._autoGrow();
+    }
+  },
+
+  _handleInputBlur: function _handleInputBlur(e) {
+
+    if (typeof e.target === "undefied") e.target = {};
+    e.target.value = this.getValue();
+
+    this._handleInputChange(e);
+
+    if (this.props.onBlur) this.props.onBlur(e);
+  },
+
+  _handleInputChange: function _handleInputChange(e) {
+    if (this.props.onChange) this.props.onChange(e);
+  },
+
+  _handleInputFocus: function _handleInputFocus(e) {
+    this.setState({ isFocused: true });
+    if (this.props.onFocus) this.props.onFocus(e);
+  },
+
+  _handleInputKeyDown: function _handleInputKeyDown(e) {
+    if (this.props.autoGrow) {
+      this._autoGrow();
+    }
+
+    if (e.keyCode === 13 && this.props.onEnterKeyDown) {
+      this.props.onEnterKeyDown(e);
+    }
+
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+  },
+
+  _handleTextAreaHeightChange: function _handleTextAreaHeightChange(e, height) {
+    var newHeight = height + 24;
+    if (this.props.floatingLabelText) newHeight += 24;
+    this.getDOMNode().style.height = newHeight + 'px';
+  },
+
+  _isControlled: function _isControlled() {
+    return this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink');
+  },
+
+  _getIframeWindow: function _getIframeWindow() {
+    var ifrm = this.refs.rte.getDOMNode();
+    return ifrm.contentWindow || ifrm.contentDocument;
+  },
+
+  _getIframDoc: function _getIframDoc() {
+    var iwnd = this._getIframeWindow();
+
+    if (iwnd && iwnd.document) {
+      return iwnd.document;
+    } else {
+      return false;
+    }
+  },
+
+  _enableDesign: function _enableDesign(on) {
+
+    // Only enable after mounted into the dom
+    if (!this.isMounted()) {
+      return false;
+    }
+
+    // Get the iframe document
+    var idoc = this._getIframDoc();
+
+    // Make sure document is defined
+    if (!idoc) {
+      throw "Could not get the document of the iframe";
+    }
+
+    var designModeOn = on || true;
+
+    var editorBody = idoc.body;
+
+    // Turn on spellcheck if available
+    if ('spellcheck' in editorBody && designModeOn) {
+      editorBody.spellcheck = true;
+    }
+
+    // Make content editable
+    if ('contentEditable' in editorBody && designModeOn) {
+      editorBody.contentEditable = true;
+    } else {
+      // Firefox earlier than version 3 uses document rather than body
+      if ('designMode' in idoc && designModeOn) {
+        idoc.designMode = "on";
+      }
+    }
+
+    // Set blur event
+    // TODO: For some reason it is always firing twice... we should investigate
+    var evtObj = uaParser.getBrowser().name == "IE" ? this.refs.rte.getDOMNode() : this._getIframeWindow();
+
+    // W3C DOM
+    if (evtObj.addEventListener) {
+      evtObj.addEventListener("blur", (function (evt) {
+        this._handleInputBlur(evt);
+      }).bind(this), false);
+    } else if (evtObj.attachEvent) {
+      // IE DOM
+      evtObj.attachEvent("onblur", (function (evt) {
+        this._handleInputBlur(evt);
+      }).bind(this));
+    }
+
+    // Set keydown event
+    var evtObj = uaParser.getBrowser().name == "IE" ? this.refs.rte.getDOMNode() : this._getIframeWindow();
+
+    // W3C DOM
+    if (evtObj.addEventListener) {
+      evtObj.addEventListener("keydown", (function (evt) {
+        this._handleInputKeyDown(evt);
+      }).bind(this), false);
+    } else if (evtObj.attachEvent) {
+      // IE DOM
+      evtObj.attachEvent("onkeydown", (function (evt) {
+        this._handleInputKeyDown(evt);
+      }).bind(this));
+    }
+
+    return true;
+  },
+
+  /**
+   * Autogrow the editor to match the contents
+   */
+  _autoGrow: function _autoGrow() {
+
+    // We cannot autogrow if we are not mounted in the DOM
+    if (!this.isMounted()) {
+      return false;
+    }
+
+    var idoc = this._getIframDoc();
+    var contentHeight = idoc.body.scrollHeight;
+
+    var iframe = this.refs.rte.getDOMNode();
+    iframe.style.height = contentHeight + "px";
+  }
+
+});
+
+module.exports = RichText;
+
+},{"react":175,"ua-parser-js":176}],199:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -24289,7 +25391,7 @@ var Toggle = React.createClass({
 
 module.exports = Toggle;
 
-},{"./EnhancedSwitch.jsx":183,"./Paper.jsx":191,"./mixins/classable.jsx":206,"react":175}],198:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":184,"./Paper.jsx":192,"./mixins/classable.jsx":208,"react":175}],200:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -24356,7 +25458,7 @@ var Tooltip = React.createClass({
 
 module.exports = Tooltip;
 
-},{"./mixins/classable.jsx":206,"react":175}],199:[function(require,module,exports){
+},{"./mixins/classable.jsx":208,"react":175}],201:[function(require,module,exports){
 /**
  * Main entry point for chamel
  */
@@ -24402,6 +25504,7 @@ module.exports = {
     Toggle: require('./Toggle.jsx'),
     Snackbar: require('./Snackbar.jsx'),
     TextField: require('./TextField.jsx'),
+    TextFieldRich: require('./TextFieldRich.jsx'),
     Toolbar: require('./toolbar/Toolbar.jsx'),
     ToolbarGroup: require('./toolbar/ToolbarGroup.jsx'),
     //Tooltip: require('./tooltip'),
@@ -24414,7 +25517,7 @@ module.exports = {
     }
 };
 
-},{"./AppBar.jsx":176,"./Checkbox.jsx":177,"./Dialog.jsx":178,"./DialogWindow.jsx":179,"./DropDownIcon.jsx":180,"./DropDownMenu.jsx":181,"./EnhancedButton.jsx":182,"./FlatButton.jsx":185,"./FontIcon.jsx":186,"./IconButton.jsx":187,"./LeftNav.jsx":189,"./Paper.jsx":191,"./RadioButton.jsx":192,"./RadioButtonGroup.jsx":193,"./RaisedButton.jsx":194,"./Snackbar.jsx":195,"./TextField.jsx":196,"./Toggle.jsx":197,"./menu/Menu.jsx":201,"./menu/MenuItem.jsx":202,"./mixins/ClickAwayable.jsx":204,"./mixins/WindowListenable.jsx":205,"./mixins/classable.jsx":206,"./svg-icons/navigation-chevron-left.jsx":211,"./svg-icons/navigation-chevron-right.jsx":212,"./svg-icons/navigation-menu.jsx":213,"./svg-icons/svg-icon.jsx":214,"./tabs/Tab.jsx":219,"./tabs/Tabs.jsx":221,"./toolbar/Toolbar.jsx":222,"./toolbar/ToolbarGroup.jsx":223,"./utils/CssEvent.jsx":224,"./utils/Dom.jsx":225,"./utils/Events.jsx":226,"./utils/KeyCode.jsx":227,"./utils/KeyLine.jsx":228}],200:[function(require,module,exports){
+},{"./AppBar.jsx":177,"./Checkbox.jsx":178,"./Dialog.jsx":179,"./DialogWindow.jsx":180,"./DropDownIcon.jsx":181,"./DropDownMenu.jsx":182,"./EnhancedButton.jsx":183,"./FlatButton.jsx":186,"./FontIcon.jsx":187,"./IconButton.jsx":188,"./LeftNav.jsx":190,"./Paper.jsx":192,"./RadioButton.jsx":193,"./RadioButtonGroup.jsx":194,"./RaisedButton.jsx":195,"./Snackbar.jsx":196,"./TextField.jsx":197,"./TextFieldRich.jsx":198,"./Toggle.jsx":199,"./menu/Menu.jsx":203,"./menu/MenuItem.jsx":204,"./mixins/ClickAwayable.jsx":206,"./mixins/WindowListenable.jsx":207,"./mixins/classable.jsx":208,"./svg-icons/navigation-chevron-left.jsx":213,"./svg-icons/navigation-chevron-right.jsx":214,"./svg-icons/navigation-menu.jsx":215,"./svg-icons/svg-icon.jsx":216,"./tabs/Tab.jsx":221,"./tabs/Tabs.jsx":223,"./toolbar/Toolbar.jsx":224,"./toolbar/ToolbarGroup.jsx":225,"./utils/CssEvent.jsx":226,"./utils/Dom.jsx":227,"./utils/Events.jsx":228,"./utils/KeyCode.jsx":229,"./utils/KeyLine.jsx":230}],202:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -24467,7 +25570,7 @@ var LinkMenuItem = React.createClass({
     }
 });
 
-},{"../mixins/classable.jsx":206,"react":175}],201:[function(require,module,exports){
+},{"../mixins/classable.jsx":208,"react":175}],203:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -24801,7 +25904,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"../Paper.jsx":191,"../mixins/ClickAwayable.jsx":204,"../mixins/classable.jsx":206,"../utils/CssEvent.jsx":224,"../utils/Dom.jsx":225,"../utils/KeyLine.jsx":228,"./LinkMenuItem.jsx":200,"./MenuItem.jsx":202,"./SubheaderMenuItem.jsx":203,"react":175}],202:[function(require,module,exports){
+},{"../Paper.jsx":192,"../mixins/ClickAwayable.jsx":206,"../mixins/classable.jsx":208,"../utils/CssEvent.jsx":226,"../utils/Dom.jsx":227,"../utils/KeyLine.jsx":230,"./LinkMenuItem.jsx":202,"./MenuItem.jsx":204,"./SubheaderMenuItem.jsx":205,"react":175}],204:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -24928,7 +26031,7 @@ var MenuItem = React.createClass({
 
 module.exports = MenuItem;
 
-},{"../FontIcon.jsx":186,"../Toggle.jsx":197,"../mixins/classable.jsx":206,"react":175}],203:[function(require,module,exports){
+},{"../FontIcon.jsx":187,"../Toggle.jsx":199,"../mixins/classable.jsx":208,"react":175}],205:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24949,7 +26052,7 @@ var SubheaderMenuItem = React.createClass({
 
 module.exports = SubheaderMenuItem;
 
-},{"react":175}],204:[function(require,module,exports){
+},{"react":175}],206:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24987,7 +26090,7 @@ module.exports = {
 
 };
 
-},{"../utils/Dom.jsx":225,"../utils/Events.jsx":226,"react":175}],205:[function(require,module,exports){
+},{"../utils/Dom.jsx":227,"../utils/Events.jsx":228,"react":175}],207:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/Events.jsx');
@@ -25014,7 +26117,7 @@ module.exports = {
 
 };
 
-},{"../utils/Events.jsx":226}],206:[function(require,module,exports){
+},{"../utils/Events.jsx":228}],208:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25060,7 +26163,7 @@ module.exports = {
 
 };
 
-},{"classnames":1,"react":175}],207:[function(require,module,exports){
+},{"classnames":1,"react":175}],209:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -25105,7 +26208,7 @@ var RippleCircle = React.createClass({
 
 module.exports = RippleCircle;
 
-},{"../mixins/classable.jsx":206,"react":175}],208:[function(require,module,exports){
+},{"../mixins/classable.jsx":208,"react":175}],210:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25146,7 +26249,7 @@ var FocusRipple = React.createClass({
 
 module.exports = FocusRipple;
 
-},{"../mixins/classable.jsx":206,"react":175}],209:[function(require,module,exports){
+},{"../mixins/classable.jsx":208,"react":175}],211:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25314,7 +26417,7 @@ var TouchRipple = React.createClass({
 
 module.exports = TouchRipple;
 
-},{"../mixins/classable.jsx":206,"../utils/Dom.jsx":225,"./Circle.jsx":207,"react":175}],210:[function(require,module,exports){
+},{"../mixins/classable.jsx":208,"../utils/Dom.jsx":227,"./Circle.jsx":209,"react":175}],212:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25331,7 +26434,7 @@ var DropDownArrow = React.createClass({
 
 module.exports = DropDownArrow;
 
-},{"./svg-icon.jsx":214,"react":175}],211:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],213:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25348,7 +26451,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"./svg-icon.jsx":214,"react":175}],212:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],214:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25365,7 +26468,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"./svg-icon.jsx":214,"react":175}],213:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],215:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25382,7 +26485,7 @@ var NavigationMenu = React.createClass({
 
 module.exports = NavigationMenu;
 
-},{"./svg-icon.jsx":214,"react":175}],214:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],216:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -25415,7 +26518,7 @@ var SvgIcon = React.createClass({
 
 module.exports = SvgIcon;
 
-},{"../mixins/classable.jsx":206,"react":175}],215:[function(require,module,exports){
+},{"../mixins/classable.jsx":208,"react":175}],217:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25432,7 +26535,7 @@ var ToggleCheckBoxChecked = React.createClass({
 
 module.exports = ToggleCheckBoxChecked;
 
-},{"./svg-icon.jsx":214,"react":175}],216:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],218:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25449,7 +26552,7 @@ var ToggleCheckBoxOutlineBlank = React.createClass({
 
 module.exports = ToggleCheckBoxOutlineBlank;
 
-},{"./svg-icon.jsx":214,"react":175}],217:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],219:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25466,7 +26569,7 @@ var RadioButtonOff = React.createClass({
 
 module.exports = RadioButtonOff;
 
-},{"./svg-icon.jsx":214,"react":175}],218:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],220:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25483,7 +26586,7 @@ var RadioButtonOn = React.createClass({
 
 module.exports = RadioButtonOn;
 
-},{"./svg-icon.jsx":214,"react":175}],219:[function(require,module,exports){
+},{"./svg-icon.jsx":216,"react":175}],221:[function(require,module,exports){
 /**
  * Render a single tab
  *
@@ -25529,7 +26632,7 @@ var Tab = React.createClass({
 
 module.exports = Tab;
 
-},{"react":175}],220:[function(require,module,exports){
+},{"react":175}],222:[function(require,module,exports){
 /**
  * Template for rendering tabs
  *
@@ -25553,7 +26656,7 @@ var TabTemplate = React.createClass({
 
 module.exports = TabTemplate;
 
-},{"react":175}],221:[function(require,module,exports){
+},{"react":175}],223:[function(require,module,exports){
 /**
  * Tabs component
  *
@@ -25674,7 +26777,7 @@ var Tabs = React.createClass({
 
 module.exports = Tabs;
 
-},{"../InkBar.jsx":188,"./TabTemplate.jsx":220,"react/addons":3}],222:[function(require,module,exports){
+},{"../InkBar.jsx":189,"./TabTemplate.jsx":222,"react/addons":3}],224:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -25690,7 +26793,7 @@ var Toolbar = React.createClass({
 
 module.exports = Toolbar;
 
-},{"react":175}],223:[function(require,module,exports){
+},{"react":175}],225:[function(require,module,exports){
 'use strict';
 
 var Classable = require('../mixins/classable.jsx');
@@ -25719,7 +26822,7 @@ var ToolbarGroup = React.createClass({
 
 module.exports = ToolbarGroup;
 
-},{"../mixins/classable.jsx":206,"react":175}],224:[function(require,module,exports){
+},{"../mixins/classable.jsx":208,"react":175}],226:[function(require,module,exports){
 'use strict';
 
 var Events = require('./Events.jsx');
@@ -25775,7 +26878,7 @@ module.exports = {
 
 };
 
-},{"./Events.jsx":226}],225:[function(require,module,exports){
+},{"./Events.jsx":228}],227:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25840,7 +26943,7 @@ module.exports = {
 
 };
 
-},{"react":175}],226:[function(require,module,exports){
+},{"react":175}],228:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25880,7 +26983,7 @@ module.exports = {
   }
 };
 
-},{"react":175}],227:[function(require,module,exports){
+},{"react":175}],229:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -25894,7 +26997,7 @@ module.exports = {
   UP: 38
 };
 
-},{}],228:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -25911,7 +27014,7 @@ module.exports = {
   }
 };
 
-},{}],229:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 "use strict";
 
 var index = 0;
@@ -25922,5 +27025,5 @@ module.exports = {
   }
 };
 
-},{}]},{},[199])(199)
+},{}]},{},[201])(201)
 });
