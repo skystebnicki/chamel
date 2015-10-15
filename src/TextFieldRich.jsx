@@ -1,10 +1,9 @@
 var React = require('react');
 var UAParser = require('ua-parser-js');
-var CodeMirror = require("./editor/ContentSrc.jsx");
 
 var uaParser = new UAParser();
 
-var RichText = React.createClass({
+var TextFieldRich = React.createClass({
 
 	propTypes: {
 		id: React.PropTypes.string,
@@ -21,70 +20,55 @@ var RichText = React.createClass({
 	getDefaultProps: function() {
 		return {
 			autoGrow: true,
-			value: "Enter description here.",
+			value: "",
 		};
 	},
 	
-	getInitialState: function() {
-    	return {
-    		displayCodeMirror: false,
-    	};
-    },
-
 	componentDidMount: function() {
 		var iframe = this.refs.rte.getDOMNode();
-		iframe.style.width = "100%"; // temporary
+		iframe.style.width = "100%";
 		
 		// If height has been passed then set the iframe height
 		if (this.props.height) {
-			iframe.style.height = height;
+			iframe.style.height = height + 'px';
 		}
 				
 		// Make the contents of the iframe editable
 		var cls = this;
-		setTimeout(function() { 
-					cls._enableDesign(true);
-					cls._setValue(cls.props.value);
-				}, 1);
 		
-		//this._setupIframeDocument(true); // this has issue when executing the function instantly 
+		/*
+		 * We need to delay the settings of the iframe document body because react only renders the iframe
+		 * So after it is mounted, the iframe body is then created.
+		 * If we are not going to use setTimeout, the body settings are still set but will not reflect in the iframe document body
+		 */
+		setTimeout(function() { 
+					cls._designEnabled = cls._enableDesign(true);
+					cls.setValue(cls.props.value);
+				}, 1); 
 	},
 	
 	componentDidUpdate: function() {
-		
 		// Re enable the content editable of the iframe document
 		var cls = this;
 		setTimeout(function() {
-					cls._enableDesign(true);
-					cls._setValue(cls._currentValue);
+					cls._designEnabled = cls._enableDesign(true);
 				}, 1);
 		
 	},
 
 	render: function() {
-		
-		var display = null;
-		
-		// Determine what should be displayed
-		if(this.state.displayCodeMirror) {
-			display = <CodeMirror ref="codemirror" options={{lineNumbers: true,  mode: "text/html"}} />;
-		}
-		else {
-			display = <iframe ref="rte" src="about:blank" />;
-		}
-		
-		return ( 
-				<div className="chamel-text-field-rich" >{display}</div>
-		);
+		this._designEnabled = false;
+		return (<div className="chamel-text-field-rich" ><iframe ref="rte" src="about:blank" /></div>);
 	},
 	
 	/**
 	 * Public interface to send commands to the RTE
 	 *
 	 * @param {string} command The name of the RTE command to execute
+	 * @param {string} option 	The option when executing a certain command. e.g. changing the font/background colors
 	 * @public
 	 */
-	_sendCommand: function (command, option) {
+	sendCommand: function (command, option) {
 		try {
 			var idoc = this._getIframeDoc();
 			var iwnd = this._getIframeWindow();
@@ -94,75 +78,118 @@ var RichText = React.createClass({
 			iwnd.focus();
 		} 
 		catch (e) {
-			alert(e);
+			throw new Error('Error while executing the ' + command + ' command');
 		}
 	},
-
+	
 	/**
-	 * Blur event of the text area
+     * Sets the color of the current selection in the iframe document
+     *
+     * @param {string} type		Type of command to be executed. Either forecolor or backcolor
+     * @param {string} color	The color that was selected
+     * @public
+     */
+	setColor: function (type, color) {
+		this._setRange();
+		this.sendCommand(type, color);
+	},
+	
+	/**
+	 * Inserts the html string
 	 * 
-	 * @private
+	 * @param {string} html		The string that will be inserted		
+	 * @public
 	 */
-	_blur: function() {
-		if (this.isMounted()) {
-			//this._getInputNode().blur();
+	insertHtml: function(html) {
+		this._setRange();
+		
+		if (uaParser.getBrowser().name == "IE") {
+			this.sendCommand('paste', html);
+		}
+		else {
+			this.sendCommand('insertHtml', html);
 		}
 	},
-
+	
+	/**
+	 * Prompts the dialog box for user input
+	 * 
+	 * @param {string} path		The url path to be linked on text
+	 * @public
+	 */
+	insertLink: function(path) {
+		this._setRange();
+		this.sendCommand("unlink", null);
+		this.sendCommand("createlink", path);
+	},
+	
 	/**
 	 * Clear the value of the iframe document
 	 *
+	 * @public
 	 */
-	_clearValue: function() {
-		this._setValue('');
+	clearValue: function() {
+		this.setValue('');
 	},
-
-	/**
-	 * Set the focus to the iframe document
-	 *  
-	 * @private
-	 */
-	_focus: function() {
-		if (this.isMounted()) {
-		}
-	},
+	
 
 	/**
 	 * Get the current value of the iframe document / code mirror editor
 	 * 
-	 * @private
+	 * @public
 	 */
-	_getValue: function() {
+	getValue: function() {
 		if (!this.isMounted()) {
-			return undefined;
+			return "zzzzz";
 		}
 		
-		if(this.state.displayCodeMirror) {
-			return this.refs.codemirror._getValue();
-		}
-		else {
-			var idoc = this._getIframeDoc();
-			return idoc.body.innerHTML;
-		}
+		var idoc = this._getIframeDoc();
+		return idoc.body.innerHTML;
 	},
 
 	/**
 	 * Set the value of the iframe document / code mirror editor
 	 *
 	 * @param {string} newValue		The value to be saved in the editor 
+	 * @public
+	 */
+	setValue: function(newValue) {
+		var idoc = this._getIframeDoc();
+		idoc.body.innerHTML = newValue;
+			
+		if (this.isMounted()) {
+			this._autoGrow();
+		}
+	},
+	
+	/**
+	 * Set the range of the iframe document
+	 * 
 	 * @private
 	 */
-	_setValue: function(newValue) {
+	_setRange: function () {
+		var idoc = this._getIframeDoc();
+		var iwnd = this._getIframeWindow();
 		
-		if(this.state.displayCodeMirror) {
-			return this.refs.codemirror._setValue(newValue);
+		if (uaParser.getBrowser().name == "IE") {
+			var selection = idoc.selection; 
+			if (selection != null) this._rangeSelection = selection.createRange();
+		} 
+		else 
+		{
+			var selection = iwnd.getSelection();
+			this._rangeSelection = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
 		}
-		else {
-			var idoc = this._getIframeDoc();
-			idoc.body.innerHTML = newValue;
+		
+		if (uaParser.getBrowser().name == "IE") {
+			this._getIframeWindow().focus()
 			
-			if (this.isMounted()) {
-				this._autoGrow();
+			// retrieve selected range
+			var sel = this._getIframeDoc().selection; 
+			if (sel != null) {
+				var newRng = sel.createRange();
+				newRng = this._rangeSelection;
+				newRng.select();
 			}
 		}
 	},
@@ -179,12 +206,9 @@ var RichText = React.createClass({
 			e.target = {};
 		}
 			
-		e.target.value = this._getValue();
-
-		this._handleInputChange(e);
+		e.target.value = this.getValue();
 
 		if (this.props.onBlur) this.props.onBlur(e);
-
 	},
 
 	/**
@@ -224,8 +248,14 @@ var RichText = React.createClass({
 			this.props.onEnterKeyDown(e);
 		}
     
+		// Handle onkeydown event
 		if (this.props.onKeyDown) {
 			this.props.onKeyDown(e);
+		}
+		
+		// Handle onChange event
+		if (this.props.onChange) {
+			this.props.onChange(e);
 		}
 	},
 
@@ -259,6 +289,12 @@ var RichText = React.createClass({
 	 * @private
 	 */
 	_getIframeWindow: function() {
+		
+		// We cannot get iframe window if DOM is not yet mounted
+		if (!this.isMounted()) {
+			return false;
+		}
+		
 		var ifrm = this.refs.rte.getDOMNode();
 		return ifrm.contentWindow || ifrm.contentDocument;
 	},
@@ -269,6 +305,12 @@ var RichText = React.createClass({
 	 * @private
 	 */
 	_getIframeDoc: function() {
+		
+		// We cannot get iframe document if DOM is not yet mounted
+		if (!this.isMounted()) {
+			return false;
+		}
+		
 		var iwnd = this._getIframeWindow();
 
 		if (iwnd && iwnd.document) {
@@ -278,7 +320,7 @@ var RichText = React.createClass({
 			return false;
 		}
 	},
-
+	
 	/**
 	 * Enables the editor if it is already mounted
 	 * 
@@ -287,7 +329,7 @@ var RichText = React.createClass({
 	_enableDesign: function(on) {
 		
 		// Only enable after mounted into the dom
-		if (!this.isMounted() || this.state.displayCodeMirror) {
+		if (!this.isMounted()) {
 			return false;
 		}
 
@@ -320,118 +362,63 @@ var RichText = React.createClass({
 			}
 		}
 		
-		// Set blur event
-		// TODO: For some reason it is always firing twice... we should investigate
+		// Set document events
 		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
 
-		// W3C DOM
-		if (evtObj.addEventListener) {
+		if (evtObj.addEventListener) { // W3C DOM
+			
+			// on blur
 			evtObj.addEventListener("blur",function(evt) {
 				this._handleInputBlur(evt);
 			}.bind(this),false);
-		}
-		else if (evtObj.attachEvent) {
-			// IE DOM
-			evtObj.attachEvent("onblur", function(evt) {
-				this._handleInputBlur(evt);
-			}.bind(this));
-		}
-		
-		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
-
-		// Set keydown event
-		if (evtObj.addEventListener) {
+			
+			// on keydown
 			evtObj.addEventListener("keydown",function(evt) {
 				this._handleInputKeyDown(evt);
 			}.bind(this),false);
-		}
-		else if (evtObj.attachEvent) {
-			// IE DOM
-			evtObj.attachEvent("onkeydown", function(evt) {
-				this._handleInputKeyDown(evt);
-			}.bind(this));
-		}
-		
-		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
-		
-		// Set onfocus event
-		if (evtObj.addEventListener) {
+			
+			// on focus
 			evtObj.addEventListener("focus",function(evt) {
 				this._handleInputFocus(evt);
 			}.bind(this),false);
+			
+			/*
+			 * For some reason onchange is not working. We will be using onkeydown function instead.
+			 *
+			evtObj.addEventListener("change",function(evt) {
+				this._handleInputChange(evt);
+			}.bind(this),false);
+			*/
 		}
-		else if (evtObj.attachEvent) {
-			// IE DOM
+		else if (evtObj.attachEvent) { // IE DOM
+			
+			// on blur
+			evtObj.attachEvent("onblur", function(evt) {
+				this._handleInputBlur(evt);
+			}.bind(this));
+			
+			// on keydown
+			evtObj.attachEvent("onkeydown", function(evt) {
+				this._handleInputKeyDown(evt);
+			}.bind(this));
+			
+			// on focus
 			evtObj.attachEvent("onfocus", function(evt) {
 				this._handleInputFocus(evt);
 			}.bind(this));
-		}
+			
+			/*
+			 * For some reason onchange is not working. We will be using onkeydown function instead.
+			 *
+			evtObj.attachEvent("onchange",function(evt) {
+				this._handleInputChange(evt);
+			}.bind(this),false);
+			*/
+		}		
       
 		return true;
 	},
 	
-	/**
-	 * Toggle the source view
-	 * 
-	 * @private
-	 */
-	_toggleSrc: function() {
-		this._currentValue = this._getValue();
-		this.setState(
-				{ 
-					displayCodeMirror: !this.state.displayCodeMirror,
-				});
-	},
-	
-	/**
-	 * Prompts the dialog box for user input
-	 * 
-	 * @param {string} path		The url path to be linked on text
-	 * @private
-	 */
-	_insertLink: function(path) {
-		
-		if (uaParser.getBrowser().name == "IE") {
-			this._getIframeWindow().focus()
-			
-			//retrieve selected range
-			var sel = this._getIframeDoc().selection; 
-			if (sel != null) 
-			{
-				var newRng = sel.createRange();
-				newRng = this.rng;
-				newRng.select();
-			}
-		}
-		
-		this._sendCommand("unlink", null);
-		this._sendCommand("createlink", path);
-	},
-	
-	/**
-	 * Inserts the html string
-	 * 
-	 * @param {string} html		The string that will be inserted		
-	 * @private
-	 */
-	_insertHtml: function(html) {
-		if (uaParser.getBrowser().name == "IE") {
-			
-			//retrieve selected range
-			var sel = this._getIframeDoc().selection; 
-			if (sel != null) {
-				var newRng = sel.createRange();
-				newRng = this.rng;
-				newRng.select();
-			}
-			
-			this._sendCommand('paste', html);
-		}
-		else {
-			this._sendCommand('insertHtml', html);
-		}
-	},
-
 	/**
 	 * Autogrow the editor to match the contents
 	 * 
@@ -452,4 +439,4 @@ var RichText = React.createClass({
 	},
 });
 
-module.exports = RichText;
+module.exports = TextFieldRich;

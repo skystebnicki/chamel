@@ -224,6 +224,10 @@ var Editor = React.createClass({
      * @private
      */
     _toggleEditorView: function () {
+    	if(!this.isMounted()) {
+    		return;
+    	}
+    	
     	var currentValue = null;
 		
 		if(this.state.sourceViewMode) { // Current display is source view
