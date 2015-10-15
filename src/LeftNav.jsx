@@ -82,7 +82,7 @@ var LeftNav = React.createClass({
             */
 
     // Set the index based on the selected route if the selectedIndex was not passed as prop
-    if (this.state.selected && selectedIndex === null) {
+    if (this.state.selected && selectedIndex === undefined) {
       selectedIndex = null;
       for (var i = 0; i < this.props.menuItems.length; i++) {
 
