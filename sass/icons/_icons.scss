@@ -63,6 +63,50 @@
   @extend .fa-font;
 }
 
+.cfi-files-o {
+  @extend .fa-files-o;
+}
+
+.cfi-minus {
+  @extend .fa-minus;
+}
+
+.cfi-link {
+  @extend .fa-link;
+}
+
+.cfi-table {
+  @extend .fa-table;
+}
+
+.cfi-list-ol {
+  @extend .fa-list-ol;
+}
+
+.cfi-list-ul {
+  @extend .fa-list-ul;
+}
+
+.cfi-header {
+  @extend .fa-header;
+}
+
+.cfi-text-height {
+  @extend .fa-text-height;
+}
+
+.cfi-eyedropper {
+  @extend .fa-eyedropper;
+}
+
+.cfi-magic {
+  @extend .fa-magic;
+}
+
+.cfi-times {
+  @extend .fa-times;
+}
+
 /**
  * Directional icons
  */

@@ -3,6 +3,7 @@
   * { user-select: none }
 
   cursor: pointer;
+  white-space: nowrap;
   line-height: $menu-item-height;
   padding-left: $menu-item-padding;
   padding-right: $menu-item-padding;
