@@ -139,7 +139,7 @@ var TextFieldRich = React.createClass({
 	 */
 	getValue: function() {
 		if (!this.isMounted()) {
-			return "zzzzz";
+			return "";
 		}
 		
 		var idoc = this._getIframeDoc();
@@ -181,7 +181,7 @@ var TextFieldRich = React.createClass({
 		}
 		
 		if (uaParser.getBrowser().name == "IE") {
-			this._getIframeWindow().focus()
+			iwind.focus()
 			
 			// retrieve selected range
 			var sel = this._getIframeDoc().selection; 
@@ -283,7 +283,8 @@ var TextFieldRich = React.createClass({
 	},
 
 	/**
-	 * Get the iframe window/document
+	 * Get the iframe content window/document
+	 * IE < version 8 does not supply contentWindow so we also have to check for contentDocument.
 	 * 
 	 * @private
 	 */
@@ -299,7 +300,7 @@ var TextFieldRich = React.createClass({
 	},
 
 	/**
-	 * Get the diframe window document
+	 * Get the iframe window document
 	 * 
 	 * @private
 	 */
