@@ -109,7 +109,7 @@
 
 .fa-check:before { content: ""; }
 
-.fa-remove:before, .fa-close:before, .fa-times:before, .cfi-close:before { content: ""; }
+.fa-remove:before, .fa-close:before, .fa-times:before, .cfi-close:before, .cfi-times:before { content: ""; }
 
 .fa-search-plus:before { content: ""; }
 
@@ -181,7 +181,7 @@
 
 .fa-italic:before, .cfi-italic:before { content: ""; }
 
-.fa-text-height:before { content: ""; }
+.fa-text-height:before, .cfi-text-height:before { content: ""; }
 
 .fa-text-width:before { content: ""; }
 
@@ -279,7 +279,7 @@
 
 .fa-plus:before { content: ""; }
 
-.fa-minus:before { content: ""; }
+.fa-minus:before, .cfi-minus:before { content: ""; }
 
 .fa-asterisk:before { content: ""; }
 
@@ -421,7 +421,7 @@
 
 .fa-group:before, .fa-users:before { content: ""; }
 
-.fa-chain:before, .fa-link:before { content: ""; }
+.fa-chain:before, .fa-link:before, .cfi-link:before { content: ""; }
 
 .fa-cloud:before { content: ""; }
 
@@ -429,7 +429,7 @@
 
 .fa-cut:before, .fa-scissors:before { content: ""; }
 
-.fa-copy:before, .fa-files-o:before { content: ""; }
+.fa-copy:before, .fa-files-o:before, .cfi-files-o:before { content: ""; }
 
 .fa-paperclip:before { content: ""; }
 
@@ -439,17 +439,17 @@
 
 .fa-navicon:before, .fa-reorder:before, .fa-bars:before { content: ""; }
 
-.fa-list-ul:before { content: ""; }
+.fa-list-ul:before, .cfi-list-ul:before { content: ""; }
 
-.fa-list-ol:before { content: ""; }
+.fa-list-ol:before, .cfi-list-ol:before { content: ""; }
 
 .fa-strikethrough:before { content: ""; }
 
 .fa-underline:before, .cfi-underline:before { content: ""; }
 
-.fa-table:before { content: ""; }
+.fa-table:before, .cfi-table:before { content: ""; }
 
-.fa-magic:before { content: ""; }
+.fa-magic:before, .cfi-magic:before { content: ""; }
 
 .fa-truck:before { content: ""; }
 
@@ -949,7 +949,7 @@
 
 .fa-circle-thin:before { content: ""; }
 
-.fa-header:before { content: ""; }
+.fa-header:before, .cfi-header:before { content: ""; }
 
 .fa-paragraph:before { content: ""; }
 
@@ -1007,7 +1007,7 @@
 
 .fa-at:before { content: ""; }
 
-.fa-eyedropper:before { content: ""; }
+.fa-eyedropper:before, .cfi-eyedropper:before { content: ""; }
 
 .fa-paint-brush:before { content: ""; }
 
@@ -1864,7 +1864,7 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-menu .chamel-nested-menu-item.chamel-open > .chamel-menu { opacity: 1; }
 
-.chamel-menu-item { cursor: pointer; line-height: 48px; padding-left: 24px; padding-right: 24px; background-color: transparent; }
+.chamel-menu-item { cursor: pointer; white-space: nowrap; line-height: 48px; padding-left: 24px; padding-right: 24px; background-color: transparent; }
 
 .chamel-menu-item * { user-select: none; }
 
@@ -2323,6 +2323,353 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 .chamel-app-bar.chamel-detail * { fill: #757575; color: #757575; }
 
 .chamel-app-bar.chamel-edit { background-color: #f44336; }
+
+.chamel-color-picker { position: absolute; margin-top: 55px; display: none; background-color: #f0f0f0; }
+
+.chamel-color-picker .chamel-color-picker-close { float: right; margin-top: -25px; }
+
+.chamel-color-picker .chamel-color-picker-label { font-size: 20px; }
+
+/* BASICS */
+.CodeMirror { /* Set height, width, borders, and global font properties here */ font-family: monospace; height: 300px; color: black; }
+
+/* PADDING */
+.CodeMirror-lines { padding: 4px 0; /* Vertical padding around content */ }
+
+.CodeMirror pre { padding: 0 4px; /* Horizontal padding of content */ }
+
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler { background-color: white; /* The little square between H and V scrollbars */ }
+
+/* GUTTER */
+.CodeMirror-gutters { border-right: 1px solid #ddd; background-color: #f7f7f7; white-space: nowrap; }
+
+.CodeMirror-linenumber { padding: 0 3px 0 5px; min-width: 20px; text-align: right; color: #999; white-space: nowrap; }
+
+.CodeMirror-guttermarker { color: black; }
+
+.CodeMirror-guttermarker-subtle { color: #999; }
+
+/* CURSOR */
+.CodeMirror-cursor { border-left: 1px solid black; border-right: none; width: 0; }
+
+/* Shown when moving in bi-directional text */
+.CodeMirror div.CodeMirror-secondarycursor { border-left: 1px solid silver; }
+
+.cm-fat-cursor .CodeMirror-cursor { width: auto; border: 0; background: #7e7; }
+
+.cm-fat-cursor div.CodeMirror-cursors { z-index: 1; }
+
+.cm-animate-fat-cursor { width: auto; border: 0; -webkit-animation: blink 1.06s steps(1) infinite; -moz-animation: blink 1.06s steps(1) infinite; animation: blink 1.06s steps(1) infinite; background-color: #7e7; }
+
+@-moz-keyframes blink { 0% { }
+  50% { background-color: transparent; }
+  100% { } }
+
+@-webkit-keyframes blink { 0% { }
+  50% { background-color: transparent; }
+  100% { } }
+
+@keyframes blink { 0% { }
+  50% { background-color: transparent; }
+  100% { } }
+
+/* Can style cursor different in overwrite (non-insert) mode */
+.cm-tab { display: inline-block; text-decoration: inherit; }
+
+.CodeMirror-ruler { border-left: 1px solid #ccc; position: absolute; }
+
+/* DEFAULT THEME */
+.cm-s-default .cm-header { color: blue; }
+
+.cm-s-default .cm-quote { color: #090; }
+
+.cm-negative { color: #d44; }
+
+.cm-positive { color: #292; }
+
+.cm-header, .cm-strong { font-weight: bold; }
+
+.cm-em { font-style: italic; }
+
+.cm-link { text-decoration: underline; }
+
+.cm-strikethrough { text-decoration: line-through; }
+
+.cm-s-default .cm-keyword { color: #708; }
+
+.cm-s-default .cm-atom { color: #219; }
+
+.cm-s-default .cm-number { color: #164; }
+
+.cm-s-default .cm-def { color: #00f; }
+
+.cm-s-default .cm-variable-2 { color: #05a; }
+
+.cm-s-default .cm-variable-3 { color: #085; }
+
+.cm-s-default .cm-comment { color: #a50; }
+
+.cm-s-default .cm-string { color: #a11; }
+
+.cm-s-default .cm-string-2 { color: #f50; }
+
+.cm-s-default .cm-meta { color: #555; }
+
+.cm-s-default .cm-qualifier { color: #555; }
+
+.cm-s-default .cm-builtin { color: #30a; }
+
+.cm-s-default .cm-bracket { color: #997; }
+
+.cm-s-default .cm-tag { color: #170; }
+
+.cm-s-default .cm-attribute { color: #00c; }
+
+.cm-s-default .cm-hr { color: #999; }
+
+.cm-s-default .cm-link { color: #00c; }
+
+.cm-s-default .cm-error { color: #f00; }
+
+.cm-invalidchar { color: #f00; }
+
+.CodeMirror-composing { border-bottom: 2px solid; }
+
+/* Default styles for common addons */
+div.CodeMirror span.CodeMirror-matchingbracket { color: #0f0; }
+
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: #f22; }
+
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, 0.3); }
+
+.CodeMirror-activeline-background { background: #e8f2ff; }
+
+/* STOP */
+/* The rest of this file contains styles related to the mechanics of the editor. You probably shouldn't touch them. */
+.CodeMirror { position: relative; overflow: hidden; background: white; }
+
+.CodeMirror-scroll { overflow: scroll !important; /* Things will break if this is overridden */ /* 30px is the magic margin used to hide the element's real scrollbars */ /* See overflow: hidden in .CodeMirror */ margin-bottom: -30px; margin-right: -30px; padding-bottom: 30px; height: 100%; outline: none; /* Prevent dragging from highlighting the element */ position: relative; }
+
+.CodeMirror-sizer { position: relative; border-right: 30px solid transparent; }
+
+/* The fake, visible scrollbars. Used to force redraw during scrolling before actuall scrolling happens, thus preventing shaking and flickering artifacts. */
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler { position: absolute; z-index: 6; display: none; }
+
+.CodeMirror-vscrollbar { right: 0; top: 0; overflow-x: hidden; overflow-y: scroll; }
+
+.CodeMirror-hscrollbar { bottom: 0; left: 0; overflow-y: hidden; overflow-x: scroll; }
+
+.CodeMirror-scrollbar-filler { right: 0; bottom: 0; }
+
+.CodeMirror-gutter-filler { left: 0; bottom: 0; }
+
+.CodeMirror-gutters { position: absolute; left: 0; top: 0; z-index: 3; }
+
+.CodeMirror-gutter { white-space: normal; height: 100%; display: inline-block; margin-bottom: -30px; /* Hack to make IE7 behave */ *zoom: 1; *display: inline; }
+
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: none !important; border: none !important; }
+
+.CodeMirror-gutter-background { position: absolute; top: 0; bottom: 0; z-index: 4; }
+
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+
+.CodeMirror-gutter-wrapper { -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+
+.CodeMirror-lines { cursor: text; min-height: 1px; /* prevents collapsing before first draw */ }
+
+.CodeMirror pre { /* Reset some styles that the rest of the page might have set */ -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; border-width: 0; background: transparent; font-family: inherit; font-size: inherit; margin: 0; white-space: pre; word-wrap: normal; line-height: inherit; color: inherit; z-index: 2; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; }
+
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+
+.CodeMirror-linebackground { position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 0; }
+
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+
+.CodeMirror-code { outline: none; }
+
+/* Force content-box sizing for the elements where we expect it */
+.CodeMirror-scroll, .CodeMirror-sizer, .CodeMirror-gutter, .CodeMirror-gutters, .CodeMirror-linenumber { -moz-box-sizing: content-box; box-sizing: content-box; }
+
+.CodeMirror-measure { position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden; }
+
+.CodeMirror-cursor { position: absolute; }
+
+.CodeMirror-measure pre { position: static; }
+
+div.CodeMirror-cursors { visibility: hidden; position: relative; z-index: 3; }
+
+div.CodeMirror-dragcursors { visibility: visible; }
+
+.CodeMirror-focused div.CodeMirror-cursors { visibility: visible; }
+
+.CodeMirror-selected { background: #d9d9d9; }
+
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+
+.CodeMirror-crosshair { cursor: crosshair; }
+
+.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
+
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
+
+.cm-searching { background: #ffa; background: rgba(255, 255, 0, 0.4); }
+
+/* IE7 hack to prevent it from returning funny offsetTops on the spans */
+.CodeMirror span { *vertical-align: text-bottom; }
+
+/* Used to force a border model for a node */
+.cm-force-border { padding-right: .1px; }
+
+@media print { /* Hide the cursor when printing */
+  .CodeMirror div.CodeMirror-cursors { visibility: hidden; } }
+
+/* See issue #2901 */
+.cm-tab-wrap-hack:after { content: ''; }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }
+
+.colorpickr, .colorpickr *, .colorpickr *:after, .colorpickr *:before { box-sizing: border-box; }
+
+.colorpickr { background-color: #f0f0f0; width: 400px; padding: 10px 0; z-index: 1; border-radius: 4px; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+
+.colorpickr, .colorpickr input { font-family: 'Helvetica Neue', Helvetica, sans-serif; color: #404040; font-size: 12px; line-height: 1; -webkit-font-smoothing: antialiased; }
+
+/* Clearfix rule */
+.colorpickr .cp-floor:after, .colorpickr .cp-body:after { content: ''; display: block; height: 0; clear: both; visibility: hidden; }
+
+/* Resets */
+.colorpickr fieldset { padding: 0; margin: 0 0 5px; border: 0; position: relative; }
+
+/* Inputs */
+.colorpickr fieldset label { position: absolute; color: rgba(0, 0, 0, 0.25); font-weight: 600; top: 7px; left: 5px; }
+
+.colorpickr fieldset.cp-active label { color: rgba(0, 0, 0, 0.75); }
+
+.colorpickr fieldset input { width: 100%; height: 26px; margin: 0; border: 1px solid #fff; padding: 5px 5px 5px 20px; -webkit-appearance: none; }
+
+.colorpickr input:invalid { border-color: #e55e5e; }
+
+.colorpickr button { background-color: rgba(0, 0, 0, 0.25); text-align: center; color: #fff; font-size: 11px; line-height: 14px; font-weight: bold; display: inline-block; height: auto; padding: 5px 10px; margin: 0; border: none; cursor: pointer; border-radius: 3px; white-space: nowrap; text-overflow: ellipsis; /* The button element needs to be forced this */ -webkit-font-smoothing: antialiased; }
+
+.colorpickr button:not(.cp-active):hover { box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1); }
+
+.colorpickr button.cp-active { background-color: rgba(0, 0, 0, 0.75); }
+
+.colorpickr .cp-col { float: left; padding: 0 10px; position: relative; }
+
+.colorpickr .cp-col:first-child { width: 210px; padding-right: 0; position: relative; }
+
+.colorpickr .cp-col:last-child { width: 190px; position: relative; z-index: 1; }
+
+.colorpickr .cp-mode-tabs { margin: 0 0 10px; }
+
+.colorpickr .cp-mode-tabs > * { margin-right: 2px; }
+
+.colorpickr .cp-selector { position: relative; width: 190px; height: 190px; z-index: 1; }
+
+.colorpickr .cp-gradient { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+.colorpickr .cp-light-left { background: linear-gradient(to right, #FFF 0%, transparent 100%); }
+
+.colorpickr .cp-light-bottom { background: linear-gradient(to bottom, transparent 0%, #FFF 100%); }
+
+.colorpickr .cp-dark-bottom { background: linear-gradient(to bottom, transparent 0%, #000 100%); }
+
+/* r-ne = white r-nw = yellow r-sw = red r-se = violet */
+.colorpickr .cp-gradient.cp-rgb { background-repeat: no-repeat; }
+
+.colorpickr .cp-gradient.cp-rgb.cp-r-high { background-position: 0 0; }
+
+.colorpickr .cp-gradient.cp-rgb.cp-r-low { background-position: -190px 0; }
+
+.colorpickr .cp-gradient.cp-rgb.cp-g-high { background-position: -380px 0; }
+
+.colorpickr .cp-gradient.cp-rgb.cp-g-low { background-position: -570px 0; }
+
+.colorpickr .cp-gradient.cp-rgb.cp-b-high { background-position: -760px 0; }
+
+.colorpickr .cp-gradient.cp-rgb.cp-b-low { background-position: -950px 0; }
+
+.colorpickr input[type=range], .colorpickr input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; margin: 0; padding: 0; border: 0; }
+
+.colorpickr input[type=range] { display: block !important; height: 10px; width: 100%; padding: 0 2px; min-width: 100px; overflow: hidden; cursor: pointer; }
+
+.colorpickr input[type=range]::-ms-fill-upper { background: transparent; }
+
+.colorpickr input[type=range]::-ms-fill-lower { background: rgba(255, 255, 255, 0.25); }
+
+/* Vendor specific thingies */
+.colorpickr input[type=range]::-moz-range-track { opacity: 0; }
+
+.colorpickr input[type=range]::-ms-track { opacity: 0; }
+
+.colorpickr input[type=range]::-ms-tooltip { display: none; }
+
+/* For whatever reason, these need to be defined on their own so dont group them */
+.colorpickr input[type=range]::-webkit-slider-thumb { background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(0, 0, 0, 0.75); height: 10px; width: 5px; cursor: ew-resize; box-shadow: none; }
+
+.colorpickr input[type=range]::-ms-thumb { margin: 0; padding: 0; border: 0; background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(0, 0, 0, 0.75); height: 10px; width: 5px; cursor: ew-resize; box-shadow: none; }
+
+.colorpickr input[type=range]::-moz-range-thumb { margin: 0; padding: 0; border: 0; background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(0, 0, 0, 0.75); height: 10px; width: 5px; cursor: ew-resize; box-shadow: none; }
+
+/* Hue slider */
+.colorpickr .cp-colormode-slider { position: absolute; top: 90px; right: -90px; }
+
+.colorpickr .cp-colormode-slider input[type=range] { margin: 0; width: 190px; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(-90deg); }
+
+.colorpickr .cp-gradient.cp-s-high, .colorpickr .cp-gradient.cp-v-high, .colorpickr .cp-colormode-slider.h input[type=range] { background: linear-gradient(to left, #ff0000 0%, #ff0099 10%, #cd00ff 20%, #3200ff 30%, #0066ff 40%, #00fffd 50%, #00ff66 60%, #35ff00 70%, #cdff00 80%, #ff9900 90%, #ff0000 100%); }
+
+.colorpickr .cp-gradient.cp-s-low { background: linear-gradient(to bottom, #FFF 0%, #BBB 100%); }
+
+.colorpickr .cp-gradient.cp-v-low { background-color: #000; }
+
+.colorpickr .cp-colormode-slider.r input[type=range] { background: linear-gradient(to left, #ff0000 0%, #000000 100%); }
+
+.colorpickr .cp-colormode-slider.g input[type=range] { background: linear-gradient(to left, #00ff00 0%, #000000 100%); }
+
+.colorpickr .cp-colormode-slider.b input[type=range] { background: linear-gradient(to left, #0000ff 0%, #000000 100%); }
+
+.colorpickr .cp-colormode-slider input[type=range]::-webkit-slider-thumb { cursor: ns-resize; }
+
+.colorpickr .cp-colormode-slider input[type=range]::-ms-thumb { cursor: ns-resize; }
+
+.colorpickr .cp-colormode-slider input[type=range]::-moz-range-thumb { cursor: ns-resize; }
+
+.colorpickr .cp-fill-tile { background-image: url("data:image/png;base64,R0lGODdhCgAKAPAAAOXl5f///ywAAAAACgAKAEACEIQdqXt9GxyETrI279OIgwIAOw=="); background-repeat: repeat; }
+
+.colorpickr .cp-floor { padding: 5px 10px 0; position: relative; width: 100%; clear: both; }
+
+.colorpickr .cp-swatch { width: 36px; height: 24px; }
+
+.colorpickr .cp-actions .cp-fill-tile:only-of-type > .cp-swatch { border-radius: 3px; }
+
+.colorpickr .cp-actions .cp-fill-tile, .colorpickr .cp-actions .cp-swatch { border-radius: 3px 0 0 3px; }
+
+.colorpickr .cp-actions .cp-fill-tile + .cp-fill-tile, .colorpickr .cp-actions .cp-fill-tile + .cp-fill-tile .cp-swatch { border-radius: 0 3px 3px 0; }
+
+.colorpickr .cp-actions .cp-fill-tile + .cp-fill-tile { margin-left: 1px; }
+
+.colorpickr .cp-fl { float: left; }
+
+.colorpickr .cp-fr { float: right; }
+
+.colorpickr .cp-floor .cp-output { width: 190px; }
+
+.colorpickr .cp-output, .colorpickr .cp-hex { width: 50%; margin: 0; }
+
+/* xy controler for background selection */
+.colorpickr .slider-xy { position: relative; width: 100%; height: 100%; cursor: pointer; }
+
+.colorpickr .slider-xy.dragging-xy { cursor: move; cursor: -webkit-grabbing; cursor: -moz-grabbing; }
+
+.colorpickr .slider-xy .handle-xy { position: absolute; -webkit-user-select: none; user-select: none; }
+
+.colorpickr .slider-xy .handle-xy:after { content: ''; background-color: rgba(255, 255, 255, 0.1); border: 1px solid #000; display: block; border-radius: 50%; position: relative; width: 10px; height: 10px; top: -5px; left: -5px; }
+
+.colorpickr .slider-xy .handle-xy.dark:after { border-color: #fff; }
+
+.colorpickr .cp-gradient.cp-rgb { background-image: url("data:image/png;base64,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"); }
 
 /** Main include file for theme controls */
 .chamel-paper.chamel-z-depth-1 { box-shadow: none; }

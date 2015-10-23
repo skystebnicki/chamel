@@ -25095,227 +25095,436 @@ var UAParser = require('ua-parser-js');
 
 var uaParser = new UAParser();
 
-var RichText = React.createClass({
-  displayName: 'RichText',
+var TextFieldRich = React.createClass({
+	displayName: 'TextFieldRich',
 
-  propTypes: {
-    id: React.PropTypes.string,
-    onBlur: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    onEnterKeyDown: React.PropTypes.func,
-    autoGrow: React.PropTypes.bool,
-    height: React.PropTypes.number,
-    value: React.PropTypes.string
-  },
+	propTypes: {
+		id: React.PropTypes.string,
+		onBlur: React.PropTypes.func,
+		onChange: React.PropTypes.func,
+		onFocus: React.PropTypes.func,
+		onKeyDown: React.PropTypes.func,
+		onEnterKeyDown: React.PropTypes.func,
+		autoGrow: React.PropTypes.bool,
+		height: React.PropTypes.number,
+		value: React.PropTypes.string
+	},
 
-  getDefaultProps: function getDefaultProps() {
-    return {
-      autoGrow: true,
-      value: ""
-    };
-  },
+	getDefaultProps: function getDefaultProps() {
+		return {
+			autoGrow: true,
+			value: ""
+		};
+	},
 
-  componentDidMount: function componentDidMount() {
+	componentDidMount: function componentDidMount() {
+		var iframe = this.refs.rte.getDOMNode();
+		iframe.style.width = "100%";
 
-    // If height has been passed then set the iframe height
-    if (this.props.height) {
-      var iframe = this.refs.rte.getDOMNode();
-      iframe.style.height = height;
-    }
+		// If height has been passed then set the iframe height
+		if (this.props.height) {
+			iframe.style.height = height + 'px';
+		}
 
-    // Make the contents of the iframe editable
-    this._enableDesign();
-    this.setValue(this.props.value);
-  },
+		// Make the contents of the iframe editable
+		var cls = this;
 
-  render: function render() {
-    return React.createElement('div', { className: 'chamel-text-field-rich' }, React.createElement('iframe', { ref: 'rte', src: 'about:blank' }));
-  },
-
-  blur: function blur() {
-    if (this.isMounted()) {
-      //this._getInputNode().blur();
-    }
-  },
-
-  clearValue: function clearValue() {
-    this.setValue('');
-  },
-
-  focus: function focus() {
-    if (this.isMounted()) {}
-  },
-
-  getValue: function getValue() {
-    if (!this.isMounted()) {
-      return undefined;
-    }
-
-    // if (this.f_src && this.codeMirror) {
-    //   this.hdntxt.value = this.codeMirror.getValue();
-    // } else {
-    var idoc = this._getIframDoc();
-    return idoc.body.innerHTML;
-    //}
-  },
-
-  setValue: function setValue(newValue) {
-    var idoc = this._getIframDoc();
-    idoc.body.innerHTML = newValue;
-
-    if (this.isMounted()) {
-      this._autoGrow();
-    }
-  },
-
-  _handleInputBlur: function _handleInputBlur(e) {
-
-    if (typeof e.target === "undefied") e.target = {};
-    e.target.value = this.getValue();
-
-    this._handleInputChange(e);
-
-    if (this.props.onBlur) this.props.onBlur(e);
-  },
-
-  _handleInputChange: function _handleInputChange(e) {
-    if (this.props.onChange) this.props.onChange(e);
-  },
-
-  _handleInputFocus: function _handleInputFocus(e) {
-    this.setState({ isFocused: true });
-    if (this.props.onFocus) this.props.onFocus(e);
-  },
-
-  _handleInputKeyDown: function _handleInputKeyDown(e) {
-    if (this.props.autoGrow) {
-      this._autoGrow();
-    }
-
-    if (e.keyCode === 13 && this.props.onEnterKeyDown) {
-      this.props.onEnterKeyDown(e);
-    }
-
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
-  },
-
-  _handleTextAreaHeightChange: function _handleTextAreaHeightChange(e, height) {
-    var newHeight = height + 24;
-    if (this.props.floatingLabelText) newHeight += 24;
-    this.getDOMNode().style.height = newHeight + 'px';
-  },
-
-  _isControlled: function _isControlled() {
-    return this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink');
-  },
-
-  _getIframeWindow: function _getIframeWindow() {
-    var ifrm = this.refs.rte.getDOMNode();
-    return ifrm.contentWindow || ifrm.contentDocument;
-  },
-
-  _getIframDoc: function _getIframDoc() {
-    var iwnd = this._getIframeWindow();
-
-    if (iwnd && iwnd.document) {
-      return iwnd.document;
-    } else {
-      return false;
-    }
-  },
-
-  _enableDesign: function _enableDesign(on) {
-
-    // Only enable after mounted into the dom
-    if (!this.isMounted()) {
-      return false;
-    }
-
-    // Get the iframe document
-    var idoc = this._getIframDoc();
-
-    // Make sure document is defined
-    if (!idoc) {
-      throw "Could not get the document of the iframe";
-    }
-
-    var designModeOn = on || true;
-
-    var editorBody = idoc.body;
-
-    // Turn on spellcheck if available
-    if ('spellcheck' in editorBody && designModeOn) {
-      editorBody.spellcheck = true;
-    }
-
-    // Make content editable
-    if ('contentEditable' in editorBody && designModeOn) {
-      editorBody.contentEditable = true;
-    } else {
-      // Firefox earlier than version 3 uses document rather than body
-      if ('designMode' in idoc && designModeOn) {
-        idoc.designMode = "on";
-      }
-    }
-
-    // Set blur event
-    // TODO: For some reason it is always firing twice... we should investigate
-    var evtObj = uaParser.getBrowser().name == "IE" ? this.refs.rte.getDOMNode() : this._getIframeWindow();
-
-    // W3C DOM
-    if (evtObj.addEventListener) {
-      evtObj.addEventListener("blur", (function (evt) {
-        this._handleInputBlur(evt);
-      }).bind(this), false);
-    } else if (evtObj.attachEvent) {
-      // IE DOM
-      evtObj.attachEvent("onblur", (function (evt) {
-        this._handleInputBlur(evt);
-      }).bind(this));
-    }
-
-    // Set keydown event
-    var evtObj = uaParser.getBrowser().name == "IE" ? this.refs.rte.getDOMNode() : this._getIframeWindow();
-
-    // W3C DOM
-    if (evtObj.addEventListener) {
-      evtObj.addEventListener("keydown", (function (evt) {
-        this._handleInputKeyDown(evt);
-      }).bind(this), false);
-    } else if (evtObj.attachEvent) {
-      // IE DOM
-      evtObj.attachEvent("onkeydown", (function (evt) {
-        this._handleInputKeyDown(evt);
-      }).bind(this));
-    }
-
-    return true;
-  },
-
-  /**
-   * Autogrow the editor to match the contents
+		/*
+   * We need to delay the settings of the iframe document body because react only renders the iframe
+   * So after it is mounted, the iframe body is then created.
+   * If we are not going to use setTimeout, the body settings are still set but will not reflect in the iframe document body
    */
-  _autoGrow: function _autoGrow() {
+		setTimeout(function () {
+			cls._enableDesign(true);
+			cls.setValue(cls.props.value);
+		}, 1);
+	},
 
-    // We cannot autogrow if we are not mounted in the DOM
-    if (!this.isMounted()) {
-      return false;
-    }
+	componentDidUpdate: function componentDidUpdate() {
+		// Re enable the content editable of the iframe document
+		var cls = this;
+		setTimeout(function () {
+			cls._enableDesign(true);
+		}, 1);
+	},
 
-    var idoc = this._getIframDoc();
-    var contentHeight = idoc.body.scrollHeight;
+	render: function render() {
+		return React.createElement('div', { className: 'chamel-text-field-rich' }, React.createElement('iframe', { ref: 'rte', src: 'about:blank' }));
+	},
 
-    var iframe = this.refs.rte.getDOMNode();
-    iframe.style.height = contentHeight + "px";
-  }
+	/**
+  * Public interface to send commands to the RTE
+  *
+  * @param {string} command The name of the RTE command to execute
+  * @param {string} option 	The option when executing a certain command. e.g. changing the font/background colors
+  * @public
+  */
+	sendCommand: function sendCommand(command, option) {
+		try {
+			var idoc = this._getIframeDoc();
+			var iwnd = this._getIframeWindow();
 
+			iwnd.focus();
+			idoc.execCommand(command, false, option);
+			iwnd.focus();
+		} catch (e) {
+			throw new Error('Error while executing the ' + command + ' command');
+		}
+	},
+
+	/**
+     * Sets the color of the current selection in the iframe document
+     *
+     * @param {string} type		Type of command to be executed. Either forecolor or backcolor
+     * @param {string} color	The color that was selected
+     * @public
+     */
+	setColor: function setColor(type, color) {
+		this._setRange();
+		this.sendCommand(type, color);
+	},
+
+	/**
+  * Inserts the html string
+  * 
+  * @param {string} html		The string that will be inserted		
+  * @public
+  */
+	insertHtml: function insertHtml(html) {
+		this._setRange();
+
+		if (uaParser.getBrowser().name == "IE") {
+			this.sendCommand('paste', html);
+		} else {
+			this.sendCommand('insertHtml', html);
+		}
+	},
+
+	/**
+  * Prompts the dialog box for user input
+  * 
+  * @param {string} path		The url path to be linked on text
+  * @public
+  */
+	insertLink: function insertLink(path) {
+		this._setRange();
+		this.sendCommand("unlink", null);
+		this.sendCommand("createlink", path);
+	},
+
+	/**
+  * Clear the value of the iframe document
+  *
+  * @public
+  */
+	clearValue: function clearValue() {
+		this.setValue('');
+	},
+
+	/**
+  * Get the current value of the iframe document / code mirror editor
+  * 
+  * @public
+  */
+	getValue: function getValue() {
+		if (!this.isMounted()) {
+			return "";
+		}
+
+		var idoc = this._getIframeDoc();
+		return idoc.body.innerHTML;
+	},
+
+	/**
+  * Set the value of the iframe document / code mirror editor
+  *
+  * @param {string} newValue		The value to be saved in the editor 
+  * @public
+  */
+	setValue: function setValue(newValue) {
+		var idoc = this._getIframeDoc();
+		idoc.body.innerHTML = newValue;
+
+		if (this.isMounted()) {
+			this._autoGrow();
+		}
+	},
+
+	/**
+  * Set the range of the iframe document
+  * 
+  * @private
+  */
+	_setRange: function _setRange() {
+		var idoc = this._getIframeDoc();
+		var iwnd = this._getIframeWindow();
+
+		if (uaParser.getBrowser().name == "IE") {
+			var selection = idoc.selection;
+			if (selection != null) this._rangeSelection = selection.createRange();
+		} else {
+			var selection = iwnd.getSelection();
+			this._rangeSelection = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
+		}
+
+		if (uaParser.getBrowser().name == "IE") {
+			iwind.focus();
+
+			// retrieve selected range
+			var sel = this._getIframeDoc().selection;
+			if (sel != null) {
+				var newRng = sel.createRange();
+				newRng = this._rangeSelection;
+				newRng.select();
+			}
+		}
+	},
+
+	/**
+  * Handles the input blur event of the text area
+  *
+  * @param {DOMEvent} e		Reference to the DOM event being sent 
+  * @private
+  */
+	_handleInputBlur: function _handleInputBlur(e) {
+
+		if (typeof e.target === "undefied") {
+			e.target = {};
+		}
+
+		e.target.value = this.getValue();
+
+		if (this.props.onBlur) this.props.onBlur(e);
+	},
+
+	/**
+  * Handles the input change event of the text area
+  *
+  * @param {DOMEvent} e		Reference to the DOM event being sent 
+  * @private
+  */
+	_handleInputChange: function _handleInputChange(e) {
+		if (this.props.onChange) this.props.onChange(e);
+	},
+
+	/**
+  * Handles the input focus of the text area
+  *
+  * @param {DOMEvent} e		Reference to the DOM event being sent 
+  * @private
+  */
+	_handleInputFocus: function _handleInputFocus(e) {
+		if (this.props.onFocus) {
+			this.props.onFocus(e);
+		}
+	},
+
+	/**
+  * Handles the input key down of the text area
+  *
+  * @param {DOMEvent} e		Reference to the DOM event being sent 
+  * @private
+  */
+	_handleInputKeyDown: function _handleInputKeyDown(e) {
+		if (this.props.autoGrow) {
+			this._autoGrow();
+		}
+
+		if (e.keyCode === 13 && this.props.onEnterKeyDown) {
+			this.props.onEnterKeyDown(e);
+		}
+
+		// Handle onkeydown event
+		if (this.props.onKeyDown) {
+			this.props.onKeyDown(e);
+		}
+
+		// Handle onChange event
+		if (this.props.onChange) {
+			this.props.onChange(e);
+		}
+	},
+
+	/**
+  * Handles the change of height event of the text area
+  *
+  * @param {DOMEvent} e		Reference to the DOM event being sent 
+  * @param {int} height	T	The height to be set
+  * @private
+  */
+	_handleTextAreaHeightChange: function _handleTextAreaHeightChange(e, height) {
+		var newHeight = height + 24;
+		if (this.props.floatingLabelText) {
+			newHeight += 24;
+		}
+		this.getDOMNode().style.height = newHeight + 'px';
+	},
+
+	/**
+  * Check if the component is controlled
+  * 
+  * @private
+  */
+	_isControlled: function _isControlled() {
+		return this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink');
+	},
+
+	/**
+  * Get the iframe content window/document
+  * IE < version 8 does not supply contentWindow so we also have to check for contentDocument.
+  * 
+  * @private
+  */
+	_getIframeWindow: function _getIframeWindow() {
+
+		// We cannot get iframe window if DOM is not yet mounted
+		if (!this.isMounted()) {
+			return false;
+		}
+
+		var ifrm = this.refs.rte.getDOMNode();
+		return ifrm.contentWindow || ifrm.contentDocument;
+	},
+
+	/**
+  * Get the iframe window document
+  * 
+  * @private
+  */
+	_getIframeDoc: function _getIframeDoc() {
+
+		// We cannot get iframe document if DOM is not yet mounted
+		if (!this.isMounted()) {
+			return false;
+		}
+
+		var iwnd = this._getIframeWindow();
+
+		if (iwnd && iwnd.document) {
+			return iwnd.document;
+		} else {
+			return false;
+		}
+	},
+
+	/**
+  * Enables the editor if it is already mounted
+  * 
+  * @private
+  */
+	_enableDesign: function _enableDesign(on) {
+
+		// Only enable after mounted into the dom
+		if (!this.isMounted()) {
+			return false;
+		}
+
+		// Get the iframe document
+		var idoc = this._getIframeDoc();
+
+		// Make sure document is defined
+		if (!idoc) {
+			throw "Could not get the document of the iframe";
+		}
+
+		var designModeOn = on || true;
+
+		var editorBody = idoc.body;
+
+		// Turn on spellcheck if available
+		if ('spellcheck' in editorBody && designModeOn) {
+			editorBody.spellcheck = true;
+		}
+
+		// Make content editable
+		if ('contentEditable' in editorBody && designModeOn) {
+			editorBody.contentEditable = true;
+		} else {
+			// Firefox earlier than version 3 uses document rather than body
+			if ('designMode' in idoc && designModeOn) {
+				idoc.designMode = "on";
+			}
+		}
+
+		// Set document events
+		var evtObj = uaParser.getBrowser().name == "IE" ? this.refs.rte.getDOMNode() : this._getIframeWindow();
+
+		if (evtObj.addEventListener) {
+			// W3C DOM
+
+			// on blur
+			evtObj.addEventListener("blur", (function (evt) {
+				this._handleInputBlur(evt);
+			}).bind(this), false);
+
+			// on keydown
+			evtObj.addEventListener("keydown", (function (evt) {
+				this._handleInputKeyDown(evt);
+			}).bind(this), false);
+
+			// on focus
+			evtObj.addEventListener("focus", (function (evt) {
+				this._handleInputFocus(evt);
+			}).bind(this), false);
+
+			/*
+    * For some reason onchange is not working. We will be using onkeydown function instead.
+    *
+   evtObj.addEventListener("change",function(evt) {
+   	this._handleInputChange(evt);
+   }.bind(this),false);
+   */
+		} else if (evtObj.attachEvent) {
+				// IE DOM
+
+				// on blur
+				evtObj.attachEvent("onblur", (function (evt) {
+					this._handleInputBlur(evt);
+				}).bind(this));
+
+				// on keydown
+				evtObj.attachEvent("onkeydown", (function (evt) {
+					this._handleInputKeyDown(evt);
+				}).bind(this));
+
+				// on focus
+				evtObj.attachEvent("onfocus", (function (evt) {
+					this._handleInputFocus(evt);
+				}).bind(this));
+
+				/*
+     * For some reason onchange is not working. We will be using onkeydown function instead.
+     *
+    evtObj.attachEvent("onchange",function(evt) {
+    	this._handleInputChange(evt);
+    }.bind(this),false);
+    */
+			}
+
+		return true;
+	},
+
+	/**
+  * Autogrow the editor to match the contents
+  * 
+  * @private
+  */
+	_autoGrow: function _autoGrow() {
+
+		// We cannot autogrow if we are not mounted in the DOM
+		if (!this.isMounted()) {
+			return false;
+		}
+
+		var idoc = this._getIframeDoc();
+		var contentHeight = idoc.body.scrollHeight;
+
+		var iframe = this.refs.rte.getDOMNode();
+		iframe.style.height = contentHeight + "px";
+	}
 });
 
-module.exports = RichText;
+module.exports = TextFieldRich;
 
 },{"react":175,"ua-parser-js":176}],199:[function(require,module,exports){
 'use strict';
@@ -25404,6 +25613,12 @@ var _extends = Object.assign || function (target) {
   }return target;
 };
 
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
 var React = require('react');
 var Classable = require('./mixins/classable.jsx');
 
@@ -25428,12 +25643,15 @@ var Tooltip = React.createClass({
   },
 
   render: function render() {
+    var _props = this.props;
+    var className = _props.className;
+    var label = _props.label;
 
-    var className = this.props.className;
-    var label = this.props.label;
+    var other = _objectWithoutProperties(_props, ['className', 'label']);
+
     var classes = this.getClasses('chamel-tooltip', {
-      'is-shown': this.props.show,
-      'is-touch': this.props.touch
+      'chamel-is-shown': this.props.show,
+      'chamel-is-touch': this.props.touch
     });
 
     return React.createElement('div', _extends({}, other, { className: classes }), React.createElement('div', { ref: 'ripple', className: 'chamel-tooltip-ripple' }), React.createElement('span', { className: 'chamel-tooltip-label' }, this.props.label));

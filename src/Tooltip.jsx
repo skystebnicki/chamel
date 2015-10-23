@@ -22,11 +22,13 @@ var Tooltip = React.createClass({
 
   render: function() {
 
-    var className = this.props.className;
-    var label = this.props.label;
+    var {
+      className,
+      label,
+      ...other } = this.props;
     var classes = this.getClasses('chamel-tooltip', {
-      'is-shown': this.props.show,
-      'is-touch': this.props.touch
+      'chamel-is-shown': this.props.show,
+      'chamel-is-touch': this.props.touch
     });
 
     return (
