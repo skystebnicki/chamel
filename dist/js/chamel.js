@@ -23106,6 +23106,13 @@ var DialogWindow = React.createClass({
     this._onShow();
   },
 
+  /**
+   * Reposition the dialog - usually means dynamic content changed
+   */
+  reposition: function reposition() {
+    this._positionDialog();
+  },
+
   _addClassName: function _addClassName(reactObject, className) {
     var originalClassName = reactObject.props.className;
     var newClassname = originalClassName ? originalClassName + ' ' + className : className;

@@ -116,6 +116,13 @@ var DialogWindow = React.createClass({
     this._onShow();
   },
 
+  /**
+   * Reposition the dialog - usually means dynamic content changed
+   */
+  reposition: function() {
+    this._positionDialog();
+  },
+
   _addClassName: function(reactObject, className) {
     var originalClassName = reactObject.props.className;
     var newClassname = originalClassName ? originalClassName + ' ' + className : className;
@@ -205,7 +212,7 @@ var DialogWindow = React.createClass({
         if (this.props.actions.length) {
           maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
         }
-        
+
         dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
     }
