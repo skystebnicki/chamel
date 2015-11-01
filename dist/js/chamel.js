@@ -22991,6 +22991,10 @@ var Dialog = React.createClass({
 
   show: function show() {
     this.refs.dialogWindow.show();
+  },
+
+  reposition: function reposition() {
+    this.refs.dialogWindow.reposition();
   }
 
 });
