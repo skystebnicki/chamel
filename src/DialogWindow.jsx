@@ -182,7 +182,7 @@ var DialogWindow = React.createClass({
       var container = React.findDOMNode(this);
       var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
       var dialogContent = React.findDOMNode(this.refs.dialogContent);
-      var minPaddingTop = 16;
+      var minPaddingTop = 0;
 
       //Reset the height in case the window was resized.
       dialogWindow.style.height = '';
@@ -191,9 +191,14 @@ var DialogWindow = React.createClass({
       var dialogWindowHeight = dialogWindow.offsetHeight;
       var paddingTop = ((clientHeight - dialogWindowHeight) / 2) - 2 * (64);
 
-      if (paddingTop < minPaddingTop) {
+      
+
+      // Set to full-height if we are in auto-detect
+      if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
+        paddingTop = 0;
+      } else if (paddingTop < minPaddingTop) {
         paddingTop = minPaddingTop;
-      }
+      } 
 
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
