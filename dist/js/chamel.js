@@ -22979,17 +22979,10 @@ var Dialog = React.createClass({
     var other = _objectWithoutProperties(_props, ['className']);
 
     var classes = this.getClasses('chamel-dialog');
-    var title;
-
-    if (this.props.title) {
-      // If the title is a string, wrap in an h3 tag.
-      // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement('h3', { className: 'chamel-dialog-title' }, this.props.title) : this.props.title;
-    }
 
     return React.createElement(DialogWindow, _extends({}, other, {
       ref: 'dialogWindow',
-      className: classes }), title, React.createElement('div', { ref: 'dialogContent', className: 'chamel-dialog-content' }, this.props.children));
+      className: classes }), React.createElement('div', { ref: 'dialogContent', className: 'chamel-dialog-content' }, this.props.children));
   },
 
   dismiss: function dismiss() {
@@ -23024,13 +23017,16 @@ var DialogWindow = React.createClass({
   propTypes: {
     actions: React.PropTypes.array,
     actionFocus: React.PropTypes.string,
+    autoDetectWindowHeight: React.PropTypes.bool,
+    autoScrollBodyContent: React.PropTypes.bool,
     contentClassName: React.PropTypes.string,
     openImmediately: React.PropTypes.bool,
     onClickAway: React.PropTypes.func,
     onDismiss: React.PropTypes.func,
     onShow: React.PropTypes.func,
     repositionOnUpdate: React.PropTypes.bool,
-    modal: React.PropTypes.bool
+    modal: React.PropTypes.bool,
+    title: React.PropTypes.node
   },
 
   windowListeners: {
@@ -23039,6 +23035,8 @@ var DialogWindow = React.createClass({
 
   getDefaultProps: function getDefaultProps() {
     return {
+      autoDetectWindowHeight: false,
+      autoScrollBodyContent: false,
       actions: [],
       repositionOnUpdate: true,
       modal: false
@@ -23076,7 +23074,15 @@ var DialogWindow = React.createClass({
       contentClasses += ' ' + this.props.contentClassName;
     }
 
-    return React.createElement('div', { className: classes }, React.createElement(Paper, { ref: 'dialogWindow', className: contentClasses, zDepth: 4 }, this.props.children, actions), React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onClick: this._handleOverlayTouchTap }));
+    // Add title
+    var title;
+    if (this.props.title) {
+      // If the title is a string, wrap in an h3 tag.
+      // If not, just use it as a node.
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement('h3', { className: 'chamel-dialog-title' }, this.props.title) : this.props.title;
+    }
+
+    return React.createElement('div', { className: classes }, React.createElement(Paper, { ref: 'dialogWindow', className: contentClasses, zDepth: 4 }, title, React.createElement('div', { ref: 'dialogContent', className: 'chamel-dialog-window-contents-body' }, this.props.children), actions), React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onClick: this._handleOverlayTouchTap }));
   },
 
   isOpen: function isOpen() {
@@ -23146,20 +23152,44 @@ var DialogWindow = React.createClass({
   },
 
   _positionDialog: function _positionDialog() {
-    var container, dialogWindow, containerHeight, dialogWindowHeight;
 
     if (this.state.open) {
-
-      container = React.findDOMNode(this), dialogWindow = React.findDOMNode(this.refs.dialogWindow), containerHeight = container.offsetHeight,
+      var clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      var container = React.findDOMNode(this);
+      var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
+      var dialogContent = React.findDOMNode(this.refs.dialogContent);
+      var minPaddingTop = 16;
 
       //Reset the height in case the window was resized.
       dialogWindow.style.height = '';
-      dialogWindowHeight = dialogWindow.offsetHeight;
+      dialogContent.style.height = '';
+
+      var dialogWindowHeight = dialogWindow.offsetHeight;
+      var paddingTop = (clientHeight - dialogWindowHeight) / 2 - 2 * 64;
+
+      if (paddingTop < minPaddingTop) {
+        paddingTop = minPaddingTop;
+      }
 
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
       if (this.props.repositionOnUpdate || !container.style.paddingTop) {
-        container.style.paddingTop = (containerHeight - dialogWindowHeight) / 2 - 64 + 'px';
+        container.style.paddingTop = paddingTop + 'px';
+      }
+
+      // Force a height if the dialog is taller than clientHeight
+      if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
+        var maxDialogContentHeight = clientHeight - 2 * 64;
+
+        if (this.props.title) {
+          maxDialogContentHeight -= dialogContent.previousSibling.offsetHeight;
+        }
+
+        if (this.props.actions.length) {
+          maxDialogContentHeight -= dialogContent.nextSibling.offsetHeight;
+        }
+
+        dialogContent.style.maxHeight = maxDialogContentHeight + 'px';
       }
     }
   },

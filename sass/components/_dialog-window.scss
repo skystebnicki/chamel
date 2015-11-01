@@ -17,6 +17,12 @@
     z-index: 10;
     background: $canvas-color;
     opacity: 0;
+    
+  }
+
+  .chamel-dialog-window-contents-body {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .chamel-dialog-window-actions {

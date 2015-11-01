@@ -47,6 +47,15 @@ var DialogPage = React.createClass({
             '  modal={this.state.modal}\n' +
             '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
             '  The actions in this window were passed in as an array of react objects.\n' +
+            '</Dialog>\n\n' +
+            '<Dialog\n' +
+            '  title="Dialog With Long Content"\n' +
+            '  actions={customActions}\n' +
+            '  modal={this.state.modal}\n' +
+            '  autoDetectWindowHeight={true}\n';
+            '  autoScrollBodyContent={true}\n';
+            '  dismissOnClickAway={this.state.dismissOnClickAway}>\n' +
+            '  The actions in this window were passed in as an array of react objects.\n' +
             '</Dialog>\n';
 
         var componentInfo = [
@@ -150,6 +159,8 @@ var DialogPage = React.createClass({
                 <RaisedButton label="Standard Actions" onClick={this.handleStandardDialogTouchTap} />
                 <br/><br/>
                 <RaisedButton label="Custom Actions" onClick={this.handleCustomDialogTouchTap} />
+                <br/><br/>
+                <RaisedButton label="Scrollable Actions" onClick={this.handleScrollableialogTouchTap} />
 
                 <Dialog
                     ref="standardDialog"
@@ -168,6 +179,15 @@ var DialogPage = React.createClass({
                     The actions in this window were passed in as an array of react objects.
                 </Dialog>
 
+                <Dialog 
+                    ref="scrollableDialog"
+                    title="Dialog With Scrollable Content" 
+                    actions={customActions}
+                    autoDetectWindowHeight={true} 
+                    autoScrollBodyContent={true}>
+                    <div style={{height: '2000px'}}>Really long content</div>
+                </Dialog>
+
                 <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
                     <Toggle
                         label="Is Modal"
@@ -184,8 +204,16 @@ var DialogPage = React.createClass({
         this.refs.customDialog.dismiss();
     },
 
+    _handleCustomDialogCancel: function() {
+        this.refs.customDialog.dismiss();
+    },
+
     _handleCustomDialogSubmit: function() {
         this.refs.customDialog.dismiss();
+    },
+
+    _handleScrollableDialogSubmit: function() {
+        this.refs.scrollableDialog.dismiss();
     },
 
     _handleToggleChange: function(e, toggled) {
@@ -198,7 +226,13 @@ var DialogPage = React.createClass({
 
     handleStandardDialogTouchTap: function() {
         this.refs.standardDialog.show();
+    },
+
+    handleScrollableialogTouchTap: function() {
+        this.refs.scrollableDialog.show();
     }
+
+
 
 });
 
