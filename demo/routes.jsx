@@ -9,6 +9,7 @@ var IconsDemo = require("./controls/IconsDemo.jsx");
 var CheckboxDemo = require("./controls/CheckboxDemo.jsx");
 var DialogDemo = require("./controls/DialogDemo.jsx");
 var MenuDemo = require("./controls/MenuDemo.jsx");
+var ProgressDemo = require("./controls/ProgressDemo.jsx");
 
 var Router = require('react-router');
 var DefaultRoute = Router.DefaultRoute;
@@ -26,6 +27,7 @@ var routes = (
 		<Route name="checkbox" path="checkbox" handler={CheckboxDemo}/>
 		<Route name="dialog" path="dialog" handler={DialogDemo}/>
 		<Route name="menu" path="menu" handler={MenuDemo}/>
+		<Route name="progress" path="progress" handler={ProgressDemo}/>
 	</Route>
 );
 

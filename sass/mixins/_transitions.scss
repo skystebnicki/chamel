@@ -58,8 +58,10 @@ $ease-out-function: cubic-bezier(0.23, 1, 0.32, 1);
     $prop: nth($declaration, 1);
     $prop-opts: ();
     $length: length($declaration);
-    @for $i from 2 through $length {
-      $prop-opts: append($prop-opts, nth($declaration, $i));
+    @if $length >= 2 {
+      @for $i from 2 through $length {
+        $prop-opts: append($prop-opts, nth($declaration, $i));
+      }
     }
     $trans: ($prop, $prop-opts);
     $transitions: append($transitions, $trans, comma);

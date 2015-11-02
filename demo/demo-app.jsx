@@ -22,7 +22,8 @@ var menuItems = [
   { route: 'icon', text: 'Icon' },
   { route: 'checkbox', text: 'Checkbox' },
   { route: 'dialog', text: 'Dialog' },
-  { route: 'menu', text: 'Menu' }
+  { route: 'menu', text: 'Menu' },
+  { route: 'progress', text: 'Progress' }
 ];
 
 var App = React.createClass({
