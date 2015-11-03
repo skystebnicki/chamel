@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "keywords": [
     "react",
     "react-component",
@@ -57,7 +57,6 @@
     "react": "^0.13.1",
     "react-colorpickr": "^2.0.4",
     "react-router": "^0.13.4",
-    "react-tap-event-plugin": "^0.1.6",
     "shelljs": "^0.2.6",
     "tmp": "0.0.23",
     "ua-parser-js": "^0.7.9"

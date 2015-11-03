@@ -88,6 +88,7 @@ var ProgressDemoPage = React.createClass({
         return (
 
             <div>
+                <h3>Leanear</h3>
                 <LinearProgress mode="determinate" value={this.state.completed} />
                 <br />
                 <LinearProgress mode="indeterminate"  />
