@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var CodeMirror = require('codemirror');
 
 var ContentSrc = React.createClass({
@@ -17,7 +18,7 @@ var ContentSrc = React.createClass({
 	},
 
 	componentDidMount: function componentDidMount() {
-		var textareaNode = this.refs.textarea.getDOMNode();
+		var textareaNode = ReactDOM.findDOMNode(this.refs.textarea);
 		
 		this._codeMirror = CodeMirror.fromTextArea(textareaNode, this.props.options);
 		this._codeMirror.on('change', this._handleChange);

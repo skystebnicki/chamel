@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var LinearProgress = React.createClass({
 
@@ -32,8 +33,8 @@ var LinearProgress = React.createClass({
    * Triggered when the component enters the dom for the first time
    */
   componentDidMount() {
-    let bar1 = React.findDOMNode(this.refs.bar1);
-    let bar2 = React.findDOMNode(this.refs.bar2);
+    let bar1 = ReactDOM.findDOMNode(this.refs.bar1);
+    let bar2 = ReactDOM.findDOMNode(this.refs.bar2);
 
     this._barUpdate(0, bar1, [
       [-35, 100],

@@ -6,6 +6,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var CssEvent = require('./utils/CssEvent.jsx');
 var Classable = require('./mixins/classable.jsx');
 var ClickAwayable = require('./mixins/ClickAwayable.jsx');
@@ -38,7 +39,7 @@ var Snackbar = React.createClass({
     if (prevState.open != this.state.open) {
       if (this.state.open) {
         //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
+        CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), function() {
           this._bindClickAway();
         }.bind(this));
       } else {

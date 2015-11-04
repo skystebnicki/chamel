@@ -5,7 +5,8 @@
  */
 'use strict';
 
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var InkBar = require("../InkBar.jsx");
 var TabTemplate = require("./TabTemplate.jsx");
 
@@ -33,7 +34,7 @@ var Tabs = React.createClass({
     getEvenWidth: function(){
         return (
             parseInt(window
-                .getComputedStyle(this.getDOMNode())
+                .getComputedStyle(ReactDOM.findDOMNode(this))
                 .getPropertyValue('width'), 10)
         );
     },
@@ -93,7 +94,7 @@ var Tabs = React.createClass({
                     currentTemplate.props.renderChildren = true;
                 }
 
-                return React.addons.cloneWithProps(tab, {
+                return React.cloneElement(tab, {
                     key: index,
                     selected: _this.state.selectedIndex === index,
                     tabIndex: index,
@@ -105,7 +106,7 @@ var Tabs = React.createClass({
             } else if(tab.type.displayName === "Tab"){
                 // Generic UI implementation
                 if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
-                return React.addons.cloneWithProps(tab, {
+                return React.cloneElement(tab, {
                     key: index,
                     selected: _this.state.selectedIndex === index,
                     tabIndex: index,

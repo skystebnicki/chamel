@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Classable = require('./mixins/classable.jsx');
 var ClickAwayable = require('./mixins/ClickAwayable.jsx');
 var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
@@ -69,8 +70,8 @@ var DropDownMenu = React.createClass({
   },
 
   _setWidth: function() {
-    var el = React.findDOMNode(this),
-      menuItemsDom = React.findDOMNode(this.refs.menuItems);
+    var el = ReactDOM.findDOMNode(this),
+      menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
   },

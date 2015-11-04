@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Classable = require('../mixins/classable.jsx');
 
 var FocusRipple = React.createClass({
@@ -26,7 +27,7 @@ var FocusRipple = React.createClass({
   },
 
   _setRippleSize: function() {
-    var el = this.getDOMNode();
+    var el = ReactDOM.findDOMNode(this);
     var height = el.offsetHeight;
     var width = el.offsetWidth;
     var size = Math.max(height, width);

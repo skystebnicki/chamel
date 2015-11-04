@@ -1,5 +1,8 @@
 var React = require('react');
-var ReactColorPicker = require('react-colorpickr');
+var ReactDOM = require('react-dom');
+// TODO: need to install
+// "react-colorpickr": "3.*",
+//var ReactColorPicker = require('react-colorpickr');
 var FontIcon = require("./FontIcon.jsx");
 
 var ColorPicker = React.createClass({
@@ -23,13 +26,14 @@ var ColorPicker = React.createClass({
 	},
 	
 	render: function render() {
+        // <ReactColorPicker onChange={this._handleColorPick} value={this.props.value} />
 		return (
 				<div ref="colorPickerContainer" className="chamel-color-picker">
         			<div className="chamel-color-picker-close">
         				<FontIcon onClick={this.close} className="cfi cfi-times" />
         			</div>
         			<div>
-        				<ReactColorPicker onChange={this._handleColorPick} value={this.props.value} />
+        				<div>TODO: add here</div>
         			</div>
         			<div className="chamel-color-picker-label">{this.props.label}</div>
         	</div>	
@@ -42,7 +46,7 @@ var ColorPicker = React.createClass({
      * @public
      */
     show: function() {
-    	var cpStyle = this.refs.colorPickerContainer.getDOMNode().style.display = "block";
+    	var cpStyle = ReactDOM.findDOMNode(this.refs.colorPickerContainer).style.display = "block";
     },
     
     /**
@@ -51,7 +55,7 @@ var ColorPicker = React.createClass({
      * @public
      */
     close: function() {
-    	var cpStyle = this.refs.colorPickerContainer.getDOMNode().style.display = "none";
+    	var cpStyle = ReactDOM.findDOMNode(this.refs.colorPickerContainer).style.display = "none";
     },
 	
     /**

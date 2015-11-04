@@ -1,4 +1,5 @@
 var React = require('react'),
+    ReactDOM = require('react-dom'),
     Paper = require('./paper'),
     Classable = require('./mixins/classable.jsx'),
     Draggable = require('react-draggable2');
@@ -131,7 +132,7 @@ var Slider = React.createClass({
         // let draggable handle the slider
         if (this.state.dragging || this.props.disabled) return;
         var value = this.state.value;
-        var node = React.findDOMNode(this.refs.track);
+        var node = ReactDOM.findDOMNode(this.refs.track);
         var boundingClientRect = node.getBoundingClientRect();
         var offset = e.clientX - boundingClientRect.left;
         this._updateWithChangeEvent(e, offset / node.clientWidth);
@@ -157,7 +158,7 @@ var Slider = React.createClass({
     },
 
     _dragX: function(e, pos) {
-        var max = React.findDOMNode(this.refs.track).clientWidth;
+        var max = ReactDOM.findDOMNode(this.refs.track).clientWidth;
         if (pos < 0) pos = 0; else if (pos > max) pos = max;
         this._updateWithChangeEvent(e, pos / max);
     },

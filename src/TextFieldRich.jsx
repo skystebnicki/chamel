@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var UAParser = require('ua-parser-js');
 
 var uaParser = new UAParser();
@@ -25,7 +26,7 @@ var TextFieldRich = React.createClass({
 	},
 	
 	componentDidMount: function() {
-		var iframe = this.refs.rte.getDOMNode();
+		var iframe = ReactDOM.findDOMNode(this.refs.rte);
 		iframe.style.width = "100%";
 		
 		// If height has been passed then set the iframe height
@@ -270,7 +271,7 @@ var TextFieldRich = React.createClass({
 		if (this.props.floatingLabelText) {
 			newHeight += 24;
 		}
-		this.getDOMNode().style.height = newHeight + 'px';
+		ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
 	},
 
 	/**
@@ -295,7 +296,7 @@ var TextFieldRich = React.createClass({
 			return false;
 		}
 		
-		var ifrm = this.refs.rte.getDOMNode();
+		var ifrm = ReactDOM.findDOMNode(this.refs.rte);
 		return ifrm.contentWindow || ifrm.contentDocument;
 	},
 
@@ -363,7 +364,7 @@ var TextFieldRich = React.createClass({
 		}
 		
 		// Set document events
-		var evtObj = (uaParser.getBrowser().name == "IE") ? this.refs.rte.getDOMNode() : this._getIframeWindow();
+		var evtObj = (uaParser.getBrowser().name == "IE") ? ReactDOM.findDOMNode(this.refs.rte) : this._getIframeWindow();
 
 		if (evtObj.addEventListener) { // W3C DOM
 			
@@ -434,7 +435,7 @@ var TextFieldRich = React.createClass({
 		var idoc = this._getIframeDoc();
 		var contentHeight = idoc.body.scrollHeight;
 
-		var iframe = this.refs.rte.getDOMNode();
+		var iframe = ReactDOM.findDOMNode(this.refs.rte);
 		iframe.style.height = contentHeight + "px";
 	},
 });

@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Classable = require('./mixins/classable.jsx');
 
 var EnhancedTextarea = React.createClass({
@@ -76,11 +77,11 @@ var EnhancedTextarea = React.createClass({
   },
 
   getInputNode: function() {
-    return this.refs.input.getDOMNode();
+    return ReactDOM.findDOMNode(this.refs.input);
   },
 
   _syncHeightWithShadow: function(newValue, e) {
-    var shadow = this.refs.shadow.getDOMNode();
+    var shadow = ReactDOM.findDOMNode(this.refs.shadow);
     var currentHeight = this.state.height;
     var newHeight;
 

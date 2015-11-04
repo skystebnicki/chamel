@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var WindowListenable = require('./mixins/WindowListenable.jsx');
 var CssEvent = require('./utils/CssEvent.jsx');
 var KeyCode = require('./utils/KeyCode.jsx');
@@ -100,7 +101,7 @@ var DialogWindow = React.createClass({
   },
 
   dismiss: function() {
-    CssEvent.onTransitionEnd(React.findDOMNode(this), function() {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), function() {
       this.refs.dialogOverlay.allowScrolling();
     }.bind(this));
 
@@ -179,9 +180,9 @@ var DialogWindow = React.createClass({
 
     if (this.state.open) {
       var clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-      var container = React.findDOMNode(this);
-      var dialogWindow = React.findDOMNode(this.refs.dialogWindow);
-      var dialogContent = React.findDOMNode(this.refs.dialogContent);
+      var container = ReactDOM.findDOMNode(this);
+      var dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
+      var dialogContent = ReactDOM.findDOMNode(this.refs.dialogContent);
       var minPaddingTop = 0;
 
       //Reset the height in case the window was resized.
@@ -225,7 +226,7 @@ var DialogWindow = React.createClass({
   
   _focusOnAction: function() {
     if (this.props.actionFocus) {
-      React.findDOMNode(this.refs[this.props.actionFocus]).focus();
+      ReactDOM.findDOMNode(this.refs[this.props.actionFocus]).focus();
     }
   },
   
