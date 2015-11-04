@@ -82,8 +82,6 @@
     "fbjs": "^0.2.1",
     "localforage": "^1.2.10",
     "object-hash": "^0.8.0",
-    "react": "^0.13.3",
-    "react-dom": "^0.14.0-rc1",
-    "react-tap-event-plugin": "^0.1.8"
+    "react": "^0.13.3"
   }
 }
