@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "keywords": [
     "react",
     "react-component",
@@ -54,7 +54,6 @@
     "localforage": "^1.2.2",
     "object-hash": "^0.8.0",
     "protractor": "~1.0.0",
-    "react": "^0.13.1",
     "react-colorpickr": "^2.0.4",
     "react-router": "^0.13.4",
     "shelljs": "^0.2.6",
@@ -82,6 +81,6 @@
     "fbjs": "^0.2.1",
     "localforage": "^1.2.10",
     "object-hash": "^0.8.0",
-    "react": "^0.13.3"
+    "react": "^0.14.1"
   }
 }
