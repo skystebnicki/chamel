@@ -29,6 +29,7 @@ module.exports = {
     RadioButton: require('./RadioButton.jsx'),
     RadioButtonGroup: require('./RadioButtonGroup.jsx'),
     RaisedButton: require('./RaisedButton.jsx'),
+    LinearProgress: require('./progress/LinearProgress.jsx'),
     //Slider: require('./slider'),
     SvgIcon: require('./svg-icons/svg-icon.jsx'),
     Icons: {

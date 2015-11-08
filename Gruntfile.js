@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                   //alias: ['react:']  // Make React available externally for dev tools
                 },
                 //cwd: 'js',
-                src: ['demo/main.js'],
+                src: ['demo/app/main.js'],
                 dest: 'build/js/chamel-demo.js'
             },
             dist: {

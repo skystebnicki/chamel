@@ -20089,7 +20089,7 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"./EnhancedSwitch.jsx":168,"./mixins/classable.jsx":192,"./svg-icons/toggle-check-box-checked.jsx":201,"./svg-icons/toggle-check-box-outline-blank.jsx":202,"react":159}],163:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":168,"./mixins/classable.jsx":192,"./svg-icons/toggle-check-box-checked.jsx":202,"./svg-icons/toggle-check-box-outline-blank.jsx":203,"react":159}],163:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -20389,7 +20389,7 @@ var DialogWindow = React.createClass({
 
 module.exports = DialogWindow;
 
-},{"./FlatButton.jsx":170,"./Overlay.jsx":175,"./Paper.jsx":176,"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./utils/CssEvent.jsx":210,"./utils/KeyCode.jsx":213,"react":159,"react-dom":3}],165:[function(require,module,exports){
+},{"./FlatButton.jsx":170,"./Overlay.jsx":175,"./Paper.jsx":176,"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./utils/CssEvent.jsx":211,"./utils/KeyCode.jsx":214,"react":159,"react-dom":3}],165:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -20455,7 +20455,7 @@ var DropDownIcon = React.createClass({
 
 module.exports = DropDownIcon;
 
-},{"./FontIcon.jsx":171,"./Paper.jsx":176,"./menu/Menu.jsx":187,"./mixins/ClickAwayable.jsx":190,"./mixins/classable.jsx":192,"./utils/KeyLine.jsx":214,"react":159}],166:[function(require,module,exports){
+},{"./FontIcon.jsx":171,"./Paper.jsx":176,"./menu/Menu.jsx":187,"./mixins/ClickAwayable.jsx":190,"./mixins/classable.jsx":192,"./utils/KeyLine.jsx":215,"react":159}],166:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -20553,7 +20553,7 @@ var DropDownMenu = React.createClass({
 module.exports = DropDownMenu;
 
 }).call(this,require('_process'))
-},{"./Paper.jsx":176,"./menu/Menu.jsx":187,"./mixins/ClickAwayable.jsx":190,"./mixins/classable.jsx":192,"./svg-icons/drop-down-arrow.jsx":196,"_process":2,"react":159,"react-dom":3}],167:[function(require,module,exports){
+},{"./Paper.jsx":176,"./menu/Menu.jsx":187,"./mixins/ClickAwayable.jsx":190,"./mixins/classable.jsx":192,"./svg-icons/drop-down-arrow.jsx":197,"_process":2,"react":159,"react-dom":3}],167:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -20694,7 +20694,7 @@ var EnhancedButton = React.createClass({
 
 module.exports = EnhancedButton;
 
-},{"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./ripples/FocusRipple.jsx":194,"./ripples/TouchRipple.jsx":195,"./utils/KeyCode.jsx":213,"react":159}],168:[function(require,module,exports){
+},{"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./ripples/FocusRipple.jsx":195,"./ripples/TouchRipple.jsx":196,"./utils/KeyCode.jsx":214,"react":159}],168:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -20974,7 +20974,7 @@ var EnhancedSwitch = React.createClass({
 module.exports = EnhancedSwitch;
 
 }).call(this,require('_process'))
-},{"./Paper.jsx":176,"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./ripples/FocusRipple.jsx":194,"./ripples/TouchRipple.jsx":195,"./utils/KeyCode.jsx":213,"./utils/UniqueId.jsx":215,"_process":2,"react":159,"react-dom":3}],169:[function(require,module,exports){
+},{"./Paper.jsx":176,"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./ripples/FocusRipple.jsx":195,"./ripples/TouchRipple.jsx":196,"./utils/KeyCode.jsx":214,"./utils/UniqueId.jsx":216,"_process":2,"react":159,"react-dom":3}],169:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -21756,7 +21756,7 @@ var RadioButton = React.createClass({
 
 module.exports = RadioButton;
 
-},{"./EnhancedSwitch.jsx":168,"./mixins/classable.jsx":192,"./svg-icons/toggle-radio-button-off.jsx":203,"./svg-icons/toggle-radio-button-on.jsx":204,"react":159}],178:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":168,"./mixins/classable.jsx":192,"./svg-icons/toggle-radio-button-off.jsx":204,"./svg-icons/toggle-radio-button-on.jsx":205,"react":159}],178:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22080,7 +22080,7 @@ var Snackbar = React.createClass({
 
 module.exports = Snackbar;
 
-},{"./FlatButton.jsx":170,"./mixins/ClickAwayable.jsx":190,"./mixins/classable.jsx":192,"./utils/CssEvent.jsx":210,"react":159,"react-dom":3}],181:[function(require,module,exports){
+},{"./FlatButton.jsx":170,"./mixins/ClickAwayable.jsx":190,"./mixins/classable.jsx":192,"./utils/CssEvent.jsx":211,"react":159,"react-dom":3}],181:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22287,7 +22287,7 @@ var TextField = React.createClass({
 module.exports = TextField;
 
 }).call(this,require('_process'))
-},{"./EnhancedTextarea.jsx":169,"./mixins/classable.jsx":192,"./utils/UniqueId.jsx":215,"_process":2,"react":159,"react-dom":3}],182:[function(require,module,exports){
+},{"./EnhancedTextarea.jsx":169,"./mixins/classable.jsx":192,"./utils/UniqueId.jsx":216,"_process":2,"react":159,"react-dom":3}],182:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22912,6 +22912,7 @@ module.exports = {
     RadioButton: require('./RadioButton.jsx'),
     RadioButtonGroup: require('./RadioButtonGroup.jsx'),
     RaisedButton: require('./RaisedButton.jsx'),
+    LinearProgress: require('./progress/LinearProgress.jsx'),
     //Slider: require('./slider'),
     SvgIcon: require('./svg-icons/svg-icon.jsx'),
     Icons: {
@@ -22937,7 +22938,7 @@ module.exports = {
     }
 };
 
-},{"./AppBar.jsx":161,"./Checkbox.jsx":162,"./Dialog.jsx":163,"./DialogWindow.jsx":164,"./DropDownIcon.jsx":165,"./DropDownMenu.jsx":166,"./EnhancedButton.jsx":167,"./FlatButton.jsx":170,"./FontIcon.jsx":171,"./IconButton.jsx":172,"./LeftNav.jsx":174,"./Paper.jsx":176,"./RadioButton.jsx":177,"./RadioButtonGroup.jsx":178,"./RaisedButton.jsx":179,"./Snackbar.jsx":180,"./TextField.jsx":181,"./TextFieldRich.jsx":182,"./Toggle.jsx":183,"./menu/Menu.jsx":187,"./menu/MenuItem.jsx":188,"./mixins/ClickAwayable.jsx":190,"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./svg-icons/navigation-chevron-left.jsx":197,"./svg-icons/navigation-chevron-right.jsx":198,"./svg-icons/navigation-menu.jsx":199,"./svg-icons/svg-icon.jsx":200,"./tabs/Tab.jsx":205,"./tabs/Tabs.jsx":207,"./toolbar/Toolbar.jsx":208,"./toolbar/ToolbarGroup.jsx":209,"./utils/CssEvent.jsx":210,"./utils/Dom.jsx":211,"./utils/Events.jsx":212,"./utils/KeyCode.jsx":213,"./utils/KeyLine.jsx":214}],186:[function(require,module,exports){
+},{"./AppBar.jsx":161,"./Checkbox.jsx":162,"./Dialog.jsx":163,"./DialogWindow.jsx":164,"./DropDownIcon.jsx":165,"./DropDownMenu.jsx":166,"./EnhancedButton.jsx":167,"./FlatButton.jsx":170,"./FontIcon.jsx":171,"./IconButton.jsx":172,"./LeftNav.jsx":174,"./Paper.jsx":176,"./RadioButton.jsx":177,"./RadioButtonGroup.jsx":178,"./RaisedButton.jsx":179,"./Snackbar.jsx":180,"./TextField.jsx":181,"./TextFieldRich.jsx":182,"./Toggle.jsx":183,"./menu/Menu.jsx":187,"./menu/MenuItem.jsx":188,"./mixins/ClickAwayable.jsx":190,"./mixins/WindowListenable.jsx":191,"./mixins/classable.jsx":192,"./progress/LinearProgress.jsx":193,"./svg-icons/navigation-chevron-left.jsx":198,"./svg-icons/navigation-chevron-right.jsx":199,"./svg-icons/navigation-menu.jsx":200,"./svg-icons/svg-icon.jsx":201,"./tabs/Tab.jsx":206,"./tabs/Tabs.jsx":208,"./toolbar/Toolbar.jsx":209,"./toolbar/ToolbarGroup.jsx":210,"./utils/CssEvent.jsx":211,"./utils/Dom.jsx":212,"./utils/Events.jsx":213,"./utils/KeyCode.jsx":214,"./utils/KeyLine.jsx":215}],186:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23325,7 +23326,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"../Paper.jsx":176,"../mixins/ClickAwayable.jsx":190,"../mixins/classable.jsx":192,"../utils/CssEvent.jsx":210,"../utils/Dom.jsx":211,"../utils/KeyLine.jsx":214,"./LinkMenuItem.jsx":186,"./MenuItem.jsx":188,"./SubheaderMenuItem.jsx":189,"react":159,"react-dom":3}],188:[function(require,module,exports){
+},{"../Paper.jsx":176,"../mixins/ClickAwayable.jsx":190,"../mixins/classable.jsx":192,"../utils/CssEvent.jsx":211,"../utils/Dom.jsx":212,"../utils/KeyLine.jsx":215,"./LinkMenuItem.jsx":186,"./MenuItem.jsx":188,"./SubheaderMenuItem.jsx":189,"react":159,"react-dom":3}],188:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23512,7 +23513,7 @@ module.exports = {
 
 };
 
-},{"../utils/Dom.jsx":211,"../utils/Events.jsx":212,"react":159,"react-dom":3}],191:[function(require,module,exports){
+},{"../utils/Dom.jsx":212,"../utils/Events.jsx":213,"react":159,"react-dom":3}],191:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/Events.jsx');
@@ -23539,7 +23540,7 @@ module.exports = {
 
 };
 
-},{"../utils/Events.jsx":212}],192:[function(require,module,exports){
+},{"../utils/Events.jsx":213}],192:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23598,6 +23599,127 @@ var _extends = Object.assign || function (target) {
   }return target;
 };
 
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var LinearProgress = React.createClass({
+  displayName: 'LinearProgress',
+
+  /**
+   * Expected props
+   */
+  propTypes: {
+    mode: React.PropTypes.oneOf(["determinate", "indeterminate"]),
+    value: React.PropTypes.number,
+    min: React.PropTypes.number,
+    max: React.PropTypes.number
+  },
+
+  /**
+   * Get percentage relative to min and max
+   *
+   * @return {int} 0-100
+   */
+  _getRelativeValue: function _getRelativeValue() {
+    var value = this.props.value;
+    var min = this.props.min;
+    var max = this.props.max;
+
+    var clampedValue = Math.min(Math.max(min, value), max);
+    var rangeValue = max - min;
+    var relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
+    return relValue * 100;
+  },
+
+  /**
+   * Triggered when the component enters the dom for the first time
+   */
+  componentDidMount: function componentDidMount() {
+    var _this = this;
+
+    var bar1 = ReactDOM.findDOMNode(this.refs.bar1);
+    var bar2 = ReactDOM.findDOMNode(this.refs.bar2);
+
+    this._barUpdate(0, bar1, [[-35, 100], [100, -90]]);
+
+    setTimeout(function () {
+      _this._barUpdate(0, bar2, [[-200, 100], [107, -8]]);
+    }, 850);
+  },
+
+  _barUpdate: function _barUpdate(step, barElement, stepValues) {
+    step = step || 0;
+    step %= 4;
+    setTimeout(this._barUpdate.bind(this, step + 1, barElement, stepValues), 420);
+    if (!this.isMounted()) return;
+    if (this.props.mode !== "indeterminate") return;
+
+    var right = 'right';
+    var left = 'left';
+
+    if (step === 0) {
+      barElement.style[left] = stepValues[0][0] + "%";
+      barElement.style[right] = stepValues[0][1] + "%";
+    } else if (step === 1) {
+      barElement.style.transitionDuration = "840ms";
+    } else if (step === 2) {
+      barElement.style[left] = stepValues[1][0] + "%";
+      barElement.style[right] = stepValues[1][1] + "%";
+    } else if (step === 3) {
+      barElement.style.transitionDuration = "0ms";
+    }
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      mode: "indeterminate",
+      value: 0,
+      min: 0,
+      max: 100
+    };
+  },
+
+  render: function render() {
+    var _props = this.props;
+    var style = _props.style;
+
+    var other = _objectWithoutProperties(_props, ['style']);
+
+    var barStyle = {};
+
+    var barClasses = "chamel-progress-bar ";
+    if (this.props.mode === "determinate") {
+      barClasses += "chamel-progress-bar-determinate";
+      barStyle.width = this._getRelativeValue() + "%";
+    } else {
+      barClasses += "chamel-progress-bar-indeterminate";
+    }
+
+    return React.createElement('div', _extends({}, other, { className: 'chamel-progress' }), React.createElement('div', { className: barClasses, style: barStyle }, React.createElement('div', { ref: 'bar1', className: 'chamel-progress-bar-left' }), React.createElement('div', { ref: 'bar2', className: 'chamel-progress-bar-right' })));
+  }
+});
+
+module.exports = LinearProgress;
+
+},{"react":159,"react-dom":3}],194:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
 
@@ -23630,7 +23752,7 @@ var RippleCircle = React.createClass({
 
 module.exports = RippleCircle;
 
-},{"../mixins/classable.jsx":192,"react":159}],194:[function(require,module,exports){
+},{"../mixins/classable.jsx":192,"react":159}],195:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23672,7 +23794,7 @@ var FocusRipple = React.createClass({
 
 module.exports = FocusRipple;
 
-},{"../mixins/classable.jsx":192,"react":159,"react-dom":3}],195:[function(require,module,exports){
+},{"../mixins/classable.jsx":192,"react":159,"react-dom":3}],196:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23841,7 +23963,7 @@ var TouchRipple = React.createClass({
 
 module.exports = TouchRipple;
 
-},{"../mixins/classable.jsx":192,"../utils/Dom.jsx":211,"./Circle.jsx":193,"react":159,"react-dom":3}],196:[function(require,module,exports){
+},{"../mixins/classable.jsx":192,"../utils/Dom.jsx":212,"./Circle.jsx":194,"react":159,"react-dom":3}],197:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23858,7 +23980,7 @@ var DropDownArrow = React.createClass({
 
 module.exports = DropDownArrow;
 
-},{"./svg-icon.jsx":200,"react":159}],197:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],198:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23875,7 +23997,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"./svg-icon.jsx":200,"react":159}],198:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],199:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23892,7 +24014,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"./svg-icon.jsx":200,"react":159}],199:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],200:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23909,7 +24031,7 @@ var NavigationMenu = React.createClass({
 
 module.exports = NavigationMenu;
 
-},{"./svg-icon.jsx":200,"react":159}],200:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],201:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23942,7 +24064,7 @@ var SvgIcon = React.createClass({
 
 module.exports = SvgIcon;
 
-},{"../mixins/classable.jsx":192,"react":159}],201:[function(require,module,exports){
+},{"../mixins/classable.jsx":192,"react":159}],202:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23959,7 +24081,7 @@ var ToggleCheckBoxChecked = React.createClass({
 
 module.exports = ToggleCheckBoxChecked;
 
-},{"./svg-icon.jsx":200,"react":159}],202:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],203:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23976,7 +24098,7 @@ var ToggleCheckBoxOutlineBlank = React.createClass({
 
 module.exports = ToggleCheckBoxOutlineBlank;
 
-},{"./svg-icon.jsx":200,"react":159}],203:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],204:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -23993,7 +24115,7 @@ var RadioButtonOff = React.createClass({
 
 module.exports = RadioButtonOff;
 
-},{"./svg-icon.jsx":200,"react":159}],204:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],205:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24010,7 +24132,7 @@ var RadioButtonOn = React.createClass({
 
 module.exports = RadioButtonOn;
 
-},{"./svg-icon.jsx":200,"react":159}],205:[function(require,module,exports){
+},{"./svg-icon.jsx":201,"react":159}],206:[function(require,module,exports){
 /**
  * Render a single tab
  *
@@ -24056,7 +24178,7 @@ var Tab = React.createClass({
 
 module.exports = Tab;
 
-},{"react":159}],206:[function(require,module,exports){
+},{"react":159}],207:[function(require,module,exports){
 /**
  * Template for rendering tabs
  *
@@ -24080,7 +24202,7 @@ var TabTemplate = React.createClass({
 
 module.exports = TabTemplate;
 
-},{"react":159}],207:[function(require,module,exports){
+},{"react":159}],208:[function(require,module,exports){
 /**
  * Tabs component
  *
@@ -24202,7 +24324,7 @@ var Tabs = React.createClass({
 
 module.exports = Tabs;
 
-},{"../InkBar.jsx":173,"./TabTemplate.jsx":206,"react":159,"react-dom":3}],208:[function(require,module,exports){
+},{"../InkBar.jsx":173,"./TabTemplate.jsx":207,"react":159,"react-dom":3}],209:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -24218,7 +24340,7 @@ var Toolbar = React.createClass({
 
 module.exports = Toolbar;
 
-},{"react":159}],209:[function(require,module,exports){
+},{"react":159}],210:[function(require,module,exports){
 'use strict';
 
 var Classable = require('../mixins/classable.jsx');
@@ -24247,7 +24369,7 @@ var ToolbarGroup = React.createClass({
 
 module.exports = ToolbarGroup;
 
-},{"../mixins/classable.jsx":192,"react":159}],210:[function(require,module,exports){
+},{"../mixins/classable.jsx":192,"react":159}],211:[function(require,module,exports){
 'use strict';
 
 var Events = require('./Events.jsx');
@@ -24303,7 +24425,7 @@ module.exports = {
 
 };
 
-},{"./Events.jsx":212}],211:[function(require,module,exports){
+},{"./Events.jsx":213}],212:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24368,7 +24490,7 @@ module.exports = {
 
 };
 
-},{"react":159}],212:[function(require,module,exports){
+},{"react":159}],213:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24408,7 +24530,7 @@ module.exports = {
   }
 };
 
-},{"react":159}],213:[function(require,module,exports){
+},{"react":159}],214:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -24422,7 +24544,7 @@ module.exports = {
   UP: 38
 };
 
-},{}],214:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -24439,7 +24561,7 @@ module.exports = {
   }
 };
 
-},{}],215:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 "use strict";
 
 var index = 0;
