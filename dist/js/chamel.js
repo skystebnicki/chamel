@@ -21711,7 +21711,8 @@ var RadioButton = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    onCheck: React.PropTypes.func
+    onCheck: React.PropTypes.func,
+    className: React.PropTypes.string
   },
 
   render: function render() {
@@ -21720,7 +21721,7 @@ var RadioButton = React.createClass({
 
     var other = _objectWithoutProperties(_props, ['onCheck']);
 
-    var radioButtonElement = React.createElement('div', null, React.createElement(RadioButtonOff, { className: 'chamel-radio-button-target' }), React.createElement(RadioButtonOn, { className: 'chamel-radio-button-fill' }));
+    var radioButtonElement = React.createElement('div', { className: this.props.className }, React.createElement(RadioButtonOff, { className: 'chamel-radio-button-target' }), React.createElement(RadioButtonOn, { className: 'chamel-radio-button-fill' }));
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",

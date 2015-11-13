@@ -9,7 +9,8 @@ var RadioButton = React.createClass({
   mixins: [Classable],
 
   propTypes: {
-    onCheck: React.PropTypes.func
+    onCheck: React.PropTypes.func,
+    className: React.PropTypes.string
   },
 
   render: function() {
@@ -20,7 +21,7 @@ var RadioButton = React.createClass({
     } = this.props;
 
     var radioButtonElement = (
-      <div>
+      <div className={this.props.className}>
           <RadioButtonOff className="chamel-radio-button-target" />
           <RadioButtonOn className="chamel-radio-button-fill" />
       </div>
