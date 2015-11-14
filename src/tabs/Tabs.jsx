@@ -54,7 +54,6 @@ var Tabs = React.createClass({
             }
         }
 
-        console.log("eventWidth", this.getEvenWidth());
         this.setState({
             width: this.getEvenWidth(),
             fixed: true
