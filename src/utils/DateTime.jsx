@@ -115,8 +115,6 @@ module.exports = {
         minutes = date.getMinutes(),
         seconds = date.getSeconds();
 
-    console.log("format", day, month, year);
-
     if (!format) {
         format = "MM/dd/yyyy";
     }

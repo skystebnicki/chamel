@@ -203,8 +203,9 @@ var TextField = React.createClass({
     switch (this.props.type) {
       case 'date':
         if (DateTimeUtil.validateDate(checkValue)) {
-          console.log("sanitizeInputForType", checkValue);
+          console.log("sanitizeInputForType from", checkValue);
           var date = new Date(checkValue);
+          console.log("sanitizeInputForType to", date.toString());
           // Format as defined in RFC 3339 
           return DateTimeUtil.format(date, "yyyy-MM-dd");
         } else {
