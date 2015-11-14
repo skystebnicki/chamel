@@ -26,7 +26,15 @@ var EnhancedSwitch = React.createClass({
       defaultSwitched: React.PropTypes.bool,
       labelPosition: React.PropTypes.oneOf(['left', 'right']),
       disableFocusRipple: React.PropTypes.bool,
-      disableTouchRipple: React.PropTypes.bool
+      disableTouchRipple: React.PropTypes.bool,
+
+      /**
+       * Print as inline block if true
+       *
+       * @default false
+       * @type {bool}
+       */
+      inline: React.PropTypes.bool
     },
 
   windowListeners: {
@@ -36,7 +44,8 @@ var EnhancedSwitch = React.createClass({
 
   getDefaultProps: function() {
     return {
-      iconClassName: ''
+      iconClassName: '',
+      inline: false
     };
   },
 
@@ -97,7 +106,8 @@ var EnhancedSwitch = React.createClass({
     var classes = this.getClasses('chamel-enhanced-switch', {
       'chamel-is-switched': this.state.switched,
       'chamel-is-disabled': this.props.disabled,
-      'chamel-is-required': this.props.required
+      'chamel-is-required': this.props.required,
+      'chamel-is-inline': this.props.inline
     });
 
     var inputId = this.props.id || UniqueId.generate();

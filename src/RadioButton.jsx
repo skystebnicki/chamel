@@ -4,13 +4,38 @@ var EnhancedSwitch = require('./EnhancedSwitch.jsx');
 var RadioButtonOff = require('./svg-icons/toggle-radio-button-off.jsx');
 var RadioButtonOn = require('./svg-icons/toggle-radio-button-on.jsx');
 
+/**
+ * Radio button switch
+ */
 var RadioButton = React.createClass({
 
   mixins: [Classable],
 
   propTypes: {
+    /**
+     * Callback to call when a radiobutton is selected
+     *
+     * @type {function}
+     */
     onCheck: React.PropTypes.func,
-    className: React.PropTypes.string
+
+    /**
+     * Inline is used to determine if the radio buttons s are printed side-by-side
+     *
+     * Defaults to false since it is almost never used for mobile
+     *
+     * @type {bool}
+     */
+    inline: React.PropTypes.bool
+  },
+
+  /**
+   * Set default properties if not set by the calling component
+   */
+  getDefaultProps: function() {
+    return (
+      {inline: false}
+    );
   },
 
   render: function() {
@@ -21,7 +46,7 @@ var RadioButton = React.createClass({
     } = this.props;
 
     var radioButtonElement = (
-      <div className={this.props.className}>
+      <div>
           <RadioButtonOff className="chamel-radio-button-target" />
           <RadioButtonOn className="chamel-radio-button-fill" />
       </div>

@@ -38,6 +38,7 @@
     float: left;
     position: relative;
     display: table-column;
+    white-space: nowrap;
     width: calc(100% - #{$switch-width});
     line-height: 24px;
   }
@@ -47,5 +48,10 @@
     .chamel-ripple-circle-inner {
       background-color: $switches-ripple-color;
     }
+  }
+
+  &.chamel-is-inline {
+    display: inline-block;
+    width: auto;
   }
 }

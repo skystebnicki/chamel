@@ -11,9 +11,41 @@ var RadioButtonGroup = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     valueSelected: React.PropTypes.string,
+
+    /**
+     * Set which value is 
     defaultSelected: React.PropTypes.string,
+    
+    /**
+     * Float the label to the left or right of the radio button
+     *
+     * @type {string}
+     */
     labelPosition: React.PropTypes.oneOf(['left', 'right']),
-    onChange: React.PropTypes.func
+
+    /**
+     * Callback trigger fired when a user selects a new radio option
+     *
+     * @type {function}
+     */
+    onChange: React.PropTypes.func,
+
+    /**
+     * Inline is used to determine if the radio buttons s are printed side-by-side
+     *
+     * @default true
+     * @type {bool}
+     */
+    inline: React.PropTypes.bool
+  },
+
+  /**
+   * Set default properties if not set by the calling component
+   */
+  getDefaultProps: function() {
+    return (
+      {inline: false}
+    );
   },
 
   _hasCheckAttribute: function(radioButton) {
@@ -46,6 +78,8 @@ var RadioButtonGroup = React.createClass({
 
   render: function() {
 
+    var inline = this.props.inline;
+
     var options = this.props.children.map(function(option) {
       
       var {
@@ -58,6 +92,7 @@ var RadioButtonGroup = React.createClass({
 
       return <RadioButton
         {...other}
+        inline={inline}
         ref={option.props.value}
         name={this.props.name}
         key={option.props.value}

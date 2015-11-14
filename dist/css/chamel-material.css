@@ -1491,7 +1491,7 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-is-landscape .chamel-date-picker-calendar:after { clear: both; }
 
-.chamel-is-landscape .chamel-date-picker-calendar-date-display { width: 280px; height: 100%; float: left; }
+.chamel-is-landscape .chamel-date-picker-calendar-date-display { width: 280px; /*height: 100%;*/ float: left; }
 
 .chamel-is-landscape .chamel-date-picker-calendar-container { width: 280px; float: right; }
 
@@ -1635,9 +1635,11 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-enhanced-switch .chamel-enhanced-switch-wrap .chamel-touch-ripple, .chamel-enhanced-switch .chamel-enhanced-switch-wrap .chamel-focus-ripple-inner { width: 200%; height: 200%; top: -12px; left: -12px; }
 
-.chamel-enhanced-switch .chamel-switch-label { float: left; position: relative; display: table-column; width: calc(100% - 60px); line-height: 24px; }
+.chamel-enhanced-switch .chamel-switch-label { float: left; position: relative; display: table-column; white-space: nowrap; width: calc(100% - 60px); line-height: 24px; }
 
 .chamel-enhanced-switch.chamel-is-switched .chamel-focus-ripple-inner, .chamel-enhanced-switch.chamel-is-switched .chamel-ripple-circle-inner { background-color: rgba(0, 188, 212, 0.2); }
+
+.chamel-enhanced-switch.chamel-is-inline { display: inline-block; width: auto; }
 
 .chamel-enhanced-textarea .chamel-enhanced-textarea-shadow, .chamel-enhanced-textarea .chamel-enhanced-textarea-input { width: 100%; resize: none; }
 

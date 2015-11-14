@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Classable = require('./mixins/classable.jsx');
 var UniqueId = require('./utils/UniqueId.jsx');
 var EnhancedTextarea = require('./EnhancedTextarea.jsx');
+var DateTimeUtil = require('./utils/DateTime.jsx');
 
 var TextField = React.createClass({
 
@@ -67,6 +68,7 @@ var TextField = React.createClass({
       onChange,
       onFocus,
       type,
+      value,
       ...other
     } = this.props;
 
@@ -113,14 +115,18 @@ var TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
 
+    var sanitizedValue = this._sanitizeInputForType(value);
+
     inputElement = this.props.multiLine ? (
       <EnhancedTextarea
+        value={sanitizedValue}
         {...other}
         {...inputProps}
         onHeightChange={this._handleTextAreaHeightChange}
         textareaClassName="chamel-text-field-textarea" />
     ) : (
       <input
+        value={sanitizedValue}
         {...other}
         {...inputProps}
         type={this.props.type} />
@@ -167,11 +173,44 @@ var TextField = React.createClass({
   },
 
   setValue: function(newValue) {
+    // Make sure the value is good
+    var sanitizedValue = this._sanitizeInputForType(newValue);
+    
+    // The value passed was invalid
+    if (sanitizedValue === false) {
+      this.setState({errorText: newValue + " is invalid for type=" + this.props.type})
+
+      // Do not set anything
+      return;
+    }
+
     if (process.NODE_ENV !== 'production' && this._isControlled()) {
       console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
     } else if (this.isMounted()) {
-      this._getInputNode().value = newValue;
-      this.setState({hasValue: newValue});
+      this._getInputNode().value = sanitizedValue;
+      this.setState({hasValue: sanitizedValue});
+    }
+  },
+
+  /**
+   * Validate a value for an input based on type
+   *
+   * @return {string|bool} If null then there was a problem
+   */
+  _sanitizeInputForType: function(checkValue) {
+    switch (this.props.type) {
+      case 'date':
+        if (DateTimeUtil.validateDate(checkValue)) {
+          var date = new Date(checkValue);
+          // Format as defined in RFC 3339 
+          return DateTimeUtil.format(date, "yyyy-MM-dd");
+        } else {
+          return false;
+        }
+      default:
+        // Nothing to do
+        return checkValue;
+        break;
     }
   },
 

@@ -39,6 +39,10 @@ var Tabs = React.createClass({
         );
     },
 
+    getTabCount: function() {
+        return React.Children.count(this.props.children);
+    },
+
     componentDidMount: function(){
         if(this.props.tabWidth) {
             if(!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())){
@@ -49,6 +53,8 @@ var Tabs = React.createClass({
                 return;
             }
         }
+
+        console.log("eventWidth", this.getEvenWidth());
         this.setState({
             width: this.getEvenWidth(),
             fixed: true
@@ -74,10 +80,13 @@ var Tabs = React.createClass({
     render: function(){
 
         var _this = this;
+        let width = 100 / this.getTabCount() +'%';
+        /*
         var width = this.state.fixed ?
         this.state.width/this.props.children.length :
-            this.props.tabWidth;
-        var left = width * this.state.selectedIndex || 0;
+            this.props.tabWidth;*/
+        let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
+        //var left = width * this.state.selectedIndex || 0;
         var currentTemplate;
         var tabs = React.Children.map(this.props.children, function(tab, index){
             if(tab.type.displayName === "UiXmlElement"){
