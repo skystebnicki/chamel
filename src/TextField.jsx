@@ -118,7 +118,7 @@ var TextField = React.createClass({
     console.log("DateField-render: ", value);
     var sanitizedValue = (value) ? this._sanitizeInputForType(value) : null;
     console.log("DateField-render: ", sanitizedValue);
-    
+
     inputElement = this.props.multiLine ? (
       <EnhancedTextarea
         value={sanitizedValue}
@@ -203,6 +203,7 @@ var TextField = React.createClass({
     switch (this.props.type) {
       case 'date':
         if (DateTimeUtil.validateDate(checkValue)) {
+          console.log("sanitizeInputForType", checkValue);
           var date = new Date(checkValue);
           // Format as defined in RFC 3339 
           return DateTimeUtil.format(date, "yyyy-MM-dd");
