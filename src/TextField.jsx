@@ -225,8 +225,11 @@ var TextField = React.createClass({
   },
 
   _handleInputChange: function(e) {
-    this.setState({hasValue: e.target.value});
-    if (this.props.onChange) this.props.onChange(e);
+    var value = e.target.value;
+    this.setState({hasValue: value});
+    if (this.props.onChange) {
+      this.props.onChange(e, value);
+    }
   },
 
   _handleInputFocus: function(e) {

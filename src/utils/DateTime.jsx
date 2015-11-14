@@ -184,15 +184,10 @@ module.exports = {
    * @return {bool} true if the string can be converted to a Date
    */
   validateDate: function(dateString) {
-    var matches = /^(\d{2})[-\/](\d{2})[-\/](\d{4})$/.exec(dateString);
-    if (matches == null) return false;
-    var d = matches[2];
-    var m = matches[1] - 1;
-    var y = matches[3];
-    var composedDate = new Date(y, m, d);
-    return composedDate.getDate() == d &&
-            composedDate.getMonth() == m &&
-            composedDate.getFullYear() == y;
+
+    var invalid = isNaN(Date.parse(dateString));
+
+    return (invalid === true) ? false : true;
   }
 
 }
