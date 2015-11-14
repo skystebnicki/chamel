@@ -81,7 +81,7 @@ var DatePickerPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <DatePicker value="12/01/2016" required={true} onChange={this._handleDateChange} />
+        <DatePicker value="11/19/2015" required={true} onChange={this._handleDateChange} />
 
         <DatePicker
           hintText="Not native"

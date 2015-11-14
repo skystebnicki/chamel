@@ -115,8 +115,10 @@ var TextField = React.createClass({
       inputProps.onChange = this._handleInputChange;
     }
 
+    console.log("DateField-render: ", value);
     var sanitizedValue = (value) ? this._sanitizeInputForType(value) : null;
-
+    console.log("DateField-render: ", sanitizedValue);
+    
     inputElement = this.props.multiLine ? (
       <EnhancedTextarea
         value={sanitizedValue}
