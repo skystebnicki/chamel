@@ -124,7 +124,8 @@
     }
 
     &.chamel-has-value,
-    &.chamel-is-focused {
+    &.chamel-is-focused,
+    &.chamel-is-date {
       .chamel-text-field-floating-label {
         transform: scale(0.75) translate3d(0, -18px, 0);
       }

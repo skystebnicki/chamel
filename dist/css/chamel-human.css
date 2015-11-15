@@ -2142,7 +2142,7 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-text-field.chamel-has-floating-labels .chamel-text-field-input { padding-top: 24px; }
 
-.chamel-text-field.chamel-has-floating-labels.chamel-has-value .chamel-text-field-floating-label, .chamel-text-field.chamel-has-floating-labels.chamel-is-focused .chamel-text-field-floating-label { transform: scale(0.75) translate3d(0, -18px, 0); }
+.chamel-text-field.chamel-has-floating-labels.chamel-has-value .chamel-text-field-floating-label, .chamel-text-field.chamel-has-floating-labels.chamel-is-focused .chamel-text-field-floating-label, .chamel-text-field.chamel-has-floating-labels.chamel-is-date .chamel-text-field-floating-label { transform: scale(0.75) translate3d(0, -18px, 0); }
 
 .chamel-text-field.chamel-has-floating-labels.chamel-has-value .chamel-text-field-floating-label { color: rgba(0, 0, 0, 0.5); }
 
