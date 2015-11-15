@@ -88,30 +88,7 @@ var Tabs = React.createClass({
         //var left = width * this.state.selectedIndex || 0;
         var currentTemplate;
         var tabs = React.Children.map(this.props.children, function(tab, index){
-            if(tab.type.displayName === "UiXmlElement"){
-
-                /*
-                 * Entity form implementation is a bit more complex because the FormBuilder
-                 * element will not contain any children until render is called so there
-                 * are no children to print. The netric.entity.form.Tab checks props for
-                 * renderChildren to decide if it will render the ui.tabs.Tab (which does not 
-                 * render children) or just render children directly.
-                 */
-                if(_this.state.selectedIndex === index) {
-                    currentTemplate = tab;
-                    currentTemplate.props.renderChildren = true;
-                }
-
-                return React.cloneElement(tab, {
-                    key: index,
-                    selected: _this.state.selectedIndex === index,
-                    tabIndex: index,
-                    width: width,
-                    renderChildren: false,
-                    handleTouchTap: _this.handleTouchTap
-                });
-                
-            } else if(tab.type.displayName === "Tab"){
+            if(tab.type.displayName === "Tab") {
                 // Generic UI implementation
                 if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
                 return React.cloneElement(tab, {

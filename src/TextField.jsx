@@ -78,6 +78,7 @@ var TextField = React.createClass({
       'chamel-has-value': this.state.hasValue,
       'chamel-is-disabled': this.props.disabled,
       'chamel-is-focused': this.state.isFocused,
+      'chamel-is-date': ("date" === type),
       'chamel-is-multiLine': this.props.multiLine
     });
 
