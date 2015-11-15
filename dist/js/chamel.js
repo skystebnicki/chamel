@@ -24244,6 +24244,7 @@ var DatePicker = React.createClass({
     var _props = this.props;
     var formatDate = _props.formatDate;
     var mode = _props.mode;
+    var onChange = _props.onChange;
     var onFocus = _props.onFocus;
     var onClick = _props.onClick;
     var onShow = _props.onShow;
@@ -24252,7 +24253,7 @@ var DatePicker = React.createClass({
     var maxDate = _props.maxDate;
     var autoOk = _props.autoOk;
 
-    var other = _objectWithoutProperties(_props, ['formatDate', 'mode', 'onFocus', 'onClick', 'onShow', 'onDismiss', 'minDate', 'maxDate', 'autoOk']);
+    var other = _objectWithoutProperties(_props, ['formatDate', 'mode', 'onChange', 'onFocus', 'onClick', 'onShow', 'onDismiss', 'minDate', 'maxDate', 'autoOk']);
 
     var classes = this.getClasses('chamel-date-picker', {
       'chamel-is-landscape': this.props.mode === 'landscape',
@@ -24266,7 +24267,11 @@ var DatePicker = React.createClass({
 
     var inputType = this.props.preferNative ? "date" : "text";
 
+    // If we are using the native input then we need to get value when changed
+    var inpHndleOnChange = 'date' === inputType ? this._handleInputChange : null;
+
     return React.createElement('div', { className: classes }, React.createElement(TextField, _extends({}, other, {
+      onChange: inpHndleOnChange,
       ref: 'input',
       type: inputType,
       defaultValue: defaultInputValue,
@@ -24295,6 +24300,31 @@ var DatePicker = React.createClass({
 
   _handleDialogAccept: function _handleDialogAccept(d) {
     this.setDate(d);
+    if (this.props.onChange) this.props.onChange(null, d);
+  },
+
+  /**
+   * Handle native date input change
+   */
+  _handleInputChange: function _handleInputChange(e) {
+    var dateString = e.target.value;
+    var d = null;
+
+    /*
+     * HTML5 date inputs return yyyy-mm-dd which will be parsed as UTC
+     * since javascript treates all iso standards as UTC and non-standard
+     * dates like mm/dd/yyyy as local (PUKE). This is changing in EMCA 2015
+     * but for now we need to offset the local from UTC to make sure we use the
+     * actual date the user selected
+     */
+    if (dateString) {
+      var parts = dateString.split('-');
+      // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+
+      // Make a local date with the date parts
+      d = new Date(parts[0], parts[1] - 1, parts[2]); // Note: months are 0-based
+    }
+
     if (this.props.onChange) this.props.onChange(null, d);
   },
 

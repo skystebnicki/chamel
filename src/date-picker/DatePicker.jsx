@@ -51,6 +51,7 @@ var DatePicker = React.createClass({
     var {
       formatDate,
       mode,
+      onChange,
       onFocus,
       onClick,
       onShow,
@@ -72,10 +73,14 @@ var DatePicker = React.createClass({
 
     var inputType = (this.props.preferNative) ? "date" : "text";
 
+    // If we are using the native input then we need to get value when changed
+    var inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
+
     return (
       <div className={classes}>
         <TextField
           {...other}
+          onChange={inpHndleOnChange}
           ref="input"
           type={inputType}
           defaultValue={defaultInputValue}
@@ -108,6 +113,31 @@ var DatePicker = React.createClass({
 
   _handleDialogAccept: function(d) {
     this.setDate(d);
+    if (this.props.onChange) this.props.onChange(null, d);
+  },
+
+  /**
+   * Handle native date input change
+   */
+  _handleInputChange: function(e) {
+    var dateString = e.target.value;
+    var d = null;
+
+    /*
+     * HTML5 date inputs return yyyy-mm-dd which will be parsed as UTC
+     * since javascript treates all iso standards as UTC and non-standard
+     * dates like mm/dd/yyyy as local (PUKE). This is changing in EMCA 2015
+     * but for now we need to offset the local from UTC to make sure we use the
+     * actual date the user selected
+     */
+    if (dateString) {
+      var parts = dateString.split('-');
+      // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+      
+      // Make a local date with the date parts
+      d = new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
+    }
+
     if (this.props.onChange) this.props.onChange(null, d);
   },
 

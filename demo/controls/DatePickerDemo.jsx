@@ -4,6 +4,12 @@ var ComponentDoc = require('../ComponentDoc.jsx');
 
 var DatePickerPage = React.createClass({
 
+  getInitialState: function() {
+    return {
+      dateValue: "11/19/2015"
+    }
+  },
+
   render: function() {
 
     var code =
@@ -81,7 +87,7 @@ var DatePickerPage = React.createClass({
         code={code}
         componentInfo={componentInfo}>
 
-        <DatePicker value="11/19/2015" required={true} onChange={this._handleDateChange} />
+        <DatePicker value={this.state.dateValue} required={true} onChange={this._handleDateChange} />
 
         <DatePicker
           hintText="Not native"
@@ -98,8 +104,11 @@ var DatePickerPage = React.createClass({
     );
   },
 
-  _handleDateChange: function(evt, value) {
-    console.log("Change date to", value);
+  _handleDateChange: function(evt, date) {
+    console.log("Change date to", date);
+    this.setState({
+      dateValue: (date.getMonth() + 1 ) + "/" + date.getDate() + "/" + date.getFullYear()
+    })
   }
 
 });
