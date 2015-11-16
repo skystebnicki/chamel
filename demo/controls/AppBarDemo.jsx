@@ -1,19 +1,28 @@
 var React = require("react");
 var AppBar = require("../../src/AppBar.jsx");
 var IconButton = require("../../src/IconButton.jsx");
+var FlatButton = require("../../src/FlatButton.jsx");
 var CodeExample = require("../CodeExample.jsx");
+
+var rightBarItems = [
+
+];
 
 var AppBarDemo = React.createClass({
 
     render: function() {
 
-        var leftIcon = (<IconButton
-            iconClassName="cfi cfi-close">
-        </IconButton>);
+        var leftIcon = (
+            <IconButton
+                iconClassName="cfi cfi-close">
+            </IconButton>
+        );
 
-        var rightIcon = (<IconButton
-            iconClassName="cfi cfi-pencil">
-        </IconButton>);
+        var rightIcon = (
+            <IconButton
+                iconClassName="cfi cfi-pencil">
+            </IconButton>
+        );
 
         return (
             <div className="row">
@@ -22,7 +31,7 @@ var AppBarDemo = React.createClass({
                         title="Test"
                         iconElementLeft={leftIcon}
                         iconElementRight={rightIcon}
-                        />
+                    />
                 </div>
             </div>
         );

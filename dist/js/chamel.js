@@ -21308,6 +21308,9 @@ var DropDownMenu = React.createClass({
       selectedIndex: key,
       open: false
     });
+
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
   }
 
 });
