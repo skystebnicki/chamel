@@ -3,7 +3,7 @@ var Classable = require('../mixins/classable.jsx');
 var WindowListenable = require('../mixins/WindowListenable.jsx');
 var KeyCode = require('../utils/KeyCode.jsx');
 var Calendar = require('./Calendar.jsx');
-var DialogWindow = require('../DialogWindow.jsx');
+var Dialog = require('../Dialog.jsx');
 var FlatButton = require('../FlatButton.jsx');
 
 var DatePickerDialog = React.createClass({
@@ -54,11 +54,10 @@ var DatePickerDialog = React.createClass({
     }
 
     return (
-      <DialogWindow {...other}
+      <Dialog {...other}
         ref="dialogWindow"
         className={classes}
         actions={actions}
-        contentClassName="chamel-date-picker-dialog-window"
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
         repositionOnUpdate={false}>
@@ -69,7 +68,7 @@ var DatePickerDialog = React.createClass({
           onSelectedDate={this._onSelectedDate}
           initialDate={this.props.initialDate}
           isActive={this.state.isCalendarActive} />
-      </DialogWindow>
+      </Dialog>
     );
   },
 

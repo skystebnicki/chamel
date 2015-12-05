@@ -161,6 +161,8 @@ var DialogPage = React.createClass({
                 <RaisedButton label="Custom Actions" onClick={this.handleCustomDialogTouchTap} />
                 <br/><br/>
                 <RaisedButton label="Scrollable Actions" onClick={this.handleScrollableialogTouchTap} />
+                <br/><br/>
+                <RaisedButton label="Nested Dialogs" onClick={this.handleNestedDialogTouchTap} />
 
                 <Dialog
                     ref="standardDialog"
@@ -186,6 +188,22 @@ var DialogPage = React.createClass({
                     autoDetectWindowHeight={true} 
                     autoScrollBodyContent={true}>
                     <div style={{height: '2000px'}}>Really long content</div>
+                </Dialog>
+
+                 <Dialog
+                    ref="nestedDialog"
+                    title="Dialog With a Child"
+                    actions={customActions}
+                    modal={this.state.modal}>
+                    <Dialog
+                        ref="nestedChildDialog"
+                        title="Child Dialog"
+                        actions={customActions}
+                        modal={this.state.modal}
+                    >
+                        Child Content
+                    </Dialog>
+                    <RaisedButton label="Show Child" onClick={this.handleNestedChildDialogTouchTap} />
                 </Dialog>
 
                 <div style={{width: '300px', margin: '0 auto', paddingTop: '20px'}}>
@@ -230,6 +248,14 @@ var DialogPage = React.createClass({
 
     handleScrollableialogTouchTap: function() {
         this.refs.scrollableDialog.show();
+    },
+
+    handleNestedDialogTouchTap: function() {
+        this.refs.nestedDialog.show();
+    },
+
+    handleNestedChildDialogTouchTap: function() {
+        this.refs.nestedChildDialog.show();
     }
 
 
