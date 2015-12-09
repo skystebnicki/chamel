@@ -11,7 +11,7 @@ var TextFieldRich = React.createClass({
 		onBlur: React.PropTypes.func,
 		onChange: React.PropTypes.func,
 		onFocus: React.PropTypes.func,
-		onKeyDown: React.PropTypes.func,
+		onKeyUp: React.PropTypes.func,
 		onEnterKeyDown: React.PropTypes.func,
 		autoGrow: React.PropTypes.bool,
 		height: React.PropTypes.number,
@@ -34,27 +34,15 @@ var TextFieldRich = React.createClass({
 			iframe.style.height = height + 'px';
 		}
 
-		// Make the contents of the iframe editable
-		var cls = this;
-
 		/*
 		 * We need to delay the settings of the iframe document body because react only renders the iframe
 		 * So after it is mounted, the iframe body is then created.
 		 * If we are not going to use setTimeout, the body settings are still set but will not reflect in the iframe document body
 		 */
 		setTimeout(function () {
-			cls._enableDesign(true);
-			cls.setValue(cls.props.value);
-		}, 1);
-	},
-
-	componentDidUpdate: function () {
-		// Re enable the content editable of the iframe document
-		var cls = this;
-		setTimeout(function () {
-			cls._enableDesign(true);
-		}, 1);
-
+			this._enableDesign(true);
+			this.setValue(this.props.value);
+		}.bind(this), 1);
 	},
 
 	render: function () {
@@ -95,6 +83,7 @@ var TextFieldRich = React.createClass({
 				ifrmWindow.focus();
 				idoc.execCommand(command, false, option);
 				ifrmWindow.focus();
+				this._handleInputChange();
 			}
 		}
 		catch (e) {
@@ -219,14 +208,9 @@ var TextFieldRich = React.createClass({
 	 * @private
 	 */
 	_handleInputBlur: function (e) {
+		var result = {target: {value: this.getValue()}};
 
-		if (typeof e.target === "undefied") {
-			e.target = {};
-		}
-
-		e.target.value = this.getValue();
-
-		if (this.props.onBlur) this.props.onBlur(e);
+		if (this.props.onBlur) this.props.onBlur(result);
 	},
 
 	/**
@@ -236,7 +220,8 @@ var TextFieldRich = React.createClass({
 	 * @private
 	 */
 	_handleInputChange: function (e) {
-		if (this.props.onChange) this.props.onChange(e);
+		var result = {target: {value: this.getValue()}};
+		if (this.props.onChange) this.props.onChange(result);
 	},
 
 	/**
@@ -246,8 +231,10 @@ var TextFieldRich = React.createClass({
 	 * @private
 	 */
 	_handleInputFocus: function (e) {
+		var result = {target: {value: this.getValue()}};
+
 		if (this.props.onFocus) {
-			this.props.onFocus(e);
+			this.props.onFocus(result);
 		}
 	},
 
@@ -257,23 +244,25 @@ var TextFieldRich = React.createClass({
 	 * @param {DOMEvent} e        Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleInputKeyDown: function (e) {
+	_handleInputKeyUp: function (e) {
+		var result = {target: {value: this.getValue()}};
+
 		if (this.props.autoGrow) {
 			this._autoGrow();
 		}
 
-		if (e.keyCode === 13 && this.props.onEnterKeyDown) {
-			this.props.onEnterKeyDown(e);
+		if (e.keyCode == 13 && this.props.onEnterKeyDown) {
+			this.props.onEnterKeyDown(result);
 		}
 
 		// Handle onkeydown event
-		if (this.props.onKeyDown) {
-			this.props.onKeyDown(e);
+		if (this.props.onKeyUp) {
+			this.props.onKeyUp(result);
 		}
 
 		// Handle onChange event
 		if (this.props.onChange) {
-			this.props.onChange(e);
+			this.props.onChange(result);
 		}
 	},
 
@@ -353,9 +342,9 @@ var TextFieldRich = React.createClass({
 				this._handleInputBlur(evt);
 			}.bind(this), false);
 
-			// on keydown
-			evtObj.addEventListener("keydown", function (evt) {
-				this._handleInputKeyDown(evt);
+			// on keyup
+			evtObj.addEventListener("keyup", function (evt) {
+				this._handleInputKeyUp(evt);
 			}.bind(this), false);
 
 			// on focus
@@ -379,8 +368,8 @@ var TextFieldRich = React.createClass({
 			}.bind(this));
 
 			// on keydown
-			evtObj.attachEvent("onkeydown", function (evt) {
-				this._handleInputKeyDown(evt);
+			evtObj.attachEvent("onkeyup", function (evt) {
+				this._handleInputKeyUp(evt);
 			}.bind(this));
 
 			// on focus

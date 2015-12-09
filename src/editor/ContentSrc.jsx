@@ -1,92 +1,131 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var CodeMirror = require('codemirror');
+var TextFieldRich = require("../TextFieldRich.jsx");
 
-var ContentSrc = React.createClass({
+var ContentRte = React.createClass({
+
 	propTypes: {
 		onBlur: React.PropTypes.func,
-		onFocus: React.PropTypes.func,
 		onChange: React.PropTypes.func,
-		options: React.PropTypes.object,
-		value: React.PropTypes.string
+		onFocus: React.PropTypes.func,
+		value: React.PropTypes.string,
 	},
 
-	getInitialState: function() {
+	getDefaultProps: function() {
 		return {
-			value: ""
+			value: "",
 		};
 	},
 
-	componentDidMount: function componentDidMount() {
-		var textareaNode = ReactDOM.findDOMNode(this.refs.textarea);
-		
-		this._codeMirror = CodeMirror.fromTextArea(textareaNode, this.props.options);
-		this._codeMirror.on('change', this._handleChange);
-		this._codeMirror.on('focus', this._handleFocus);
-		this._codeMirror.on('blur', this._handleBlur);
+	render: function() {
+		return (
+			<TextFieldRich
+				ref="textFieldRich"
+				onFocus={this._handleFocus}
+				onBlur={this._handleBlur}
+				onChange={this._handleChange}
+				value={this.props.value} />
+		);
 	},
 
-	componentWillUnmount: function componentWillUnmount() {
-		if (this._codeMirror) {
-			this._codeMirror.toTextArea();
-		}
-	},
-	
-	render: function render() {
-		return React.createElement('textarea', { ref: 'textarea', defaultValue: this.props.value, autoComplete: 'off' })
-	},
-	
 	/**
-	 * Get the current value of the iframe document / code mirror editor
-	 * 
+	 * Sends a command to the TextFieldRich component which executes an editor command
+	 *
+	 * @param {string} command 	The name of the RTE command to execute
+	 * @param {string} option 	The option when executing a certain command. e.g. changing the font/background colors
+	 * @public
+	 */
+	sendCommand: function (command, option) {
+		this.refs.textFieldRich.sendCommand(command, option);
+	},
+
+	/**
+	 * Sends a command to the TextFieldRich to change the font/background color
+	 *
+	 * @param {string} type		Type of command to be executed. Either forecolor or backcolor
+	 * @param {string} color	The color that was selected
+	 * @public
+	 */
+	setColor: function (type, color) {
+		this.refs.textFieldRich.setColor(type, color);
+	},
+
+	/**
+	 * Calls a function in the TextFieldRich which insert the a href link
+	 *
+	 * @param {string} path		The url path to be linked on text
+	 * @public
+	 */
+	insertLink: function(path) {
+		this.refs.textFieldRich.insertLink("createlink", path);
+	},
+
+	/**
+	 * Calls a function in the TextFieldRich which insert the html string to the editor
+	 *
+	 * @param {string} html		The string that will be inserted
+	 * @public
+	 */
+	insertHtml: function(html) {
+		this.refs.textFieldRich.insertHtml(html);
+	},
+
+	/**
+	 * Clears the value of the textFieldRich
+	 *
+	 * @public
+	 */
+	clearValue: function() {
+		this.refs.textFieldRich.clearValue();
+	},
+
+	/**
+	 * Gets the value of the textFieldRich
+	 *
 	 * @public
 	 */
 	getValue: function() {
-		return this._codeMirror.getDoc().getValue();
+		return this.refs.textFieldRich.getValue();
 	},
-	
+
 	/**
-	 * Set the value of the iframe document / code mirror editor
+	 * Sets the value of the textFieldRich
 	 *
-	 * @param {string} newValue		The value to be saved in the editor 
+	 * @param {string} newValue		The value to be saved in the editor
 	 * @public
 	 */
 	setValue: function(newValue) {
-		this._codeMirror.getDoc().setValue(newValue);
+		this.refs.textFieldRich.setValu(neValue);
 	},
-	
+
 	/**
-     * Callback used to handle onblur on textarea
-     *
-     * @param {DOMEvent} e 		Reference to the DOM event being sent
-     * @private
-     */
+	 * Callback used to handle onblur
+	 *
+	 * @param {DOMEvent} e 		Reference to the DOM event being sent
+	 * @private
+	 */
 	_handleBlur: function(e) {
-	    this.setState({isFocused: false});
-	    if (this.props.onBlur) this.props.onBlur(e);
+		if (this.props.onBlur) this.props.onBlur(e);
 	},
-	
+
 	/**
-     * Callback used to handle onfocus on textarea
-     *
-     * @param {DOMEvent} e 		Reference to the DOM event being sent
-     * @private
-     */
+	 * Callback used to handle onfocus
+	 *
+	 * @param {DOMEvent} e 		Reference to the DOM event being sent
+	 * @private
+	 */
 	_handleFocus: function(e) {
-		this.setState({isFocused: true});
 		if (this.props.onFocus) this.props.onFocus(e);
 	},
-	
+
 	/**
-     * Callback used to handle onchange on the textarea
-     *
-     * @param {DOMEvent} e 		Reference to the DOM event being sent
-     * @private
-     */
+	 * Callback used to handle onchange
+	 *
+	 * @param {DOMEvent} e 		Reference to the DOM event being sent
+	 * @private
+	 */
 	_handleChange: function(e) {
 		if (this.props.onChange) this.props.onChange(e);
-	},
-
+	}
 });
 
-module.exports = ContentSrc;
+module.exports = ContentRte;
