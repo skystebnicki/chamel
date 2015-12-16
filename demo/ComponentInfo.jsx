@@ -1,42 +1,54 @@
 var React = require('react');
-
+var CodeExample = require('./CodeExample.jsx');
 var ComponentInfo = React.createClass({
 
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    infoArray: React.PropTypes.array.isRequired
-  },
+    propTypes: {
+        name: React.PropTypes.string.isRequired,
+        infoArray: React.PropTypes.array.isRequired,
+    },
 
-  render: function() {
-    var propElements = [],
-      typesSpan;
+    render: function () {
+        var propElements = [],
+            typesSpan,
+            sampleDisplay;
 
-    this.props.infoArray.forEach(function(info, i) {
+        this.props.infoArray.forEach(function (info, i) {
 
-      if (info.type) typesSpan = <span className="component-info-type">{info.type}</span>;
+            if (info.type) typesSpan = <span className="component-info-type">{info.type}</span>;
 
-      propElements.push(
-        <tr key={i}>
-          <td className="component-info-name">{info.name}</td>
-          <td className="component-info-desc">
-            <p className="component-info-header">{typesSpan}{info.header}</p>
-            <p>{info.desc}</p>
-          </td>
-        </tr>
-      );
-    });
+            if (info.sample) {
+                sampleDisplay = (
+                    <CodeExample code={info.sample}>
+                    </CodeExample>
+                )
+            }
 
-    return (
-      <div className="component-info">
-        <h3 className="mui-font-style-title">{this.props.name}</h3>
-        <table>
-          <tbody>
-            {propElements}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
+            propElements.push(
+                <tr key={i}>
+                    <td className="component-info-name">{info.name}</td>
+                    <td className="component-info-desc">
+                        <p className="component-info-header">{typesSpan}{info.header}</p>
+
+                        <p>{info.desc}</p>
+                    </td>
+                    <td>
+                        {sampleDisplay}
+                    </td>
+                </tr>
+            );
+        });
+
+        return (
+            <div className="component-info">
+                <h3 className="mui-font-style-title">{this.props.name}</h3>
+                <table>
+                    <tbody>
+                    {propElements}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 
 });
 
