@@ -4,6 +4,8 @@ var Classable = require('./mixins/classable.jsx');
 var UniqueId = require('./utils/UniqueId.jsx');
 var EnhancedTextarea = require('./EnhancedTextarea.jsx');
 var DateTimeUtil = require('./utils/DateTime.jsx');
+var AutoComplete = require('./AutoComplete.jsx');
+var KeyCode = require('./utils/KeyCode.jsx');
 
 var TextField = React.createClass({
 
@@ -21,18 +23,27 @@ var TextField = React.createClass({
         onKeyDown: React.PropTypes.func,
         onEnterKeyDown: React.PropTypes.func,
         onClick: React.PropTypes.func,
-        type: React.PropTypes.string
+        type: React.PropTypes.string,
+
+        autoComplete: React.PropTypes.bool,
+        autoCompleteData: React.PropTypes.array,
+        autocompleteTrigger: React.PropTypes.array,
     },
 
     getDefaultProps: function () {
         return {
-            type: 'text'
+            type: 'text',
+            autoComplete: false,
+            autoCompleteData: null,
+            autocompleteTrigger: ['@']
         };
     },
 
     getInitialState: function () {
         return {
+            displayAutoComplete: false,
             errorText: this.props.errorText,
+            caretPos: 0,
             hasValue: this.props.value || this.props.defaultValue ||
             (this.props.valueLink && this.props.valueLink.value)
         };
@@ -112,6 +123,7 @@ var TextField = React.createClass({
             onBlur: this._handleInputBlur,
             onFocus: this._handleInputFocus,
             onKeyDown: this._handleInputKeyDown,
+            onKeyUp: this._handleInputKeyUp,
             onClick: this._handleInputClick,
         };
 
@@ -136,6 +148,21 @@ var TextField = React.createClass({
                 type={this.props.type}/>
         );
 
+        var autoCompleteDisplay = null;
+
+        if (this.props.autoComplete && this.state.hasValue) {
+            autoCompleteDisplay = (
+                <AutoComplete
+                    ref='autoComplete'
+                    autoCompleteData={this.props.autoCompleteData}
+                    inputValue={this.state.hasValue}
+                    inputCaretPos={this.state.caretPos}
+                    keyPressedValue={this.state.keyPressedValue}
+                    onSelect={this._handleAutoCompleteSelected}
+                    />
+            );
+        }
+
         return (
             <div className={classes}>
 
@@ -145,6 +172,8 @@ var TextField = React.createClass({
 
                 <hr className="chamel-text-field-underline"/>
                 <hr className="chamel-text-field-focus-underline"/>
+
+                {autoCompleteDisplay}
 
                 {errorTextElement}
 
@@ -207,7 +236,7 @@ var TextField = React.createClass({
     /**
      * Set the current caret/cursor position of the input node
      *
-     * @params {int} caretPos      The caret/cursor position you want to set
+     * @params {int} caretPos      The caret/cursor position
      * @public
      */
     setCaretPos: function (caretPos) {
@@ -305,7 +334,12 @@ var TextField = React.createClass({
 
     _handleInputChange: function (e) {
         var value = e.target.value;
-        this.setState({hasValue: value});
+
+        this.setState({
+            hasValue: value,
+            caretPos: this.getCaretPos()
+        });
+
         if (this.props.onChange) {
             this.props.onChange(e, value);
         }
@@ -314,11 +348,6 @@ var TextField = React.createClass({
     _handleInputFocus: function (e) {
         this.setState({isFocused: true});
         if (this.props.onFocus) this.props.onFocus(e);
-    },
-
-    _handleInputKeyDown: function (e) {
-        if (e.keyCode === 13 && this.props.onEnterKeyDown) this.props.onEnterKeyDown(e);
-        if (this.props.onKeyDown) this.props.onKeyDown(e);
     },
 
     _handleInputClick: function (e) {
@@ -334,8 +363,72 @@ var TextField = React.createClass({
     _isControlled: function () {
         return this.props.hasOwnProperty('value') ||
             this.props.hasOwnProperty('valueLink');
-    }
+    },
 
+    /**
+     * Callback used to handle the input keydown
+     *
+     * @param {DOMEvent} evt    Reference to the DOM event being sent
+     * @private
+     */
+    _handleInputKeyDown: function (evt) {
+
+        switch (evt.keyCode) {
+            case KeyCode.ENTER:
+                if (this.props.onEnterKeyDown) {
+                    this.props.onEnterKeyDown(evt);
+                }
+
+            case KeyCode.ESC:
+            case KeyCode.UP:
+            case KeyCode.DOWN:
+                if (this.props.autoComplete) {
+                    this.setState({
+                        keyPressedValue: evt.keyCode,
+                        caretPos: this.getCaretPos()
+                    });
+
+                    evt.preventDefault();
+                }
+                break;
+        }
+
+
+        if (this.props.onKeyDown) {
+            this.props.onKeyDown(evt);
+        }
+    },
+
+    /**
+     * Callback used to handle the input keyup
+     *
+     * @param {DOMEvent} evt    Reference to the DOM event being sent
+     * @private
+     */
+    _handleInputKeyUp: function (evt) {
+        switch (evt.keyCode) {
+            case KeyCode.LEFT:
+            case KeyCode.RIGHT:
+            case KeyCode.DELETE:
+            case KeyCode.BACKSPACE:
+                if (this.props.autoComplete) {
+                    this.setState({
+                        keyPressedValue: evt.keyCode,
+                        caretPos: this.getCaretPos()
+                    });
+                }
+                break;
+        }
+
+        if (this.props.onKeyUp) {
+            this.props.onKeyUp(evt);
+        }
+    },
+
+    _handleAutoCompleteSelected: function (value, caretPos) {
+        this.setValue(value);
+        this.setCaretPos(caretPos)
+    }
 });
 
 module.exports = TextField;

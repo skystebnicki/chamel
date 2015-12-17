@@ -1,11 +1,11 @@
 var React = require('react');
 var TextField = require("../../src/TextField.jsx");
-var Callout = require("../../src/Callout.jsx");
+var AutoComplete = require("../../src/AutoComplete.jsx");
 var CodeExample = require("../CodeExample.jsx");
 var ComponentDoc = require('../ComponentDoc.jsx');
 
 var code =
-    '<Callout suggestions={suggestions} inputAttributes={inputAttributes} />';
+    '<AutoComplete suggestions={suggestions} inputAttributes={inputAttributes} />';
 
 var componentInfo = [
     {
@@ -55,7 +55,6 @@ var EditorDemo = React.createClass({
 
     render: function () {
 
-        var displayCallout = null;
         var suggestions = [
             {payload: 1, text: 'banana'},
             {payload: 2, text: 'apple'},
@@ -63,21 +62,13 @@ var EditorDemo = React.createClass({
             {payload: 4, text: 'star apple'},
         ];
 
-        var inputAttributes = {
-            id: 'callout-input',
-            onChange: this._handleChange,
-        };
-
-
-        displayCallout = (<Callout suggestions={suggestions} inputAttributes={inputAttributes}/>);
-
         return (
             <ComponentDoc
-                name="Callout"
+                name="AutoComplete"
                 code={code}
                 componentInfo={componentInfo}>
 
-                {displayCallout}
+                <TextField autoComplete={true} autoCompleteData={suggestions} />
 
             </ComponentDoc>
         );

@@ -27,7 +27,7 @@ var menuItems = [
   { route: 'progress', text: 'Progress' },
   { route: 'tabs', text: 'Tabs' },
   { route: 'datepicker', text: 'DatePicker' },
-  { route: 'callout', text: 'Callout' }
+  { route: 'autocomplete', text: 'AutoComplete' }
 ];
 
 var App = React.createClass({
