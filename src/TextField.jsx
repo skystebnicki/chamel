@@ -471,19 +471,25 @@ var TextField = React.createClass({
      * @private
      */
     _getAutoCompleteComponent: function (autoCompleteData) {
-        return (
-            <AutoComplete
-                ref='autoComplete'
-                inputValue={this.state.hasValue}
-                inputCaretPos={this.state.caretPos}
-                keyPressedValue={this.state.keyPressedValue}
-                suggestionData={autoCompleteData}
-                trigger={this.props.autoCompleteTrigger}
-                delimiter={this.props.autoCompleteDelimiter}
-                onSelect={this._handleAutoCompleteSelected}
-                transform={this.props.autoCompleteTransform}
-                />
-        );
+        var component = null;
+
+        if(autoCompleteData ) {
+            component = (
+                <AutoComplete
+                    ref='autoComplete'
+                    inputValue={this.state.hasValue}
+                    inputCaretPos={this.state.caretPos}
+                    keyPressedValue={this.state.keyPressedValue}
+                    suggestionData={autoCompleteData}
+                    trigger={this.props.autoCompleteTrigger}
+                    delimiter={this.props.autoCompleteDelimiter}
+                    onSelect={this._handleAutoCompleteSelected}
+                    transform={this.props.autoCompleteTransform}
+                    />
+            );
+        }
+
+        return component;
     }
 });
 

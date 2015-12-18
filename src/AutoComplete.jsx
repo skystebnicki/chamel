@@ -132,6 +132,10 @@ var AutoComplete = React.createClass({
                 break;
 
             case KeyCode.ESC:
+                this.setState({
+                    focusedIndex: 0,
+                    suggestionList: []
+                });
                 break;
 
             case KeyCode.UP:
@@ -217,8 +221,8 @@ var AutoComplete = React.createClass({
 
         this.setState({
             focusedIndex: 0,
-            displayFlag: false
-        })
+            suggestionList: []
+        });
 
         if (this.props.onSelect) {
             this.props.onSelect(newValue, newCaretPos)
