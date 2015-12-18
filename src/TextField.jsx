@@ -27,7 +27,10 @@ var TextField = React.createClass({
 
         autoComplete: React.PropTypes.bool,
         autoCompleteData: React.PropTypes.array,
-        autocompleteTrigger: React.PropTypes.array,
+        autoCompleteTrigger: React.PropTypes.any,
+        autoCompleteDelimiter: React.PropTypes.string,
+        autoCompleteTransform: React.PropTypes.func,
+        autoCompleteGetData: React.PropTypes.func
     },
 
     getDefaultProps: function () {
@@ -35,15 +38,16 @@ var TextField = React.createClass({
             type: 'text',
             autoComplete: false,
             autoCompleteData: null,
-            autocompleteTrigger: ['@']
+            autocompleteTrigger: ['@'],
+            autocompleteDelimiter: '',
         };
     },
 
     getInitialState: function () {
         return {
-            displayAutoComplete: false,
-            errorText: this.props.errorText,
+            keyPressedValue: null,
             caretPos: 0,
+            errorText: this.props.errorText,
             hasValue: this.props.value || this.props.defaultValue ||
             (this.props.valueLink && this.props.valueLink.value)
         };
@@ -150,17 +154,29 @@ var TextField = React.createClass({
 
         var autoCompleteDisplay = null;
 
+        // Check if autoComplete is set before we try to display autoComplete component
         if (this.props.autoComplete && this.state.hasValue) {
-            autoCompleteDisplay = (
-                <AutoComplete
-                    ref='autoComplete'
-                    autoCompleteData={this.props.autoCompleteData}
-                    inputValue={this.state.hasValue}
-                    inputCaretPos={this.state.caretPos}
-                    keyPressedValue={this.state.keyPressedValue}
-                    onSelect={this._handleAutoCompleteSelected}
-                    />
-            );
+
+            // Throw an error if the user have provided both data and getData properties
+            if(this.props.autoCompleteData && this.props.autoCompleteGetData) {
+                console.error('Cannot provide autoCompleteData and autoCompleteGetData properties at the same time.');
+            }
+
+            if (this.props.autoCompleteData) {
+                autoCompleteDisplay = this._getAutoCompleteComponent(this.props.autoCompleteData);
+
+            } else if (this.props.autoCompleteGetData) {
+
+                // Callback function that will be called once the getting of autoComplete data is done
+                var doneGetDataCallback = function(autoCompleteData) {
+
+                    // This will allow us to display the autoComplete component using the autoCompleteData as its list
+                    autoCompleteDisplay = this._getAutoCompleteComponent(autoCompleteData);
+                }.bind(this);
+
+                // Process the getting of autoComplete data
+                this.props.autoCompleteGetData(doneGetDataCallback);
+            }
         }
 
         return (
@@ -296,7 +312,11 @@ var TextField = React.createClass({
             console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
         } else if (this.isMounted()) {
             this._getInputNode().value = sanitizedValue;
-            this.setState({hasValue: sanitizedValue});
+            this.setState({
+                hasValue: sanitizedValue,
+                caretPos: this.getCaretPos(),
+                keyPressedValue: null
+            });
         }
     },
 
@@ -337,7 +357,8 @@ var TextField = React.createClass({
 
         this.setState({
             hasValue: value,
-            caretPos: this.getCaretPos()
+            caretPos: this.getCaretPos(),
+            keyPressedValue: null
         });
 
         if (this.props.onChange) {
@@ -350,10 +371,6 @@ var TextField = React.createClass({
         if (this.props.onFocus) this.props.onFocus(e);
     },
 
-    _handleInputClick: function (e) {
-        if (this.props.onClick) this.props.onClick(e);
-    },
-
     _handleTextAreaHeightChange: function (e, height) {
         var newHeight = height + 24;
         if (this.props.floatingLabelText) newHeight += 24;
@@ -363,6 +380,16 @@ var TextField = React.createClass({
     _isControlled: function () {
         return this.props.hasOwnProperty('value') ||
             this.props.hasOwnProperty('valueLink');
+    },
+
+    _handleInputClick: function (e) {
+
+        this.setState({
+            caretPos: this.getCaretPos(),
+            keyPressedValue: null
+        });
+
+        if (this.props.onClick) this.props.onClick(e);
     },
 
     /**
@@ -425,9 +452,38 @@ var TextField = React.createClass({
         }
     },
 
+    /**
+     * Callback used to handle the selection of autocomplete data
+     *
+     * @param {string} value    The selected value in the autoComplete data list
+     * @param {int} caretPos    The caret/cursor position of the input
+     * @private
+     */
     _handleAutoCompleteSelected: function (value, caretPos) {
         this.setValue(value);
-        this.setCaretPos(caretPos)
+        this.setCaretPos(caretPos);
+    },
+
+    /**
+     * Get the autoComplete Component to be displayed
+     *
+     * @param {array} autoCompleteData  The autoComplete data to be displayed as a list
+     * @private
+     */
+    _getAutoCompleteComponent: function (autoCompleteData) {
+        return (
+            <AutoComplete
+                ref='autoComplete'
+                inputValue={this.state.hasValue}
+                inputCaretPos={this.state.caretPos}
+                keyPressedValue={this.state.keyPressedValue}
+                suggestionData={autoCompleteData}
+                trigger={this.props.autoCompleteTrigger}
+                delimiter={this.props.autoCompleteDelimiter}
+                onSelect={this._handleAutoCompleteSelected}
+                transform={this.props.autoCompleteTransform}
+                />
+        );
     }
 });
 

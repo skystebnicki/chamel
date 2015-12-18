@@ -7,11 +7,61 @@ var TextField = require('./TextField.jsx');
 var AutoComplete = React.createClass({
 
     propTypes: {
-        autoCompleteData: React.PropTypes.array.isRequired,
+
+        /**
+         * Suggestion list that will be displayed as menu list
+         *
+         * @var {array}
+         */
+        suggestionData: React.PropTypes.array.isRequired,
+
+        /**
+         * The trigger key to display the menu list. Default value is null
+         *
+         * If trigger is null, then it should start autocomplete after two chars are entered
+         * If trigger is an array, it will loop thru the triggers. (e.g. ['@', '#', '$']
+         * If trigger is an string, then it will display the suggestion list if the user enters that key
+         *
+         * @var {any}
+         */
+        trigger: React.PropTypes.any,
+
+        /**
+         * Delimiter will give us the ability to make it ';' or ',' for things like email input but defaults to space/words
+         *
+         * @var {string}
+         */
+        delimiter: React.PropTypes.string,
+
+        /**
+         * The value coming from the input (textField/editor)
+         *
+         * @var {string}
+         */
         inputValue: React.PropTypes.string,
+
+        /**
+         * The caret/cursor positon of the input
+         *
+         * @var {int}
+         */
         inputCaretPos: React.PropTypes.number,
+
+        /**
+         * The keypress value from the input (textField/editor)
+         *
+         * @var {int}
+         */
         keyPressedValue: React.PropTypes.number,
-        onSelect: React.PropTypes.func
+
+        /**
+         * The callback function used when user selects the suggestion list item
+         *
+         * @var {func}
+         */
+        onSelect: React.PropTypes.func,
+
+        transform: React.PropTypes.func
     },
 
     getDefaultProps: function () {
@@ -19,26 +69,41 @@ var AutoComplete = React.createClass({
             inputValue: null,
             inputCaretPos: 0,
             keyPressedValue: null,
+            delimiter: '',
+            trigger: null
         };
     },
 
     getInitialState: function () {
+        var inputDetails = this._evalInputValue(this.props);
+        var suggestionList = this._getSuggestionList(inputDetails);
+
         return {
             focusedIndex: 0,
+            suggestionList: suggestionList
         };
     },
 
     componentWillReceiveProps: function (nextProps) {
-        this._handleInputKeyPress(nextProps.keyPressedValue);
+
+        var inputDetails = this._evalInputValue(nextProps);
+        var suggestionList = this._getSuggestionList(inputDetails);
+
+        this.setState({suggestionList: suggestionList})
+
+        if (suggestionList.length > 0) {
+            this._handleInputKeyPress(nextProps.keyPressedValue);
+        }
+
     },
 
     render: function () {
         var displayAutoComplete = null;
 
-        if (this._displayAutoComplete()) {
+        if (this.state.suggestionList.length > 0) {
             displayAutoComplete = (
                 <Menu
-                    menuItems={this.props.autoCompleteData}
+                    menuItems={this.state.suggestionList}
                     focusedIndex={this.state.focusedIndex}
                     onItemClick={this._handleItemClick}
                     absoluteOnly={true}
@@ -61,13 +126,9 @@ var AutoComplete = React.createClass({
      */
     _handleInputKeyPress: function (keyCode) {
 
-        if(!this._displayAutoComplete()) {
-            return;
-        }
-
         switch (keyCode) {
             case KeyCode.ENTER:
-                this._setAutoCompleteValue();
+                this._setAutoCompleteValue(this.state.focusedIndex);
                 break;
 
             case KeyCode.ESC:
@@ -82,7 +143,7 @@ var AutoComplete = React.createClass({
                 break;
 
             case KeyCode.DOWN:
-                if (this.state.focusedIndex < (this.props.autoCompleteData.length - 1)) {
+                if (this.state.focusedIndex < (this.props.suggestionData.length - 1)) {
                     this.setState({
                         focusedIndex: this.state.focusedIndex + 1
                     })
@@ -93,7 +154,7 @@ var AutoComplete = React.createClass({
             case KeyCode.RIGHT:
             case KeyCode.DELETE:
             case KeyCode.BACKSPACE:
-                this._displayAutoComplete();
+                this._getSuggestionList();
                 break;
         }
     },
@@ -107,7 +168,61 @@ var AutoComplete = React.createClass({
      * @private
      */
     _handleItemClick: function (e, key, menuItem) {
-        this._setAutoCompleteValue(menuItem.text);
+        this._setAutoCompleteValue(key);
+    },
+
+    /**
+     * Set the autoComplete selected value in the input
+     *
+     * @param {int} selectedIndex    The autoComplete list index that was selected
+     * @private
+     */
+    _setAutoCompleteValue: function (selectedIndex) {
+
+        var selectedValue = null;
+        var selectedData = this.state.suggestionList[selectedIndex];
+
+        if(this.props.transform) {
+            selectedValue = this.props.transform(selectedData);
+        }
+
+        if(!selectedValue) {
+            selectedValue = selectedData.text;
+        }
+
+        var inputDetails = this._evalInputValue(this.props);
+
+        if (this.props.trigger == null
+            && inputDetails.startPos > 0
+            && inputDetails.subValue[inputDetails.startPos] === " ") {
+
+            /**
+             * If trigger is null and startPos is -1, this means that the user is just typing letters without a trigger key
+             * We are also checking if the string has a postfix of space (e.g. 'testString ')
+             * If all of these are conditions are met, then we will increment the startPos by 1
+             * This is necessary so when replacing the keyword with the selectedValue, we will include the space in between
+             */
+            inputDetails.startPos += 1;
+        }
+
+        // Replace the trigger key with the selected autoComplete value
+        var newValue = inputDetails.subValue.substr(0, inputDetails.startPos);
+        newValue += selectedValue;
+        newValue += this.props.delimiter;
+
+        var newCaretPos = newValue.length;
+
+        // If the trigger key is in the middle of text, then we need to append the last part of substr value
+        newValue += inputDetails.value.substr(inputDetails.caretPos, inputDetails.value.length);
+
+        this.setState({
+            focusedIndex: 0,
+            displayFlag: false
+        })
+
+        if (this.props.onSelect) {
+            this.props.onSelect(newValue, newCaretPos)
+        }
     },
 
     /**
@@ -118,54 +233,68 @@ var AutoComplete = React.createClass({
      *      value: the quick brown @fox,
      *      caretPos: 19, // Assuming the cursor/caret position is in second to the last position (between the o and x)
      *      subValue: the quick brown @fo,
-     *      lastIndexOf: 16
+     *      minLengthLimit: 0 or 2, // If we have a trigger data then the corresponding value is 0, else the value is 2
+     *      startPos: 16
      *  }
      * @private
      */
-    _evalInputValue: function () {
-        var details = null;
-        var inputValue = this.props.inputValue; // Get the current input value
+    _evalInputValue: function (source) {
 
+        if (!source) {
+            source = this.props
+        }
+
+        var details = null;
+        var inputValue = source.inputValue; // Get the current input value
+
+        var caretPos = source.inputCaretPos; // Get the current caret/cursor position
         if (inputValue) {
-            var caretPos = this.props.inputCaretPos; // Get the current caret/cursor position
             var subValue = inputValue.substr(0, caretPos); // Get the substr of inputValue from index 0 to caretPos
 
             var details = {
                 value: inputValue,
                 caretPos: caretPos,
                 subValue: subValue,
-                lastIndexOf: subValue.lastIndexOf('@'), // Get the last index value of the @ position
+                minLengthLimit: this.props.trigger ? 0 : 2,
+                startPos: -1
+            }
+
+            /**
+             * If the this.props.trigger is null, then lets use the this.props.delimiter
+             *
+             * Common Scenario:
+             * trigger = null and delimiter = ';' (this is mostly used for emails)
+             * trigger = @ (mostly used to browse users)
+             * trigger = @ (mostly used to browse colors)
+             */
+            var triggerDelimiter = this.props.trigger || this.props.delimiter
+
+            if (triggerDelimiter) {
+                for (var idx in triggerDelimiter) {
+                    var td = triggerDelimiter[idx];
+
+                    // If we have found the trigger/delimiter in the string, then lets break the for loop
+                    if (subValue.lastIndexOf(td) >= 0) {
+                        details.startPos = subValue.lastIndexOf(td);
+                        break;
+                    }
+                }
+            }
+
+            if (this.props.trigger == null && details.startPos == -1) {
+
+                /**
+                 * If trigger is null and startPos is -1, this means that the user is just typing letters without a trigger key
+                 * We are setting the startPos to 0 since we need to check the input value from start to the current caret position
+                 */
+                details.startPos = 0;
+
+            } else if (details.startPos >= 0) {
+                details.startPos += 1;
             }
         }
 
         return details;
-    },
-
-    /**
-     * Set the autoComplete selected value in the input
-     *
-     * @param {string} selectedValue    The autoComplete that is selected
-     * @private
-     */
-    _setAutoCompleteValue: function (selectedValue) {
-
-        if(!selectedValue) {
-            selectedValue = this.props.autoCompleteData[this.state.focusedIndex].text;
-        }
-
-        var input = this.refs.autoCompleteInput;
-        var inputDetails = this._evalInputValue();
-
-        // Replace the @[+keyword] with the selected autoComplete value
-        var newValue = inputDetails.subValue.substr(0, inputDetails.lastIndexOf) + selectedValue;
-        var newCaretPos = newValue.length;
-
-        // If the @ character is in the middle of text, then we need to append the last part of substr value
-        newValue += inputDetails.value.substr(inputDetails.caretPos, inputDetails.value.length);
-
-        if(this.props.onSelect) {
-            this.props.onSelect(newValue, newCaretPos)
-        }
     },
 
     /**
@@ -178,37 +307,37 @@ var AutoComplete = React.createClass({
      *
      * @private
      */
-    _displayAutoComplete: function () {
-        var inputDetails = this._evalInputValue();
+    _getSuggestionList: function (inputDetails) {
+
+        var suggestionList = [];
 
         // If we find an @ in the inputValue, then lets evaluate it inside the if statement
-        if (inputDetails && inputDetails.lastIndexOf >= 0) {
+        if (inputDetails && inputDetails.startPos >= 0) {
 
             /**
              * Now lets get the chuncked value from the @ position to caret position
              * We will not include the @ in the chunkedValue
-             * So we need to increment the value of lastIndexOf
+             * So we need to increment the value of startPos
              */
-            var chunkedValue = inputDetails.subValue.substr(inputDetails.lastIndexOf + 1, inputDetails.caretPos);
-
-            if (chunkedValue.length == 0) {
-                return false
+            var chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos).trimLeft();
+            if (chunkedValue.length <= inputDetails.minLengthLimit) {
+                return suggestionList;
             }
 
-            // Loop thru this.props.autoCompleteData and find if we have a match of the chunkedValue
-            for (var idx in this.props.autoCompleteData) {
+            // Loop thru this.props.suggestionData and find if we have a match of the chunkedValue keyword
+            for (var idx in this.props.suggestionData) {
 
-                var re = new RegExp(chunkedValue, 'g'); // Create a regex using the chunkedValue
-                var suggestion = this.props.autoCompleteData[idx];
+                var re = new RegExp(chunkedValue, 'g'); // Create a regex using the chunkedValue keyword
+                var suggestion = this.props.suggestionData[idx];
 
-                // If we found a match, then lets display the autoCompleteData list
+                // If we found a match, then lets push it in suggestionList to be displayed later
                 if (suggestion.text.match(re)) {
-                    return true;
+                    suggestionList.push(suggestion);
                 }
             }
         }
 
-        return false;
+        return suggestionList;
     },
 });
 
