@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var KeyCode = require('./utils/KeyCode.jsx');
 var Menu = require('./menu/Menu.jsx');
-var TextField = require('./TextField.jsx');
 
 var AutoComplete = React.createClass({
 
