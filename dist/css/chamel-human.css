@@ -1858,6 +1858,8 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-menu.chamel-menu-hideable.chamel-visible > .chamel-paper-container { padding-top: 8px; padding-bottom: 8px; }
 
+.chamel-menu.chamel-menu-absoluteOnly { position: absolute; }
+
 .chamel-menu .chamel-paper-container { padding-top: 8px; padding-bottom: 8px; }
 
 .chamel-menu .chamel-subheader { padding-left: 24px; padding-right: 24px; }
@@ -1891,6 +1893,8 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 .chamel-menu-item .chamel-toggle { margin-top: 12px; float: right; width: 42px; }
 
 .chamel-menu-item.chamel-is-selected { color: #ff4081; }
+
+.chamel-menu-item.chamel-is-focused { background-color: rgba(0, 0, 0, 0.035); }
 
 .chamel-menu-item.chamel-is-disabled { color: rgba(0, 0, 0, 0.3) !important; cursor: default; }
 
