@@ -68,6 +68,10 @@
     color: $menu-item-selected-text-color;
   }
 
+  &.chamel-is-focused {
+    background-color: $menu-item-hover-color;
+  }
+
   &.chamel-is-disabled {
     color: $disabled-color !important;
     cursor: default;

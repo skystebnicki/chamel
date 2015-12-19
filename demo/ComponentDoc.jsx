@@ -19,10 +19,11 @@ var ComponentDoc = React.createClass({
 
     var componentInfo = this.props.componentInfo.map(function(info, i) {
       return (
-        <ComponentInfo
-          key={i}
-          name={info.name}
-          infoArray={info.infoArray} />
+          <ComponentInfo
+              key={i}
+              name={info.name}
+              infoArray={info.infoArray}
+              />
       );
     });
 

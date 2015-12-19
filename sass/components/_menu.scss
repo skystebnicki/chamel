@@ -23,6 +23,10 @@
     }
   }
 
+  &.chamel-menu-absoluteOnly {
+    position: absolute;
+  }
+
   .chamel-paper-container {
     padding-top: $desktop-gutter-mini;
     padding-bottom: $desktop-gutter-mini;
