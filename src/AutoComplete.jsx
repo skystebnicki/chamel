@@ -266,10 +266,10 @@ var AutoComplete = React.createClass({
             // Loop thru this.props.suggestionData and find if we have a match of the chunkedValue keyword
             for (var idx in suggestionData) {
 
-                var keyword = chunkedValue.replace(/[\W\s+]+$/gi, '');
+                var keyword = chunkedValue.replace(/[\W\s+]+$/g, '');
 
                 var suggestion = suggestionData[idx];
-                var re = new RegExp(keyword, 'g'); // Create a regex using the chunkedValue keyword
+                var re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
 
                 // If we found a match, then lets push it in suggestionList to be displayed later
                 if (suggestion.text.match(re)) {
