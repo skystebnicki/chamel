@@ -15,6 +15,16 @@ var AutoComplete = React.createClass({
         suggestionData: React.PropTypes.array,
 
         /**
+         * Determine if we need to filter the suggestionData when user types a keyword.
+         *
+         * This is used in ::_getSuggestionList() where we are using regular expresion to find the suggestion item
+         * If the suggestionData is already filtered, then just set this to false so it don't need to do the filtering
+         *
+         * @var {array}
+         */
+        filterData: React.PropTypes.bool,
+
+        /**
          * The trigger key to display the menu list. Default value is null
          *
          * If trigger is null, then it should start autocomplete after two chars are entered
@@ -74,7 +84,8 @@ var AutoComplete = React.createClass({
             inputDetails: null,
             keyPressedValue: null,
             delimiter: '',
-            trigger: null
+            trigger: null,
+            filterData: true
         };
     },
 
@@ -215,7 +226,7 @@ var AutoComplete = React.createClass({
         // Replace the trigger key with the selected autoComplete value
         var newValue = inputDetails.subValue.substr(0, inputDetails.startPos);
         newValue += selectedValue;
-        newValue += this.props.delimiter;
+        newValue += (this.props.delimiter) ? this.props.delimiter : '';
 
         var newCaretPos = newValue.length;
 
@@ -263,19 +274,26 @@ var AutoComplete = React.createClass({
                 return suggestionList;
             }
 
-            // Loop thru this.props.suggestionData and find if we have a match of the chunkedValue keyword
-            for (var idx in suggestionData) {
+            // If the data unfiltered, then we need to filter it by using keyword and regular expressions
+            if (this.props.filterData) {
 
-                var keyword = chunkedValue.replace(/[\W\s+]+$/g, '');
+                // Map this.props.suggestionData and find if we have a match of the chunkedValue keyword
+                suggestionData.map(function (suggestion) {
 
-                var suggestion = suggestionData[idx];
-                var re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
+                    // We need the keyword to only have alphanumeric characters
+                    var keyword = chunkedValue.replace(/[\W\s+]+/g, '');
 
-                // If we found a match, then lets push it in suggestionList to be displayed later
-                if (suggestion.text.match(re)) {
-                    suggestionList.push(suggestion);
-                }
+                    var re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
+
+                    // If we found a match, then lets push it in suggestionList to be displayed later
+                    if (suggestion.text.match(re)) {
+                        suggestionList.push(suggestion);
+                    }
+                });
+            } else {
+                suggestionList = suggestionData;
             }
+
         }
 
         return suggestionList;

@@ -164,8 +164,15 @@ var TextField = React.createClass({
                 console.error('Cannot provide autoCompleteData and autoCompleteGetData properties at the same time.');
             }
 
+            var filterData = false;
+
             if ((this.state.skipGetData || this.props.autoCompleteData) && this.state.autoCompleteData) {
-                autoCompleteDisplay = this._getAutoCompleteComponent(this.state.autoCompleteData);
+
+                // If the autoComplete data is coming from the props, then we need to set the filterData to true
+                if (this.props.autoCompleteData)
+                    filterData = true;
+
+                autoCompleteDisplay = this._getAutoCompleteComponent(this.state.autoCompleteData, filterData);
 
             } else if (this.props.autoCompleteGetData) {
 
@@ -173,7 +180,7 @@ var TextField = React.createClass({
                 var doneGetDataCallback = function (autoCompleteData) {
 
                     // This will allow us to display the autoComplete component using the autoCompleteData as its list
-                    autoCompleteDisplay = this._getAutoCompleteComponent(autoCompleteData);
+                    autoCompleteDisplay = this._getAutoCompleteComponent(autoCompleteData, filterData);
                     this.setState({
                         autoCompleteData: autoCompleteData,
                         skipGetData: true
@@ -189,7 +196,7 @@ var TextField = React.createClass({
                 }
 
                 // Process the getting of autoComplete data
-                if (keyword) {
+                if (keyword && inputDetails.startPos >= 0) {
                     this.props.autoCompleteGetData(keyword, doneGetDataCallback);
                 }
             }
@@ -545,7 +552,7 @@ var TextField = React.createClass({
                  */
                 details.startPos = 0;
 
-            } else if (details.startPos >= 0) {
+            } else if (this.props.autoCompleteTrigger && details.startPos >= 0) {
                 details.startPos += 1;
             }
         }
@@ -557,14 +564,18 @@ var TextField = React.createClass({
      * Get the autoComplete Component to be displayed
      *
      * @param {array} autoCompleteData  The autoComplete data to be displayed as a list
+     * @param {bool} filterData         Determine if we need to filter the suggestionData when user types a keyword.
      * @private
      */
-    _getAutoCompleteComponent: function (autoCompleteData) {
+    _getAutoCompleteComponent: function (autoCompleteData, filterData) {
         var component = null,
             attribute;
 
         if (autoCompleteData) {
-            attribute = {suggestionData: autoCompleteData};
+            attribute = {
+                suggestionData: autoCompleteData,
+                filterData: filterData
+            };
         }
 
         component = (
