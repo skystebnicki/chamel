@@ -37,6 +37,7 @@ var TextField = React.createClass({
         return {
             type: 'text',
             autoComplete: false,
+            skipGetData: true,
             autoCompleteData: null,
             autocompleteTrigger: ['@'],
             autocompleteDelimiter: '',
@@ -45,6 +46,7 @@ var TextField = React.createClass({
 
     getInitialState: function () {
         return {
+            autoCompleteData: this.props.autoCompleteData,
             keyPressedValue: null,
             caretPos: 0,
             errorText: this.props.errorText,
@@ -158,24 +160,38 @@ var TextField = React.createClass({
         if (this.props.autoComplete && this.state.hasValue) {
 
             // Throw an error if the user have provided both data and getData properties
-            if(this.props.autoCompleteData && this.props.autoCompleteGetData) {
+            if (this.props.autoCompleteData && this.props.autoCompleteGetData) {
                 console.error('Cannot provide autoCompleteData and autoCompleteGetData properties at the same time.');
             }
 
-            if (this.props.autoCompleteData) {
-                autoCompleteDisplay = this._getAutoCompleteComponent(this.props.autoCompleteData);
+            if ((this.state.skipGetData || this.props.autoCompleteData) && this.state.autoCompleteData) {
+                autoCompleteDisplay = this._getAutoCompleteComponent(this.state.autoCompleteData);
 
             } else if (this.props.autoCompleteGetData) {
 
                 // Callback function that will be called once the getting of autoComplete data is done
-                var doneGetDataCallback = function(autoCompleteData) {
+                var doneGetDataCallback = function (autoCompleteData) {
 
                     // This will allow us to display the autoComplete component using the autoCompleteData as its list
                     autoCompleteDisplay = this._getAutoCompleteComponent(autoCompleteData);
+                    this.setState({
+                        autoCompleteData: autoCompleteData,
+                        skipGetData: true
+                    })
                 }.bind(this);
 
+                var keyword = null;
+                var inputDetails = this._evalInputValue()
+                var chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
+
+                if (chunkedValue.length > inputDetails.minLengthLimit) {
+                    keyword = chunkedValue.replace(/[\W\s+]+$/gi, "");
+                }
+
                 // Process the getting of autoComplete data
-                this.props.autoCompleteGetData(doneGetDataCallback);
+                if (keyword) {
+                    this.props.autoCompleteGetData(keyword, doneGetDataCallback);
+                }
             }
         }
 
@@ -315,7 +331,8 @@ var TextField = React.createClass({
             this.setState({
                 hasValue: sanitizedValue,
                 caretPos: this.getCaretPos(),
-                keyPressedValue: null
+                keyPressedValue: null,
+                skipGetData: false
             });
         }
     },
@@ -358,7 +375,8 @@ var TextField = React.createClass({
         this.setState({
             hasValue: value,
             caretPos: this.getCaretPos(),
-            keyPressedValue: null
+            keyPressedValue: null,
+            skipGetData: false
         });
 
         if (this.props.onChange) {
@@ -386,7 +404,8 @@ var TextField = React.createClass({
 
         this.setState({
             caretPos: this.getCaretPos(),
-            keyPressedValue: null
+            keyPressedValue: null,
+            skipGetData: true
         });
 
         if (this.props.onClick) this.props.onClick(e);
@@ -412,7 +431,8 @@ var TextField = React.createClass({
                 if (this.props.autoComplete) {
                     this.setState({
                         keyPressedValue: evt.keyCode,
-                        caretPos: this.getCaretPos()
+                        caretPos: this.getCaretPos(),
+                        skipGetData: true
                     });
 
                     evt.preventDefault();
@@ -441,7 +461,8 @@ var TextField = React.createClass({
                 if (this.props.autoComplete) {
                     this.setState({
                         keyPressedValue: evt.keyCode,
-                        caretPos: this.getCaretPos()
+                        caretPos: this.getCaretPos(),
+                        skipGetData: true
                     });
                 }
                 break;
@@ -465,29 +486,100 @@ var TextField = React.createClass({
     },
 
     /**
+     * Evaluate the input value and get the needed details
+     *
+     * @param {object} details
+     *  {
+     *      value: the quick brown @fox,
+     *      caretPos: 19, // Assuming the cursor/caret position is in second to the last position (between the o and x)
+     *      subValue: the quick brown @fo,
+     *      minLengthLimit: 0 or 2, // If we have a trigger data then the corresponding value is 0, else the value is 2
+     *      startPos: 16
+     *  }
+     * @private
+     */
+    _evalInputValue: function () {
+
+        var details = null;
+        var inputValue = this.state.hasValue; // Get the current input value
+        var caretPos = this.state.caretPos; // Get the current caret/cursor position
+
+        if (inputValue) {
+            var subValue = inputValue.substr(0, caretPos); // Get the substr of inputValue from index 0 to caretPos
+
+            var details = {
+                value: inputValue,
+                caretPos: caretPos,
+                subValue: subValue,
+                minLengthLimit: this.props.autoCompleteTrigger ? 0 : 2,
+                startPos: -1
+            }
+
+            /**
+             * If the this.props.trigger is null, then lets use the this.props.delimiter
+             *
+             * Common Scenario:
+             * trigger = null and delimiter = ';' (this is mostly used for emails)
+             * trigger = @ (mostly used to browse users)
+             * trigger = @ (mostly used to browse colors)
+             */
+            var triggerDelimiter = this.props.autoCompleteTrigger || this.props.autoCompleteDelimiter
+
+            if (triggerDelimiter) {
+                for (var idx in triggerDelimiter) {
+                    var td = triggerDelimiter[idx];
+
+                    // If we have found the trigger/delimiter in the string, then lets break the for loop
+                    if (subValue.lastIndexOf(td) >= 0) {
+                        details.startPos = subValue.lastIndexOf(td);
+                        break;
+                    }
+                }
+            }
+
+            if (this.props.autoCompleteTrigger == null && details.startPos == -1) {
+
+                /**
+                 * If trigger is null and startPos is -1, this means that the user is just typing letters without a trigger key
+                 * We are setting the startPos to 0 since we need to check the input value from start to the current caret position
+                 */
+                details.startPos = 0;
+
+            } else if (details.startPos >= 0) {
+                details.startPos += 1;
+            }
+        }
+
+        return details;
+    },
+
+    /**
      * Get the autoComplete Component to be displayed
      *
      * @param {array} autoCompleteData  The autoComplete data to be displayed as a list
      * @private
      */
     _getAutoCompleteComponent: function (autoCompleteData) {
-        var component = null;
+        var component = null,
+            attribute;
 
-        if(autoCompleteData ) {
-            component = (
-                <AutoComplete
-                    ref='autoComplete'
-                    inputValue={this.state.hasValue}
-                    inputCaretPos={this.state.caretPos}
-                    keyPressedValue={this.state.keyPressedValue}
-                    suggestionData={autoCompleteData}
-                    trigger={this.props.autoCompleteTrigger}
-                    delimiter={this.props.autoCompleteDelimiter}
-                    onSelect={this._handleAutoCompleteSelected}
-                    transform={this.props.autoCompleteTransform}
-                    />
-            );
+        if (autoCompleteData) {
+            attribute = {suggestionData: autoCompleteData};
         }
+
+        component = (
+            <AutoComplete
+                {... attribute}
+                ref='autoComplete'
+                inputDetails={this._evalInputValue()}
+                keyPressedValue={this.state.keyPressedValue}
+                suggestionData={autoCompleteData}
+                trigger={this.props.autoCompleteTrigger}
+                delimiter={this.props.autoCompleteDelimiter}
+                onSelect={this._handleAutoCompleteSelected}
+                transform={this.props.autoCompleteTransform}
+                />
+        );
 
         return component;
     }
