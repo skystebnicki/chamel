@@ -335,6 +335,7 @@ var TextField = React.createClass({
             console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
         } else if (this.isMounted()) {
             this._getInputNode().value = sanitizedValue;
+
             this.setState({
                 hasValue: sanitizedValue,
                 caretPos: this.getCaretPos(),
@@ -372,7 +373,11 @@ var TextField = React.createClass({
     },
 
     _handleInputBlur: function (e) {
-        this.setState({isFocused: false});
+        this.setState({
+            isFocused: false,
+            keyPressedValue: KeyCode.ESC,
+        });
+
         if (this.props.onBlur) this.props.onBlur(e);
     },
 
@@ -409,11 +414,13 @@ var TextField = React.createClass({
 
     _handleInputClick: function (e) {
 
-        this.setState({
-            caretPos: this.getCaretPos(),
-            keyPressedValue: null,
-            skipGetData: true
-        });
+        if (this.props.autoComplete) {
+            this.setState({
+                caretPos: this.getCaretPos(),
+                keyPressedValue: null,
+                skipGetData: true
+            });
+        }
 
         if (this.props.onClick) this.props.onClick(e);
     },
