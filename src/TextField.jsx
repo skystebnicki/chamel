@@ -374,8 +374,7 @@ var TextField = React.createClass({
 
     _handleInputBlur: function (e) {
         this.setState({
-            isFocused: false,
-            keyPressedValue: KeyCode.ESC,
+            isFocused: false
         });
 
         if (this.props.onBlur) this.props.onBlur(e);
