@@ -30,7 +30,8 @@ var TextField = React.createClass({
         autoCompleteTrigger: React.PropTypes.any,
         autoCompleteDelimiter: React.PropTypes.string,
         autoCompleteTransform: React.PropTypes.func,
-        autoCompleteGetData: React.PropTypes.func
+        autoCompleteGetData: React.PropTypes.func,
+        autoCompleteSelected: React.PropTypes.func
     },
 
     getDefaultProps: function () {
@@ -489,13 +490,18 @@ var TextField = React.createClass({
     /**
      * Callback used to handle the selection of autocomplete data
      *
-     * @param {string} value    The selected value in the autoComplete data list
-     * @param {int} caretPos    The caret/cursor position of the input
+     * @param {string} value The selected value in the autoComplete data list
+     * @param {int} caretPos The caret/cursor position of the input
+     * @param {obj} selectedData The selected data in the autoComplete
      * @private
      */
-    _handleAutoCompleteSelected: function (value, caretPos) {
+    _handleAutoCompleteSelected: function (value, caretPos, selectedData) {
         this.setValue(value);
         this.setCaretPos(caretPos);
+
+        if(this.props.autoCompleteSelected) {
+            this.props.autoCompleteSelected(selectedData);
+        }
     },
 
     /**
@@ -595,7 +601,7 @@ var TextField = React.createClass({
                 delimiter={this.props.autoCompleteDelimiter}
                 onSelect={this._handleAutoCompleteSelected}
                 transform={this.props.autoCompleteTransform}
-                />
+            />
         );
 
         return component;
