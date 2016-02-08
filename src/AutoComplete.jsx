@@ -120,7 +120,7 @@ var AutoComplete = React.createClass({
                     focusedIndex={this.state.focusedIndex}
                     onItemClick={this._handleItemClick}
                     absoluteOnly={true}
-                    />
+                />
             );
         }
 
@@ -239,7 +239,7 @@ var AutoComplete = React.createClass({
         });
 
         if (this.props.onSelect) {
-            this.props.onSelect(newValue, newCaretPos)
+            this.props.onSelect(newValue, newCaretPos, selectedData)
         }
     },
 
