@@ -449,7 +449,9 @@ var TextField = React.createClass({
                         skipGetData: true
                     });
 
-                    evt.preventDefault();
+                    if(!this.props.multiLine) {
+                        evt.preventDefault();
+                    }
                 }
                 break;
         }
