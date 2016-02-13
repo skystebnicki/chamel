@@ -77,7 +77,7 @@ var EditorDemo = React.createClass({
             {payload: 4, text: 'star apple'},
         ];
 
-         var trigger = null;
+        var trigger = null;
         // var trigger = '@';
         // var trigger = ['@', '#', '$'];
 

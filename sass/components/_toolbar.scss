@@ -29,9 +29,10 @@
       position: relative;
     }
 
-    .drop-down-menu {
+    .chamel-drop-down-menu {
       color: $light-black;
       display: inline-block;
+      height: $toolbar-height;
       margin-right: $desktop-gutter;
 
       .menu-control-bg {

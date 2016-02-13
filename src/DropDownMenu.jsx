@@ -50,12 +50,13 @@ var DropDownMenu = React.createClass({
     return (
       <div className={classes}>
         <div className="chamel-menu-control" onClick={this._onControlClick}>
-          <Paper className="chamel-menu-control-bg" zDepth={0} />
-          <div className="chamel-menu-label">
-            {this.props.menuItems[this.state.selectedIndex].text}
-          </div>
-          <DropDownArrow className="chamel-menu-drop-down-icon" />
-          <div className="chamel-menu-control-underline" />
+          <Paper zDepth={0} >
+            <div className="chamel-menu-label">
+              {this.props.menuItems[this.state.selectedIndex].text}
+            </div>
+            <DropDownArrow className="chamel-menu-drop-down-icon" />
+            <div className="chamel-menu-control-underline" />
+          </Paper>
         </div>
         <Menu
           ref="menuItems"
