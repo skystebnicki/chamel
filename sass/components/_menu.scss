@@ -25,6 +25,7 @@
 
   &.chamel-menu-absoluteOnly {
     position: absolute;
+    z-index: 99;
   }
 
   .chamel-paper-container {

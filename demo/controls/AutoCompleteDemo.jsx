@@ -77,9 +77,7 @@ var EditorDemo = React.createClass({
             {payload: 4, text: 'star apple'},
         ];
 
-        var trigger = null;
-        // var trigger = '@';
-        // var trigger = ['@', '#', '$'];
+        var trigger = ['@', '#', '$'];
 
         return (
             <ComponentDoc
@@ -89,19 +87,19 @@ var EditorDemo = React.createClass({
 
                 <TextField
                     autoComplete={true}
-                    //autoCompleteData={suggestions}
-                    autoCompleteDelimiter=';'
+                    autoCompleteData={suggestions}
+                    autoCompleteDelimiter=''
                     autoCompleteTrigger={trigger}
                     autoCompleteTransform={
                         function(data) {
                             return "[" + data.payload + ":" + data.text + "]";
                         }
                     }
-                    autoCompleteGetData={
-                        function(doneCallback) {
+                    /*autoCompleteGetData={
+                        function(keyword, doneCallback) {
                             doneCallback(suggestions);
                         }
-                    }
+                    }*/
                     />
 
             </ComponentDoc>
