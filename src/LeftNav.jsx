@@ -212,8 +212,14 @@ var LeftNav = React.createClass({
      */
     if (windowOffset.top > 0) {
       let newTop = this.state.startTopOffset - windowOffset.top;
-      if (newTop < 0)
+      if (newTop < 0) {
         newTop = 0;
+      }
+
+      // It should never ever be less than the original offset
+      if (newTop < this.state.startTopOffset) {
+        newTop = this.state.startTopOffset;
+      }
 
       // Set state without transition to make the scroll faster
       Dom.withoutTransition(
