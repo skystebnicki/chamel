@@ -197,7 +197,7 @@ var LeftNav = React.createClass({
   _onWindowScroll: function(e) {
 
     // If the starting state was 0 then do nothing
-    if (this.state.startTopOffset <== 0) {
+    if (this.state.startTopOffset <= 0) {
       return;
     }
 

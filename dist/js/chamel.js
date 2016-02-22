@@ -22886,7 +22886,7 @@ var LeftNav = React.createClass({
     var _this = this;
 
     // If the starting state was 0 then do nothing
-    if (this.state.startTopOffset <== 0) {
+    if (this.state.startTopOffset <= 0) {
       return;
     }
 
