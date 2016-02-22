@@ -20851,8 +20851,6 @@ var AppBar = React.createClass({
         // Get the scroll offset of the window
         var windowOffset = Dom.scrollOffset();
 
-        console.log("Window Scroll", windowOffset);
-
         /*
          * If we have scrolled, then follow the scroll.
          * Because the left nav div is position:fixed, then we
@@ -20868,6 +20866,8 @@ var AppBar = React.createClass({
         if (windowOffset.top <= this.state.startTopOffset) {
             newTop = -1; // Reset
         }
+
+        console.log("Setting newTopt to", newTop, "where", windowOffset, this.state.startTopOffset);
 
         // Set state
         this.setState({ curTopOffset: newTop });
