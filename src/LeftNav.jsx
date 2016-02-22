@@ -197,7 +197,7 @@ var LeftNav = React.createClass({
   _onWindowScroll: function(e) {
 
     // If the starting state was 0 then do nothing
-    if (this.state.startTopOffset === 0) {
+    if (this.state.startTopOffset <== 0) {
       return;
     }
 
@@ -218,7 +218,7 @@ var LeftNav = React.createClass({
 
       // It should never ever be less than the original offset
       if (windowOffset.top === 0 && newTop < this.state.startTopOffset) {
-        newTop = this.state.startTopOffset;
+        newTop = -1; // Reset
       }
 
       // Set state without transition to make the scroll faster
