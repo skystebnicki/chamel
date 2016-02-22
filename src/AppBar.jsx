@@ -57,8 +57,7 @@ var AppBar = React.createClass({
 
         // Save the original top position of the menu
         if (this.props.fixed) {
-          let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.appBarInnerCon));
-          if (offset.top > 0) {
+            let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.appBarInnerCon));
             this.setState({
                 startTopOffset: offset.top, 
                 startWidth: offset.width,
@@ -67,7 +66,6 @@ var AppBar = React.createClass({
 
             // Now listen for window scroll events
             Events.on(window, 'scroll', this._onWindowScroll);
-          }
         }
     },
 
