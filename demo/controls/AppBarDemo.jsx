@@ -24,6 +24,9 @@ var AppBarDemo = React.createClass({
             </IconButton>
         );
 
+        // Make the div scrollable so that we can test the fixed behavior
+        let scrollStyle = {height: "3000px"};
+
         return (
             <div className="row">
                 <div className="col-xs-12">
@@ -31,7 +34,9 @@ var AppBarDemo = React.createClass({
                         title="Test"
                         iconElementLeft={leftIcon}
                         iconElementRight={rightIcon}
+                        fixed={true}
                     />
+                    <div style={scrollStyle} />
                 </div>
             </div>
         );

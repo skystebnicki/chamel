@@ -20709,8 +20709,11 @@ module.exports = require('./lib/React');
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Paper = require("./Paper.jsx");
 var IconButton = require("./IconButton.jsx");
+var Dom = require("./utils/Dom.jsx");
+var Events = require("./utils/Events.jsx");
 
 /**
  * Small application component
@@ -20726,7 +20729,8 @@ var AppBar = React.createClass({
         iconElementLeft: React.PropTypes.element,
         iconElementRight: React.PropTypes.element,
         title: React.PropTypes.node,
-        zDepth: React.PropTypes.number
+        zDepth: React.PropTypes.number,
+        fixed: React.PropTypes.bool
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -20734,7 +20738,16 @@ var AppBar = React.createClass({
             showMenuIconButton: true,
             title: '',
             iconClassNameLeft: 'fa fa-bars',
-            zDepth: 1
+            zDepth: 1,
+            fixed: false
+        };
+    },
+
+    getInitialState: function getInitialState() {
+        return {
+            startTopOffset: 0,
+            startWidth: 0,
+            curTopOffset: -1
         };
     },
 
@@ -20744,6 +20757,23 @@ var AppBar = React.createClass({
             if (cordova.platformId == 'android') {
                 // StatusBar.backgroundColorByHexString("#fff");
             }
+        }
+
+        // Save the original top position of the menu
+        if (this.props.fixed) {
+            var offset = Dom.offset(ReactDOM.findDOMNode(this));
+            if (offset.top > 0) {
+                this.setState({ startTopOffset: offset.top, startWidth: offset.width });
+
+                // Now listen for window scroll events
+                Events.on(window, 'scroll', this._onWindowScroll);
+            }
+        }
+    },
+
+    componentWillUnmout: function componentWillUnmout() {
+        if (this.sate.startTopOffset > 0) {
+            Events.off(window, 'scroll', this._onWindowScroll);
         }
     },
 
@@ -20781,13 +20811,61 @@ var AppBar = React.createClass({
             title = toString.call(this.props.title) === '[object String]' ? React.createElement('h1', { className: 'chamel-app-bar-title' }, this.props.title) : this.props.title;
         }
 
-        return React.createElement(Paper, { rounded: false, className: classes, zDepth: this.props.zDepth }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' }));
+        // Handle offset when the document scrolls and the appbar is fixed
+        var topStyle = null;
+        if (this.props.fixed && this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
+            topStyle = {
+                top: this.state.curTopOffset + "px",
+                width: this.state.startWidth + "px",
+                position: "fixed"
+            };
+        }
+
+        return React.createElement(Paper, { rounded: false, className: classes, zDepth: this.props.zDepth, style: topStyle }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' }));
+    },
+
+    /**
+     * Handle when the document is scrolled while the 
+     * The starting top of this menu was not 0 so it means
+     * the menu is a fixed position and docked. A menu can be docked
+     * below the top of the page (like below an AppBar) so we
+     * want to be able to reposition the leftnav when the user scrolls
+     * so it scrolls with the document until 0 (top)
+     */
+    _onWindowScroll: function _onWindowScroll(e) {
+
+        // If the starting state was 0 then do nothing
+        if (this.state.startTopOffset == 0 && !this.props.fixed) {
+            return;
+        }
+
+        // Get the scroll offset of the window
+        var windowOffset = Dom.scrollOffset();
+
+        /*
+         * If we have scrolled, then follow the scroll.
+         * Because the left nav div is position:fixed, then we
+         * can move all the way to 0 to be at the top no matter how
+         * far down the page they scroll
+         */
+        var newTop = this.state.startTopOffset - windowOffset.top;
+        if (newTop < 0) {
+            newTop = 0;
+        }
+
+        // Restore the original state if we are back in the viewport.
+        if (windowOffset.top <= this.state.startTopOffset) {
+            newTop = -1; // Reset
+        }
+
+        // Set state
+        this.setState({ curTopOffset: newTop });
     }
 });
 
 module.exports = AppBar;
 
-},{"./IconButton.jsx":181,"./Paper.jsx":185,"react":166}],169:[function(require,module,exports){
+},{"./IconButton.jsx":181,"./Paper.jsx":185,"./utils/Dom.jsx":234,"./utils/Events.jsx":235,"react":166,"react-dom":4}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -22771,7 +22849,6 @@ var LeftNav = React.createClass({
     // Save the original top position of the menu
     if (this.state.open) {
       var offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
-      console.log("Starting pos", offset);
       if (offset.top > 0) {
         this.setState({ startTopOffset: offset.top });
 
@@ -22884,7 +22961,6 @@ var LeftNav = React.createClass({
    * so it scrolls with the document until 0 (top)
    */
   _onWindowScroll: function _onWindowScroll(e) {
-    var _this = this;
 
     // If the starting state was 0 then do nothing
     if (this.state.startTopOffset == 0) {
@@ -22900,26 +22976,20 @@ var LeftNav = React.createClass({
      * can move all the way to 0 to be at the top no matter how
      * far down the page they scroll
      */
-    if (windowOffset.top > 0) {
-      (function () {
-        var newTop = _this.state.startTopOffset - windowOffset.top;
-        if (newTop < 0) {
-          newTop = 0;
-        }
-
-        // It should never ever be less than the original offset
-        if (newTop < _this.state.startTopOffset) {
-          newTop = -1; // Reset
-        }
-
-        console.log("Settting new pos to", newTop, "data", windowOffset);
-
-        // Set state without transition to make the scroll faster
-        Dom.withoutTransition(ReactDOM.findDOMNode(_this.refs.clickAwayableElement), (function setOffsetTopState() {
-          this.setState({ curTopOffset: newTop });
-        }).bind(_this));
-      })();
+    var newTop = this.state.startTopOffset - windowOffset.top;
+    if (newTop < 0) {
+      newTop = 0;
     }
+
+    // It should never ever be less than the original offset
+    if (windowOffset.top === 0 && newTop < this.state.startTopOffset) {
+      newTop = -1; // Reset
+    }
+
+    // Set state without transition to make the scroll faster
+    Dom.withoutTransition(ReactDOM.findDOMNode(this.refs.clickAwayableElement), (function setOffsetTopState() {
+      this.setState({ curTopOffset: newTop });
+    }).bind(this));
   }
 
 });
@@ -27988,9 +28058,12 @@ module.exports = {
 
   offset: function offset(el) {
     var rect = el.getBoundingClientRect();
+    var documentOffset = this.scrollOffset();
     return {
-      top: rect.top + document.body.scrollTop,
-      left: rect.left + document.body.scrollLeft
+      top: rect.top + documentOffset.top,
+      left: rect.left + documentOffset.left,
+      width: rect.right - rect.left,
+      height: rect.bottom - rect.top
     };
   },
 

@@ -15,9 +15,12 @@ module.exports = {
 
   offset: function(el) {
     var rect = el.getBoundingClientRect();
+    var documentOffset = this.scrollOffset();
     return {
-      top: rect.top + document.body.scrollTop,
-      left: rect.left + document.body.scrollLeft
+      top: rect.top + documentOffset.top,
+      left: rect.left + documentOffset.left,
+      width: rect.right - rect.left,
+      height: rect.bottom - rect.top
     };
   },
 

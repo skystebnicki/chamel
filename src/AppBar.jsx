@@ -6,8 +6,11 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Paper = require("./Paper.jsx");
 var IconButton = require("./IconButton.jsx");
+var Dom = require("./utils/Dom.jsx");
+var Events = require("./utils/Events.jsx");
 
 /**
  * Small application component
@@ -23,6 +26,7 @@ var AppBar = React.createClass({
         iconElementRight: React.PropTypes.element,
         title : React.PropTypes.node,
         zDepth: React.PropTypes.number,
+        fixed: React.PropTypes.bool
     },
 
     getDefaultProps: function() {
@@ -30,8 +34,17 @@ var AppBar = React.createClass({
             showMenuIconButton: true,
             title: '',
             iconClassNameLeft: 'fa fa-bars',
-            zDepth: 1
+            zDepth: 1,
+            fixed: false
         }
+    },
+
+    getInitialState: function() {
+        return {
+            startTopOffset: 0,
+            startWidth: 0,
+            curTopOffset: -1
+        };
     },
 
     componentDidMount: function() {
@@ -40,6 +53,23 @@ var AppBar = React.createClass({
             if (cordova.platformId == 'android') {
                // StatusBar.backgroundColorByHexString("#fff");
             }
+        }
+
+        // Save the original top position of the menu
+        if (this.props.fixed) {
+          let offset = Dom.offset(ReactDOM.findDOMNode(this));
+          if (offset.top > 0) {
+            this.setState({startTopOffset: offset.top, startWidth: offset.width});
+
+            // Now listen for window scroll events
+            Events.on(window, 'scroll', this._onWindowScroll);
+          }
+        }
+    },
+
+    componentWillUnmout: function() {
+        if (this.sate.startTopOffset > 0) {
+            Events.off(window, 'scroll', this._onWindowScroll);
         }
     },
 
@@ -85,8 +115,18 @@ var AppBar = React.createClass({
                 this.props.title;
         }
 
+        // Handle offset when the document scrolls and the appbar is fixed
+        let topStyle = null;
+        if (this.props.fixed && this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
+            topStyle = {
+                top: this.state.curTopOffset + "px",
+                width: this.state.startWidth + "px",
+                position: "fixed"
+            };
+        }
+
 		return (
-            <Paper rounded={false} className={classes} zDepth={this.props.zDepth}>
+            <Paper rounded={false} className={classes} zDepth={this.props.zDepth} style={topStyle}>
                 {menuElementLeft}
 
                 <div className="chamel-app-bar-toolbar">
@@ -96,7 +136,45 @@ var AppBar = React.createClass({
                 <div className="chamel-clear" />
             </Paper>
 		);
-	}
+	},
+
+    /**
+     * Handle when the document is scrolled while the 
+     * The starting top of this menu was not 0 so it means
+     * the menu is a fixed position and docked. A menu can be docked
+     * below the top of the page (like below an AppBar) so we
+     * want to be able to reposition the leftnav when the user scrolls
+     * so it scrolls with the document until 0 (top)
+     */
+    _onWindowScroll: function(e) {
+
+        // If the starting state was 0 then do nothing
+        if (this.state.startTopOffset == 0 && !this.props.fixed) {
+            return;
+        }
+
+        // Get the scroll offset of the window
+        let windowOffset = Dom.scrollOffset();
+
+        /*
+         * If we have scrolled, then follow the scroll.
+         * Because the left nav div is position:fixed, then we
+         * can move all the way to 0 to be at the top no matter how
+         * far down the page they scroll
+         */
+        let newTop = this.state.startTopOffset - windowOffset.top;
+        if (newTop < 0) {
+          newTop = 0;
+        }
+
+        // Restore the original state if we are back in the viewport.
+        if (windowOffset.top <= this.state.startTopOffset) {
+          newTop = -1; // Reset
+        }
+
+        // Set state
+        this.setState({curTopOffset: newTop})
+    }
 });
 
 module.exports = AppBar;
