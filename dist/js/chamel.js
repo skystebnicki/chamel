@@ -20739,7 +20739,7 @@ var AppBar = React.createClass({
             title: '',
             iconClassNameLeft: 'fa fa-bars',
             zDepth: 1,
-            fixed: false
+            fixed: true
         };
     },
 
