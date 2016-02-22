@@ -20851,6 +20851,8 @@ var AppBar = React.createClass({
         // Get the scroll offset of the window
         var windowOffset = Dom.scrollOffset();
 
+        console.log("Window Scroll", windowOffset);
+
         /*
          * If we have scrolled, then follow the scroll.
          * Because the left nav div is position:fixed, then we
