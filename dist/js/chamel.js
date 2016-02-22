@@ -20867,8 +20867,6 @@ var AppBar = React.createClass({
             newTop = -1; // Reset
         }
 
-        console.log("Setting newTopt to", newTop, "where", windowOffset, this.state.startTopOffset);
-
         // Set state
         this.setState({ curTopOffset: newTop });
     }
