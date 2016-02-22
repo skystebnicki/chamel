@@ -20846,7 +20846,7 @@ var AppBar = React.createClass({
     _onWindowScroll: function _onWindowScroll(e) {
 
         // If the starting state was 0 then do nothing
-        if (this.state.startTopOffset == 0 && !this.props.fixed) {
+        if (!this.props.fixed) {
             return;
         }
 
