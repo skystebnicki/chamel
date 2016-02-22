@@ -20761,9 +20761,13 @@ var AppBar = React.createClass({
 
         // Save the original top position of the menu
         if (this.props.fixed) {
-            var offset = Dom.offset(ReactDOM.findDOMNode(this));
+            var offset = Dom.offset(ReactDOM.findDOMNode(this.refs.appBarInnerCon));
             if (offset.top > 0) {
-                this.setState({ startTopOffset: offset.top, startWidth: offset.width });
+                this.setState({
+                    startTopOffset: offset.top,
+                    startWidth: offset.width,
+                    startHeight: offset.height
+                });
 
                 // Now listen for window scroll events
                 Events.on(window, 'scroll', this._onWindowScroll);
@@ -20812,16 +20816,23 @@ var AppBar = React.createClass({
         }
 
         // Handle offset when the document scrolls and the appbar is fixed
-        var topStyle = null;
+        var innerConStyle = null;
+        var outerConStyle = null;
         if (this.props.fixed && this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
-            topStyle = {
+            innerConStyle = {
                 top: this.state.curTopOffset + "px",
                 width: this.state.startWidth + "px",
                 position: "fixed"
             };
+
+            /*
+             * Set the outer con style since a fixed element will cause it to shrink 
+             * which makes the UX pretty bad when elements suddenly jump
+             */
+            outerConStyle = { height: this.state.startHeight + "px" };
         }
 
-        return React.createElement(Paper, { rounded: false, className: classes, zDepth: this.props.zDepth, style: topStyle }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' }));
+        return React.createElement('div', { style: outerConStyle }, React.createElement(Paper, { ref: 'appBarInnerCon', rounded: false, className: classes, zDepth: this.props.zDepth, style: innerConStyle }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' })));
     },
 
     /**

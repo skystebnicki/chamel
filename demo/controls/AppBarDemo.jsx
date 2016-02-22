@@ -36,7 +36,7 @@ var AppBarDemo = React.createClass({
                         iconElementRight={rightIcon}
                         fixed={true}
                     />
-                    <div style={scrollStyle} />
+                    <div style={scrollStyle}>Long scrolled content container</div>
                 </div>
             </div>
         );
