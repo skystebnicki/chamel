@@ -218,7 +218,7 @@ var LeftNav = React.createClass({
       }
 
       // It should never ever be less than the original offset
-      if (windowOffset.top <= 0 && newTop < this.state.startTopOffset) {
+      if (newTop < this.state.startTopOffset) {
         newTop = -1; // Reset
       }
 
