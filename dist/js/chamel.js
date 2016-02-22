@@ -22771,6 +22771,7 @@ var LeftNav = React.createClass({
     // Save the original top position of the menu
     if (this.state.open) {
       var offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
+      console.log("Starting pos", offset);
       if (offset.top > 0) {
         this.setState({ startTopOffset: offset.top });
 
@@ -22910,6 +22911,8 @@ var LeftNav = React.createClass({
         if (windowOffset.top <= 0 && newTop < _this.state.startTopOffset) {
           newTop = -1; // Reset
         }
+
+        console.log("Settting new pos to", newTop, "data", windowOffset);
 
         // Set state without transition to make the scroll faster
         Dom.withoutTransition(ReactDOM.findDOMNode(_this.refs.clickAwayableElement), (function setOffsetTopState() {
