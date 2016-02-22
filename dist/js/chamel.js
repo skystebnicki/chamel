@@ -22747,7 +22747,7 @@ var LeftNav = React.createClass({
       open: this.props.docked,
       selected: "",
       startTopOffset: 0,
-      curTopOffset: 0
+      curTopOffset: -1
     };
   },
 
@@ -22770,7 +22770,7 @@ var LeftNav = React.createClass({
 
     // Save the original top position of the menu
     if (this.state.open) {
-      var offset = Dom.offset(ReactDOM.findDOMNode(this));
+      var offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
       if (offset.top > 0) {
         this.setState({ startTopOffset: offset.top });
 
@@ -22826,7 +22826,7 @@ var LeftNav = React.createClass({
 
     // Handle offset when the document scrolls and the menu is not already at the top
     var topStyle = null;
-    if (this.state.startTopOffset > 0) {
+    if (this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
       topStyle = { top: this.state.curTopOffset + "px" };
     }
 
