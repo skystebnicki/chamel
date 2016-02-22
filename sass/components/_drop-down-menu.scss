@@ -50,9 +50,9 @@
     }
 
     .chamel-menu-label {
-      line-height: 32px;
+      line-height: 30px;
       /*position: absolute;*/
-      padding-left: $desktop-gutter;
+      padding-left: 0;
       /*top: 0;
       opacity: 1;*/
     }
@@ -60,17 +60,19 @@
     .chamel-menu-drop-down-icon {
       position: absolute;
       top: $icon-size / 4;
-      right: $desktop-gutter-less;
+      right: 0;
       fill: $drop-down-menu-icon-color;
     }
 
     .chamel-menu-control-underline {
       border-top: solid 1px $border-color;
-      margin: 0 $desktop-gutter 8px $desktop-gutter;
     }
   }
 
   .chamel-menu {
+    max-height: 320px;
+    overflow: auto;
+
     .chamel-menu-item {
       padding-right: ($icon-size + $desktop-gutter-less + $desktop-gutter-mini);
       height: 48px;

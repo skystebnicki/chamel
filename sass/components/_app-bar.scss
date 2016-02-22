@@ -22,7 +22,7 @@
     }
 
     @media #{$device-large} {
-      padding-left: $gutter-less;
+      padding-left: $gutter;
       padding-right: $gutter;
     }
   }

@@ -21,6 +21,22 @@ module.exports = {
     };
   },
 
+  scrollOffset: function(el) {
+    // If we passed an element, return scroll positions of the element
+    if (el) {
+      return {
+        top: el.scrollTop,
+        left: el.scrollLeft
+      }
+    }
+
+    // Try to get the body
+    var doc = document.documentElement;
+    var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    return { top: top, left: left }
+  },
+
   addClass: function(el, className) {
     if (el.classList)
       el.classList.add(className);

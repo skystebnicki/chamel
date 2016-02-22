@@ -22708,9 +22708,12 @@ module.exports = InkBar;
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Paper = require("./Paper.jsx");
 var Overlay = require("./Overlay.jsx");
 var Menu = require("./menu/Menu.jsx");
+var Dom = require("./utils/Dom.jsx");
+var Events = require("./utils/Events.jsx");
 
 /**
  * Small application component
@@ -22742,7 +22745,9 @@ var LeftNav = React.createClass({
   getInitialState: function getInitialState() {
     return {
       open: this.props.docked,
-      selected: ""
+      selected: "",
+      startTopOffset: 0,
+      curTopOffset: 0
     };
   },
 
@@ -22761,6 +22766,26 @@ var LeftNav = React.createClass({
     return this;
   },
 
+  componentDidMount: function componentDidMount() {
+
+    // Save the original top position of the menu
+    if (this.state.open) {
+      var offset = Dom.offset(ReactDOM.findDOMNode(this));
+      if (offset.top > 0) {
+        this.setState({ startTopOffset: offset.top });
+
+        // Now listen for window scroll events
+        Events.on(window, 'scroll', this._onWindowScroll);
+      }
+    }
+  },
+
+  componentWillUnmout: function componentWillUnmout() {
+    if (this.sate.startTopOffset > 0) {
+      Events.off(window, 'scroll', this._onWindowScroll);
+    }
+  },
+
   render: function render() {
     // Set the classes
     var classes = "chamel-left-nav";
@@ -22774,15 +22799,6 @@ var LeftNav = React.createClass({
         overlay;
 
     if (!this.props.docked) overlay = React.createElement(Overlay, { show: this.state.open, onClick: this._onOverlayTouchTap });
-
-    /* We should nest the menu eventually
-    <Menu 
-            ref="menuItems"
-            zDepth={0}
-            menuItems={this.props.menuItems}
-            selectedIndex={selectedIndex}
-            onItemClick={this._onMenuItemClick} />
-            */
 
     // Set the index based on the selected route if the selectedIndex was not passed as prop
     if (this.state.selected && selectedIndex === undefined) {
@@ -22808,7 +22824,14 @@ var LeftNav = React.createClass({
 
     var zDept = this.props.docked ? 0 : 2;
 
+    // Handle offset when the document scrolls and the menu is not already at the top
+    var topStyle = null;
+    if (this.state.startTopOffset > 0) {
+      topStyle = { top: this.state.curTopOffset + "px" };
+    }
+
     return React.createElement('div', { className: classes }, overlay, React.createElement(Paper, {
+      style: topStyle,
       ref: 'clickAwayableElement',
       className: 'chamel-left-nav-menu',
       zDepth: zDept,
@@ -22818,25 +22841,6 @@ var LeftNav = React.createClass({
       menuItems: this.props.menuItems,
       selectedIndex: selectedIndex,
       onItemClick: this._onMenuItemClick })));
-    /*
-    return (
-      <div className={classes}>
-         {overlay}
-        <Paper
-          ref="clickAwayableElement"
-          className="left-nav-menu"
-          zDepth={zDept}
-          rounded={false}>
-          
-          {this.props.header}
-          
-          <div>
-            {items}
-          </div>
-        </Paper>
-      </div>
-    );
-    */
   },
 
   /**
@@ -22868,13 +22872,51 @@ var LeftNav = React.createClass({
     if (e.keyCode == KeyCode.ESC && !this.props.docked && this.state.open) {
       this.close();
     }
+  },
+
+  /**
+   * Handle when the document is scrolled while the 
+   * The starting top of this menu was not 0 so it means
+   * the menu is a fixed position and docked. A menu can be docked
+   * below the top of the page (like below an AppBar) so we
+   * want to be able to reposition the leftnav when the user scrolls
+   * so it scrolls with the document until 0 (top)
+   */
+  _onWindowScroll: function _onWindowScroll(e) {
+    var _this = this;
+
+    // If the starting state was 0 then do nothing
+    if (this.state.startTopOffset === 0) {
+      return;
+    }
+
+    // Get the scroll offset of the window
+    var windowOffset = Dom.scrollOffset();
+
+    /*
+     * If we have scrolled, then follow the scroll.
+     * Because the left nav div is position:fixed, then we
+     * can move all the way to 0 to be at the top no matter how
+     * far down the page they scroll
+     */
+    if (windowOffset.top > 0) {
+      (function () {
+        var newTop = _this.state.startTopOffset - windowOffset.top;
+        if (newTop < 0) newTop = 0;
+
+        // Set state without transition to make the scroll faster
+        Dom.withoutTransition(ReactDOM.findDOMNode(_this.refs.clickAwayableElement), (function setOffsetTopState() {
+          this.setState({ curTopOffset: newTop });
+        }).bind(_this));
+      })();
+    }
   }
 
 });
 
 module.exports = LeftNav;
 
-},{"./Overlay.jsx":184,"./Paper.jsx":185,"./menu/Menu.jsx":206,"react":166}],184:[function(require,module,exports){
+},{"./Overlay.jsx":184,"./Paper.jsx":185,"./menu/Menu.jsx":206,"./utils/Dom.jsx":234,"./utils/Events.jsx":235,"react":166,"react-dom":4}],184:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -27940,6 +27982,22 @@ module.exports = {
       top: rect.top + document.body.scrollTop,
       left: rect.left + document.body.scrollLeft
     };
+  },
+
+  scrollOffset: function scrollOffset(el) {
+    // If we passed an element, return scroll positions of the element
+    if (el) {
+      return {
+        top: el.scrollTop,
+        left: el.scrollLeft
+      };
+    }
+
+    // Try to get the body
+    var doc = document.documentElement;
+    var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+    var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+    return { top: top, left: left };
   },
 
   addClass: function addClass(el, className) {
