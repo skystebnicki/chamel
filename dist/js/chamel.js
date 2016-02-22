@@ -22886,7 +22886,7 @@ var LeftNav = React.createClass({
     var _this = this;
 
     // If the starting state was 0 then do nothing
-    if (this.state.startTopOffset <= 0) {
+    if (this.state.startTopOffset == 0) {
       return;
     }
 
@@ -22907,7 +22907,7 @@ var LeftNav = React.createClass({
         }
 
         // It should never ever be less than the original offset
-        if (windowOffset.top === 0 && newTop < _this.state.startTopOffset) {
+        if (windowOffset.top <= 0 && newTop < _this.state.startTopOffset) {
           newTop = -1; // Reset
         }
 
