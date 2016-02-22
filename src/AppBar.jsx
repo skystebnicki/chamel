@@ -120,7 +120,7 @@ var AppBar = React.createClass({
         // Handle offset when the document scrolls and the appbar is fixed
         let innerConStyle = null;
         let outerConStyle = null;
-        if (this.props.fixed && this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
+        if (this.props.fixed && this.state.curTopOffset !== -1) {
             innerConStyle = {
                 top: this.state.curTopOffset + "px",
                 width: this.state.startWidth + "px",
