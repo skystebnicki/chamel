@@ -9,14 +9,14 @@
     position: absolute;
     top: 0;
     z-index: 1;
-    /* this was breaking max-height settings */
-    /*overflow: hidden;*/
+    overflow: hidden;
 
     .chamel-paper-container {
       padding: 0;
     }
 
     &.chamel-visible {
+      overflow: auto;
       & > .chamel-paper-container {
         padding-top: $desktop-gutter-mini;
         padding-bottom: $desktop-gutter-mini;

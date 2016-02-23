@@ -20813,6 +20813,9 @@ var AppBar = React.createClass({
             title = toString.call(this.props.title) === '[object String]' ? React.createElement('h1', { className: 'chamel-app-bar-title' }, this.props.title) : this.props.title;
         }
 
+        // Get the zDepth passed - we may increment if we are floating
+        var zDepth = this.props.zDepth;
+
         // Handle offset when the document scrolls and the appbar is fixed
         var innerConStyle = null;
         var outerConStyle = null;
@@ -20828,9 +20831,12 @@ var AppBar = React.createClass({
              * which makes the UX pretty bad when elements suddenly jump
              */
             outerConStyle = { height: this.state.startHeight + "px" };
+
+            // Increment zDepth to indicate floating
+            zDepth++;
         }
 
-        return React.createElement('div', { style: outerConStyle }, React.createElement(Paper, { ref: 'appBarInnerCon', rounded: false, className: classes, zDepth: this.props.zDepth, style: innerConStyle }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' })));
+        return React.createElement('div', { style: outerConStyle }, React.createElement(Paper, { ref: 'appBarInnerCon', rounded: false, className: classes, zDepth: zDepth, style: innerConStyle }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' })));
     },
 
     /**

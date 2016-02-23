@@ -117,6 +117,9 @@ var AppBar = React.createClass({
                 this.props.title;
         }
 
+        // Get the zDepth passed - we may increment if we are floating
+        let zDepth = this.props.zDepth;
+
         // Handle offset when the document scrolls and the appbar is fixed
         let innerConStyle = null;
         let outerConStyle = null;
@@ -132,11 +135,14 @@ var AppBar = React.createClass({
              * which makes the UX pretty bad when elements suddenly jump
              */
             outerConStyle = {height: this.state.startHeight + "px"}
+
+            // Increment zDepth to indicate floating
+            zDepth++;
         }
 
 		return (
             <div style={outerConStyle}>
-                <Paper ref="appBarInnerCon" rounded={false} className={classes} zDepth={this.props.zDepth} style={innerConStyle}>
+                <Paper ref="appBarInnerCon" rounded={false} className={classes} zDepth={zDepth} style={innerConStyle}>
                     {menuElementLeft}
                     <div className="chamel-app-bar-toolbar">
                         {menuElementRight}
