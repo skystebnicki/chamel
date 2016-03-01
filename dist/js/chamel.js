@@ -20880,7 +20880,7 @@ var AppBar = React.createClass({
 
 module.exports = AppBar;
 
-},{"./IconButton.jsx":181,"./Paper.jsx":185,"./utils/Dom.jsx":234,"./utils/Events.jsx":235,"react":166,"react-dom":4}],169:[function(require,module,exports){
+},{"./IconButton.jsx":181,"./Paper.jsx":185,"./utils/Dom.jsx":235,"./utils/Events.jsx":236,"react":166,"react-dom":4}],169:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21180,7 +21180,7 @@ var AutoComplete = React.createClass({
 
 module.exports = AutoComplete;
 
-},{"./menu/Menu.jsx":206,"./utils/KeyCode.jsx":236,"react":166,"react-dom":4}],170:[function(require,module,exports){
+},{"./menu/Menu.jsx":206,"./utils/KeyCode.jsx":237,"react":166,"react-dom":4}],170:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -21252,7 +21252,7 @@ var Checkbox = React.createClass({
 
 module.exports = Checkbox;
 
-},{"./EnhancedSwitch.jsx":177,"./mixins/classable.jsx":211,"./svg-icons/toggle-check-box-checked.jsx":221,"./svg-icons/toggle-check-box-outline-blank.jsx":222,"react":166}],171:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":177,"./mixins/classable.jsx":212,"./svg-icons/toggle-check-box-checked.jsx":222,"./svg-icons/toggle-check-box-outline-blank.jsx":223,"react":166}],171:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21574,7 +21574,7 @@ var DialogWindow = React.createClass({
 
 module.exports = DialogWindow;
 
-},{"./FlatButton.jsx":179,"./Overlay.jsx":184,"./Paper.jsx":185,"./mixins/WindowListenable.jsx":210,"./mixins/classable.jsx":211,"./utils/CssEvent.jsx":232,"./utils/KeyCode.jsx":236,"react":166,"react-dom":4}],173:[function(require,module,exports){
+},{"./FlatButton.jsx":179,"./Overlay.jsx":184,"./Paper.jsx":185,"./mixins/WindowListenable.jsx":211,"./mixins/classable.jsx":212,"./utils/CssEvent.jsx":233,"./utils/KeyCode.jsx":237,"react":166,"react-dom":4}],173:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21813,7 +21813,7 @@ var DialogWindow = React.createClass({
 
 module.exports = DialogWindow;
 
-},{"./FlatButton.jsx":179,"./Overlay.jsx":184,"./Paper.jsx":185,"./mixins/WindowListenable.jsx":210,"./mixins/classable.jsx":211,"./utils/CssEvent.jsx":232,"./utils/KeyCode.jsx":236,"react":166,"react-dom":4}],174:[function(require,module,exports){
+},{"./FlatButton.jsx":179,"./Overlay.jsx":184,"./Paper.jsx":185,"./mixins/WindowListenable.jsx":211,"./mixins/classable.jsx":212,"./utils/CssEvent.jsx":233,"./utils/KeyCode.jsx":237,"react":166,"react-dom":4}],174:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21879,7 +21879,7 @@ var DropDownIcon = React.createClass({
 
 module.exports = DropDownIcon;
 
-},{"./FontIcon.jsx":180,"./Paper.jsx":185,"./menu/Menu.jsx":206,"./mixins/ClickAwayable.jsx":209,"./mixins/classable.jsx":211,"./utils/KeyLine.jsx":237,"react":166}],175:[function(require,module,exports){
+},{"./FontIcon.jsx":180,"./Paper.jsx":185,"./menu/Menu.jsx":206,"./mixins/ClickAwayable.jsx":210,"./mixins/classable.jsx":212,"./utils/KeyLine.jsx":238,"react":166}],175:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -21980,7 +21980,7 @@ var DropDownMenu = React.createClass({
 module.exports = DropDownMenu;
 
 }).call(this,require('_process'))
-},{"./Paper.jsx":185,"./menu/Menu.jsx":206,"./mixins/ClickAwayable.jsx":209,"./mixins/classable.jsx":211,"./svg-icons/drop-down-arrow.jsx":216,"_process":2,"react":166,"react-dom":4}],176:[function(require,module,exports){
+},{"./Paper.jsx":185,"./menu/Menu.jsx":206,"./mixins/ClickAwayable.jsx":210,"./mixins/classable.jsx":212,"./svg-icons/drop-down-arrow.jsx":217,"_process":2,"react":166,"react-dom":4}],176:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22121,7 +22121,7 @@ var EnhancedButton = React.createClass({
 
 module.exports = EnhancedButton;
 
-},{"./mixins/WindowListenable.jsx":210,"./mixins/classable.jsx":211,"./ripples/FocusRipple.jsx":214,"./ripples/TouchRipple.jsx":215,"./utils/KeyCode.jsx":236,"react":166}],177:[function(require,module,exports){
+},{"./mixins/WindowListenable.jsx":211,"./mixins/classable.jsx":212,"./ripples/FocusRipple.jsx":215,"./ripples/TouchRipple.jsx":216,"./utils/KeyCode.jsx":237,"react":166}],177:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22411,7 +22411,7 @@ var EnhancedSwitch = React.createClass({
 module.exports = EnhancedSwitch;
 
 }).call(this,require('_process'))
-},{"./Paper.jsx":185,"./mixins/WindowListenable.jsx":210,"./mixins/classable.jsx":211,"./ripples/FocusRipple.jsx":214,"./ripples/TouchRipple.jsx":215,"./utils/KeyCode.jsx":236,"./utils/UniqueId.jsx":238,"_process":2,"react":166,"react-dom":4}],178:[function(require,module,exports){
+},{"./Paper.jsx":185,"./mixins/WindowListenable.jsx":211,"./mixins/classable.jsx":212,"./ripples/FocusRipple.jsx":215,"./ripples/TouchRipple.jsx":216,"./utils/KeyCode.jsx":237,"./utils/UniqueId.jsx":239,"_process":2,"react":166,"react-dom":4}],178:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22539,7 +22539,7 @@ var EnhancedTextarea = React.createClass({
 
 module.exports = EnhancedTextarea;
 
-},{"./mixins/classable.jsx":211,"react":166,"react-dom":4}],179:[function(require,module,exports){
+},{"./mixins/classable.jsx":212,"react":166,"react-dom":4}],179:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22602,7 +22602,7 @@ var FlatButton = React.createClass({
 
 module.exports = FlatButton;
 
-},{"./EnhancedButton.jsx":176,"./mixins/classable.jsx":211,"react":166}],180:[function(require,module,exports){
+},{"./EnhancedButton.jsx":176,"./mixins/classable.jsx":212,"react":166}],180:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22635,7 +22635,7 @@ var FontIcon = React.createClass({
 
 module.exports = FontIcon;
 
-},{"./mixins/classable.jsx":211,"react":166}],181:[function(require,module,exports){
+},{"./mixins/classable.jsx":212,"react":166}],181:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -22759,7 +22759,7 @@ var IconButton = React.createClass({
 module.exports = IconButton;
 
 }).call(this,require('_process'))
-},{"./EnhancedButton.jsx":176,"./FontIcon.jsx":180,"./Tooltip.jsx":193,"./mixins/classable.jsx":211,"_process":2,"react":166,"react-dom":4}],182:[function(require,module,exports){
+},{"./EnhancedButton.jsx":176,"./FontIcon.jsx":180,"./Tooltip.jsx":193,"./mixins/classable.jsx":212,"_process":2,"react":166,"react-dom":4}],182:[function(require,module,exports){
 /**
  * The ink bar is a thin bar that floats below tabs to indicate which is active
  *
@@ -23011,7 +23011,7 @@ var LeftNav = React.createClass({
 
 module.exports = LeftNav;
 
-},{"./Overlay.jsx":184,"./Paper.jsx":185,"./menu/Menu.jsx":206,"./utils/Dom.jsx":234,"./utils/Events.jsx":235,"react":166,"react-dom":4}],184:[function(require,module,exports){
+},{"./Overlay.jsx":184,"./Paper.jsx":185,"./menu/Menu.jsx":206,"./utils/Dom.jsx":235,"./utils/Events.jsx":236,"react":166,"react-dom":4}],184:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23087,7 +23087,7 @@ var Overlay = React.createClass({
 
 module.exports = Overlay;
 
-},{"./mixins/classable.jsx":211,"react":166}],185:[function(require,module,exports){
+},{"./mixins/classable.jsx":212,"react":166}],185:[function(require,module,exports){
 /**
  * Paper is a concept taken from google Material design standards
  *
@@ -23261,7 +23261,7 @@ var RadioButton = React.createClass({
 
 module.exports = RadioButton;
 
-},{"./EnhancedSwitch.jsx":177,"./mixins/classable.jsx":211,"./svg-icons/toggle-radio-button-off.jsx":223,"./svg-icons/toggle-radio-button-on.jsx":224,"react":166}],187:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":177,"./mixins/classable.jsx":212,"./svg-icons/toggle-radio-button-off.jsx":224,"./svg-icons/toggle-radio-button-on.jsx":225,"react":166}],187:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -23420,7 +23420,7 @@ var RadioButtonGroup = React.createClass({
 module.exports = RadioButtonGroup;
 
 }).call(this,require('_process'))
-},{"./EnhancedSwitch.jsx":177,"./Paper.jsx":185,"./RadioButton.jsx":186,"./mixins/classable.jsx":211,"_process":2,"react":166}],188:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":177,"./Paper.jsx":185,"./RadioButton.jsx":186,"./mixins/classable.jsx":212,"_process":2,"react":166}],188:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -23538,7 +23538,7 @@ var RaisedButton = React.createClass({
 
 module.exports = RaisedButton;
 
-},{"./EnhancedButton.jsx":176,"./Paper.jsx":185,"./mixins/classable.jsx":211,"react":166}],189:[function(require,module,exports){
+},{"./EnhancedButton.jsx":176,"./Paper.jsx":185,"./mixins/classable.jsx":212,"react":166}],189:[function(require,module,exports){
 /**
  * Render a tranient snackbar
  *
@@ -23618,7 +23618,7 @@ var Snackbar = React.createClass({
 
 module.exports = Snackbar;
 
-},{"./FlatButton.jsx":179,"./mixins/ClickAwayable.jsx":209,"./mixins/classable.jsx":211,"./utils/CssEvent.jsx":232,"react":166,"react-dom":4}],190:[function(require,module,exports){
+},{"./FlatButton.jsx":179,"./mixins/ClickAwayable.jsx":210,"./mixins/classable.jsx":212,"./utils/CssEvent.jsx":233,"react":166,"react-dom":4}],190:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -24211,7 +24211,7 @@ var TextField = React.createClass({
 module.exports = TextField;
 
 }).call(this,require('_process'))
-},{"./AutoComplete.jsx":169,"./EnhancedTextarea.jsx":178,"./mixins/classable.jsx":211,"./utils/DateTime.jsx":233,"./utils/KeyCode.jsx":236,"./utils/UniqueId.jsx":238,"_process":2,"react":166,"react-dom":4}],191:[function(require,module,exports){
+},{"./AutoComplete.jsx":169,"./EnhancedTextarea.jsx":178,"./mixins/classable.jsx":212,"./utils/DateTime.jsx":234,"./utils/KeyCode.jsx":237,"./utils/UniqueId.jsx":239,"_process":2,"react":166,"react-dom":4}],191:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24700,7 +24700,7 @@ var Toggle = React.createClass({
 
 module.exports = Toggle;
 
-},{"./EnhancedSwitch.jsx":177,"./Paper.jsx":185,"./mixins/classable.jsx":211,"react":166}],193:[function(require,module,exports){
+},{"./EnhancedSwitch.jsx":177,"./Paper.jsx":185,"./mixins/classable.jsx":212,"react":166}],193:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -24777,7 +24777,7 @@ var Tooltip = React.createClass({
 
 module.exports = Tooltip;
 
-},{"./mixins/classable.jsx":211,"react":166,"react-dom":4}],194:[function(require,module,exports){
+},{"./mixins/classable.jsx":212,"react":166,"react-dom":4}],194:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -24962,7 +24962,7 @@ var Calendar = React.createClass({
 
 module.exports = Calendar;
 
-},{"../mixins/WindowListenable.jsx":210,"../mixins/classable.jsx":211,"../transition-groups/SlideIn.jsx":230,"../utils/DateTime.jsx":233,"../utils/KeyCode.jsx":236,"./CalendarMonth.jsx":195,"./CalendarToolbar.jsx":196,"./DateDisplay.jsx":197,"react":166}],195:[function(require,module,exports){
+},{"../mixins/WindowListenable.jsx":211,"../mixins/classable.jsx":212,"../transition-groups/SlideIn.jsx":231,"../utils/DateTime.jsx":234,"../utils/KeyCode.jsx":237,"./CalendarMonth.jsx":195,"./CalendarToolbar.jsx":196,"./DateDisplay.jsx":197,"react":166}],195:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25034,7 +25034,7 @@ var CalendarMonth = React.createClass({
 
 module.exports = CalendarMonth;
 
-},{"../mixins/classable.jsx":211,"../utils/DateTime.jsx":233,"./DayButton.jsx":200,"react":166}],196:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"../utils/DateTime.jsx":234,"./DayButton.jsx":200,"react":166}],196:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -25120,7 +25120,7 @@ var CalendarToolbar = React.createClass({
 
 module.exports = CalendarToolbar;
 
-},{"../IconButton.jsx":181,"../svg-icons/navigation-chevron-left.jsx":217,"../svg-icons/navigation-chevron-right.jsx":218,"../transition-groups/SlideIn.jsx":230,"../utils/DateTime.jsx":233,"react":166}],197:[function(require,module,exports){
+},{"../IconButton.jsx":181,"../svg-icons/navigation-chevron-left.jsx":218,"../svg-icons/navigation-chevron-right.jsx":219,"../transition-groups/SlideIn.jsx":231,"../utils/DateTime.jsx":234,"react":166}],197:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -25197,7 +25197,7 @@ var DateDisplay = React.createClass({
 
 module.exports = DateDisplay;
 
-},{"../mixins/classable.jsx":211,"../transition-groups/SlideIn.jsx":230,"../utils/DateTime.jsx":233,"react":166}],198:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"../transition-groups/SlideIn.jsx":231,"../utils/DateTime.jsx":234,"react":166}],198:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -25384,7 +25384,7 @@ var DatePicker = React.createClass({
 
 module.exports = DatePicker;
 
-},{"../TextField.jsx":190,"../mixins/WindowListenable.jsx":210,"../mixins/classable.jsx":211,"../utils/DateTime.jsx":233,"../utils/KeyCode.jsx":236,"../utils/device":239,"./DatePickerDialog.jsx":199,"react":166}],199:[function(require,module,exports){
+},{"../TextField.jsx":190,"../mixins/WindowListenable.jsx":211,"../mixins/classable.jsx":212,"../utils/DateTime.jsx":234,"../utils/KeyCode.jsx":237,"../utils/device":240,"./DatePickerDialog.jsx":199,"react":166}],199:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -25531,7 +25531,7 @@ var DatePickerDialog = React.createClass({
 
 module.exports = DatePickerDialog;
 
-},{"../Dialog.jsx":172,"../FlatButton.jsx":179,"../mixins/WindowListenable.jsx":210,"../mixins/classable.jsx":211,"../utils/KeyCode.jsx":236,"./Calendar.jsx":194,"react":166}],200:[function(require,module,exports){
+},{"../Dialog.jsx":172,"../FlatButton.jsx":179,"../mixins/WindowListenable.jsx":211,"../mixins/classable.jsx":212,"../utils/KeyCode.jsx":237,"./Calendar.jsx":194,"react":166}],200:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -25595,7 +25595,7 @@ var DayButton = React.createClass({
 
 module.exports = DayButton;
 
-},{"../EnhancedButton.jsx":176,"../mixins/classable.jsx":211,"../utils/DateTime.jsx":233,"react":166}],201:[function(require,module,exports){
+},{"../EnhancedButton.jsx":176,"../mixins/classable.jsx":212,"../utils/DateTime.jsx":234,"react":166}],201:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26092,7 +26092,7 @@ var Editor = React.createClass({
 
 module.exports = Editor;
 
-},{"../ColorPicker.jsx":171,"../Dialog.jsx":172,"../DropDownIcon.jsx":174,"../FontIcon.jsx":180,"../IconButton.jsx":181,"../TextField.jsx":190,"../mixins/classable.jsx":211,"../toolbar/Toolbar.jsx":228,"../toolbar/ToolbarGroup.jsx":229,"./ContentRte.jsx":201,"./ContentSrc.jsx":202,"react":166}],204:[function(require,module,exports){
+},{"../ColorPicker.jsx":171,"../Dialog.jsx":172,"../DropDownIcon.jsx":174,"../FontIcon.jsx":180,"../IconButton.jsx":181,"../TextField.jsx":190,"../mixins/classable.jsx":212,"../toolbar/Toolbar.jsx":229,"../toolbar/ToolbarGroup.jsx":230,"./ContentRte.jsx":201,"./ContentSrc.jsx":202,"react":166}],204:[function(require,module,exports){
 /**
  * Main entry point for chamel
  */
@@ -26119,6 +26119,7 @@ module.exports = {
     LeftNav: require('./LeftNav.jsx'),
     Menu: require('./menu/Menu.jsx'),
     MenuItem: require('./menu/MenuItem.jsx'),
+    NestedMenuItem: require('./menu/NestedMenuItem.jsx'),
     Mixins: {
         Classable: require('./mixins/classable.jsx'),
         ClickAwayable: require('./mixins/ClickAwayable.jsx'),
@@ -26154,7 +26155,7 @@ module.exports = {
     }
 };
 
-},{"./AppBar.jsx":168,"./AutoComplete.jsx":169,"./Checkbox.jsx":170,"./Dialog.jsx":172,"./DialogWindow.jsx":173,"./DropDownIcon.jsx":174,"./DropDownMenu.jsx":175,"./EnhancedButton.jsx":176,"./FlatButton.jsx":179,"./FontIcon.jsx":180,"./IconButton.jsx":181,"./LeftNav.jsx":183,"./Paper.jsx":185,"./RadioButton.jsx":186,"./RadioButtonGroup.jsx":187,"./RaisedButton.jsx":188,"./Snackbar.jsx":189,"./TextField.jsx":190,"./TextFieldRich.jsx":191,"./Toggle.jsx":192,"./date-picker/DatePicker.jsx":198,"./editor/Editor.jsx":203,"./menu/Menu.jsx":206,"./menu/MenuItem.jsx":207,"./mixins/ClickAwayable.jsx":209,"./mixins/WindowListenable.jsx":210,"./mixins/classable.jsx":211,"./progress/LinearProgress.jsx":212,"./svg-icons/navigation-chevron-left.jsx":217,"./svg-icons/navigation-chevron-right.jsx":218,"./svg-icons/navigation-menu.jsx":219,"./svg-icons/svg-icon.jsx":220,"./tabs/Tab.jsx":225,"./tabs/Tabs.jsx":227,"./toolbar/Toolbar.jsx":228,"./toolbar/ToolbarGroup.jsx":229,"./utils/CssEvent.jsx":232,"./utils/Dom.jsx":234,"./utils/Events.jsx":235,"./utils/KeyCode.jsx":236,"./utils/KeyLine.jsx":237}],205:[function(require,module,exports){
+},{"./AppBar.jsx":168,"./AutoComplete.jsx":169,"./Checkbox.jsx":170,"./Dialog.jsx":172,"./DialogWindow.jsx":173,"./DropDownIcon.jsx":174,"./DropDownMenu.jsx":175,"./EnhancedButton.jsx":176,"./FlatButton.jsx":179,"./FontIcon.jsx":180,"./IconButton.jsx":181,"./LeftNav.jsx":183,"./Paper.jsx":185,"./RadioButton.jsx":186,"./RadioButtonGroup.jsx":187,"./RaisedButton.jsx":188,"./Snackbar.jsx":189,"./TextField.jsx":190,"./TextFieldRich.jsx":191,"./Toggle.jsx":192,"./date-picker/DatePicker.jsx":198,"./editor/Editor.jsx":203,"./menu/Menu.jsx":206,"./menu/MenuItem.jsx":207,"./menu/NestedMenuItem.jsx":208,"./mixins/ClickAwayable.jsx":210,"./mixins/WindowListenable.jsx":211,"./mixins/classable.jsx":212,"./progress/LinearProgress.jsx":213,"./svg-icons/navigation-chevron-left.jsx":218,"./svg-icons/navigation-chevron-right.jsx":219,"./svg-icons/navigation-menu.jsx":220,"./svg-icons/svg-icon.jsx":221,"./tabs/Tab.jsx":226,"./tabs/Tabs.jsx":228,"./toolbar/Toolbar.jsx":229,"./toolbar/ToolbarGroup.jsx":230,"./utils/CssEvent.jsx":233,"./utils/Dom.jsx":235,"./utils/Events.jsx":236,"./utils/KeyCode.jsx":237,"./utils/KeyLine.jsx":238}],205:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -26207,7 +26208,7 @@ var LinkMenuItem = React.createClass({
     }
 });
 
-},{"../mixins/classable.jsx":211,"react":166}],206:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"react":166}],206:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -26238,101 +26239,6 @@ var MenuItem = require('./MenuItem.jsx');
 var LinkMenuItem = require('./LinkMenuItem.jsx');
 var SubheaderMenuItem = require('./SubheaderMenuItem.jsx');
 
-/***********************
- * Nested Menu Component
- ***********************/
-var NestedMenuItem = React.createClass({
-    displayName: 'NestedMenuItem',
-
-    mixins: [Classable, ClickAwayable],
-
-    propTypes: {
-        index: React.PropTypes.number.isRequired,
-        text: React.PropTypes.string,
-        menuItems: React.PropTypes.array.isRequired,
-        zDepth: React.PropTypes.number,
-        disabled: React.PropTypes.bool,
-        onItemClick: React.PropTypes.func,
-        onItemTap: React.PropTypes.func
-    },
-
-    getDefaultProps: function getDefaultProps() {
-        return {
-            disabled: false
-        };
-    },
-
-    getInitialState: function getInitialState() {
-        return { open: false };
-    },
-
-    componentClickAway: function componentClickAway() {
-        this._closeNestedMenu();
-    },
-
-    componentDidMount: function componentDidMount() {
-        this._positionNestedMenu();
-    },
-
-    componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
-        this._positionNestedMenu();
-    },
-
-    render: function render() {
-        var classes = this.getClasses('chamel-nested-menu-item', {
-            'chamel-open': this.state.open,
-            'chamel-is-disabled': this.props.disabled
-        });
-
-        return React.createElement('div', { className: classes, onMouseEnter: this._openNestedMenu, onMouseLeave: this._closeNestedMenu }, React.createElement(MenuItem, { index: this.props.index, disabled: this.props.disabled,
-            iconRightClassName: 'chamel-icon-custom-arrow-drop-right', onClick: this._onParentItemClick }, this.props.text), React.createElement(Menu, {
-            ref: 'nestedMenu',
-            menuItems: this.props.menuItems,
-            onItemClick: this._onMenuItemClick,
-            onItemTap: this._onMenuItemTap,
-            hideable: true,
-            visible: this.state.open,
-            zDepth: this.props.zDepth + 1 }));
-    },
-
-    _positionNestedMenu: function _positionNestedMenu() {
-        var el = ReactDOM.findDOMNode(this),
-            nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
-
-        nestedMenu.style.left = el.offsetWidth + 'px';
-    },
-
-    _openNestedMenu: function _openNestedMenu() {
-        if (!this.props.disabled) this.setState({ open: true });
-    },
-
-    _closeNestedMenu: function _closeNestedMenu() {
-        this.setState({ open: false });
-    },
-
-    _toggleNestedMenu: function _toggleNestedMenu() {
-        if (!this.props.disabled) this.setState({ open: !this.state.open });
-    },
-
-    _onParentItemClick: function _onParentItemClick() {
-        this._toggleNestedMenu();
-    },
-
-    _onMenuItemClick: function _onMenuItemClick(e, index, menuItem) {
-        if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-        this._closeNestedMenu();
-    },
-
-    _onMenuItemTap: function _onMenuItemTap(e, index, menuItem) {
-        if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-        this._closeNestedMenu();
-    }
-
-});
-
-/****************
- * Menu Component
- ****************/
 var Menu = React.createClass({
     displayName: 'Menu',
 
@@ -26343,7 +26249,7 @@ var Menu = React.createClass({
         onItemTap: React.PropTypes.func,
         onItemClick: React.PropTypes.func,
         onToggleClick: React.PropTypes.func,
-        menuItems: React.PropTypes.array.isRequired,
+        menuItems: React.PropTypes.array,
         selectedIndex: React.PropTypes.number,
         hideable: React.PropTypes.bool,
         visible: React.PropTypes.bool,
@@ -26409,8 +26315,10 @@ var Menu = React.createClass({
             'chamel-menu-absoluteOnly': this.props.absoluteOnly
         });
 
+        var children = this.props.menuItems.length ? this._getChildren() : this.props.children;
+
         return React.createElement(Paper, { ref: 'paperContainer', onMouseEnter: this._handleMouseEnter, onMouseLeave: this._handleMouseLeave,
-            zDepth: this.props.zDepth, className: classes }, this._getChildren());
+            zDepth: this.props.zDepth, className: classes }, children);
     },
 
     /**
@@ -26474,6 +26382,7 @@ var Menu = React.createClass({
                     break;
 
                 case MenuItem.Types.NESTED:
+                    var NestedMenuItem = require("./NestedMenuItem.jsx");
                     itemComponent = React.createElement(NestedMenuItem, {
                         ref: i,
                         key: i,
@@ -26582,7 +26491,7 @@ var Menu = React.createClass({
 
 module.exports = Menu;
 
-},{"../Paper.jsx":185,"../mixins/ClickAwayable.jsx":209,"../mixins/classable.jsx":211,"../utils/CssEvent.jsx":232,"../utils/Dom.jsx":234,"../utils/KeyLine.jsx":237,"./LinkMenuItem.jsx":205,"./MenuItem.jsx":207,"./SubheaderMenuItem.jsx":208,"react":166,"react-dom":4}],207:[function(require,module,exports){
+},{"../Paper.jsx":185,"../mixins/ClickAwayable.jsx":210,"../mixins/classable.jsx":212,"../utils/CssEvent.jsx":233,"../utils/Dom.jsx":235,"../utils/KeyLine.jsx":238,"./LinkMenuItem.jsx":205,"./MenuItem.jsx":207,"./NestedMenuItem.jsx":208,"./SubheaderMenuItem.jsx":209,"react":166,"react-dom":4}],207:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -26618,7 +26527,7 @@ var MenuItem = React.createClass({
     mixins: [Classable],
 
     propTypes: {
-        index: React.PropTypes.number.isRequired,
+        index: React.PropTypes.number,
         iconClassName: React.PropTypes.string,
         iconRightClassName: React.PropTypes.string,
         attribute: React.PropTypes.string,
@@ -26640,7 +26549,8 @@ var MenuItem = React.createClass({
     getDefaultProps: function getDefaultProps() {
         return {
             toggle: false,
-            disabled: false
+            disabled: false,
+            index: -1
         };
     },
 
@@ -26710,7 +26620,120 @@ var MenuItem = React.createClass({
 
 module.exports = MenuItem;
 
-},{"../FontIcon.jsx":180,"../Toggle.jsx":192,"../mixins/classable.jsx":211,"react":166}],208:[function(require,module,exports){
+},{"../FontIcon.jsx":180,"../Toggle.jsx":192,"../mixins/classable.jsx":212,"react":166}],208:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var CssEvent = require('../utils/CssEvent.jsx');
+var Dom = require('../utils/Dom.jsx');
+var KeyLine = require('../utils/KeyLine.jsx');
+var Classable = require('../mixins/classable.jsx');
+var ClickAwayable = require('../mixins/ClickAwayable.jsx');
+var Paper = require('../Paper.jsx');
+var Menu = require('./Menu.jsx');
+var MenuItem = require('./MenuItem.jsx');
+var LinkMenuItem = require('./LinkMenuItem.jsx');
+var SubheaderMenuItem = require('./SubheaderMenuItem.jsx');
+
+/***********************
+ * Nested Menu Component
+ ***********************/
+var NestedMenuItem = React.createClass({
+    displayName: 'NestedMenuItem',
+
+    mixins: [Classable, ClickAwayable],
+
+    propTypes: {
+        index: React.PropTypes.number,
+        text: React.PropTypes.string,
+        menuItems: React.PropTypes.array,
+        zDepth: React.PropTypes.number,
+        disabled: React.PropTypes.bool,
+        onItemClick: React.PropTypes.func,
+        onItemTap: React.PropTypes.func
+    },
+
+    getDefaultProps: function getDefaultProps() {
+        return {
+            disabled: false,
+            zDepth: 1,
+            index: -1
+        };
+    },
+
+    getInitialState: function getInitialState() {
+        return { open: false };
+    },
+
+    componentClickAway: function componentClickAway() {
+        this._closeNestedMenu();
+    },
+
+    componentDidMount: function componentDidMount() {
+        this._positionNestedMenu();
+    },
+
+    componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+        this._positionNestedMenu();
+    },
+
+    render: function render() {
+        var classes = this.getClasses('chamel-nested-menu-item', {
+            'chamel-open': this.state.open,
+            'chamel-is-disabled': this.props.disabled
+        });
+
+        return React.createElement('div', { className: classes, onMouseEnter: this._openNestedMenu, onMouseLeave: this._closeNestedMenu }, React.createElement(MenuItem, { index: this.props.index, disabled: this.props.disabled,
+            iconRightClassName: 'chamel-icon-custom-arrow-drop-right', onClick: this._onParentItemClick }, this.props.text), React.createElement(Menu, {
+            ref: 'nestedMenu',
+            menuItems: this.props.menuItems,
+            onItemClick: this._onMenuItemClick,
+            onItemTap: this._onMenuItemTap,
+            hideable: true,
+            visible: this.state.open,
+            zDepth: this.props.zDepth + 1
+        }, this.props.children));
+    },
+
+    _positionNestedMenu: function _positionNestedMenu() {
+        var el = ReactDOM.findDOMNode(this),
+            nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
+
+        nestedMenu.style.left = el.offsetWidth + 'px';
+    },
+
+    _openNestedMenu: function _openNestedMenu() {
+        if (!this.props.disabled) this.setState({ open: true });
+    },
+
+    _closeNestedMenu: function _closeNestedMenu() {
+        this.setState({ open: false });
+    },
+
+    _toggleNestedMenu: function _toggleNestedMenu() {
+        if (!this.props.disabled) this.setState({ open: !this.state.open });
+    },
+
+    _onParentItemClick: function _onParentItemClick() {
+        this._toggleNestedMenu();
+    },
+
+    _onMenuItemClick: function _onMenuItemClick(e, index, menuItem) {
+        if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
+        this._closeNestedMenu();
+    },
+
+    _onMenuItemTap: function _onMenuItemTap(e, index, menuItem) {
+        if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
+        this._closeNestedMenu();
+    }
+
+});
+
+module.exports = NestedMenuItem;
+
+},{"../Paper.jsx":185,"../mixins/ClickAwayable.jsx":210,"../mixins/classable.jsx":212,"../utils/CssEvent.jsx":233,"../utils/Dom.jsx":235,"../utils/KeyLine.jsx":238,"./LinkMenuItem.jsx":205,"./Menu.jsx":206,"./MenuItem.jsx":207,"./SubheaderMenuItem.jsx":209,"react":166,"react-dom":4}],209:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -26731,7 +26754,7 @@ var SubheaderMenuItem = React.createClass({
 
 module.exports = SubheaderMenuItem;
 
-},{"react":166}],209:[function(require,module,exports){
+},{"react":166}],210:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -26770,7 +26793,7 @@ module.exports = {
 
 };
 
-},{"../utils/Dom.jsx":234,"../utils/Events.jsx":235,"react":166,"react-dom":4}],210:[function(require,module,exports){
+},{"../utils/Dom.jsx":235,"../utils/Events.jsx":236,"react":166,"react-dom":4}],211:[function(require,module,exports){
 'use strict';
 
 var Events = require('../utils/Events.jsx');
@@ -26797,7 +26820,7 @@ module.exports = {
 
 };
 
-},{"../utils/Events.jsx":235}],211:[function(require,module,exports){
+},{"../utils/Events.jsx":236}],212:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -26843,7 +26866,7 @@ module.exports = {
 
 };
 
-},{"classnames":1,"react":166}],212:[function(require,module,exports){
+},{"classnames":1,"react":166}],213:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -26964,7 +26987,7 @@ var LinearProgress = React.createClass({
 
 module.exports = LinearProgress;
 
-},{"react":166,"react-dom":4}],213:[function(require,module,exports){
+},{"react":166,"react-dom":4}],214:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -27009,7 +27032,7 @@ var RippleCircle = React.createClass({
 
 module.exports = RippleCircle;
 
-},{"../mixins/classable.jsx":211,"react":166}],214:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"react":166}],215:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27051,7 +27074,7 @@ var FocusRipple = React.createClass({
 
 module.exports = FocusRipple;
 
-},{"../mixins/classable.jsx":211,"react":166,"react-dom":4}],215:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"react":166,"react-dom":4}],216:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27220,7 +27243,7 @@ var TouchRipple = React.createClass({
 
 module.exports = TouchRipple;
 
-},{"../mixins/classable.jsx":211,"../utils/Dom.jsx":234,"./Circle.jsx":213,"react":166,"react-dom":4}],216:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"../utils/Dom.jsx":235,"./Circle.jsx":214,"react":166,"react-dom":4}],217:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27237,7 +27260,7 @@ var DropDownArrow = React.createClass({
 
 module.exports = DropDownArrow;
 
-},{"./svg-icon.jsx":220,"react":166}],217:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],218:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27254,7 +27277,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"./svg-icon.jsx":220,"react":166}],218:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],219:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27271,7 +27294,7 @@ var NavigationChevronLeft = React.createClass({
 
 module.exports = NavigationChevronLeft;
 
-},{"./svg-icon.jsx":220,"react":166}],219:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],220:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27288,7 +27311,7 @@ var NavigationMenu = React.createClass({
 
 module.exports = NavigationMenu;
 
-},{"./svg-icon.jsx":220,"react":166}],220:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],221:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -27321,7 +27344,7 @@ var SvgIcon = React.createClass({
 
 module.exports = SvgIcon;
 
-},{"../mixins/classable.jsx":211,"react":166}],221:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"react":166}],222:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27338,7 +27361,7 @@ var ToggleCheckBoxChecked = React.createClass({
 
 module.exports = ToggleCheckBoxChecked;
 
-},{"./svg-icon.jsx":220,"react":166}],222:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],223:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27355,7 +27378,7 @@ var ToggleCheckBoxOutlineBlank = React.createClass({
 
 module.exports = ToggleCheckBoxOutlineBlank;
 
-},{"./svg-icon.jsx":220,"react":166}],223:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],224:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27372,7 +27395,7 @@ var RadioButtonOff = React.createClass({
 
 module.exports = RadioButtonOff;
 
-},{"./svg-icon.jsx":220,"react":166}],224:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],225:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -27389,7 +27412,7 @@ var RadioButtonOn = React.createClass({
 
 module.exports = RadioButtonOn;
 
-},{"./svg-icon.jsx":220,"react":166}],225:[function(require,module,exports){
+},{"./svg-icon.jsx":221,"react":166}],226:[function(require,module,exports){
 /**
  * Render a single tab
  *
@@ -27435,7 +27458,7 @@ var Tab = React.createClass({
 
 module.exports = Tab;
 
-},{"react":166}],226:[function(require,module,exports){
+},{"react":166}],227:[function(require,module,exports){
 /**
  * Template for rendering tabs
  *
@@ -27459,7 +27482,7 @@ var TabTemplate = React.createClass({
 
 module.exports = TabTemplate;
 
-},{"react":166}],227:[function(require,module,exports){
+},{"react":166}],228:[function(require,module,exports){
 /**
  * Tabs component
  *
@@ -27569,7 +27592,7 @@ var Tabs = React.createClass({
 
 module.exports = Tabs;
 
-},{"../InkBar.jsx":182,"./TabTemplate.jsx":226,"react":166,"react-dom":4}],228:[function(require,module,exports){
+},{"../InkBar.jsx":182,"./TabTemplate.jsx":227,"react":166,"react-dom":4}],229:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -27585,7 +27608,7 @@ var Toolbar = React.createClass({
 
 module.exports = Toolbar;
 
-},{"react":166}],229:[function(require,module,exports){
+},{"react":166}],230:[function(require,module,exports){
 'use strict';
 
 var Classable = require('../mixins/classable.jsx');
@@ -27614,7 +27637,7 @@ var ToolbarGroup = React.createClass({
 
 module.exports = ToolbarGroup;
 
-},{"../mixins/classable.jsx":211,"react":166}],230:[function(require,module,exports){
+},{"../mixins/classable.jsx":212,"react":166}],231:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -27691,7 +27714,7 @@ var SlideIn = React.createClass({
 
 module.exports = SlideIn;
 
-},{"./SlideInChild.jsx":231,"react":166,"react-addons-css-transition-group":3}],231:[function(require,module,exports){
+},{"./SlideInChild.jsx":232,"react":166,"react-addons-css-transition-group":3}],232:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -27772,7 +27795,7 @@ var SlideInChild = React.createClass({
 
 module.exports = SlideInChild;
 
-},{"react":166,"react-dom":4}],232:[function(require,module,exports){
+},{"react":166,"react-dom":4}],233:[function(require,module,exports){
 'use strict';
 
 var Events = require('./Events.jsx');
@@ -27828,7 +27851,7 @@ module.exports = {
 
 };
 
-},{"./Events.jsx":235}],233:[function(require,module,exports){
+},{"./Events.jsx":236}],234:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -28053,7 +28076,7 @@ module.exports = {
 
 };
 
-},{}],234:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28137,7 +28160,7 @@ module.exports = {
 
 };
 
-},{"react":166}],235:[function(require,module,exports){
+},{"react":166}],236:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -28177,7 +28200,7 @@ module.exports = {
   }
 };
 
-},{"react":166}],236:[function(require,module,exports){
+},{"react":166}],237:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -28195,7 +28218,7 @@ module.exports = {
     BACKSPACE: 46
 };
 
-},{}],237:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 "use strict";
 
 module.exports = {
@@ -28212,7 +28235,7 @@ module.exports = {
   }
 };
 
-},{}],238:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 "use strict";
 
 var index = 0;
@@ -28223,7 +28246,7 @@ module.exports = {
   }
 };
 
-},{}],239:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 /**
  * Device is an object that is used to represent a physical device and browser
  */
@@ -28247,7 +28270,7 @@ if (modernizr) {
 
 module.exports = device;
 
-},{"./modernizr.custom":240}],240:[function(require,module,exports){
+},{"./modernizr.custom":241}],241:[function(require,module,exports){
 /*!
 * modernizr v3.2.0
 * Build http://modernizr.com/download?-animation-borderradius-boxshadow-csstransforms-csstransforms3d-csstransitions-inputtypes-opacity-svg-video-websockets-domprefixes-prefixed-prefixes-testallprops-testprop-teststyles-dontmin

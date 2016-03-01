@@ -22,6 +22,7 @@ module.exports = {
     LeftNav: require('./LeftNav.jsx'),
     Menu: require('./menu/Menu.jsx'),
     MenuItem: require('./menu/MenuItem.jsx'),
+    NestedMenuItem: require('./menu/NestedMenuItem.jsx'),
     Mixins: {
         Classable: require('./mixins/classable.jsx'),
         ClickAwayable: require('./mixins/ClickAwayable.jsx'),

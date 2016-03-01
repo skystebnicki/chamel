@@ -15,6 +15,7 @@ var ProgressDemo = require("../controls/ProgressDemo.jsx");
 var TabsDemo = require("../controls/TabsDemo.jsx");
 var DatePickerDemo = require("../controls/DatePickerDemo.jsx");
 var AutoCompleteDemo = require("../controls/AutoCompleteDemo.jsx");
+var PopoverDemo = require("../controls/PopoverDemo.jsx");
 
 var Router = require('react-router');
 var DefaultRoute = Router.DefaultRoute;
@@ -34,6 +35,7 @@ var routes = (
 		<Route name="icon" path="icon" handler={IconsDemo}/>
 		<Route name="dialog" path="dialog" handler={DialogDemo}/>
 		<Route name="menu" path="menu" handler={MenuDemo}/>
+		<Route name="popover" path="popover" handler={PopoverDemo}/>
 		<Route name="progress" path="progress" handler={ProgressDemo}/>
 		<Route name="tabs" path="tabs" handler={TabsDemo}/>
 		<Route name="datepicker" path="datepicker" handler={DatePickerDemo} />

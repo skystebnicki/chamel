@@ -14,7 +14,7 @@ var MenuItem = React.createClass({
     mixins: [Classable],
 
     propTypes: {
-        index: React.PropTypes.number.isRequired,
+        index: React.PropTypes.number,
         iconClassName: React.PropTypes.string,
         iconRightClassName: React.PropTypes.string,
         attribute: React.PropTypes.string,
@@ -36,7 +36,8 @@ var MenuItem = React.createClass({
     getDefaultProps: function () {
         return {
             toggle: false,
-            disabled: false
+            disabled: false,
+            index: -1
         };
     },
 

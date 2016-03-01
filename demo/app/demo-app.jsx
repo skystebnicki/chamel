@@ -25,6 +25,7 @@ var menuItems = [
   { route: 'icon', text: 'Icon' },
   { route: 'dialog', text: 'Dialog' },
   { route: 'menu', text: 'Menu' },
+  { route: 'popover', text: 'Popover' },
   { route: 'progress', text: 'Progress' },
   { route: 'tabs', text: 'Tabs' },
   { route: 'datepicker', text: 'DatePicker' },

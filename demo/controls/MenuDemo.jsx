@@ -1,6 +1,7 @@
 var React = require("react");
 var Menu = require("../../src/menu/Menu.jsx");
 var MenuItem = require("../../src/menu/MenuItem.jsx");
+var NestedMenuItem = require("../../src/menu/NestedMenuItem.jsx");
 var CodeExample = require("../CodeExample.jsx");
 
 var labelMenuItems = [
@@ -72,15 +73,24 @@ var MenusPage = React.createClass({
                 </div>
 
                 <div className="col-md-3">
+                    <h2 className="mui-font-style-headline">Filter Menu</h2>
+                    {this._getFilterMenuExample()}
+                    <h2 className="mui-font-style-headline">Nested Menu</h2>
+                    {this._getNestedMenuExample()}
+                </div>
+
+                <div className="col-md-3">
                     <h2 className="mui-font-style-headline">Icon Menu</h2>
                     {this._getIconMenuExample()}
                 </div>
 
                 <div className="col-md-3">
-                    <h2 className="mui-font-style-headline">Filter Menu</h2>
-                    {this._getFilterMenuExample()}
-                    <h2 className="mui-font-style-headline">Nested Menu</h2>
-                    {this._getNestedMenuExample()}
+                    <h2 className="mui-font-style-headline">Declaritive</h2>
+                    <Menu onItemClick={this._onItemClick}>
+                      <NestedMenuItem text={"Parent"}>
+                        <MenuItem payload={'1'}>Child</MenuItem>
+                      </NestedMenuItem>
+                    </Menu>
                 </div>
 
             </div>
