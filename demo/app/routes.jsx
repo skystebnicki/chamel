@@ -15,7 +15,7 @@ var ProgressDemo = require("../controls/ProgressDemo.jsx");
 var TabsDemo = require("../controls/TabsDemo.jsx");
 var DatePickerDemo = require("../controls/DatePickerDemo.jsx");
 var AutoCompleteDemo = require("../controls/AutoCompleteDemo.jsx");
-var PopoverDemo = require("../controls/PopoverDemo.jsx");
+var PopoverDemo = require("../controls/popover/PopoverDemo.jsx");
 
 var Router = require('react-router');
 var DefaultRoute = Router.DefaultRoute;
