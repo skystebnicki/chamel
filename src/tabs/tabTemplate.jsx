@@ -1,7 +1,7 @@
 /**
  * Template for rendering tabs
  *
- * @jsx React.DOM
+
  */
 'use strict';
 

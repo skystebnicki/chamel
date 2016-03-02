@@ -1,7 +1,7 @@
 /**
  * The ink bar is a thin bar that floats below tabs to indicate which is active
  *
- * @jsx React.DOM
+
  */
 var React = require('react');
 

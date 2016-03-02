@@ -12,7 +12,7 @@ module.exports = function(grunt) {
             options: {
                 debug: true,
                 transform: [
-                    ['babelify', {loose: "all", nonStandard: true}]
+                    'babelify'
                 ],
                 extensions: ['.jsx'],
                 browserifyOptions : {
@@ -37,7 +37,11 @@ module.exports = function(grunt) {
                 dest: 'dist/js/chamel.js'
             }
         },
-        
+
+        babel: {
+            "presets": ['es2015', 'react']
+        },
+
         /**
          * Settings for watch which basically monitors files for
          * changes and then runs tasks if changes were detected.
@@ -51,7 +55,7 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['sass:dev']
             },
-            
+
             // Build browserfly bundle
             browserify: {
                 files: ['src/**/*.js', 'src/**/*.jsx', 'demo/**/*.js', 'demo/**/*.jsx'],
@@ -63,7 +67,7 @@ module.exports = function(grunt) {
             //     files: ['js/ui/**/*.jsx'],
             //     tasks: ['react', 'browserify']
             // },
-            
+
             // Reload the browser if any of these files change
             livereload: {
                 files: [
@@ -80,7 +84,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         /**
          * Compile sass into CSS
          */
@@ -141,7 +145,7 @@ module.exports = function(grunt) {
                 ext: '.js'
             }
         },
-        
+
         /*
          * Task settings to copy published files to the dist directory
          */
@@ -187,10 +191,10 @@ module.exports = function(grunt) {
     /*
      * Now register callable tasks
      */
-    
+
     // Build all artifacts for distribution and ptu in ./dist
     grunt.registerTask('build', ['clean:dist', 'sass:dist', 'sass:distcmp', 'browserify:dist', 'copy:dist']);
-    
+
     // Default will build sass, update js and then sit and watch for changes
     grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'watch']);
 

@@ -1,7 +1,7 @@
 /**
  * Render a tranient snackbar
  *
- * @jsx React.DOM
+
  */
 'use strict';
 

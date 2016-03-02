@@ -1,7 +1,7 @@
 /**
  * Paper is a concept taken from google Material design standards
  *
- * @jsx React.DOM
+
  */
 'use strict';
 var React = require('react');

@@ -12,12 +12,12 @@ export default class PopoverExampleSimple extends React.Component {
     };
   }
 
-  handleTouchTap(event) {
+  handleTouchTap = (event) => {
     // This prevents ghost click.
     event.preventDefault();
 
     this.setState({
-      open: true,
+      open: this.state.open ? false : true,
       anchorEl: event.currentTarget,
     });
   };
@@ -32,7 +32,7 @@ export default class PopoverExampleSimple extends React.Component {
     return (
       <div>
         <RaisedButton
-          onTouchTap={this.handleTouchTap}
+          onClick={this.handleTouchTap}
           label="Click me"
         />
         <Popover
@@ -40,7 +40,7 @@ export default class PopoverExampleSimple extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose}
+          onRequestClose={this.handleRequestClose.bind(this)}
         >
           Test
         </Popover>

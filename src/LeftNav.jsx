@@ -1,7 +1,7 @@
 /**
  * LeftNav componenet
  *
- * @jsx React.DOM
+
  */
 'use strict';
 

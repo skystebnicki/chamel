@@ -1,7 +1,7 @@
 /**
  * Tabs component
  *
- * @jsx React.DOM
+
  */
 'use strict';
 

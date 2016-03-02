@@ -34,7 +34,7 @@ module.exports = function(config){
         browserify: {
             debug: true,
             es6: true,
-            transform: [ ['babelify', {loose: "all", nonStandard: true}] ],
+            transform: [ ['babelify', {presets: ["es2015", "react"]}] ],
             configure: function(bundle) {
                 bundle.on('prebundle', function() {
                     bundle.external('chamel');

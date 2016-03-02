@@ -1,0 +1,12 @@
+.chamel-popover {
+
+  * {@include ease-out(); }
+
+  position: absolute;
+  min-width: 10px;
+  opacity: 0;
+
+  &.chamel-popover-visible {
+    opacity: 1;
+  }
+}

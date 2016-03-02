@@ -1,7 +1,7 @@
 /**
  * Handle triggering custom events and bubbling them up
  *
- * @jsx React.DOM
+
  */
  'use strict';
 

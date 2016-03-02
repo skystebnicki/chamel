@@ -1,7 +1,7 @@
 /**
  * Main application toolbar
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -59,7 +59,7 @@ var AppBar = React.createClass({
         if (this.props.fixed) {
             let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.appBarInnerCon));
             this.setState({
-                startTopOffset: offset.top, 
+                startTopOffset: offset.top,
                 startWidth: offset.width,
                 startHeight: offset.height
             });
@@ -83,7 +83,7 @@ var AppBar = React.createClass({
             if (this.props.iconElementLeft) {
                 menuElementLeft = (
                     <div className="chamel-app-bar-navigation-icon-button">
-                        {this.props.iconElementLeft} 
+                        {this.props.iconElementLeft}
                     </div>
                 );
             } else {
@@ -105,7 +105,7 @@ var AppBar = React.createClass({
             classes += " " + this.props.className;
         }
 
-        menuElementRight = (this.props.children) ? this.props.children : 
+        menuElementRight = (this.props.children) ? this.props.children :
                        (this.props.iconElementRight) ? this.props.iconElementRight : '';
 
         // Add title
@@ -131,7 +131,7 @@ var AppBar = React.createClass({
             };
 
             /*
-             * Set the outer con style since a fixed element will cause it to shrink 
+             * Set the outer con style since a fixed element will cause it to shrink
              * which makes the UX pretty bad when elements suddenly jump
              */
             outerConStyle = {height: this.state.startHeight + "px"}
@@ -155,7 +155,7 @@ var AppBar = React.createClass({
 	},
 
     /**
-     * Handle when the document is scrolled while the 
+     * Handle when the document is scrolled while the
      * The starting top of this menu was not 0 so it means
      * the menu is a fixed position and docked. A menu can be docked
      * below the top of the page (like below an AppBar) so we

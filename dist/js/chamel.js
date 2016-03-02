@@ -20704,7 +20704,7 @@ module.exports = require('./lib/React');
 /**
  * Main application toolbar
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -22763,7 +22763,7 @@ module.exports = IconButton;
 /**
  * The ink bar is a thin bar that floats below tabs to indicate which is active
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -22796,7 +22796,7 @@ module.exports = InkBar;
 /**
  * LeftNav componenet
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -23091,7 +23091,7 @@ module.exports = Overlay;
 /**
  * Paper is a concept taken from google Material design standards
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -23542,7 +23542,7 @@ module.exports = RaisedButton;
 /**
  * Render a tranient snackbar
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -27416,7 +27416,7 @@ module.exports = RadioButtonOn;
 /**
  * Render a single tab
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -27462,7 +27462,7 @@ module.exports = Tab;
 /**
  * Template for rendering tabs
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
@@ -27486,7 +27486,7 @@ module.exports = TabTemplate;
 /**
  * Tabs component
  *
- * @jsx React.DOM
+
  */
 'use strict';
 

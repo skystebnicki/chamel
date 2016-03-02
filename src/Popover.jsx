@@ -16,7 +16,11 @@ class Popover extends React.Component {
   }
 
   render() {
-    return <div>This is a popover</div>;
+    var classes = "chamel-popover";
+    if (this.props.open) {
+      classes += " chamel-popover-visible";
+    }
+    return <div className={classes}>This is a popover</div>;
   }
 }
 

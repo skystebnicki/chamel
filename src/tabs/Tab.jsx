@@ -1,7 +1,7 @@
 /**
  * Render a single tab
  *
- * @jsx React.DOM
+
  */
 'use strict';
 
