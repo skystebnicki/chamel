@@ -97,8 +97,12 @@ var DropDownMenu = React.createClass({
       selectedIndex: key,
       open: false
     });
-    
+
+    // Prevent ghost clicks
+    e.preventDefault();
     e.stopPropagation();
+
+    // TODO: Not sure if this is needed with the above being called
     e.nativeEvent.stopImmediatePropagation();
   }
 

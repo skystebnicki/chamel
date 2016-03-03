@@ -1,6 +1,6 @@
 import React from 'react';
-var RaisedButton = require("../../../src/RaisedButton.jsx");
 import Popover from '../../../src/Popover.jsx';
+var RaisedButton = require("../../../src/RaisedButton.jsx");
 
 export default class PopoverExampleSimple extends React.Component {
 
@@ -22,7 +22,7 @@ export default class PopoverExampleSimple extends React.Component {
     });
   };
 
-  handleRequestClose() {
+  handleRequestClose = () => {
     this.setState({
       open: false,
     });
@@ -40,7 +40,7 @@ export default class PopoverExampleSimple extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose.bind(this)}
+          onRequestClose={this.handleRequestClose}
         >
           Test
         </Popover>

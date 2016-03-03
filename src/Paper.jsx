@@ -34,19 +34,19 @@ var Paper = React.createClass({
 
       if (this.props.className) {
         classes += this.props.className + " ";
-      } 
+      }
 
       classes += "chamel-paper chamel-z-depth-" + this.props.zDepth;
-      
+
       if (this.props.rounded) {
         classes += " chamel-rounded";
       }
-      
+
       if (this.props.circle) {
         classes += " chamel-circle";
       }
-      
-      var insideClasses = 
+
+      var insideClasses =
         this.props.innerClassName + ' ' +
         'chamel-paper-container ' +
         'chamel-z-depth-bottom';
@@ -66,4 +66,9 @@ var Paper = React.createClass({
 
 });
 
-module.exports = Paper;
+// Check for commonjs
+if (module) {
+  module.exports = Paper;
+}
+
+export default Paper;
