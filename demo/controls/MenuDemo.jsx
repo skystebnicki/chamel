@@ -1,4 +1,5 @@
 var React = require("react");
+var DropDownMenu = require("../../src/DropDownMenu.jsx");
 var Menu = require("../../src/menu/Menu.jsx");
 var MenuItem = require("../../src/menu/MenuItem.jsx");
 var NestedMenuItem = require("../../src/menu/NestedMenuItem.jsx");
@@ -63,6 +64,21 @@ var MenusPage = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-3">
+                    <h2 className="mui-font-style-headline">Declaritive</h2>
+                    <DropDownMenu
+                        menuItems={[]}
+                        onItemClick={this._onItemClick}>
+                        <NestedMenuItem text={"Parent"}>
+                            <MenuItem payload={'1'}>Child</MenuItem>
+                            <MenuItem payload={'1'}>Child</MenuItem>
+                            <MenuItem payload={'1'}>Child</MenuItem>
+                            <MenuItem payload={'1'}>Child</MenuItem>
+                        </NestedMenuItem>
+                        <MenuItem payload={'1'}>Child</MenuItem>
+                    </DropDownMenu>
+                </div>
+
+                <div className="col-md-3">
                     <h2 className="mui-font-style-headline">Label Menu</h2>
                     {this._getLabelMenuExample()}
                 </div>
@@ -84,14 +100,7 @@ var MenusPage = React.createClass({
                     {this._getIconMenuExample()}
                 </div>
 
-                <div className="col-md-3">
-                    <h2 className="mui-font-style-headline">Declaritive</h2>
-                    <Menu onItemClick={this._onItemClick}>
-                      <NestedMenuItem text={"Parent"}>
-                        <MenuItem payload={'1'}>Child</MenuItem>
-                      </NestedMenuItem>
-                    </Menu>
-                </div>
+
 
             </div>
         );

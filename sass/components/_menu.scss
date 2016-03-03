@@ -41,6 +41,7 @@
 
   .chamel-nested-menu-item {
     position: relative;
+    display: inline-block;
 
     &.chamel-is-disabled {
       color: $disabled-color;

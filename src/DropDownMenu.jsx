@@ -5,6 +5,7 @@ var ClickAwayable = require('./mixins/ClickAwayable.jsx');
 var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
 var Paper = require('./Paper.jsx');
 var Menu = require('./menu/Menu.jsx');
+var MenuItem = require('./menu/MenuItem.jsx');
 
 var DropDownMenu = React.createClass({
 
@@ -47,26 +48,39 @@ var DropDownMenu = React.createClass({
       'chamel-open': this.state.open
     });
 
+    let otherProps = {};
+    let children = null;
+    let defaultText = null;
+
+    if(this.props.menuItems.length) {
+      otherProps.menuItems = this.props.menuItems;
+      defaultText = this.props.menuItems[this.state.selectedIndex].text;
+    } else {
+      children = this.props.children;
+    }
+
     return (
-      <div className={classes}>
-        <div className="chamel-menu-control" onClick={this._onControlClick}>
-          <Paper zDepth={0} >
-            <div className="chamel-menu-label">
-              {this.props.menuItems[this.state.selectedIndex].text}
-            </div>
-            <DropDownArrow className="chamel-menu-drop-down-icon" />
-            <div className="chamel-menu-control-underline" />
-          </Paper>
+        <div className={classes}>
+          <div className="chamel-menu-control" onClick={this._onControlClick}>
+            <Paper zDepth={0} >
+              <div className="chamel-menu-label">
+                {defaultText}
+              </div>
+              <DropDownArrow className="chamel-menu-drop-down-icon" />
+              <div className="chamel-menu-control-underline" />
+            </Paper>
+          </div>
+          <Menu
+              {...otherProps}
+              ref="menuItems"
+              autoWidth={this.props.autoWidth}
+              selectedIndex={this.state.selectedIndex}
+              hideable={true}
+              visible={this.state.open}
+              onItemClick={this._onMenuItemClick}>
+            {children}
+          </Menu>
         </div>
-        <Menu
-          ref="menuItems"
-          autoWidth={this.props.autoWidth}
-          selectedIndex={this.state.selectedIndex}
-          menuItems={this.props.menuItems}
-          hideable={true}
-          visible={this.state.open}
-          onItemClick={this._onMenuItemClick} />
-      </div>
     );
   },
 
