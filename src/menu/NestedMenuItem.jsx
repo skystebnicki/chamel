@@ -61,7 +61,7 @@ var NestedMenuItem = React.createClass({
         });
 
         return (
-            <div className={classes} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
+            <div className={classes} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu} ref="nestedMenuCon">
                 <MenuItem index={this.props.index} disabled={this.props.disabled}
                           iconRightClassName="chamel-icon-custom-arrow-drop-right" onClick={this._onMenuItemClick}>
                     {this.props.text}
@@ -89,6 +89,8 @@ var NestedMenuItem = React.createClass({
     },
 
     _openNestedMenu: function () {
+        var parentCon = ReactDOM.findDOMNode(this.refs.nestedMenuCon).parentElement;
+
         if (!this.props.disabled) this.setState({open: true});
     },
 
