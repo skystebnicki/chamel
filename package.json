@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.0.89",
+  "version": "0.0.90",
   "keywords": [
     "react",
     "react-component",
@@ -24,6 +24,7 @@
     "prestart": "npm install",
     "start": "http-server . -a 0.0.0.0 -p 8000",
     "pretest": "npm install",
+    "build": "babel ./src --out-dir ./lib",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",
@@ -75,6 +76,10 @@
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
   "main": "src/main.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "dependencies": {
     "bootstrap-slider": "^5.1.0",
     "browserify": "*",
