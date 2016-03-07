@@ -24,6 +24,8 @@ var NestedMenuItem = React.createClass({
         menuItems: React.PropTypes.array,
         zDepth: React.PropTypes.number,
         disabled: React.PropTypes.bool,
+        parentItem: React.PropTypes.object,
+        onParentItemClick: React.PropTypes.func,
         onItemClick: React.PropTypes.func,
         onItemTap: React.PropTypes.func
     },
@@ -61,19 +63,19 @@ var NestedMenuItem = React.createClass({
         return (
             <div className={classes} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
                 <MenuItem index={this.props.index} disabled={this.props.disabled}
-                          iconRightClassName="chamel-icon-custom-arrow-drop-right" onClick={this._onParentItemClick}>
+                          iconRightClassName="chamel-icon-custom-arrow-drop-right" onClick={this._onMenuItemClick}>
                     {this.props.text}
                 </MenuItem>
                 <Menu
                     ref="nestedMenu"
                     menuItems={this.props.menuItems}
-                    onItemClick={this._onMenuItemClick}
-                    onItemTap={this._onMenuItemTap}
+                    onItemClick={this._onMenuClick}
+                    onItemTap={this._onMenuTap}
                     hideable={true}
                     visible={this.state.open}
                     zDepth={this.props.zDepth + 1}
                 >
-                  {this.props.children}
+                    {this.props.children}
                 </Menu>
             </div>
         );
@@ -98,16 +100,17 @@ var NestedMenuItem = React.createClass({
         if (!this.props.disabled) this.setState({open: !this.state.open});
     },
 
-    _onParentItemClick: function () {
+    _onMenuItemClick: function (e) {
+        if (this.props.onParentItemClick) this.props.onParentItemClick(e, this.props.parentItem);
         this._toggleNestedMenu();
     },
 
-    _onMenuItemClick: function (e, index, menuItem) {
+    _onMenuClick: function (e, index, menuItem) {
         if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
         this._closeNestedMenu();
     },
 
-    _onMenuItemTap: function (e, index, menuItem) {
+    _onMenuTap: function (e, index, menuItem) {
         if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
         this._closeNestedMenu();
     }

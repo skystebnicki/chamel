@@ -8,5 +8,6 @@
 
   &.chamel-popover-visible {
     opacity: 1;
+    z-index: 99;
   }
 }
