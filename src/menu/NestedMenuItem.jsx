@@ -24,6 +24,8 @@ var NestedMenuItem = React.createClass({
         menuItems: React.PropTypes.array,
         zDepth: React.PropTypes.number,
         disabled: React.PropTypes.bool,
+        parentItem: React.PropTypes.object,
+        onParentItemClick: React.PropTypes.func,
         onItemClick: React.PropTypes.func,
         onItemTap: React.PropTypes.func
     },
@@ -73,7 +75,7 @@ var NestedMenuItem = React.createClass({
                     visible={this.state.open}
                     zDepth={this.props.zDepth + 1}
                 >
-                  {this.props.children}
+                    {this.props.children}
                 </Menu>
             </div>
         );
@@ -98,7 +100,8 @@ var NestedMenuItem = React.createClass({
         if (!this.props.disabled) this.setState({open: !this.state.open});
     },
 
-    _onParentItemClick: function () {
+    _onParentItemClick: function (e) {
+        if (this.props.onParentItemClick) this.props.onParentItemClick(e, this.props.parentItem);
         this._toggleNestedMenu();
     },
 
