@@ -20746,7 +20746,6 @@ var Events = require("./utils/Events.jsx");
 var AppBar = React.createClass({
     displayName: 'AppBar',
 
-
     propTypes: {
         onNavBtnClick: React.PropTypes.func,
         showMenuIconButton: React.PropTypes.bool,
@@ -20811,21 +20810,13 @@ var AppBar = React.createClass({
         if (this.props.onNavBtnClick || this.props.iconElementLeft) {
 
             if (this.props.iconElementLeft) {
-                menuElementLeft = React.createElement(
-                    'div',
-                    { className: 'chamel-app-bar-navigation-icon-button' },
-                    this.props.iconElementLeft
-                );
+                menuElementLeft = React.createElement('div', { className: 'chamel-app-bar-navigation-icon-button' }, this.props.iconElementLeft);
             } else {
                 var child = this.props.iconClassNameLeft ? '' : React.createElement(NavigationMenu, null);
-                menuElementLeft = React.createElement(
-                    IconButton,
-                    {
-                        className: 'chamel-app-bar-navigation-icon-button',
-                        iconClassName: this.props.iconClassNameLeft,
-                        onClick: this.props.onNavBtnClick },
-                    child
-                );
+                menuElementLeft = React.createElement(IconButton, {
+                    className: 'chamel-app-bar-navigation-icon-button',
+                    iconClassName: this.props.iconClassNameLeft,
+                    onClick: this.props.onNavBtnClick }, child);
             }
         }
 
@@ -20844,11 +20835,7 @@ var AppBar = React.createClass({
         if (this.props.title) {
             // If the title is a string, wrap in an h1 tag.
             // If not, just use it as a node.
-            title = toString.call(this.props.title) === '[object String]' ? React.createElement(
-                'h1',
-                { className: 'chamel-app-bar-title' },
-                this.props.title
-            ) : this.props.title;
+            title = toString.call(this.props.title) === '[object String]' ? React.createElement('h1', { className: 'chamel-app-bar-title' }, this.props.title) : this.props.title;
         }
 
         // Get the zDepth passed - we may increment if we are floating
@@ -20874,22 +20861,7 @@ var AppBar = React.createClass({
             zDepth++;
         }
 
-        return React.createElement(
-            'div',
-            { style: outerConStyle },
-            React.createElement(
-                Paper,
-                { ref: 'appBarInnerCon', rounded: false, className: classes, zDepth: zDepth, style: innerConStyle },
-                menuElementLeft,
-                React.createElement(
-                    'div',
-                    { className: 'chamel-app-bar-toolbar' },
-                    menuElementRight
-                ),
-                title,
-                React.createElement('div', { className: 'chamel-clear' })
-            )
-        );
+        return React.createElement('div', { style: outerConStyle }, React.createElement(Paper, { ref: 'appBarInnerCon', rounded: false, className: classes, zDepth: zDepth, style: innerConStyle }, menuElementLeft, React.createElement('div', { className: 'chamel-app-bar-toolbar' }, menuElementRight), title, React.createElement('div', { className: 'chamel-clear' })));
     },
 
     /**
@@ -20943,7 +20915,6 @@ var Menu = require('./menu/Menu.jsx');
 
 var AutoComplete = React.createClass({
     displayName: 'AutoComplete',
-
 
     propTypes: {
 
@@ -21061,11 +21032,7 @@ var AutoComplete = React.createClass({
             });
         }
 
-        return React.createElement(
-            'div',
-            { className: 'chamel-autoComplete' },
-            displayAutoComplete
-        );
+        return React.createElement('div', { className: 'chamel-autoComplete' }, displayAutoComplete);
     },
 
     /**
@@ -21241,9 +21208,21 @@ module.exports = AutoComplete;
 },{"./menu/Menu.jsx":207,"./utils/KeyCode.jsx":238,"react":166,"react-dom":4}],170:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var EnhancedSwitch = require('./EnhancedSwitch.jsx');
@@ -21253,7 +21232,6 @@ var CheckboxChecked = require('./svg-icons/toggle-check-box-checked.jsx');
 
 var Checkbox = React.createClass({
   displayName: 'Checkbox',
-
 
   mixins: [Classable],
 
@@ -21269,12 +21247,7 @@ var Checkbox = React.createClass({
 
     var classes = this.getClasses("chamel-checkbox");
 
-    var checkboxElement = React.createElement(
-      'div',
-      null,
-      React.createElement(CheckboxOutline, { className: 'chamel-checkbox-box' }),
-      React.createElement(CheckboxChecked, { className: 'chamel-checkbox-check' })
-    );
+    var checkboxElement = React.createElement('div', null, React.createElement(CheckboxOutline, { className: 'chamel-checkbox-box' }), React.createElement(CheckboxChecked, { className: 'chamel-checkbox-check' }));
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
@@ -21336,29 +21309,7 @@ var ColorPicker = React.createClass({
 
   render: function render() {
     // <ReactColorPicker onChange={this._handleColorPick} value={this.props.value} />
-    return React.createElement(
-      'div',
-      { ref: 'colorPickerContainer', className: 'chamel-color-picker' },
-      React.createElement(
-        'div',
-        { className: 'chamel-color-picker-close' },
-        React.createElement(FontIcon, { onClick: this.close, className: 'cfi cfi-times' })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'div',
-          null,
-          'TODO: add here'
-        )
-      ),
-      React.createElement(
-        'div',
-        { className: 'chamel-color-picker-label' },
-        this.props.label
-      )
-    );
+    return React.createElement('div', { ref: 'colorPickerContainer', className: 'chamel-color-picker' }, React.createElement('div', { className: 'chamel-color-picker-close' }, React.createElement(FontIcon, { onClick: this.close, className: 'cfi cfi-times' })), React.createElement('div', null, React.createElement('div', null, 'TODO: add here')), React.createElement('div', { className: 'chamel-color-picker-label' }, this.props.label));
   },
 
   /**
@@ -21417,7 +21368,6 @@ var Paper = require('./Paper.jsx');
 
 var DialogWindow = React.createClass({
   displayName: 'DialogWindow',
-
 
   mixins: [WindowListenable],
 
@@ -21490,36 +21440,13 @@ var DialogWindow = React.createClass({
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement(
-        'h3',
-        { className: 'chamel-dialog-window-title' },
-        this.props.title
-      ) : this.props.title;
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement('h3', { className: 'chamel-dialog-window-title' }, this.props.title) : this.props.title;
     }
 
     // Get actions to display at the bottom
     var actions = this._getActionsContainer(this.props.actions);
 
-    return React.createElement(
-      'div',
-      { className: classesDialog },
-      React.createElement(
-        'div',
-        { className: classesWindow },
-        React.createElement(
-          Paper,
-          { ref: 'dialogWindow', zDepth: 4 },
-          title,
-          React.createElement(
-            'div',
-            { ref: 'dialogBody', className: 'chamel-dialog-window-body' },
-            this.props.children
-          ),
-          actions
-        )
-      ),
-      React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onClick: this._handleOverlayTouchTap })
-    );
+    return React.createElement('div', { className: classesDialog }, React.createElement('div', { className: classesWindow }, React.createElement(Paper, { ref: 'dialogWindow', zDepth: 4 }, title, React.createElement('div', { ref: 'dialogBody', className: 'chamel-dialog-window-body' }, this.props.children), actions)), React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onClick: this._handleOverlayTouchTap }));
   },
 
   isOpen: function isOpen() {
@@ -21589,11 +21516,7 @@ var DialogWindow = React.createClass({
         actionObjects.push(currentAction);
       };
 
-      actionContainer = React.createElement(
-        'div',
-        { className: 'chamel-dialog-window-actions' },
-        actionObjects
-      );
+      actionContainer = React.createElement('div', { className: 'chamel-dialog-window-actions' }, actionObjects);
     }
 
     return actionContainer;
@@ -21692,7 +21615,6 @@ var Paper = require('./Paper.jsx');
 var DialogWindow = React.createClass({
   displayName: 'DialogWindow',
 
-
   mixins: [Classable, WindowListenable],
 
   propTypes: {
@@ -21760,29 +21682,10 @@ var DialogWindow = React.createClass({
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement(
-        'h3',
-        { className: 'chamel-dialog-title' },
-        this.props.title
-      ) : this.props.title;
+      title = Object.prototype.toString.call(this.props.title) === '[object String]' ? React.createElement('h3', { className: 'chamel-dialog-title' }, this.props.title) : this.props.title;
     }
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement(
-        Paper,
-        { ref: 'dialogWindow', className: contentClasses, zDepth: 4 },
-        title,
-        React.createElement(
-          'div',
-          { ref: 'dialogContent', className: 'chamel-dialog-window-contents-body' },
-          this.props.children
-        ),
-        actions
-      ),
-      React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onClick: this._handleOverlayTouchTap })
-    );
+    return React.createElement('div', { className: classes }, React.createElement(Paper, { ref: 'dialogWindow', className: contentClasses, zDepth: 4 }, title, React.createElement('div', { ref: 'dialogContent', className: 'chamel-dialog-window-contents-body' }, this.props.children), actions), React.createElement(Overlay, { ref: 'dialogOverlay', show: this.state.open, autoLockScrolling: false, onClick: this._handleOverlayTouchTap }));
   },
 
   isOpen: function isOpen() {
@@ -21852,11 +21755,7 @@ var DialogWindow = React.createClass({
         actionObjects.push(currentAction);
       };
 
-      actionContainer = React.createElement(
-        'div',
-        { className: 'chamel-dialog-window-actions' },
-        actionObjects
-      );
+      actionContainer = React.createElement('div', { className: 'chamel-dialog-window-actions' }, actionObjects);
     }
 
     return actionContainer;
@@ -21953,7 +21852,6 @@ var Menu = require('./menu/Menu.jsx');
 var DropDownIcon = React.createClass({
   displayName: 'DropDownIcon',
 
-
   mixins: [Classable, ClickAwayable],
 
   propTypes: {
@@ -21986,17 +21884,7 @@ var DropDownIcon = React.createClass({
     var icon;
     if (this.props.iconClassName) icon = React.createElement(FontIcon, { className: this.props.iconClassName });
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement(
-        'div',
-        { className: 'chamel-menu-control', onClick: this._onControlClick },
-        icon,
-        this.props.children
-      ),
-      React.createElement(Menu, { ref: 'menuItems', menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick })
-    );
+    return React.createElement('div', { className: classes }, React.createElement('div', { className: 'chamel-menu-control', onClick: this._onControlClick }, icon, this.props.children), React.createElement(Menu, { ref: 'menuItems', menuItems: this.props.menuItems, hideable: true, visible: this.state.open, onItemClick: this._onMenuItemClick }));
   },
 
   _onControlClick: function _onControlClick(e) {
@@ -22030,7 +21918,6 @@ var Menu = require('./menu/Menu.jsx');
 
 var DropDownMenu = React.createClass({
   displayName: 'DropDownMenu',
-
 
   mixins: [Classable, ClickAwayable],
 
@@ -22071,33 +21958,14 @@ var DropDownMenu = React.createClass({
       'chamel-open': this.state.open
     });
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement(
-        'div',
-        { className: 'chamel-menu-control', onClick: this._onControlClick },
-        React.createElement(
-          Paper,
-          { zDepth: 0 },
-          React.createElement(
-            'div',
-            { className: 'chamel-menu-label' },
-            this.props.menuItems[this.state.selectedIndex].text
-          ),
-          React.createElement(DropDownArrow, { className: 'chamel-menu-drop-down-icon' }),
-          React.createElement('div', { className: 'chamel-menu-control-underline' })
-        )
-      ),
-      React.createElement(Menu, {
-        ref: 'menuItems',
-        autoWidth: this.props.autoWidth,
-        selectedIndex: this.state.selectedIndex,
-        menuItems: this.props.menuItems,
-        hideable: true,
-        visible: this.state.open,
-        onItemClick: this._onMenuItemClick })
-    );
+    return React.createElement('div', { className: classes }, React.createElement('div', { className: 'chamel-menu-control', onClick: this._onControlClick }, React.createElement(Paper, { zDepth: 0 }, React.createElement('div', { className: 'chamel-menu-label' }, this.props.menuItems[this.state.selectedIndex].text), React.createElement(DropDownArrow, { className: 'chamel-menu-drop-down-icon' }), React.createElement('div', { className: 'chamel-menu-control-underline' }))), React.createElement(Menu, {
+      ref: 'menuItems',
+      autoWidth: this.props.autoWidth,
+      selectedIndex: this.state.selectedIndex,
+      menuItems: this.props.menuItems,
+      hideable: true,
+      visible: this.state.open,
+      onItemClick: this._onMenuItemClick }));
   },
 
   _setWidth: function _setWidth() {
@@ -22144,7 +22012,15 @@ module.exports = DropDownMenu;
 },{"./Paper.jsx":185,"./menu/Menu.jsx":207,"./mixins/ClickAwayable.jsx":211,"./mixins/classable.jsx":213,"./svg-icons/drop-down-arrow.jsx":218,"_process":2,"react":166,"react-dom":4}],176:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
 var React = require('react');
 var KeyCode = require('./utils/KeyCode.jsx');
@@ -22155,7 +22031,6 @@ var TouchRipple = require('./ripples/TouchRipple.jsx');
 
 var EnhancedButton = React.createClass({
   displayName: 'EnhancedButton',
-
 
   mixins: [Classable, WindowListenable],
 
@@ -22198,14 +22073,10 @@ var EnhancedButton = React.createClass({
       'chamel-is-keyboard-focused': this.state.isKeyboardFocused,
       'chamel-is-link-button': linkButton
     });
-    var touchRipple = React.createElement(
-      TouchRipple,
-      {
-        ref: 'touchRipple',
-        key: 'touchRipple',
-        centerRipple: centerRipple },
-      this.props.children
-    );
+    var touchRipple = React.createElement(TouchRipple, {
+      ref: 'touchRipple',
+      key: 'touchRipple',
+      centerRipple: centerRipple }, this.props.children);
     var focusRipple = React.createElement(FocusRipple, {
       key: 'focusRipple',
       show: this.state.isKeyboardFocused });
@@ -22219,24 +22090,12 @@ var EnhancedButton = React.createClass({
     var buttonChildren = [disabled || disableTouchRipple ? this.props.children : touchRipple, disabled || disableFocusRipple ? null : focusRipple];
 
     if (disabled && linkButton) {
-      return React.createElement(
-        'span',
-        _extends({}, this.props, {
-          className: classes,
-          disabled: disabled }),
-        this.props.children
-      );
+      return React.createElement('span', _extends({}, this.props, {
+        className: classes,
+        disabled: disabled }), this.props.children);
     }
 
-    return linkButton ? React.createElement(
-      'a',
-      _extends({}, this.props, buttonProps),
-      buttonChildren
-    ) : React.createElement(
-      'button',
-      _extends({}, this.props, buttonProps),
-      buttonChildren
-    );
+    return linkButton ? React.createElement('a', _extends({}, this.props, buttonProps), buttonChildren) : React.createElement('button', _extends({}, this.props, buttonProps), buttonChildren);
   },
 
   isKeyboardFocused: function isKeyboardFocused() {
@@ -22295,9 +22154,21 @@ module.exports = EnhancedButton;
 (function (process){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -22311,7 +22182,6 @@ var Paper = require('./Paper.jsx');
 
 var EnhancedSwitch = React.createClass({
   displayName: 'EnhancedSwitch',
-
 
   mixins: [Classable, WindowListenable],
 
@@ -22412,11 +22282,7 @@ var EnhancedSwitch = React.createClass({
 
     var inputId = this.props.id || UniqueId.generate();
 
-    var labelElement = this.props.label ? React.createElement(
-      'label',
-      { className: 'chamel-switch-label', htmlFor: inputId },
-      this.props.label
-    ) : null;
+    var labelElement = this.props.label ? React.createElement('label', { className: 'chamel-switch-label', htmlFor: inputId }, this.props.label) : null;
 
     var inputProps = {
       ref: "checkbox",
@@ -22458,45 +22324,14 @@ var EnhancedSwitch = React.createClass({
 
     iconClassName += ' chamel-enhanced-switch-wrap';
 
-    var switchElement = this.props.iconClassName.indexOf("chamel-toggle") == -1 ? React.createElement(
-      'div',
-      { className: iconClassName },
-      this.props.switchElement,
-      ripples
-    ) : React.createElement(
-      'div',
-      { className: iconClassName },
-      React.createElement('div', { className: 'chamel-toggle-track' }),
-      React.createElement(
-        Paper,
-        { className: 'chamel-toggle-thumb', zDepth: 1 },
-        ' ',
-        ripples,
-        ' '
-      )
-    );
+    var switchElement = this.props.iconClassName.indexOf("chamel-toggle") == -1 ? React.createElement('div', { className: iconClassName }, this.props.switchElement, ripples) : React.createElement('div', { className: iconClassName }, React.createElement('div', { className: 'chamel-toggle-track' }), React.createElement(Paper, { className: 'chamel-toggle-thumb', zDepth: 1 }, ' ', ripples, ' '));
 
     var labelPositionExist = this.props.labelPosition;
 
     // Position is left if not defined or invalid.
-    var elementsInOrder = labelPositionExist && this.props.labelPosition.toUpperCase() === "RIGHT" ? React.createElement(
-      'div',
-      null,
-      switchElement,
-      labelElement
-    ) : React.createElement(
-      'div',
-      null,
-      labelElement,
-      switchElement
-    );
+    var elementsInOrder = labelPositionExist && this.props.labelPosition.toUpperCase() === "RIGHT" ? React.createElement('div', null, switchElement, labelElement) : React.createElement('div', null, labelElement, switchElement);
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      inputElement,
-      elementsInOrder
-    );
+    return React.createElement('div', { className: classes }, inputElement, elementsInOrder);
   },
 
   isSwitched: function isSwitched() {
@@ -22608,9 +22443,21 @@ module.exports = EnhancedSwitch;
 },{"./Paper.jsx":185,"./mixins/WindowListenable.jsx":212,"./mixins/classable.jsx":213,"./ripples/FocusRipple.jsx":216,"./ripples/TouchRipple.jsx":217,"./utils/KeyCode.jsx":238,"./utils/UniqueId.jsx":240,"_process":2,"react":166,"react-dom":4}],178:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -22618,7 +22465,6 @@ var Classable = require('./mixins/classable.jsx');
 
 var EnhancedTextarea = React.createClass({
   displayName: 'EnhancedTextarea',
-
 
   mixins: [Classable],
 
@@ -22670,24 +22516,19 @@ var EnhancedTextarea = React.createClass({
       other.value = this.props.valueLink.value;
     }
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement('textarea', {
-        ref: 'shadow',
-        className: 'chamel-enhanced-textarea-shadow',
-        tabIndex: '-1',
-        rows: this.props.rows,
-        defaultValue: this.props.defaultValue,
-        readOnly: true,
-        value: this.props.value }),
-      React.createElement('textarea', _extends({}, other, {
-        ref: 'input',
-        className: textareaClassName,
-        rows: this.props.rows,
-        style: style,
-        onChange: this._handleChange }))
-    );
+    return React.createElement('div', { className: classes }, React.createElement('textarea', {
+      ref: 'shadow',
+      className: 'chamel-enhanced-textarea-shadow',
+      tabIndex: '-1',
+      rows: this.props.rows,
+      defaultValue: this.props.defaultValue,
+      readOnly: true,
+      value: this.props.value }), React.createElement('textarea', _extends({}, other, {
+      ref: 'input',
+      className: textareaClassName,
+      rows: this.props.rows,
+      style: style,
+      onChange: this._handleChange })));
   },
 
   getInputNode: function getInputNode() {
@@ -22730,9 +22571,21 @@ module.exports = EnhancedTextarea;
 },{"./mixins/classable.jsx":213,"react":166,"react-dom":4}],179:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('./mixins/classable.jsx');
@@ -22740,7 +22593,6 @@ var EnhancedButton = require('./EnhancedButton.jsx');
 
 var FlatButton = React.createClass({
   displayName: 'FlatButton',
-
 
   mixins: [Classable],
 
@@ -22769,18 +22621,10 @@ var FlatButton = React.createClass({
     });
     var children;
 
-    if (label) children = React.createElement(
-      'span',
-      { className: 'chamel-flat-button-label' },
-      label
-    );else children = this.props.children;
+    if (label) children = React.createElement('span', { className: 'chamel-flat-button-label' }, label);else children = this.props.children;
 
-    return React.createElement(
-      EnhancedButton,
-      _extends({}, other, {
-        className: classes }),
-      children
-    );
+    return React.createElement(EnhancedButton, _extends({}, other, {
+      className: classes }), children);
   }
 
 });
@@ -22790,14 +22634,21 @@ module.exports = FlatButton;
 },{"./EnhancedButton.jsx":176,"./mixins/classable.jsx":213,"react":166}],180:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
 var React = require('react');
 var Classable = require('./mixins/classable.jsx');
 
 var FontIcon = React.createClass({
   displayName: 'FontIcon',
-
 
   mixins: [Classable],
 
@@ -22817,7 +22668,15 @@ module.exports = FontIcon;
 (function (process){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -22828,7 +22687,6 @@ var Tooltip = require('./Tooltip.jsx');
 
 var IconButton = React.createClass({
   displayName: 'IconButton',
-
 
   mixins: [Classable],
 
@@ -22879,20 +22737,14 @@ var IconButton = React.createClass({
       fonticon = React.createElement(FontIcon, { className: this.props.iconClassName });
     }
 
-    return React.createElement(
-      EnhancedButton,
-      _extends({}, this.props, {
-        ref: 'button',
-        centerRipple: true,
-        className: classes,
-        onBlur: this._handleBlur,
-        onFocus: this._handleFocus,
-        onMouseOut: this._handleMouseOut,
-        onMouseOver: this._handleMouseOver }),
-      tooltip,
-      fonticon,
-      this.props.children
-    );
+    return React.createElement(EnhancedButton, _extends({}, this.props, {
+      ref: 'button',
+      centerRipple: true,
+      className: classes,
+      onBlur: this._handleBlur,
+      onFocus: this._handleFocus,
+      onMouseOut: this._handleMouseOut,
+      onMouseOver: this._handleMouseOver }), tooltip, fonticon, this.props.children);
   },
 
   _positionTooltip: function _positionTooltip() {
@@ -22944,6 +22796,7 @@ module.exports = IconButton;
  *
 
  */
+
 var React = require('react');
 
 /**
@@ -22951,7 +22804,6 @@ var React = require('react');
  */
 var InkBar = React.createClass({
     displayName: 'InkBar',
-
 
     propTypes: {
         position: React.PropTypes.string
@@ -22964,11 +22816,7 @@ var InkBar = React.createClass({
             width: this.props.width
         };
 
-        return React.createElement(
-            'div',
-            { className: 'chamel-ink-bar', style: styles },
-            ' '
-        );
+        return React.createElement('div', { className: 'chamel-ink-bar', style: styles }, ' ');
     }
 });
 
@@ -22995,7 +22843,6 @@ var Events = require("./utils/Events.jsx");
  */
 var LeftNav = React.createClass({
   displayName: 'LeftNav',
-
 
   //mixins: [Classable, WindowListenable],
 
@@ -23106,27 +22953,17 @@ var LeftNav = React.createClass({
       topStyle = { top: this.state.curTopOffset + "px" };
     }
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      overlay,
-      React.createElement(
-        Paper,
-        {
-          style: topStyle,
-          ref: 'clickAwayableElement',
-          className: 'chamel-left-nav-menu',
-          zDepth: zDept,
-          rounded: false },
-        this.props.header,
-        React.createElement(Menu, {
-          ref: 'menuItems',
-          zDepth: 0,
-          menuItems: this.props.menuItems,
-          selectedIndex: selectedIndex,
-          onItemClick: this._onMenuItemClick })
-      )
-    );
+    return React.createElement('div', { className: classes }, overlay, React.createElement(Paper, {
+      style: topStyle,
+      ref: 'clickAwayableElement',
+      className: 'chamel-left-nav-menu',
+      zDepth: zDept,
+      rounded: false }, this.props.header, React.createElement(Menu, {
+      ref: 'menuItems',
+      zDepth: 0,
+      menuItems: this.props.menuItems,
+      selectedIndex: selectedIndex,
+      onItemClick: this._onMenuItemClick })));
   },
 
   /**
@@ -23207,16 +23044,27 @@ module.exports = LeftNav;
 },{"./Overlay.jsx":184,"./Paper.jsx":185,"./menu/Menu.jsx":207,"./utils/Dom.jsx":236,"./utils/Events.jsx":237,"react":166,"react-dom":4}],184:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react'),
     Classable = require('./mixins/classable.jsx');
 
 var Overlay = React.createClass({
   displayName: 'Overlay',
-
 
   mixins: [Classable],
 
@@ -23281,7 +23129,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
 var React = require('react');
 
@@ -23290,7 +23146,6 @@ var React = require('react');
  */
 var Paper = React.createClass({
   displayName: 'Paper',
-
 
   //mixins: [Classable],
 
@@ -23329,15 +23184,7 @@ var Paper = React.createClass({
 
     var insideClasses = this.props.innerClassName + ' ' + 'chamel-paper-container ' + 'chamel-z-depth-bottom';
 
-    return React.createElement(
-      'div',
-      _extends({}, this.props, { className: classes }),
-      React.createElement(
-        'div',
-        { ref: 'innerContainer', className: insideClasses },
-        this.props.children
-      )
-    );
+    return React.createElement('div', _extends({}, this.props, { className: classes }), React.createElement('div', { ref: 'innerContainer', className: insideClasses }, this.props.children));
   },
 
   getInnerContainer: function getInnerContainer() {
@@ -23357,11 +23204,21 @@ module.exports = exports['default'];
 },{"react":166}],186:[function(require,module,exports){
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+  };
+}();
 
 var _react = require('react');
 
@@ -23371,13 +23228,27 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
 
 var Events = require('./utils/Events.jsx');
 var Dom = require('./utils/Dom.jsx');
@@ -23398,7 +23269,6 @@ var Popover = function (_React$Component) {
 
     // Call paprent constructor
 
-
     _this._checkClickAway = function (e) {
       var el = _reactDom2.default.findDOMNode(_this);
       var anchorEl = _reactDom2.default.findDOMNode(_this.props.anchorEl);
@@ -23418,7 +23288,6 @@ var Popover = function (_React$Component) {
   /**
    * Popover has entered the dom
    */
-
 
   _createClass(Popover, [{
     key: 'componentDidMount',
@@ -23442,11 +23311,7 @@ var Popover = function (_React$Component) {
       if (this.props.open) {
         classes += " chamel-popover-visible";
       }
-      return _react2.default.createElement(
-        'div',
-        { className: classes },
-        this.props.children
-      );
+      return _react2.default.createElement('div', { className: classes }, this.props.children);
     }
 
     /**
@@ -23461,7 +23326,6 @@ var Popover = function (_React$Component) {
 /**
  * Set accepted properties
  */
-
 
 Popover.propTypes = {
   open: _react2.default.PropTypes.bool,
@@ -23484,9 +23348,21 @@ module.exports = exports['default'];
 },{"./utils/Dom.jsx":236,"./utils/Events.jsx":237,"react":166,"react-dom":4}],187:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('./mixins/classable.jsx');
@@ -23499,7 +23375,6 @@ var RadioButtonOn = require('./svg-icons/toggle-radio-button-on.jsx');
  */
 var RadioButton = React.createClass({
   displayName: 'RadioButton',
-
 
   mixins: [Classable],
 
@@ -23534,12 +23409,7 @@ var RadioButton = React.createClass({
 
     var other = _objectWithoutProperties(_props, ['onCheck']);
 
-    var radioButtonElement = React.createElement(
-      'div',
-      null,
-      React.createElement(RadioButtonOff, { className: 'chamel-radio-button-target' }),
-      React.createElement(RadioButtonOn, { className: 'chamel-radio-button-fill' })
-    );
+    var radioButtonElement = React.createElement('div', null, React.createElement(RadioButtonOff, { className: 'chamel-radio-button-target' }), React.createElement(RadioButtonOn, { className: 'chamel-radio-button-fill' }));
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
@@ -23579,9 +23449,21 @@ module.exports = RadioButton;
 (function (process){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Paper = require('./Paper.jsx');
@@ -23591,7 +23473,6 @@ var RadioButton = require('./RadioButton.jsx');
 
 var RadioButtonGroup = React.createClass({
   displayName: 'RadioButtonGroup',
-
 
   mixins: [Classable],
 
@@ -23685,11 +23566,7 @@ var RadioButtonGroup = React.createClass({
         checked: option.props.value == this.state.selected }));
     }, this);
 
-    return React.createElement(
-      'div',
-      null,
-      options
-    );
+    return React.createElement('div', null, options);
   },
 
   _updateRadioButtons: function _updateRadioButtons(newSelection) {
@@ -23730,9 +23607,21 @@ module.exports = RadioButtonGroup;
 },{"./EnhancedSwitch.jsx":177,"./Paper.jsx":185,"./RadioButton.jsx":187,"./mixins/classable.jsx":213,"_process":2,"react":166}],189:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('./mixins/classable.jsx');
@@ -23741,7 +23630,6 @@ var Paper = require('./Paper.jsx');
 
 var RaisedButton = React.createClass({
   displayName: 'RaisedButton',
-
 
   mixins: [Classable],
 
@@ -23791,27 +23679,15 @@ var RaisedButton = React.createClass({
     });
     var children;
 
-    if (label) children = React.createElement(
-      'span',
-      { className: 'chamel-raised-button-label' },
-      label
-    );else children = this.props.children;
+    if (label) children = React.createElement('span', { className: 'chamel-raised-button-label' }, label);else children = this.props.children;
 
-    return React.createElement(
-      Paper,
-      { className: classes, zDepth: this.state.zDepth },
-      React.createElement(
-        EnhancedButton,
-        _extends({}, other, {
-          className: 'chamel-raised-button-container',
-          onMouseUp: this._handleMouseUp,
-          onMouseDown: this._handleMouseDown,
-          onMouseOut: this._handleMouseOut,
-          onTouchStart: this._handleTouchStart,
-          onTouchEnd: this._handleTouchEnd }),
-        children
-      )
-    );
+    return React.createElement(Paper, { className: classes, zDepth: this.state.zDepth }, React.createElement(EnhancedButton, _extends({}, other, {
+      className: 'chamel-raised-button-container',
+      onMouseUp: this._handleMouseUp,
+      onMouseDown: this._handleMouseDown,
+      onMouseOut: this._handleMouseOut,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd }), children));
   },
 
   _handleMouseDown: function _handleMouseDown(e) {
@@ -23864,7 +23740,6 @@ var FlatButton = require('./FlatButton.jsx');
 var Snackbar = React.createClass({
   displayName: 'Snackbar',
 
-
   mixins: [Classable, ClickAwayable],
 
   manuallyBindClickAway: true,
@@ -23912,16 +23787,7 @@ var Snackbar = React.createClass({
         onClick: this.props.onActionClick });
     }
 
-    return React.createElement(
-      'span',
-      { className: classes },
-      React.createElement(
-        'span',
-        { className: 'chamel-snackbar-message' },
-        this.props.message
-      ),
-      action
-    );
+    return React.createElement('span', { className: classes }, React.createElement('span', { className: 'chamel-snackbar-message' }, this.props.message), action);
   },
 
   show: function show() {
@@ -23940,9 +23806,21 @@ module.exports = Snackbar;
 (function (process){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+    var target = {};for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+    }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -23955,7 +23833,6 @@ var KeyCode = require('./utils/KeyCode.jsx');
 
 var TextField = React.createClass({
     displayName: 'TextField',
-
 
     mixins: [Classable],
 
@@ -24051,25 +23928,13 @@ var TextField = React.createClass({
 
         var inputId = this.props.id || UniqueId.generate();
 
-        var errorTextElement = this.state.errorText ? React.createElement(
-            'div',
-            { className: 'chamel-text-field-error' },
-            this.state.errorText
-        ) : null;
+        var errorTextElement = this.state.errorText ? React.createElement('div', { className: 'chamel-text-field-error' }, this.state.errorText) : null;
 
-        var hintTextElement = this.props.hintText ? React.createElement(
-            'div',
-            { className: 'chamel-text-field-hint' },
-            this.props.hintText
-        ) : null;
+        var hintTextElement = this.props.hintText ? React.createElement('div', { className: 'chamel-text-field-hint' }, this.props.hintText) : null;
 
-        var floatingLabelTextElement = this.props.floatingLabelText ? React.createElement(
-            'label',
-            {
-                className: 'chamel-text-field-floating-label',
-                htmlFor: inputId },
-            this.props.floatingLabelText
-        ) : null;
+        var floatingLabelTextElement = this.props.floatingLabelText ? React.createElement('label', {
+            className: 'chamel-text-field-floating-label',
+            htmlFor: inputId }, this.props.floatingLabelText) : null;
 
         var inputProps;
         var inputElement;
@@ -24146,17 +24011,7 @@ var TextField = React.createClass({
             }
         }
 
-        return React.createElement(
-            'div',
-            { className: classes },
-            floatingLabelTextElement,
-            hintTextElement,
-            inputElement,
-            React.createElement('hr', { className: 'chamel-text-field-underline' }),
-            React.createElement('hr', { className: 'chamel-text-field-focus-underline' }),
-            autoCompleteDisplay,
-            errorTextElement
-        );
+        return React.createElement('div', { className: classes }, floatingLabelTextElement, hintTextElement, inputElement, React.createElement('hr', { className: 'chamel-text-field-underline' }), React.createElement('hr', { className: 'chamel-text-field-focus-underline' }), autoCompleteDisplay, errorTextElement);
     },
 
     blur: function blur() {
@@ -24552,7 +24407,6 @@ var uaParser = new UAParser();
 var TextFieldRich = React.createClass({
 	displayName: 'TextFieldRich',
 
-
 	propTypes: {
 		id: React.PropTypes.string,
 		onBlur: React.PropTypes.func,
@@ -24593,11 +24447,7 @@ var TextFieldRich = React.createClass({
 	},
 
 	render: function render() {
-		return React.createElement(
-			'div',
-			{ className: 'chamel-text-field-rich' },
-			React.createElement('iframe', { ref: 'rte', src: 'about:blank' })
-		);
+		return React.createElement('div', { className: 'chamel-text-field-rich' }, React.createElement('iframe', { ref: 'rte', src: 'about:blank' }));
 	},
 
 	/**
@@ -24963,9 +24813,21 @@ module.exports = TextFieldRich;
 },{"react":166,"react-dom":4,"ua-parser-js":167}],193:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('./mixins/classable.jsx');
@@ -24974,7 +24836,6 @@ var EnhancedSwitch = require('./EnhancedSwitch.jsx');
 
 var Toggle = React.createClass({
   displayName: 'Toggle',
-
 
   mixins: [Classable],
 
@@ -24990,12 +24851,7 @@ var Toggle = React.createClass({
 
     var other = _objectWithoutProperties(_props, ['onToggle']);
 
-    var toggleElement = React.createElement(
-      'div',
-      null,
-      React.createElement('div', { className: 'chamel-toggle-track' }),
-      React.createElement(Paper, { className: 'chamel-toggle-thumb', zDepth: 1 })
-    );
+    var toggleElement = React.createElement('div', null, React.createElement('div', { className: 'chamel-toggle-track' }), React.createElement(Paper, { className: 'chamel-toggle-thumb', zDepth: 1 }));
 
     var enhancedSwitchProps = {
       ref: "enhancedSwitch",
@@ -25031,9 +24887,21 @@ module.exports = Toggle;
 },{"./EnhancedSwitch.jsx":177,"./Paper.jsx":185,"./mixins/classable.jsx":213,"react":166}],194:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -25041,7 +24909,6 @@ var Classable = require('./mixins/classable.jsx');
 
 var Tooltip = React.createClass({
   displayName: 'Tooltip',
-
 
   mixins: [Classable],
 
@@ -25072,16 +24939,7 @@ var Tooltip = React.createClass({
       'chamel-is-touch': this.props.touch
     });
 
-    return React.createElement(
-      'div',
-      _extends({}, other, { className: classes }),
-      React.createElement('div', { ref: 'ripple', className: 'chamel-tooltip-ripple' }),
-      React.createElement(
-        'span',
-        { className: 'chamel-tooltip-label' },
-        this.props.label
-      )
-    );
+    return React.createElement('div', _extends({}, other, { className: classes }), React.createElement('div', { ref: 'ripple', className: 'chamel-tooltip-ripple' }), React.createElement('span', { className: 'chamel-tooltip-label' }, this.props.label));
   },
 
   _setRippleSize: function _setRippleSize() {
@@ -25118,7 +24976,6 @@ var SlideInTransitionGroup = require('../transition-groups/SlideIn.jsx');
 
 var Calendar = React.createClass({
   displayName: 'Calendar',
-
 
   mixins: [Classable, WindowListenable],
 
@@ -25168,75 +25025,22 @@ var Calendar = React.createClass({
       'chamel-is-6week': weekCount === 6
     });
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement(DateDisplay, {
-        className: 'chamel-date-picker-calendar-date-display',
-        selectedDate: this.state.selectedDate }),
-      React.createElement(
-        'div',
-        {
-          className: 'chamel-date-picker-calendar-container' },
-        React.createElement(CalendarToolbar, {
-          minDate: this.props.minDate,
-          maxDate: this.props.maxDate,
-          displayDate: this.state.displayDate,
-          onLeftTouchTap: this._handleLeftTouchTap,
-          onRightTouchTap: this._handleRightTouchTap }),
-        React.createElement(
-          'ul',
-          { className: 'chamel-date-picker-calendar-week-title' },
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'S'
-          ),
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'M'
-          ),
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'T'
-          ),
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'W'
-          ),
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'T'
-          ),
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'F'
-          ),
-          React.createElement(
-            'li',
-            { className: 'chamel-date-picker-calendar-week-title-day' },
-            'S'
-          )
-        ),
-        React.createElement(
-          SlideInTransitionGroup,
-          {
-            direction: this.state.transitionDirection },
-          React.createElement(CalendarMonth, {
-            minDate: this.props.minDate,
-            maxDate: this.props.maxDate,
-            key: this.state.displayDate.toDateString(),
-            displayDate: this.state.displayDate,
-            onDayTouchTap: this._handleDayTouchTap,
-            selectedDate: this.state.selectedDate })
-        )
-      )
-    );
+    return React.createElement('div', { className: classes }, React.createElement(DateDisplay, {
+      className: 'chamel-date-picker-calendar-date-display',
+      selectedDate: this.state.selectedDate }), React.createElement('div', {
+      className: 'chamel-date-picker-calendar-container' }, React.createElement(CalendarToolbar, {
+      minDate: this.props.minDate,
+      maxDate: this.props.maxDate,
+      displayDate: this.state.displayDate,
+      onLeftTouchTap: this._handleLeftTouchTap,
+      onRightTouchTap: this._handleRightTouchTap }), React.createElement('ul', { className: 'chamel-date-picker-calendar-week-title' }, React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'S'), React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'M'), React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'T'), React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'W'), React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'T'), React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'F'), React.createElement('li', { className: 'chamel-date-picker-calendar-week-title-day' }, 'S')), React.createElement(SlideInTransitionGroup, {
+      direction: this.state.transitionDirection }, React.createElement(CalendarMonth, {
+      minDate: this.props.minDate,
+      maxDate: this.props.maxDate,
+      key: this.state.displayDate.toDateString(),
+      displayDate: this.state.displayDate,
+      onDayTouchTap: this._handleDayTouchTap,
+      selectedDate: this.state.selectedDate }))));
   },
 
   getSelectedDate: function getSelectedDate() {
@@ -25353,7 +25157,6 @@ var DayButton = require('./DayButton.jsx');
 var CalendarMonth = React.createClass({
   displayName: 'CalendarMonth',
 
-
   mixins: [Classable],
 
   propTypes: {
@@ -25368,24 +25171,16 @@ var CalendarMonth = React.createClass({
   render: function render() {
     var classes = this.getClasses('chamel-date-picker-calendar-month');
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      this._getWeekElements()
-    );
+    return React.createElement('div', { className: classes }, this._getWeekElements());
   },
 
   _getWeekElements: function _getWeekElements() {
     var weekArray = DateTime.getWeekArray(this.props.displayDate);
 
     return weekArray.map(function (week, i) {
-      return React.createElement(
-        'div',
-        {
-          key: i,
-          className: 'chamel-date-picker-calendar-month-week' },
-        this._getDayElements(week)
-      );
+      return React.createElement('div', {
+        key: i,
+        className: 'chamel-date-picker-calendar-month-week' }, this._getDayElements(week));
     }, this);
   },
   _isDisabled: function _isDisabled(day) {
@@ -25435,7 +25230,6 @@ var SlideInTransitionGroup = require('../transition-groups/SlideIn.jsx');
 
 var CalendarToolbar = React.createClass({
   displayName: 'CalendarToolbar',
-
 
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
@@ -25495,39 +25289,15 @@ var CalendarToolbar = React.createClass({
     var disableLeft = this._isDisabled("left");
     var disableRight = this._isDisabled("right");
 
-    return React.createElement(
-      'div',
-      { className: 'chamel-date-picker-calendar-toolbar' },
-      React.createElement(
-        SlideInTransitionGroup,
-        {
-          className: 'chamel-date-picker-calendar-toolbar-title',
-          direction: this.state.transitionDirection },
-        React.createElement(
-          'div',
-          { key: month + '_' + year },
-          month,
-          ' ',
-          year
-        )
-      ),
-      React.createElement(
-        IconButton,
-        {
-          disabled: disableLeft,
-          className: 'chamel-date-picker-calendar-toolbar-button-left',
-          onClick: this.props.onLeftTouchTap },
-        React.createElement(NavigationChevronLeft, null)
-      ),
-      React.createElement(
-        IconButton,
-        {
-          disabled: disableRight,
-          className: 'chamel-date-picker-calendar-toolbar-button-right',
-          onClick: this.props.onRightTouchTap },
-        React.createElement(NavigationChevronRight, null)
-      )
-    );
+    return React.createElement('div', { className: 'chamel-date-picker-calendar-toolbar' }, React.createElement(SlideInTransitionGroup, {
+      className: 'chamel-date-picker-calendar-toolbar-title',
+      direction: this.state.transitionDirection }, React.createElement('div', { key: month + '_' + year }, month, ' ', year)), React.createElement(IconButton, {
+      disabled: disableLeft,
+      className: 'chamel-date-picker-calendar-toolbar-button-left',
+      onClick: this.props.onLeftTouchTap }, React.createElement(NavigationChevronLeft, null)), React.createElement(IconButton, {
+      disabled: disableRight,
+      className: 'chamel-date-picker-calendar-toolbar-button-right',
+      onClick: this.props.onRightTouchTap }, React.createElement(NavigationChevronRight, null)));
   }
 
 });
@@ -25537,9 +25307,21 @@ module.exports = CalendarToolbar;
 },{"../IconButton.jsx":181,"../svg-icons/navigation-chevron-left.jsx":219,"../svg-icons/navigation-chevron-right.jsx":220,"../transition-groups/SlideIn.jsx":232,"../utils/DateTime.jsx":235,"react":166}],198:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
@@ -25548,7 +25330,6 @@ var SlideInTransitionGroup = require('../transition-groups/SlideIn.jsx');
 
 var DateDisplay = React.createClass({
   displayName: 'DateDisplay',
-
 
   mixins: [Classable],
 
@@ -25585,58 +25366,15 @@ var DateDisplay = React.createClass({
     var day = this.props.selectedDate.getDate();
     var year = this.props.selectedDate.getFullYear();
 
-    return React.createElement(
-      'div',
-      _extends({}, other, { className: classes }),
-      React.createElement(
-        SlideInTransitionGroup,
-        {
-          className: 'chamel-date-picker-date-display-dow',
-          direction: this.state.transitionDirection },
-        React.createElement(
-          'div',
-          { key: dayOfWeek },
-          dayOfWeek
-        )
-      ),
-      React.createElement(
-        'div',
-        { className: 'chamel-date-picker-date-display-date' },
-        React.createElement(
-          SlideInTransitionGroup,
-          {
-            className: 'chamel-date-picker-date-display-month',
-            direction: this.state.transitionDirection },
-          React.createElement(
-            'div',
-            { key: month },
-            month
-          )
-        ),
-        React.createElement(
-          SlideInTransitionGroup,
-          {
-            className: 'chamel-date-picker-date-display-day',
-            direction: this.state.transitionDirection },
-          React.createElement(
-            'div',
-            { key: day },
-            day
-          )
-        ),
-        React.createElement(
-          SlideInTransitionGroup,
-          {
-            className: 'chamel-date-picker-date-display-year',
-            direction: this.state.transitionDirection },
-          React.createElement(
-            'div',
-            { key: year },
-            year
-          )
-        )
-      )
-    );
+    return React.createElement('div', _extends({}, other, { className: classes }), React.createElement(SlideInTransitionGroup, {
+      className: 'chamel-date-picker-date-display-dow',
+      direction: this.state.transitionDirection }, React.createElement('div', { key: dayOfWeek }, dayOfWeek)), React.createElement('div', { className: 'chamel-date-picker-date-display-date' }, React.createElement(SlideInTransitionGroup, {
+      className: 'chamel-date-picker-date-display-month',
+      direction: this.state.transitionDirection }, React.createElement('div', { key: month }, month)), React.createElement(SlideInTransitionGroup, {
+      className: 'chamel-date-picker-date-display-day',
+      direction: this.state.transitionDirection }, React.createElement('div', { key: day }, day)), React.createElement(SlideInTransitionGroup, {
+      className: 'chamel-date-picker-date-display-year',
+      direction: this.state.transitionDirection }, React.createElement('div', { key: year }, year))));
   }
 
 });
@@ -25646,9 +25384,21 @@ module.exports = DateDisplay;
 },{"../mixins/classable.jsx":213,"../transition-groups/SlideIn.jsx":232,"../utils/DateTime.jsx":235,"react":166}],199:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
@@ -25661,7 +25411,6 @@ var device = require('../utils/device');
 
 var DatePicker = React.createClass({
   displayName: 'DatePicker',
-
 
   mixins: [Classable, WindowListenable],
 
@@ -25731,26 +25480,21 @@ var DatePicker = React.createClass({
     // If we are using the native input then we need to get value when changed
     var inpHndleOnChange = 'date' === inputType ? this._handleInputChange : null;
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement(TextField, _extends({}, other, {
-        onChange: inpHndleOnChange,
-        ref: 'input',
-        type: inputType,
-        defaultValue: defaultInputValue,
-        onFocus: this._handleInputFocus,
-        onClick: this._handleInputTouchTap })),
-      React.createElement(DatePickerDialog, {
-        minDate: minDate,
-        maxDate: maxDate,
-        autoOk: autoOk,
-        ref: 'dialogWindow',
-        initialDate: this.state.dialogDate,
-        onAccept: this._handleDialogAccept,
-        onShow: onShow,
-        onDismiss: onDismiss })
-    );
+    return React.createElement('div', { className: classes }, React.createElement(TextField, _extends({}, other, {
+      onChange: inpHndleOnChange,
+      ref: 'input',
+      type: inputType,
+      defaultValue: defaultInputValue,
+      onFocus: this._handleInputFocus,
+      onClick: this._handleInputTouchTap })), React.createElement(DatePickerDialog, {
+      minDate: minDate,
+      maxDate: maxDate,
+      autoOk: autoOk,
+      ref: 'dialogWindow',
+      initialDate: this.state.dialogDate,
+      onAccept: this._handleDialogAccept,
+      onShow: onShow,
+      onDismiss: onDismiss }));
   },
 
   getDate: function getDate() {
@@ -25827,9 +25571,21 @@ module.exports = DatePicker;
 },{"../TextField.jsx":191,"../mixins/WindowListenable.jsx":212,"../mixins/classable.jsx":213,"../utils/DateTime.jsx":235,"../utils/KeyCode.jsx":238,"../utils/device":241,"./DatePickerDialog.jsx":200,"react":166}],200:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
@@ -25841,7 +25597,6 @@ var FlatButton = require('../FlatButton.jsx');
 
 var DatePickerDialog = React.createClass({
   displayName: 'DatePickerDialog',
-
 
   mixins: [Classable, WindowListenable],
 
@@ -25886,23 +25641,19 @@ var DatePickerDialog = React.createClass({
       actions = actions.slice(0, 1);
     }
 
-    return React.createElement(
-      Dialog,
-      _extends({}, other, {
-        ref: 'dialogWindow',
-        className: classes,
-        actions: actions,
-        onDismiss: this._handleDialogDismiss,
-        onShow: this._handleDialogShow,
-        repositionOnUpdate: false }),
-      React.createElement(Calendar, {
-        minDate: this.props.minDate,
-        maxDate: this.props.maxDate,
-        ref: 'calendar',
-        onSelectedDate: this._onSelectedDate,
-        initialDate: this.props.initialDate,
-        isActive: this.state.isCalendarActive })
-    );
+    return React.createElement(Dialog, _extends({}, other, {
+      ref: 'dialogWindow',
+      className: classes,
+      actions: actions,
+      onDismiss: this._handleDialogDismiss,
+      onShow: this._handleDialogShow,
+      repositionOnUpdate: false }), React.createElement(Calendar, {
+      minDate: this.props.minDate,
+      maxDate: this.props.maxDate,
+      ref: 'calendar',
+      onSelectedDate: this._onSelectedDate,
+      initialDate: this.props.initialDate,
+      isActive: this.state.isCalendarActive }));
   },
 
   show: function show() {
@@ -25967,9 +25718,21 @@ module.exports = DatePickerDialog;
 },{"../Dialog.jsx":172,"../FlatButton.jsx":179,"../mixins/WindowListenable.jsx":212,"../mixins/classable.jsx":213,"../utils/KeyCode.jsx":238,"./Calendar.jsx":195,"react":166}],201:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
@@ -25978,7 +25741,6 @@ var EnhancedButton = require('../EnhancedButton.jsx');
 
 var DayButton = React.createClass({
   displayName: 'DayButton',
-
 
   mixins: [Classable],
 
@@ -26002,20 +25764,11 @@ var DayButton = React.createClass({
       'chamel-is-selected': this.props.selected
     });
 
-    return this.props.date ? React.createElement(
-      EnhancedButton,
-      _extends({}, other, {
-        className: classes,
-        disableFocusRipple: true,
-        disableTouchRipple: true,
-        onClick: this._handleTouchTap }),
-      React.createElement('div', { className: 'chamel-date-picker-day-button-select' }),
-      React.createElement(
-        'span',
-        { className: 'chamel-date-picker-day-button-label' },
-        this.props.date.getDate()
-      )
-    ) : React.createElement('span', { className: classes });
+    return this.props.date ? React.createElement(EnhancedButton, _extends({}, other, {
+      className: classes,
+      disableFocusRipple: true,
+      disableTouchRipple: true,
+      onClick: this._handleTouchTap }), React.createElement('div', { className: 'chamel-date-picker-day-button-select' }), React.createElement('span', { className: 'chamel-date-picker-day-button-label' }, this.props.date.getDate())) : React.createElement('span', { className: classes });
   },
 
   _handleTouchTap: function _handleTouchTap(e) {
@@ -26034,7 +25787,6 @@ var TextFieldRich = require("../TextFieldRich.jsx");
 
 var ContentRte = React.createClass({
 	displayName: "ContentRte",
-
 
 	propTypes: {
 		onBlur: React.PropTypes.func,
@@ -26169,7 +25921,6 @@ var TextFieldRich = require("../TextFieldRich.jsx");
 
 var ContentRte = React.createClass({
 	displayName: "ContentRte",
-
 
 	propTypes: {
 		onBlur: React.PropTypes.func,
@@ -26321,7 +26072,6 @@ var fontSizeOptions = [{ payload: 1, text: 'Smallest' }, { payload: 2, text: 'X-
 var Editor = React.createClass({
 	displayName: "Editor",
 
-
 	mixins: [Classable],
 
 	propTypes: {
@@ -26367,72 +26117,16 @@ var Editor = React.createClass({
 				value: this.state.value });
 		}
 
-		return React.createElement(
-			"div",
-			null,
-			React.createElement(
-				Toolbar,
-				null,
-				React.createElement(
-					ToolbarGroup,
-					{ key: 1, float: "left" },
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "bold"), className: "cfi cfi-bold" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "italic"), className: "cfi cfi-italic" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "underline"), className: "cfi cfi-underline" })
-				),
-				React.createElement(
-					ToolbarGroup,
-					{ key: 2, float: "left" },
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "justifyleft"), className: "cfi cfi-align-left" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "justifycenter"), className: "cfi cfi-align-center" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "justifyright"), className: "cfi cfi-align-right" })
-				),
-				React.createElement(
-					ToolbarGroup,
-					{ key: 3, float: "left" },
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "src"), className: "cfi cfi-files-o" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "inserthorizontalrule"), className: "cfi cfi-minus" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "link"), className: "cfi cfi-link" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "table"), className: "cfi cfi-table" })
-				),
-				React.createElement(
-					ToolbarGroup,
-					{ key: 4, float: "left" },
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "insertorderedlist"), className: "cfi cfi-list-ol" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "insertunorderedlist"), className: "cfi cfi-list-ul" }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "forecolor"), className: "cfi cfi-eyedropper" }),
-					React.createElement(ColorPicker, { ref: "forecolorPicker", label: "Pick a font color", onColorPick: this._handleColorPick }),
-					React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "backcolor"), className: "cfi cfi-magic" }),
-					React.createElement(ColorPicker, { ref: "backcolorPicker", label: "Pick a background color", onColorPick: this._handleColorPick })
-				),
-				React.createElement(
-					ToolbarGroup,
-					{ key: 5, float: "right" },
-					React.createElement(DropDownIcon, {
-						iconClassName: "cfi cfi-header",
-						menuItems: fontStyleOptions,
-						onChange: this._handleMenuClick.bind(this, "formatblock") }),
-					React.createElement(DropDownIcon, {
-						iconClassName: "cfi cfi-text-height",
-						menuItems: fontSizeOptions,
-						onChange: this._handleMenuClick.bind(this, "fontsize") }),
-					React.createElement(DropDownIcon, {
-						iconClassName: "cfi cfi-font",
-						menuItems: fontNameOptions,
-						onChange: this._handleMenuClick.bind(this, "fontname") })
-				)
-			),
-			React.createElement(
-				"div",
-				null,
-				displayEditor
-			),
-			React.createElement(
-				Dialog,
-				{ ref: "linkDialog", title: "Enter the link path", actions: dialogActions, modal: true },
-				React.createElement(TextField, { ref: "linkInput" })
-			)
-		);
+		return React.createElement("div", null, React.createElement(Toolbar, null, React.createElement(ToolbarGroup, { key: 1, float: "left" }, React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "bold"), className: "cfi cfi-bold" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "italic"), className: "cfi cfi-italic" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "underline"), className: "cfi cfi-underline" })), React.createElement(ToolbarGroup, { key: 2, float: "left" }, React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "justifyleft"), className: "cfi cfi-align-left" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "justifycenter"), className: "cfi cfi-align-center" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "justifyright"), className: "cfi cfi-align-right" })), React.createElement(ToolbarGroup, { key: 3, float: "left" }, React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "src"), className: "cfi cfi-files-o" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "inserthorizontalrule"), className: "cfi cfi-minus" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "link"), className: "cfi cfi-link" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "table"), className: "cfi cfi-table" })), React.createElement(ToolbarGroup, { key: 4, float: "left" }, React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "insertorderedlist"), className: "cfi cfi-list-ol" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "insertunorderedlist"), className: "cfi cfi-list-ul" }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "forecolor"), className: "cfi cfi-eyedropper" }), React.createElement(ColorPicker, { ref: "forecolorPicker", label: "Pick a font color", onColorPick: this._handleColorPick }), React.createElement(FontIcon, { onClick: this._handleToolbarClick.bind(this, "backcolor"), className: "cfi cfi-magic" }), React.createElement(ColorPicker, { ref: "backcolorPicker", label: "Pick a background color", onColorPick: this._handleColorPick })), React.createElement(ToolbarGroup, { key: 5, float: "right" }, React.createElement(DropDownIcon, {
+			iconClassName: "cfi cfi-header",
+			menuItems: fontStyleOptions,
+			onChange: this._handleMenuClick.bind(this, "formatblock") }), React.createElement(DropDownIcon, {
+			iconClassName: "cfi cfi-text-height",
+			menuItems: fontSizeOptions,
+			onChange: this._handleMenuClick.bind(this, "fontsize") }), React.createElement(DropDownIcon, {
+			iconClassName: "cfi cfi-font",
+			menuItems: fontNameOptions,
+			onChange: this._handleMenuClick.bind(this, "fontname") }))), React.createElement("div", null, displayEditor), React.createElement(Dialog, { ref: "linkDialog", title: "Enter the link path", actions: dialogActions, modal: true }, React.createElement(TextField, { ref: "linkInput" })));
 	},
 
 	/**
@@ -26593,7 +26287,9 @@ var _Popover = require('./Popover.jsx');
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var Chamel = {
     AppBar: require('./AppBar.jsx'),
@@ -26668,14 +26364,21 @@ module.exports = exports['default'];
 },{"./AppBar.jsx":168,"./AutoComplete.jsx":169,"./Checkbox.jsx":170,"./Dialog.jsx":172,"./DialogWindow.jsx":173,"./DropDownIcon.jsx":174,"./DropDownMenu.jsx":175,"./EnhancedButton.jsx":176,"./FlatButton.jsx":179,"./FontIcon.jsx":180,"./IconButton.jsx":181,"./LeftNav.jsx":183,"./Paper.jsx":185,"./Popover.jsx":186,"./RadioButton.jsx":187,"./RadioButtonGroup.jsx":188,"./RaisedButton.jsx":189,"./Snackbar.jsx":190,"./TextField.jsx":191,"./TextFieldRich.jsx":192,"./Toggle.jsx":193,"./date-picker/DatePicker.jsx":199,"./editor/Editor.jsx":204,"./menu/Menu.jsx":207,"./menu/MenuItem.jsx":208,"./menu/NestedMenuItem.jsx":209,"./mixins/ClickAwayable.jsx":211,"./mixins/WindowListenable.jsx":212,"./mixins/classable.jsx":213,"./progress/LinearProgress.jsx":214,"./svg-icons/navigation-chevron-left.jsx":219,"./svg-icons/navigation-chevron-right.jsx":220,"./svg-icons/navigation-menu.jsx":221,"./svg-icons/svg-icon.jsx":222,"./tabs/Tab.jsx":227,"./tabs/Tabs.jsx":229,"./toolbar/Toolbar.jsx":230,"./toolbar/ToolbarGroup.jsx":231,"./utils/CssEvent.jsx":234,"./utils/Dom.jsx":236,"./utils/Events.jsx":237,"./utils/KeyCode.jsx":238,"./utils/KeyLine.jsx":239}],206:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }return target;
+};
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
 
 var LinkMenuItem = React.createClass({
     displayName: 'LinkMenuItem',
-
 
     mixins: [Classable],
 
@@ -26703,11 +26406,7 @@ var LinkMenuItem = React.createClass({
         var link = {};
         link[linkAttribute] = this.props.payload;
 
-        return React.createElement(
-            'a',
-            _extends({ key: this.props.index, className: classes }, link, { target: this.props.target, onClick: onClickHandler }),
-            this.props.text
-        );
+        return React.createElement('a', _extends({ key: this.props.index, className: classes }, link, { target: this.props.target, onClick: onClickHandler }), this.props.text);
     },
 
     _stopLink: function _stopLink(event) {
@@ -26718,9 +26417,21 @@ var LinkMenuItem = React.createClass({
 },{"../mixins/classable.jsx":213,"react":166}],207:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+    var target = {};for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+    }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -26736,7 +26447,6 @@ var SubheaderMenuItem = require('./SubheaderMenuItem.jsx');
 
 var Menu = React.createClass({
     displayName: 'Menu',
-
 
     mixins: [Classable],
 
@@ -26813,12 +26523,8 @@ var Menu = React.createClass({
 
         var children = this.props.menuItems.length ? this._getChildren() : this.props.children;
 
-        return React.createElement(
-            Paper,
-            { ref: 'paperContainer', onMouseEnter: this._handleMouseEnter, onMouseLeave: this._handleMouseLeave,
-                zDepth: this.props.zDepth, className: classes },
-            children
-        );
+        return React.createElement(Paper, { ref: 'paperContainer', onMouseEnter: this._handleMouseEnter, onMouseLeave: this._handleMouseLeave,
+            zDepth: this.props.zDepth, className: classes }, children);
     },
 
     /**
@@ -26897,22 +26603,18 @@ var Menu = React.createClass({
                     break;
 
                 default:
-                    itemComponent = React.createElement(
-                        MenuItem,
-                        _extends({}, other, {
-                            selected: isSelected,
-                            focused: isFocused,
-                            key: i,
-                            index: i,
-                            icon: menuItem.icon,
-                            data: menuItem.data,
-                            attribute: menuItem.attribute,
-                            number: menuItem.number,
-                            toggle: menuItem.toggle,
-                            disabled: isDisabled,
-                            onClick: this._onItemClick }),
-                        menuItem.text
-                    );
+                    itemComponent = React.createElement(MenuItem, _extends({}, other, {
+                        selected: isSelected,
+                        focused: isFocused,
+                        key: i,
+                        index: i,
+                        icon: menuItem.icon,
+                        data: menuItem.data,
+                        attribute: menuItem.attribute,
+                        number: menuItem.number,
+                        toggle: menuItem.toggle,
+                        disabled: isDisabled,
+                        onClick: this._onItemClick }), menuItem.text);
             }
             children.push(itemComponent);
         }
@@ -26998,13 +26700,31 @@ module.exports = Menu;
 },{"../Paper.jsx":185,"../mixins/ClickAwayable.jsx":211,"../mixins/classable.jsx":213,"../utils/CssEvent.jsx":234,"../utils/Dom.jsx":236,"../utils/KeyLine.jsx":239,"./LinkMenuItem.jsx":206,"./MenuItem.jsx":208,"./NestedMenuItem.jsx":209,"./SubheaderMenuItem.jsx":210,"react":166,"react-dom":4}],208:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+                target[key] = source[key];
+            }
+        }
+    }return target;
+};
 
 var _propTypes;
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+    var target = {};for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+    }return target;
+}
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty(obj, key, value) {
+    if (key in obj) {
+        Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+    } else {
+        obj[key] = value;
+    }return obj;
+}
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
@@ -27019,7 +26739,6 @@ var Types = {
 
 var MenuItem = React.createClass({
     displayName: 'MenuItem',
-
 
     mixins: [Classable],
 
@@ -27063,31 +26782,15 @@ var MenuItem = React.createClass({
 
         if (this.props.iconClassName) icon = React.createElement(FontIcon, { className: 'chamel-menu-item-icon ' + this.props.iconClassName });
         if (this.props.iconRightClassName) iconRight = React.createElement(FontIcon, { className: 'chamel-menu-item-icon-right ' + this.props.iconRightClassName });
-        if (this.props.data) data = React.createElement(
-            'span',
-            { className: 'chamel-menu-item-data' },
-            this.props.data
-        );
-        if (this.props.number !== undefined) number = React.createElement(
-            'span',
-            { className: 'chamel-menu-item-number' },
-            this.props.number
-        );
-        if (this.props.attribute !== undefined) attribute = React.createElement(
-            'span',
-            { className: 'chamel-menu-item-attribute' },
-            this.props.attribute
-        );
+        if (this.props.data) data = React.createElement('span', { className: 'chamel-menu-item-data' }, this.props.data);
+        if (this.props.number !== undefined) number = React.createElement('span', { className: 'chamel-menu-item-number' }, this.props.number);
+        if (this.props.attribute !== undefined) attribute = React.createElement('span', { className: 'chamel-menu-item-attribute' }, this.props.attribute);
 
         // Add indentations for hierarchical menus
         var numIndents = this.props.indent || 0;
         var indentItems = numIndents ? [] : null;
         for (var i = 0; i < numIndents; i++) {
-            indentItems.push(React.createElement(
-                'span',
-                { className: 'chamel-menu-item-indent', key: i },
-                ' '
-            ));
+            indentItems.push(React.createElement('span', { className: 'chamel-menu-item-indent', key: i }, ' '));
         }
 
         if (this.props.toggle) {
@@ -27103,21 +26806,10 @@ var MenuItem = React.createClass({
             toggle = React.createElement(Toggle, _extends({}, other, { onToggle: this._handleToggle }));
         }
 
-        return React.createElement(
-            'div',
-            {
-                key: this.props.index,
-                className: classes,
-                onClick: this._handleOnClick },
-            indentItems,
-            icon,
-            this.props.children,
-            data,
-            attribute,
-            number,
-            toggle,
-            iconRight
-        );
+        return React.createElement('div', {
+            key: this.props.index,
+            className: classes,
+            onClick: this._handleOnClick }, indentItems, icon, this.props.children, data, attribute, number, toggle, iconRight);
     },
 
     _handleTouchTap: function _handleTouchTap(e) {
@@ -27162,7 +26854,6 @@ var SubheaderMenuItem = require('./SubheaderMenuItem.jsx');
 var NestedMenuItem = React.createClass({
     displayName: 'NestedMenuItem',
 
-
     mixins: [Classable, ClickAwayable],
 
     propTypes: {
@@ -27205,29 +26896,16 @@ var NestedMenuItem = React.createClass({
             'chamel-is-disabled': this.props.disabled
         });
 
-        return React.createElement(
-            'div',
-            { className: classes, onMouseEnter: this._openNestedMenu, onMouseLeave: this._closeNestedMenu },
-            React.createElement(
-                MenuItem,
-                { index: this.props.index, disabled: this.props.disabled,
-                    iconRightClassName: 'chamel-icon-custom-arrow-drop-right', onClick: this._onParentItemClick },
-                this.props.text
-            ),
-            React.createElement(
-                Menu,
-                {
-                    ref: 'nestedMenu',
-                    menuItems: this.props.menuItems,
-                    onItemClick: this._onMenuItemClick,
-                    onItemTap: this._onMenuItemTap,
-                    hideable: true,
-                    visible: this.state.open,
-                    zDepth: this.props.zDepth + 1
-                },
-                this.props.children
-            )
-        );
+        return React.createElement('div', { className: classes, onMouseEnter: this._openNestedMenu, onMouseLeave: this._closeNestedMenu }, React.createElement(MenuItem, { index: this.props.index, disabled: this.props.disabled,
+            iconRightClassName: 'chamel-icon-custom-arrow-drop-right', onClick: this._onParentItemClick }, this.props.text), React.createElement(Menu, {
+            ref: 'nestedMenu',
+            menuItems: this.props.menuItems,
+            onItemClick: this._onMenuItemClick,
+            onItemTap: this._onMenuItemTap,
+            hideable: true,
+            visible: this.state.open,
+            zDepth: this.props.zDepth + 1
+        }, this.props.children));
     },
 
     _positionNestedMenu: function _positionNestedMenu() {
@@ -27275,18 +26953,13 @@ var React = require('react');
 var SubheaderMenuItem = React.createClass({
     displayName: "SubheaderMenuItem",
 
-
     propTypes: {
         index: React.PropTypes.number.isRequired,
         text: React.PropTypes.string.isRequired
     },
 
     render: function render() {
-        return React.createElement(
-            "div",
-            { key: this.props.index, className: "chamel-subheader" },
-            this.props.text
-        );
+        return React.createElement("div", { key: this.props.index, className: "chamel-subheader" }, this.props.text);
     }
 
 });
@@ -27362,7 +27035,13 @@ module.exports = {
 },{"../utils/Events.jsx":237}],213:[function(require,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
 
 var React = require('react');
 var classNames = require('classnames');
@@ -27410,16 +27089,27 @@ module.exports = {
 },{"classnames":1,"react":166}],214:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
 
 var LinearProgress = React.createClass({
   displayName: 'LinearProgress',
-
 
   /**
    * Expected props
@@ -27446,7 +27136,6 @@ var LinearProgress = React.createClass({
     var relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
     return relValue * 100;
   },
-
 
   /**
    * Triggered when the component enters the dom for the first time
@@ -27509,16 +27198,7 @@ var LinearProgress = React.createClass({
       barClasses += "chamel-progress-bar-indeterminate";
     }
 
-    return React.createElement(
-      'div',
-      _extends({}, other, { className: 'chamel-progress' }),
-      React.createElement(
-        'div',
-        { className: barClasses, style: barStyle },
-        React.createElement('div', { ref: 'bar1', className: 'chamel-progress-bar-left' }),
-        React.createElement('div', { ref: 'bar2', className: 'chamel-progress-bar-right' })
-      )
-    );
+    return React.createElement('div', _extends({}, other, { className: 'chamel-progress' }), React.createElement('div', { className: barClasses, style: barStyle }, React.createElement('div', { ref: 'bar1', className: 'chamel-progress-bar-left' }), React.createElement('div', { ref: 'bar2', className: 'chamel-progress-bar-right' })));
   }
 });
 
@@ -27527,14 +27207,21 @@ module.exports = LinearProgress;
 },{"react":166,"react-dom":4}],215:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
 
 var RippleCircle = React.createClass({
   displayName: 'RippleCircle',
-
 
   mixins: [Classable],
 
@@ -27555,11 +27242,7 @@ var RippleCircle = React.createClass({
       'chamel-is-ending': this.props.ending
     });
 
-    return React.createElement(
-      'div',
-      _extends({}, this.props, { className: classes }),
-      React.createElement('div', { className: 'chamel-ripple-circle-inner' })
-    );
+    return React.createElement('div', _extends({}, this.props, { className: classes }), React.createElement('div', { className: 'chamel-ripple-circle-inner' }));
   }
 
 });
@@ -27576,7 +27259,6 @@ var Classable = require('../mixins/classable.jsx');
 var FocusRipple = React.createClass({
   displayName: 'FocusRipple',
 
-
   mixins: [Classable],
 
   propTypes: {
@@ -27592,11 +27274,7 @@ var FocusRipple = React.createClass({
       'chamel-is-shown': this.props.show
     });
 
-    return React.createElement(
-      'div',
-      { className: classes },
-      React.createElement('div', { className: 'chamel-focus-ripple-inner' })
-    );
+    return React.createElement('div', { className: classes }, React.createElement('div', { className: 'chamel-focus-ripple-inner' }));
   },
 
   _setRippleSize: function _setRippleSize() {
@@ -27625,7 +27303,6 @@ var RippleCircle = require('./Circle.jsx');
 var TouchRipple = React.createClass({
   displayName: 'TouchRipple',
 
-
   mixins: [Classable],
 
   propTypes: {
@@ -27646,21 +27323,12 @@ var TouchRipple = React.createClass({
   render: function render() {
     var classes = this.getClasses('chamel-touch-ripple');
 
-    return React.createElement(
-      'div',
-      {
-        onMouseUp: this._handleMouseUp,
-        onMouseDown: this._handleMouseDown,
-        onMouseOut: this._handleMouseOut,
-        onTouchStart: this._handleTouchStart,
-        onTouchEnd: this._handleTouchEnd },
-      React.createElement(
-        'div',
-        { className: classes },
-        this._getRippleElements()
-      ),
-      this.props.children
-    );
+    return React.createElement('div', {
+      onMouseUp: this._handleMouseUp,
+      onMouseDown: this._handleMouseDown,
+      onMouseOut: this._handleMouseOut,
+      onTouchStart: this._handleTouchStart,
+      onTouchEnd: this._handleTouchEnd }, React.createElement('div', { className: classes }, this._getRippleElements()), this.props.children);
   },
 
   start: function start(e) {
@@ -27801,13 +27469,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var DropDownArrow = React.createClass({
   displayName: 'DropDownArrow',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('polygon', { points: '7,9.5 12,14.5 17,9.5 ' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('polygon', { points: '7,9.5 12,14.5 17,9.5 ' }));
   }
 
 });
@@ -27823,13 +27486,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var NavigationChevronLeft = React.createClass({
   displayName: 'NavigationChevronLeft',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' }));
   }
 
 });
@@ -27845,13 +27503,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var NavigationChevronLeft = React.createClass({
   displayName: 'NavigationChevronLeft',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z' }));
   }
 
 });
@@ -27867,13 +27520,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var NavigationMenu = React.createClass({
   displayName: 'NavigationMenu',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z' }));
   }
 
 });
@@ -27883,7 +27531,15 @@ module.exports = NavigationMenu;
 },{"./svg-icon.jsx":222,"react":166}],222:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
 var React = require('react');
 var Classable = require('../mixins/classable.jsx');
@@ -27891,19 +27547,14 @@ var Classable = require('../mixins/classable.jsx');
 var SvgIcon = React.createClass({
   displayName: 'SvgIcon',
 
-
   mixins: [Classable],
 
   render: function render() {
     var classes = this.getClasses('chamel-svg-icon');
 
-    return React.createElement(
-      'svg',
-      _extends({}, this.props, {
-        className: classes,
-        viewBox: '0 0 24 24' }),
-      this.props.children
-    );
+    return React.createElement('svg', _extends({}, this.props, {
+      className: classes,
+      viewBox: '0 0 24 24' }), this.props.children);
   }
 
 });
@@ -27919,13 +27570,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var ToggleCheckBoxChecked = React.createClass({
   displayName: 'ToggleCheckBoxChecked',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M10,17l-5-5l1.4-1.4 l3.6,3.6l7.6-7.6L19,8L10,17z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M10,17l-5-5l1.4-1.4 l3.6,3.6l7.6-7.6L19,8L10,17z' }));
   }
 
 });
@@ -27941,13 +27587,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var ToggleCheckBoxOutlineBlank = React.createClass({
   displayName: 'ToggleCheckBoxOutlineBlank',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M19,5v14H5V5H19 M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z' }));
   }
 
 });
@@ -27963,13 +27604,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var RadioButtonOff = React.createClass({
   displayName: 'RadioButtonOff',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' }));
   }
 
 });
@@ -27985,13 +27621,8 @@ var SvgIcon = require('./svg-icon.jsx');
 var RadioButtonOn = React.createClass({
   displayName: 'RadioButtonOn',
 
-
   render: function render() {
-    return React.createElement(
-      SvgIcon,
-      this.props,
-      React.createElement('path', { d: 'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' })
-    );
+    return React.createElement(SvgIcon, this.props, React.createElement('path', { d: 'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z' }));
   }
 
 });
@@ -28014,7 +27645,6 @@ var React = require('react');
 var Tab = React.createClass({
     displayName: 'Tab',
 
-
     propTypes: {
         handleTouchTap: React.PropTypes.func,
         selected: React.PropTypes.bool
@@ -28034,16 +27664,12 @@ var Tab = React.createClass({
             classes += " chamel-tab-is-active";
         }
 
-        return React.createElement(
-            'div',
-            {
-                className: classes,
-                style: styles,
-                onClick: this.handleTouchTap,
-                routeName: this.props.route
-            },
-            this.props.label
-        );
+        return React.createElement('div', {
+            className: classes,
+            style: styles,
+            onClick: this.handleTouchTap,
+            routeName: this.props.route
+        }, this.props.label);
     }
 });
 
@@ -28067,11 +27693,7 @@ var TabTemplate = React.createClass({
 
     render: function render() {
 
-        return React.createElement(
-            'div',
-            { className: 'chamel-tab-template' },
-            this.props.children
-        );
+        return React.createElement('div', { className: 'chamel-tab-template' }, this.props.children);
     }
 });
 
@@ -28095,7 +27717,6 @@ var TabTemplate = require("./TabTemplate.jsx");
  */
 var Tabs = React.createClass({
     displayName: 'Tabs',
-
 
     propTypes: {
         initialSelectedIndex: React.PropTypes.number,
@@ -28182,21 +27803,7 @@ var Tabs = React.createClass({
             }
         });
 
-        return React.createElement(
-            'div',
-            { className: 'chamel-tabs-container' },
-            React.createElement(
-                'div',
-                { className: 'chamel-tab-item-container' },
-                tabs
-            ),
-            React.createElement(InkBar, { left: left, width: width }),
-            React.createElement(
-                TabTemplate,
-                null,
-                currentTemplate
-            )
-        );
+        return React.createElement('div', { className: 'chamel-tabs-container' }, React.createElement('div', { className: 'chamel-tab-item-container' }, tabs), React.createElement(InkBar, { left: left, width: width }), React.createElement(TabTemplate, null, currentTemplate));
     }
 });
 
@@ -28210,13 +27817,8 @@ var React = require('react');
 var Toolbar = React.createClass({
     displayName: "Toolbar",
 
-
     render: function render() {
-        return React.createElement(
-            "div",
-            { className: "chamel-toolbar" },
-            this.props.children
-        );
+        return React.createElement("div", { className: "chamel-toolbar" }, this.props.children);
     }
 
 });
@@ -28232,7 +27834,6 @@ var React = require('react');
 var ToolbarGroup = React.createClass({
     displayName: 'ToolbarGroup',
 
-
     propTypes: {
         float: React.PropTypes.string
     },
@@ -28246,11 +27847,7 @@ var ToolbarGroup = React.createClass({
             'chamel-right': this.props.float === 'right'
         });
 
-        return React.createElement(
-            'div',
-            { className: classes },
-            this.props.children
-        );
+        return React.createElement('div', { className: classes }, this.props.children);
     }
 
 });
@@ -28260,9 +27857,21 @@ module.exports = ToolbarGroup;
 },{"../mixins/classable.jsx":213,"react":166}],232:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
@@ -28270,7 +27879,6 @@ var SlideInChild = require('./SlideInChild.jsx');
 
 var SlideIn = React.createClass({
   displayName: 'SlideIn',
-
 
   propTypes: {
     className: React.PropTypes.string,
@@ -28300,26 +27908,18 @@ var SlideIn = React.createClass({
     //var classes = 'chamel-transition-slide-in chamel-is-' + this.props.direction;
 
     var newChildren = React.Children.map(children, function (child) {
-      return React.createElement(
-        SlideInChild,
-        {
-          key: child.key,
-          direction: direction,
-          getLeaveDirection: _this._getLeaveDirection },
-        child
-      );
+      return React.createElement(SlideInChild, {
+        key: child.key,
+        direction: direction,
+        getLeaveDirection: _this._getLeaveDirection }, child);
     }, this);
 
-    return React.createElement(
-      ReactCSSTransitionGroup,
-      _extends({}, other, {
-        className: classes,
-        transitionEnterTimeout: 500,
-        transitionLeaveTimeout: 500,
-        transitionName: 'chamel-transition-slide-in',
-        component: 'div' }),
-      newChildren
-    );
+    return React.createElement(ReactCSSTransitionGroup, _extends({}, other, {
+      className: classes,
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500,
+      transitionName: 'chamel-transition-slide-in',
+      component: 'div' }), newChildren);
   },
   _getLeaveDirection: function _getLeaveDirection() {
     return this.props.direction;
@@ -28331,9 +27931,21 @@ module.exports = SlideIn;
 },{"./SlideInChild.jsx":233,"react":166,"react-addons-css-transition-group":3}],233:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -28386,11 +27998,7 @@ var SlideInChild = React.createClass({
     var classes = "chamel-transition-slide-in-child";
     if (this.props.className) classes += " " + this.props.className;
 
-    return React.createElement(
-      'div',
-      _extends({ className: classes }, other),
-      children
-    );
+    return React.createElement('div', _extends({ className: classes }, other), children);
   }
 });
 
@@ -28853,6 +28461,7 @@ module.exports = {
 /**
  * Device is an object that is used to represent a physical device and browser
  */
+
 var modernizr = require('./modernizr.custom');
 
 var device = {};
@@ -28874,7 +28483,13 @@ module.exports = device;
 },{"./modernizr.custom":242}],242:[function(require,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
 
 /*!
 * modernizr v3.2.0

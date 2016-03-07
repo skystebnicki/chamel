@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.0.90",
+  "version": "0.0.95",
   "keywords": [
     "react",
     "react-component",
@@ -78,8 +78,17 @@
   "main": "src/main.js",
   "files": [
     "lib",
-    "src"
+    "src",
+    "dist"
   ],
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        { "presets": ["es2015", "stage-1", "react"]}
+      ]
+    ]
+  },
   "dependencies": {
     "bootstrap-slider": "^5.1.0",
     "browserify": "*",
