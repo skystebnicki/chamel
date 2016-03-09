@@ -14,7 +14,7 @@ var DropDownMenu = React.createClass({
   propTypes: {
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired
+    menuItems: React.PropTypes.array
   },
 
   getDefaultProps: function() {
@@ -57,6 +57,7 @@ var DropDownMenu = React.createClass({
       defaultText = this.props.menuItems[this.state.selectedIndex].text;
     } else {
       children = this.props.children;
+      defaultText = this.props.defaultText;
     }
 
     return (
@@ -86,7 +87,7 @@ var DropDownMenu = React.createClass({
 
   _setWidth: function() {
     var el = ReactDOM.findDOMNode(this),
-      menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
+        menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
   },
