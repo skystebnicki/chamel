@@ -5,7 +5,6 @@ var ClickAwayable = require('./mixins/ClickAwayable.jsx');
 var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
 var Paper = require('./Paper.jsx');
 var Menu = require('./menu/Menu.jsx');
-var MenuItem = require('./menu/MenuItem.jsx');
 
 var DropDownMenu = React.createClass({
 
@@ -14,7 +13,7 @@ var DropDownMenu = React.createClass({
   propTypes: {
     autoWidth: React.PropTypes.bool,
     onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array
+    menuItems: React.PropTypes.array.isRequired
   },
 
   getDefaultProps: function() {
@@ -48,39 +47,25 @@ var DropDownMenu = React.createClass({
       'chamel-open': this.state.open
     });
 
-    let otherProps = {};
-    let children = null;
-    let defaultText = null;
-
-    if(this.props.menuItems.length) {
-      otherProps.menuItems = this.props.menuItems;
-      defaultText = this.props.menuItems[this.state.selectedIndex].text;
-    } else {
-      children = this.props.children;
-      defaultText = this.props.defaultText;
-    }
-
     return (
         <div className={classes}>
           <div className="chamel-menu-control" onClick={this._onControlClick}>
             <Paper zDepth={0} >
               <div className="chamel-menu-label">
-                {defaultText}
+                {this.props.menuItems[this.state.selectedIndex].text}
               </div>
               <DropDownArrow className="chamel-menu-drop-down-icon" />
               <div className="chamel-menu-control-underline" />
             </Paper>
           </div>
           <Menu
-              {...otherProps}
               ref="menuItems"
               autoWidth={this.props.autoWidth}
               selectedIndex={this.state.selectedIndex}
+              menuItems={this.props.menuItems}
               hideable={true}
               visible={this.state.open}
-              onItemClick={this._onMenuItemClick}>
-            {children}
-          </Menu>
+              onItemClick={this._onMenuItemClick} />
         </div>
     );
   },
