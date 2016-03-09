@@ -5,9 +5,11 @@
   position: absolute;
   min-width: 10px;
   opacity: 0;
+  display: none;
 
   &.chamel-popover-visible {
     opacity: 1;
     z-index: 99;
+    display: block;
   }
 }

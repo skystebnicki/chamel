@@ -23,7 +23,6 @@ var MenuItem = React.createClass({
         toggle: React.PropTypes.bool,
         disabled: React.PropTypes.bool,
         onClick: React.PropTypes.func,
-        onClick: React.PropTypes.func,
         onToggle: React.PropTypes.func,
         selected: React.PropTypes.bool,
         indent: React.PropTypes.number

@@ -48,31 +48,31 @@ var DropDownMenu = React.createClass({
     });
 
     return (
-      <div className={classes}>
-        <div className="chamel-menu-control" onClick={this._onControlClick}>
-          <Paper zDepth={0} >
-            <div className="chamel-menu-label">
-              {this.props.menuItems[this.state.selectedIndex].text}
-            </div>
-            <DropDownArrow className="chamel-menu-drop-down-icon" />
-            <div className="chamel-menu-control-underline" />
-          </Paper>
+        <div className={classes}>
+          <div className="chamel-menu-control" onClick={this._onControlClick}>
+            <Paper zDepth={0} >
+              <div className="chamel-menu-label">
+                {this.props.menuItems[this.state.selectedIndex].text}
+              </div>
+              <DropDownArrow className="chamel-menu-drop-down-icon" />
+              <div className="chamel-menu-control-underline" />
+            </Paper>
+          </div>
+          <Menu
+              ref="menuItems"
+              autoWidth={this.props.autoWidth}
+              selectedIndex={this.state.selectedIndex}
+              menuItems={this.props.menuItems}
+              hideable={true}
+              visible={this.state.open}
+              onItemClick={this._onMenuItemClick} />
         </div>
-        <Menu
-          ref="menuItems"
-          autoWidth={this.props.autoWidth}
-          selectedIndex={this.state.selectedIndex}
-          menuItems={this.props.menuItems}
-          hideable={true}
-          visible={this.state.open}
-          onItemClick={this._onMenuItemClick} />
-      </div>
     );
   },
 
   _setWidth: function() {
     var el = ReactDOM.findDOMNode(this),
-      menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
+        menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
   },

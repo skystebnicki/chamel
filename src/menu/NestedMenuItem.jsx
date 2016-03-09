@@ -1,120 +1,111 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var CssEvent = require('../utils/CssEvent.jsx');
-var Dom = require('../utils/Dom.jsx');
-var KeyLine = require('../utils/KeyLine.jsx');
-var Classable = require('../mixins/classable.jsx');
-var ClickAwayable = require('../mixins/ClickAwayable.jsx');
-var Paper = require('../Paper.jsx');
-var Menu = require('./Menu.jsx');
-var MenuItem = require('./MenuItem.jsx');
-var LinkMenuItem = require('./LinkMenuItem.jsx');
-var SubheaderMenuItem = require('./SubheaderMenuItem.jsx');
+var Classable = require('./mixins/classable.jsx');
+var ClickAwayable = require('./mixins/ClickAwayable.jsx');
+var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
+var Paper = require('./Paper.jsx');
+var Menu = require('./menu/Menu.jsx');
 
-/***********************
- * Nested Menu Component
- ***********************/
-var NestedMenuItem = React.createClass({
+var DropDownMenu = React.createClass({
 
     mixins: [Classable, ClickAwayable],
 
     propTypes: {
-        index: React.PropTypes.number,
-        text: React.PropTypes.string,
-        menuItems: React.PropTypes.array,
-        zDepth: React.PropTypes.number,
-        disabled: React.PropTypes.bool,
-        parentItem: React.PropTypes.object,
-        onParentItemClick: React.PropTypes.func,
-        onItemClick: React.PropTypes.func,
-        onItemTap: React.PropTypes.func
+        autoWidth: React.PropTypes.bool,
+        onChange: React.PropTypes.func,
+        menuItems: React.PropTypes.array.isRequired
     },
 
-    getDefaultProps: function () {
+    getDefaultProps: function() {
         return {
-            disabled: false,
-            zDepth: 1,
-            index: -1
+            autoWidth: true
         };
     },
 
-    getInitialState: function () {
-        return {open: false}
+    getInitialState: function() {
+        return {
+            open: false,
+            selectedIndex: this.props.selectedIndex || 0
+        }
     },
 
-    componentClickAway: function () {
-        this._closeNestedMenu();
+    componentClickAway: function() {
+        this.setState({ open: false });
     },
 
-    componentDidMount: function () {
-        this._positionNestedMenu();
+    componentDidMount: function() {
+        if (this.props.autoWidth) this._setWidth();
+        if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props);
     },
 
-    componentDidUpdate: function (prevProps, prevState) {
-        this._positionNestedMenu();
+    componentWillReceiveProps: function(nextProps) {
+        if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(nextProps);
     },
 
-    render: function () {
-        var classes = this.getClasses('chamel-nested-menu-item', {
-            'chamel-open': this.state.open,
-            'chamel-is-disabled': this.props.disabled
+    render: function() {
+        var classes = this.getClasses('chamel-drop-down-menu', {
+            'chamel-open': this.state.open
         });
 
         return (
-            <div className={classes} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
-                <MenuItem index={this.props.index} disabled={this.props.disabled}
-                          iconRightClassName="chamel-icon-custom-arrow-drop-right" onClick={this._onMenuItemClick}>
-                    {this.props.text}
-                </MenuItem>
+            <div className={classes}>
+                <div className="chamel-menu-control" onClick={this._onControlClick}>
+                    <Paper zDepth={0} >
+                        <div className="chamel-menu-label">
+                            {this.props.menuItems[this.state.selectedIndex].text}
+                        </div>
+                        <DropDownArrow className="chamel-menu-drop-down-icon" />
+                        <div className="chamel-menu-control-underline" />
+                    </Paper>
+                </div>
                 <Menu
-                    ref="nestedMenu"
+                    ref="menuItems"
+                    autoWidth={this.props.autoWidth}
+                    selectedIndex={this.state.selectedIndex}
                     menuItems={this.props.menuItems}
-                    onItemClick={this._onMenuClick}
-                    onItemTap={this._onMenuTap}
                     hideable={true}
                     visible={this.state.open}
-                    zDepth={this.props.zDepth + 1}
-                >
-                    {this.props.children}
-                </Menu>
+                    onItemClick={this._onMenuItemClick} />
             </div>
         );
     },
 
-    _positionNestedMenu: function () {
+    _setWidth: function() {
         var el = ReactDOM.findDOMNode(this),
-            nestedMenu = ReactDOM.findDOMNode(this.refs.nestedMenu);
+            menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
 
-        nestedMenu.style.left = el.offsetWidth + 'px';
+        el.style.width = menuItemsDom.offsetWidth + 'px';
     },
 
-    _openNestedMenu: function () {
-        if (!this.props.disabled) this.setState({open: true});
+    _setSelectedIndex: function(props) {
+        var selectedIndex = props.selectedIndex;
+
+        if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
+            console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
+        }
+
+        this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
     },
 
-    _closeNestedMenu: function () {
-        this.setState({open: false});
+    _onControlClick: function(e) {
+        this.setState({ open: !this.state.open });
     },
 
-    _toggleNestedMenu: function () {
-        if (!this.props.disabled) this.setState({open: !this.state.open});
-    },
+    _onMenuItemClick: function(e, key, payload) {
+        if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
+        this.setState({
+            selectedIndex: key,
+            open: false
+        });
 
-    _onMenuItemClick: function (e) {
-        if (this.props.onParentItemClick) this.props.onParentItemClick(e, this.props.parentItem);
-        this._toggleNestedMenu();
-    },
+        // Prevent ghost clicks
+        e.preventDefault();
+        e.stopPropagation();
 
-    _onMenuClick: function (e, index, menuItem) {
-        if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-        this._closeNestedMenu();
-    },
-
-    _onMenuTap: function (e, index, menuItem) {
-        if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-        this._closeNestedMenu();
+        // TODO: Not sure if this is needed with the above being called
+        e.nativeEvent.stopImmediatePropagation();
     }
 
 });
 
-module.exports = NestedMenuItem;
+module.exports = DropDownMenu;
