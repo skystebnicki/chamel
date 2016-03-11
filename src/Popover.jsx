@@ -81,4 +81,9 @@ Popover.defaultProps = {
   zDepth: 1
 };
 
+// Check for commonjs
+if (module) {
+  module.exports = Popover;
+}
+
 export default Popover;
