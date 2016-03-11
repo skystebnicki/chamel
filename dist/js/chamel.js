@@ -26622,7 +26622,7 @@ var Chamel = {
         WindowListenable: require('./mixins/WindowListenable.jsx')
     },
     Paper: require('./Paper.jsx'),
-    Popover: _Popover2.default,
+    Popover: require('./Popover.jsx'),
     RadioButton: require('./RadioButton.jsx'),
     RadioButtonGroup: require('./RadioButtonGroup.jsx'),
     RaisedButton: require('./RaisedButton.jsx'),
