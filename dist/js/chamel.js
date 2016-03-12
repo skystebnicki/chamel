@@ -23684,7 +23684,11 @@ var RaisedButton = React.createClass({
     });
     var children;
 
-    if (label) children = React.createElement('span', { className: 'chamel-raised-button-label' }, label);else children = this.props.children;
+    if (label) {
+      children = label;
+    } else {
+      children = this.props.children;
+    }
 
     return React.createElement(Paper, { className: classes, zDepth: this.state.zDepth }, React.createElement(EnhancedButton, _extends({}, other, {
       className: 'chamel-raised-button-container',
@@ -23692,7 +23696,7 @@ var RaisedButton = React.createClass({
       onMouseDown: this._handleMouseDown,
       onMouseOut: this._handleMouseOut,
       onTouchStart: this._handleTouchStart,
-      onTouchEnd: this._handleTouchEnd }), children));
+      onTouchEnd: this._handleTouchEnd }), React.createElement('span', { className: 'chamel-raised-button-label' }, children)));
   },
 
   _handleMouseDown: function _handleMouseDown(e) {

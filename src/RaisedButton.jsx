@@ -51,8 +51,11 @@ var RaisedButton = React.createClass({
     });
     var children;
 
-    if (label) children = <span className="chamel-raised-button-label">{label}</span>;
-    else children = this.props.children;
+    if (label) {
+      children = label;
+    } else {
+      children = this.props.children;
+    }
 
     return (
       <Paper className={classes} zDepth={this.state.zDepth}>
@@ -63,7 +66,9 @@ var RaisedButton = React.createClass({
           onMouseOut={this._handleMouseOut}
           onTouchStart={this._handleTouchStart}
           onTouchEnd={this._handleTouchEnd}>
-          {children}
+          <span className="chamel-raised-button-label">
+            {children}
+          </span>
         </EnhancedButton>
       </Paper>
     );
