@@ -26796,10 +26796,12 @@ var MenuItem = React.createClass({
         if (this.props.attribute !== undefined) attribute = React.createElement('span', { className: 'chamel-menu-item-attribute' }, this.props.attribute);
 
         // Add indentations for hierarchical menus
-        var numIndents = this.props.indent || 0;
-        var indentItems = numIndents ? [] : null;
-        for (var i = 0; i < numIndents; i++) {
-            indentItems.push(React.createElement('span', { className: 'chamel-menu-item-indent', key: i }, ' '));
+        var indentItem = false;
+        if (this.props.indent) {
+            var style = {
+                paddingLeft: this.props.indent * 3 + "px"
+            };
+            indentItem = React.createElement('span', { className: 'chamel-menu-item-indent', style: style });
         }
 
         if (this.props.toggle) {
