@@ -26796,12 +26796,10 @@ var MenuItem = React.createClass({
         if (this.props.attribute !== undefined) attribute = React.createElement('span', { className: 'chamel-menu-item-attribute' }, this.props.attribute);
 
         // Add indentations for hierarchical menus
-        var indentItem = false;
-        if (this.props.indent) {
-            var style = {
-                paddingLeft: this.props.indent * 3 + "px"
-            };
-            indentItem = React.createElement('span', { className: 'chamel-menu-item-indent', style: style });
+        var numIndents = this.props.indent || 0;
+        var indentItems = numIndents ? [] : null;
+        for (var i = 0; i < numIndents; i++) {
+            indentItems.push(React.createElement('span', { className: 'chamel-menu-item-indent', key: i }, " "));
         }
 
         if (this.props.toggle) {
@@ -26820,7 +26818,7 @@ var MenuItem = React.createClass({
         return React.createElement('div', {
             key: this.props.index,
             className: classes,
-            onClick: this._handleOnClick }, indentItem, icon, this.props.children, data, attribute, number, toggle, iconRight);
+            onClick: this._handleOnClick }, indentItems, icon, this.props.children, data, attribute, number, toggle, iconRight);
     },
 
     _handleTouchTap: function _handleTouchTap(e) {

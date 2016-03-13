@@ -66,12 +66,12 @@ var MenuItem = React.createClass({
             <span className="chamel-menu-item-attribute">{this.props.attribute}</span>;
 
         // Add indentations for hierarchical menus
-        let indentItem = false;
-        if (this.props.indent) {
-          let style = {
-            paddingLeft: (this.props.indent * 3) + "px"
-          }
-          indentItem = <span className="chamel-menu-item-indent" style={style} />;
+        var numIndents = this.props.indent || 0;
+        var indentItems = (numIndents) ? [] : null;
+        for (var i = 0; i < numIndents; i++) {
+            indentItems.push(
+                <span className="chamel-menu-item-indent" key={i}>{" "}</span>
+            );
         }
 
         if (this.props.toggle) {
@@ -92,7 +92,7 @@ var MenuItem = React.createClass({
                 className={classes}
                 onClick={this._handleOnClick}>
 
-                {indentItem}
+                {indentItems}
                 {icon}
                 {this.props.children}
                 {data}

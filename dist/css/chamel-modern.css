@@ -1847,7 +1847,7 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-menu-item .chamel-menu-item-icon { float: left; line-height: 48px; margin-right: 24px; }
 
-.chamel-menu-item .chamel-menu-item-indent { float: left; width: 10px; line-height: 48px; }
+.chamel-menu-item .chamel-menu-item-indent { float: left; width: 10px; height: 48px; }
 
 .chamel-menu-item .chamel-menu-item-data { display: block; padding-left: 48px; line-height: 32px; height: 32px; vertical-align: top; top: -12px; position: relative; }
 
