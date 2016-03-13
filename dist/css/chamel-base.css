@@ -1398,6 +1398,8 @@ html, body { height: 100%; width: 100%; }
 
 html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-family: Tahoma, Arial, Verdana, Helvetica, sans-serif; background-color: #ffffff; }
 
+.chamel-clear { clear: both; }
+
 .cml-text-full-black { color: black; }
 
 .cml-font-style-headline, .cml-font-style-title, .chamel-app-bar .chamel-app-bar-title, .font-style-subhead-1, .cml-font-style-subhead-2, .cml-font-style-body-2, .cml-font-style-body-1, .cml-font-style-menu, .cml-font-style-button, .chamel-flat-button, .chamel-raised-button .chamel-raised-button-label, .cml-text-dark-black { color: rgba(0, 0, 0, 0.87); }
