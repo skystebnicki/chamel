@@ -92,7 +92,7 @@ var MenuItem = React.createClass({
                 className={classes}
                 onClick={this._handleOnClick}>
 
-                {indentItems}
+                {indentItem}
                 {icon}
                 {this.props.children}
                 {data}

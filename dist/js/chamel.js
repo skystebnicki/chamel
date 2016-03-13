@@ -26820,7 +26820,7 @@ var MenuItem = React.createClass({
         return React.createElement('div', {
             key: this.props.index,
             className: classes,
-            onClick: this._handleOnClick }, indentItems, icon, this.props.children, data, attribute, number, toggle, iconRight);
+            onClick: this._handleOnClick }, indentItem, icon, this.props.children, data, attribute, number, toggle, iconRight);
     },
 
     _handleTouchTap: function _handleTouchTap(e) {
