@@ -196,7 +196,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['clean:dist', 'sass:dist', 'sass:distcmp', 'browserify:dist', 'copy:dist']);
 
     // Default will build sass, update js and then sit and watch for changes
-    grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'copy:dist', 'watch']);
+    grunt.registerTask('default', ['sass:dev', 'browserify:dev', 'copy:build', 'watch']);
 
     // We are utilizing browserify for react components
     grunt.loadNpmTasks('grunt-browserify');
