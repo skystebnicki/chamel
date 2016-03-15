@@ -6,6 +6,7 @@
 
   .chamel-toolbar-group {
     position: relative;
+    display: inherit;
 
     .chamel-toolbar-title {
       padding-right: $desktop-gutter-less;
@@ -91,5 +92,19 @@
         margin-right: -24px;
       }
     }
+  }
+
+  .chamel-toolbar-left-arrow {
+    float: left;
+    margin-right: 2px;
+    cursor: pointer;
+    margin-top: ($button-height / 2);
+  }
+
+  .chamel-toolbar-right-arrow {
+    float: right;
+    margin-left: 2px;
+    cursor: pointer;
+    margin-top: ($button-height / 2);
   }
 }
