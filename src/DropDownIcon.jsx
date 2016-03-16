@@ -5,6 +5,7 @@ var KeyLine = require('./utils/KeyLine.jsx');
 var Paper = require('./Paper.jsx');
 var FontIcon = require('./FontIcon.jsx');
 var Menu = require('./menu/Menu.jsx');
+import Popover from './Popover.jsx';
 
 var DropDownIcon = React.createClass({
 
@@ -21,7 +22,7 @@ var DropDownIcon = React.createClass({
       open: false
     }
   },
-  
+
   getDefaultProps: function() {
     return {
       closeOnMenuItemClick: true
@@ -39,29 +40,50 @@ var DropDownIcon = React.createClass({
 
     var icon;
     if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} />;
-   
+
     return (
       <div className={classes}>
           <div className="chamel-menu-control" onClick={this._onControlClick}>
               {icon}
               {this.props.children}
           </div>
-          <Menu ref="menuItems" menuItems={this.props.menuItems} hideable={true} visible={this.state.open} onItemClick={this._onMenuItemClick} />
+          <Popover
+            open={this.state.open}
+            anchorEl={this.state.anchorEl}
+            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            onRequestClose={this._handleRequestClose}
+          >
+            <Menu
+              ref="menuItems"
+              menuItems={this.props.menuItems}
+              onItemClick={this._onMenuItemClick} />
+          </Popover>
         </div>
     );
   },
 
   _onControlClick: function(e) {
-    console.log("IconClicked");
-    this.setState({ open: !this.state.open });
+    e.preventDefault();
+
+    this.setState({
+      open: this.state.open ? false : true,
+      anchorEl: e.currentTarget
+    });
   },
 
   _onMenuItemClick: function(e, key, payload) {
     if (this.props.onChange) this.props.onChange(e, key, payload);
-    
+
     if (this.props.closeOnMenuItemClick) {
       this.setState({ open: false });
     }
+  },
+
+  _handleRequestClose: function(e) {
+    this.setState({
+      open: false,
+    });
   }
 
 });

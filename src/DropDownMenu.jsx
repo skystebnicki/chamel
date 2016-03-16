@@ -98,7 +98,6 @@ var DropDownMenu = React.createClass({
   },
 
   _onControlClick: function(e) {
-    console.log("this.state.open", this.state.open);
     e.preventDefault();
 
     this.setState({
