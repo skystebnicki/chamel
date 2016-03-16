@@ -5,10 +5,11 @@ var ClickAwayable = require('./mixins/ClickAwayable.jsx');
 var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
 var Paper = require('./Paper.jsx');
 var Menu = require('./menu/Menu.jsx');
+import Popover from './Popover.jsx';
 
 var DropDownMenu = React.createClass({
 
-  mixins: [Classable, ClickAwayable],
+  mixins: [Classable],
 
   propTypes: {
     autoWidth: React.PropTypes.bool,
@@ -25,6 +26,7 @@ var DropDownMenu = React.createClass({
   getInitialState: function() {
     return {
       open: false,
+      anchorEl: null,
       selectedIndex: this.props.selectedIndex || 0
     }
   },
@@ -58,23 +60,31 @@ var DropDownMenu = React.createClass({
             <div className="chamel-menu-control-underline" />
           </Paper>
         </div>
-        <Menu
-          ref="menuItems"
-          autoWidth={this.props.autoWidth}
-          selectedIndex={this.state.selectedIndex}
-          menuItems={this.props.menuItems}
-          hideable={true}
-          visible={this.state.open}
-          onItemClick={this._onMenuItemClick} />
+        <Popover
+          open={this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+          onRequestClose={this._handleRequestClose}
+        >
+          <Menu
+            ref="menuItems"
+            autoWidth={this.props.autoWidth}
+            selectedIndex={this.state.selectedIndex}
+            menuItems={this.props.menuItems}
+            onItemClick={this._onMenuItemClick} />
+        </Popover>
       </div>
     );
   },
 
   _setWidth: function() {
+    /*
     var el = ReactDOM.findDOMNode(this),
       menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
 
     el.style.width = menuItemsDom.offsetWidth + 'px';
+    */
   },
 
   _setSelectedIndex: function(props) {
@@ -88,7 +98,13 @@ var DropDownMenu = React.createClass({
   },
 
   _onControlClick: function(e) {
-    this.setState({ open: !this.state.open });
+    console.log("this.state.open", this.state.open);
+    e.preventDefault();
+
+    this.setState({
+      open: this.state.open ? false : true,
+      anchorEl: e.currentTarget
+    });
   },
 
   _onMenuItemClick: function(e, key, payload) {
@@ -104,6 +120,12 @@ var DropDownMenu = React.createClass({
 
     // TODO: Not sure if this is needed with the above being called
     e.nativeEvent.stopImmediatePropagation();
+  },
+
+  _handleRequestClose: function(e) {
+    this.setState({
+      open: false,
+    });
   }
 
 });

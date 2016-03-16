@@ -1,14 +1,12 @@
 .chamel-drop-down-menu {
 
-  * {
-    @include ease-out();
-  }
-
   position: relative;
   display: inline-block;
   height: $icon-size * 2;
   font-size: 16px;
+  white-space: nowrap;
 
+  /*
   &.chamel-open {
     .chamel-menu-control {
       &:hover,
@@ -30,6 +28,7 @@
       z-index: 99;
     }
   }
+  */
 
   .chamel-menu-control {
     cursor: pointer;
@@ -54,6 +53,7 @@
       line-height: 30px;
       /*position: absolute;*/
       padding-left: 0;
+      margin-right: $icon-size;
       /*top: 0;
       opacity: 1;*/
     }
@@ -73,12 +73,5 @@
   .chamel-menu {
     max-height: 320px;
     overflow: auto;
-
-    .chamel-menu-item {
-      padding-right: ($icon-size + $desktop-gutter-less + $desktop-gutter-mini);
-      height: 48px;
-      line-height: 48px;
-      white-space: nowrap;
-    }
   }
 }
