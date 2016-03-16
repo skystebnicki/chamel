@@ -20,8 +20,8 @@ var Toolbar = React.createClass({
             containerWidth: 0,
             childrenWidth: 0,
             left: 0,
-            showArrowLeft: true,
-            showArrowRight: false
+            showArrowLeft: false,
+            showArrowRight: true
         };
     },
 
@@ -43,7 +43,7 @@ var Toolbar = React.createClass({
         }
 
         if (this.state.childrenWidth == 0) {
-            
+
             let childrenWidth = 0;
 
             /*
@@ -74,14 +74,13 @@ var Toolbar = React.createClass({
             return React.cloneElement(element, {ref: idx});
         });
 
-        
 
         if (this.state.childrenWidth > this.state.containerWidth) {
 
             let displayArrowLeft = null,
                 displayArrowRight = null,
                 iconWidth = this.props.iconWidth;
-            
+
             /*
              * Style used for toolar main container
              * We set the overflow hidden since we will use the arrow navigation to scroll thru the icons
@@ -99,7 +98,7 @@ var Toolbar = React.createClass({
              */
             let styleToolbarCon = {
                 display: '-webkit-box',
-                position: 'relative',
+                position: 'absolute',
                 left: this.state.left + 'px'
             }
 
@@ -107,7 +106,7 @@ var Toolbar = React.createClass({
             if (this.state.showArrowLeft) {
                 displayArrowLeft = (
                     <div className="chamel-toolbar-left-arrow">
-                        <FontIcon onClick={this._handleArrowClick.bind(this, -iconWidth)}
+                        <FontIcon onClick={this._handleArrowClick.bind(this, iconWidth)}
                                   className="cfi cfi-chevron-left"/>
                     </div>
                 );
@@ -117,7 +116,7 @@ var Toolbar = React.createClass({
             if (this.state.showArrowRight) {
                 displayArrowRight = (
                     <div className="chamel-toolbar-right-arrow">
-                        <FontIcon onClick={this._handleArrowClick.bind(this, iconWidth)}
+                        <FontIcon onClick={this._handleArrowClick.bind(this, -iconWidth)}
                                   className="cfi cfi-chevron-right"/>
                     </div>
                 );
@@ -171,9 +170,9 @@ var Toolbar = React.createClass({
 
         // If the div's left value is already 0, then we do not need to display the right navigation arrow icon
         if (left === 0) {
-            this.setState({"showArrowRight": false});
+            this.setState({"showArrowLeft": false});
         } else {
-            this.setState({"showArrowRight": true});
+            this.setState({"showArrowLeft": true});
         }
 
         /**
@@ -183,10 +182,10 @@ var Toolbar = React.createClass({
         if (left <= 0 && updateLeft) {
             this.setState({
                 "left": left,
-                "showArrowLeft": true
+                "showArrowRight": true
             });
         } else {
-            this.setState({"showArrowLeft": false});
+            this.setState({"showArrowRight": false});
         }
     }
 });
