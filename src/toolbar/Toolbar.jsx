@@ -233,7 +233,7 @@ var Toolbar = React.createClass({
     /**
      * Callback used to handle the clicking of the navigation arrow icons
      *
-     * @param {number} value The number that will be used to modify the div's left value (negative value = left key; positive value = right key)
+     * @param {int} value The number that will be used to modify the div's left value (negative value = left key; positive value = right key)
      * @private
      */
     _handleArrowClick: function (value) {
