@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var ReactDOM = require('react-dom');
 var Classable = require('./mixins/classable.jsx');
 var ClickAwayable = require('./mixins/ClickAwayable.jsx');
@@ -7,47 +7,57 @@ var Paper = require('./Paper.jsx');
 var Menu = require('./menu/Menu.jsx');
 import Popover from './Popover.jsx';
 
-var DropDownMenu = React.createClass({
+/**
+ * Component for displaying dropdowns
+ */
+class DropDownMenu extends React.Component {
 
-  mixins: [Classable],
+  /**
+   * Class constructor takes properties and passes them to the parent/super
+   */
+  constructor(props) {
+    super(props);
 
-  propTypes: {
-    autoWidth: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired
-  },
-
-  getDefaultProps: function() {
-    return {
-      autoWidth: true
-    };
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       open: false,
       anchorEl: null,
-      selectedIndex: this.props.selectedIndex || 0
+      selectedIndex: props.selectedIndex || 0
+    };
+  }
+
+  /**
+   * Popover has entered the dom
+   */
+  componentDidMount() {
+    if (this.props.hasOwnProperty('selectedIndex')) {
+      this._setSelectedIndex(this.props);
     }
-  },
+  }
 
-  componentClickAway: function() {
-    this.setState({ open: false });
-  },
+  /**
+   * Componenent is about to exit the dom
+   */
+  componentWillUnmount() {
+  }
 
-  componentDidMount: function() {
-    if (this.props.autoWidth) this._setWidth();
-    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(this.props);
-  },
+  /**
+   * Componenent is about to exit the dom
+   */
+  componentWillReceiveProps(nextProps) {
+    if (this.props.hasOwnProperty('selectedIndex')) {
+      this._setSelectedIndex(nextProps);
+    }
+  }
 
-  componentWillReceiveProps: function(nextProps) {
-    if (this.props.hasOwnProperty('selectedIndex')) this._setSelectedIndex(nextProps);
-  },
+  /**
+   * Render Componenent
+   */
+  render() {
 
-  render: function() {
-    var classes = this.getClasses('chamel-drop-down-menu', {
-      'chamel-open': this.state.open
-    });
+    let classes = 'chamel-drop-down-menu';
+    if (this.state.open) {
+      classes += " chamel-open";
+    }
 
     return (
       <div className={classes}>
@@ -63,8 +73,7 @@ var DropDownMenu = React.createClass({
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
         >
           <Menu
@@ -72,22 +81,20 @@ var DropDownMenu = React.createClass({
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            onItemClick={this._onMenuItemClick} />
+            onItemClick={this._onMenuItemClick}
+          />
         </Popover>
       </div>
     );
-  },
+  }
 
-  _setWidth: function() {
-    /*
-    var el = ReactDOM.findDOMNode(this),
-      menuItemsDom = ReactDOM.findDOMNode(this.refs.menuItems);
-
-    el.style.width = menuItemsDom.offsetWidth + 'px';
-    */
-  },
-
-  _setSelectedIndex: function(props) {
+  /**
+   * Set which menu item is selected
+   *
+   * @private
+   * @param {Object} props The props we are setting
+   */
+  _setSelectedIndex = (props) => {
     var selectedIndex = props.selectedIndex;
 
     if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
@@ -95,19 +102,36 @@ var DropDownMenu = React.createClass({
     }
 
     this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
-  },
+  }
 
-  _onControlClick: function(e) {
+  /**
+   * Meny control clicked handler
+   *
+   * @private
+   * @param {DOMEvent} e The click event fired
+   */
+  _onControlClick = (e) => {
     e.preventDefault();
 
     this.setState({
       open: this.state.open ? false : true,
       anchorEl: e.currentTarget
     });
-  },
+  }
 
-  _onMenuItemClick: function(e, key, payload) {
-    if (this.props.onChange && this.state.selectedIndex !== key) this.props.onChange(e, key, payload);
+  /**
+   * Triggered when a menu item gets clicked
+   *
+   * @private
+   * @param {DOMEvent} e The event fired through
+   * @param {int} key The index of the item clicked - this will be deprecated soon
+   * @param {Object} payload Whatever payload was passed to the menu
+   */
+  _onMenuItemClick = (e, key, payload) => {
+    if (this.props.onChange && this.state.selectedIndex !== key) {
+      this.props.onChange(e, key, payload);
+    }
+
     this.setState({
       selectedIndex: key,
       open: false
@@ -119,14 +143,42 @@ var DropDownMenu = React.createClass({
 
     // TODO: Not sure if this is needed with the above being called
     e.nativeEvent.stopImmediatePropagation();
-  },
+  }
 
-  _handleRequestClose: function(e) {
+  /**
+   * Handle when the popover gets closed
+   *
+   * @private
+   * @param {DOMEvent} e The click event fired
+   */
+  _handleRequestClose = (e) => {
     this.setState({
       open: false,
     });
   }
 
-});
+};
 
-module.exports = DropDownMenu;
+/**
+ * Set accepted properties
+ */
+DropDownMenu.propTypes = {
+  autoWidth: React.PropTypes.bool,
+  onChange: React.PropTypes.func,
+  selectedIndex: React.PropTypes.number,
+  menuItems: React.PropTypes.array.isRequired
+};
+
+/**
+ * Set property defaults
+ */
+DropDownMenu.defaultProps = {
+  autoWidth: true
+};
+
+// Check for commonjs
+if (module) {
+  module.exports = DropDownMenu;
+}
+
+export default DropDownMenu;

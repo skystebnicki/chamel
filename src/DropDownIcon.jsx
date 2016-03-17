@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 var Classable = require('./mixins/classable.jsx');
 var ClickAwayable = require('./mixins/ClickAwayable.jsx');
 var KeyLine = require('./utils/KeyLine.jsx');
@@ -7,39 +7,37 @@ var FontIcon = require('./FontIcon.jsx');
 var Menu = require('./menu/Menu.jsx');
 import Popover from './Popover.jsx';
 
-var DropDownIcon = React.createClass({
+/**
+ * Component for displaying dropdowns from an icon
+ */
+class DropDownIcon extends React.Component {
 
-  mixins: [Classable, ClickAwayable],
+  /**
+   * Class constructor takes properties and passes them to the parent/super
+   */
+  constructor(props) {
+    super(props);
 
-  propTypes: {
-    onChange: React.PropTypes.func,
-    menuItems: React.PropTypes.array.isRequired,
-    closeOnMenuItemClick: React.PropTypes.bool
-  },
+    this.state = {
+      open: false,
+      anchorEl: null,
+      selectedIndex: props.selectedIndex || 0
+    };
+  }
 
-  getInitialState: function() {
-    return {
-      open: false
+  /**
+   * Render Componenent
+   */
+  render() {
+    let classes = 'chamel-drop-down-icon';
+    if (this.state.open) {
+      classes += " chamel-open";
     }
-  },
-
-  getDefaultProps: function() {
-    return {
-      closeOnMenuItemClick: true
-    }
-  },
-
-  componentClickAway: function() {
-    this.setState({ open: false });
-  },
-
-  render: function() {
-    var classes = this.getClasses('chamel-drop-down-icon', {
-      'chamel-open': this.state.open
-    });
 
     var icon;
-    if (this.props.iconClassName) icon = <FontIcon className={this.props.iconClassName} />;
+    if (this.props.iconClassName) {
+      icon = (<FontIcon className={this.props.iconClassName} />);
+    }
 
     return (
       <div className={classes}>
@@ -50,8 +48,7 @@ var DropDownIcon = React.createClass({
           <Popover
             open={this.state.open}
             anchorEl={this.state.anchorEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            anchorOrigin={{horizontal: 'left', vertical: 'top'}}
             onRequestClose={this._handleRequestClose}
           >
             <Menu
@@ -61,31 +58,55 @@ var DropDownIcon = React.createClass({
           </Popover>
         </div>
     );
-  },
+  }
 
-  _onControlClick: function(e) {
+  _onControlClick = (e) => {
     e.preventDefault();
 
     this.setState({
       open: this.state.open ? false : true,
       anchorEl: e.currentTarget
     });
-  },
+  }
 
-  _onMenuItemClick: function(e, key, payload) {
+  _onMenuItemClick = (e, key, payload) => {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
     if (this.props.closeOnMenuItemClick) {
       this.setState({ open: false });
     }
-  },
+  }
 
-  _handleRequestClose: function(e) {
+  _handleRequestClose = (e) => {
     this.setState({
       open: false,
     });
   }
 
-});
+};
 
-module.exports = DropDownIcon;
+/**
+ * Set accepted properties
+ */
+DropDownIcon.propTypes = {
+  autoWidth: React.PropTypes.bool,
+  selectedIndex: React.PropTypes.number,
+  onChange: React.PropTypes.func,
+  menuItems: React.PropTypes.array.isRequired,
+  closeOnMenuItemClick: React.PropTypes.bool
+};
+
+/**
+ * Set property defaults
+ */
+DropDownIcon.defaultProps = {
+  autoWidth: true,
+  closeOnMenuItemClick: true
+};
+
+// Check for commonjs
+if (module) {
+  module.exports = DropDownIcon;
+}
+
+export default DropDownIcon;

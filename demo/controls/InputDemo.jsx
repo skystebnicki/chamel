@@ -6,22 +6,22 @@ var DropDownMenu = require("../../src/DropDownMenu.jsx");
 var TextField = require("../../src/TextField.jsx");
 
 var dropDownData = [
-    { payload: 'test1', text: 'Test Entry 1' },
-    { payload: 'test2', text: 'Test Entry 2' },
-    { payload: 'test3', text: 'Test Entry 3' },
-    { payload: 'test4', text: 'Test Entry 4' },
-    { payload: 'test5', text: 'Test Entry 5' },
-    { payload: 'test6', text: 'Test Entry 6' },
-    { payload: 'test7', text: 'Test Entry 7' },
-    { payload: 'test8', text: 'Test Entry 8' },
-    { payload: 'test9', text: 'Test Entry 9' },
-    { payload: 'test10', text: 'Test Entry 10' },
-    { payload: 'test11', text: 'Test Entry 11' },
-    { payload: 'test12', text: 'Test Entry 12' },
-    { payload: 'test13', text: 'Test Entry 13' },
-    { payload: 'test14', text: 'Test Entry 14' },
-    { payload: 'test15', text: 'Test Entry 15' },
-    { payload: 'test16', text: 'Test Entry 16' }
+    { value: 'test1', text: 'Test Entry 1' },
+    { value: 'test2', text: 'Test Entry 2' },
+    { value: 'test3', text: 'Test Entry 3' },
+    { value: 'test4', text: 'Test Entry 4' },
+    { value: 'test5', text: 'Test Entry 5' },
+    { value: 'test6', text: 'Test Entry 6' },
+    { value: 'test7', text: 'Test Entry 7' },
+    { value: 'test8', text: 'Test Entry 8' },
+    { value: 'test9', text: 'Test Entry 9' },
+    { value: 'test10', text: 'Test Entry 10' },
+    { value: 'test11', text: 'Test Entry 11' },
+    { value: 'test12', text: 'Test Entry 12' },
+    { value: 'test13', text: 'Test Entry 13' },
+    { value: 'test14', text: 'Test Entry 14' },
+    { value: 'test15', text: 'Test Entry 15' },
+    { value: 'test16', text: 'Test Entry 16 Test Entry 1 Test Entry 1' }
 ];
 
 var InputDemo = React.createClass({
@@ -54,9 +54,9 @@ var InputDemo = React.createClass({
     /**
      * Log changed value of a DropDown menu
      */
-    _handleDropDownChange: function(evt)
+    _handleDropDownChange: function(e, key, payload)
     {
-        console.log("Dropdown value changed to", evt.target.value);
+        console.log("Dropdown value changed to", payload);
     },
 
     /**

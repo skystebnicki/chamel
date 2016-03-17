@@ -16,12 +16,22 @@ module.exports = {
   offset: function(el) {
     var rect = el.getBoundingClientRect();
     var documentOffset = this.scrollOffset();
-    return {
+
+    // Set simple points
+    let points = {
       top: rect.top + documentOffset.top,
       left: rect.left + documentOffset.left,
+      bottom: rect.bottom + documentOffset.top,
+      right: rect.right + documentOffset.left,
       width: rect.right - rect.left,
       height: rect.bottom - rect.top
-    };
+    }
+
+    // Add a couple computed points from the simple
+    points.middle = points.top + (points.height / 2);
+    points.center = points.left + (points.width / 2);
+
+    return points;
   },
 
   scrollOffset: function(el) {
@@ -79,7 +89,7 @@ module.exports = {
   withoutTransition: function(el, callback) {
     //turn off transition
     el.style.transition = 'none';
-    
+
     callback();
 
     //force a redraw
@@ -88,5 +98,5 @@ module.exports = {
     //put the transition back
     el.style.transition = '';
   }
-  
+
 }
