@@ -93,6 +93,10 @@ var Editor = React.createClass({
 			<div>
 				<Toolbar>
 					<ToolbarGroup key={1} float="left">
+						<DropDownIcon
+							iconClassName="cfi cfi-font"
+							menuItems={fontNameOptions}
+							onChange={this._handleMenuClick.bind(this, "fontname")} />
 						<FontIcon onClick={this._handleToolbarClick.bind(this, "bold")} className="cfi cfi-bold" />
 						<FontIcon onClick={this._handleToolbarClick.bind(this, "italic")} className="cfi cfi-italic" />
 						<FontIcon onClick={this._handleToolbarClick.bind(this, "underline")} className="cfi cfi-underline" />
