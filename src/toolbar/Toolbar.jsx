@@ -5,7 +5,7 @@ var ToolbarGroup = require("../toolbar/ToolbarGroup.jsx");
 
 /**
  * This variable will hold all the icons to be displayed in the toolbar if we are in mobile mode display
- * 
+ *
  * @type {Array}
  */
 var toolbarIcons = [];
@@ -22,9 +22,14 @@ var Toolbar = React.createClass({
     getInitialState: function () {
         return {
             /**
-             * The width of the main container for the toolbar icons
+             * The width of the main container for the toolbar
              */
-            containerWidth: 0,
+            mainContainerWidth: 0,
+
+            /**
+             * The width of the toolbar icons container
+             */
+            toolbarContainerWidth: 0,
 
             /**
              * The width of the total icons that we are going to display
@@ -64,10 +69,14 @@ var Toolbar = React.createClass({
         // Get the offsetWidth of the main container for the toolbar icons
         let container = ReactDOM.findDOMNode(this.refs.chamelToolbar);
 
+        // We need to minus the DEFAULTICONWIDTH*2 to accomodate the arrow keys
+        let toolbarContainerWidth = container.offsetWidth - (DEFAULTICONWIDTH * 2)
+
         this.setState({
-            containerWidth: container.offsetWidth,
+            mainContainerWidth: container.offsetWidth,
             totalIconWidth: totalIconWidth,
-            maxIconsDisplay: Math.floor(container.offsetWidth / DEFAULTICONWIDTH)
+            toolbarContainerWidth: toolbarContainerWidth,
+            maxIconsDisplay: Math.floor(toolbarContainerWidth / DEFAULTICONWIDTH)
         });
 
     },
@@ -76,11 +85,11 @@ var Toolbar = React.createClass({
         let chamelToolbar = ReactDOM.findDOMNode(this.refs.chamelToolbar);
 
         /*
-         * If the state.containerWidth is not equal with the current main toolbar container offsetWidth
+         * If the state.mainContainerWidth is not equal with the current main toolbar container offsetWidth
          * Then let's update the value of the state
          */
-        if (this.state.containerWidth != chamelToolbar.offsetWidth) {
-            this.setState({containerWidth: chamelToolbar.offsetWidth});
+        if (this.state.mainContainerWidth != chamelToolbar.offsetWidth) {
+            this.setState({mainContainerWidth: chamelToolbar.offsetWidth});
         }
     },
 
@@ -111,12 +120,12 @@ var Toolbar = React.createClass({
                     </ToolbarGroup>
                 </div>
             );
-        } else if (this.state.totalIconWidth > this.state.containerWidth) {
+        } else if (this.state.totalIconWidth > this.state.mainContainerWidth) {
 
             let displayArrowLeft = null,
                 displayArrowRight = null,
                 totalDisplayIconWidth = 0,
-                idx = this.state.startIconIndex
+                idx = this.state.startIconIndex;
 
             // Let's use the maxIconsDisplay as our limit on how many icons we will display in the toolbar
             for (let i = 1; i <= this.state.maxIconsDisplay; i++, idx++) {
@@ -127,17 +136,15 @@ var Toolbar = React.createClass({
                     // Calculate the width of the total icons displayed
                     totalDisplayIconWidth += toolbarIcons[idx].width;
 
-                    /**
-                     * If the width of the total icons displayed reaches the limit (state.containerWidth)
-                     * Then we will break this for loop and will not display more toolbar icons
-                     *
-                     * We need to
+                    /*
+                     * If the width of the total icons displayed reaches the limit (toolbarContainerWidth)
+                     * Then we will break this for loop and will not add more toolbar icons to displayIcons
                      */
-                    if (totalDisplayIconWidth > (this.state.containerWidth - DEFAULTICONWIDTH)) {
+                    if (totalDisplayIconWidth > this.state.toolbarContainerWidth) {
                         break;
                     }
 
-                    /**
+                    /*
                      * The number of icons to be displayed are limited because we need to make sure that
                      *  they will fit in the toolbar main container's width
                      */
@@ -169,7 +176,7 @@ var Toolbar = React.createClass({
             let styleToolbarMainCon = {
                 position: 'absolute',
                 left: DEFAULTICONWIDTH + 'px',
-                width: (this.state.containerWidth - DEFAULTICONWIDTH) + 'px'
+                width: this.state.toolbarContainerWidth + 'px'
             };
 
             return (
