@@ -174,8 +174,7 @@ var Toolbar = React.createClass({
 
             // Modify the toolbar main container's style so we can properly display the toolbar icons
             let styleToolbarMainCon = {
-                position: 'absolute',
-                left: DEFAULTICONWIDTH + 'px',
+                float: 'left',
                 width: this.state.toolbarContainerWidth + 'px'
             };
 
@@ -210,30 +209,33 @@ var Toolbar = React.createClass({
         // Map thru the react children and evaluate each element if it is a toolbar icon or a parent component
         React.Children.map(children, function (element) {
 
-            // Evaluate the element type if it is a toolbar icon
-            switch (element.type.displayName) {
-                case 'FontIcon':
-                case 'DropDownIcon':
-                case 'FlatButton':
-                case 'IconButton':
-                case 'EnhancedButton':
-                    let ref = toolbarIcons.length;
-                    let icon = React.cloneElement(element, {ref: ref, key: ref});
-                    toolbarIcons[ref] = {
-                        icon: icon,
-                        width: DEFAULTICONWIDTH
-                    }
-                    break;
+            // Make sure that the element we evaluating is an object
+            if(typeof element === 'object') {
 
-                default:
+                // Evaluate the element type if it is a toolbar icon
+                switch (element.type.displayName) {
+                    case 'FontIcon':
+                    case 'DropDownIcon':
+                    case 'FlatButton':
+                    case 'IconButton':
+                    case 'EnhancedButton':
+                        let ref = toolbarIcons.length;
+                        let icon = React.cloneElement(element, {ref: ref, key: ref});
+                        toolbarIcons[ref] = {
+                            icon: icon,
+                            width: DEFAULTICONWIDTH
+                        }
+                        break;
 
-                    // If the element has a children, then let's loop again and find the possible toolbar icons
-                    if (element.props.children) {
-                        this._getToolbarIcons(element.props.children);
-                    }
-                    break;
+                    default:
+
+                        // If the element has a children, then let's loop again and find the possible toolbar icons
+                        if (element.props.children) {
+                            this._getToolbarIcons(element.props.children);
+                        }
+                        break;
+                }
             }
-
         }.bind(this));
     },
 
