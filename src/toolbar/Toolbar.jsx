@@ -79,6 +79,8 @@ var Toolbar = React.createClass({
             maxIconsDisplay: Math.floor(toolbarContainerWidth / DEFAULTICONWIDTH)
         });
 
+
+
     },
 
     componentDidUpdate: function () {
@@ -90,6 +92,22 @@ var Toolbar = React.createClass({
          */
         if (this.state.mainContainerWidth != chamelToolbar.offsetWidth) {
             this.setState({mainContainerWidth: chamelToolbar.offsetWidth});
+        }
+
+        let container = ReactDOM.findDOMNode(this.refs.toolbarContainer);
+
+        for(var idx in container.childNodes) {
+            let child = container.childNodes[idx];
+
+            var style = child.currentStyle || window.getComputedStyle(child);
+
+            console.log(style.width);
+            console.log(style.marginLeft);
+            console.log(style.marginRight);
+            console.log(style.paddingLeft);
+            console.log(style.paddingRight);
+
+            break;
         }
     },
 
@@ -105,7 +123,7 @@ var Toolbar = React.createClass({
         // This will contain the icons to be displayed in the toolbar.
         let displayIcons = [];
 
-        if (this.state.totalIconWidth === 0) {
+        if (true || this.state.totalIconWidth === 0) {
 
             // Map thru the toolbarIcons and display all the icons
             toolbarIcons.map(function (toolbarIcon) {
@@ -115,13 +133,12 @@ var Toolbar = React.createClass({
             // We need to display all the toolbar icons here so we can get the icon's width and calculate the totalIconsWidth
             return (
                 <div ref="chamelToolbar" className="chamel-toolbar" style={{position: 'absolute'}}>
-                    <ToolbarGroup>
+                    <ToolbarGroup ref="toolbarContainer">
                         {displayIcons}
                     </ToolbarGroup>
                 </div>
             );
         } else if (this.state.totalIconWidth > this.state.mainContainerWidth) {
-
             let displayArrowLeft = null,
                 displayArrowRight = null,
                 totalDisplayIconWidth = 0,
@@ -181,7 +198,7 @@ var Toolbar = React.createClass({
             return (
                 <div ref="chamelToolbar" className="chamel-toolbar" style={{padding: '0px'}}>
                     {displayArrowLeft}
-                    <div className="chamel-toolbar-group" style={styleToolbarMainCon}>
+                    <div ref="toolbarContainer" className="chamel-toolbar-group" style={styleToolbarMainCon}>
                         {displayIcons}
                     </div>
                     {displayArrowRight}
@@ -212,28 +229,26 @@ var Toolbar = React.createClass({
             // Make sure that the element we evaluating is an object
             if(typeof element === 'object') {
 
-                // Evaluate the element type if it is a toolbar icon
-                switch (element.type.displayName) {
-                    case 'FontIcon':
-                    case 'DropDownIcon':
-                    case 'FlatButton':
-                    case 'IconButton':
-                    case 'EnhancedButton':
+                let className = element.props.className;
+
+                if(className) {
+                    let parts = className.split(" ");
+
+                    if(parts.indexOf("cfi") != -1) {
                         let ref = toolbarIcons.length;
                         let icon = React.cloneElement(element, {ref: ref, key: ref});
                         toolbarIcons[ref] = {
                             icon: icon,
                             width: DEFAULTICONWIDTH
                         }
-                        break;
 
-                    default:
+                        return;
+                    }
+                }
 
-                        // If the element has a children, then let's loop again and find the possible toolbar icons
-                        if (element.props.children) {
-                            this._getToolbarIcons(element.props.children);
-                        }
-                        break;
+                // If the element has a children, then let's loop again and find the possible toolbar icons
+                if (element.props.children) {
+                    this._getToolbarIcons(element.props.children);
                 }
             }
         }.bind(this));
