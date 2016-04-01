@@ -204,6 +204,7 @@ var Toolbar = React.createClass({
             let child = children[idx];
             let element = elementContainer.childNodes[idx];
 
+            // If the current element is a div and has child nodes, then we will assume that it contains toolbar icons
             if (element.nodeType
                 && element.tagName.toLowerCase() === 'div'
                 && child.props.children) {
