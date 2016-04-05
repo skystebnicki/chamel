@@ -4,7 +4,11 @@ var FontIcon = require("../FontIcon.jsx");
 var ToolbarGroup = require("../toolbar/ToolbarGroup.jsx");
 
 /**
- * This variable will hold all the icons to be displayed in the toolbar if we are in mobile mode display
+ * This variable will hold all the icons to be displayed in the toolbar
+ *
+ * If we are in mobile mode display, then we will evaluate the icon's width
+ *  to determine how many icons will fit in the current toolbar.
+ * Arrow navigation icons will be displayed if we have more icons to display
  *
  * @type {Array}
  */
@@ -17,11 +21,15 @@ var Toolbar = React.createClass({
 
             /**
              * The width of the toolbar icons container
+             *
+             * This will determine if the icons to be displayed will fit in the toolbar
              */
             chamelToolbarWidth: 0,
 
             /**
              * The starting index of the icon that we are going to display
+             *
+             * This will be used if we are displaying the arrow navigation keys in the toolbar
              */
             startIconIndex: 0
         };
@@ -39,7 +47,12 @@ var Toolbar = React.createClass({
 
     componentWillUpdate: function () {
 
-        // If the toolbarIcons is
+        /*
+         * If the toolbarIcons length is 0, then we will get the toolbar icons from _getToolbarIcons()
+         *
+         * We need to get the icons here (componentWillUpdate)
+         *  because the icons should be rendered first before we can get the icons (html nodes)
+         */
         if (toolbarIcons.length == 0) {
             let level = 0;
             let container = ReactDOM.findDOMNode(this.refs.chamelToolbar);
@@ -51,6 +64,10 @@ var Toolbar = React.createClass({
 
     render: function () {
 
+        /*
+         * This will contain the total icons width to be displayed in the toolbar
+         * And will be evaluated later to determine if we will display the arrow navigation keys
+         */
         let totalIconsWidth = 0;
 
         // Let's calculate the total toolbar icons width, so we can evaluate if we need to display the arrow buttons
@@ -68,6 +85,14 @@ var Toolbar = React.createClass({
                 </div>
             );
         } else if (totalIconsWidth > this.state.chamelToolbarWidth) {
+
+            /*
+             * If the width of the totalIcons is greater than our toolbarWidth
+             *  then we need to evaluate how many icons should be displayed
+             *
+             * We will also display here the arrow navigation keys to browse the toolbars that are not displayed
+             */
+
             let displayArrowLeft = null,
                 displayArrowRight = null,
                 totalDisplayIconWidth = 0,
