@@ -92,4 +92,18 @@
       }
     }
   }
+
+  .chamel-toolbar-left-arrow {
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: ($button-height / 2);
+  }
+
+  .chamel-toolbar-right-arrow {
+    float: right;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-top: ($button-height / 2);
+  }
 }
