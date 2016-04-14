@@ -4,8 +4,8 @@ var Home = require('./home.jsx');
 var LeftNav = require("../../src/LeftNav.jsx");
 var IconButton = require("../../src/IconButton.jsx");
 
-var Router = require('react-router');
-var RouteHandler = Router.RouteHandler;
+var ReactRouter = require('react-router');
+var RouteLink = ReactRouter.Link;
 
 /**
  * Define menu items for the main left nav.
@@ -91,7 +91,7 @@ var App = React.createClass({
 
         <div className={contentClasses}>
           <div className="container-fluid">
-            <RouteHandler/>
+            {this.props.children}
           </div>
         </div>
 
