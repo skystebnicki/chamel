@@ -129,7 +129,8 @@ var EnhancedSwitch = React.createClass({
 
     /**
      * If the input type is a checkbox, then we need to use the defaultValue instead of value
-     *  since in the reactjs v15.0.*, it only supports defaultValue
+     * Because we cannot switch the uncontrolled component to a controlled component or vice versa.
+     * https://facebook.github.io/react/docs/forms.html
      */
     if(this.props.inputType === 'checkbox') {
       inputProps.defaultValue = this.props.value;
@@ -232,10 +233,7 @@ var EnhancedSwitch = React.createClass({
 
   getValue: function() {
 
-    /**
-     * If the input type is a checkbox, then we need to use the defaultValue instead of value
-     *  since in the reactjs v15.0.*, it only supports defaultValue
-     */
+    // If the input type is a checkbox, then we need to use the defaultValue instead of value
     if(this.props.inputType === 'checkbox') {
       return ReactDOM.findDOMNode(this.refs.checkbox).defaultValue;
     } else {
