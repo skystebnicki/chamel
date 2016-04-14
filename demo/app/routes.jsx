@@ -17,29 +17,29 @@ var DatePickerDemo = require("../controls/DatePickerDemo.jsx");
 var AutoCompleteDemo = require("../controls/AutoCompleteDemo.jsx");
 var PopoverDemo = require("../controls/popover/PopoverDemo.jsx");
 
-var Router = require('react-router');
-var DefaultRoute = Router.DefaultRoute;
-var Route = Router.Route;
+var ReactRouter = require('react-router');
+var IndexRoute = ReactRouter.IndexRoute;
+var Route = ReactRouter.Route;
 
 var routes = (
-	<Route handler={App} path="/">
-		<DefaultRoute handler={Home}/>
-		<Route name="home" path="home" handler={Home}/>
-		<Route name="button" path="button" handler={ButtonDemo}/>
-		<Route name="checkbox" path="checkbox" handler={CheckboxDemo}/>
-		<Route name="radio" path="radio" handler={RadioDemo}/>
-		<Route name="input" path="input" handler={InputDemo}/>
-		<Route name="app-bar" path="app-bar" handler={AppBarDemo}/>
-		<Route name="toolbar" path="toolbar" handler={ToolbarDemo}/>
-		<Route name="editor" path="editor" handler={EditorDemo}/>
-		<Route name="icon" path="icon" handler={IconsDemo}/>
-		<Route name="dialog" path="dialog" handler={DialogDemo}/>
-		<Route name="menu" path="menu" handler={MenuDemo}/>
-		<Route name="popover" path="popover" handler={PopoverDemo}/>
-		<Route name="progress" path="progress" handler={ProgressDemo}/>
-		<Route name="tabs" path="tabs" handler={TabsDemo}/>
-		<Route name="datepicker" path="datepicker" handler={DatePickerDemo} />
-		<Route name="autocomplete" path="autocomplete" handler={AutoCompleteDemo} />
+	<Route component={App} path="/">
+		<IndexRoute component={Home} />
+		<Route name="home" path="home" component={Home}/>
+		<Route name="button" path="button" component={ButtonDemo}/>
+		<Route name="checkbox" path="checkbox" component={CheckboxDemo}/>
+		<Route name="radio" path="radio" component={RadioDemo}/>
+		<Route name="input" path="input" component={InputDemo}/>
+		<Route name="app-bar" path="app-bar" component={AppBarDemo}/>
+		<Route name="toolbar" path="toolbar" component={ToolbarDemo}/>
+		<Route name="editor" path="editor" component={EditorDemo}/>
+		<Route name="icon" path="icon" component={IconsDemo}/>
+		<Route name="dialog" path="dialog" component={DialogDemo}/>
+		<Route name="menu" path="menu" component={MenuDemo}/>
+		<Route name="popover" path="popover" component={PopoverDemo}/>
+		<Route name="progress" path="progress" component={ProgressDemo}/>
+		<Route name="tabs" path="tabs" component={TabsDemo}/>
+		<Route name="datepicker" path="datepicker" component={DatePickerDemo} />
+		<Route name="autocomplete" path="autocomplete" component={AutoCompleteDemo} />
 	</Route>
 );
 

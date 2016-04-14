@@ -138,7 +138,7 @@ var TextField = React.createClass({
             inputProps.onChange = this._handleInputChange;
         }
 
-        var sanitizedValue = (value) ? this._sanitizeInputForType(value) : null;
+        var sanitizedValue = (value) ? this._sanitizeInputForType(value) : '';
 
         inputElement = this.props.multiLine ? (
             <EnhancedTextarea

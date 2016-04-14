@@ -58,13 +58,13 @@ var EditorDemo = React.createClass({
         return (
             <div>
                 <h2>Default Behavior</h2>
-                <RadioButtonGroup>
+                <RadioButtonGroup name ="group1">
                     <RadioButton label="Option 1" value='1' className='my-custom-1-class' />
                     <RadioButton label="Option 2" value='2' className='my-custom-2-class' />
                 </RadioButtonGroup>
 
                 <h2>Inline</h2>
-                <RadioButtonGroup inline={true}>
+                <RadioButtonGroup inline={true} name="group2">
                     <RadioButton label="Option 1" value='1' className='my-custom-1-class' />
                     <RadioButton label="Option 2" value='2' className='my-custom-2-class' />
                 </RadioButtonGroup>

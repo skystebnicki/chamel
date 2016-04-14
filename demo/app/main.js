@@ -1,6 +1,8 @@
 var React = require("react");
 var ReactDOM = require('react-dom');
-var Router = require("react-router");
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var hashHistory = ReactRouter.hashHistory;
 var routes = require("./routes.jsx");
 
 /**
@@ -19,10 +21,11 @@ var chamel = {
 	run: function(domEntry, opt_path) {
 
 
-		Router.run(routes, function (Handler) {
+		/*Router.run(routes, function (Handler) {
 			ReactDOM.render(React.createElement(Handler), domEntry);
-		});
+		});*/
 
+		ReactDOM.render(<Router history={hashHistory} routes={routes}/>, domEntry)
 	}
 	
 };

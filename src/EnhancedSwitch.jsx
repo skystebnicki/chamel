@@ -120,13 +120,23 @@ var EnhancedSwitch = React.createClass({
 
     var inputProps = {
       ref: "checkbox",
-      type: this.props.inputType,
       name: this.props.name,
-      value: this.props.value,
+      type: this.props.inputType,
       defaultChecked: this.props.defaultSwitched,
       onBlur: this._handleBlur,
       onFocus: this._handleFocus,
     };
+
+    /**
+     * If the input type is a checkbox, then we need to use the defaultValue instead of value
+     * Because we cannot switch the uncontrolled component to a controlled component or vice versa.
+     * https://facebook.github.io/react/docs/forms.html
+     */
+    if(this.props.inputType === 'checkbox') {
+      inputProps.defaultValue = this.props.value;
+    } else {
+      inputProps.value = this.props.value;
+    }
 
     var hideTouchRipple = this.props.disabled || disableTouchRipple;
 
@@ -222,7 +232,13 @@ var EnhancedSwitch = React.createClass({
   },
 
   getValue: function() {
-    return ReactDOM.findDOMNode(this.refs.checkbox).value;
+
+    // If the input type is a checkbox, then we need to use the defaultValue instead of value
+    if(this.props.inputType === 'checkbox') {
+      return ReactDOM.findDOMNode(this.refs.checkbox).defaultValue;
+    } else {
+      return ReactDOM.findDOMNode(this.refs.checkbox).value;
+    }
   },
 
   isKeyboardFocused: function() {

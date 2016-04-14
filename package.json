@@ -70,7 +70,6 @@
     "object-hash": "^0.8.0",
     "process": "^0.11.2",
     "protractor": "~1.0.0",
-    "react-router": "^0.13.4",
     "shelljs": "^0.2.6",
     "tmp": "0.0.23"
   },
@@ -85,7 +84,13 @@
     "transform": [
       [
         "babelify",
-        { "presets": ["es2015", "stage-1", "react"]}
+        {
+          "presets": [
+            "es2015",
+            "stage-1",
+            "react"
+          ]
+        }
       ]
     ]
   },
@@ -93,14 +98,15 @@
     "bootstrap-slider": "^5.1.0",
     "browserify": "*",
     "classnames": "^1.2.2",
+    "codemirror": "^5.7.0",
     "fbjs": "^0.2.1",
     "localforage": "^1.2.10",
     "object-hash": "^0.8.0",
-    "react": "^0.14.1",
-    "react-addons-css-transition-group": "^0.14.2",
-    "react-addons-transition-group": "^0.14.2",
-    "react-dom": "^0.14.1",
-    "ua-parser-js": "^0.7.9",
-    "codemirror": "^5.7.0"
+    "react": "^15.0.1",
+    "react-addons-css-transition-group": "^15.0.1",
+    "react-addons-transition-group": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-router": "^2.1.1",
+    "ua-parser-js": "^0.7.9"
   }
 }
