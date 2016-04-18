@@ -148,8 +148,14 @@ var TextField = React.createClass({
                 onHeightChange={this._handleTextAreaHeightChange}
                 textareaClassName="chamel-text-field-textarea"/>
         ) : (
+
+            /*
+             * We need to use the defaultValue instead of value because we cannot switch the uncontrolled component to a controlled component or vice versa.
+             * If we set value in the input type text, then the user cannot input a value since the component is already controlled
+             * https://facebook.github.io/react/docs/forms.html
+             */
             <input
-                value={sanitizedValue}
+                defaultValue={sanitizedValue}
                 {...other}
                 {...inputProps}
                 type={this.props.type}/>
