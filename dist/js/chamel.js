@@ -22851,7 +22851,7 @@ var EnhancedSwitch = React.createClass({
       onFocus: this._handleFocus
     };
 
-    /**
+    /*
      * If the input type is a checkbox, then we need to use the defaultValue instead of value
      * Because we cannot switch the uncontrolled component to a controlled component or vice versa.
      * https://facebook.github.io/react/docs/forms.html
@@ -23027,6 +23027,14 @@ var _extends = Object.assign || function (target) {
   }return target;
 };
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+  } else {
+    obj[key] = value;
+  }return obj;
+}
+
 function _objectWithoutProperties(obj, keys) {
   var target = {};for (var i in obj) {
     if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
@@ -23090,14 +23098,19 @@ var EnhancedTextarea = React.createClass({
       other.value = this.props.valueLink.value;
     }
 
-    return React.createElement('div', { className: classes }, React.createElement('textarea', {
+    /*
+     * We need to use the defaultValue instead of value because we cannot switch the uncontrolled component to a controlled component or vice versa.
+     * If we set value in the text area, then the user cannot input a value since the component is already controlled
+     * https://facebook.github.io/react/docs/forms.html
+     */
+    return React.createElement('div', { className: classes }, React.createElement('textarea', _defineProperty({
       ref: 'shadow',
       className: 'chamel-enhanced-textarea-shadow',
       tabIndex: '-1',
       rows: this.props.rows,
       defaultValue: this.props.defaultValue,
-      readOnly: true,
-      value: this.props.value }), React.createElement('textarea', _extends({}, other, {
+      readOnly: true
+    }, 'defaultValue', this.props.value)), React.createElement('textarea', _extends({}, other, {
       ref: 'input',
       className: textareaClassName,
       rows: this.props.rows,
@@ -24681,8 +24694,15 @@ var TextField = React.createClass({
             value: sanitizedValue
         }, other, inputProps, {
             onHeightChange: this._handleTextAreaHeightChange,
-            textareaClassName: 'chamel-text-field-textarea' })) : React.createElement('input', _extends({
-            value: sanitizedValue
+            textareaClassName: 'chamel-text-field-textarea' })) :
+
+        /*
+         * We need to use the defaultValue instead of value because we cannot switch the uncontrolled component to a controlled component or vice versa.
+         * If we set value in the input type text, then the user cannot input a value since the component is already controlled
+         * https://facebook.github.io/react/docs/forms.html
+         */
+        React.createElement('input', _extends({
+            defaultValue: sanitizedValue
         }, other, inputProps, {
             type: this.props.type }));
 
