@@ -127,7 +127,7 @@ var EnhancedSwitch = React.createClass({
       onFocus: this._handleFocus,
     };
 
-    /**
+    /*
      * If the input type is a checkbox, then we need to use the defaultValue instead of value
      * Because we cannot switch the uncontrolled component to a controlled component or vice versa.
      * https://facebook.github.io/react/docs/forms.html

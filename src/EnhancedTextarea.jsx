@@ -55,6 +55,11 @@ var EnhancedTextarea = React.createClass({
       other.value = this.props.valueLink.value;
     }
 
+    /*
+     * We need to use the defaultValue instead of value because we cannot switch the uncontrolled component to a controlled component or vice versa.
+     * If we set value in the text area, then the user cannot input a value since the component is already controlled
+     * https://facebook.github.io/react/docs/forms.html
+     */
     return (
       <div className={classes}>
         <textarea
@@ -64,7 +69,7 @@ var EnhancedTextarea = React.createClass({
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
           readOnly={true}
-          value={this.props.value} />
+          defaultValue={this.props.value} />
         <textarea
           {...other}
           ref="input"
