@@ -148,8 +148,11 @@ class Popover extends React.Component {
       // Initialize new left position
       let newLeft = relativeTargetPosition.left;
 
-      // Subtract enough pixels to get it inside the bounds of the window
-      newLeft -= (targetPosition.right) - window.innerWidth;
+      /*
+       * Subtract enough pixels to get it inside the bounds of the window
+       * We need to -15 the innerWidth to make sure it will be inside the bounds if the container will have any margins or paddings
+       */
+      newLeft -= (targetPosition.right) - (window.innerWidth - 15);
 
       // Apply the new position
       targetEl.style.left = `${newLeft}px`;
