@@ -51,8 +51,20 @@ var EnhancedTextarea = React.createClass({
       textareaClassName += ' ' + this.props.textareaClassName;
     }
 
-    if (this.props.hasOwnProperty('valueLink')) {
-      other.value = this.props.valueLink.value;
+    if(other.hasOwnProperty("value")){
+
+      /**
+       * If we have a value property in the object, we need to remove that
+       * We are gonna use the defaultValue instead. https://facebook.github.io/react/docs/forms.html
+       */
+      delete other.value;
+
+      // Set the default value
+      other.defaultValue = this.props.value;
+    } else if (this.props.hasOwnProperty('valueLink')) {
+
+      // Set the default value
+      other.defaultValue = this.props.valueLink.value;
     }
 
     /*
@@ -67,9 +79,8 @@ var EnhancedTextarea = React.createClass({
           className="chamel-enhanced-textarea-shadow"
           tabIndex="-1"
           rows={this.props.rows}
-          defaultValue={this.props.defaultValue}
           readOnly={true}
-          defaultValue={this.props.value} />
+          defaultValue={other.defaultValue} />
         <textarea
           {...other}
           ref="input"
@@ -108,7 +119,7 @@ var EnhancedTextarea = React.createClass({
 
     if (this.props.onChange) this.props.onChange(e);
   },
-  
+
   componentWillReceiveProps: function(nextProps) {
     if (nextProps.value != this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
