@@ -18,7 +18,7 @@ var EnhancedSwitch = React.createClass({
       switchElement: React.PropTypes.element.isRequired,
       iconClassName: React.PropTypes.string.isRequired,
       name: React.PropTypes.string,
-      value: React.PropTypes.string,
+      value: React.PropTypes.any,
       label: React.PropTypes.string,
       onSwitch: React.PropTypes.func,
       required: React.PropTypes.bool,

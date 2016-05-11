@@ -34,7 +34,12 @@ var Menu = React.createClass({
          */
         focusedIndex: React.PropTypes.number,
 
-        absoluteOnly: React.PropTypes.bool,
+        /**
+         * Custom classes that will be applied to the paper container
+         *
+         * @param {string}
+         */
+        classes: React.PropTypes.string
     },
 
     getInitialState: function () {
@@ -47,7 +52,6 @@ var Menu = React.createClass({
     getDefaultProps: function () {
         return {
             focusedIndex: null,
-            absoluteOnly: false,
             autoWidth: true,
             hideable: false,
             visible: true,
@@ -81,9 +85,13 @@ var Menu = React.createClass({
     render: function () {
         var classes = this.getClasses('chamel-menu', {
             'chamel-menu-hideable': this.props.hideable,
-            'chamel-visible': this.props.visible,
-            'chamel-menu-absoluteOnly': this.props.absoluteOnly,
+            'chamel-visible': this.props.visible
         });
+
+        // If we have custom classes in the props, then let's include it
+        if (this.props.classes) {
+            classes += " " + this.props.classes;
+        }
 
         let children = (this.props.menuItems.length) ? this._getChildren() : this.props.children;
 
