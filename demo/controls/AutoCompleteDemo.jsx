@@ -71,10 +71,11 @@ var EditorDemo = React.createClass({
     render: function () {
 
         var suggestions = [
-            {payload: 1, text: 'banana'},
-            {payload: 2, text: 'apple'},
-            {payload: 3, text: 'orange'},
-            {payload: 4, text: 'star apple'},
+            {payload: 1, text: 'marl@tumulak.com'},
+            {payload: 2, text: 'm@rlon'},
+            {payload: 3, text: '@rley'},
+            {payload: 4, text: 'Bob M@rley'},
+            {payload: 5, text: 'tumulak'},
         ];
 
         var trigger = ['@', '#', '$'];
@@ -92,9 +93,11 @@ var EditorDemo = React.createClass({
                     autoCompleteTrigger={trigger}
                     autoCompleteTransform={
                         function(data) {
+                            console.log(data);
                             return "[" + data.payload + ":" + data.text + "]";
                         }
                     }
+                    value="marl@tum"
                     /*autoCompleteGetData={
                         function(keyword, doneCallback) {
                             doneCallback(suggestions);

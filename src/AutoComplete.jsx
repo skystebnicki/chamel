@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var KeyCode = require('./utils/KeyCode.jsx');
 var Menu = require('./menu/Menu.jsx');
+import Popover from './Popover.jsx';
 
 var AutoComplete = React.createClass({
 
@@ -76,7 +77,14 @@ var AutoComplete = React.createClass({
          *
          * @var {func}
          */
-        transform: React.PropTypes.func
+        transform: React.PropTypes.func,
+
+        /**
+         * The anchored element that will be used as a reference on where to display the popover
+         *
+         * @var {DOMElement}
+         */
+        anchorEl: React.PropTypes.object
     },
 
     getDefaultProps: function () {
@@ -85,7 +93,8 @@ var AutoComplete = React.createClass({
             keyPressedValue: null,
             delimiter: '',
             trigger: null,
-            filterData: true
+            filterData: true,
+            anchorEl: null
         };
     },
 
@@ -95,14 +104,36 @@ var AutoComplete = React.createClass({
 
         return {
             focusedIndex: 0,
-            suggestionList: suggestionList
+            suggestionList: suggestionList,
+            openMenu: false
         };
     },
 
     componentWillReceiveProps: function (nextProps) {
         var suggestionList = this._getSuggestionList(nextProps.inputDetails, nextProps.suggestionData);
 
-        this.setState({suggestionList: suggestionList})
+        /**
+         * If the anchored element and current active element is the same,
+         *  then let's evaluate the suggestionList if we want to display the suggested list for autocomplete
+         */
+        if (nextProps.anchorEl == document.activeElement) {
+
+            var openMenu = true;
+
+            // If suggestionList is empty, there is no need to display the popover menu list
+            if (suggestionList.length == 0) {
+                openMenu = false;
+            }
+
+            this.setState({
+                openMenu: openMenu
+            })
+        }
+
+        this.setState({
+            suggestionList: suggestionList,
+            focusedIndex: 0
+        })
 
         if (suggestionList.length > 0) {
             this._handleInputKeyPress(nextProps.keyPressedValue);
@@ -113,22 +144,32 @@ var AutoComplete = React.createClass({
     render: function () {
         var displayAutoComplete = null;
 
-        if (this.state.suggestionList.length > 0) {
-            displayAutoComplete = (
-                <Menu
-                    menuItems={this.state.suggestionList}
-                    focusedIndex={this.state.focusedIndex}
-                    onItemClick={this._handleItemClick}
-                    absoluteOnly={true}
-                />
-            );
-        }
-
         return (
             <div className='chamel-autoComplete'>
-                {displayAutoComplete}
+                <Popover
+                    classes="autocomplete-popover"
+                    open={this.state.openMenu}
+                    anchorEl={this.props.anchorEl}
+                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                    onRequestClose={this._handlePopoverRequestClose}>
+                    <Menu
+                        classes="autocomplete-menu"
+                        menuItems={this.state.suggestionList}
+                        focusedIndex={this.state.focusedIndex}
+                        onItemClick={this._handleItemClick}
+                    />
+                </Popover>
             </div>
         );
+    },
+
+    /**
+     * Callback used to close the popover
+     *
+     * @private
+     */
+    _handlePopoverRequestClose: function () {
+        this.setState({openMenu: false});
     },
 
     /**
@@ -146,6 +187,7 @@ var AutoComplete = React.createClass({
 
             case KeyCode.ESC:
                 this.setState({
+                    openMenu: false,
                     focusedIndex: 0,
                     suggestionList: []
                 });
@@ -160,7 +202,8 @@ var AutoComplete = React.createClass({
                 break;
 
             case KeyCode.DOWN:
-                if (this.state.focusedIndex < (this.props.suggestionData.length - 1)) {
+
+                if (this.state.focusedIndex < (this.state.suggestionList.length - 1)) {
                     this.setState({
                         focusedIndex: this.state.focusedIndex + 1
                     })
@@ -186,6 +229,7 @@ var AutoComplete = React.createClass({
      */
     _handleItemClick: function (e, key, menuItem) {
         this._setAutoCompleteValue(key);
+        this._handlePopoverRequestClose();
     },
 
     /**
@@ -234,6 +278,7 @@ var AutoComplete = React.createClass({
         newValue += inputDetails.value.substr(inputDetails.caretPos, inputDetails.value.length);
 
         this.setState({
+            openMenu: false,
             focusedIndex: 0,
             suggestionList: []
         });

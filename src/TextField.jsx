@@ -338,6 +338,12 @@ var TextField = React.createClass({
             return;
         }
 
+        /*
+         * Since we are using controlled component for our textfield, we do not need to check and throw an error
+         * The textfield component is using the defaultValue props which makes it a controlled component
+         * Please refer to this link: https://facebook.github.io/react/docs/forms.html
+         */
+        /*
         if (process.NODE_ENV !== 'production' && this._isControlled()) {
             console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
         } else if (this.isMounted()) {
@@ -350,6 +356,16 @@ var TextField = React.createClass({
                 skipGetData: false
             });
         }
+        */
+
+        this._getInputNode().value = sanitizedValue;
+
+        this.setState({
+            hasValue: sanitizedValue,
+            caretPos: this.getCaretPos(),
+            keyPressedValue: null,
+            skipGetData: false
+        });
     },
 
     /**
@@ -394,7 +410,8 @@ var TextField = React.createClass({
             hasValue: value,
             caretPos: this.getCaretPos(),
             keyPressedValue: null,
-            skipGetData: false
+            skipGetData: false,
+            anchorEl: e.currentTarget
         });
 
         if (this.props.onChange) {
@@ -403,7 +420,10 @@ var TextField = React.createClass({
     },
 
     _handleInputFocus: function (e) {
-        this.setState({isFocused: true});
+        this.setState({
+            isFocused: true,
+            anchorEl: e.currentTarget
+        });
         if (this.props.onFocus) this.props.onFocus(e);
     },
 
@@ -424,7 +444,8 @@ var TextField = React.createClass({
             this.setState({
                 caretPos: this.getCaretPos(),
                 keyPressedValue: null,
-                skipGetData: true
+                skipGetData: true,
+                anchorEl: e.currentTarget
             });
         }
 
@@ -602,6 +623,7 @@ var TextField = React.createClass({
             <AutoComplete
                 {... attribute}
                 ref='autoComplete'
+                anchorEl={this.state.anchorEl}
                 inputDetails={this._evalInputValue()}
                 keyPressedValue={this.state.keyPressedValue}
                 suggestionData={autoCompleteData}
