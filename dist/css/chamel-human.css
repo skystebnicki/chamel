@@ -2318,6 +2318,8 @@ html { -webkit-font-smoothing: antialiased; color: rgba(0, 0, 0, 0.87); font-fam
 
 .chamel-popover.chamel-popover-visible { opacity: 1; z-index: 99; display: block; }
 
+.chamel-popover .autocomplete-menu { margin-top: 40px; }
+
 /* BASICS */
 .CodeMirror { /* Set height, width, borders, and global font properties here */ font-family: monospace; height: 300px; color: black; }
 

@@ -21221,6 +21221,14 @@ module.exports = AppBar;
 },{"./IconButton.jsx":188,"./Paper.jsx":192,"./utils/Dom.jsx":243,"./utils/Events.jsx":244,"react":173,"react-dom":5}],176:[function(require,module,exports){
 'use strict';
 
+var _Popover = require('./Popover.jsx');
+
+var _Popover2 = _interopRequireDefault(_Popover);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var KeyCode = require('./utils/KeyCode.jsx');
@@ -21300,7 +21308,14 @@ var AutoComplete = React.createClass({
          *
          * @var {func}
          */
-        transform: React.PropTypes.func
+        transform: React.PropTypes.func,
+
+        /**
+         * The anchored element that will be used as a reference on where to display the popover
+         *
+         * @var {DOMElement}
+         */
+        anchorEl: React.PropTypes.object
     },
 
     getDefaultProps: function getDefaultProps() {
@@ -21309,7 +21324,8 @@ var AutoComplete = React.createClass({
             keyPressedValue: null,
             delimiter: '',
             trigger: null,
-            filterData: true
+            filterData: true,
+            anchorEl: null
         };
     },
 
@@ -21319,14 +21335,36 @@ var AutoComplete = React.createClass({
 
         return {
             focusedIndex: 0,
-            suggestionList: suggestionList
+            suggestionList: suggestionList,
+            openMenu: false
         };
     },
 
     componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
         var suggestionList = this._getSuggestionList(nextProps.inputDetails, nextProps.suggestionData);
 
-        this.setState({ suggestionList: suggestionList });
+        /**
+         * If the anchored element and current active element is the same,
+         *  then let's evaluate the suggestionList if we want to display the suggested list for autocomplete
+         */
+        if (nextProps.anchorEl == document.activeElement) {
+
+            var openMenu = true;
+
+            // If suggestionList is empty, there is no need to display the popover menu list
+            if (suggestionList.length == 0) {
+                openMenu = false;
+            }
+
+            this.setState({
+                openMenu: openMenu
+            });
+        }
+
+        this.setState({
+            suggestionList: suggestionList,
+            focusedIndex: 0
+        });
 
         if (suggestionList.length > 0) {
             this._handleInputKeyPress(nextProps.keyPressedValue);
@@ -21336,16 +21374,26 @@ var AutoComplete = React.createClass({
     render: function render() {
         var displayAutoComplete = null;
 
-        if (this.state.suggestionList.length > 0) {
-            displayAutoComplete = React.createElement(Menu, {
-                menuItems: this.state.suggestionList,
-                focusedIndex: this.state.focusedIndex,
-                onItemClick: this._handleItemClick,
-                absoluteOnly: true
-            });
-        }
+        return React.createElement('div', { className: 'chamel-autoComplete' }, React.createElement(_Popover2.default, {
+            classes: 'autocomplete-popover',
+            open: this.state.openMenu,
+            anchorEl: this.props.anchorEl,
+            anchorOrigin: { horizontal: 'left', vertical: 'top' },
+            onRequestClose: this._handlePopoverRequestClose }, React.createElement(Menu, {
+            classes: 'autocomplete-menu',
+            menuItems: this.state.suggestionList,
+            focusedIndex: this.state.focusedIndex,
+            onItemClick: this._handleItemClick
+        })));
+    },
 
-        return React.createElement('div', { className: 'chamel-autoComplete' }, displayAutoComplete);
+    /**
+     * Callback used to close the popover
+     *
+     * @private
+     */
+    _handlePopoverRequestClose: function _handlePopoverRequestClose() {
+        this.setState({ openMenu: false });
     },
 
     /**
@@ -21363,6 +21411,7 @@ var AutoComplete = React.createClass({
 
             case KeyCode.ESC:
                 this.setState({
+                    openMenu: false,
                     focusedIndex: 0,
                     suggestionList: []
                 });
@@ -21377,7 +21426,8 @@ var AutoComplete = React.createClass({
                 break;
 
             case KeyCode.DOWN:
-                if (this.state.focusedIndex < this.props.suggestionData.length - 1) {
+
+                if (this.state.focusedIndex < this.state.suggestionList.length - 1) {
                     this.setState({
                         focusedIndex: this.state.focusedIndex + 1
                     });
@@ -21403,6 +21453,7 @@ var AutoComplete = React.createClass({
      */
     _handleItemClick: function _handleItemClick(e, key, menuItem) {
         this._setAutoCompleteValue(key);
+        this._handlePopoverRequestClose();
     },
 
     /**
@@ -21451,6 +21502,7 @@ var AutoComplete = React.createClass({
         newValue += inputDetails.value.substr(inputDetails.caretPos, inputDetails.value.length);
 
         this.setState({
+            openMenu: false,
             focusedIndex: 0,
             suggestionList: []
         });
@@ -21518,7 +21570,7 @@ var AutoComplete = React.createClass({
 
 module.exports = AutoComplete;
 
-},{"./menu/Menu.jsx":214,"./utils/KeyCode.jsx":245,"react":173,"react-dom":5}],177:[function(require,module,exports){
+},{"./Popover.jsx":193,"./menu/Menu.jsx":214,"./utils/KeyCode.jsx":245,"react":173,"react-dom":5}],177:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) {
@@ -22749,7 +22801,7 @@ var EnhancedSwitch = React.createClass({
     switchElement: React.PropTypes.element.isRequired,
     iconClassName: React.PropTypes.string.isRequired,
     name: React.PropTypes.string,
-    value: React.PropTypes.string,
+    value: React.PropTypes.any,
     label: React.PropTypes.string,
     onSwitch: React.PropTypes.func,
     required: React.PropTypes.bool,
@@ -23027,14 +23079,6 @@ var _extends = Object.assign || function (target) {
   }return target;
 };
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
-  } else {
-    obj[key] = value;
-  }return obj;
-}
-
 function _objectWithoutProperties(obj, keys) {
   var target = {};for (var i in obj) {
     if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
@@ -23094,8 +23138,20 @@ var EnhancedTextarea = React.createClass({
       textareaClassName += ' ' + this.props.textareaClassName;
     }
 
-    if (this.props.hasOwnProperty('valueLink')) {
-      other.value = this.props.valueLink.value;
+    if (other.hasOwnProperty("value")) {
+
+      /**
+       * If we have a value property in the object, we need to remove that
+       * We are gonna use the defaultValue instead. https://facebook.github.io/react/docs/forms.html
+       */
+      delete other.value;
+
+      // Set the default value
+      other.defaultValue = this.props.value;
+    } else if (this.props.hasOwnProperty('valueLink')) {
+
+      // Set the default value
+      other.defaultValue = this.props.valueLink.value;
     }
 
     /*
@@ -23103,14 +23159,13 @@ var EnhancedTextarea = React.createClass({
      * If we set value in the text area, then the user cannot input a value since the component is already controlled
      * https://facebook.github.io/react/docs/forms.html
      */
-    return React.createElement('div', { className: classes }, React.createElement('textarea', _defineProperty({
+    return React.createElement('div', { className: classes }, React.createElement('textarea', {
       ref: 'shadow',
       className: 'chamel-enhanced-textarea-shadow',
       tabIndex: '-1',
       rows: this.props.rows,
-      defaultValue: this.props.defaultValue,
-      readOnly: true
-    }, 'defaultValue', this.props.value)), React.createElement('textarea', _extends({}, other, {
+      readOnly: true,
+      defaultValue: other.defaultValue }), React.createElement('textarea', _extends({}, other, {
       ref: 'input',
       className: textareaClassName,
       rows: this.props.rows,
@@ -24862,18 +24917,33 @@ var TextField = React.createClass({
             return;
         }
 
+        /*
+         * Since we are using controlled component for our textfield, we do not need to check and throw an error
+         * The textfield component is using the defaultValue props which makes it a controlled component
+         * Please refer to this link: https://facebook.github.io/react/docs/forms.html
+         */
+        /*
         if (process.NODE_ENV !== 'production' && this._isControlled()) {
             console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
         } else if (this.isMounted()) {
             this._getInputNode().value = sanitizedValue;
-
-            this.setState({
+             this.setState({
                 hasValue: sanitizedValue,
                 caretPos: this.getCaretPos(),
                 keyPressedValue: null,
                 skipGetData: false
             });
         }
+        */
+
+        this._getInputNode().value = sanitizedValue;
+
+        this.setState({
+            hasValue: sanitizedValue,
+            caretPos: this.getCaretPos(),
+            keyPressedValue: null,
+            skipGetData: false
+        });
     },
 
     /**
@@ -24917,7 +24987,8 @@ var TextField = React.createClass({
             hasValue: value,
             caretPos: this.getCaretPos(),
             keyPressedValue: null,
-            skipGetData: false
+            skipGetData: false,
+            anchorEl: e.currentTarget
         });
 
         if (this.props.onChange) {
@@ -24926,7 +24997,10 @@ var TextField = React.createClass({
     },
 
     _handleInputFocus: function _handleInputFocus(e) {
-        this.setState({ isFocused: true });
+        this.setState({
+            isFocused: true,
+            anchorEl: e.currentTarget
+        });
         if (this.props.onFocus) this.props.onFocus(e);
     },
 
@@ -24946,7 +25020,8 @@ var TextField = React.createClass({
             this.setState({
                 caretPos: this.getCaretPos(),
                 keyPressedValue: null,
-                skipGetData: true
+                skipGetData: true,
+                anchorEl: e.currentTarget
             });
         }
 
@@ -25120,6 +25195,7 @@ var TextField = React.createClass({
 
         component = React.createElement(AutoComplete, _extends({}, attribute, {
             ref: 'autoComplete',
+            anchorEl: this.state.anchorEl,
             inputDetails: this._evalInputValue(),
             keyPressedValue: this.state.keyPressedValue,
             suggestionData: autoCompleteData,
@@ -27211,7 +27287,12 @@ var Menu = React.createClass({
          */
         focusedIndex: React.PropTypes.number,
 
-        absoluteOnly: React.PropTypes.bool
+        /**
+         * Custom classes that will be applied to the paper container
+         *
+         * @param {string}
+         */
+        classes: React.PropTypes.string
     },
 
     getInitialState: function getInitialState() {
@@ -27224,7 +27305,6 @@ var Menu = React.createClass({
     getDefaultProps: function getDefaultProps() {
         return {
             focusedIndex: null,
-            absoluteOnly: false,
             autoWidth: true,
             hideable: false,
             visible: true,
@@ -27258,9 +27338,13 @@ var Menu = React.createClass({
     render: function render() {
         var classes = this.getClasses('chamel-menu', {
             'chamel-menu-hideable': this.props.hideable,
-            'chamel-visible': this.props.visible,
-            'chamel-menu-absoluteOnly': this.props.absoluteOnly
+            'chamel-visible': this.props.visible
         });
+
+        // If we have custom classes in the props, then let's include it
+        if (this.props.classes) {
+            classes += " " + this.props.classes;
+        }
 
         var children = this.props.menuItems.length ? this._getChildren() : this.props.children;
 
