@@ -27,7 +27,7 @@
     }
   }
 
-  .chamel-icon-button {
+  .chamel-icon-button, .chamel-font-icon  {
     margin-top: (($app-bar-height-small - $icon-button-size) / 2);
 
     @media #{$device-medium} {
@@ -43,7 +43,6 @@
       color: $app-bar-text-color;
     }
   }
-
 
   .chamel-app-bar-title {
     @extend .cml-font-style-title;

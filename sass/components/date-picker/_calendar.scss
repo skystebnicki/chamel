@@ -3,7 +3,7 @@
 
   .chamel-date-picker-calendar-week-title {
     @include clearfix();
-    @extend %chamel-font-weight-medium;
+    @extend %cml-font-weight-medium;
     color: lighten($date-picker-calendar-text-color, 50%);
     
     line-height: 12px;
