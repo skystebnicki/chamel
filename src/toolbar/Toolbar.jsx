@@ -80,7 +80,7 @@ var Toolbar = React.createClass({
 
             // We need to display all the toolbar icons here so we can get the icon's width and calculate the totalIconsWidth
             return (
-                <div ref="chamelToolbar" className="chamel-toolbar" style={{position: 'absolute'}}>
+                <div ref="chamelToolbar" className="chamel-toolbar">
                     {this.props.children}
                 </div>
             );
@@ -228,6 +228,11 @@ var Toolbar = React.createClass({
         for (var idx in children) {
             let child = children[idx];
             let element = elementContainer.childNodes[idx];
+
+            // If we do not have an element, then we do not need to continue
+            if(!element) {
+                continue;
+            }
 
             // If the current element is a div and has child nodes, then we will assume that it contains toolbar icons
             if (element.nodeType
