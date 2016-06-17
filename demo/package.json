@@ -5,16 +5,16 @@
   "author": "Sky Stebnicki",
   "scripts": {
     "prestart": "npm install",
-    "start": "http-server . -a 0.0.0.0 -p 8000",
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.config --colors --profile --progress",
+    "build": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.config --colors --profile --progress",
     "pretest": "npm install",
-    "build": "babel ./src --out-dir ./lib",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor test/protractor-conf.js",
-    "webpack": " ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --colors"
+    "webpack": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
@@ -54,7 +54,8 @@
     "style-loader": "^0.13.1",
     "tmp": "0.0.23",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "extract-text-webpack-plugin": "^1.0.1"
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
   "main": "src/main.js",

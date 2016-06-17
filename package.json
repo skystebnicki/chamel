@@ -24,7 +24,7 @@
     "prestart": "npm install",
     "start": "http-server . -a 0.0.0.0 -p 8000",
     "pretest": "npm install",
-    "build": "babel ./src --out-dir ./lib | node-sass sass/ -o build/css/",
+    "build": "babel ./src --out-dir ./lib && node-sass sass/ -o build/css/",
     "build-demo": "babel ./src --out-dir ./lib | node-sass sass/theme/base/base.scss demo/build/chamel-demo.css",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
