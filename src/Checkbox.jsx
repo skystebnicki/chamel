@@ -1,8 +1,8 @@
 var React = require('react');
-var EnhancedSwitch = require('./EnhancedSwitch.jsx');
-var Classable = require('./mixins/classable.jsx');
-var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank.jsx');
-var CheckboxChecked = require('./svg-icons/toggle-check-box-checked.jsx');
+var EnhancedSwitch = require('./EnhancedSwitch');
+var Classable = require('./mixins/classable');
+var CheckboxOutline = require('./svg-icons/toggle-check-box-outline-blank');
+var CheckboxChecked = require('./svg-icons/toggle-check-box-checked');
 
 var Checkbox = React.createClass({
 

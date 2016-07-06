@@ -1,5 +1,5 @@
 var React = require('react');
-var TextFieldRich = require("../TextFieldRich.jsx");
+var TextFieldRich = require("../TextFieldRich");
 
 var ContentRte = React.createClass({
 

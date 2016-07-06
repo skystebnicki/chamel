@@ -1,15 +1,15 @@
 var React = require('react');
-var Classable = require("../mixins/classable.jsx");
-var Toolbar = require("../toolbar/Toolbar.jsx");
-var ToolbarGroup = require("../toolbar/ToolbarGroup.jsx");
-var FontIcon = require("../FontIcon.jsx");
-var IconButton = require("../IconButton.jsx");
-var DropDownIcon = require("../DropDownIcon.jsx");
-var Dialog = require("../Dialog.jsx");
-var TextField = require("../TextField.jsx");
-var ColorPicker = require("../ColorPicker.jsx");
-var ContentRte = require("./ContentRte.jsx");
-var ContentSrc = require("./ContentSrc.jsx");
+var Classable = require("../mixins/classable");
+var Toolbar = require("../toolbar/Toolbar");
+var ToolbarGroup = require("../toolbar/ToolbarGroup");
+var FontIcon = require("../FontIcon");
+var IconButton = require("../IconButton");
+var DropDownIcon = require("../DropDownIcon");
+var Dialog = require("../Dialog");
+var TextField = require("../TextField");
+var ColorPicker = require("../ColorPicker");
+var ContentRte = require("./ContentRte");
+var ContentSrc = require("./ContentSrc");
 
 var fontStyleOptions = [
 	{ payload: '<p>', text: 'Body' },

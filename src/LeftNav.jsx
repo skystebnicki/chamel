@@ -7,11 +7,11 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Paper = require("./Paper.jsx");
-var Overlay = require("./Overlay.jsx");
-var Menu = require("./menu/Menu.jsx");
-var Dom = require("./utils/Dom.jsx");
-var Events = require("./utils/Events.jsx");
+var Paper = require("./Paper");
+var Overlay = require("./Overlay");
+var Menu = require("./menu/Menu");
+var Dom = require("./utils/Dom");
+var Events = require("./utils/Events");
 
 /**
  * Small application component

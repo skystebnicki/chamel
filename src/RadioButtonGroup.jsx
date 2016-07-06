@@ -1,8 +1,8 @@
 var React = require('react');
-var Paper = require('./Paper.jsx');
-var Classable = require('./mixins/classable.jsx');
-var EnhancedSwitch = require('./EnhancedSwitch.jsx');
-var RadioButton = require('./RadioButton.jsx');
+var Paper = require('./Paper');
+var Classable = require('./mixins/classable');
+var EnhancedSwitch = require('./EnhancedSwitch');
+var RadioButton = require('./RadioButton');
 
 var RadioButtonGroup = React.createClass({
 

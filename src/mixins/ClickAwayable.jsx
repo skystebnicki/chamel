@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Events = require('../utils/Events.jsx');
-var Dom = require('../utils/Dom.jsx');
+var Events = require('../utils/Events');
+var Dom = require('../utils/Dom');
 
 module.exports = {
 

@@ -1,11 +1,11 @@
 import React from 'react';
 var ReactDOM = require('react-dom');
-var Classable = require('./mixins/classable.jsx');
-var ClickAwayable = require('./mixins/ClickAwayable.jsx');
-var DropDownArrow = require('./svg-icons/drop-down-arrow.jsx');
-var Paper = require('./Paper.jsx');
-var Menu = require('./menu/Menu.jsx');
-import Popover from './Popover.jsx';
+var Classable = require('./mixins/classable');
+var ClickAwayable = require('./mixins/ClickAwayable');
+var DropDownArrow = require('./svg-icons/drop-down-arrow');
+var Paper = require('./Paper');
+var Menu = require('./menu/Menu');
+import Popover from './Popover';
 
 /**
  * Component for displaying dropdowns

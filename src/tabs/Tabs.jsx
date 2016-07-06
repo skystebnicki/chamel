@@ -7,8 +7,8 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var InkBar = require("../InkBar.jsx");
-var TabTemplate = require("./TabTemplate.jsx");
+var InkBar = require("../InkBar");
+var TabTemplate = require("./TabTemplate");
 
 /**
  * Outer container for tabs
@@ -72,7 +72,7 @@ var Tabs = React.createClass({
         }
 
         this.setState({selectedIndex: tabIndex});
-        //default CB is _onActive. Can be updated in tab.jsx
+        //default CB is _onActive. Can be updated in tab
         if(tab.props.onActive) tab.props.onActive(tab);
     },
 

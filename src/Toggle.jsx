@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable.jsx');
-var Paper = require('./Paper.jsx');
-var EnhancedSwitch = require('./EnhancedSwitch.jsx');
+var Classable = require('./mixins/classable');
+var Paper = require('./Paper');
+var EnhancedSwitch = require('./EnhancedSwitch');
 
 var Toggle = React.createClass({
 

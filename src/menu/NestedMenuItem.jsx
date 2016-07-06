@@ -1,15 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var CssEvent = require('../utils/CssEvent.jsx');
-var Dom = require('../utils/Dom.jsx');
-var KeyLine = require('../utils/KeyLine.jsx');
-var Classable = require('../mixins/classable.jsx');
-var ClickAwayable = require('../mixins/ClickAwayable.jsx');
-var Paper = require('../Paper.jsx');
-var Menu = require('./Menu.jsx');
-var MenuItem = require('./MenuItem.jsx');
-var LinkMenuItem = require('./LinkMenuItem.jsx');
-var SubheaderMenuItem = require('./SubheaderMenuItem.jsx');
+var CssEvent = require('../utils/CssEvent');
+var Dom = require('../utils/Dom');
+var KeyLine = require('../utils/KeyLine');
+var Classable = require('../mixins/classable');
+var ClickAwayable = require('../mixins/ClickAwayable');
+var Paper = require('../Paper');
+var Menu = require('./Menu');
+var MenuItem = require('./MenuItem');
+var LinkMenuItem = require('./LinkMenuItem');
+var SubheaderMenuItem = require('./SubheaderMenuItem');
 
 /***********************
  * Nested Menu Component

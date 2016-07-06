@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Classable = require('./mixins/classable.jsx');
-var EnhancedButton = require('./EnhancedButton.jsx');
-var FontIcon = require('./FontIcon.jsx');
-var Tooltip = require('./Tooltip.jsx');
+var Classable = require('./mixins/classable');
+var EnhancedButton = require('./EnhancedButton');
+var FontIcon = require('./FontIcon');
+var Tooltip = require('./Tooltip');
 
 var IconButton = React.createClass({
 

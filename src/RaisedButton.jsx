@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('./mixins/classable.jsx');
-var EnhancedButton = require('./EnhancedButton.jsx');
-var Paper = require('./Paper.jsx');
+var Classable = require('./mixins/classable');
+var EnhancedButton = require('./EnhancedButton');
+var Paper = require('./Paper');
 
 var RaisedButton = React.createClass({
 

@@ -1,5 +1,5 @@
 var React = require('react');
-var Classable = require('./mixins/classable.jsx');
+var Classable = require('./mixins/classable');
 
 var FontIcon = React.createClass({
 

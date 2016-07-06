@@ -1,9 +1,9 @@
 var React = require('react');
-var DateTime = require('../utils/DateTime.jsx');
-var IconButton = require('../IconButton.jsx');
-var NavigationChevronLeft = require('../svg-icons/navigation-chevron-left.jsx');
-var NavigationChevronRight = require('../svg-icons/navigation-chevron-right.jsx');
-var SlideInTransitionGroup = require('../transition-groups/SlideIn.jsx');
+var DateTime = require('../utils/DateTime');
+var IconButton = require('../IconButton');
+var NavigationChevronLeft = require('../svg-icons/navigation-chevron-left');
+var NavigationChevronRight = require('../svg-icons/navigation-chevron-right');
+var SlideInTransitionGroup = require('../transition-groups/SlideIn');
 
 var CalendarToolbar = React.createClass({
 

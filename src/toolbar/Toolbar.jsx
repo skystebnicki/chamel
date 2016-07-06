@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require("react-dom");
-var FontIcon = require("../FontIcon.jsx");
-var ToolbarGroup = require("../toolbar/ToolbarGroup.jsx");
+var FontIcon = require("../FontIcon");
+var ToolbarGroup = require("../toolbar/ToolbarGroup");
 
 /**
  * This variable will hold all the icons to be displayed in the toolbar

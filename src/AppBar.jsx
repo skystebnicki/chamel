@@ -7,10 +7,10 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Paper = require("./Paper.jsx");
-var IconButton = require("./IconButton.jsx");
-var Dom = require("./utils/Dom.jsx");
-var Events = require("./utils/Events.jsx");
+var Paper = require("./Paper");
+var IconButton = require("./IconButton");
+var Dom = require("./utils/Dom");
+var Events = require("./utils/Events");
 
 /**
  * Small application component

@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('../mixins/classable.jsx');
-var DateTime = require('../utils/DateTime.jsx');
-var SlideInTransitionGroup = require('../transition-groups/SlideIn.jsx');
+var Classable = require('../mixins/classable');
+var DateTime = require('../utils/DateTime');
+var SlideInTransitionGroup = require('../transition-groups/SlideIn');
 
 var DateDisplay = React.createClass({
 

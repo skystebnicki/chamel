@@ -1,10 +1,10 @@
 var React = require('react');
-var Classable = require('../mixins/classable.jsx');
-var WindowListenable = require('../mixins/WindowListenable.jsx');
-var KeyCode = require('../utils/KeyCode.jsx');
-var Calendar = require('./Calendar.jsx');
-var Dialog = require('../Dialog.jsx');
-var FlatButton = require('../FlatButton.jsx');
+var Classable = require('../mixins/classable');
+var WindowListenable = require('../mixins/WindowListenable');
+var KeyCode = require('../utils/KeyCode');
+var Calendar = require('./Calendar');
+var Dialog = require('../Dialog');
+var FlatButton = require('../FlatButton');
 
 var DatePickerDialog = React.createClass({
 

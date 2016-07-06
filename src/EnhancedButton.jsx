@@ -1,9 +1,9 @@
 var React = require('react');
-var KeyCode = require('./utils/KeyCode.jsx');
-var Classable = require('./mixins/classable.jsx');
-var WindowListenable = require('./mixins/WindowListenable.jsx');
-var FocusRipple = require('./ripples/FocusRipple.jsx');
-var TouchRipple = require('./ripples/TouchRipple.jsx');
+var KeyCode = require('./utils/KeyCode');
+var Classable = require('./mixins/classable');
+var WindowListenable = require('./mixins/WindowListenable');
+var FocusRipple = require('./ripples/FocusRipple');
+var TouchRipple = require('./ripples/TouchRipple');
 
 var EnhancedButton = React.createClass({
 

@@ -1,7 +1,7 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
     Paper = require('./paper'),
-    Classable = require('./mixins/classable.jsx'),
+    Classable = require('./mixins/classable'),
     Draggable = require('react-draggable2');
 
 var Slider = React.createClass({

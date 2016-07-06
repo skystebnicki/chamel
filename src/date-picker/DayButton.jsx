@@ -1,7 +1,7 @@
 var React = require('react');
-var Classable = require('../mixins/classable.jsx');
-var DateTime = require('../utils/DateTime.jsx');
-var EnhancedButton = require('../EnhancedButton.jsx');
+var Classable = require('../mixins/classable');
+var DateTime = require('../utils/DateTime');
+var EnhancedButton = require('../EnhancedButton');
 
 var DayButton = React.createClass({
 

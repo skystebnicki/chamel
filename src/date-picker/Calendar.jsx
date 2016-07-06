@@ -1,12 +1,12 @@
 var React = require('react');
-var Classable = require('../mixins/classable.jsx');
-var WindowListenable = require('../mixins/WindowListenable.jsx');
-var DateTime = require('../utils/DateTime.jsx');
-var KeyCode = require('../utils/KeyCode.jsx');
-var CalendarMonth = require('./CalendarMonth.jsx');
-var CalendarToolbar = require('./CalendarToolbar.jsx');
-var DateDisplay = require('./DateDisplay.jsx');
-var SlideInTransitionGroup = require('../transition-groups/SlideIn.jsx');
+var Classable = require('../mixins/classable');
+var WindowListenable = require('../mixins/WindowListenable');
+var DateTime = require('../utils/DateTime');
+var KeyCode = require('../utils/KeyCode');
+var CalendarMonth = require('./CalendarMonth');
+var CalendarToolbar = require('./CalendarToolbar');
+var DateDisplay = require('./DateDisplay');
+var SlideInTransitionGroup = require('../transition-groups/SlideIn');
 
 var Calendar = React.createClass({
 

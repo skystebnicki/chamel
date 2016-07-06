@@ -7,10 +7,10 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var CssEvent = require('./utils/CssEvent.jsx');
-var Classable = require('./mixins/classable.jsx');
-var ClickAwayable = require('./mixins/ClickAwayable.jsx');
-var FlatButton = require('./FlatButton.jsx');
+var CssEvent = require('./utils/CssEvent');
+var Classable = require('./mixins/classable');
+var ClickAwayable = require('./mixins/ClickAwayable');
+var FlatButton = require('./FlatButton');
 
 var Snackbar = React.createClass({
 
