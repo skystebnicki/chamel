@@ -58,7 +58,7 @@ const SlideInChild = React.createClass({
       classes += " " + this.props.className;
 
     return (
-      <div className={classes} {...other}>
+      <div className={classes}>
         {children}
       </div>
     );

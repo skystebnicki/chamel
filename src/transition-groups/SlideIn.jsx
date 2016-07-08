@@ -44,7 +44,6 @@ const SlideIn = React.createClass({
 
     return (
       <ReactCSSTransitionGroup
-        {...other}
         className={classes}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={500}

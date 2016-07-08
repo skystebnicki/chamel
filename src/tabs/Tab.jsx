@@ -36,7 +36,6 @@ var Tab = React.createClass({
                 className={classes}
                 style={styles}
                 onClick={this.handleTouchTap}
-                routeName={this.props.route}
             >
                 {this.props.label}
             </div>

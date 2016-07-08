@@ -33,7 +33,7 @@ var Tooltip = React.createClass({
     });
 
     return (
-      <div {...other} className={classes}>
+      <div className={classes}>
         <div ref="ripple" className="chamel-tooltip-ripple" />
         <span className="chamel-tooltip-label">{this.props.label}</span>
       </div>

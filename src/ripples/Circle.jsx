@@ -23,7 +23,7 @@ var RippleCircle = React.createClass({
     });
 
     return (
-      <div {...this.props} className={classes}>
+      <div className={classes}>
         <div className="chamel-ripple-circle-inner" />
       </div>
     );
