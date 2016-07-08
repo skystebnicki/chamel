@@ -154,7 +154,6 @@ var EnhancedSwitch = React.createClass({
 
     var inputElement = (
       <input
-        {...other}
         {...inputProps}
         className="chamel-enhanced-switch-input"/>
     );

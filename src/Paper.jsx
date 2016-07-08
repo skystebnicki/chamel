@@ -52,7 +52,7 @@ var Paper = React.createClass({
         'chamel-z-depth-bottom';
 
     return (
-      <div {...this.props} className={classes}>
+      <div className={classes}>
         <div ref="innerContainer" className={insideClasses}>
           {this.props.children}
         </div>
