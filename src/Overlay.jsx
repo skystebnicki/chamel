@@ -31,7 +31,7 @@ var Overlay = React.createClass({
       });
 
     return (
-      <div {...other} className={classes} />
+      <div className={classes} />
     );
   },
   
