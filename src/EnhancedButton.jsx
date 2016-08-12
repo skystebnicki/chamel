@@ -84,11 +84,11 @@ var EnhancedButton = React.createClass({
     }
 
     return linkButton ? (
-      <a {...this.props} {...buttonProps}>
+      <a {...buttonProps}>
         {buttonChildren}
       </a>
     ) : (
-      <button {...this.props} {...buttonProps}>
+      <button {...buttonProps}>
         {buttonChildren}
       </button>
     );
