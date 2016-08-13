@@ -3,17 +3,20 @@
  */
 import Popover from './Popover';
 
+/**
+ * Do we need to move all these to jsx?
+ */
 const Chamel = {
   AppBar: require('./AppBar'),
   //AppCanvas: require('./app-canvas'),
   AutoComplete: require('./AutoComplete'),
   Checkbox: require('./Checkbox'),
-  DatePicker: require('./date-picker/DatePicker'),
+  DatePicker: require('./DatePicker/DatePicker'),
   Dialog: require('./Dialog'),
   DialogWindow: require('./DialogWindow'),
   DropDownIcon: require('./DropDownIcon'),
   DropDownMenu: require('./DropDownMenu'),
-  Editor: require('./editor/Editor'),
+  Editor: require('./Editor'),
   EnhancedButton: require('./EnhancedButton'),
   FlatButton: require('./FlatButton'),
   //FloatingActionButton: require('./floating-action-button'),

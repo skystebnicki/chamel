@@ -1,5 +1,5 @@
 var React = require('react');
-var Editor = require("../../src/editor/Editor.jsx");
+var Editor = require("../../src/Editor");
 var CodeExample = require("../CodeExample.jsx");
 
 var code =

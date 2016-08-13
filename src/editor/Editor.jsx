@@ -285,4 +285,9 @@ var Editor = React.createClass({
 	}
 });
 
-module.exports = Editor;
+// Check for commonjs
+if (module) {
+  module.exports = Editor;
+}
+
+export default Editor;
