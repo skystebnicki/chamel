@@ -1,6 +1,6 @@
 var React = require('react');
 var Editor = require("../../src/Editor");
-var CodeExample = require("../CodeExample.jsx");
+var CodeExample = require("../CodeExample");
 
 var code =
     '<Editor onChange={this.handleChange_} />';

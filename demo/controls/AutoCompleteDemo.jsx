@@ -1,6 +1,6 @@
 var React = require('react');
-var TextField = require("../../src/TextField.jsx");
-var AutoComplete = require("../../src/AutoComplete.jsx");
+var TextField = require("../../src/TextField");
+var AutoComplete = require("../../src/AutoComplete");
 var CodeExample = require("../CodeExample.jsx");
 var ComponentDoc = require('../ComponentDoc.jsx');
 

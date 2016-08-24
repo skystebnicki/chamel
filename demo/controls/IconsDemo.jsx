@@ -1,5 +1,5 @@
 var React = require('react');
-var FontIcon = require("../../src/FontIcon.jsx");
+var FontIcon = require("../../src/FontIcon");
 
 var displayIcons = [
     {

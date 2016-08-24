@@ -1,0 +1,170 @@
+.chamel-text-field {
+  $disabled-text-color: rgba($body-text-color, 0.3);
+  $error-color: $red-500;
+
+  font-size: 16px;
+  line-height: 24px;
+
+  // We should not be setting a static width
+  //width: (64px * 4);
+  height: 48px;
+  display: inline-block;
+  position: relative;
+  @include ease-out($property: height, $duration: 200ms);
+
+  //Normal Text Field Styles
+  //------------------------
+  .chamel-text-field-hint,
+  .chamel-text-field-floating-label {
+    position: absolute;
+    line-height: 48px;
+    color: $disabled-text-color;
+    opacity: 1;
+    @include ease-out();
+  }
+
+  .chamel-text-field-error {
+    position: absolute;
+    bottom: -10px;
+    font-size: 12px;
+    line-height: 12px;
+    color: $error-color;
+    @include ease-out();
+  }
+
+  .chamel-text-field-input,
+  .chamel-text-field-textarea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: $transparent;
+    color: $body-text-color;
+  }
+
+  .chamel-text-field-textarea {
+    margin-top: 12px;
+  }
+
+  .chamel-text-field-underline,
+  .chamel-text-field-focus-underline {
+    position: absolute;
+    width: 100%;
+    bottom: 8px;
+    margin: 0;
+  }
+
+  .chamel-text-field-focus-underline {
+    border-color: $primary-1-color;
+    border-bottom-width: 2px;
+    transform: scaleX(0);
+    @include ease-out();
+  }
+
+  &.chamel-has-error {
+    .chamel-text-field-focus-underline {
+      border-color: $error-color;
+      transform: scaleX(1);
+    }
+  }
+
+  &.chamel-has-value {
+    .chamel-text-field-hint {
+      opacity: 0;
+    }
+  }
+
+  &.chamel-is-disabled {
+
+    .chamel-text-field-input {
+      color: $disabled-text-color;
+    }
+
+    .chamel-text-field-underline {
+      border: none;
+      height: 40px;
+      overflow: hidden;
+
+      //hack because border style dotted just doesn't look right
+      //border-bottom-style: dotted;
+      &:after {
+        content: '..............................................................................................................................................................................................................................................................................................................................................................';
+        position: absolute;
+        top: 23px;
+        color: $disabled-text-color;
+      }
+    }
+  }
+
+  &.chamel-is-focused {
+    .chamel-text-field-focus-underline {
+      transform: scaleX(1);
+    }
+  }
+
+  //Floating Label Text Field Styles
+  //--------------------------------
+  &.chamel-has-floating-labels {
+    height: 72px;
+
+    .chamel-text-field-floating-label {
+      top: 24px;
+      transform: scale(1) translate3d(0, 0, 0);
+      transform-origin: left top;
+    }
+
+    .chamel-text-field-hint {
+      top: 24px;
+      opacity: 0;
+    }
+
+    .chamel-text-field-input {
+      padding-top: 24px;
+    }
+
+    &.chamel-has-value,
+    &.chamel-is-focused,
+    &.chamel-is-date {
+      .chamel-text-field-floating-label {
+        transform: scale(0.75) translate3d(0, -18px, 0);
+      }
+    }
+
+    &.chamel-has-value {
+      .chamel-text-field-floating-label {
+        color: rgba($body-text-color, 0.5);
+      }
+    }
+
+    &.chamel-is-disabled {
+      .chamel-text-field-hint {
+        color: $disabled-text-color;
+      }
+    }
+
+    &.chamel-is-focused {
+
+      .chamel-text-field-hint {
+        opacity: 1;
+      }
+
+      .chamel-text-field-floating-label {
+        transform: scale(0.75) translate3d(0, -18px, 0);
+        color: $primary-1-color;
+      }
+
+      &.chamel-has-error {
+        .chamel-text-field-floating-label {
+          color: $error-color;
+        }
+      }
+
+      &.chamel-has-value {
+        .chamel-text-field-hint {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

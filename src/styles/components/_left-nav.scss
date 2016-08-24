@@ -1,0 +1,43 @@
+.chamel-left-nav {
+
+  .chamel-left-nav-menu {
+    overflow: auto;
+    height: 100%;
+    position: fixed;
+    width: $left-nav-width;
+    background-color: $left-nav-color;
+    z-index: 10;
+    @include ease-out();
+
+    .chamel-menu {
+      .chamel-menu-item {
+        height: $desktop-left-nav-menu-item-height;
+        line-height: $desktop-left-nav-menu-item-height;
+      }
+      a.chamel-menu-item {
+        display: block;
+        text-decoration: none;
+        color: $body-text-color;
+      }
+    }
+  }
+
+  &.chamel-floating {
+    .chamel-left-nav-menu {
+      left: 0px;
+      top: 0px;
+    }
+  }
+
+  &.chamel-docked {
+    .chamel-left-nav-menu {
+      
+    }
+  }
+
+  &.chamel-closed {
+    .chamel-left-nav-menu {
+      @include transform(translate3d((-1 * $left-nav-width) - 10px, 0, 0));
+    }
+  }
+}

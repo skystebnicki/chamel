@@ -1,10 +1,10 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const StylePropable = require('./mixins/style-propable');
-const AutoPrefix = require('./styles/auto-prefix');
-const Transitions = require("./styles/transitions");
-const DefaultRawTheme = require('./styles/raw-themes/light-raw-theme');
-const ThemeManager = require('./styles/theme-manager');
+const StylePropable = require('../mixins/style-propable');
+const AutoPrefix = require('../styles/auto-prefix');
+const Transitions = require("../styles/transitions");
+const DefaultRawTheme = require('../styles/raw-themes/light-raw-theme');
+const ThemeManager = require('../styles/theme-manager');
 
 const CircularProgress = React.createClass({
 

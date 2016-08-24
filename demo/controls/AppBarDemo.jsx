@@ -1,12 +1,8 @@
 var React = require("react");
-var AppBar = require("../../src/AppBar.jsx");
-var IconButton = require("../../src/IconButton.jsx");
-var FlatButton = require("../../src/FlatButton.jsx");
-var CodeExample = require("../CodeExample.jsx");
-
-var rightBarItems = [
-
-];
+var AppBar = require("../../src/AppBar");
+var IconButton = require("../../src/IconButton");
+var FlatButton = require("../../src/FlatButton");
+var CodeExample = require("../CodeExample");
 
 var AppBarDemo = React.createClass({
 

@@ -1,8 +1,8 @@
 var React = require('react');
-var Tabs = require("../../src/tabs/Tabs.jsx");
-var Tab = require("../../src/tabs/Tab.jsx");
-var CodeExample = require("../CodeExample.jsx");
-var ComponentDoc = require("../ComponentDoc.jsx");
+var Tabs = require("../../src/Tabs");
+var Tab = require("../../src/Tabs/Tab");
+var CodeExample = require("../CodeExample");
+var ComponentDoc = require("../ComponentDoc");
 
 var TabsDemo = React.createClass({
 

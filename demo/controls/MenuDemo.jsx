@@ -1,8 +1,8 @@
 var React = require("react");
-var Menu = require("../../src/menu/Menu.jsx");
-var MenuItem = require("../../src/menu/MenuItem.jsx");
-var NestedMenuItem = require("../../src/menu/NestedMenuItem.jsx");
-var CodeExample = require("../CodeExample.jsx");
+var Menu = require("../../src/Menu");
+var MenuItem = require("../../src/Menu/MenuItem");
+var NestedMenuItem = require("../../src/Menu/NestedMenuItem");
+var CodeExample = require("../CodeExample");
 
 var labelMenuItems = [
     { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },

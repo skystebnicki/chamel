@@ -1,0 +1,57 @@
+.chamel-enhanced-switch {
+  $switch-width: 60px;
+
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+  display: table;
+  height: auto;
+  width: 100%;
+
+  .chamel-enhanced-switch-input {
+    position: absolute;
+    cursor: pointer;
+    pointer-events: all;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    left: 0;
+  }
+
+  .chamel-enhanced-switch-wrap {
+    @include ease-out();
+    float: left;
+    position: relative;
+    display: table-column;
+
+    .chamel-touch-ripple,
+    .chamel-focus-ripple-inner {
+      width: 200%;
+      height: 200%;
+      top: -12px;
+      left: -12px;
+    }
+  }
+
+  .chamel-switch-label {
+    float: left;
+    position: relative;
+    display: table-column;
+    white-space: nowrap;
+    width: calc(100% - #{$switch-width});
+    line-height: 24px;
+  }
+
+  &.chamel-is-switched {
+    .chamel-focus-ripple-inner,
+    .chamel-ripple-circle-inner {
+      background-color: $switches-ripple-color;
+    }
+  }
+
+  &.chamel-is-inline {
+    display: inline-block;
+    width: auto;
+  }
+}

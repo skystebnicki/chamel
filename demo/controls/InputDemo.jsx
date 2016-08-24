@@ -1,9 +1,9 @@
 var React = require("react");
 
-var FlatButton = require("../../src/FlatButton.jsx");
-var RaisedButton = require("../../src/RaisedButton.jsx");
-var DropDownMenu = require("../../src/DropDownMenu.jsx");
-var TextField = require("../../src/TextField.jsx");
+var FlatButton = require("../../src/FlatButton");
+var RaisedButton = require("../../src/RaisedButton");
+var DropDownMenu = require("../../src/DropDownMenu");
+var TextField = require("../../src/TextField");
 
 var dropDownData = [
     { value: 'test1', text: 'Test Entry 1' },

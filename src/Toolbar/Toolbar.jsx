@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require("react-dom");
 var FontIcon = require("../FontIcon");
-var ToolbarGroup = require("../toolbar/ToolbarGroup");
+var ToolbarGroup = require("../Toolbar/ToolbarGroup");
 
 /**
  * This variable will hold all the icons to be displayed in the toolbar
@@ -251,4 +251,9 @@ var Toolbar = React.createClass({
     }
 });
 
-module.exports = Toolbar;
+// Check for commonjs
+if (module) {
+  module.exports = Toolbar;
+}
+
+export default Toolbar;

@@ -1,0 +1,17 @@
+.chamel-date-picker-dialog {
+  font-size: 14px;
+  color: $date-picker-calendar-text-color;
+
+  .chamel-dialog-window { 
+    width: 280px !important;
+    .chamel-dialog-window-body {
+      margin: 0 !important;
+    } 
+  }
+}
+
+.chamel-is-landscape {
+  .chamel-dialog-window { 
+    width: 560px !important;
+  }
+}

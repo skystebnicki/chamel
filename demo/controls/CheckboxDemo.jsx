@@ -1,6 +1,6 @@
 var React = require('react');
-var Checkbox = require("../../src/Checkbox.jsx");
-var CodeExample = require("../CodeExample.jsx");
+var Checkbox = require("../../src/Checkbox");
+var CodeExample = require("../CodeExample");
 
 var code =
     '//Checkboxes\n' +

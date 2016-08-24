@@ -1,0 +1,66 @@
+.chamel-radio-button {
+  .chamel-radio-button-icon {
+    $radio-button-size: 24px;
+
+    height: $radio-button-size;
+    width: $radio-button-size;
+    margin-right: $desktop-gutter-less;
+
+
+    .chamel-radio-button-fill {
+      position: absolute;
+      opacity: 0;
+      @include transform(scale(0));
+      transform-origin: 50% 50%;
+      -webkit-transform-origin: 50% 50%;
+      @include ease-out();
+      * { fill: $radio-button-checked-color; }
+    }
+
+    .chamel-radio-button-target {
+      @include ease-out();
+      position: absolute;
+      opacity: 1;
+      @include transform(scale(1));
+      * {
+        fill: $radio-button-border-color;
+        @include ease-out($duration: 2s, $delay: 200ms);
+      }
+    }
+  }
+
+  &.chamel-is-switched {
+    .chamel-radio-button-icon {
+      .chamel-radio-button-fill {
+        opacity: 1;
+        @include transform(scale(1));
+      }
+
+      .chamel-radio-button-target {
+        opacity: 0;
+        @include transform(scale(0));
+        * {
+          fill: $radio-button-checked-color;
+          @include ease-out($duration: 100s, $delay: 0ms);
+        }
+      }
+    }
+  }
+
+  &.chamel-is-disabled {
+    .chamel-radio-button-icon {
+      .chamel-radio-button-fill,
+      .chamel-radio-button-target {
+        * { fill: $radio-button-disabled-color; }
+      }
+    }
+  }
+
+  &.chamel-is-required {
+    .chamel-radio-button-icon {
+      .chamel-radio-button-target {
+        * { fill: $radio-button-required-color; }
+      }
+    }
+  }
+}

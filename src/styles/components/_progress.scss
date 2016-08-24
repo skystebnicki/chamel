@@ -1,0 +1,44 @@
+.chamel-progress {
+
+	position: relative;
+	height: 4px;
+	display: block;
+	width: 100%;
+	background-color: $grey-200;
+	border-radius: 2px;
+	margin: 0;
+	overflow: hidden;
+
+	.chamel-progress-bar {
+		height: 100%;
+	}
+
+	.chamel-progress-bar-indeterminate {
+
+		.chamel-progress-bar-left {
+			position: absolute;
+	        background-color: $primary-1-color;
+	        top: 0;
+	        left: 0;
+	        bottom: 0;
+	        height: 4px;
+	        @include transition(all 840ms cubic-bezier(0.650, 0.815, 0.735, 0.395) 0ms);
+		}
+
+		.chamel-progress-bar-right {
+			position: absolute;
+	        background-color: $primary-1-color;
+	        top: 0;
+	        left: 0;
+	        bottom: 0;
+	        height: 4px;
+	        @include transition(all 840ms cubic-bezier(0.165, 0.840, 0.440, 1.000) 0ms);
+		}
+	}
+
+	.chamel-progress-bar-determinate {
+		background-color: $primary-1-color;
+		height: 4px;
+		@include transition(width .4s linear 0ms);
+	}
+}

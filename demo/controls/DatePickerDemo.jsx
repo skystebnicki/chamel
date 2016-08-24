@@ -1,6 +1,6 @@
 var React = require('react');
-var DatePicker = require("../../src/DatePicker/DatePicker.jsx");
-var ComponentDoc = require('../ComponentDoc.jsx');
+var DatePicker = require("../../src/DatePicker");
+var ComponentDoc = require('../ComponentDoc');
 
 var DatePickerPage = React.createClass({
 

@@ -1,10 +1,10 @@
 var React = require("react");
 
-var FlatButton = require("../../src/FlatButton.jsx");
-var RaisedButton = require("../../src/RaisedButton.jsx");
-var DropDownMenuDemo = require("../controls/DropDownMenuDemo.jsx")
-var MenuDemo = require("../controls/MenuDemo.jsx");
-var AppBarDemo = require("../controls/AppBarDemo.jsx");
+var FlatButton = require("../../src/FlatButton");
+var RaisedButton = require("../../src/RaisedButton");
+var DropDownMenuDemo = require("../controls/DropDownMenuDemo")
+var MenuDemo = require("../controls/MenuDemo");
+var AppBarDemo = require("../controls/AppBarDemo");
 
 var Home = React.createClass({
   render: function () {

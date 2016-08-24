@@ -118,4 +118,9 @@ var Tabs = React.createClass({
     }
 });
 
-module.exports = Tabs;
+// Check for commonjs
+if (module) {
+  module.exports = Tabs;
+}
+
+export default Tabs;

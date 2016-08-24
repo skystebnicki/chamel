@@ -1,5 +1,5 @@
 var React = require("react");
-var DropDownMenu = require("../../src/DropDownMenu.jsx");
+var DropDownMenu = require("../../src/DropDownMenu");
 
 var Demo = React.createClass({
     render: function () {

@@ -1,0 +1,69 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/theme-variables";
+
+.button {
+  border-radius: $button-border-radius;
+  user-select: none;
+  outline: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  background-color: $flat-button-color;
+  color: $flat-button-text-color;
+  line-height: $button-height;
+  min-width: $button-min-width;
+  padding: 0 $desktop-gutter-less;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.raised {
+  &:hover {
+    background-color: $flat-button-hover-color;
+  }
+
+  &primary {
+    color: white;
+    background-color: $primary-1-color;
+  }
+
+  &accent {
+    color: white;
+    background-color: $primary-1-color;
+  }
+
+  &disabled {
+    color: $flat-button-disabled-text-color;
+  }
+}
+
+.flat {
+  background-color: transparent;
+  color: $flat-button-text-color;
+
+  &:hover {
+    background-color: $flat-button-hover-color;
+  }
+
+  &primary {
+    color: $primary-1-color;
+    &:hover {
+      background-color: $flat-button-primary-hover-color;
+    }
+  }
+
+  &accent {
+    color: $accent-1-color;
+  }
+
+  &disabled {
+    color: $flat-button-disabled-text-color;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.floating {
+
+}

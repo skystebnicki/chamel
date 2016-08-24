@@ -1,6 +1,6 @@
 var React = require('react'),
-    CodeBlock = require('./CodeBlock.jsx'),
-    Paper = require("../src/Paper.jsx");
+    CodeBlock = require('./CodeBlock'),
+    Paper = require("../src/Paper");
 
 var CodeExample = React.createClass({
 

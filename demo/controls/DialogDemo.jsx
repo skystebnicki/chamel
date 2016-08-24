@@ -1,10 +1,10 @@
 var React = require('react');
-var Chamel = require("../../src/main.js");
+var Chamel = require("../../src/main");
 var Dialog = Chamel.Dialog;
 var FlatButton = Chamel.FlatButton;
 var RaisedButton = Chamel.RaisedButton;
 var Toggle = Chamel.Toggle;
-var CodeExample = require("../CodeExample.jsx");
+var CodeExample = require("../CodeExample");
 
 var DialogPage = React.createClass({
 

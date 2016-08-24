@@ -1,10 +1,10 @@
 var React = require('react');
-var DropDownIcon = require("../../src/DropDownIcon.jsx");
-var DropDownMenu = require("../../src/DropDownMenu.jsx");
-var FontIcon = require("../../src/FontIcon.jsx");
-var RaisedButton = require("../../src/RaisedButton.jsx");
-var CodeExample = require("../CodeExample.jsx");
-var LinearProgress = require("../../src/progress/LinearProgress.jsx");
+var DropDownIcon = require("../../src/DropDownIcon");
+var DropDownMenu = require("../../src/DropDownMenu");
+var FontIcon = require("../../src/FontIcon");
+var RaisedButton = require("../../src/RaisedButton");
+var CodeExample = require("../CodeExample");
+var LinearProgress = require("../../src/Progress/LinearProgress");
 //var ComponentDoc = require('../../component-doc.jsx');
 
 var ProgressDemoPage = React.createClass({

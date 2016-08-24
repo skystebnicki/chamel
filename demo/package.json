@@ -37,6 +37,7 @@
     "browserify": "*",
     "classnames": "^1.2.0",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "http-server": "^0.6.1",
     "karma": "~0.12.23",
     "karma-browserify": "^4.0.0",
@@ -46,6 +47,7 @@
     "localforage": "^1.2.2",
     "node-sass": "^3.7.0",
     "object-hash": "^0.8.0",
+    "postcss-loader": "^0.10.1",
     "process": "^0.11.2",
     "protractor": "~1.0.0",
     "sass-loader": "^3.2.0",
@@ -54,8 +56,7 @@
     "style-loader": "^0.13.1",
     "tmp": "0.0.23",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "extract-text-webpack-plugin": "^1.0.1"
+    "webpack-dev-server": "^1.14.1"
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
   "main": "src/main.js",

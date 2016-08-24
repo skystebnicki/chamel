@@ -1,7 +1,7 @@
 var React = require('react');
-var RadioButtonGroup = require("../../src/RadioButtonGroup.jsx");
-var RadioButton = require("../../src/RadioButton.jsx");
-var CodeExample = require("../CodeExample.jsx");
+var RadioButtonGroup = require("../../src/RadioButtonGroup");
+var RadioButton = require("../../src/RadioButton");
+var CodeExample = require("../CodeExample");
 
 var code =
     '//Checkboxes\n' +

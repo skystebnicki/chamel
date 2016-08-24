@@ -1,6 +1,6 @@
 import React from 'react';
-import Popover from '../../../src/Popover.jsx';
-var RaisedButton = require("../../../src/RaisedButton.jsx");
+import Popover from '../../../src/Popover';
+var RaisedButton = require("../../../src/RaisedButton");
 
 export default class PopoverExampleSimple extends React.Component {
 

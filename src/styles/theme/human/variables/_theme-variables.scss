@@ -1,0 +1,175 @@
+// Use these variables (and this file) to easily customize themes
+
+//Typography
+$headingFontFamily: Helvetica Neue, Helvetica, sans-serif;
+$contentFontFamily: Helvetica Neue, Helvetica, sans-serif;
+
+//App Colors
+$primary-1-color: $cyan-500;
+$primary-2-color: $cyan-700;
+$primary-3-color: $cyan-100;
+$accent-1-color: $pink-A200;
+$accent-2-color: $pink-A400;
+$accent-3-color: $pink-A100;
+
+//Text Colors
+$body-text-color: $dark-black;
+
+//Border Colors
+$border-color: $grey-300;
+
+//Component Colors
+$app-bar-color: $primary-1-color;
+$app-bar-text-color: $dark-white;
+$canvas-color: $white;
+$drop-down-menu-icon-color: $min-black;
+$left-nav-color: $white;
+$subheader-border-color: $border-color;
+$subheader-text-color: $primary-1-color;
+
+//Disabled Colors
+$disabled-color: rgba($body-text-color, 0.3);
+
+//Date Picker
+$date-picker-color: $primary-1-color;
+$date-picker-text-color: $white;
+$date-picker-calendar-text-color: $body-text-color;
+$date-picker-select-color: $primary-2-color;
+$date-picker-select-text-color: $white;
+
+// menu
+$menu-background-color: $white;
+$menu-item-data-height: 32px;
+$menu-item-height: 48px;
+$menu-item-hover-color: rgba(0, 0, 0, .035);
+$menu-item-padding: $desktop-gutter;
+$menu-item-selected-text-color: $accent-1-color;
+$menu-container-background-color: white;
+$menu-subheader-padding: $desktop-gutter;
+
+// buttons - turn off all ripples
+$button-height: 32px;
+$button-min-width: 50px;
+$button-border-radius: 8px;
+
+$flat-button-color: $white;
+$flat-button-hover-color: darken($flat-button-color, 10%);
+$flat-button-text-color: $body-text-color;
+$flat-button-ripple-color: $flat-button-hover-color;
+$flat-button-focus-ripple-color: $flat-button-hover-color;
+$flat-button-primary-hover-color: lighten($accent-1-color, 32%);
+$flat-button-primary-text-color: $accent-1-color;
+$flat-button-primary-ripple-color: $flat-button-primary-hover-color;
+$flat-button-primary-focus-ripple-color: rgba($flat-button-primary-ripple-color, 0.2);
+$flat-button-secondary-hover-color: lighten($primary-1-color, 52%);
+$flat-button-secondary-text-color: $primary-1-color;
+$flat-button-secondary-ripple-color: $flat-button-secondary-hover-color;
+$flat-button-secondary-focus-ripple-color: rgba($flat-button-secondary-ripple-color, 0.2);
+$flat-button-disabled-text-color: rgba($flat-button-text-color, 0.3);
+
+$raised-button-color: $white;
+$raised-button-hover-color: darken($raised-button-color, 10%);
+$raised-button-text-color: $body-text-color;
+$raised-button-ripple-color: $raised-button-hover-color;
+$raised-button-focus-ripple-color: rgba($raised-button-ripple-color, 0.7);
+$raised-button-primary-color: $accent-1-color;
+$raised-button-primary-hover-color: darken($accent-1-color, 15%);
+$raised-button-primary-text-color: $white;
+$raised-button-primary-ripple-color: $raised-button-primary-hover-color;
+$raised-button-primary-focus-ripple-color: $raised-button-primary-ripple-color;
+$raised-button-secondary-color: $primary-1-color;
+$raised-button-secondary-hover-color: darken($primary-1-color, 4%);
+$raised-button-secondary-text-color: $white;
+$raised-button-secondary-ripple-color: $raised-button-secondary-hover-color;
+$raised-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color;
+$raised-button-disabled-color: $raised-button-hover-color;
+$raised-button-disabled-text-color: rgba($raised-button-text-color, 0.3);
+
+$floating-action-button-size: 56px;
+$floating-action-button-mini-size: 40px;
+$floating-action-button-color: $accent-1-color;
+$floating-action-button-icon-color: $white;
+$floating-action-button-hover-color: $raised-button-primary-hover-color;
+$floating-action-button-ripple-color: $floating-action-button-hover-color;
+$floating-action-button-focus-ripple-color: $raised-button-primary-ripple-color;
+$floating-action-button-secondary-color: $primary-1-color;
+$floating-action-button-secondary-icon-color: $white;
+$floating-action-button-secondary-hover-color: $raised-button-secondary-hover-color;
+$floating-action-button-secondary-ripple-color: $raised-button-secondary-ripple-color;
+$floating-action-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color;
+$floating-action-button-disabled-color: $raised-button-disabled-color;
+$floating-action-button-disabled-text-color: $raised-button-disabled-text-color;
+
+// input
+$input-width: 320px;
+$input-font-size: 16px;
+$input-placeholder-size: 13px;
+$input-error-color: red;
+$input-bar-height: 2px;
+
+// switches
+$switches-ripple-color: rgba($primary-1-color, 0.2);
+
+// radio button
+$radio-button-size: 24px;
+$radio-button-border-color:  $body-text-color;
+$radio-button-background-color: white;
+$radio-button-checked-color: $primary-1-color;
+$radio-button-required-color: $primary-1-color;
+$radio-button-disabled-color: $disabled-color;
+
+// checkbox
+$checkbox-box-color: $body-text-color;
+$checkbox-checked-color: $primary-1-color;
+$checkbox-required-color: $primary-1-color;
+$checkbox-disabled-color: $disabled-color;
+
+// toast
+$mui-toast-color: white;
+$mui-toast-background-color: #323232;
+$mui-toast-action-color: yellow;
+
+// snackbar
+$snackbar-text-color: white;
+$snackbar-background-color: #323232;
+$snackbar-action-color: $accent-1-color;
+
+// toggle
+$toggle-size: 20px;
+$toggle-thumb-on-color: $primary-1-color;
+$toggle-thumb-off-color: $grey-50;
+$toggle-thumb-disabled-color: $grey-400;
+$toggle-thumb-required-color: $primary-1-color;
+$toggle-track-on-color: fade-out($toggle-thumb-on-color, 0.5);
+$toggle-track-off-color: $min-black;
+$toggle-track-disabled-color: $faint-black;
+$toggle-track-required-color: fade-out($toggle-thumb-required-color, 0.5);
+
+// toolbar
+$toolbar-background-color: darken(#eeeeee, 5%);
+$toolbar-height: 56px;
+$toolbar-icon-color: rgba(0, 0, 0, .40);
+$toolbar-separator-color: rgba(0, 0, 0, .175);
+$toolbar-menu-hover-color: rgba(0, 0, 0, .10);
+$toolbar-menu-hover-color: $white;
+
+// slider
+$slider-track-size: 2px;
+$slider-track-color: $min-black;
+$slider-track-color-selected: $grey-500;
+$slider-handle-size: 12px;
+$slider-handle-size-active: $slider-handle-size * 2;
+$slider-handle-size-disabled: 8px;
+$slider-handle-color-zero: $grey-400;
+$slider-selection-color: $primary-3-color;
+
+// snackbar
+$snackbar-text-color: white;
+$snackbar-background-color: #323232;
+$snackbar-action-color: $accent-1-color;
+
+// layout
+$left-nav-width: ($desktop-keyline-increment * 4);
+
+// paper
+$paper-container-radius: 8px;

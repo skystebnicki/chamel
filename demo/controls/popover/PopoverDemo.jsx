@@ -1,8 +1,8 @@
 var React = require("react");
-var AppBar = require("../../../src/AppBar.jsx");
+var AppBar = require("../../../src/AppBar");
 
-var CodeExample = require("../../CodeExample.jsx");
-import ExampleSimple from './ExampleSimple.jsx';
+var CodeExample = require("../../CodeExample");
+import ExampleSimple from './ExampleSimple';
 
 var PopoverDemo = React.createClass({
 
