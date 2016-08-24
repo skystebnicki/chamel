@@ -3,6 +3,8 @@
  */
 import Popover from './Popover';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 /**
  * Do we need to move all these to jsx?
  */
