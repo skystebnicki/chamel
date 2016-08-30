@@ -1,4 +1,5 @@
 // Use these variables (and this file) to easily customize themes
+@import '../../../variables/spacing';
 
 //Typography
 $headingFontFamily: Tahoma, Arial, Verdana, Helvetica, sans-serif !default;
@@ -50,18 +51,19 @@ $menu-subheader-padding: $desktop-gutter !default;
 // buttons
 $button-height: 36px !default;
 $button-min-width: 88px !default;
+$button-border-radius: 2px !default;
 
-$flat-button-color: $white !default;
-$flat-button-hover-color: darken($flat-button-color, 10%) !default;
+$flat-button-color: transparent !default;
+$flat-button-hover-color: darken(white, 10%) !default;
 $flat-button-text-color: $body-text-color !default;
 $flat-button-ripple-color: rgba(0,0,0,0.1) !default;
 $flat-button-focus-ripple-color: rgba($flat-button-ripple-color, 0.07) !default;
-$flat-button-primary-hover-color: lighten($accent-1-color, 32%) !default;
-$flat-button-primary-text-color: $accent-1-color !default;
+$flat-button-primary-hover-color: lighten($primary-1-color, 52%) !default;
+$flat-button-primary-text-color: $primary-1-color !default;
 $flat-button-primary-ripple-color: rgba($flat-button-primary-text-color, 0.2) !default;
 $flat-button-primary-focus-ripple-color: rgba($flat-button-primary-ripple-color, 0.2) !default;
-$flat-button-secondary-hover-color: lighten($primary-1-color, 52%) !default;
-$flat-button-secondary-text-color: $primary-1-color !default;
+$flat-button-secondary-hover-color: lighten($accent-1-color, 32%) !default;
+$flat-button-secondary-text-color: $accent-1-color !default;
 $flat-button-secondary-ripple-color: rgba($flat-button-secondary-text-color, 0.2) !default;
 $flat-button-secondary-focus-ripple-color: rgba($flat-button-secondary-ripple-color, 0.2) !default;
 $flat-button-disabled-text-color: rgba($flat-button-text-color, 0.3) !default;
@@ -71,13 +73,13 @@ $raised-button-hover-color: darken($raised-button-color, 10%) !default;
 $raised-button-text-color: $body-text-color !default;
 $raised-button-ripple-color: rgba(0,0,0,0.1) !default;
 $raised-button-focus-ripple-color: rgba($raised-button-ripple-color, 0.7) !default;
-$raised-button-primary-color: $accent-1-color !default;
-$raised-button-primary-hover-color: darken($accent-1-color, 15%) !default;
+$raised-button-primary-color: $primary-1-color !default;
+$raised-button-primary-hover-color: darken($primary-1-color, 4%) !default;
 $raised-button-primary-text-color: $white !default;
 $raised-button-primary-ripple-color: rgba($white, 0.50) !default;
 $raised-button-primary-focus-ripple-color: $raised-button-primary-ripple-color !default;
-$raised-button-secondary-color: $primary-1-color !default;
-$raised-button-secondary-hover-color: darken($primary-1-color, 4%) !default;
+$raised-button-secondary-color: $accent-1-color !default;
+$raised-button-secondary-hover-color: darken($accent-1-color, 15%) !default;
 $raised-button-secondary-text-color: $white !default;
 $raised-button-secondary-ripple-color: rgba($white, 0.50) !default;
 $raised-button-secondary-focus-ripple-color: $raised-button-secondary-ripple-color !default;

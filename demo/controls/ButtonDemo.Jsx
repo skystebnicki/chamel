@@ -32,14 +32,14 @@ var ButtonDemo = React.createClass({
                     <Button type={'raised'} onTap={this._handleClick}>Default</Button>
                     <Button type={'raised'} primary onTap={this._handleClick}>Primary</Button>
                     <Button type={'raised'} accent onTap={this._handleClick}>Accent</Button>
-                    <Button type={'raised'} disabled onTap={this._handleClick}>Accent</Button>
+                    <Button type={'raised'} disabled onTap={this._handleClick}>Disabled</Button>
                     <Button type={'raised'} onTap={this._handleClick}>With Icon</Button>
 
                     <h3>{"New Floating"}</h3>
                     <Button type={'floating'} onTap={this._handleClick}>Default</Button>
                     <Button type={'floating'} primary onTap={this._handleClick}>Primary</Button>
                     <Button type={'floating'} accent onTap={this._handleClick}>Accent</Button>
-                    <Button type={'floating'} disabled onTap={this._handleClick}>Accent</Button>
+                    <Button type={'floating'} disabled onTap={this._handleClick}>Disabled</Button>
                     <Button type={'floating'} onTap={this._handleClick}>With Icon</Button>
                 </div>
             </div>
