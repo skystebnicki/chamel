@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "keywords": [
     "react",
     "react-component",
@@ -69,12 +69,7 @@
     "tmp": "0.0.23"
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
-  "main": "lib/main.js",
-  "files": [
-    "lib",
-    "src",
-    "dist"
-  ],
+  "main": "lib/",
   "browserify": {
     "transform": [
       [
