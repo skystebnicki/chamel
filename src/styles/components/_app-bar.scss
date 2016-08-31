@@ -30,7 +30,6 @@
   .chamel-icon-button, .chamel-font-icon  {
     margin-top: (($app-bar-height-small - $icon-button-size) / 2);
 
-    /*
     @media #{$device-medium} {
       margin-top: (($app-bar-height-medium - $icon-button-size) / 2);
     }
@@ -38,7 +37,6 @@
     @media #{$device-large} {
       margin-top: (($app-bar-height-large - $icon-button-size) / 2);
     }
-    */
 
     * {
       fill: $app-bar-text-color;
