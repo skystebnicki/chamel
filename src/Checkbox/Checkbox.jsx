@@ -1,8 +1,8 @@
-var React = require('react');
-var EnhancedSwitch = require('../EnhancedSwitch');
-var Classable = require('../mixins/classable');
-var CheckboxOutline = require('../svg-icons/toggle-check-box-outline-blank');
-var CheckboxChecked = require('../svg-icons/toggle-check-box-checked');
+import React from 'react';
+import EnhancedSwitch from '../EnhancedSwitch';
+import Classable from '../mixins/classable';
+import CheckboxOutline from '../svg-icons/toggle-check-box-outline-blank';
+import CheckboxChecked from '../svg-icons/toggle-check-box-checked';
 
 var Checkbox = React.createClass({
 

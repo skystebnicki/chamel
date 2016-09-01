@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Classable = require('../mixins/classable');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Classable from '../mixins/classable';
 
 var EnhancedTextarea = React.createClass({
 

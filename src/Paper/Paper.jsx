@@ -1,9 +1,8 @@
 /**
  * Paper is a concept taken from google Material design standards
  *
-
  */
-var React = require('react');
+import React from 'react';
 
 /**
  * Small application component

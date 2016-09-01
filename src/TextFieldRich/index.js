@@ -1,1 +1,1 @@
-export default from './TextFieldRich';
+export {default} from './TextFieldRich';

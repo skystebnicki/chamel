@@ -1,6 +1,6 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
-var EnhancedButton = require('../EnhancedButton');
+import React from 'react';
+import Classable from '../mixins/classable';
+import EnhancedButton from '../EnhancedButton';
 
 var FlatButton = React.createClass({
 

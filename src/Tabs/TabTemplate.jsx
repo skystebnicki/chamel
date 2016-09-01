@@ -1,11 +1,8 @@
 /**
  * Template for rendering tabs
  *
-
  */
-'use strict';
-
-var React = require('react');
+import React from 'react';
 
 /**
  * Outer container for tabs

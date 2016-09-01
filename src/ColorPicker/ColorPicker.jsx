@@ -1,9 +1,9 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 // TODO: need to install
 // "react-colorpickr": "3.*",
 //var ReactColorPicker = require('react-colorpickr');
-var FontIcon = require("../FontIcon");
+import FontIcon from "../FontIcon";
 
 var ColorPicker = React.createClass({
 	propTypes: {

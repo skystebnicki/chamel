@@ -1,14 +1,11 @@
 /**
  * Tabs component
  *
-
  */
-'use strict';
-
-var React = require('react');
-var ReactDOM = require('react-dom');
-var InkBar = require("../InkBar");
-var TabTemplate = require("./TabTemplate");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import InkBar from "../InkBar";
+import TabTemplate from "./TabTemplate";
 
 /**
  * Outer container for tabs

@@ -1,8 +1,8 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
-var EnhancedSwitch = require('../EnhancedSwitch');
-var RadioButtonOff = require('../svg-icons/toggle-radio-button-off');
-var RadioButtonOn = require('../svg-icons/toggle-radio-button-on');
+import React from 'react';
+import Classable from '../mixins/classable';
+import EnhancedSwitch from '../EnhancedSwitch';
+import RadioButtonOff from '../svg-icons/toggle-radio-button-off';
+import RadioButtonOn from '../svg-icons/toggle-radio-button-on';
 
 /**
  * Radio button switch

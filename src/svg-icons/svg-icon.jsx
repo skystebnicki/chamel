@@ -1,5 +1,5 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
+import React from 'react';
+import Classable from '../mixins/classable';
 
 var SvgIcon = React.createClass({
 

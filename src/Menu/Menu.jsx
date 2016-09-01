@@ -1,14 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var CssEvent = require('../utils/CssEvent');
-var Dom = require('../utils/Dom');
-var KeyLine = require('../utils/KeyLine');
-var Classable = require('../mixins/classable');
-var ClickAwayable = require('../mixins/ClickAwayable');
-var Paper = require('../Paper');
-var MenuItem = require('./MenuItem');
-var LinkMenuItem = require('./LinkMenuItem');
-var SubheaderMenuItem = require('./SubheaderMenuItem');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CssEvent from '../utils/CssEvent';
+import Dom from '../utils/Dom';
+import KeyLine from '../utils/KeyLine';
+import Classable from '../mixins/classable';
+import ClickAwayable from '../mixins/ClickAwayable';
+import Paper from '../Paper';
+import MenuItem from './MenuItem';
+import LinkMenuItem from './LinkMenuItem';
+import SubheaderMenuItem from './SubheaderMenuItem';
 
 var Menu = React.createClass({
 

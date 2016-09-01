@@ -1,11 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Classable = require('../mixins/classable');
-var UniqueId = require('../utils/UniqueId');
-var EnhancedTextarea = require('../EnhancedTextarea');
-var DateTimeUtil = require('../utils/DateTime');
-var AutoComplete = require('../AutoComplete');
-var KeyCode = require('../utils/KeyCode');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Classable from '../mixins/classable';
+import UniqueId from '../utils/UniqueId';
+import EnhancedTextarea from '../EnhancedTextarea';
+import DateTimeUtil from '../utils/DateTime';
+import AutoComplete from '../AutoComplete';
+import KeyCode from '../utils/KeyCode';
 
 var TextField = React.createClass({
 

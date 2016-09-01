@@ -1,8 +1,8 @@
-var React = require('react'),
-    ReactDOM = require('react-dom'),
-    Paper = require('../Paper'),
-    Classable = require('../mixins/classable'),
-    Draggable = require('react-draggable2');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Paper from '../Paper';
+import Classable from '../mixins/classable';
+import Draggable from 'react-draggable2';
 
 var Slider = React.createClass({
 

@@ -1,7 +1,7 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
-var DateTime = require('../utils/DateTime');
-var DayButton = require('./DayButton');
+import React from 'react';
+import Classable from '../mixins/classable';
+import DateTime from '../utils/DateTime';
+import DayButton from './DayButton';
 
 var CalendarMonth = React.createClass({
 

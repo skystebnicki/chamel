@@ -1,1 +1,1 @@
-export default from './EnhancedButton';
+export {default} from './EnhancedButton';

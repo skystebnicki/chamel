@@ -1,1 +1,1 @@
-export default from './LeftNav';
+export {default} from './LeftNav';

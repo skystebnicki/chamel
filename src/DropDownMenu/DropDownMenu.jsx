@@ -1,10 +1,10 @@
 import React from 'react';
-var ReactDOM = require('react-dom');
-var Classable = require('../mixins/classable');
-var ClickAwayable = require('../mixins/ClickAwayable');
-var DropDownArrow = require('../svg-icons/drop-down-arrow');
-var Paper = require('../Paper');
-var Menu = require('../menu/Menu');
+import ReactDOM from 'react-dom';
+import Classable from '../mixins/classable';
+import ClickAwayable from '../mixins/ClickAwayable';
+import DropDownArrow from '../svg-icons/drop-down-arrow';
+import Paper from '../Paper';
+import Menu from '../menu/Menu';
 import Popover from '../Popover';
 
 /**
