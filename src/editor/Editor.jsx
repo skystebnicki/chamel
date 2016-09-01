@@ -1,6 +1,6 @@
 var React = require('react');
 var Classable = require("../mixins/classable");
-var Toolbar = require("../toolbar/Toolbar");
+var Toolbar = require("../Toolbar/Toolbar");
 var ToolbarGroup = require("../toolbar/ToolbarGroup");
 var FontIcon = require("../FontIcon");
 var IconButton = require("../IconButton");
