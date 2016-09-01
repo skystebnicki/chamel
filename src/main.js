@@ -2,6 +2,7 @@
  * Main entry point for chamel
  */
 import Popover from './Popover';
+import Editor from './Editor';
 
 /**
  * Do we need to move all these to jsx?
@@ -16,7 +17,7 @@ const Chamel = {
   DialogWindow: require('./Dialog/DialogWindow'),
   DropDownIcon: require('./DropDownIcon'),
   DropDownMenu: require('./DropDownMenu'),
-  Editor: require('./Editor'),
+  Editor: Editor,
   EnhancedButton: require('./EnhancedButton'),
   FlatButton: require('./FlatButton'),
   //FloatingActionButton: require('./floating-action-button'),
