@@ -34,7 +34,7 @@ const Chamel = {
       WindowListenable: require('./mixins/WindowListenable')
   },
   Paper: require('./Paper'),
-  Popover: require('./Popover'),
+  Popover: Popover,
   RadioButton: require('./RadioButton'),
   RadioButtonGroup: require('./RadioButtonGroup'),
   RaisedButton: require('./RaisedButton'),
