@@ -2,7 +2,7 @@
  * Main entry point for chamel
  */
 import Popover from './Popover';
-import Editor from './Editor';
+import Editor from './Editor/Editor';
 
 /**
  * Do we need to move all these to jsx?
