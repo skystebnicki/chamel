@@ -1,1 +1,1 @@
-export default from './RaisedButton';
+export {default} from './RaisedButton';

@@ -1,12 +1,12 @@
 /**
  * Render a tranient snackbar
  */
-var React = require('react');
-var ReactDOM = require('react-dom');
-var CssEvent = require('../utils/CssEvent');
-var Classable = require('../mixins/classable');
-var ClickAwayable = require('../mixins/ClickAwayable');
-var FlatButton = require('../FlatButton');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CssEvent from '../utils/CssEvent';
+import Classable from '../mixins/classable';
+import ClickAwayable from '../mixins/ClickAwayable';
+import FlatButton from '../FlatButton/FlatButton';
 
 var Snackbar = React.createClass({
 

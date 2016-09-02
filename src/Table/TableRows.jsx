@@ -1,6 +1,6 @@
-var React = require('react'),
-    Classable = require('../mixins/classable'),
-    TableRowsItem = require('./TableRowsItem');
+import React from 'react';
+import Classable from '../mixins/classable';
+import TableRowsItem from './TableRowsItem';
 
 var TableRow = React.createClass({
 

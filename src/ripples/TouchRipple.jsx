@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Classable = require('../mixins/classable');
-var Dom = require('../utils/Dom');
-var RippleCircle = require('./Circle');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Classable from '../mixins/classable';
+import Dom from '../utils/Dom';
+import RippleCircle from './Circle';
 
 var TouchRipple = React.createClass({
 

@@ -1,7 +1,7 @@
-var React = require('react');
-var ReactDOM = require("react-dom");
-var FontIcon = require("../FontIcon");
-var ToolbarGroup = require("../Toolbar/ToolbarGroup");
+import React from 'react';
+import ReactDOM from "react-dom";
+import FontIcon from "../FontIcon/FontIcon";
+import ToolbarGroup from "../Toolbar/ToolbarGroup";
 
 /**
  * This variable will hold all the icons to be displayed in the toolbar

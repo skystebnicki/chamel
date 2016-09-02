@@ -1,13 +1,13 @@
 /**
  * LeftNav componenet
  */
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Paper = require("../Paper");
-var Overlay = require("../Overlay");
-var Menu = require("../Menu");
-var Dom = require("../utils/Dom");
-var Events = require("../utils/Events");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Paper from "../Paper/Paper";
+import Overlay from "../Overlay/Overlay";
+import Menu from "../Menu/Menu";
+import Dom from "../utils/Dom";
+import Events from "../utils/Events";
 
 /**
  * Small application component

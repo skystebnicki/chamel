@@ -1,5 +1,5 @@
-var React = require('react');
-var SvgIcon = require('./svg-icon');
+import React from 'react';
+import SvgIcon from './svg-icon';
 
 var NavigationMenu = React.createClass({
 

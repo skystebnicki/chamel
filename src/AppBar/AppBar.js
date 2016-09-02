@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import baseTheme from './theme.scss';
 
-var Paper = require("../Paper");
-var IconButton = require("../IconButton");
-var Dom = require("../utils/Dom");
-var Events = require("../utils/Events");
+import Paper from '../Paper/Paper'
+import IconButton from '../IconButton/IconButton';
+import Dom from '../utils/Dom';
+import Events from '../utils/Events';
 
 /**
  * Main popover class handles absolute positioning paper relative to an element

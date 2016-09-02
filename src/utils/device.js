@@ -1,7 +1,7 @@
 /**
  * Device is an object that is used to represent a physical device and browser
  */
- var modernizr = require('./modernizr.custom');
+ import modernizr from './modernizr.custom';
 
  var device = {}
 

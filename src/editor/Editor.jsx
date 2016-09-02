@@ -1,15 +1,15 @@
-var React = require('react');
-var Classable = require("../mixins/classable");
-var Toolbar = require("../Toolbar/Toolbar");
-var ToolbarGroup = require("../Toolbar/ToolbarGroup");
-var FontIcon = require("../FontIcon");
-var IconButton = require("../IconButton");
-var DropDownIcon = require("../DropDownIcon");
-var Dialog = require("../Dialog");
-var TextField = require("../TextField");
-var ColorPicker = require("../ColorPicker");
-var ContentRte = require("./ContentRte");
-var ContentSrc = require("./ContentSrc");
+import React from 'react';
+import Classable from "../mixins/classable";
+import Toolbar from "../Toolbar/Toolbar";
+import ToolbarGroup from "../Toolbar/ToolbarGroup";
+import FontIcon from "../FontIcon/FontIcon";
+import IconButton from "../IconButton/IconButton";
+import DropDownIcon from "../DropDownIcon";
+import Dialog from "../Dialog/Dialog";
+import TextField from "../TextField/TextField";
+import ColorPicker from "../ColorPicker/ColorPicker";
+import ContentRte from "./ContentRte";
+import ContentSrc from "./ContentSrc";
 
 var fontStyleOptions = [
 	{ payload: '<p>', text: 'Body' },

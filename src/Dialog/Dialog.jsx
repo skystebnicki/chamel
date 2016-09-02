@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var WindowListenable = require('../mixins/WindowListenable');
-var CssEvent = require('../utils/CssEvent');
-var KeyCode = require('../utils/KeyCode');
-var Classable = require('../mixins/classable');
-var FlatButton = require('../FlatButton');
-var Overlay = require('../Overlay');
-var Paper = require('../Paper');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import WindowListenable from '../mixins/WindowListenable';
+import CssEvent from '../utils/CssEvent';
+import KeyCode from '../utils/KeyCode';
+import Classable from '../mixins/classable';
+import FlatButton from '../FlatButton/FlatButton';
+import Overlay from '../Overlay/Overlay';
+import Paper from '../Paper/Paper';
 
 var Dialog = React.createClass({
 

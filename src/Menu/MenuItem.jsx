@@ -1,7 +1,7 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
-var FontIcon = require('../FontIcon');
-var Toggle = require('../Toggle');
+import React from 'react';
+import Classable from '../mixins/classable';
+import FontIcon from '../FontIcon/FontIcon';
+import Toggle from '../Toggle';
 
 var Types = {
     LINK: 'LINK',
