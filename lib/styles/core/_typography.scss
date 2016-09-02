@@ -1,0 +1,184 @@
+%cml-text-full-black,
+.cml-text-full-black {
+  color: $full-black; 
+}
+
+%cml-text-dark-black,
+.cml-text-dark-black {
+  color: $dark-black; 
+}
+%cml-text-light-black,
+.cml-text-light-black {
+  color: $light-black; 
+}
+%cml-text-min-black,
+.cml-text-min-black {
+  color: $min-black; 
+}
+%cml-text-full-white,
+.cml-text-full-white {
+  color: $full-white; 
+}
+%cml-text-dark-white,
+.cml-text-dark-white {
+  color: $dark-white; 
+}
+%cml-text-light-white,
+.cml-text-light-white {
+  color: $light-white; 
+}
+
+%cml-font-weight-light,
+.cml-font-weight-light {
+  font-weight: 300;
+}
+%cml-font-weight-normal,
+.cml-font-weight-normal {
+  font-weight: 400;
+}
+
+%cml-font-weight-medium,
+.cml-font-weight-medium {
+  font-weight: 500;
+}
+
+/* Type Styles */
+%cml-font-style-display-4,
+.cml-font-style-display-4 {
+  font-size:   112px;
+  line-height: 128px;
+  letter-spacing: -7px;
+  padding-top: 17px;
+  margin-bottom: 15px;
+  @extend %cml-font-weight-light;
+  @extend %cml-text-light-black;
+}
+
+%cml-font-style-display-3,
+.cml-font-style-display-3 {
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: -2px;
+  padding-top: 8px;
+  margin-bottom: 28px;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-light-black;
+}
+
+%cml-font-style-display-2,
+.cml-font-style-display-2 {
+  font-size: 45px;
+  line-height: 48px;
+  margin-bottom: 11px;
+  letter-spacing: -1px;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-light-black;
+}
+
+%cml-font-style-display-1,
+.cml-font-style-display-1 {
+  font-size: 34px;
+  line-height: 40px;
+  padding-top: 8px;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-light-black;
+}
+
+%cml-font-style-headline,
+.cml-font-style-headline {
+  font-size: 24px;
+  line-height: 32px;
+  padding-top: 16px;
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-dark-black;
+}
+
+%cml-font-style-title,
+.cml-font-style-title {
+  font-size: 20px;
+  line-height: 28px;
+  padding-top: 19px;
+  margin-bottom: 13px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-medium;
+  @extend %cml-text-dark-black;
+}
+
+%cml-font-style-subhead-2,
+.cml-font-style-subhead-2 {
+  font-size: 15px;
+  line-height: 28px;
+  padding-top: 2px;
+  margin-bottom: 10px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-dark-black;
+}
+
+%font-style-subhead-1,
+.font-style-subhead-1 {
+  @extend %cml-font-style-subhead-2;
+  line-height: 24px;
+  padding-top: 3px;
+  margin-bottom: 13px;
+  @extend %cml-text-dark-black;
+}
+
+%cml-font-style-body-2,
+.cml-font-style-body-2 {
+  font-size: 14px;
+  line-height: 24px;
+  padding-top: 4px;
+  margin-bottom: 12px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-medium;
+  @extend %cml-text-dark-black;
+}
+
+%cml-font-style-body-1,
+.cml-font-style-body-1 {
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 7px;
+  margin-bottom: 15px;
+  letter-spacing: 1;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-dark-black;
+}
+
+%cml-font-style-caption,
+.cml-font-style-caption {
+  font-size: 12px;
+  line-height: 20px;
+  padding-top: 6px;
+  margin-bottom: 14px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-normal;
+  @extend %cml-text-light-black;
+}
+
+%cml-font-style-menu,
+.cml-font-style-menu {
+  font-size: 13px;
+  line-height: 20px;
+  padding-top: 6px;
+  margin-bottom: 14px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-medium;
+  @extend %cml-text-dark-black;
+}
+
+%cml-font-style-button,
+.cml-font-style-button {
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 5px;
+  margin-bottom: 15px;
+  letter-spacing: 0;
+  @extend %cml-font-weight-medium;
+  @extend %cml-text-dark-black;
+}

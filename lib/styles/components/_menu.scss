@@ -1,0 +1,56 @@
+.chamel-menu {
+
+  * {@include ease-out(); }
+
+  background-color: $menu-background-color;
+
+  &.chamel-menu-hideable {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    .chamel-paper-container {
+      padding: 0;
+    }
+
+    &.chamel-visible {
+      overflow: auto;
+      & > .chamel-paper-container {
+        padding-top: $desktop-gutter-mini;
+        padding-bottom: $desktop-gutter-mini;
+      }
+    }
+  }
+
+  &.chamel-menu-absoluteOnly {
+    position: absolute;
+    z-index: 99;
+  }
+
+  .chamel-paper-container {
+    padding-top: $desktop-gutter-mini;
+    padding-bottom: $desktop-gutter-mini;
+  }
+
+  .chamel-subheader {
+    padding-left: $menu-subheader-padding;
+    padding-right: $menu-subheader-padding;
+  }
+
+  .chamel-nested-menu-item {
+    position: relative;
+
+    &.chamel-is-disabled {
+      color: $disabled-color;
+      cursor: default;
+    }
+
+    &.chamel-open {
+      & > .chamel-menu {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,163 @@
+.react-draggable-dragging {
+  user-select: none;
+}
+
+.chamel-slider {
+  $fill-gutter: $slider-handle-size-disabled - $slider-track-size;
+
+  @mixin handle-size($size) {
+    width: $size;
+    height: $size;
+  }
+
+  -webkit-touch-callout: none;
+  cursor: default;
+  height: $slider-handle-size-active;
+  position: relative;
+
+  .chamel-slider-track {
+    position: absolute;
+    top: ($slider-handle-size-active - $slider-track-size) / 2;
+    left: 0;
+    width: 100%;
+    height: $slider-track-size;
+  }
+
+  .chamel-slider-selection {
+    position: absolute;
+    top: 0;
+    height: 100%;
+
+    .chamel-slider-selection-fill {
+      height: 100%;
+      @include ease-out($property: margin);
+    }
+  }
+
+  .chamel-slider-selection-low {
+    left: 0;
+
+    .chamel-slider-selection-fill {
+      background-color: $slider-selection-color;
+      margin-right: $fill-gutter;
+    }
+  }
+
+  .chamel-slider-selection-high {
+    right: 0;
+
+    .chamel-slider-selection-fill {
+      background-color: $slider-track-color;
+      margin-left: $fill-gutter;
+    }
+  }
+
+  .chamel-slider-handle {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    z-index: 1;
+    margin: ($slider-track-size / 2) 0 0 0;
+
+    background-clip: padding-box;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+    border 450ms $ease-out-function,
+    width 450ms $ease-out-function,
+    height 450ms $ease-out-function;
+
+    @include handle-size($slider-handle-size);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:not(.chamel-disabled) {
+    .chamel-slider-handle {
+      border: 0px solid transparent;
+      background-color: $slider-selection-color;
+      &:active {
+        @include handle-size($slider-handle-size-active);
+      }
+    }
+
+    &:hover, &:focus {
+      .chamel-slider-selection-high {
+        .chamel-slider-selection-fill {
+          background: $slider-track-color-selected;
+        }
+      }
+
+      &:not(.chamel-slider-zero) {
+        .chamel-slider-handle:not(:active) {
+          border: $slider-handle-size solid rgba($slider-selection-color, 0.2);
+          @include handle-size($slider-handle-size-active + $slider-handle-size);
+        }
+      }
+    }
+
+    &.chamel-slider-zero {
+      .chamel-slider-handle {
+        border: $slider-track-size solid $slider-track-color;
+        background-color: transparent;
+        box-shadow: none;
+
+        &:active {
+          border-color: $slider-track-color-selected;
+          width: $slider-handle-size-active !important;
+          height: $slider-handle-size-active !important;
+          transition:
+          background-color 450ms $ease-out-function,
+          width 450ms $ease-out-function,
+          height 450ms $ease-out-function;
+
+          & ~ .chamel-slider-selection-high .chamel-slider-selection-fill {
+            margin-left: $slider-handle-size !important;
+            @include ease-out($property: margin);
+          }
+        }
+      }
+
+      &:hover, &:focus {
+        .chamel-slider-handle {
+          $size: $slider-handle-size + $slider-track-size;
+          border: $slider-track-size solid $slider-handle-color-zero;
+          width: $size;
+          height: $size;
+        }
+      }
+    }
+  }
+
+  &.chamel-disabled {
+    $gutter: ($slider-handle-size-disabled + $slider-track-size) / 2;
+
+    cursor: not-allowed;
+
+    .chamel-slider-selection-fill {
+      background-color: $slider-track-color;
+    }
+
+    .chamel-slider-handle {
+      cursor: not-allowed;
+      background-color: $slider-track-color;
+      @include handle-size($slider-handle-size-disabled);
+    }
+
+    &.chamel-slider-zero {
+      .chamel-slider-selection-low .chamel-slider-selection-fill {
+        margin-right: $gutter;
+      }
+      .chamel-slider-selection-high .chamel-slider-selection-fill {
+        margin-left: $gutter;
+      }
+      .chamel-slider-handle {
+        border: $slider-track-size solid $slider-track-color;
+        background-color: transparent;
+      }
+    }
+  }
+}

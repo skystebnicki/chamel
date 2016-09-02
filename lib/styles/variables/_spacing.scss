@@ -1,0 +1,35 @@
+$icon-size                         : 24px !default;
+$thumb-size						   : 32px !default;
+$desktop-keyline-increment         : 64px !default;
+$desktop-drop-down-menu-item-height: 32px !default;
+$desktop-drop-down-menu-font-size  : 15px !default;
+$desktop-left-nav-menu-item-height : 48px !default;
+$desktop-subheader-height          : 48px !default;
+$desktop-toolbar-height            : 56px !default;
+
+/**
+ * Gutters
+ */
+$gutter                    : 24px !default;
+$gutter-more               : 32px !default;
+$gutter-less               : 16px !default;
+$gutter-mini               : 8px !default;
+
+/**
+ * AppBar
+ */
+
+/* legacy */
+$app-bar-height                     : $desktop-keyline-increment !default;
+
+/* new */
+$app-bar-height-small               : 48px !default;
+$app-bar-height-medium              : 56px !default;
+$app-bar-height-large               : 64px !default;
+
+
+/* legacy */
+$desktop-gutter                    : $gutter !default;
+$desktop-gutter-more               : $gutter-more !default;
+$desktop-gutter-less               : $gutter-less !default;
+$desktop-gutter-mini               : $gutter-mini !default;
