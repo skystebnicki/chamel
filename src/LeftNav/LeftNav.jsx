@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Paper from "../Paper";
-import Overlay from "../Overlay";
-import Menu from "../Menu";
+import Paper from "../Paper/Paper";
+import Overlay from "../Overlay/Overlay";
+import Menu from "../Menu/Menu";
 import Dom from "../utils/Dom";
 import Events from "../utils/Events";
 

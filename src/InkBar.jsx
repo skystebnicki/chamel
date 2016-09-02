@@ -1,9 +1,8 @@
 /**
  * The ink bar is a thin bar that floats below tabs to indicate which is active
  *
-
  */
-var React = require('react');
+import React from 'react';
 
 /**
  * Small application component
@@ -29,4 +28,9 @@ var InkBar = React.createClass({
     }
 });
 
-module.exports = InkBar;
+// Check for commonjs
+if (module) {
+    module.exports = InkBar;
+}
+
+export default InkBar;

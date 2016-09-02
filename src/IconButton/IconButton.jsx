@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Classable from '../mixins/classable';
 import EnhancedButton from '../EnhancedButton';
-import FontIcon from '../FontIcon';
-import Tooltip from '../Tooltip';
+import FontIcon from '../FontIcon/FontIcon';
+import Tooltip from '../Tooltip/Tooltip';
 
 var IconButton = React.createClass({
 

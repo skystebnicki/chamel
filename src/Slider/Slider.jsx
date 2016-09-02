@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Paper from '../Paper';
+import Paper from '../Paper/Paper';
 import Classable from '../mixins/classable';
 import Draggable from 'react-draggable2';
 

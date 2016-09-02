@@ -3,8 +3,8 @@ import Classable from '../mixins/classable';
 import WindowListenable from '../mixins/WindowListenable';
 import KeyCode from '../utils/KeyCode';
 import Calendar from './Calendar';
-import Dialog from '../Dialog';
-import FlatButton from '../FlatButton';
+import Dialog from '../Dialog/Dialog';
+import FlatButton from '../FlatButton/FlatButton';
 
 var DatePickerDialog = React.createClass({
 

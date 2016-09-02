@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import Classable from '../mixins/classable';
 import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
-import Paper from '../Paper';
-import Menu from '../menu/Menu';
-import Popover from '../Popover';
+import Paper from '../Paper/Paper';
+import Menu from '../Menu/Menu';
+import Popover from '../Popover/Popover';
 
 /**
  * Component for displaying dropdowns

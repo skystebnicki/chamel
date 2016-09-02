@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import FontIcon from "../FontIcon";
+import FontIcon from "../FontIcon/FontIcon";
 import ToolbarGroup from "../Toolbar/ToolbarGroup";
 
 /**

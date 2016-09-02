@@ -1,11 +1,11 @@
 import React from 'react';
-var Classable = require('./mixins/classable');
-var ClickAwayable = require('./mixins/ClickAwayable');
-var KeyLine = require('./utils/KeyLine');
-var Paper = require('./Paper');
-var FontIcon = require('./FontIcon');
-var Menu = require('./menu/Menu');
-import Popover from './Popover';
+import Classable from './mixins/classable';
+import ClickAwayable from './mixins/ClickAwayable';
+import KeyLine from './utils/KeyLine';
+import Paper from './Paper/Paper';
+import FontIcon from './FontIcon/FontIcon';
+import Menu from './Menu/Menu';
+import Popover from './Popover/Popover';
 
 /**
  * Component for displaying dropdowns from an icon

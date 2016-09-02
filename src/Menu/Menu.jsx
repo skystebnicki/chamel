@@ -5,7 +5,7 @@ import Dom from '../utils/Dom';
 import KeyLine from '../utils/KeyLine';
 import Classable from '../mixins/classable';
 import ClickAwayable from '../mixins/ClickAwayable';
-import Paper from '../Paper';
+import Paper from '../Paper/Paper';
 import MenuItem from './MenuItem';
 import LinkMenuItem from './LinkMenuItem';
 import SubheaderMenuItem from './SubheaderMenuItem';

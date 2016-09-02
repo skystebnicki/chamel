@@ -6,7 +6,7 @@ import UniqueId from '../utils/UniqueId';
 import WindowListenable from '../mixins/WindowListenable';
 import FocusRipple from '../ripples/FocusRipple';
 import TouchRipple from '../ripples/TouchRipple';
-import Paper from '../Paper';
+import Paper from '../Paper/Paper';
 
 var EnhancedSwitch = React.createClass({
 

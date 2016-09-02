@@ -1,7 +1,7 @@
 import React from 'react';
 import Classable from './mixins/classable';
-import Paper from './Paper';
-import EnhancedSwitch from './EnhancedSwitch';
+import Paper from './Paper/Paper';
+import EnhancedSwitch from './EnhancedSwitch/EnhancedSwitch';
 
 var Toggle = React.createClass({
 
@@ -59,4 +59,9 @@ var Toggle = React.createClass({
   }
 });
 
-module.exports = Toggle;
+// Check for commonjs
+if (module) {
+  module.exports = Toggle;
+}
+
+export default Toggle;

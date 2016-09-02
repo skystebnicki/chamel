@@ -4,9 +4,9 @@ import WindowListenable from '../mixins/WindowListenable';
 import CssEvent from '../utils/CssEvent';
 import KeyCode from '../utils/KeyCode';
 import Classable from '../mixins/classable';
-import FlatButton from '../FlatButton';
-import Overlay from '../Overlay';
-import Paper from '../Paper';
+import FlatButton from '../FlatButton/FlatButton';
+import Overlay from '../Overlay/Overlay';
+import Paper from '../Paper/Paper';
 
 var Dialog = React.createClass({
 

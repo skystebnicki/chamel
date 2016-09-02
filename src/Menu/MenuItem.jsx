@@ -1,6 +1,6 @@
 import React from 'react';
 import Classable from '../mixins/classable';
-import FontIcon from '../FontIcon';
+import FontIcon from '../FontIcon/FontIcon';
 import Toggle from '../Toggle';
 
 var Types = {

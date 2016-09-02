@@ -1,5 +1,5 @@
 import React from 'react';
-import EnhancedSwitch from '../EnhancedSwitch';
+import EnhancedSwitch from '../EnhancedSwitch/EnhancedSwitch';
 import Classable from '../mixins/classable';
 import CheckboxOutline from '../svg-icons/toggle-check-box-outline-blank';
 import CheckboxChecked from '../svg-icons/toggle-check-box-checked';

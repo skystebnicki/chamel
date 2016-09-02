@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
 import Classable from '../mixins/classable';
 import ClickAwayable from '../mixins/ClickAwayable';
-import FlatButton from '../FlatButton';
+import FlatButton from '../FlatButton/FlatButton';
 
 var Snackbar = React.createClass({
 

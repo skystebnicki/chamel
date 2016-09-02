@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Classable from '../mixins/classable';
 import UniqueId from '../utils/UniqueId';
-import EnhancedTextarea from '../EnhancedTextarea';
+import EnhancedTextarea from '../EnhancedTextarea/EnhancedTextarea';
 import DateTimeUtil from '../utils/DateTime';
-import AutoComplete from '../AutoComplete';
+import AutoComplete from '../AutoComplete/AutoComplete';
 import KeyCode from '../utils/KeyCode';
 
 var TextField = React.createClass({

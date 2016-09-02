@@ -1,6 +1,6 @@
 import React from 'react';
 import Classable from '../mixins/classable';
-import EnhancedButton from '../EnhancedButton';
+import EnhancedButton from '../EnhancedButton/EnhancedButton';
 
 var FlatButton = React.createClass({
 

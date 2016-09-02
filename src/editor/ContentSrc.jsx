@@ -1,5 +1,5 @@
 import React from 'react';
-import TextFieldRich from "../TextFieldRich";
+import TextFieldRich from "../TextFieldRich/TextFieldRich";
 
 var ContentRte = React.createClass({
 

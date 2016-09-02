@@ -1,6 +1,6 @@
 import React from 'react';
 import Classable from '../mixins/classable';
-import EnhancedSwitch from '../EnhancedSwitch';
+import EnhancedSwitch from '../EnhancedSwitch/EnhancedSwitch';
 import RadioButtonOff from '../svg-icons/toggle-radio-button-off';
 import RadioButtonOn from '../svg-icons/toggle-radio-button-on';
 

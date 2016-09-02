@@ -1,8 +1,8 @@
 import React from 'react';
-import Paper from '../Paper';
+import Paper from '../Paper/Paper';
 import Classable from '../mixins/classable';
-import EnhancedSwitch from '../EnhancedSwitch';
-import RadioButton from '../RadioButton';
+import EnhancedSwitch from '../EnhancedSwitch/EnhancedSwitch';
+import RadioButton from '../RadioButton/RadioButton';
 
 var RadioButtonGroup = React.createClass({
 

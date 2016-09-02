@@ -4,7 +4,7 @@ import WindowListenable from '../mixins/WindowListenable';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
 import DatePickerDialog from './DatePickerDialog';
-import TextField from '../TextField';
+import TextField from '../TextField/TextField';
 import device from '../utils/device';
 
 var DatePicker = React.createClass({

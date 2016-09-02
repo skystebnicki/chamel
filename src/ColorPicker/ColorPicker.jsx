@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // TODO: need to install
 // "react-colorpickr": "3.*",
 //var ReactColorPicker = require('react-colorpickr');
-import FontIcon from "../FontIcon";
+import FontIcon from "../FontIcon/FontIcon";
 
 var ColorPicker = React.createClass({
 	propTypes: {
