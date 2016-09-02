@@ -87,12 +87,13 @@ class AppBar extends React.Component {
         let rightElements = (this.props.children) ? this.props.children :
             (this.props.iconElementRight) ? this.props.iconElementRight : null;
 
-        rightElements = this._addAppBarStyleToElements(
-            rightElements, theme
-        );
-
         // If right elements exists, wrap in a toolbar
         if (rightElements) {
+            // Add any appBar custom styles to the icon
+            rightElements = this._addAppBarStyleToElements(
+                rightElements, theme
+            );
+
             menuElementRight = (
                 <div className={theme.toolbarRight}>{rightElements}</div>
             )
