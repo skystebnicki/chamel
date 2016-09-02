@@ -2,7 +2,7 @@
  * Main entry point for chamel
  */
 import Popover from './Popover/Popover';
-import Editor from './editor/Editor';
+import Editor from './Editor/Editor';
 import AppBar from './AppBar/AppBar';
 import AutoComplete from './AutoComplete/AutoComplete';
 import Checkbox from './Checkbox/Checkbox';
