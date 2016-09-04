@@ -1,32 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
+import classnames from 'classnames';
 
-var FocusRipple = React.createClass({
+class FocusRipple extends React.Component {
 
-  mixins: [Classable],
+  /**
+   * Class constructor
+   * 
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+      // Call paprent constructor
+      super(props);
+  }
 
-  propTypes: {
-    show: React.PropTypes.bool
-  },
+  componentDidMount() {
+    this.setRippleSize();
+  }
 
-  componentDidMount: function() {
-    this._setRippleSize();
-  },
+  render() {
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
+        ? this.context.chamelTheme.ripple : {};
 
-  render: function() {
-    var classes = this.getClasses('chamel-focus-ripple', {
-      'chamel-is-shown': this.props.show
+    let classes = classnames(theme.focus, {
+      [theme.focusshown]: this.props.show
     });
 
     return (
       <div className={classes}>
-        <div className="chamel-focus-ripple-inner" />
+        <div className={theme.focusinner} />
       </div>
     );
-  },
+  }
 
-  _setRippleSize: function() {
+  /**
+   * Try and determine the size of the ripple based on the size of this dom element
+   */
+  setRippleSize() {
     var el = ReactDOM.findDOMNode(this);
     var height = el.offsetHeight;
     var width = el.offsetWidth;
@@ -35,7 +45,34 @@ var FocusRipple = React.createClass({
     el.style.height = size + 'px';
     el.style.top = (size / 2 * -1) + (height / 2) + 'px';
   }
+};
 
-});
 
-module.exports = FocusRipple;
+/**
+ * Set accepted properties
+ */
+FocusRipple.propTypes = {
+  show: React.PropTypes.bool
+}
+
+/**
+ * Set property defaults
+ */
+FocusRipple.defaultProps = {
+  show: false
+}
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+FocusRipple.contextTypes = {
+    chamelTheme: React.PropTypes.object
+};
+
+// Check for commonjs
+if (module) {
+    module.exports = FocusRipple;
+}
+
+// ES6
+export default FocusRipple;

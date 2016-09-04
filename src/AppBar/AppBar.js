@@ -14,7 +14,7 @@ class AppBar extends React.Component {
 
     /**
      * Class constructor
-     * 
+     *
      * @param {Object} props Properties to send to the render function
      */
     constructor(props) {

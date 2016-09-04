@@ -1,30 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
 import Dom from '../utils/Dom';
-import RippleCircle from './Circle';
+import RippleCircle from './CircleRipple';
 
-var TouchRipple = React.createClass({
+class TouchRipple extends React.Component {
 
-  mixins: [Classable],
+  /**
+   * Class constructor
+   * 
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call paprent constructor
+    super(props);
 
-  propTypes: {
-    centerRipple: React.PropTypes.bool,
-    className: React.PropTypes.string
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       ripples: [{
         key: 0,
         started: false,
         ending: false
       }]
-    };
-  },
+    }
+  }
 
-  render: function() {
-    var classes = this.getClasses('chamel-touch-ripple');
+  render() {
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
+        ? this.context.chamelTheme.ripple : {};
 
     return (
       <div
@@ -33,15 +34,15 @@ var TouchRipple = React.createClass({
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        <div className={classes}>
+        <div className={theme.touch}>
           {this._getRippleElements()}
         </div>
         {this.props.children}
       </div>
     );
-  },
+  }
 
-  start: function(e) {
+  start = (e) => {
     var ripples = this.state.ripples;
     var nextKey = ripples[ripples.length-1].key + 1;
     var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
@@ -68,9 +69,9 @@ var TouchRipple = React.createClass({
     this.setState({
       ripples: ripples
     });
-  },
+  }
 
-  end: function() {
+  end = (e) => {
     var ripples = this.state.ripples;
     var ripple;
     var endingRipple;
@@ -93,39 +94,37 @@ var TouchRipple = React.createClass({
       });
 
       //Wait 2 seconds and remove the ripple from DOM
-      setTimeout(function() {
+      setTimeout(() => {
         ripples.shift();
-        if (this.isMounted()) {
-          this.setState({
-            ripples: ripples
-          });
-        }
-      }.bind(this), 2000);
+        this.setState({
+          ripples: ripples
+        });
+      }, 2000);
     }
-  },
+  }
 
-  _handleMouseDown: function(e) {
+  _handleMouseDown = (e) => {
     //only listen to left clicks
     if (e.button === 0) this.start(e);
-  },
+  }
 
-  _handleMouseUp: function(e) {
+  _handleMouseUp = (e) => {
     this.end();
-  },
+  }
 
-  _handleMouseOut: function(e) {
+  _handleMouseOut = (e) => {
     this.end();
-  },
+  }
 
-  _handleTouchStart: function(e) {
+  _handleTouchStart = (e) => {
     this.start(e);
-  },
+  }
 
-  _handleTouchEnd: function(e) {
+  _handleTouchEnd = (e) => {
     this.end();
-  },
+  }
 
-  _getRippleStyle: function(e) {
+  _getRippleStyle = (e) => {
     var style = {};
     var el = ReactDOM.findDOMNode(this);
     var elHeight = el.offsetHeight;
@@ -152,13 +151,13 @@ var TouchRipple = React.createClass({
     style.left = left + 'px';
 
     return style;
-  },
+  }
 
-  _calcDiag: function(a, b) {
+  _calcDiag(a, b) {
     return Math.sqrt((a * a) + (b * b));
-  },
+  }
 
-  _getRippleElements: function() {
+  _getRippleElements() {
     return this.state.ripples.map(function(ripple) {
       return (
         <RippleCircle
@@ -169,7 +168,34 @@ var TouchRipple = React.createClass({
       );
     }.bind(this));
   }
+};
 
-});
+/**
+ * Set accepted properties
+ */
+TouchRipple.propTypes = {
+  centerRipple: React.PropTypes.bool,
+  className: React.PropTypes.string
+}
 
-module.exports = TouchRipple;
+/**
+ * Set property defaults
+ */
+TouchRipple.defaultProps = {
+  show: false
+}
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+TouchRipple.contextTypes = {
+    chamelTheme: React.PropTypes.object
+};
+
+// Check for commonjs
+if (module) {
+    module.exports = TouchRipple;
+}
+
+// ES6
+export default TouchRipple;
