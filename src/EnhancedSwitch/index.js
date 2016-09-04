@@ -1,1 +1,1 @@
-export default from './EnhancedSwitch';
+export {default} from './EnhancedSwitch';

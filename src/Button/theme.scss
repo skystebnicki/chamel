@@ -1,44 +1,46 @@
 @import "../styles/variables/colors";
-@import "../styles/variables/theme-variables";
+@import "../styles/theme/material/variables/theme-variables";
 
 .button {
-  border-radius: $button-border-radius;
   user-select: none;
   outline: none;
   border: none;
   position: relative;
   overflow: hidden;
-  background-color: $flat-button-color;
-  color: $flat-button-text-color;
   line-height: $button-height;
   min-width: $button-min-width;
   padding: 0 $desktop-gutter-less;
   margin: 0;
   text-transform: uppercase;
+  border-radius: $button-border-radius;
 }
 
 .raised {
+  color: $raised-button-text-color;
+  background-color: $raised-button-color;
+
   &:hover {
-    background-color: $flat-button-hover-color;
+    background-color: $raised-button-hover-color;
   }
 
   &primary {
-    color: white;
-    background-color: $primary-1-color;
+    color: $raised-button-primary-text-color;
+    background-color: $raised-button-primary-color;
   }
 
   &accent {
-    color: white;
-    background-color: $primary-1-color;
+    color: $raised-button-secondary-text-color;
+    background-color: $raised-button-secondary-color;
   }
 
   &disabled {
-    color: $flat-button-disabled-text-color;
+    color: $raised-button-disabled-text-color;
+    background-color: $raised-button-disabled-color;
   }
 }
 
 .flat {
-  background-color: transparent;
+  background-color: $flat-button-color;
   color: $flat-button-text-color;
 
   &:hover {
@@ -46,14 +48,17 @@
   }
 
   &primary {
-    color: $primary-1-color;
+    color: $flat-button-primary-text-color;
     &:hover {
       background-color: $flat-button-primary-hover-color;
     }
   }
 
   &accent {
-    color: $accent-1-color;
+    color: $flat-button-secondary-text-color;
+    &:hover {
+      background-color: $flat-button-secondary-hover-color;
+    }
   }
 
   &disabled {

@@ -1,5 +1,5 @@
-var Classable = require('../mixins/classable');
-var React = require('react');
+import Classable from '../mixins/classable';
+import React from 'react';
 
 var ToolbarGroup = React.createClass({
 

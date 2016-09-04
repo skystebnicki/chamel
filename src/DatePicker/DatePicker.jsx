@@ -1,11 +1,11 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
-var WindowListenable = require('../mixins/WindowListenable');
-var DateTime = require('../utils/DateTime');
-var KeyCode = require('../utils/KeyCode');
-var DatePickerDialog = require('./DatePickerDialog');
-var TextField = require('../TextField');
-var device = require('../utils/device');
+import React from 'react';
+import Classable from '../mixins/classable';
+import WindowListenable from '../mixins/WindowListenable';
+import DateTime from '../utils/DateTime';
+import KeyCode from '../utils/KeyCode';
+import DatePickerDialog from './DatePickerDialog';
+import TextField from '../TextField/TextField';
+import device from '../utils/device';
 
 var DatePicker = React.createClass({
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-var Events = require('../utils/Events');
-var Dom = require('../utils/Dom');
+import Events from '../utils/Events';
+import Dom from '../utils/Dom';
 
 /**
  * Main popover class handles absolute positioning paper relative to an element

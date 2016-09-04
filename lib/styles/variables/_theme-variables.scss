@@ -1,4 +1,5 @@
 // Use these variables (and this file) to easily customize themes
+@import './spacing';
 
 //Typography
 $headingFontFamily: Tahoma, Arial, Verdana, Helvetica, sans-serif !default;
@@ -117,6 +118,9 @@ $radio-button-background-color: white !default;
 $radio-button-checked-color: $primary-1-color !default;
 $radio-button-required-color: $primary-1-color !default;
 $radio-button-disabled-color: $disabled-color !default;
+
+// icon button
+$icon-button-size: ($icon-size * 2);
 
 // checkbox
 $checkbox-box-color: $body-text-color !default;

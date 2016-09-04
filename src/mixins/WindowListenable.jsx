@@ -1,4 +1,4 @@
-var Events = require('../utils/Events');
+import Events from '../utils/Events';
 
 module.exports = {
 

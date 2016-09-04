@@ -1,7 +1,7 @@
-var React = require('react');
-var Classable = require('../mixins/classable');
-var EnhancedButton = require('../EnhancedButton');
-var Paper = require('../Paper');
+import React from 'react';
+import Classable from '../mixins/classable';
+import EnhancedButton from '../EnhancedButton/EnhancedButton';
+import Paper from '../Paper/Paper';
 
 var RaisedButton = React.createClass({
 

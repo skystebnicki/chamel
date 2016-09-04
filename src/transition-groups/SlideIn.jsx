@@ -1,6 +1,6 @@
-const React = require('react');
-const ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-const SlideInChild = require('./SlideInChild');
+import React from'react';
+import ReactCSSTransitionGroup from'react-addons-css-transition-group';
+import SlideInChild from'./SlideInChild';
 
 
 const SlideIn = React.createClass({

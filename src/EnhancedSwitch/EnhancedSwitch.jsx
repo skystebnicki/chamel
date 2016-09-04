@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var KeyCode = require('../utils/KeyCode');
-var Classable = require('../mixins/classable');
-var UniqueId = require('../utils/UniqueId');
-var WindowListenable = require('../mixins/WindowListenable');
-var FocusRipple = require('../ripples/FocusRipple');
-var TouchRipple = require('../ripples/TouchRipple');
-var Paper = require('../Paper');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import KeyCode from '../utils/KeyCode';
+import Classable from '../mixins/classable';
+import UniqueId from '../utils/UniqueId';
+import WindowListenable from '../mixins/WindowListenable';
+import FocusRipple from '../ripples/FocusRipple';
+import TouchRipple from '../ripples/TouchRipple';
+import Paper from '../Paper/Paper';
 
 var EnhancedSwitch = React.createClass({
 

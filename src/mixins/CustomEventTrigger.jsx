@@ -1,9 +1,7 @@
 /**
  * Handle triggering custom events and bubbling them up
  *
-
  */
- 'use strict';
 
 /**
  * Handle triggering custom events

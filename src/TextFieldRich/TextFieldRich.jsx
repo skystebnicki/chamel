@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var UAParser = require('ua-parser-js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import UAParser from 'ua-parser-js';
 
 var uaParser = new UAParser();
 

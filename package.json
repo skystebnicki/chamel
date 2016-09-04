@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.1.15",
+  "version": "0.1.37",
   "keywords": [
     "react",
     "react-component",
@@ -21,8 +21,6 @@
   },
   "homepage": "http://www.skystebnicki.com/",
   "scripts": {
-    "prestart": "npm install",
-    "start": "http-server . -a 0.0.0.0 -p 8000",
     "pretest": "npm install",
     "build": "babel ./src --out-dir ./lib && npm run sass",
     "sass": "cpx './src/**/*.scss' ./lib",
@@ -36,7 +34,7 @@
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.21",
-    "babel-eslint": "^5.0.0-beta6",
+    "babel-eslint": "^5.0.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-transform-dev-warning": "^0.1.0",
@@ -71,12 +69,7 @@
     "tmp": "0.0.23"
   },
   "description": "This is a ReactJS UI framework designed to provide the most native experience possible automatically across common platforms and devices.",
-  "main": "lib/main.js",
-  "files": [
-    "lib",
-    "src",
-    "dist"
-  ],
+  "main": "lib/",
   "browserify": {
     "transform": [
       [

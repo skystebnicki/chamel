@@ -1,70 +1,37 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var CssEvent = require('../utils/CssEvent');
-var Dom = require('../utils/Dom');
-var KeyLine = require('../utils/KeyLine');
-var Classable = require('../mixins/classable');
-var ClickAwayable = require('../mixins/ClickAwayable');
-var Paper = require('../Paper');
-var MenuItem = require('./MenuItem');
-var LinkMenuItem = require('./LinkMenuItem');
-var SubheaderMenuItem = require('./SubheaderMenuItem');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CssEvent from '../utils/CssEvent';
+import Dom from '../utils/Dom';
+import KeyLine from '../utils/KeyLine';
+import Classable from '../mixins/classable';
+import ClickAwayable from '../mixins/ClickAwayable';
+import Paper from '../Paper/Paper';
+import MenuItem from './MenuItem';
+import LinkMenuItem from './LinkMenuItem';
+import SubheaderMenuItem from './SubheaderMenuItem';
+import classnames from 'classnames';
 
-var Menu = React.createClass({
+class Menu extends React.Component {
+    /**
+     * Class constructor
+     *
+     * @param {Object} props Properties to send to the render function
+     */
+    constructor(props) {
+        // Call paprent constructor
+        super(props);
 
-    mixins: [Classable],
-
-    propTypes: {
-        autoWidth: React.PropTypes.bool,
-        onItemTap: React.PropTypes.func,
-        onItemClick: React.PropTypes.func,
-        onToggleClick: React.PropTypes.func,
-        menuItems: React.PropTypes.array,
-        selectedIndex: React.PropTypes.number,
-        hideable: React.PropTypes.bool,
-        visible: React.PropTypes.bool,
-        zDepth: React.PropTypes.number,
-
-        /**
-         * The index that is currently being focused.
-         *
-         * This is used when moving the list up/down using the keyboard instead of hovering using the mouse
-         *
-         * @param {int}
-         */
-        focusedIndex: React.PropTypes.number,
-
-        /**
-         * Custom classes that will be applied to the paper container
-         *
-         * @param {string}
-         */
-        classes: React.PropTypes.string
-    },
-
-    getInitialState: function () {
-        return {
-            nestedMenuShown: false,
-            focusedIndex: this.props.focusedIndex
+        this.state = {
+          nestedMenuShown: false,
+          focusedIndex: props.focusedIndex
         }
-    },
+    }
 
-    getDefaultProps: function () {
-        return {
-            focusedIndex: null,
-            autoWidth: true,
-            hideable: false,
-            visible: true,
-            zDepth: 1,
-            menuItems: []
-        };
-    },
-
-    componentWillReceiveProps: function (nextProps) {
+    componentWillReceiveProps(nextProps) {
         this.setState({focusedIndex: nextProps.focusedIndex})
-    },
+    }
 
-    componentDidMount: function () {
+    componentDidMount() {
         var el = ReactDOM.findDOMNode(this);
 
         //Set the menu with
@@ -75,17 +42,20 @@ var Menu = React.createClass({
 
         //Show or Hide the menu according to visibility
         this._renderVisibility();
-    },
+    }
 
-    componentDidUpdate: function (prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
 
         if (this.props.visible !== prevProps.visible) this._renderVisibility();
-    },
+    }
 
-    render: function () {
-        var classes = this.getClasses('chamel-menu', {
-            'chamel-menu-hideable': this.props.hideable,
-            'chamel-visible': this.props.visible
+    render() {
+        let theme = (this.context.chamelTheme && this.context.chamelTheme.button)
+          ? this.context.chamelTheme.button : {};
+
+        var classes = classnames(theme.menu, {
+            [theme.menuhideable]: this.props.hideable,
+            [theme.menuvisible]: this.props.visible
         });
 
         // If we have custom classes in the props, then let's include it
@@ -96,23 +66,28 @@ var Menu = React.createClass({
         let children = (this.props.menuItems.length) ? this._getChildren() : this.props.children;
 
         return (
-            <Paper ref="paperContainer" onMouseEnter={this._handleMouseEnter} onMouseLeave={this._handleMouseLeave}
-                   zDepth={this.props.zDepth} className={classes}>
+            <Paper
+              ref="paperContainer"
+              onMouseEnter={this._handleMouseEnter}
+              onMouseLeave={this._handleMouseLeave}
+              zDepth={this.props.zDepth}
+              className={classes}
+            >
                 {children}
             </Paper>
         );
-    },
+    }
 
     /**
      * Callback used to handle the hovering of mouse into the menu list
      *
      * @private
      */
-    _handleMouseEnter: function () {
+    _handleMouseEnter = () => {
         this.setState({focusedIndex: null})
-    },
+    }
 
-    _getChildren: function () {
+    _getChildren () {
         var children = [],
             menuItem,
             itemComponent,
@@ -207,9 +182,9 @@ var Menu = React.createClass({
         }
 
         return children;
-    },
+    }
 
-    _setKeyWidth: function (el) {
+    _setKeyWidth (el) {
         var menuWidth = this.props.autoWidth ?
         KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
             '100%';
@@ -223,9 +198,9 @@ var Menu = React.createClass({
             // el.style.width = menuWidth;
             el.style.width = "auto";
         });
-    },
+    }
 
-    _renderVisibility: function () {
+    _renderVisibility () {
         var el;
 
         if (this.props.hideable) {
@@ -261,28 +236,78 @@ var Menu = React.createClass({
                 innerContainer.style.overflow = 'hidden';
             }
         }
-    },
+    }
 
-    _onNestedItemClick: function (e, index, menuItem) {
+    _onNestedItemClick = (e, index, menuItem) => {
         if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-    },
+    }
 
-    _onNestedItemTap: function (e, index, menuItem) {
+    _onNestedItemTap = (e, index, menuItem) => {
         if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-    },
+    }
 
-    _onItemClick: function (e, index) {
+    _onItemClick = (e, index) => {
         if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
-    },
+    }
 
-    _onItemTap: function (e, index) {
+    _onItemTap = (e, index) => {
         if (this.props.onItemTap) this.props.onItemTap(e, index, this.props.menuItems[index]);
-    },
+    }
 
-    _onItemToggle: function (e, index, toggled) {
+    _onItemToggle = (e, index, toggled) => {
         if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
     }
 
-});
+}
+
+/**
+ * Set accepted properties
+ */
+Menu.propTypes = {
+  autoWidth: React.PropTypes.bool,
+  onItemTap: React.PropTypes.func,
+  onItemClick: React.PropTypes.func,
+  onToggleClick: React.PropTypes.func,
+  menuItems: React.PropTypes.array,
+  selectedIndex: React.PropTypes.number,
+  hideable: React.PropTypes.bool,
+  visible: React.PropTypes.bool,
+  zDepth: React.PropTypes.number,
+
+  /**
+   * The index that is currently being focused.
+   *
+   * This is used when moving the list up/down using the keyboard instead of hovering using the mouse
+   *
+   * @param {int}
+   */
+  focusedIndex: React.PropTypes.number,
+
+  /**
+   * Custom classes that will be applied to the paper container
+   *
+   * @param {string}
+   */
+  classes: React.PropTypes.string
+}
+
+/**
+ * Set property defaults
+ */
+Menu.defaultProps = {
+  focusedIndex: null,
+  autoWidth: true,
+  hideable: false,
+  visible: true,
+  zDepth: 1,
+  menuItems: []
+}
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+Menu.contextTypes = {
+    chamelTheme: React.PropTypes.object
+};
 
 module.exports = Menu;

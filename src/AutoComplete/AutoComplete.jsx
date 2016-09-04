@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var KeyCode = require('../utils/KeyCode');
-var Menu = require('../Menu');
-import Popover from '../Popover';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import KeyCode from '../utils/KeyCode';
+import Menu from '../Menu/Menu';
+import Popover from '../Popover/Popover';
 
 var AutoComplete = React.createClass({
 
