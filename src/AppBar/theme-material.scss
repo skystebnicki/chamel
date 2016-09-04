@@ -7,6 +7,7 @@
 .appBar {
   width: 100%;
   background-color: $app-bar-color;
+  z-index: 5;
   height: $app-bar-height-small;
 
   @media #{$device-medium} {
@@ -17,8 +18,24 @@
     height: $app-bar-height-large;
   }
 
-  .iconButton, .fontIcon  {
+  .chamel-paper-container {
+    padding-left: $gutter-less;
+    padding-right: $gutter-less;
+
+    @media #{$device-medium} {
+      padding-left: $gutter-less;
+      padding-right: $gutter;
+    }
+
+    @media #{$device-large} {
+      padding-left: $gutter;
+      padding-right: $gutter;
+    }
+  }
+
+  .iconButton  {
     margin-top: (($app-bar-height-small - $icon-button-size) / 2);
+    background-color: transparent;
 
     @media #{$device-medium} {
       margin-top: (($app-bar-height-medium - $icon-button-size) / 2);

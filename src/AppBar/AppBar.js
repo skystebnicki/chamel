@@ -191,7 +191,6 @@ class AppBar extends React.Component {
      * @private
      * @return {ReactElement} Cloned element plus appbar style
      */
-
     _addAppBarStyleToElements = (element, theme) => {
 
         // If this is not a react element, just return whatever we got
@@ -217,14 +216,18 @@ class AppBar extends React.Component {
              * If the element is supported, then clone a new element and
              * append appBar special class to the className
              */
-            switch (element.type.displayName) {
+            console.log("Element type", element.type.name);
+            switch (element.type.name) {
                 case 'IconButton':
                     return React.cloneElement(element, {
-                        className: className + theme.iconButton
+                        className: className + " " + theme.iconButton
                     });
+                case 'Button':
+                default:
+                    return React.cloneElement(element, {
+                        className: className + " " + theme.button
+                    })
             }
-
-            return element;
         }
     }
 }

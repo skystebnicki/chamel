@@ -1,21 +1,45 @@
-import React from 'react';
-import Classable from '../mixins/classable';
+import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 
-var FontIcon = React.createClass({
+/**
+ * Functional component for any button
+ *
+ * @param props
+ * @param context
+ * @returns {ReactDOM}
+ * @constructor
+ */
+const FontIcon = (props, context) => {
+    let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
+        ? context.chamelTheme.fontIcon : {};
 
-  mixins: [Classable],
-
-  render: function() {
-
-    var className = this.props.className;
-    var classes = this.getClasses('chamel-font-icon');
+    const classes = classnames(theme.fontIcon, props.className);
 
     return (
-      <span {...this.props} className={classes} />
+        <span {...props} className={classes} />
     );
-  }
+}
 
-});
+/**
+ * Set accepted properties
+ */
+FontIcon.propTypes = {
+  className: PropTypes.string
+};
+
+/**
+ * Set property defaults
+ */
+FontIcon.defaultProps = {
+  className: ''
+};
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+FontIcon.contextTypes = {
+  chamelTheme: React.PropTypes.object
+};
 
 // Check for commonjs
 if (module) {

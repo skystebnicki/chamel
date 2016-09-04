@@ -2,73 +2,84 @@
 @import "../styles/theme/material/variables/theme-variables";
 
 .button {
-  user-select: none;
-  outline: none;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  line-height: $button-height;
-  min-width: $button-min-width;
-  padding: 0 $desktop-gutter-less;
-  margin: 0;
-  text-transform: uppercase;
-  border-radius: $button-border-radius;
+  vertical-align: middle;
 }
 
 .raised {
-  color: $raised-button-text-color;
-  background-color: $raised-button-color;
+  @extend .button;
 
   &:hover {
-    background-color: $raised-button-hover-color;
   }
 
   &primary {
-    color: $raised-button-primary-text-color;
-    background-color: $raised-button-primary-color;
   }
 
   &accent {
-    color: $raised-button-secondary-text-color;
-    background-color: $raised-button-secondary-color;
   }
 
   &disabled {
-    color: $raised-button-disabled-text-color;
-    background-color: $raised-button-disabled-color;
   }
 }
 
 .flat {
-  background-color: $flat-button-color;
-  color: $flat-button-text-color;
+  @extend .button;
 
   &:hover {
-    background-color: $flat-button-hover-color;
   }
 
   &primary {
-    color: $flat-button-primary-text-color;
     &:hover {
-      background-color: $flat-button-primary-hover-color;
     }
   }
 
   &accent {
-    color: $flat-button-secondary-text-color;
     &:hover {
-      background-color: $flat-button-secondary-hover-color;
     }
   }
 
   &disabled {
-    color: $flat-button-disabled-text-color;
     &:hover {
-      background-color: transparent;
     }
   }
 }
 
 .floating {
+  @extend .button;
 
+  &mini {
+  }
+
+  &:hover {
+  }
+
+  &primary {
+  }
+
+  &accent {
+  }
+
+  &disabled {
+  }
+}
+
+.icon {
+  @extend .button;
+
+  &:hover {
+  }
+
+  &primary {
+    &:hover {
+    }
+  }
+
+  &accent {
+    &:hover {
+    }
+  }
+
+  &disabled {
+    &:hover {
+    }
+  }
 }

@@ -1,7 +1,7 @@
-var React = require("react");
-var AppBar = require("../../src/AppBar");
-var IconButton = require("../../src/IconButton");
-var FlatButton = require("../../src/FlatButton");
+import React from 'react';
+import AppBar from '../../src/AppBar';
+import IconButton from '../../src/Button/IconButton';
+import CloseIcon from 'chamel/icons/font/CloseIcon';
 var CodeExample = require("../CodeExample");
 
 var AppBarDemo = React.createClass({
@@ -9,14 +9,14 @@ var AppBarDemo = React.createClass({
     render: function() {
 
         var leftIcon = (
-            <IconButton
-                iconClassName="cfi cfi-close">
+            <IconButton>
+                <CloseIcon />
             </IconButton>
         );
 
         var rightIcon = (
-            <IconButton
-                iconClassName="cfi cfi-pencil">
+            <IconButton>
+                <CloseIcon />
             </IconButton>
         );
 
