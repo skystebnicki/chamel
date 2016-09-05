@@ -22,6 +22,7 @@ var RouteLink = ReactRouter.Link;
 var menuItems = [
   { route: 'home', text: 'Home' },
   { route: 'app-bar', text: 'AppBar' },
+  { route: 'drawer', text: 'Drawer' },
   { route: 'button', text: 'Button' },
   { route: 'input', text: 'Input' },
   { route: 'checkbox', text: 'Checkbox' },

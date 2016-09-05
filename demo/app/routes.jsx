@@ -2,6 +2,7 @@ var React = require("react");
 var App = require("./demo-app.jsx");
 var Home = require("./home.jsx");
 var AppBarDemo = require("../controls/AppBarDemo.jsx");
+var DrawerDemo = require("../controls/DrawerDemo.jsx");
 var ButtonDemo = require("../controls/ButtonDemo.jsx");
 var ToolbarDemo = require("../controls/ToolbarDemo.jsx");
 var EditorDemo = require("../controls/EditorDemo.jsx");
@@ -25,6 +26,7 @@ var routes = (
 	<Route component={App} path="/">
 		<IndexRoute component={Home} />
 		<Route name="home" path="home" component={Home}/>
+		<Route name="drawer" path="drawer" component={DrawerDemo}/>
 		<Route name="button" path="button" component={ButtonDemo}/>
 		<Route name="checkbox" path="checkbox" component={CheckboxDemo}/>
 		<Route name="radio" path="radio" component={RadioDemo}/>
