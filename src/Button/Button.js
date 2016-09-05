@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import TouchRipple from '../ripples/TouchRipple';
 import Tappable from 'react-tappable';
 import classnames from 'classnames';
 
@@ -14,19 +15,24 @@ const Button = (props, context) => {
     let theme = (context.chamelTheme && context.chamelTheme.button)
         ? context.chamelTheme.button : {};
 
-    // Setu pclasses
+    // Setup classes
     const className = props.className || null;
     const type = props.type ;
-    const classes = classnames(theme.button, theme[type], {
+    const classes = classnames(theme[type], {
         [theme[type + "primary"]]: props.primary,
         [theme[type + "accent"]]: props.accent,
-        [theme[type + "disabled"]]: props.disabled
+        [theme[type + "disabled"]]: props.disabled,
+        [theme[type + "mini"]]: props.mini
     }, className);
 
     if (props.onTap && !props.disabled) {
         return (
             <Tappable onTap={props.onTap}>
-                <button className={classes}>{props.children}</button>
+                <button className={classes}>
+                    <TouchRipple>
+                        {props.children}
+                    </TouchRipple>
+                </button>
             </Tappable>
         );
     } else {
@@ -59,7 +65,7 @@ Button.propTypes = {
     onMouseLeave: PropTypes.func,
     onMouseUp: PropTypes.func,
     raised: PropTypes.bool,
-    type: PropTypes.oneOf(['raised', 'flat', 'floating'])
+    type: PropTypes.oneOf(['raised', 'flat', 'floating', 'icon'])
 };
 
 /**

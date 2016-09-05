@@ -15,15 +15,22 @@
 @import "font-awesome/stacked";
 @import "font-awesome/icons";
 
+/* chanel font icon namespace */
+.fontIcon {
+  @include fa-icon();
+  font-size: 120%;
+}
+
 /**
  * Navigation Icons
  */
-.cfi-close {
-  @extend .fa;
+.iconClose {
+  @extend .fontIcon;
   @extend .fa-times;
 }
 
-.cfi-pencil {
+.pencil {
+  @extend .fontIcon;
   @extend .fa-pencil;
 }
 
@@ -31,90 +38,111 @@
  * Text Icons
  */
 
-.cfi-align-center {
+.alignCenter {
+  @extend .fontIcon;
   @extend .fa-align-center;
 }
 
-.cfi-align-left {
+.alignLeft {
+  @extend .fontIcon;
   @extend .fa-align-left;
 }
 
-.cfi-align-right {
+.alignRight {
+  @extend .fontIcon;
   @extend .fa-align-right;
 }
 
-.cfi-bold {
+.bold {
+  @extend .fontIcon;
   @extend .fa-bold;
 }
 
-.cfi-italic {
+.italic {
+  @extend .fontIcon;
   @extend .fa-italic;
 }
 
-.cfi-underline {
+.underline {
+  @extend .fontIcon;
   @extend .fa-underline;
 }
 
-.cfi-font {
+.font {
+  @extend .fontIcon;
   @extend .fa-font;
 }
 
-.cfi-files-o {
+.files {
+  @extend .fontIcon;
   @extend .fa-files-o;
 }
 
-.cfi-minus {
+.minus {
+  @extend .fontIcon;
   @extend .fa-minus;
 }
 
-.cfi-link {
+.link {
+  @extend .fontIcon;
   @extend .fa-link;
 }
 
-.cfi-table {
+.table {
+  @extend .fontIcon;
   @extend .fa-table;
 }
 
-.cfi-list-ol {
+.listOrdered {
+  @extend .fontIcon;
   @extend .fa-list-ol;
 }
 
-.cfi-list-ul {
+.listUnordered {
+  @extend .fontIcon;
   @extend .fa-list-ul;
 }
 
-.cfi-header {
+.header {
+  @extend .fontIcon;
   @extend .fa-header;
 }
 
-.cfi-text-height {
+.textHeight {
+  @extend .fontIcon;
   @extend .fa-text-height;
 }
 
-.cfi-eyedropper {
+.eyedropper {
+  @extend .fontIcon;
   @extend .fa-eyedropper;
 }
 
-.cfi-magic {
+.magic {
+  @extend .fontIcon;
   @extend .fa-magic;
 }
 
-.cfi-times {
+.times {
+  @extend .fontIcon;
   @extend .fa-times;
 }
 
 /**
  * Directional icons
  */
-.cfi-caret-square-o-down {
+.caretSquareDown {
+  @extend .fontIcon;
   @extend .fa-caret-square-o-down;
 }
 
-.cfi-chevron-left {
+.chevronLeft {
+  @extend .fontIcon;
   @extend .fa-chevron-left;
 }
 
-.cfi-chevron-right {
+.chevronRight {
+  @extend .fontIcon;
   @extend .fa-chevron-right;
 }
 
