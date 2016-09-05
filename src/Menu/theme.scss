@@ -1,0 +1,57 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+
+.menu {
+
+  * {@include ease-out(); }
+
+  background-color: $menu-background-color;
+
+  &.hideable {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    &.visible {
+      overflow: auto;
+      & > .chamel-paper-container {
+        padding-top: $desktop-gutter-mini;
+        padding-bottom: $desktop-gutter-mini;
+      }
+    }
+  }
+
+  &.absoluteOnly {
+    position: absolute;
+    z-index: 99;
+  }
+
+  .paperContainer {
+    padding-top: $desktop-gutter-mini;
+    padding-bottom: $desktop-gutter-mini;
+  }
+
+  .subheader {
+    padding-left: $menu-subheader-padding;
+    padding-right: $menu-subheader-padding;
+  }
+
+  .nestedMenuItem {
+    position: relative;
+
+    &.isDisabled {
+      color: $disabled-color;
+      cursor: default;
+    }
+
+    &.open {
+      & > .menu {
+        opacity: 1;
+      }
+    }
+  }
+}

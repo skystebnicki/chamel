@@ -1,0 +1,43 @@
+@import "../styles/variables/colors";
+@import "../styles/mixins/transitions";
+@import "../styles/variables/theme-variables";
+
+.focus {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  @include ease-out();
+  @include transform(scale(0));
+  opacity: 0;
+
+  .inner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.1);
+
+    @include pulsate(
+            $animation-name: "focus-ripple-pulsate",
+            $start-size: 0.75,
+            $end-size: 0.85
+    );
+
+  }
+
+  &.shown {
+    @include transform(scale(1));
+    opacity: 1;
+  }
+}
+
+.touch {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
