@@ -15,15 +15,11 @@
 @import "font-awesome/stacked";
 @import "font-awesome/icons";
 
-/* chanel font icon namespace */
-.cfi {
-  @extend .fa;
-}
-
 /**
  * Navigation Icons
  */
 .cfi-close {
+  @extend .fa;
   @extend .fa-times;
 }
 

@@ -63,7 +63,7 @@ class AppBar extends React.Component {
         let theme = (this.context.chamelTheme && this.context.chamelTheme.appBar)
             ? this.context.chamelTheme.appBar : baseTheme;
 
-        let classes = theme.appBar, title, menuElementLeft, menuElementRight;
+        let classes = theme.appBarOuter, title, menuElementLeft, menuElementRight;
 
         if (this.props.className) {
             classes += " " + this.props.className;
@@ -77,7 +77,7 @@ class AppBar extends React.Component {
             );
 
             menuElementLeft = (
-                <div className={theme.toolbarLeft}>
+                <div className={theme.appBarLeft}>
                     {iconElementLeft}
                 </div>
             );
@@ -95,7 +95,7 @@ class AppBar extends React.Component {
             );
 
             menuElementRight = (
-                <div className={theme.toolbarRight}>{rightElements}</div>
+                <div className={theme.appBarRight}>{rightElements}</div>
             )
         }
 
@@ -104,7 +104,7 @@ class AppBar extends React.Component {
             // If the title is a string, wrap in an h1 tag.
             // If not, just use it as a node.
             title = toString.call(this.props.title) === '[object String]' ?
-                <h1 className={theme.title}>{this.props.title}</h1> :
+                <h1 className={theme.appBarTitle}>{this.props.title}</h1> :
                 this.props.title;
         }
 
@@ -138,7 +138,7 @@ class AppBar extends React.Component {
                         {menuElementLeft}
                         {menuElementRight}
                         {title}
-                        <div className={theme.clear} />
+                        <div className={theme.appBarClear} />
                     </Paper>
                 </div>
             </div>
@@ -216,11 +216,10 @@ class AppBar extends React.Component {
              * If the element is supported, then clone a new element and
              * append appBar special class to the className
              */
-            console.log("Element type", element.type.name);
             switch (element.type.name) {
                 case 'IconButton':
                     return React.cloneElement(element, {
-                        className: className + " " + theme.iconButton
+                        className: className + " " + theme.appBarIconButton
                     });
                 case 'Button':
                 default:

@@ -4,7 +4,7 @@
 @import "../styles/variables/theme-variables";
 @import "../styles/core/typography";
 
-.appBar {
+.appBarOuter {
   width: 100%;
   background-color: $app-bar-color;
   z-index: 5;
@@ -33,70 +33,6 @@
     }
   }
 
-  .iconButton, .fontIcon  {
-    margin-top: (($app-bar-height-small - $icon-button-size) / 2);
-
-    @media #{$device-medium} {
-      margin-top: (($app-bar-height-medium - $icon-button-size) / 2);
-    }
-
-    @media #{$device-large} {
-      margin-top: (($app-bar-height-large - $icon-button-size) / 2);
-    }
-
-    * {
-      fill: $app-bar-text-color;
-      color: $app-bar-text-color;
-    }
-  }
-
-  .title {
-    @extend .cml-font-style-title;
-    color: $app-bar-text-color;
-    padding: 0;
-    margin: 0;
-
-    float: left;
-
-    line-height: $app-bar-height-small;
-    @media #{$device-medium} {
-      line-height: $app-bar-height-medium;
-    }
-    @media #{$device-large} {
-      line-height: $app-bar-height-large;
-    }
-  }
-
-  .toolbarRight {
-    float: right;
-    margin: 0 ($gutter-less * -1) 0 $gutter-less;
-
-    @media #{$device-medium} {
-      margin: 0 ($gutter * -1) 0 $gutter;
-    }
-
-    @media #{$device-large} {
-      margin: 0 ($gutter * -1) 0 $gutter;
-    }
-  }
-
-  .toolbarLeft {
-    float: left;
-    margin-right: $gutter-less - ($gutter-less - ($icon-size / 2));
-    margin-left: ($icon-size / 2) * -1;
-
-    @media #{$device-medium} {
-      margin-right: $gutter - ($gutter - ($icon-size / 2));
-      margin-left: ($icon-size / 2) * -1;
-    }
-
-    @media #{$device-large} {
-      margin-right: $gutter - ($gutter - ($icon-size / 2));
-      margin-left: ($icon-size / 2) * -1;
-    }
-
-  }
-
   .appBar-input-search-box {
     float: left;
 
@@ -105,8 +41,73 @@
     }
   }
 
-  .clear {
-    clear: both;
+}
+
+.appBarTitle {
+  @extend .cml-font-style-title;
+  color: $app-bar-text-color;
+  padding: 0;
+  margin: 0;
+
+  float: left;
+
+  line-height: $app-bar-height-small;
+  @media #{$device-medium} {
+    line-height: $app-bar-height-medium;
+  }
+  @media #{$device-large} {
+    line-height: $app-bar-height-large;
+  }
+}
+
+.appBarRight {
+  float: right;
+  margin: 0 ($gutter-less * -1) 0 $gutter-less;
+
+  @media #{$device-medium} {
+    margin: 0 ($gutter * -1) 0 $gutter;
   }
 
+  @media #{$device-large} {
+    margin: 0 ($gutter * -1) 0 $gutter;
+  }
+}
+
+.appBarLeft {
+  float: left;
+  margin-right: $gutter-less - ($gutter-less - ($icon-size / 2));
+  margin-left: ($icon-size / 2) * -1;
+
+  @media #{$device-medium} {
+    margin-right: $gutter - ($gutter - ($icon-size / 2));
+    margin-left: ($icon-size / 2) * -1;
+  }
+
+  @media #{$device-large} {
+    margin-right: $gutter - ($gutter - ($icon-size / 2));
+    margin-left: ($icon-size / 2) * -1;
+  }
+
+}
+
+.appBarClear {
+  clear: both;
+}
+
+.appBarIconButton  {
+  margin-top: (($app-bar-height-small - $icon-button-size) / 2);
+  background-color: transparent;
+
+  @media #{$device-medium} {
+    margin-top: (($app-bar-height-medium - $icon-button-size) / 2);
+  }
+
+  @media #{$device-large} {
+    margin-top: (($app-bar-height-large - $icon-button-size) / 2);
+  }
+
+  * {
+    fill: $app-bar-text-color;
+    color: $app-bar-text-color;
+  }
 }

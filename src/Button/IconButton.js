@@ -10,7 +10,9 @@ import Button from './Button';
  * @constructor
  */
 const IconButton = (props, context) => {
-    return (<Button type={'icon'} {...props}>{props.children}</Button>);
+    return (
+        <Button type={'icon'} {...props}>{props.children}</Button>
+    );
 };
 
 /**

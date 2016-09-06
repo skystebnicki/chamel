@@ -12,6 +12,44 @@ import SubheaderMenuItem from './SubheaderMenuItem';
 import classnames from 'classnames';
 
 class Menu extends React.Component {
+
+    static propTypes = {
+        autoWidth: React.PropTypes.bool,
+        onItemTap: React.PropTypes.func,
+        onItemClick: React.PropTypes.func,
+        onToggleClick: React.PropTypes.func,
+        menuItems: React.PropTypes.array,
+        selectedIndex: React.PropTypes.number,
+        hideable: React.PropTypes.bool,
+        visible: React.PropTypes.bool,
+        zDepth: React.PropTypes.number,
+
+        /**
+         * The index that is currently being focused.
+         *
+         * This is used when moving the list up/down using the keyboard instead of hovering using the mouse
+         *
+         * @param {int}
+         */
+        focusedIndex: React.PropTypes.number,
+
+        /**
+         * Custom classes that will be applied to the paper container
+         *
+         * @param {string}
+         */
+        classes: React.PropTypes.string
+    };
+
+    static defaultProps = {
+        focusedIndex: null,
+        autoWidth: true,
+        hideable: false,
+        visible: true,
+        zDepth: 1,
+        menuItems: []
+    };
+
     /**
      * Class constructor
      *
@@ -50,12 +88,12 @@ class Menu extends React.Component {
     }
 
     render() {
-        let theme = (this.context.chamelTheme && this.context.chamelTheme.button)
-          ? this.context.chamelTheme.button : {};
+        let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
+          ? this.context.chamelTheme.menu : {};
 
         var classes = classnames(theme.menu, {
-            [theme.menuhideable]: this.props.hideable,
-            [theme.menuvisible]: this.props.visible
+            [theme.menuHideable]: this.props.hideable,
+            [theme.menuVisible]: this.props.visible
         });
 
         // If we have custom classes in the props, then let's include it
@@ -261,53 +299,10 @@ class Menu extends React.Component {
 }
 
 /**
- * Set accepted properties
- */
-Menu.propTypes = {
-  autoWidth: React.PropTypes.bool,
-  onItemTap: React.PropTypes.func,
-  onItemClick: React.PropTypes.func,
-  onToggleClick: React.PropTypes.func,
-  menuItems: React.PropTypes.array,
-  selectedIndex: React.PropTypes.number,
-  hideable: React.PropTypes.bool,
-  visible: React.PropTypes.bool,
-  zDepth: React.PropTypes.number,
-
-  /**
-   * The index that is currently being focused.
-   *
-   * This is used when moving the list up/down using the keyboard instead of hovering using the mouse
-   *
-   * @param {int}
-   */
-  focusedIndex: React.PropTypes.number,
-
-  /**
-   * Custom classes that will be applied to the paper container
-   *
-   * @param {string}
-   */
-  classes: React.PropTypes.string
-}
-
-/**
- * Set property defaults
- */
-Menu.defaultProps = {
-  focusedIndex: null,
-  autoWidth: true,
-  hideable: false,
-  visible: true,
-  zDepth: 1,
-  menuItems: []
-}
-
-/**
  * An alternate theme may be passed down by a provider
  */
 Menu.contextTypes = {
     chamelTheme: React.PropTypes.object
 };
 
-module.exports = Menu;
+export default Menu;

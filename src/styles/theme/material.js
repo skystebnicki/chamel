@@ -1,3 +1,6 @@
+// Only use this when not using identified modules - otherwise comment out
+import legacy from './material/material.scss';
+
 import base from './base';
 
 // This is where we would import every single component as a key here

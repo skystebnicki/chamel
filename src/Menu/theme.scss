@@ -2,56 +2,132 @@
 @import "../styles/variables/spacing";
 @import "../styles/variables/theme-variables";
 @import "../styles/mixins/transitions";
+@import "../styles/core/typography";
 
 .menu {
 
   * {@include ease-out(); }
 
   background-color: $menu-background-color;
+  padding-top: $desktop-gutter-mini;
+  padding-bottom: $desktop-gutter-mini;
+}
 
-  &.hideable {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    overflow: hidden;
+.menuHideable {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+}
 
-    &.visible {
-      overflow: auto;
-      & > .chamel-paper-container {
-        padding-top: $desktop-gutter-mini;
-        padding-bottom: $desktop-gutter-mini;
-      }
-    }
-  }
-
-  &.absoluteOnly {
-    position: absolute;
-    z-index: 99;
-  }
-
-  .paperContainer {
+.menuHideableVisible {
+  overflow: auto;
+  & > .chamel-paper-container {
     padding-top: $desktop-gutter-mini;
     padding-bottom: $desktop-gutter-mini;
   }
+}
 
-  .subheader {
-    padding-left: $menu-subheader-padding;
-    padding-right: $menu-subheader-padding;
+.menuAbsoluteOnly {
+  position: absolute;
+  z-index: 99;
+}
+
+.menuSubheader {
+  padding-left: $menu-subheader-padding;
+  padding-right: $menu-subheader-padding;
+}
+
+.menuNestedMenuItem {
+  position: relative;
+}
+
+.menuNextMenuItemDisabled {
+  color: $disabled-color;
+  cursor: default;
+}
+
+.menuNextMenuItemOpenMenu {
+  opacity: 1;
+}
+
+.menuItem {
+
+  * { user-select: none }
+
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: $menu-item-height;
+  padding-left: $menu-item-padding;
+  padding-right: $menu-item-padding;
+  background-color: rgba($menu-item-hover-color, 0);
+
+  &:hover {
+    &:not(.is-disabled) {
+      background-color: $menu-item-hover-color;
+    }
   }
 
-  .nestedMenuItem {
+  .Number {
+    float: right;
+    width: 24px;
+    text-align: center;
+  }
+
+  .Attribute {
+    float: right;
+  }
+
+  .IconRight {
+    line-height: $menu-item-height;
+    float: right;
+  }
+
+  .Icon {
+    float: left;
+    line-height: $menu-item-height;
+    margin-right: $desktop-gutter;
+  }
+
+  .Indent {
+    float: left;
+    width: 10px;
+    height: $menu-item-height;
+  }
+
+  .Data {
+    display: block;
+    padding-left: ($desktop-gutter * 2);
+    line-height: $menu-item-data-height;
+    height: $menu-item-data-height;
+    vertical-align: top;
+    top: -12px;
     position: relative;
-
-    &.isDisabled {
-      color: $disabled-color;
-      cursor: default;
-    }
-
-    &.open {
-      & > .menu {
-        opacity: 1;
-      }
-    }
+    @extend .cml-font-weight-light;
   }
+
+  .customArrowDropRight {
+    margin-right: ($desktop-gutter-mini * -1);
+    color: $drop-down-menu-icon-color;
+  }
+
+  .chamel-toggle {
+    margin-top: (($menu-item-height - $radio-button-size) / 2);
+    float: right;
+    width: 42px;
+  }
+}
+
+.menuItemSelected {
+  color: $menu-item-selected-text-color;
+}
+
+.menuItemFocused {
+  background-color: $menu-item-hover-color;
+}
+
+.menuItemDisabled {
+  color: $disabled-color !important;
+  cursor: default;
 }

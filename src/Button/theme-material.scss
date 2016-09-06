@@ -122,7 +122,10 @@
 
   background-color: transparent;
   color: $flat-button-text-color;
-  min-width: $button-height;
+  width: $icon-button-size;
+  height: $icon-button-size;
+  min-width: $icon-button-size;
+  min-height: $icon-button-size;
 
   &:hover {
     background-color: transparent;

@@ -33,8 +33,8 @@ module.exports = {
             },
             {
                 test: /\.(scss|css)$/,
-                //loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[path][name]---[local]---[hash:base64:5]!postcss!sass?sourceMap')
-                loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[path][name]---[local]---[hash:base64:5]&sourceMap&importLoaders=1&!sass?sourceMap')
+                //loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[path][name]-[local]-[hash:base64:5]&sourceMap&importLoaders=1&!sass?sourceMap')
+                loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[local]&sourceMap&importLoaders=1&!sass?sourceMap')
             }
         ]
     },

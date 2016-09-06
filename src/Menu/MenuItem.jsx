@@ -1,7 +1,7 @@
 import React from 'react';
-import Classable from '../mixins/classable';
 import FontIcon from '../FontIcon/FontIcon';
 import Toggle from '../Toggle';
+import classnames from 'classnames';
 
 var Types = {
     LINK: 'LINK',
@@ -9,44 +9,20 @@ var Types = {
     NESTED: 'NESTED'
 };
 
-var MenuItem = React.createClass({
 
-    mixins: [Classable],
+class MenuItem extends React.Component {
 
-    propTypes: {
-        index: React.PropTypes.number,
-        iconClassName: React.PropTypes.string,
-        iconRightClassName: React.PropTypes.string,
-        attribute: React.PropTypes.string,
-        number: React.PropTypes.string,
-        data: React.PropTypes.string,
-        toggle: React.PropTypes.bool,
-        disabled: React.PropTypes.bool,
-        onClick: React.PropTypes.func,
-        onClick: React.PropTypes.func,
-        onToggle: React.PropTypes.func,
-        selected: React.PropTypes.bool,
-        indent: React.PropTypes.number
-    },
+    static Types = Types;
 
-    statics: {
-        Types: Types
-    },
+    render () {
 
-    getDefaultProps: function () {
-        return {
-            toggle: false,
-            disabled: false,
-            index: -1
-        };
-    },
+        let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
+            ? this.context.chamelTheme.menu : {};
 
-    render: function () {
-
-        var classes = this.getClasses('chamel-menu-item', {
-            'chamel-is-selected': this.props.selected,
-            'chamel-is-focused': this.props.focused,
-            'chamel-is-disabled': this.props.disabled
+        var classes = classnames(theme.menuItem, {
+            [theme.menuItemSelected]: this.props.selected,
+            [theme.menuItemFocused]: this.props.focused,
+            [theme.menuItemDisabled]: this.props.disabled
         });
         var icon;
         var data;
@@ -55,22 +31,33 @@ var MenuItem = React.createClass({
         var number;
         var toggle;
 
-        if (this.props.iconClassName) icon =
-            <FontIcon className={'chamel-menu-item-icon ' + this.props.iconClassName}/>;
-        if (this.props.iconRightClassName) iconRight =
-            <FontIcon className={'chamel-menu-item-icon-right ' + this.props.iconRightClassName}/>;
-        if (this.props.data) data = <span className="chamel-menu-item-data">{this.props.data}</span>;
-        if (this.props.number !== undefined) number =
-            <span className="chamel-menu-item-number">{this.props.number}</span>;
-        if (this.props.attribute !== undefined) attribute =
-            <span className="chamel-menu-item-attribute">{this.props.attribute}</span>;
+        if (this.props.selected)
+            console.log("Selected", theme);
+
+        if (this.props.iconClassName) {
+            icon = <FontIcon className={theme.menuItemIcon + ' ' + this.props.iconClassName}/>;
+        }
+        if (this.props.iconRightClassName) {
+            iconRight = <FontIcon className={theme.menuItemIconRight + ' ' + this.props.iconRightClassName}/>;
+        }
+        if (this.props.data) {
+            data = <span className={theme.menuItemData}>{this.props.data}</span>;
+        }
+        if (this.props.number !== undefined) {
+            number =
+                <span className={theme.menuItemNumber}>{this.props.number}</span>;
+        }
+        if (this.props.attribute !== undefined) {
+            attribute =
+                <span className={theme.menuItemAttribute}>{this.props.attribute}</span>;
+        }
 
         // Add indentations for hierarchical menus
         var numIndents = this.props.indent || 0;
         var indentItems = (numIndents) ? [] : null;
         for (var i = 0; i < numIndents; i++) {
             indentItems.push(
-                <span className="chamel-menu-item-indent" key={i}>{" "}</span>
+                <span className={theme.menuItemIndent} key={i}>{" "}</span>
             );
         }
 
@@ -102,24 +89,57 @@ var MenuItem = React.createClass({
                 {iconRight}
             </div>
         );
-    },
+    }
 
-    _handleTouchTap: function (e) {
+    _handleTouchTap = (e) => {
         if (!this.props.disabled && this.props.onClick) {
             this.props.onClick(e, this.props.index);
         } else if (!this.props.disabled && this.props.onClick) {
             this._handleOnClick(e);
         }
-    },
-
-    _handleOnClick: function (e) {
-        if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
-    },
-
-    _handleToggle: function (e, toggled) {
-        if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
     }
 
-});
+    _handleOnClick = (e) => {
+        if (!this.props.disabled && this.props.onClick) this.props.onClick(e, this.props.index);
+    }
 
-module.exports = MenuItem;
+    _handleToggle = (e, toggled) => {
+        if (!this.props.disabled && this.props.onToggle) this.props.onToggle(e, this.props.index, toggled);
+    }
+}
+
+/**
+ * Set accepted properties
+ */
+MenuItem.propTypes = {
+    index: React.PropTypes.number,
+    iconClassName: React.PropTypes.string,
+    iconRightClassName: React.PropTypes.string,
+    attribute: React.PropTypes.string,
+    number: React.PropTypes.string,
+    data: React.PropTypes.string,
+    toggle: React.PropTypes.bool,
+    disabled: React.PropTypes.bool,
+    onClick: React.PropTypes.func,
+    onToggle: React.PropTypes.func,
+    selected: React.PropTypes.bool,
+    indent: React.PropTypes.number
+}
+
+/**
+ * Set property defaults
+ */
+MenuItem.defaultProps = {
+    toggle: false,
+    disabled: false,
+    index: -1
+}
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+MenuItem.contextTypes = {
+    chamelTheme: React.PropTypes.object
+};
+
+export default MenuItem;

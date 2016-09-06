@@ -12,6 +12,7 @@ var RadioDemo = require("../controls/RadioDemo.jsx");
 var InputDemo = require("../controls/InputDemo.jsx");
 var DialogDemo = require("../controls/DialogDemo.jsx");
 var MenuDemo = require("../controls/MenuDemo.jsx");
+var ListDemo = require("../controls/List/ListDemo.jsx");
 var ProgressDemo = require("../controls/ProgressDemo.jsx");
 var TabsDemo = require("../controls/TabsDemo.jsx");
 var DatePickerDemo = require("../controls/DatePickerDemo.jsx");
@@ -36,6 +37,7 @@ var routes = (
 		<Route name="editor" path="editor" component={EditorDemo}/>
 		<Route name="icon" path="icon" component={IconsDemo}/>
 		<Route name="dialog" path="dialog" component={DialogDemo}/>
+        <Route name="list" path="list" component={ListDemo}/>
 		<Route name="menu" path="menu" component={MenuDemo}/>
 		<Route name="popover" path="popover" component={PopoverDemo}/>
 		<Route name="progress" path="progress" component={ProgressDemo}/>

@@ -9,6 +9,7 @@
   overflow: hidden;
   line-height: $button-height;
   min-width: $button-min-width;
+  min-height: $button-height;
   padding: 0 $desktop-gutter-less;
   margin: 0;
   text-transform: uppercase;
@@ -16,6 +17,8 @@
 }
 
 .raised {
+  @extend .button;
+
   color: $raised-button-text-color;
   background-color: $raised-button-color;
 
@@ -40,6 +43,8 @@
 }
 
 .flat {
+  @extend .button;
+
   background-color: $flat-button-color;
   color: $flat-button-text-color;
 
@@ -70,5 +75,77 @@
 }
 
 .floating {
+  @extend .button;
 
+  color: $raised-button-text-color;
+  background-color: $raised-button-color;
+  text-align: center;
+
+  height: $floating-action-button-size;
+  width: $floating-action-button-size;
+  min-width: $floating-action-button-size;
+  -webkit-border-radius: $floating-action-button-size / 2;
+  -moz-border-radius: $floating-action-button-size / 2;
+  border-radius: $floating-action-button-size / 2;
+
+  &mini {
+    height: $floating-action-button-mini-size;
+    width: $floating-action-button-mini-size;
+    min-width: $floating-action-button-mini-size;
+    -webkit-border-radius: $floating-action-button-mini-size / 2;
+    -moz-border-radius: $floating-action-button-mini-size / 2;
+    border-radius: $floating-action-button-mini-size / 2;
+  }
+
+  &:hover {
+    background-color: $raised-button-hover-color;
+  }
+
+  &primary {
+    color: $raised-button-primary-text-color;
+    background-color: $raised-button-primary-color;
+  }
+
+  &accent {
+    color: $raised-button-secondary-text-color;
+    background-color: $raised-button-secondary-color;
+  }
+
+  &disabled {
+    color: $raised-button-disabled-text-color;
+    background-color: $raised-button-disabled-color;
+  }
+}
+
+.icon {
+  @extend .button;
+
+  background-color: transparent;
+  color: $flat-button-text-color;
+  width: $icon-button-size;
+  height: $icon-button-size;
+  min-width: $icon-button-size;
+  min-height: $icon-button-size;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &primary {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &accent {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &disabled {
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
