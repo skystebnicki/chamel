@@ -5,6 +5,7 @@ import KeyCode from '../utils/KeyCode';
 import FlatButton from '../Button/FlatButton';
 import Overlay from '../Overlay/Overlay';
 import Paper from '../Paper/Paper';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Dialog window component
@@ -123,7 +124,7 @@ class Dialog extends React.Component {
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.dialog)
-      ? this.context.chamelTheme.dialog : {};
+      ? this.context.chamelTheme.dialog : ThemeService.defaultTheme.dialog;
 
     // Set classes for dialog window
     var classesDialog = theme.dialog;

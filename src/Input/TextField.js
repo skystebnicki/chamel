@@ -5,6 +5,7 @@ import UniqueId from '../utils/UniqueId';
 import DateTimeUtil from '../utils/DateTime';
 import AutoComplete from '../AutoComplete/AutoComplete';
 import KeyCode from '../utils/KeyCode';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Plain text input field
@@ -210,7 +211,7 @@ class TextField extends React.Component {
 
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.input)
-      ? this.context.chamelTheme.input : {};
+      ? this.context.chamelTheme.input : ThemeService.defaultTheme.input;
 
     let {
       className,

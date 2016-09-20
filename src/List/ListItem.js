@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import Tappable from 'react-tappable';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Functional component for any button
@@ -13,7 +14,7 @@ import classnames from 'classnames';
  */
 const ListItem = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.list)
-      ? context.chamelTheme.list : {};
+      ? context.chamelTheme.list : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listItem, {
     [theme.listItemSelected]: props.selected

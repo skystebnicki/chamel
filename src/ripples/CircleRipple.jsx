@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 class CircleRipple extends React.Component {
 
@@ -23,7 +24,7 @@ class CircleRipple extends React.Component {
   render() {
 
     let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
-      ? this.context.chamelTheme.ripple : {};
+      ? this.context.chamelTheme.ripple : ThemeService.defaultTheme.ripple;
 
     let classes = classnames(theme.rippleCircle, {
       [theme.rippleCircleIsStarted]: this.props.started,

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import baseTheme from './theme.scss';
+import ThemeService from '../styles/ChamelThemeService';
 
 import Paper from '../Paper/Paper'
 import IconButton from '../Button/IconButton';
@@ -61,7 +61,7 @@ class AppBar extends React.Component {
 
         // Determine which theme to use
         let theme = (this.context.chamelTheme && this.context.chamelTheme.appBar)
-            ? this.context.chamelTheme.appBar : baseTheme;
+            ? this.context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
 
         let classes = theme.appBarOuter, title, menuElementLeft, menuElementRight;
 

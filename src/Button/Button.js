@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
+import ThemeService from '../styles/ChamelThemeService';
 import Tappable from 'react-tappable';
 import classnames from 'classnames';
 
@@ -14,7 +15,7 @@ import classnames from 'classnames';
  */
 const Button = (props, context) => {
     let theme = (context.chamelTheme && context.chamelTheme.button)
-        ? context.chamelTheme.button : {};
+        ? context.chamelTheme.button : ThemeService.defaultTheme.button;
 
     // Setup classes
     const className = props.className || null;

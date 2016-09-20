@@ -5,6 +5,7 @@ import Overlay from '../Overlay/Overlay';
 import Dom from '../utils/Dom';
 import Events from '../utils/Events';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Navigation drawer component
@@ -119,7 +120,7 @@ class Drawer extends React.Component {
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.drawer)
-      ? this.context.chamelTheme.drawer : {};
+      ? this.context.chamelTheme.drawer : ThemeService.defaultTheme.drawer;
 
     // Set the classes
     const classes = classnames(theme.drawer, {

@@ -2,6 +2,7 @@
  * Paper is a concept taken from google Material design standards
  */
 import React from 'react';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Small application component
@@ -40,7 +41,7 @@ class Paper extends React.Component {
 
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.paper)
-      ? this.context.chamelTheme.paper : {};
+      ? this.context.chamelTheme.paper : ThemeService.defaultTheme.paper;
 
     var classes = theme.paper;
 

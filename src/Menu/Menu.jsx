@@ -10,6 +10,7 @@ import MenuItem from './MenuItem';
 import LinkMenuItem from './LinkMenuItem';
 import SubheaderMenuItem from './SubheaderMenuItem';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 class Menu extends React.Component {
 
@@ -89,7 +90,7 @@ class Menu extends React.Component {
 
     render() {
         let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
-          ? this.context.chamelTheme.menu : {};
+          ? this.context.chamelTheme.menu : ThemeService.defaultTheme.menu;
 
         var classes = classnames(theme.menu, {
             [theme.menuHideable]: this.props.hideable,

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Grid column
@@ -11,7 +12,7 @@ import classnames from 'classnames';
  */
 const Column = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.grid)
-    ? context.chamelTheme.grid : {};
+    ? context.chamelTheme.grid : ThemeService.defaultTheme.grid;
 
   const classes = classnames({
     [theme["colXSmall" + props.xsmall]]: props.xsmall,

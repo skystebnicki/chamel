@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Linear progress bar
@@ -127,7 +128,7 @@ class LinearProgress extends React.Component {
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.progress)
-      ? this.context.chamelTheme.progress : {};
+      ? this.context.chamelTheme.progress : ThemeService.defaultTheme.progress;
 
     let {
       style,

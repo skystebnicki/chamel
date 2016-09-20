@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import FlatButton from '../Button/FlatButton';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Create a snackbar notice
@@ -49,7 +50,7 @@ class Snackbar extends React.Component {
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.snackbar)
-      ? this.context.chamelTheme.snackbar : {};
+      ? this.context.chamelTheme.snackbar : ThemeService.defaultTheme.snackbar;
 
     var classes = classnames(theme.snackbar, {
       [theme.snackbarIsOpen]: this.state.open

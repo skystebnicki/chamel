@@ -1,4 +1,5 @@
 import React, { Children, PropTypes } from 'react';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Functional component for any button
@@ -9,8 +10,8 @@ import React, { Children, PropTypes } from 'react';
  * @constructor
  */
 const List = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.button)
-      ? context.chamelTheme.button : {};
+  let theme = (context.chamelTheme && context.chamelTheme.list)
+      ? context.chamelTheme.list : ThemeService.defaultTheme.list;
 
   let currentIndex = 0;
   let childElements = Children.map(props.children, (child) => {

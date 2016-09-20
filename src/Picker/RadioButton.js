@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import Tappable from 'react-tappable';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Functional component for any button
@@ -13,7 +14,7 @@ import Tappable from 'react-tappable';
  */
 const RadioButton = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.picker)
-    ? context.chamelTheme.picker : {};
+    ? context.chamelTheme.picker : ThemeService.defaultTheme.picker;
 
   return (
     <label className={theme.radioButton}>

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dom from '../utils/Dom';
 import RippleCircle from './CircleRipple';
+import ThemeService from '../styles/ChamelThemeService';
 
 class TouchRipple extends React.Component {
 
@@ -52,7 +53,7 @@ class TouchRipple extends React.Component {
    */
   render() {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
-        ? this.context.chamelTheme.ripple : {};
+        ? this.context.chamelTheme.ripple : ThemeService.defaultTheme.ripple;
 
     return (
       <div

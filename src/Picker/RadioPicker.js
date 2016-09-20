@@ -2,6 +2,7 @@ import React, { Component, PropTypes, Children } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import Tappable from 'react-tappable';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Functional component for any button
@@ -13,7 +14,7 @@ import Tappable from 'react-tappable';
  */
 const RadioPicker = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.toggle)
-    ? context.chamelTheme.toggle : {};
+    ? context.chamelTheme.toggle : ThemeService.defaultTheme.toggle;
 
   let childElements = Children.map(props.children, (child) => {
     return React.isValidElement(child) ? (

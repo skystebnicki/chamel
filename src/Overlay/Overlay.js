@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 class Overlay extends React.Component {
 
@@ -34,7 +35,7 @@ class Overlay extends React.Component {
 
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.overlay)
-      ? this.context.chamelTheme.overlay : {};
+      ? this.context.chamelTheme.overlay : ThemeService.defaultTheme.overlay;
     
     var 
       {

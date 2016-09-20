@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 class FocusRipple extends React.Component {
 
@@ -20,7 +21,7 @@ class FocusRipple extends React.Component {
 
   render() {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
-        ? this.context.chamelTheme.ripple : {};
+        ? this.context.chamelTheme.ripple : ThemeService.defaultTheme.ripple;
 
     let classes = classnames(theme.rippleFocus, {
       [theme.rippleShown]: this.props.show

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Grid row
@@ -10,7 +11,7 @@ import React, { Component, PropTypes } from 'react';
  */
 const Container = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.grid)
-    ? context.chamelTheme.grid : {};
+    ? context.chamelTheme.grid : ThemeService.defaultTheme.grid;
   
   const classes = (props.fluid) ? theme.containerFluid : theme.container;
 

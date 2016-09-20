@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Main popover class handles absolute positioning paper relative to an element
@@ -33,7 +34,7 @@ class ToolbarGroup extends React.Component {
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.toolbar)
-      ? this.context.chamelTheme.toolbar : {};
+      ? this.context.chamelTheme.toolbar : ThemeService.defaultTheme.toolbar;
     
       var classes = classnames(theme.toolbarGroup, {
         [theme.toolbarGroupLeft]: this.props.float === 'left',

@@ -2,6 +2,7 @@ import React from 'react';
 import FontIcon from '../FontIcon/FontIcon';
 import Toggle from '../Toggle';
 import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
 
 var Types = {
     LINK: 'LINK',
@@ -17,7 +18,7 @@ class MenuItem extends React.Component {
     render () {
 
         let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
-            ? this.context.chamelTheme.menu : {};
+          ? this.context.chamelTheme.menu : ThemeService.defaultTheme.menu;
 
         var classes = classnames(theme.menuItem, {
             [theme.menuItemSelected]: this.props.selected,

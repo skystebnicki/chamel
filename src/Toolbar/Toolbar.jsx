@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import FontIcon from "../FontIcon/FontIcon";
 import ToolbarGroup from "../Toolbar/ToolbarGroup";
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * This variable will hold all the icons to be displayed in the toolbar
@@ -92,7 +93,7 @@ class Toolbar extends React.Component {
     render() {
       // Determine which theme to use
       let theme = (this.context.chamelTheme && this.context.chamelTheme.toolbar)
-        ? this.context.chamelTheme.toolbar : {};
+        ? this.context.chamelTheme.toolbar : ThemeService.defaultTheme.toolbar;
 
       /*
        * This will contain the total icons width to be displayed in the toolbar

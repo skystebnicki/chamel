@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import FontIcon from '../../FontIcon';
+import ThemeService from '../../styles/ChamelThemeService';
 
 /**
  * Close or clear button
@@ -11,7 +12,7 @@ import FontIcon from '../../FontIcon';
  */
 const CreateIcon = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.fontIcons)
-    ? context.chamelTheme.fontIcons : {};
+    ? context.chamelTheme.fontIcons : ThemeService.defaultTheme.fontIcons;
 
   return (
     <FontIcon {...props} className={theme.iconCreate} />

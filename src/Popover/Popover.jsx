@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Events from '../utils/Events';
 import Dom from '../utils/Dom';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Main popover class handles absolute positioning paper relative to an element
@@ -104,7 +105,7 @@ class Popover extends React.Component {
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.popover)
-      ? this.context.chamelTheme.popover : {};
+      ? this.context.chamelTheme.popover : ThemeService.defaultTheme.popover;
 
     var classes = theme.popover;
     if (this.props.open) {

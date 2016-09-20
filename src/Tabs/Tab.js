@@ -2,8 +2,8 @@
  * Render a single tab
  *
  */
-
 import React from 'react';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Render a tab
@@ -32,7 +32,7 @@ class Tab extends React.Component {
   render(){
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.tabs)
-      ? this.context.chamelTheme.tabs : {};
+      ? this.context.chamelTheme.tabs : ThemeService.defaultTheme.tabs;
 
     var styles = {
         width: this.props.width

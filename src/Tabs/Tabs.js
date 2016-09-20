@@ -4,6 +4,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Outer container for tabs
@@ -92,7 +93,7 @@ class Tabs extends React.Component {
 
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.tabs)
-      ? this.context.chamelTheme.tabs : {};
+      ? this.context.chamelTheme.tabs : ThemeService.defaultTheme.tabs;
     
     var _this = this;
     let width = 100 / this.getTabCount() +'%';
