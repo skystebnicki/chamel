@@ -17,7 +17,7 @@ const IconButton = (props, context) => {
     ) : props.children;
 
     return (
-        <Button type={'icon'} {...props}>{props.children}</Button>
+        <Button type={'icon'} {...props}>{children}</Button>
     );
 };
 
