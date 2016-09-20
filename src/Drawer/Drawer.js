@@ -236,6 +236,13 @@ class Drawer extends React.Component {
     );
       
   };
+
+  /**
+   * Toggle this opened and closed
+   */
+  toggle() {
+    this.setState({open: !this.state.open});
+  }
 }
 
 export default Drawer;
