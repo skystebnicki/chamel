@@ -5,16 +5,15 @@ import Popover from './Popover/Popover';
 import Editor from './Editor/Editor';
 import AppBar from './AppBar/AppBar';
 import AutoComplete from './AutoComplete/AutoComplete';
-import Checkbox from './Checkbox/Checkbox';
+import Checkbox from './Toggle/Checkbox';
 import DatePicker from './DatePicker/DatePicker';
 import Dialog from './Dialog/Dialog';
-import DialogWindow from './Dialog/DialogWindow';
 import DropDownIcon from './DropDownIcon';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
-import EnhancedButton from './EnhancedButton/EnhancedButton';
-import FlatButton from './FlatButton/FlatButton';
+import EnhancedButton from './Button';
+import FlatButton from './Button/FlatButton';
 import FontIcon from './FontIcon/FontIcon';
-import IconButton from './IconButton/IconButton';
+import IconButton from './Button/IconButton';
 import LeftNav from './LeftNav/LeftNav';
 import Menu from './Menu/Menu';
 import MenuItem from './Menu/Menu';
@@ -23,9 +22,9 @@ import Classable from './mixins/classable';
 import ClickAwayable from './mixins/ClickAwayable';
 import WindowListenable from './mixins/WindowListenable';
 import Paper from './Paper/Paper';
-import RadioButton from './RadioButton/RadioButton';
-import RadioButtonGroup from './RadioButtonGroup/RadioButtonGroup';
-import RaisedButton from './RaisedButton/RaisedButton';
+import RadioButton from './Picker/RadioButton';
+import RadioButtonGroup from './Picker/RadioPicker';
+import RaisedButton from './Button/RaisedButton';
 import LinearProgress from './Progress/LinearProgress';
 import SvgIcon from './svg-icons/svg-icon';
 import NavigationMenu from './svg-icons/navigation-menu';
@@ -35,7 +34,7 @@ import Tab from './Tabs/Tab';
 import Tabs from './Tabs/Tabs';
 import Toggle from './Toggle';
 import Snackbar from './Snackbar/Snackbar';
-import TextField from './TextField/TextField';
+import TextField from './Input/TextField';
 import TextFieldRich from './TextFieldRich/TextFieldRich';
 import Toolbar from './Toolbar/Toolbar';
 import ToolbarGroup from './Toolbar/ToolbarGroup';
@@ -44,8 +43,6 @@ import Dom from './utils/Dom';
 import Events from './utils/Events';
 import KeyCode from './utils/KeyCode';
 import KeyLine from './utils/KeyLine';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 /**
  * Do we need to move all these to jsx?
@@ -56,7 +53,6 @@ const Chamel = {
   Checkbox: Checkbox,
   DatePicker: DatePicker, 
   Dialog: Dialog,
-  DialogWindow: DialogWindow,
   DropDownIcon: DropDownIcon,
   DropDownMenu: DropDownMenu, 
   Editor: Editor,

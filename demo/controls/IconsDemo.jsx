@@ -1,26 +1,9 @@
-var React = require('react');
-var FontIcon = require("../../src/FontIcon");
+import React from 'react';
+import Row from 'chamel/Grid/Row';
+import Column from 'chamel/Grid/Column';
 
-var displayIcons = [
-    {
-        category: "Navigation",
-        icons: [
-            "close",
-            "pencil"
-        ]
-    },
-    {
-        category: "Editor Icons",
-        icons: [
-            "bold",
-            "italic",
-            "underline",
-            "align-center",
-            "align-left",
-            "align-right",
-        ]
-    }
-]
+// Font icons
+import Icons from 'chamel/icons/font';
 
 var EditorDemo = React.createClass({
 
@@ -30,28 +13,28 @@ var EditorDemo = React.createClass({
 
         var iconsContent = [];
 
-        for (var i in displayIcons) {
-            iconsContent.push(<h3>{displayIcons[i].category}</h3>);
+        for (var category in Icons) {
+          iconsContent.push(<h3>{category}</h3>);
 
-            var fontIcons = [];
-            for (var j in displayIcons[i].icons) {
-                var classes = "cfi cfi-" + displayIcons[i].icons[j];
-                fontIcons.push(
-                    <div className='col-md-4'>
-                        <FontIcon className={classes} />
-                        <span> </span>
-                        {classes}
-                    </div>
-                );
-            }
+          let fontIcons = [];
+          for (var i in Icons[category]) {
+            fontIcons.push(
+              <Column small={6} medium={4} large={2} style={{height: "120px"}}>
+                <div style={{textAlign: "center"}}>
+                  {React.createElement(Icons[category][i].icon)}
+                </div>
+                <div style={{textAlign: "center"}}>{Icons[category][i].name}</div>
+              </Column>
+            );
+          }
 
-            iconsContent.push(<div className='row'>{fontIcons}</div>);
+          iconsContent.push(<Row>{fontIcons}</Row>);
         }
 
         return (
-            <div className="row">
-                {iconsContent}
-            </div>
+          <div>
+            {iconsContent}
+          </div>
         );
     }
 

@@ -1,0 +1,20 @@
+@import "../styles/mixins/transitions";
+@import "../styles/variables/colors";
+
+.overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+  top: 0px;
+
+  left: -100%;
+  background-color: rgba(0, 0, 0, 0);
+  @include transform(transition(left 0ms $ease-out-function 400ms, background-color 400ms $ease-out-function 0ms));
+}
+
+.overlayVisible {
+  left: 0px;
+  background-color: $light-black;
+  @include transform(transition(left 0ms $ease-out-function 0ms, background-color 400ms $ease-out-function 0ms));
+}

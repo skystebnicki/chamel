@@ -1,7 +1,7 @@
 import React from 'react';
 import Classable from '../mixins/classable';
 import DateTime from '../utils/DateTime';
-import EnhancedButton from '../EnhancedButton/EnhancedButton';
+import EnhancedButton from '../Button';
 
 var DayButton = React.createClass({
 

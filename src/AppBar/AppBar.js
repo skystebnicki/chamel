@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import baseTheme from './theme.scss';
 
 import Paper from '../Paper/Paper'
-import IconButton from '../IconButton/IconButton';
+import IconButton from '../Button/IconButton';
 import Dom from '../utils/Dom';
 import Events from '../utils/Events';
 
@@ -181,7 +181,7 @@ class AppBar extends React.Component {
 
         // Set state
         this.setState({curTopOffset: newTop})
-    }
+    };
 
     /**
      * Add appBar specific styles to elements

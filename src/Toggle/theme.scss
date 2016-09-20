@@ -1,0 +1,62 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+
+$checkbox-size: 24px;
+
+.checkbox {
+  height: $checkbox-size;
+  width: $checkbox-size;
+  margin: 0 $gutter-less 0 0;
+  cursor: pointer;
+}
+
+/*
+.checkbox {
+  height: $checkbox-size;
+  width: $checkbox-size;
+  position: relative;
+  margin: 0 $gutter-less 0 0;
+  cursor: pointer;
+}
+
+.checkbox:before {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  height: $checkbox-size;
+  width: $checkbox-size;
+}
+
+.checkbox:checked:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  height: $checkbox-size * .45;
+  width: $checkbox-size * .75;
+  border: 2px solid #fff;
+  border-top-style: none;
+  border-right-style: none;
+
+}
+
+.checkbox:after {
+  content: "";
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  height: $checkbox-size;
+  width: $checkbox-size;
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 2px;
+  background-color: $checkbox-box-color;
+}
+*/

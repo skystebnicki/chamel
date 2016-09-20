@@ -3,7 +3,7 @@ import Classable from "../mixins/classable";
 import Toolbar from "../Toolbar/Toolbar";
 import ToolbarGroup from "../Toolbar/ToolbarGroup";
 import FontIcon from "../FontIcon/FontIcon";
-import IconButton from "../IconButton/IconButton";
+import IconButton from "../Button/IconButton";
 import DropDownIcon from "../DropDownIcon";
 import Dialog from "../Dialog/Dialog";
 import TextField from "../TextField/TextField";

@@ -20,6 +20,64 @@ class Popover extends React.Component {
   }
 
   /**
+   * Set property defaults
+   */
+  static defaultProps = {
+    open: false,
+    anchorEl: null,
+    zDepth: 1,
+    anchorOrigin: {
+      vertical: 'bottom',
+      horizontal: 'left'
+    },
+    targetOrigin: {
+      vertical: 'top',
+      horizontal: 'left'
+    }
+  };
+
+
+  /**
+   * Set accepted properties
+   */
+  static propTypes = {
+    open: React.PropTypes.bool,
+    anchorEl: React.PropTypes.object,
+    zDepth: React.PropTypes.number,
+
+    /**
+     * This is the point on the anchor where the popover
+     * targetOrigin will stick to.
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right]
+     */
+    anchorOrigin: React.PropTypes.shape({
+      vertical: React.PropTypes.oneOf(['top', 'middle', 'bottom']),
+      horizontal: React.PropTypes.oneOf(['left', 'center', 'right'])
+    }),
+
+    /**
+     * This is the point on the popover which will stick to
+     * the anchors origin.
+     * Options:
+     * vertical: [top, middle, bottom]
+     * horizontal: [left, center, right]
+     */
+    targetOrigin: React.PropTypes.shape({
+      vertical: React.PropTypes.oneOf(['top', 'middle', 'bottom']),
+      horizontal: React.PropTypes.oneOf(['left', 'center', 'right'])
+    })
+  };
+
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
+
+  /**
    * Popover has entered the dom
    */
   componentDidMount() {
@@ -44,10 +102,15 @@ class Popover extends React.Component {
    * Render into the virtual dom
    */
   render() {
-    var classes = "chamel-popover";
+    // Determine which theme to use
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.popover)
+      ? this.context.chamelTheme.popover : {};
+
+    var classes = theme.popover;
     if (this.props.open) {
-      classes += " chamel-popover-visible";
+      classes += " " + theme.popoverVisible;
     }
+    
     return (
       <div className={classes}>
         {this.props.children}
@@ -91,22 +154,20 @@ class Popover extends React.Component {
     const anchorPosition = Dom.offset(anchorEl);
 
     /*
-     * Since the chamel-popover parent class is relative positioned,
-     * we need to update the page aboslute position points received from
-     * Dom.offset to be relative to the position of the anchor element
+     * Determine relative positions based on the anchor element coords
      */
-    const relativeAnchorPosision = {
-        top: 0,
-        middle: anchorPosition.height / 2,
-        bottom: anchorPosition.height,
-        left: 0,
-        center: anchorPosition.width / 2,
-        right: anchorPosition.width
-    }
+    const relativeAnchorPosition = {
+        top: anchorPosition.top,
+        middle: anchorPosition.top + (anchorPosition.height / 2),
+        bottom: anchorPosition.top + anchorPosition.height,
+        left: anchorPosition.left,
+        center: anchorPosition.left + (anchorPosition.width / 2),
+        right: anchorPosition.left + anchorPosition.width
+    };
 
     let targetPosition = {
-      top: relativeAnchorPosision[anchorOrigin.vertical],
-      left: relativeAnchorPosision[anchorOrigin.horizontal]
+      top: relativeAnchorPosition[anchorOrigin.vertical],
+      left: relativeAnchorPosition[anchorOrigin.horizontal]
     };
 
     targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
@@ -156,61 +217,6 @@ class Popover extends React.Component {
       targetEl.style.left = `${newLeft}px`;
     }
   }
-}
-
-/**
- * Set accepted properties
- */
-Popover.propTypes = {
-  open: React.PropTypes.bool,
-  anchorEl: React.PropTypes.object,
-  zDepth: React.PropTypes.number,
-
-  /**
-   * This is the point on the anchor where the popover
-   * targetOrigin will stick to.
-   * Options:
-   * vertical: [top, middle, bottom]
-   * horizontal: [left, center, right]
-   */
-  anchorOrigin: React.PropTypes.shape({
-    vertical: React.PropTypes.oneOf(['top', 'middle', 'bottom']),
-    horizontal: React.PropTypes.oneOf(['left', 'center', 'right'])
-  }),
-
-  /**
-   * This is the point on the popover which will stick to
-   * the anchors origin.
-   * Options:
-   * vertical: [top, middle, bottom]
-   * horizontal: [left, center, right]
-   */
-  targetOrigin: React.PropTypes.shape({
-    vertical: React.PropTypes.oneOf(['top', 'middle', 'bottom']),
-    horizontal: React.PropTypes.oneOf(['left', 'center', 'right'])
-  })
-};
-
-/**
- * Set property defaults
- */
-Popover.defaultProps = {
-  open: false,
-  anchorEl: null,
-  zDepth: 1,
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'left',
-  },
-  targetOrigin: {
-    vertical: 'top',
-    horizontal: 'left',
-  }
-};
-
-// Check for commonjs
-if (module) {
-  module.exports = Popover;
 }
 
 export default Popover;

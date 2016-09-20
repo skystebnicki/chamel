@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
+import FocusRipple from '../ripples/FocusRipple';
 import Tappable from 'react-tappable';
 import classnames from 'classnames';
 
@@ -19,25 +20,32 @@ const Button = (props, context) => {
     const className = props.className || null;
     const type = props.type ;
     const classes = classnames(theme[type], {
-        [theme[type + "primary"]]: props.primary,
-        [theme[type + "accent"]]: props.accent,
-        [theme[type + "disabled"]]: props.disabled,
-        [theme[type + "mini"]]: props.mini
+      [theme[type + "primary"]]: props.primary,
+      [theme[type + "accent"]]: props.accent,
+      [theme[type + "disabled"]]: props.disabled,
+      [theme[type + "depressed"]]: props.depressed,
+      [theme[type + "mini"]]: props.mini
     }, className);
 
-    if (props.onTap && !props.disabled) {
+    // Determine if the selected type of button is a centered ripple
+    let centerRipple = (type == 'floating' || type == 'icon');
+
+    const label = (props.label) ? props.label : props.children;
+    const tapHandler = props.onTap || props.onClick;
+
+    if (tapHandler && !props.disabled) {
         return (
-            <Tappable onTap={props.onTap}>
+            <Tappable onTap={tapHandler}>
                 <button className={classes}>
-                    <TouchRipple>
-                        {props.children}
-                    </TouchRipple>
+                    <TouchRipple centerRipple={centerRipple} />
+                    <FocusRipple  />
+                    {label}
                 </button>
             </Tappable>
         );
     } else {
         return (
-            <button disabled={props.disabled} className={classes}>{props.children}</button>
+            <button disabled={props.disabled} className={classes}>{label}</button>
         );
     }
 };
@@ -46,26 +54,89 @@ const Button = (props, context) => {
  * Set accepted properties
  */
 Button.propTypes = {
-    accent: PropTypes.bool,
-    primary: PropTypes.bool,
-    children: PropTypes.node,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    flat: PropTypes.bool,
-    floating: PropTypes.bool,
-    href: PropTypes.string,
-    icon: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element
-    ]),
-    inverse: PropTypes.bool,
-    label: PropTypes.string,
-    mini: PropTypes.bool,
-    neutral: PropTypes.bool,
-    onMouseLeave: PropTypes.func,
-    onMouseUp: PropTypes.func,
-    raised: PropTypes.bool,
-    type: PropTypes.oneOf(['raised', 'flat', 'floating', 'icon'])
+  /**
+   * Secondary accent color
+   */
+  accent: PropTypes.bool,
+
+  /**
+   * Primary button color and behavior
+   */
+  primary: PropTypes.bool,
+
+  /**
+   * Child elements (text and icon)
+   */
+  children: PropTypes.node,
+
+  /**
+   * Optional classname override
+   */
+  className: PropTypes.string,
+
+  /**
+   * Disabled flag - cannot be interacted with
+   */
+  disabled: PropTypes.bool,
+
+  /**
+   * Flat style (looks like a link almost)
+   */
+  flat: PropTypes.bool,
+
+  /**
+   * Floating button like floating action buttons (FAB) in material
+   */
+  floating: PropTypes.bool,
+
+  /**
+   * Link reference to go to
+   */
+  href: PropTypes.string,
+
+  /**
+   * ?
+   */
+  inverse: PropTypes.bool,
+
+  /**
+   * Optional icon to display to the left of the text
+   */
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
+
+  /**
+   * Optional property in place of child text
+   */
+  label: PropTypes.string,
+
+  /**
+   * Small button
+   */
+  mini: PropTypes.bool,
+
+  /**
+   * If true the button should appear pressed or down (think toggle)
+   */
+  depressed: PropTypes.bool,
+  neutral: PropTypes.bool,
+  onMouseLeave: PropTypes.func,
+  onMouseUp: PropTypes.func,
+
+  /**
+   * Event triggered when the user taps/clicks on the button
+   */
+  onTape: PropTypes.func,
+
+  /**
+   * Alias for onTap for backwards compatibility
+   */
+  onClick: PropTypes.func,
+
+  raised: PropTypes.bool,
+  type: PropTypes.oneOf(['raised', 'flat', 'floating', 'icon'])
 };
 
 /**
@@ -89,11 +160,5 @@ Button.defaultProps = {
 Button.contextTypes = {
     chamelTheme: React.PropTypes.object
 };
-
-
-// Check for commonjs
-if (module) {
-    module.exports = Button;
-}
 
 export default Button;

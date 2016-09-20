@@ -1,28 +1,55 @@
-import Classable from '../mixins/classable';
 import React from 'react';
+import classnames from 'classnames';
 
-var ToolbarGroup = React.createClass({
+/**
+ * Main popover class handles absolute positioning paper relative to an element
+ */
+class ToolbarGroup extends React.Component {
 
-    propTypes: {
-        float: React.PropTypes.string
-    },
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+      // Call paprent constructor
+      super(props);
+  }
 
-    mixins: [Classable],
+  /**
+   * Set accepted properties
+   */
+  static propTypes = {
+    float: React.PropTypes.string
+  };
 
-    render: function() {
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
 
-        var classes = this.getClasses('chamel-toolbar-group', {
-            'chamel-left': this.props.float === 'left',
-            'chamel-right': this.props.float === 'right'
-        });
+  render() {
+    // Determine which theme to use
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.toolbar)
+      ? this.context.chamelTheme.toolbar : {};
+    
+      var classes = classnames(theme.toolbarGroup, {
+        [theme.toolbarGroupLeft]: this.props.float === 'left',
+        [theme.toolbarGroupRight]: this.props.float === 'right'
+      });
 
-        return (
-            <div className={classes}>
-                {this.props.children}
-            </div>
-        );
-    }
+      console.log("Toolbar group", theme);
 
-});
+      return (
+          <div className={classes}>
+              {this.props.children}
+          </div>
+      );
+  }
 
-module.exports = ToolbarGroup;
+}
+
+export default ToolbarGroup;
+

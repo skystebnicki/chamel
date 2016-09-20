@@ -1,6 +1,6 @@
 import React from 'react';
 import Popover from '../../../src/Popover';
-var RaisedButton = require("../../../src/RaisedButton");
+var RaisedButton = require("../../../src/Button/RaisedButton");
 
 export default class PopoverExampleSimple extends React.Component {
 
@@ -17,8 +17,8 @@ export default class PopoverExampleSimple extends React.Component {
     event.preventDefault();
 
     this.setState({
-      open: this.state.open ? false : true,
-      anchorEl: event.currentTarget,
+      open: !this.state.open,
+      anchorEl: event.currentTarget
     });
   };
 
@@ -32,9 +32,11 @@ export default class PopoverExampleSimple extends React.Component {
     return (
       <div>
         <RaisedButton
-          onClick={this.handleTouchTap}
-          label="Click me"
-        />
+          depressed={this.state.open}
+          onTap={this.handleTouchTap}
+        >
+          {"Bottom Left"}
+        </RaisedButton>
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
@@ -42,7 +44,9 @@ export default class PopoverExampleSimple extends React.Component {
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this.handleRequestClose}
         >
-          Test
+          <div style={{backgroundColor: "#fff", border: "1px solid red", padding: "20px"}}>
+            Test
+          </div>
         </Popover>
       </div>
     );

@@ -1,0 +1,23 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+
+/**
+ * Base thee for popover handles hidden or not
+ */
+.popover {
+
+  * {@include ease-out(); }
+
+  position: absolute;
+  min-width: 10px;
+  opacity: 0;
+  display: none;
+
+  &.popoverVisible {
+    opacity: 1;
+    z-index: 99;
+    display: block;
+  }
+}

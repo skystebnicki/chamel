@@ -30,7 +30,8 @@ IconButton.propTypes = {
     inverse: PropTypes.bool,
     label: PropTypes.string,
     onMouseLeave: PropTypes.func,
-    onMouseUp: PropTypes.func
+    onMouseUp: PropTypes.func,
+    onTap: PropTypes.func
 };
 
 /**

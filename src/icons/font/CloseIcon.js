@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import FontIcon from '../../FontIcon';
 
 /**
- * Functional component for any button
+ * Close or clear button
  *
  * @param props
  * @param context

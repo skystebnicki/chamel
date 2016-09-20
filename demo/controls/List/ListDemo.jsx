@@ -1,10 +1,8 @@
 import React from 'react';
 import List from 'chamel/List';
 import ListItem from 'chamel/List/ListItem';
-
-
-var FlatButton = require("chamel/FlatButton");
-var RaisedButton = require("chamel/RaisedButton");
+import MoreVerticon from 'chamel/icons/font/MoreVertIcon';
+import RefreshIcon from 'chamel/icons/font/RefreshIcon';
 
 var ListDemo = React.createClass({
     render: function () {
@@ -18,9 +16,25 @@ var ListDemo = React.createClass({
                     </List>
 
                     <h2>{"Selectable"}</h2>
+                    <List selectable selectedIndex={1}>
+                        <ListItem primaryText={"Test 1"} />
+                        <ListItem primaryText={"Test 2"} />
+                    </List>
+
+                    <h2>{"With Icons"}</h2>
                     <List>
-                        <ListItem>Test 1</ListItem>
-                        <ListItem>Test 2</ListItem>
+                        <ListItem
+                          primaryText={"Primary text goes here 1"}
+                          secondaryText={"Secondary text goes here"}
+                          leftElement={<RefreshIcon />}
+                          rightElement={<MoreVerticon />}
+                        />
+                        <ListItem
+                          primaryText={"Primary text goes here 2"}
+                          secondaryText={"Secondary text goes here"}
+                          leftElement={<RefreshIcon />}
+                          rightElement={<MoreVerticon />}
+                        />
                     </List>
                 </div>
             </div>

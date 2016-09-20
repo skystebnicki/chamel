@@ -25,7 +25,7 @@ module.exports = {
       right: rect.right + documentOffset.left,
       width: rect.right - rect.left,
       height: rect.bottom - rect.top
-    }
+    };
 
     // Add a couple computed points from the simple
     points.middle = points.top + (points.height / 2);

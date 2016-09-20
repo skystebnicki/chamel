@@ -1,0 +1,148 @@
+/**
+ * These are the default icons built using font-awesome.
+ */
+
+@import "font-awesome/variables";
+@import "font-awesome/mixins";
+@import "font-awesome/path";
+@import "font-awesome/core";
+@import "font-awesome/larger";
+@import "font-awesome/fixed-width";
+@import "font-awesome/list";
+@import "font-awesome/bordered-pulled";
+@import "font-awesome/animated";
+@import "font-awesome/rotated-flipped";
+@import "font-awesome/stacked";
+@import "font-awesome/icons";
+
+/* chanel font icon namespace */
+.fontIcon {
+  @include fa-icon();
+  font-size: 120%;
+}
+
+/**
+ * Navigation Icons
+ */
+.iconClose {
+  @extend .fontIcon;
+  @extend .fa-times;
+}
+
+.pencil {
+  @extend .fontIcon;
+  @extend .fa-pencil;
+}
+
+/**
+ * Text Icons
+ */
+
+.alignCenter {
+  @extend .fontIcon;
+  @extend .fa-align-center;
+}
+
+.alignLeft {
+  @extend .fontIcon;
+  @extend .fa-align-left;
+}
+
+.alignRight {
+  @extend .fontIcon;
+  @extend .fa-align-right;
+}
+
+.bold {
+  @extend .fontIcon;
+  @extend .fa-bold;
+}
+
+.italic {
+  @extend .fontIcon;
+  @extend .fa-italic;
+}
+
+.underline {
+  @extend .fontIcon;
+  @extend .fa-underline;
+}
+
+.font {
+  @extend .fontIcon;
+  @extend .fa-font;
+}
+
+.files {
+  @extend .fontIcon;
+  @extend .fa-files-o;
+}
+
+.minus {
+  @extend .fontIcon;
+  @extend .fa-minus;
+}
+
+.link {
+  @extend .fontIcon;
+  @extend .fa-link;
+}
+
+.table {
+  @extend .fontIcon;
+  @extend .fa-table;
+}
+
+.listOrdered {
+  @extend .fontIcon;
+  @extend .fa-list-ol;
+}
+
+.listUnordered {
+  @extend .fontIcon;
+  @extend .fa-list-ul;
+}
+
+.header {
+  @extend .fontIcon;
+  @extend .fa-header;
+}
+
+.textHeight {
+  @extend .fontIcon;
+  @extend .fa-text-height;
+}
+
+.eyedropper {
+  @extend .fontIcon;
+  @extend .fa-eyedropper;
+}
+
+.magic {
+  @extend .fontIcon;
+  @extend .fa-magic;
+}
+
+.times {
+  @extend .fontIcon;
+  @extend .fa-times;
+}
+
+/**
+ * Directional icons
+ */
+.caretSquareDown {
+  @extend .fontIcon;
+  @extend .fa-caret-square-o-down;
+}
+
+.chevronLeft {
+  @extend .fontIcon;
+  @extend .fa-chevron-left;
+}
+
+.chevronRight {
+  @extend .fontIcon;
+  @extend .fa-chevron-right;
+}
+

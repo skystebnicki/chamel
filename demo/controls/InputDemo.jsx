@@ -1,9 +1,6 @@
-var React = require("react");
-
-var FlatButton = require("../../src/FlatButton");
-var RaisedButton = require("../../src/RaisedButton");
-var DropDownMenu = require("../../src/DropDownMenu");
-var TextField = require("../../src/TextField");
+import React from 'react';
+import DropDownMenu from 'chamel/DropDownMenu';
+import TextField from 'chamel/input/TextField';
 
 var dropDownData = [
     { value: 'test1', text: 'Test Entry 1' },
@@ -30,22 +27,17 @@ var InputDemo = React.createClass({
             <div className="row">
                 <div className="col-xs-12 col-md-6">
                     <h2>Text</h2>
-                    <TextField onChange={this._handleTextChange} hintText="Text Field" />
+                    <TextField onChange={this._handleTextChange} hintText="Hint Text" />
+                    <TextField onChange={this._handleTextChange} floatingLabelText="Floated Label" />
 
-                    <h2>Drop Down Menu</h2>
-                    <DropDownMenu
-                        menuItems={dropDownData}
-                        onChange={this._handleDropDownChange}
-                    />
 
-                    <h2>Side by Side</h2>
-                    <div>
-                        <TextField onChange={this._handleTextChange} hintText="Text Field" />
-                        <DropDownMenu
-                            menuItems={dropDownData}
-                            onChange={this._handleDropDownChange}
-                        />
-                    </div>
+                  <h2>Multi Line</h2>
+                  <div>
+                    <TextField multiLine onChange={this._handleTextChange} hintText="Hint Text" />
+                  </div>
+                  <div>
+                    <TextField multiLine onChange={this._handleTextChange} floatingLabelText="Floated Label" />
+                  </div>
                 </div>
             </div>
         );

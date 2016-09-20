@@ -39,7 +39,7 @@ $date-picker-select-color: $primary-2-color !default;
 $date-picker-select-text-color: $white !default;
 
 // menu
-$menu-background-color: $white !default;
+$menu-background-color: #fff !default;
 $menu-item-data-height: 32px !default;
 $menu-item-height: 48px !default;
 $menu-item-hover-color: rgba(0, 0, 0, .035) !default;
@@ -47,6 +47,13 @@ $menu-item-padding: $desktop-gutter !default;
 $menu-item-selected-text-color: $accent-1-color !default;
 $menu-container-background-color: white !default;
 $menu-subheader-padding: $desktop-gutter !default;
+
+// list
+$list-item-hover-color: rgba(0, 0, 0, .035) !default;
+$list-item-padding: $desktop-gutter !default;
+$list-item-selected-text-color: $primary-1-color !default;
+$list-item-sides-width: $gutter;
+$list-subheader-padding: $desktop-gutter !default;
 
 // buttons
 $button-height: 36px !default;

@@ -1,59 +1,65 @@
-/**
- * Render a tranient snackbar
- */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import CssEvent from '../utils/CssEvent';
-import Classable from '../mixins/classable';
-import ClickAwayable from '../mixins/ClickAwayable';
-import FlatButton from '../FlatButton/FlatButton';
+import classnames from 'classnames';
+import FlatButton from '../Button/FlatButton';
 
-var Snackbar = React.createClass({
+/**
+ * Create a snackbar notice
+ */
+class Snackbar extends React.Component {
 
-  mixins: [Classable, ClickAwayable],
-
-  manuallyBindClickAway: true,
-
-  propTypes: {
+  static propTypes = {
     action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
     openOnMount: React.PropTypes.bool,
-    onActionClick: React.PropTypes.func
-  },
+    onActionClick: React.PropTypes.func,
+    timeout: React.PropTypes.number
+  };
 
-  getInitialState: function() {
-    return {
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
+
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
+
+    this.state = {
       open: this.props.openOnMount || false
-    };
-  },
-
-  componentClickAway: function() {
-    this.dismiss();
-  },
-
-  componentDidUpdate: function(prevProps, prevState) {
-    if (prevState.open != this.state.open) {
-      if (this.state.open) {
-        //Only Bind clickaway after transition finishes
-        CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), function() {
-          this._bindClickAway();
-        }.bind(this));
-      } else {
-        this._unbindClickAway();
-      }
     }
-  },
+  }
 
-  render: function() {
-    var classes = this.getClasses('chamel-snackbar', {
-      'chamel-is-open': this.state.open
+  componentDidUpdate(prevProps, prevState) {
+
+    if (prevState.open != this.state.open && this.props.timeout) {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      this.timer = setTimeout(() => { this.dismiss(); }, this.props.timeout);
+    }
+  }
+
+  render() {
+    // Determine which theme to use
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.snackbar)
+      ? this.context.chamelTheme.snackbar : {};
+
+    var classes = classnames(theme.snackbar, {
+      [theme.snackbarIsOpen]: this.state.open
     }); 
     var action;
 
     if (this.props.action) {
       action = (
         <FlatButton
-          className="chamel-snackbar-action"
+          className={theme.snackbarAction}
           label={this.props.action}
           onClick={this.props.onActionClick} />
       );
@@ -61,26 +67,20 @@ var Snackbar = React.createClass({
 
     return (
       <span className={classes}>
-        <span className="chamel-snackbar-message">{this.props.message}</span>
+        <span className={theme.snackbarMessage}>{this.props.message}</span>
         {action}
       </span>
     );
-  },
+  }
 
-  show: function() {
+  show() {
     this.setState({ open: true });
-  },
+  }
   
-  dismiss: function() {
+  dismiss() {
     this.setState({ open: false });
   }
 
-});
-
-
-// Check for commonjs
-if (module) {
-  module.exports = Snackbar;
 }
 
 export default Snackbar;

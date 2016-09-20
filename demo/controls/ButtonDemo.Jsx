@@ -1,12 +1,9 @@
-var React = require("react");
-
-import Button from 'chamel/Button';
+import React from 'react';
+import FlatButton from 'chamel/Button/FlatButton';
+import RaisedButton from 'chamel/Button/RaisedButton';
+import FloatingButton from 'chamel/Button/FloatingButton';
 import IconButton from 'chamel/Button/IconButton';
-import FontIcon from 'chamel/FontIcon';
 import CloseIcon from 'chamel/icons/font/CloseIcon';
-
-var FlatButton = require("chamel/FlatButton");
-var RaisedButton = require("chamel/RaisedButton");
 
 var ButtonDemo = React.createClass({
     render: function () {
@@ -16,27 +13,27 @@ var ButtonDemo = React.createClass({
                     <h2>{"Buttons"}</h2>
 
                     <h3>{"Flat"}</h3>
-                    <Button type={'flat'} onTap={this._handleClick}>Default</Button>
-                    <Button type={'flat'} primary onTap={this._handleClick}>Primary</Button>
-                    <Button type={'flat'} accent onTap={this._handleClick}>Accent</Button>
-                    <Button type={'flat'} disabled onTap={this._handleClick}>Accent</Button>
-                    <Button type={'flat'} onTap={this._handleClick}>
+                    <FlatButton onTap={this._handleClick}>Default</FlatButton>
+                    <FlatButton primary onTap={this._handleClick}>Primary</FlatButton>
+                    <FlatButton accent onTap={this._handleClick}>Accent</FlatButton>
+                    <FlatButton disabled onTap={this._handleClick}>Accent</FlatButton>
+                    <FlatButton onTap={this._handleClick}>
                         <CloseIcon />
                         With Icon
-                    </Button>
+                    </FlatButton>
 
                     <h3>{"Raised"}</h3>
-                    <Button type={'raised'} onTap={this._handleClick}>Default</Button>
-                    <Button type={'raised'} primary onTap={this._handleClick}>Primary</Button>
-                    <Button type={'raised'} accent onTap={this._handleClick}>Accent</Button>
-                    <Button type={'raised'} disabled onTap={this._handleClick}>Disabled</Button>
-                    <Button type={'raised'} onTap={this._handleClick}>With Icon</Button>
+                    <RaisedButton onTap={this._handleClick}>Default</RaisedButton>
+                    <RaisedButton primary onTap={this._handleClick}>Primary</RaisedButton>
+                    <RaisedButton accent onTap={this._handleClick}>Accent</RaisedButton>
+                    <RaisedButton disabled onTap={this._handleClick}>Disabled</RaisedButton>
+                    <RaisedButton onTap={this._handleClick}>With Icon</RaisedButton>
 
                     <h3>{"Floating"}</h3>
-                    <Button type={'floating'} onTap={this._handleClick}><CloseIcon /></Button>
-                    <Button type={'floating'} primary onTap={this._handleClick}><CloseIcon /></Button>
-                    <Button type={'floating'} accent onTap={this._handleClick}><CloseIcon /></Button>
-                    <Button type={'floating'} disabled onTap={this._handleClick}><CloseIcon /></Button>
+                    <FloatingButton onTap={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton type={'floating'} primary onTap={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton type={'floating'} accent onTap={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton type={'floating'} disabled onTap={this._handleClick}><CloseIcon /></FloatingButton>
 
                     <h3>{"Icon"}</h3>
                     <IconButton onTap={this._handleClick}><CloseIcon /></IconButton>

@@ -22,13 +22,13 @@ class FocusRipple extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
         ? this.context.chamelTheme.ripple : {};
 
-    let classes = classnames(theme.focus, {
-      [theme.focusshown]: this.props.show
+    let classes = classnames(theme.rippleFocus, {
+      [theme.rippleShown]: this.props.show
     });
 
     return (
       <div className={classes}>
-        <div className={theme.focusinner} />
+        <div className={theme.rippleFocusInner} />
       </div>
     );
   }

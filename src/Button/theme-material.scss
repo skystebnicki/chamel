@@ -11,7 +11,7 @@
   min-width: $button-min-width;
   min-height: $button-height;
   padding: 0 $desktop-gutter-less;
-  margin: 0;
+  margin: 0 5px 0 0;
   text-transform: uppercase;
   border-radius: $button-border-radius;
 }
@@ -21,6 +21,7 @@
 
   color: $raised-button-text-color;
   background-color: $raised-button-color;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
 
   &:hover {
     background-color: $raised-button-hover-color;
@@ -29,11 +30,17 @@
   &primary {
     color: $raised-button-primary-text-color;
     background-color: $raised-button-primary-color;
+    &:hover {
+      background-color: $raised-button-primary-hover-color;
+    }
   }
 
   &accent {
     color: $raised-button-secondary-text-color;
     background-color: $raised-button-secondary-color;
+    &:hover {
+      background-color: $raised-button-secondary-hover-color;
+    }
   }
 
   &disabled {
@@ -87,6 +94,7 @@
   -webkit-border-radius: $floating-action-button-size / 2;
   -moz-border-radius: $floating-action-button-size / 2;
   border-radius: $floating-action-button-size / 2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24);
 
   &mini {
     height: $floating-action-button-mini-size;
@@ -97,6 +105,10 @@
     border-radius: $floating-action-button-mini-size / 2;
   }
 
+  &depressed {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
+  }
+
   &:hover {
     background-color: $raised-button-hover-color;
   }
@@ -104,11 +116,17 @@
   &primary {
     color: $raised-button-primary-text-color;
     background-color: $raised-button-primary-color;
+    &:hover {
+      background-color: $raised-button-primary-hover-color;
+    }
   }
 
   &accent {
     color: $raised-button-secondary-text-color;
     background-color: $raised-button-secondary-color;
+    &:hover {
+      background-color: $raised-button-secondary-hover-color;
+    }
   }
 
   &disabled {

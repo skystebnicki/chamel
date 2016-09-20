@@ -14,28 +14,55 @@ import ToolbarGroup from "../Toolbar/ToolbarGroup";
  */
 var toolbarIcons = [];
 
-var Toolbar = React.createClass({
+/**
+ * Main popover class handles absolute positioning paper relative to an element
+ */
+class Toolbar extends React.Component {
 
-    getInitialState: function () {
-        return {
+    /**
+     * Class constructor
+     *
+     * @param {Object} props Properties to send to the render function
+     */
+    constructor(props) {
+      // Call paprent constructor
+      super(props);
 
-            /**
-             * The width of the toolbar icons container
-             *
-             * This will determine if the icons to be displayed will fit in the toolbar
-             */
-            chamelToolbarWidth: 0,
+      this.state = {
+        /**
+         * The width of the toolbar icons container
+         *
+         * This will determine if the icons to be displayed will fit in the toolbar
+         */
+        chamelToolbarWidth: 0,
 
-            /**
-             * The starting index of the icon that we are going to display
-             *
-             * This will be used if we are displaying the arrow navigation keys in the toolbar
-             */
-            startIconIndex: 0
-        };
-    },
+        /**
+         * The starting index of the icon that we are going to display
+         *
+         * This will be used if we are displaying the arrow navigation keys in the toolbar
+         */
+        startIconIndex: 0
+      }
+    }
 
-    componentDidMount: function () {
+    /**
+     * Set accepted properties
+     */
+    static propTypes = {
+      /**
+       * If this is a secondary menu then it might be used inline in the document
+       */
+      secondary: React.PropTypes.bool
+    };
+
+    /**
+     * An alternate theme may be passed down by a provider
+     */
+    static contextTypes = {
+        chamelTheme: React.PropTypes.object
+    };
+
+    componentDidMount() {
 
         // Get the offsetWidth of the main container for the toolbar icons
         let container = ReactDOM.findDOMNode(this.refs.chamelToolbar);
@@ -43,9 +70,9 @@ var Toolbar = React.createClass({
         this.setState({
             chamelToolbarWidth: container.offsetWidth
         });
-    },
+    }
 
-    componentWillUpdate: function () {
+    componentWillUpdate() {
 
         /*
          * If the toolbarIcons length is 0, then we will get the toolbar icons from _getToolbarIcons()
@@ -60,117 +87,116 @@ var Toolbar = React.createClass({
             // Get the toolbar icons
             this._getToolbarIcons(this.props.children, container, level)
         }
-    },
+    }
 
-    render: function () {
+    render() {
+      // Determine which theme to use
+      let theme = (this.context.chamelTheme && this.context.chamelTheme.toolbar)
+        ? this.context.chamelTheme.toolbar : {};
 
-        /*
-         * This will contain the total icons width to be displayed in the toolbar
-         * And will be evaluated later to determine if we will display the arrow navigation keys
-         */
-        let totalIconsWidth = 0;
+      /*
+       * This will contain the total icons width to be displayed in the toolbar
+       * And will be evaluated later to determine if we will display the arrow navigation keys
+       */
+      let totalIconsWidth = 0;
 
-        // Let's calculate the total toolbar icons width, so we can evaluate if we need to display the arrow buttons
-        toolbarIcons.map(function (icon) {
-            totalIconsWidth += icon.width;
-        })
+      // Let's calculate the total toolbar icons width, so we can evaluate if we need to display the arrow buttons
+      toolbarIcons.map(function (icon) {
+          totalIconsWidth += icon.width;
+      })
+      
+      let classes = theme.toolbar;
+      if (this.props.secondary) {
+        classes += " " + theme.toolbarSecondary;
+      }
 
-        // If the toolbarIcons is still empty, then let's just display the props.children for now
-        if (toolbarIcons.length == 0) {
+      /*
+       * Check if we should try to dynamically resize the toolbar
+       */
+      if (toolbarIcons.length != 0 && totalIconsWidth > this.state.chamelToolbarWidth) {
 
-            // We need to display all the toolbar icons here so we can get the icon's width and calculate the totalIconsWidth
-            return (
-                <div ref="chamelToolbar" className="chamel-toolbar">
-                    {this.props.children}
-                </div>
-            );
-        } else if (totalIconsWidth > this.state.chamelToolbarWidth) {
+          /*
+           * If the width of the totalIcons is greater than our toolbarWidth
+           * then we need to evaluate how many icons should be displayed
+           *
+           * We will also display here the arrow navigation keys to browse the toolbars that are not displayed
+           */
+          let displayArrowLeft = null,
+              displayArrowRight = null,
+              totalDisplayIconWidth = 0,
+              displayIcons = [],
+              idx = this.state.startIconIndex;
 
-            /*
-             * If the width of the totalIcons is greater than our toolbarWidth
-             *  then we need to evaluate how many icons should be displayed
-             *
-             * We will also display here the arrow navigation keys to browse the toolbars that are not displayed
-             */
+          // Loop thru the toolbarIcons and evaluate how many icons will fit in the current toolbar's width
+          for (let i = 1; i <= toolbarIcons.length; i++, idx++) {
+            // Make sure that we will only evaluate if we have a toolbar icon
+            if (toolbarIcons[idx]) {
+              // Calculate the width of the total icons displayed
+              totalDisplayIconWidth += toolbarIcons[idx].width;
 
-            let displayArrowLeft = null,
-                displayArrowRight = null,
-                totalDisplayIconWidth = 0,
-                displayIcons = [],
-                idx = this.state.startIconIndex;
+              /*
+               * If the width of the total icons displayed reaches the limit (chamelToolbarWidth)
+               * Then we will break this for loop and will not add more toolbar icons to displayIcons
+               *
+               * We need to minus the toolbarWidth with 96 to accommodate the arrow navigation buttons
+               */
+              if (totalDisplayIconWidth > (this.state.chamelToolbarWidth - 96)) {
+                break;
+              }
 
-            // Loop thru the toolbarIcons and evaluate how many icons will fit in the current toolbar's width
-            for (let i = 1; i <= toolbarIcons.length; i++, idx++) {
-
-                // Make sure that we will only evaluate if we have a toolbar icon
-                if (toolbarIcons[idx]) {
-
-                    // Calculate the width of the total icons displayed
-                    totalDisplayIconWidth += toolbarIcons[idx].width;
-
-                    /*
-                     * If the width of the total icons displayed reaches the limit (chamelToolbarWidth)
-                     * Then we will break this for loop and will not add more toolbar icons to displayIcons
-                     *
-                     * We need to minus the toolbarWidth with 96 to accommodate the arrow navigation buttons
-                     */
-                    if (totalDisplayIconWidth > (this.state.chamelToolbarWidth - 96)) {
-                        break;
-                    }
-
-                    /*
-                     * The number of icons to be displayed are limited because we need to make sure that
-                     *  they will fit in the toolbar main container's width
-                     */
-                    displayIcons.push(toolbarIcons[idx].icon);
-                }
+              /*
+               * The number of icons to be displayed are limited because we need to make sure that
+               *  they will fit in the toolbar main container's width
+               */
+              displayIcons.push(toolbarIcons[idx].icon);
             }
+          }
 
-            // This will determine if we need to display the left arrow icon
-            if (this.state.startIconIndex > 0) {
-                displayArrowLeft = (
-                    <div className="chamel-toolbar-left-arrow">
-                        <FontIcon onClick={this._handleArrowClick.bind(this, -1)}
-                                  className="cfi cfi-chevron-left"/>
-                    </div>
-                );
-            }
+          // This will determine if we need to display the left arrow icon
+          if (this.state.startIconIndex > 0) {
+              displayArrowLeft = (
+                  <div className="chamel-toolbar-left-arrow">
+                      <FontIcon onClick={this._handleArrowClick.bind(this, -1)}
+                                className="cfi cfi-chevron-left"/>
+                  </div>
+              );
+          }
 
-            // This will determine if we need to display the right arrow icon
-            if ((this.state.startIconIndex + displayIcons.length) < toolbarIcons.length) {
-                displayArrowRight = (
-                    <div className="chamel-toolbar-right-arrow">
-                        <FontIcon onClick={this._handleArrowClick.bind(this, 1)}
-                                  className="cfi cfi-chevron-right"/>
-                    </div>
-                );
-            }
+          // This will determine if we need to display the right arrow icon
+          if ((this.state.startIconIndex + displayIcons.length) < toolbarIcons.length) {
+              displayArrowRight = (
+                  <div className="chamel-toolbar-right-arrow">
+                      <FontIcon onClick={this._handleArrowClick.bind(this, 1)}
+                                className="cfi cfi-chevron-right"/>
+                  </div>
+              );
+          }
 
-            // Modify the toolbar main container's style so we can properly display the toolbar icons
-            let iconContainerStyle = {
-                float: 'left',
-                display: 'inline-width'
-            };
+          // Modify the toolbar main container's style so we can properly display the toolbar icons
+          let iconContainerStyle = {
+              float: 'left',
+              display: 'inline-width'
+          };
 
-            return (
-                <div ref="chamelToolbar" className="chamel-toolbar" style={{padding: '0px'}}>
-                    {displayArrowLeft}
-                    <div ref="chamelToolbar" className="chamel-toolbar-group" style={iconContainerStyle}>
-                        {displayIcons}
-                    </div>
-                    {displayArrowRight}
-                </div>
-            );
-        } else {
+          return (
+              <div ref="chamelToolbar" className={classes}>
+                  {displayArrowLeft}
+                  <div ref="chamelToolbar" className="chamel-toolbar-group" style={iconContainerStyle}>
+                      {displayIcons}
+                  </div>
+                  {displayArrowRight}
+              </div>
+          );
+      } else {
 
-            // If the toolbar main container is wide enough to display all the icons, then just display the props.children
-            return (
-                <div ref="chamelToolbar" className="chamel-toolbar">
-                    {this.props.children}
-                </div>
-            );
-        }
-    },
+        // If the toolbar main container is wide enough to display all the icons, then just display the props.children
+        return (
+          <div ref="chamelToolbar" className={classes}>
+            {this.props.children}
+          </div>
+        );
+      }
+    }
 
     /**
      * Callback used to handle the clicking of the navigation arrow icons
@@ -178,12 +204,12 @@ var Toolbar = React.createClass({
      * @param {int} value The number that will be used to modify the div's left value (negative value = left key; positive value = right key)
      * @private
      */
-    _handleArrowClick: function (value) {
+    _handleArrowClick(value) {
 
         // Update the startIconIndex
         let startIconIndex = this.state.startIconIndex + value;
         this.setState({startIconIndex: startIconIndex});
-    },
+    }
 
     /**
      * Function that will get the icon's width
@@ -192,7 +218,7 @@ var Toolbar = React.createClass({
      * @returns {int} The icon's width
      * @private
      */
-    _getIconWidth: function (element) {
+    _getIconWidth(element) {
         var style = element.currentStyle || window.getComputedStyle(element);
 
         let width = parseInt(style.width, 10)
@@ -206,7 +232,7 @@ var Toolbar = React.createClass({
         }
 
         return width;
-    },
+    }
 
     /**
      * Function that will get all the toolbar icons
@@ -216,7 +242,7 @@ var Toolbar = React.createClass({
      * @param {int} level Determine how deep we have checked to look for toolbar icons
      * @private
      */
-    _getToolbarIcons: function (children, elementContainer, level) {
+    _getToolbarIcons(children, elementContainer, level) {
 
         // Limitation: Currently, we can handle 1 level deep (which is the <ToolbarGroup> as the element container)
         if (level > 1) {
@@ -249,11 +275,6 @@ var Toolbar = React.createClass({
             }
         }
     }
-});
-
-// Check for commonjs
-if (module) {
-  module.exports = Toolbar;
 }
 
 export default Toolbar;

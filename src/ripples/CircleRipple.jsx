@@ -1,34 +1,45 @@
 import React from 'react';
-import Classable from '../mixins/classable';
+import classnames from 'classnames';
 
-var CircleRipple = React.createClass({
+class CircleRipple extends React.Component {
 
-  mixins: [Classable],
-
-  propTypes: {
+  /**
+   * Set accepted properties
+   */
+  static propTypes = {
     className: React.PropTypes.string,
     started: React.PropTypes.bool,
-    ending: React.PropTypes.bool
-  },
+    ending: React.PropTypes.bool,
+    style: React.PropTypes.object
+  };
 
-  render: function() {
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
 
-    var innerClassName = this.props.innerClassName;
-    var started = this.props.started;
-    var ending = this.props.ending;
+  render() {
 
-    var classes = this.getClasses('chamel-ripple-circle', {
-      'chamel-is-started': this.props.started,
-      'chamel-is-ending': this.props.ending
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
+      ? this.context.chamelTheme.ripple : {};
+
+    let classes = classnames(theme.rippleCircle, {
+      [theme.rippleCircleIsStarted]: this.props.started,
+      [theme.rippleCircleIsEnding]: this.props.ending
+    });
+
+    let innerClasses = classnames(theme.rippleCircleInner, {
+      [theme.rippleCircleIsStartedInner]: this.props.started
     });
 
     return (
-      <div className={classes}>
-        <div className="chamel-ripple-circle-inner" />
+      <div className={classes} style={this.props.style}>
+        <div className={innerClasses} />
       </div>
     );
   }
+}
 
-});
-
-module.exports = CircleRipple;
+export default CircleRipple;

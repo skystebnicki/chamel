@@ -6,6 +6,28 @@ import RippleCircle from './CircleRipple';
 class TouchRipple extends React.Component {
 
   /**
+   * Set accepted properties
+   */
+  static propTypes = {
+    centerRipple: React.PropTypes.bool,
+    className: React.PropTypes.string
+  };
+
+  /**
+   * Set property defaults
+   */
+  static defaultProps = {
+    show: false
+  };
+
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
+
+  /**
    * Class constructor
    * 
    * @param {Object} props Properties to send to the render function
@@ -23,6 +45,11 @@ class TouchRipple extends React.Component {
     }
   }
 
+  /**
+   * Render the component
+   *
+   * @returns {JSX}
+   */
   render() {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
         ? this.context.chamelTheme.ripple : {};
@@ -34,7 +61,7 @@ class TouchRipple extends React.Component {
         onMouseOut={this._handleMouseOut}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._handleTouchEnd}>
-        <div className={theme.touch}>
+        <div className={theme.rippleTouch}>
           {this._getRippleElements()}
         </div>
         {this.props.children}
@@ -42,21 +69,26 @@ class TouchRipple extends React.Component {
     );
   }
 
+  /**
+   * Called when a user starts clicking/tapping
+   *
+   * @param {event} e
+   */
   start = (e) => {
-    var ripples = this.state.ripples;
-    var nextKey = ripples[ripples.length-1].key + 1;
-    var style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
-    var ripple;
+    let ripples = this.state.ripples;
+    let nextKey = ripples[ripples.length-1].key + 1;
+    let style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
+    let ripple;
 
     //Start the next unstarted ripple
-    for (var i = 0; i < ripples.length; i++) {
+    for (let i = 0; i < ripples.length; i++) {
       ripple = ripples[i];
       if (!ripple.started) {
         ripple.started = true;
         ripple.style = style;
         break;
       }
-    };
+    }
 
     //Add an unstarted ripple at the end
     ripples.push({
@@ -66,15 +98,22 @@ class TouchRipple extends React.Component {
     });
 
     //Re-render
+    /*
     this.setState({
       ripples: ripples
     });
-  }
+    */
+  };
 
+  /**
+   * Called when a user is finished clicking
+   *
+   * @param {event} e
+   */
   end = (e) => {
-    var ripples = this.state.ripples;
-    var ripple;
-    var endingRipple;
+    let ripples = this.state.ripples;
+    let ripple;
+    let endingRipple;
 
     //End the the next un-ended ripple
     for (var i = 0; i < ripples.length; i++) {
@@ -84,7 +123,7 @@ class TouchRipple extends React.Component {
         endingRipple = ripple;
         break;
       }
-    };
+    }
 
     //Only update if a ripple was found
     if (endingRipple) {
@@ -101,49 +140,51 @@ class TouchRipple extends React.Component {
         });
       }, 2000);
     }
-  }
+  };
 
   _handleMouseDown = (e) => {
     //only listen to left clicks
-    if (e.button === 0) this.start(e);
-  }
+    if (e.button === 0) {
+      this.start(e);
+    }
+  };
 
   _handleMouseUp = (e) => {
     this.end();
-  }
+  };
 
   _handleMouseOut = (e) => {
     this.end();
-  }
+  };
 
   _handleTouchStart = (e) => {
     this.start(e);
-  }
+  };
 
   _handleTouchEnd = (e) => {
     this.end();
-  }
+  };
 
   _getRippleStyle = (e) => {
-    var style = {};
-    var el = ReactDOM.findDOMNode(this);
-    var elHeight = el.offsetHeight;
-    var elWidth = el.offsetWidth;
-    var offset = Dom.offset(el);
-    var pageX = e.pageX == undefined ? e.nativeEvent.pageX : e.pageX;
-    var pageY = e.pageY == undefined ? e.nativeEvent.pageY : e.pageY;
-    var pointerX = pageX - offset.left;
-    var pointerY = pageY - offset.top;
-    var topLeftDiag = this._calcDiag(pointerX, pointerY);
-    var topRightDiag = this._calcDiag(elWidth - pointerX, pointerY);
-    var botRightDiag = this._calcDiag(elWidth - pointerX, elHeight - pointerY);
-    var botLeftDiag = this._calcDiag(pointerX, elHeight - pointerY);
-    var rippleRadius = Math.max(
+    let style = {};
+    let el = ReactDOM.findDOMNode(this);
+    let elHeight = el.offsetHeight;
+    let elWidth = el.offsetWidth;
+    let offset = Dom.offset(el);
+    let pageX = e.pageX == undefined ? e.nativeEvent.pageX : e.pageX;
+    let pageY = e.pageY == undefined ? e.nativeEvent.pageY : e.pageY;
+    let pointerX = pageX - offset.left;
+    let pointerY = pageY - offset.top;
+    let topLeftDiag = this._calcDiag(pointerX, pointerY);
+    let topRightDiag = this._calcDiag(elWidth - pointerX, pointerY);
+    let botRightDiag = this._calcDiag(elWidth - pointerX, elHeight - pointerY);
+    let botLeftDiag = this._calcDiag(pointerX, elHeight - pointerY);
+    let rippleRadius = Math.max(
       topLeftDiag, topRightDiag, botRightDiag, botLeftDiag
     );
-    var rippleSize = rippleRadius * 2;
-    var left = pointerX - rippleRadius;
-    var top = pointerY - rippleRadius;
+    let rippleSize = rippleRadius * 2;
+    let left = pointerX - rippleRadius;
+    let top = pointerY - rippleRadius;
 
     style.height = rippleSize + 'px';
     style.width = rippleSize + 'px';
@@ -151,14 +192,14 @@ class TouchRipple extends React.Component {
     style.left = left + 'px';
 
     return style;
-  }
+  };
 
   _calcDiag(a, b) {
     return Math.sqrt((a * a) + (b * b));
   }
 
   _getRippleElements() {
-    return this.state.ripples.map(function(ripple) {
+    return this.state.ripples.map((ripple)  => {
       return (
         <RippleCircle
           key={ripple.key}
@@ -166,30 +207,8 @@ class TouchRipple extends React.Component {
           ending={ripple.ending}
           style={ripple.style} />
       );
-    }.bind(this));
+    });
   }
-};
-
-/**
- * Set accepted properties
- */
-TouchRipple.propTypes = {
-  centerRipple: React.PropTypes.bool,
-  className: React.PropTypes.string
-}
-
-/**
- * Set property defaults
- */
-TouchRipple.defaultProps = {
-  show: false
-}
-
-/**
- * An alternate theme may be passed down by a provider
- */
-TouchRipple.contextTypes = {
-    chamelTheme: React.PropTypes.object
 };
 
 // Check for commonjs

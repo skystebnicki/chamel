@@ -18,6 +18,9 @@ var TabsDemo = require("../controls/TabsDemo.jsx");
 var DatePickerDemo = require("../controls/DatePickerDemo.jsx");
 var AutoCompleteDemo = require("../controls/AutoCompleteDemo.jsx");
 var PopoverDemo = require("../controls/popover/PopoverDemo.jsx");
+var ToggleDemo = require("../controls/ToggleDemo");
+var PickerDemo = require("../controls/PickerDemo");
+var SnackbarDemo = require("../controls/SnackbarDemo");
 
 var ReactRouter = require('react-router');
 var IndexRoute = ReactRouter.IndexRoute;
@@ -32,7 +35,7 @@ var routes = (
 		<Route name="checkbox" path="checkbox" component={CheckboxDemo}/>
 		<Route name="radio" path="radio" component={RadioDemo}/>
 		<Route name="input" path="input" component={InputDemo}/>
-		<Route name="app-bar" path="app-bar" component={AppBarDemo}/>
+		<Route name="appbar" path="appbar" component={AppBarDemo}/>
 		<Route name="toolbar" path="toolbar" component={ToolbarDemo}/>
 		<Route name="editor" path="editor" component={EditorDemo}/>
 		<Route name="icon" path="icon" component={IconsDemo}/>
@@ -44,6 +47,9 @@ var routes = (
 		<Route name="tabs" path="tabs" component={TabsDemo}/>
 		<Route name="datepicker" path="datepicker" component={DatePickerDemo} />
 		<Route name="autocomplete" path="autocomplete" component={AutoCompleteDemo} />
+		<Route name="toggle" path="toggle" component={ToggleDemo} />
+    <Route name="picker" path="picker" component={PickerDemo} />
+		<Route name="snackbar" path="snackbar" component={SnackbarDemo} />
 	</Route>
 );
 

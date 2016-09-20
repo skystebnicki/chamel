@@ -1,17 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var LinearProgress = React.createClass({
+/**
+ * Linear progress bar
+ */
+class LinearProgress extends React.Component {
 
   /**
    * Expected props
    */
-  propTypes: {
+  static propTypes = {
     mode: React.PropTypes.oneOf(["determinate", "indeterminate"]),
     value: React.PropTypes.number,
     min:  React.PropTypes.number,
     max:  React.PropTypes.number,
-  },
+  };
+
+  /**
+   * Set propery defaults
+   */
+  static defaultProps = {
+    mode: "indeterminate",
+    value: 0,
+    min: 0,
+    max: 100,
+  };
+
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
+
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
+
+    this.state = {
+      timer: null
+    }
+  }
 
   /**
    * Get percentage relative to min and max
@@ -27,7 +61,7 @@ var LinearProgress = React.createClass({
     let rangeValue = max - min;
     let relValue = Math.round(clampedValue / rangeValue * 10000) / 10000;
     return relValue * 100;
-  },
+  }
 
   /**
    * Triggered when the component enters the dom for the first time
@@ -41,19 +75,32 @@ var LinearProgress = React.createClass({
       [100, -90],
     ]);
 
-    setTimeout(() => {
+    /*
+    let timer = setTimeout(() => {
       this._barUpdate(0, bar2, [
         [-200, 100],
         [107, -8],
       ]);
     }, 850);
-  },
+
+    // Save the timer state so we can cancel it later
+    this.setState({timer: timer});*/
+  }
+
+  componentWillUnmount() {
+    if (this.state.timer) {
+      clearTimeout(this.state.timer);
+    }
+  }
 
   _barUpdate(step, barElement, stepValues) {
     step = step || 0;
     step %= 4;
-    setTimeout(this._barUpdate.bind(this, step + 1, barElement, stepValues), 420);
-    if (!this.isMounted()) return;
+    let newTimer = setTimeout(
+      () => { this._barUpdate(step + 1, barElement, stepValues) },
+      420
+    );
+
     if (this.props.mode !== "indeterminate") return;
 
     const right = 'right';
@@ -73,18 +120,15 @@ var LinearProgress = React.createClass({
     else if (step === 3) {
       barElement.style.transitionDuration = "0ms";
     }
-  },
 
-  getDefaultProps() {
-      return {
-          mode: "indeterminate",
-          value: 0,
-          min: 0,
-          max: 100,
-      };
-  },
+    this.setState({timer: newTimer});
+  }
 
   render() {
+    // Determine which theme to use
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.progress)
+      ? this.context.chamelTheme.progress : {};
+
     let {
       style,
       ...other,
@@ -92,24 +136,23 @@ var LinearProgress = React.createClass({
 
     let barStyle = {};
 
-    let barClasses = "chamel-progress-bar ";
+    let barClasses = theme.progressBar + " ";
     if (this.props.mode === "determinate") {
-      barClasses += "chamel-progress-bar-determinate";
+      barClasses += theme.progressBarDeterminate;
       barStyle.width = this._getRelativeValue() + "%";
     } else {
-      barClasses += "chamel-progress-bar-indeterminate";
+      barClasses += theme.progressBarIndeterminate;
     }
 
-
     return (
-      <div {...other} className="chamel-progress">
+      <div {...other} className={theme.progress}>
         <div  className={barClasses} style={barStyle}>
-          <div ref="bar1" className="chamel-progress-bar-left"></div>
-          <div ref="bar2" className="chamel-progress-bar-right"></div>
+          <div ref="bar1" className={theme.progressBarLeft}></div>
+          <div ref="bar2" className={theme.progressBarRight}></div>
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
-module.exports = LinearProgress;
+export default LinearProgress;

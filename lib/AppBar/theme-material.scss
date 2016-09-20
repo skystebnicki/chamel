@@ -1,0 +1,107 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/media-queries";
+@import "../styles/variables/theme-variables";
+@import "../styles/core/typography";
+
+.appBarOuter {
+  width: 100%;
+  background-color: $app-bar-color;
+  z-index: 5;
+  height: $app-bar-height-small;
+
+  @media #{$device-medium} {
+    height: $app-bar-height-medium;
+  }
+
+  @media #{$device-large} {
+    height: $app-bar-height-large;
+  }
+
+  .chamel-paper-container {
+    padding-left: $gutter-less;
+    padding-right: $gutter-less;
+
+    @media #{$device-medium} {
+      padding-left: $gutter-less;
+      padding-right: $gutter;
+    }
+
+    @media #{$device-large} {
+      padding-left: $gutter;
+      padding-right: $gutter;
+    }
+  }
+
+  .appBar-input-search-box {
+    float: left;
+
+    .chamel-text-field-hint {
+      color: white;
+    }
+  }
+
+}
+
+.appBarTitle {
+  @extend .cml-font-style-title;
+  color: $app-bar-text-color;
+  padding: 0;
+  margin: 0;
+
+  float: left;
+
+  line-height: $app-bar-height-small;
+  @media #{$device-medium} {
+    line-height: $app-bar-height-medium;
+  }
+  @media #{$device-large} {
+    line-height: $app-bar-height-large;
+  }
+}
+
+.appBarRight {
+  float: right;
+
+  @media #{$device-medium} {
+  }
+
+  @media #{$device-large} {
+  }
+}
+
+.appBarLeft {
+  float: left;
+  margin-right: $gutter-less - ($gutter-less - ($icon-size / 2));
+
+  @media #{$device-medium} {
+    margin-right: $gutter - ($gutter - ($icon-size / 2));
+  }
+
+  @media #{$device-large} {
+    margin-right: $gutter - ($gutter - ($icon-size / 2));
+  }
+
+}
+
+.appBarClear {
+  clear: both;
+}
+
+.appBarIconButton  {
+  margin-top: (($app-bar-height-small - $icon-button-size) / 2);
+  background-color: transparent;
+
+  @media #{$device-medium} {
+    margin-top: (($app-bar-height-medium - $icon-button-size) / 2);
+  }
+
+  @media #{$device-large} {
+    margin-top: (($app-bar-height-large - $icon-button-size) / 2);
+  }
+
+  * {
+    fill: $app-bar-text-color;
+    color: $app-bar-text-color;
+  }
+}

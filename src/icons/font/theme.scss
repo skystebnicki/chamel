@@ -1,7 +1,6 @@
 /**
  * These are the default icons built using font-awesome.
  */
-
 @import "font-awesome/variables";
 @import "font-awesome/mixins";
 @import "font-awesome/path";
@@ -24,12 +23,135 @@
 /**
  * Navigation Icons
  */
+.iconApps {
+  @extend .fontIcon;
+  @extend .fa-th;
+}
+
+.iconArrowBack {
+  @extend .fontIcon;
+  @extend .fa-arrow-left;
+}
+
+.iconArrowDown {
+  @extend .fontIcon;
+  @extend .fa-arrow-down;
+}
+
+.iconArrowDropDown {
+  @extend .fontIcon;
+  @extend .fa-caret-down;
+}
+
+.iconArrowDropDownCircle {
+  @extend .fontIcon;
+  @extend .fa-chevron-circle-down;
+}
+
+.iconArrowDropUp {
+  @extend .fontIcon;
+  @extend .fa-caret-up;
+}
+
+.iconArrowForward {
+  @extend .fontIcon;
+  @extend .fa-arrow-right;
+}
+
+.iconArrowUp {
+  @extend .fontIcon;
+  @extend .fa-arrow-up;
+}
+
+.iconCancel {
+  @extend .fontIcon;
+  @extend .fa-times-circle;
+}
+
+.iconCheck {
+  @extend .fontIcon;
+  @extend .fa-check;
+}
+
+.iconChevronLeft {
+  @extend .fontIcon;
+  @extend .fa-chevron-left;
+}
+
+.iconChevronRight {
+  @extend .fontIcon;
+  @extend .fa-chevron-right;
+}
+
 .iconClose {
   @extend .fontIcon;
   @extend .fa-times;
 }
 
-.pencil {
+.iconExpandLess {
+  @extend .fontIcon;
+  @extend .fa-chevron-up;
+}
+
+.iconExpandMore {
+  @extend .fontIcon;
+  @extend .fa-chevron-down;
+}
+
+.iconFirstPage {
+  @extend .fontIcon;
+  @extend .fa-fast-backward;
+}
+
+.iconFullScreen {
+  @extend .fontIcon;
+  @extend .fa-arrows-alt;
+}
+
+.iconFullScreenExit {
+  @extend .fontIcon;
+  @extend .fa-compress;
+}
+
+.iconLastPage {
+  @extend .fontIcon;
+  @extend .fa-fast-forward;
+}
+
+.iconMoreHoriz {
+  @extend .fontIcon;
+  @extend .fa-ellipsis-h;
+}
+
+.iconMoreVert {
+  @extend .fontIcon;
+  @extend .fa-ellipsis-v;
+}
+
+.iconRefresh {
+  @extend .fontIcon;
+  @extend .fa-refresh;
+}
+
+.iconSubArrowLeft {
+  @extend .fontIcon;
+  @extend .fa-caret-left;
+}
+
+.iconSubArrowRight {
+  @extend .fontIcon;
+  @extend .fa-caret-right;
+}
+
+.iconArrowRight {
+  @extend .fontIcon;
+  @extend .fa-caret-right;
+}
+
+/*
+ * Something else
+ */
+.iconCreate {
   @extend .fontIcon;
   @extend .fa-pencil;
 }

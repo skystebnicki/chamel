@@ -31,9 +31,6 @@ class MenuItem extends React.Component {
         var number;
         var toggle;
 
-        if (this.props.selected)
-            console.log("Selected", theme);
-
         if (this.props.iconClassName) {
             icon = <FontIcon className={theme.menuItemIcon + ' ' + this.props.iconClassName}/>;
         }
