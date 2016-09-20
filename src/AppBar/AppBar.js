@@ -218,6 +218,7 @@ class AppBar extends React.Component {
              */
             switch (element.type.name) {
                 case 'IconButton':
+                case 'DropDownIcon':
                     return React.cloneElement(element, {
                         className: className + " " + theme.appBarIconButton
                     });
