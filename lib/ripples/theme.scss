@@ -1,16 +1,11 @@
-@import "../styles/variables/colors";
-@import "../styles/mixins/transitions";
-@import "../styles/variables/theme-variables";
-
-.focus {
-  opacity: 0;
-
-  .inner {
-  }
-
-  &.shown {
-  }
+.rippleFocus {
 }
 
-.touch {
+.rippleFocusInner {
+}
+
+.rippleShown {
+}
+
+.rippleTouch {
 }

@@ -2,7 +2,7 @@
 @import "../styles/mixins/transitions";
 @import "../styles/variables/theme-variables";
 
-.focus {
+.rippleFocus {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -12,32 +12,63 @@
   @include ease-out();
   @include transform(scale(0));
   opacity: 0;
-
-  .inner {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,0.1);
-
-    @include pulsate(
-            $animation-name: "focus-ripple-pulsate",
-            $start-size: 0.75,
-            $end-size: 0.85
-    );
-
-  }
-
-  &.shown {
-    @include transform(scale(1));
-    opacity: 1;
-  }
 }
 
-.touch {
+.rippleFocusInner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.1);
+
+  @include pulsate(
+          $animation-name: "focus-ripple-pulsate",
+          $start-size: 0.75,
+          $end-size: 0.85
+  );
+
+}
+
+.rippleShown {
+  @include transform(scale(1));
+  opacity: 1;
+}
+
+.rippleTouch {
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.rippleCircle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+  @include ease-out($property: opacity, $duration: 2s);
+}
+
+.rippleCircleInner {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  @include transform(scale(0));
+  background-color: rgba(0,0,0,0.2);
+  @include ease-out($property: transform, $duration: 1s);
+}
+
+.rippleCircleIsStarted {
+  opacity: 1;
+}
+
+.rippleCircleIsStartedInner {
+  @include transform(scale(1));
+}
+
+.rippleCircleIsEnding {
+  opacity: 0;
 }
