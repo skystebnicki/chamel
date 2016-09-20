@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Button from './Button';
+import FontIcon from '../FontIcon';
 
 /**
  * Functional component for any icon button
@@ -10,6 +11,11 @@ import Button from './Button';
  * @constructor
  */
 const IconButton = (props, context) => {
+
+    const children = (props.iconClassName && props.children.length == 0) ? (
+        <FontIcon className={props.iconClassName} />
+    ) : props.children;
+
     return (
         <Button type={'icon'} {...props}>{props.children}</Button>
     );
@@ -31,7 +37,8 @@ IconButton.propTypes = {
     label: PropTypes.string,
     onMouseLeave: PropTypes.func,
     onMouseUp: PropTypes.func,
-    onTap: PropTypes.func
+    onTap: PropTypes.func,
+    iconClassName: PropTypes.string
 };
 
 /**
