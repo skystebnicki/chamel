@@ -152,7 +152,7 @@ class Dialog extends React.Component {
     }
 
     // Get actions to display at the bottom
-    var actions = this._getActionsContainer(this.props.actions);
+    var actions = this._getActionsContainer(this.props.actions, theme);
 
     return (
       <div className={classesDialog}>
@@ -228,10 +228,7 @@ class Dialog extends React.Component {
     );
   }
 
-  _getActionsContainer(actions) {
-    // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.dialog)
-      ? this.context.chamelTheme.dialog : {};
+  _getActionsContainer(actions, theme) {
 
     var actionContainer;
     var actionObjects = [];
