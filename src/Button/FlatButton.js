@@ -31,7 +31,11 @@ FlatButton.propTypes = {
   label: PropTypes.string,
   onMouseLeave: PropTypes.func,
   onMouseUp: PropTypes.func,
-  onTap: PropTypes.func
+  onTap: PropTypes.func,
+  /**
+   * Alias for onTap for backwards compatibility
+   */
+  onClick: PropTypes.func
 };
 
 /**
