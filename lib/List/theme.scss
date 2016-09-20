@@ -1,0 +1,62 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+@import "../styles/core/typography";
+
+.list {
+}
+
+.listItem {
+  * { user-select: none }
+
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    &:not(.is-disabled) {
+      background-color: $list-item-hover-color;
+    }
+  }
+}
+
+.listItemContent {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  align-items: center;
+
+  white-space: nowrap;
+  padding: $list-item-padding;
+}
+
+.listItemSelected {
+  background-color: $list-item-hover-color;
+  color: $list-item-selected-text-color;
+}
+
+.listItemData {
+  vertical-align: top;
+  line-height: 125%;
+}
+
+.listItemPrimary {
+}
+
+.listItemSecondary {
+  @extend .cml-text-light-black;
+}
+
+.listItemLeft {
+  width: $list-item-sides-width;
+  margin-right: $gutter;
+}
+
+.listItemRight {
+  width: $list-item-sides-width;
+  text-align: right;
+}

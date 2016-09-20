@@ -1,0 +1,61 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+@import "../styles/core/typography";
+
+.dialog {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+
+  @include transition(left 0ms $ease-out-function 450ms);
+
+
+
+  &.dialogIsShown {
+    left: 0px;
+    @include transition(left 0ms $ease-out-function 0ms);
+
+    >.dialogWindow {
+      opacity: 1;
+      top: 0px;
+      @include transform(translate3d(0, $desktop-keyline-increment, 0));
+    }
+  }
+}
+
+.dialogWindow {
+  @include ease-out();
+  position: relative;
+  width: 75%;
+  max-width: ($desktop-keyline-increment * 12);
+  margin: 0 auto;
+  z-index: 10;
+  background: $canvas-color;
+  opacity: 0;
+}
+
+.dialogWindowTitle {
+  padding: $gutter $gutter 0 $gutter;
+  margin-bottom: 0;
+}
+
+.dialogWindowBody {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: $gutter;
+}
+
+.dialogWindowActions {
+  padding: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  text-align: right;
+}
+
+.dialogWindowAction {
+  margin-right: 8px;
+}

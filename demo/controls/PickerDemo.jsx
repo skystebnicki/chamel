@@ -37,6 +37,12 @@ class PickerDemo extends React.Component {
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
+            <h3>{"DropdownMenu"}</h3>
+            {"Button and Icon"}
+          </Column>
+        </Row>
+        <Row>
+          <Column xsmall={12} medium={6}>
             <h3>{"Color Picker"}</h3>
           </Column>
         </Row>

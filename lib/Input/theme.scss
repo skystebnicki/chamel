@@ -1,0 +1,143 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+
+$disabled-text-color: rgba($body-text-color, 0.3);
+$error-color: $red-500;
+
+.textField {
+  font-size: 16px;
+  line-height: 24px;
+  display: block;
+  position: relative;
+  padding: 20px 0 20px 0;
+  @include ease-out($property: height, $duration: 200ms);
+}
+
+.label {
+  position: absolute;
+  color: $disabled-text-color;
+  opacity: 1;
+  margin-top: 2px;
+  font-weight: normal;
+  cursor: text;
+  @include ease-out();
+}
+
+.hint {
+  @extend .label;
+}
+
+.hintDisabled {
+  color: $disabled-text-color;
+}
+
+.hintHasValue {
+  opacity: 0;
+}
+
+.errorText {
+  position: absolute;
+  bottom: -10px;
+  font-size: 12px;
+  line-height: 12px;
+  color: $error-color;
+  @include ease-out();
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  margin: 6px 0 6px 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: $transparent;
+  color: $body-text-color;
+}
+
+.inputDisabled {
+  color: $disabled-text-color;
+}
+
+.textarea {
+  /* textareas have 3px height added to input */
+  margin: 2px 0 6px 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: $transparent;
+  color: $body-text-color;
+}
+
+.textareaDisabled {
+  @extend .inputDisabled;
+}
+
+/*
+ * Underlines
+ */
+.unfocusUnderline {
+  position: relative;
+  width: 100%;
+  /*bottom: 8px;*/
+  margin: 0;
+  height: 1px;
+  background-color: $disabled-text-color;
+}
+
+.focusUnderline {
+  margin-top: -1px;
+  background-color: $primary-1-color;
+  height: 2px;
+  transform: scaleX(0);
+  @include ease-out();
+}
+
+.focusUnderlineOn {
+  transform: scaleX(1);
+}
+
+.focusUnderlineError {
+  border-color: $error-color;
+  transform: scaleX(1);
+}
+
+.focusUnderLineDisabled {
+  border: none;
+  height: 40px;
+  overflow: hidden;
+
+  //hack because border style dotted just doesn't look right
+  //border-bottom-style: dotted;
+  &:after {
+    content: '..............................................................................................................................................................................................................................................................................................................................................................';
+    position: absolute;
+    top: 23px;
+    color: $disabled-text-color;
+  }
+}
+
+//Floating Label Text Field Styles
+//--------------------------------
+.floatingLabel {
+  @extend .label;
+  transform: scale(1) translate3d(0, 0, 0);
+  transform-origin: left top;
+}
+
+.floatingLabelFloated {
+  transform: scale(0.75) translate3d(0, -26px, 0);
+  color: $primary-1-color;
+}
+
+.floatingLabelError {
+  color: $error-color;
+}
+
+.floatingLabelDisabled {
+  color: rgba($body-text-color, 0.5);
+}
