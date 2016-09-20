@@ -134,7 +134,7 @@ class Drawer extends React.Component {
     let overlay;
 
     if (!this.props.permanent)
-      overlay = <Overlay show={this.props.open} onClick={this._onOverlayTouchTap}/>;
+      overlay = <Overlay show={(this.props.open || this.state.open)} onClick={this._onOverlayTouchTap}/>;
 
     // Determine the depth of the background
     let zDept = (this.props.permanent) ? 0 : 2;
