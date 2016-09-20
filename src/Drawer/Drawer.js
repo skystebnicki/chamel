@@ -124,7 +124,7 @@ class Drawer extends React.Component {
 
     // Set the classes
     const classes = classnames(theme.drawer, {
-      [theme.drawerClosed]: !this.props.open,
+      [theme.drawerClosed]: (!this.props.open && !this.state.open),
       [theme.drawerClipped]: this.props.clipped,
       [theme.drawerPermanent]: this.props.permanent,
       [theme.drawerFloating]: !this.props.permanent,
