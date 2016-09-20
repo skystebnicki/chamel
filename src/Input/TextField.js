@@ -370,7 +370,7 @@ class TextField extends React.Component {
           {hintTextElement}
           {inputElement}
 
-          <div className={theme.underline} />
+          <div className={theme.unfocusUnderline} />
           <div className={focuseUnderlineClasses} />
 
           {errorTextElement}
