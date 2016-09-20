@@ -44,9 +44,6 @@ import Events from './utils/Events';
 import KeyCode from './utils/KeyCode';
 import KeyLine from './utils/KeyLine';
 
-// This is only for legacy applications
-import materialTheme from './styles/theme/material/material';
-
 /**
  * Do we need to move all these to jsx?
  */
