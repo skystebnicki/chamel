@@ -12,7 +12,7 @@ import FontIcon from '../FontIcon';
  */
 const IconButton = (props, context) => {
 
-    const children = (props.iconClassName && props.children.length == 0) ? (
+    const children = (props.iconClassName && !props.children) ? (
         <FontIcon className={props.iconClassName} />
     ) : props.children;
 
