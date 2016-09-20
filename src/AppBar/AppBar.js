@@ -209,8 +209,8 @@ class AppBar extends React.Component {
             return element;
         } else {
             // Get existing className
-            //let className = (element.props.className) ? element.props.className + " " : "";
-            let className = "";
+            let className = (element.props.className) ? element.props.className : "";
+            //let className = "";
 
             /*
              * If the element is supported, then clone a new element and
