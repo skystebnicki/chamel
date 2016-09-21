@@ -1,7 +1,7 @@
 import React from 'react';
 import Classable from './mixins/classable';
 import Paper from './Paper/Paper';
-import EnhancedSwitch from './EnhancedSwitch/EnhancedSwitch';
+//import EnhancedSwitch from './EnhancedSwitch/EnhancedSwitch';
 
 var Toggle = React.createClass({
 

@@ -7,15 +7,12 @@ var ButtonDemo = require("../controls/ButtonDemo.jsx");
 var ToolbarDemo = require("../controls/ToolbarDemo.jsx");
 var EditorDemo = require("../controls/EditorDemo.jsx");
 var IconsDemo = require("../controls/IconsDemo.jsx");
-var CheckboxDemo = require("../controls/CheckboxDemo.jsx");
-var RadioDemo = require("../controls/RadioDemo.jsx");
 var InputDemo = require("../controls/InputDemo.jsx");
 var DialogDemo = require("../controls/DialogDemo.jsx");
 var MenuDemo = require("../controls/MenuDemo.jsx");
 var ListDemo = require("../controls/List/ListDemo.jsx");
 var ProgressDemo = require("../controls/ProgressDemo.jsx");
 var TabsDemo = require("../controls/TabsDemo.jsx");
-var DatePickerDemo = require("../controls/DatePickerDemo.jsx");
 var AutoCompleteDemo = require("../controls/AutoCompleteDemo.jsx");
 var PopoverDemo = require("../controls/popover/PopoverDemo.jsx");
 var ToggleDemo = require("../controls/ToggleDemo");
@@ -32,8 +29,6 @@ var routes = (
 		<Route name="home" path="home" component={Home}/>
 		<Route name="drawer" path="drawer" component={DrawerDemo}/>
 		<Route name="button" path="button" component={ButtonDemo}/>
-		<Route name="checkbox" path="checkbox" component={CheckboxDemo}/>
-		<Route name="radio" path="radio" component={RadioDemo}/>
 		<Route name="input" path="input" component={InputDemo}/>
 		<Route name="appbar" path="appbar" component={AppBarDemo}/>
 		<Route name="toolbar" path="toolbar" component={ToolbarDemo}/>
@@ -45,7 +40,6 @@ var routes = (
 		<Route name="popover" path="popover" component={PopoverDemo}/>
 		<Route name="progress" path="progress" component={ProgressDemo}/>
 		<Route name="tabs" path="tabs" component={TabsDemo}/>
-		<Route name="datepicker" path="datepicker" component={DatePickerDemo} />
 		<Route name="autocomplete" path="autocomplete" component={AutoCompleteDemo} />
 		<Route name="toggle" path="toggle" component={ToggleDemo} />
     <Route name="picker" path="picker" component={PickerDemo} />

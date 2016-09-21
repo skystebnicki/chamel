@@ -27,6 +27,7 @@ class Popover extends React.Component {
     open: false,
     anchorEl: null,
     zDepth: 1,
+    relateive: false,
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'left'
@@ -45,6 +46,11 @@ class Popover extends React.Component {
     open: React.PropTypes.bool,
     anchorEl: React.PropTypes.object,
     zDepth: React.PropTypes.number,
+
+    /**
+     * If true, then position elements relative to parent and not document
+     */
+    relative: React.PropTypes.bool,
 
     /**
      * This is the point on the anchor where the popover
@@ -152,7 +158,13 @@ class Popover extends React.Component {
 
     const {targetOrigin, anchorOrigin} = this.props;
 
-    const anchorPosition = Dom.offset(anchorEl);
+    let anchorPosition = Dom.offset(anchorEl);
+
+    // If we are in a relative positioned container, then set top and left to 0
+    if (this.props.relative) {
+      anchorPosition.top = 0;
+      anchorPosition.left = 0;
+    }
 
     /*
      * Determine relative positions based on the anchor element coords

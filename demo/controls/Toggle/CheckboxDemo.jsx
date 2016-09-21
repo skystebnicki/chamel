@@ -21,7 +21,11 @@ class CheckboxDemo extends React.Component {
   render () {
     return (
       <div>
-        <Checkbox checked={this.state.checked} onChange={this._handleChange} label={"Checkbox"} />
+        <Checkbox
+          checked={this.state.checked}
+          onChange={this._handleChange}
+          label={"Checkbox with label"}
+        />
       </div>
     );
   }

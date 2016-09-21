@@ -6,7 +6,7 @@ import FontIcon from "../FontIcon/FontIcon";
 import IconButton from "../Button/IconButton";
 import DropDownIcon from "../DropDownIcon";
 import Dialog from "../Dialog/Dialog";
-import TextField from "../TextField/TextField";
+import TextField from "../Input/TextField";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import ContentRte from "./ContentRte";
 import ContentSrc from "./ContentSrc";

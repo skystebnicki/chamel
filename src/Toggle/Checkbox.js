@@ -3,6 +3,8 @@ import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import Tappable from 'react-tappable';
 import ThemeService from '../styles/ChamelThemeService';
+import CheckboxOutline from '../svg-icons/toggle-check-box-outline-blank';
+import CheckboxChecked from '../svg-icons/toggle-check-box-checked';
 
 /**
  * Functional component for any button
@@ -17,14 +19,36 @@ const Checkbox = (props, context) => {
     ? context.chamelTheme.toggle : ThemeService.defaultTheme.toggle;
 
   const onTap = (props.onChange && !props.disabled) ? (evt) => {
-    props.onChange(evt, !props.checked);
+    if (props.onChange) {
+      props.onChange(evt, !props.checked);
+    } else if (props.onCheck) {
+      props.onCheck(evt, !props.checked);
+    }
   } : false;
 
+  let labelElement = null;
+  if (props.label) {
+    labelElement = (<div className={theme.checkboxText}>{props.label}</div>);
+  }
+
+  let outlineClasses = theme.checkboxIconBox;
+  if (props.checked) {
+    outlineClasses += " " + theme.checkboxIconBoxOn;
+  }
+
+  let checkClasses = theme.checkboxIconCheck;
+  if (props.checked) {
+    checkClasses += " " + theme.checkboxIconCheckOn;
+  }
+
   return (
-    <label>
-        <input type="checkbox" checked={props.checked} className={theme.checkbox} onChange={onTap}/>
-        <span class={theme.checkboxText}>{props.label}</span>
-    </label>
+      <Tappable onTap={onTap} component={"div"} className={theme.checkbox}>
+        <div className={theme.checkboxIcon}>
+          <CheckboxOutline className={outlineClasses} />
+          <CheckboxChecked className={checkClasses} />
+        </div>
+        {labelElement}
+      </Tappable>
   );
 };
 
@@ -37,7 +61,20 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
   onTape: PropTypes.func,
+
+  /**
+   * This is the function calling components should use to check status
+   */
   onChange: PropTypes.func,
+
+  /**
+   * Legacy callback
+   */
+  onCheck: PropTypes.func,
+
+  /**
+   * Flag indicates whether or not the input box is checked
+   */
   checked: PropTypes.bool
 };
 

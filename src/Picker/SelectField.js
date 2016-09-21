@@ -10,7 +10,24 @@ import Popover from '../Popover/Popover';
 /**
  * Component for displaying dropdowns
  */
-class DropDownMenu extends React.Component {
+class SelectField extends React.Component {
+
+  /**
+   * Set accepted properties
+   */
+  static propTypes = {
+    autoWidth: React.PropTypes.bool,
+    onChange: React.PropTypes.func,
+    selectedIndex: React.PropTypes.number,
+    menuItems: React.PropTypes.array.isRequired
+  };
+
+  /**
+   * Set property defaults
+   */
+  static defaultProps = {
+    autoWidth: true
+  };
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -24,6 +41,13 @@ class DropDownMenu extends React.Component {
       selectedIndex: props.selectedIndex || 0
     };
   }
+
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: React.PropTypes.object
+  };
 
   /**
    * Popover has entered the dom
@@ -54,20 +78,19 @@ class DropDownMenu extends React.Component {
    */
   render() {
 
-    let classes = 'chamel-drop-down-menu';
-    if (this.state.open) {
-      classes += " chamel-open";
-    }
+    // Determine which theme to use
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.picker)
+      ? this.context.chamelTheme.picker : ThemeService.defaultTheme.picker;
 
     return (
-      <div className={classes}>
-        <div className="chamel-menu-control" onClick={this._onControlClick}>
+      <div className={theme.selectField}>
+        <div className={theme.selectFieldControl} onClick={this._onControlClick}>
           <Paper zDepth={0} >
-            <div className="chamel-menu-label">
+            <div className={theme.selectFieldLabel}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow className="chamel-menu-drop-down-icon" />
-            <div className="chamel-menu-control-underline" />
+            <DropDownArrow className={theme.selectFieldIcon} />
+            <div className={theme.selectFieldUnderline} />
           </Paper>
         </div>
         <Popover
@@ -75,6 +98,7 @@ class DropDownMenu extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
+          relative={true}
         >
           <Menu
             ref="menuItems"
@@ -114,10 +138,10 @@ class DropDownMenu extends React.Component {
     e.preventDefault();
 
     this.setState({
-      open: this.state.open ? false : true,
+      open: !this.state.open,
       anchorEl: e.currentTarget
     });
-  }
+  };
 
   /**
    * Triggered when a menu item gets clicked
@@ -156,29 +180,6 @@ class DropDownMenu extends React.Component {
       open: false,
     });
   }
-
-};
-
-/**
- * Set accepted properties
- */
-DropDownMenu.propTypes = {
-  autoWidth: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  selectedIndex: React.PropTypes.number,
-  menuItems: React.PropTypes.array.isRequired
-};
-
-/**
- * Set property defaults
- */
-DropDownMenu.defaultProps = {
-  autoWidth: true
-};
-
-// Check for commonjs
-if (module) {
-  module.exports = DropDownMenu;
 }
 
-export default DropDownMenu;
+export default SelectField;

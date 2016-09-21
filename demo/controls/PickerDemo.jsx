@@ -3,6 +3,7 @@ import RadioDemo from './Picker/RadioDemo';
 import Row from 'chamel/Grid/Row';
 import Column from 'chamel/Grid/Column';
 import DatePicker from 'chamel/DatePicker';
+import SelectField from 'chamel/Picker/SelectField';
 
 class PickerDemo extends React.Component {
 
@@ -21,6 +22,15 @@ class PickerDemo extends React.Component {
   }
 
   render() {
+
+    var menuItems = [
+      { payload: '1', text: 'Never' },
+      { payload: '2', text: 'Every Night' },
+      { payload: '3', text: 'Weeknights' },
+      { payload: '4', text: 'Weekends' },
+      { payload: '5', text: 'Weekly' },
+    ];
+
     return (
       <div>
         <Row>
@@ -37,8 +47,8 @@ class PickerDemo extends React.Component {
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"DropdownMenu"}</h3>
-            {"Button and Icon"}
+            <h3>{"SelectField"}</h3>
+            <SelectField menuItems={menuItems} />
           </Column>
         </Row>
         <Row>

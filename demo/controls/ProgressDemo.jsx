@@ -1,6 +1,5 @@
 var React = require('react');
 var DropDownIcon = require("../../src/DropDownIcon");
-var DropDownMenu = require("../../src/DropDownMenu");
 var FontIcon = require("../../src/FontIcon");
 var RaisedButton = require("../../src/Button/RaisedButton");
 var CodeExample = require("../CodeExample");

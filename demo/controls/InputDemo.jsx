@@ -1,5 +1,4 @@
 import React from 'react';
-import DropDownMenu from 'chamel/DropDownMenu';
 import TextField from 'chamel/input/TextField';
 
 var dropDownData = [

@@ -1,7 +1,67 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/theme-variables";
+@import "../styles/mixins/transitions";
+
 .radioButton {
   margin-right: 15px;
 }
 
 .radioButtonInput {
   margin-right: 15px;
+}
+
+.selectField {
+  display: inline-block;
+  height: $icon-size * 2;
+  font-size: 16px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.selectFieldControl {
+  cursor: pointer;
+  clear: both;
+  height: 100%;
+
+  .chamel-menu-control-bg {
+    background-color: $menu-background-color;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+  }
+
+  &:hover,
+  &:focus {
+    .chamel-menu-control-bg {
+      opacity: 1;
+    }
+  }
+
+
+}
+
+.selectFieldLabel {
+  line-height: 30px;
+  padding-left: 0;
+  margin-right: $icon-size;
+}
+
+.selectFieldIcon {
+  position: absolute;
+  top: $icon-size / 4;
+  right: 0;
+  fill: $drop-down-menu-icon-color;
+  height: $icon-size;
+  width: $icon-size;
+}
+
+.selectFieldUnderline {
+  height: 1px;
+  background-color: $border-color;
+}
+
+.selectFieldMenu {
+  max-height: 320px;
+  overflow: auto;
 }

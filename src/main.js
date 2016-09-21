@@ -9,12 +9,12 @@ import Checkbox from './Toggle/Checkbox';
 import DatePicker from './DatePicker/DatePicker';
 import Dialog from './Dialog/Dialog';
 import DropDownIcon from './DropDownIcon';
-import DropDownMenu from './DropDownMenu/DropDownMenu';
+import SelectField from './Picker/SelectField';
 import EnhancedButton from './Button';
 import FlatButton from './Button/FlatButton';
 import FontIcon from './FontIcon/FontIcon';
 import IconButton from './Button/IconButton';
-import LeftNav from './LeftNav/LeftNav';
+import Drawer from './Drawer';
 import Menu from './Menu/Menu';
 import MenuItem from './Menu/Menu';
 import NestedMenuItem from './Menu/NestedMenuItem';
@@ -23,7 +23,7 @@ import ClickAwayable from './mixins/ClickAwayable';
 import WindowListenable from './mixins/WindowListenable';
 import Paper from './Paper/Paper';
 import RadioButton from './Picker/RadioButton';
-import RadioButtonGroup from './Picker/RadioPicker';
+import RadioPicker from './Picker/RadioPicker';
 import RaisedButton from './Button/RaisedButton';
 import LinearProgress from './Progress/LinearProgress';
 import SvgIcon from './svg-icons/svg-icon';
@@ -54,13 +54,13 @@ const Chamel = {
   DatePicker: DatePicker, 
   Dialog: Dialog,
   DropDownIcon: DropDownIcon,
-  DropDownMenu: DropDownMenu, 
+  SelectField: SelectField,
   Editor: Editor,
   EnhancedButton: EnhancedButton,
   FlatButton: FlatButton, 
   FontIcon: FontIcon,
   IconButton: IconButton,
-  LeftNav: LeftNav,
+  Drawer: Drawer,
   Menu: Menu,
   MenuItem: MenuItem, 
   NestedMenuItem: NestedMenuItem, 
@@ -72,7 +72,7 @@ const Chamel = {
   Paper: Paper,
   Popover: Popover,
   RadioButton: RadioButton,
-  RadioButtonGroup: RadioButtonGroup,
+  RadioButtonGroup: RadioPicker,
   RaisedButton: RaisedButton,
   LinearProgress: LinearProgress,
   SvgIcon: SvgIcon,
