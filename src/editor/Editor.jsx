@@ -1,293 +1,344 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Classable from "../mixins/classable";
-import Toolbar from "../Toolbar/Toolbar";
-import ToolbarGroup from "../Toolbar/ToolbarGroup";
-import FontIcon from "../FontIcon/FontIcon";
-import IconButton from "../Button/IconButton";
-import DropDownIcon from "../DropDownIcon";
-import Dialog from "../Dialog/Dialog";
-import TextField from "../Input/TextField";
-import ColorPicker from "../ColorPicker/ColorPicker";
-import ContentRte from "./ContentRte";
-import ContentSrc from "./ContentSrc";
+import immutable from 'immutable';
+import classnames from 'classnames';
+import ThemeService from '../styles/ChamelThemeService';
+import {Editor, EditorState, RichUtils} from 'draft-js';
 
-var fontStyleOptions = [
-	{ payload: '<p>', text: 'Body' },
-	{ payload: '<h1>', text: 'Heading 1' },
-	{ payload: '<h2>', text: 'Heading 2' },
-	{ payload: '<h3>', text: 'Heading 3' },
-	{ payload: '<h4>', text: 'Heading 4' }
+// Custom overrides for "code" style.
+const styleMap = {
+    CODE: {
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+        fontSize: 16,
+        padding: 2,
+    },
+};
+
+// Block Types that are used in the editor and displayed in the toolbar
+const BLOCK_TYPES = [
+    {label: 'H1', style: 'header-one'},
+    {label: 'H2', style: 'header-two'},
+    {label: 'H3', style: 'header-three'},
+    {label: 'H4', style: 'header-four'},
+    {label: 'H5', style: 'header-five'},
+    {label: 'H6', style: 'header-six'},
+    {label: 'Blockquote', style: 'blockquote'},
+    {label: 'UL', style: 'unordered-list-item'},
+    {label: 'OL', style: 'ordered-list-item'},
+    {label: 'Code Block', style: 'code-block'},
 ];
 
-var fontNameOptions = [
-	{ payload: 'Arial', text: 'Arial' },
-	{ payload: 'Georgia', text: 'Georgia' },
-	{ payload: 'Tahoma', text: 'Tahoma' },
-	{ payload: 'Courier New', text: 'Courier New' },
-	{ payload: 'Times New Roman', text: 'Times New Roman' },
-	{ payload: 'Verdana', text: 'Verdana' }
+// Inline Styles that are used in the editor and displayed in the toolbar
+const INLINE_STYLES = [
+    {label: 'Bold', style: 'BOLD'},
+    {label: 'Italic', style: 'ITALIC'},
+    {label: 'Underline', style: 'UNDERLINE'},
+    {label: 'Monospace', style: 'CODE'},
 ];
 
-var fontSizeOptions = [
-	{payload: 1, text: 'Smallest'},
-	{payload: 2, text: 'X-Small'},
-	{payload: 3, text: 'Small'},
-	{payload: 4, text: 'Normal'},
-	{payload: 5, text: 'Large'},
-	{payload: 6, text: 'X-Large'},
-	{payload: 7, text: 'Huge'}
-];
+/**
+ * Handle when displaying the block type controls and
+ * Set the styles of the controls if it is toggled or not
+ */
+const BlockStyleControls = (props) => {
+    let displayStyleButton = [];
 
-var Editor = React.createClass({
+    // Loop thru the block types and setup the style button
+    BLOCK_TYPES.map(function (type) {
 
-	mixins: [Classable],
+        let className = props.theme.chamelEditorStyleButton;
+        if (type.style === props.blockType) {
+            className += ' ' + props.theme.chamelEditorActiveButton;
+        }
 
-	propTypes: {
-		onBlur: React.PropTypes.func,
-		onFocus: React.PropTypes.func,
-		onChange: React.PropTypes.func,
-		value: React.PropTypes.string,
-	},
+        displayStyleButton.push(
+            <StyleButton
+                key={type.label}
+                className={className}
+                label={type.label}
+                onToggle={props.onToggle}
+                style={type.style}
+            />
+        );
+    })
 
-	getDefaultProps: function() {
-		return {
-			value: "Enter description here.",
-		};
-	},
+    return (
+        <div className={props.theme.chamelEditorControls}>
+            {displayStyleButton}
+        </div>
+    );
+};
 
-	getInitialState: function() {
-		return {
-			sourceViewMode: false,
-			value: this.props.value,
-		};
-	},
+/**
+ * Handle when displaying the inline style controls and
+ * Set the styles of the controls if it is toggled or not
+ */
+const InlineStyleControls = (props) => {
+    let currentStyle = props.editorState.getCurrentInlineStyle();
+    let displayStyles = [];
 
-	render: function() {
-		var dialogActions = [
-			{ text: 'Cancel' },
-			{ text: 'Submit', onClick: this._handleDialogSubmit, ref: 'submit' }
-		];
+    // Loop thru the inline styles and setup the style button
+    INLINE_STYLES.map(function (type) {
 
-		var displayEditor = null;
+        let className = props.theme.chamelEditorStyleButton;
+        if (currentStyle.has(type.style)) {
+            className += ' ' + props.theme.chamelEditorActiveButton;
+        }
 
-		// Determine what should be displayed
-		if(this.state.sourceViewMode) {
-			displayEditor = <ContentSrc
-				ref="contentSource"
-				onFocus={this._handleFocus}
-				onBlur={this._handleBlur}
-				onChange={this._handleChange}
-				value={this.state.value}
-				options={{lineNumbers: true,  mode: "text/html"}} />
-		}
-		else {
-			displayEditor = <ContentRte
-				ref="rte"
-				onFocus={this._handleFocus}
-				onBlur={this._handleBlur}
-				onChange={this._handleChange}
-				value={this.state.value} />
-		}
+        displayStyles.push(
+            <StyleButton
+                key={type.label}
+                className={className}
+                label={type.label}
+                onToggle={props.onToggle}
+                style={type.style}
+            />
+        );
+    })
 
-		return (
-			<div>
-				<Toolbar>
-					<ToolbarGroup key={1} float="left">
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "bold")} className="cfi cfi-bold" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "italic")} className="cfi cfi-italic" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "underline")} className="cfi cfi-underline" />
-					</ToolbarGroup>
-					<ToolbarGroup key={2} float="left">
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "justifyleft")} className="cfi cfi-align-left" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "justifycenter")} className="cfi cfi-align-center" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "justifyright")} className="cfi cfi-align-right" />
-					</ToolbarGroup>
-					<ToolbarGroup key={3} float="left">
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "src")} className="cfi cfi-files-o" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "inserthorizontalrule")} className="cfi cfi-minus" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "link")} className="cfi cfi-link" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "table")} className="cfi cfi-table" />
-					</ToolbarGroup>
-					<ToolbarGroup key={4} float="left">
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "insertorderedlist")} className="cfi cfi-list-ol" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "insertunorderedlist")} className="cfi cfi-list-ul" />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "forecolor")} className="cfi cfi-eyedropper" />
-						<ColorPicker ref="forecolorPicker" label="Pick a font color" onColorPick={this._handleColorPick} />
-						<FontIcon onClick={this._handleToolbarClick.bind(this, "backcolor")} className="cfi cfi-magic" />
-						<ColorPicker ref="backcolorPicker" label="Pick a background color" onColorPick={this._handleColorPick} />
-					</ToolbarGroup>
-					<ToolbarGroup key={5} float="right">
-						<DropDownIcon
-							iconClassName="cfi cfi-header"
-							menuItems={fontStyleOptions}
-							onChange={this._handleMenuClick.bind(this, "formatblock")} />
-						<DropDownIcon
-							iconClassName="cfi cfi-text-height"
-							menuItems={fontSizeOptions}
-							onChange={this._handleMenuClick.bind(this, "fontsize")} />
-						<DropDownIcon
-							iconClassName="cfi cfi-font"
-							menuItems={fontNameOptions}
-							onChange={this._handleMenuClick.bind(this, "fontname")} />
-					</ToolbarGroup>
-				</Toolbar>
-				<div>
-					{displayEditor}
-				</div>
-				<Dialog ref="linkDialog" title="Enter the link path" actions={dialogActions} modal={true} >
-					<TextField ref="linkInput" />
-				</Dialog>
-			</div>
-		)
-	},
+    return (
+        <div className={props.theme.chamelEditorControls}>
+            {displayStyles}
+        </div>
+    );
+};
 
-	/**
-	 * Callback used to handle commands when button is clicked on the toolbar
-	 *
-	 * @param {string} type		The name of the command to execute
-	 * @private
-	 */
-	_handleToolbarClick: function(type) {
-		if (!this.isMounted()) {
-			return;
-		}
+/**
+ * Style button component that will display the style button in the editor toolbar
+ */
+class StyleButton extends React.Component {
+    constructor() {
+        super();
+        this.onToggle = (e) => {
+            e.preventDefault();
+            this.props.onToggle(this.props.style);
+        };
+    }
 
-		// If current display is source view, we dont need to continue unless toggle src is clicked
-		if(this.state.sourceViewMode && type != "src") {
-			return;
-		}
-
-		switch(type) {
-			case "src":
-				this._toggleEditorView();
-				break;
-			case "link":
-				this.refs.linkDialog.show();
-				break;
-			case "table":
-				this.refs.rte.insertHtml('<table style="border: 1px solid; padding: 10px;"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>');
-				break;
-			case "backcolor":
-				this.refs["forecolorPicker"].close();
-			case "forecolor":
-				// Hide the currently opened color pickers
-				this.refs["backcolorPicker"].close();
-
-				this.refs[type + "Picker"].show();
-				this._colorFontType = type;
-				break;
-			default:
-				this.refs.rte.sendCommand(type, '');
-				break;
-		}
-	},
-
-	/**
-	 * Callback used to handle commands when button is clicked on the toolbar
-	 *
-	 * @param {string} type		The name of the command that triggered the menu click
-	 * @param {DOMEvent} e 		Reference to the DOM event being sent
-	 * @param {Integer} key		The index of the menu clicked
-	 * @param {Object} payload	The object value of the menu clicked
-	 * @private
-	 */
-	_handleMenuClick: function(type, e, key, payload) {
-
-		// Only send commands if the display is RTE
-		if(!this.state.sourceViewMode) {
-			this.refs.rte.sendCommand(type, payload.payload);
-		}
-	},
-
-	/**
-	 * Accepts the link from the dialog box and sends a command to create the a href link
-	 *
-	 * @private
-	 */
-	_handleDialogSubmit: function() {
-
-		// Do not process the action if the RTE is NOT displayed
-		if(this.state.sourceViewMode) {
-			return;
-		}
-
-		var input = this.refs.linkInput.getValue();
-
-		this.refs.rte.insertLink(input);
-		this.refs.linkInput.clearValue();
-		this.refs.linkDialog.dismiss();
-	},
-
-	/**
-	 * Toggles the view to either RTE or View Source (Code Mirror)
-	 *
-	 * @private
-	 */
-	_toggleEditorView: function () {
-		if(!this.isMounted()) {
-			return;
-		}
-
-		var currentValue = null;
-
-		if(this.state.sourceViewMode) { // Current display is source view
-			currentValue = this.refs.contentSource.getValue();
-		}
-		else { // Current display is RTE
-			currentValue = this.refs.rte.getValue();
-		}
-
-		// Update the state values
-		this.setState({
-			sourceViewMode: !this.state.sourceViewMode,
-			value: currentValue
-		});
-	},
-
-	/**
-	 * Handles the color picking event. This will trigger when the user chooses a color
-	 *
-	 * @param {string} color	The color that was selected
-	 * @private
-	 */
-	_handleColorPick: function(color) {
-		this.refs.rte.setColor(this._colorFontType, "#" + color.hex);
-	},
-
-	/**
-	 * Callback used to handle onblur on the current editor displayed
-	 *
-	 * @param {DOMEvent} e 		Reference to the DOM event being sent
-	 * @private
-	 */
-	_handleBlur: function(e) {
-		if (this.props.onBlur) this.props.onBlur(e);
-	},
-
-	/**
-	 * Callback used to handle onfocus on the current editor displayed
-	 *
-	 * @param {DOMEvent} e 		Reference to the DOM event being sent
-	 * @private
-	 */
-	_handleFocus: function(e) {
-		if (this.props.onFocus) this.props.onFocus(e);
-	},
-
-	/**
-	 * Callback used to handle onchange on the current editor displayed
-	 *
-	 * @param {DOMEvent} e 		Reference to the DOM event being sent
-	 * @private
-	 */
-	_handleChange: function(e) {
-		if (this.props.onChange) this.props.onChange(e);
-	}
-});
-
-// Check for commonjs
-if (module) {
-  module.exports = Editor;
+    render() {
+        return (
+            <span className={this.props.className} onMouseDown={this.onToggle}>
+              {this.props.label}
+            </span>
+        );
+    }
 }
 
-export default Editor;
+/**
+ * Chamel Editor component
+ */
+class ChamelEditor extends React.Component {
+
+    /**
+     * Set accepted properties
+     */
+    static propTypes = {
+        /**
+         * Flag to indicate if the drawer is open
+         *
+         * @type {function}
+         */
+        onChange: React.PropTypes.func,
+
+        /**
+         * If permanent we cannot close the drawer
+         *
+         * @type {string}
+         */
+        value: React.PropTypes.string,
+
+        /**
+         * Optional. The custom className that will be used to style the editor container
+         *
+         * @type {string}
+         */
+        className: React.PropTypes.string,
+    }
+
+    /**
+     * An alternate theme may be passed down by a provider
+     */
+    static contextTypes = {
+        chamelTheme: React.PropTypes.object
+    };
+
+    /**
+     * Class constructor
+     *
+     * @param {Object} props Properties to send to the render function
+     */
+    constructor(props) {
+
+        // Call parent constructor
+        super(props);
+
+        this.state = {editorState: EditorState.createEmpty()};
+
+        this.focus = () => this.refs.editor.focus();
+
+        this.onChange = (editorState) => this._onChange(editorState);
+        this.onTab = (e) => this._onTab(e);
+
+        this.handleKeyCommand = (command) => this._handleKeyCommand(command);
+        this.toggleBlockType = (type) => this._toggleBlockType(type);
+        this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+
+        this.getBlockStyle = (block, theme) => this._getBlockStyle(block, theme);
+    }
+
+    /**
+     * Handle when the editor has changed
+     * @param {obj} editorState  The top-level state object for the editor.
+     * @private
+     */
+    _onChange(editorState) {
+        this.setState({editorState})
+
+        // TODO: Get the content text including the styles. Right now it gets the plain text
+        if(this.props.onChange) {
+            this.props.onChange(editorState.getCurrentContent().getPlainText())
+        }
+    }
+
+
+    /**
+     * Handle a RETURN keydown event
+     *
+     * @param {string} command The command that was sent
+     * @returns {boolean}
+     * @private
+     */
+    _handleKeyCommand(command) {
+        const {editorState} = this.state;
+        const newState = RichUtils.handleKeyCommand(editorState, command);
+
+        if (newState) {
+            this.onChange(newState);
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Handle when user hits the tab button
+     *
+     * @param {DOMEvent} e Reference to the DOM event being sent
+     * @returns {boolean}
+     * @private
+     */
+    _onTab(e) {
+        const maxDepth = 4;
+        this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
+    }
+
+    /**
+     * Handles the toggling of block types in the toolbar icons
+     *
+     * @param {string} blockType The block type that was clicked
+     * @private
+     */
+    _toggleBlockType(blockType) {
+        this.onChange(
+            RichUtils.toggleBlockType(
+                this.state.editorState,
+                blockType
+            )
+        );
+    }
+
+    /**
+     * Handles the toggling of inline styles in the toolbar icons
+     *
+     * @param {string} inlineStyle The inline style that was clicked
+     * @private
+     */
+    _toggleInlineStyle(inlineStyle) {
+        this.onChange(
+            RichUtils.toggleInlineStyle(
+                this.state.editorState,
+                inlineStyle
+            )
+        );
+    }
+
+    /**
+     * Handles the getting of block class name
+     *
+     * @param {obj} theme The theme that we are currently using
+     * @param {obj} block Represents the state of the entire document.
+     *
+     * @return {string} Returns the current theme class name
+     * @private
+     */
+    _getBlockStyle(theme, block) {
+        switch (block.getType()) {
+            case 'blockquote':
+                return theme.chamelEditorBlockquote;
+            default:
+                return null;
+        }
+    }
+
+    render() {
+        const {editorState} = this.state;
+
+        // Determine which theme to use
+        let theme = (this.context.chamelTheme && this.context.chamelTheme.editor)
+            ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
+
+        // Set the classes
+        let classes = theme.chamelEditor;
+
+        // Determine if the editor has text
+        let contentState = editorState.getCurrentContent();
+        if (!contentState.hasText()) {
+            if (contentState.getBlockMap().first().getType() !== 'unstyled') {
+                classes += theme.chamelEditorHidePlaceholder;
+            }
+        }
+
+        // Append the className specified in the this.props
+        if (this.props.className) {
+            classes += " " + this.props.className;
+        }
+
+        let classContainer = theme.chamelEditorContainer;
+        let selection = editorState.getSelection();
+        let blockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
+
+        return (
+            <div className={classContainer}>
+                <BlockStyleControls
+                    theme={theme}
+                    blockType={blockType}
+                    onToggle={this.toggleBlockType}
+                />
+                <InlineStyleControls
+                    theme={theme}
+                    editorState={editorState}
+                    onToggle={this.toggleInlineStyle}
+                />
+                <div className={classes} onClick={this.focus}>
+                    <Editor
+                        blockStyleFn={this.getBlockStyle.bind(this, theme)}
+                        customStyleMap={styleMap}
+                        editorState={editorState}
+                        handleKeyCommand={this.handleKeyCommand}
+                        onChange={this.onChange}
+                        onTab={this.onTab}
+                        ref="editor"
+                        spellCheck={true}
+                    />
+                </div>
+            </div>
+        );
+    }
+}
+
+export default ChamelEditor;
+
+
+
