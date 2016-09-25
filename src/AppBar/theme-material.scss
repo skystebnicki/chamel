@@ -9,38 +9,20 @@
   background-color: $app-bar-color;
   z-index: 5;
   height: $app-bar-height-small;
+  padding-left: $gutter-less;
+  padding-right: $gutter-less;
 
   @media #{$device-medium} {
     height: $app-bar-height-medium;
+    padding-left: $gutter-less;
+    padding-right: $gutter;
   }
 
   @media #{$device-large} {
     height: $app-bar-height-large;
+    padding-left: $gutter;
+    padding-right: $gutter;
   }
-
-  .chamel-paper-container {
-    padding-left: $gutter-less;
-    padding-right: $gutter-less;
-
-    @media #{$device-medium} {
-      padding-left: $gutter-less;
-      padding-right: $gutter;
-    }
-
-    @media #{$device-large} {
-      padding-left: $gutter;
-      padding-right: $gutter;
-    }
-  }
-
-  .appBar-input-search-box {
-    float: left;
-
-    .chamel-text-field-hint {
-      color: white;
-    }
-  }
-
 }
 
 .appBarTitle {
@@ -62,6 +44,7 @@
 
 .appBarRight {
   float: right;
+  margin-right: ($icon-size / 2) * -1;
 
   @media #{$device-medium} {
   }
@@ -73,6 +56,7 @@
 .appBarLeft {
   float: left;
   margin-right: $gutter-less - ($gutter-less - ($icon-size / 2));
+  margin-left: ($icon-size / 2) * -1;
 
   @media #{$device-medium} {
     margin-right: $gutter - ($gutter - ($icon-size / 2));

@@ -18,29 +18,6 @@
     height: $app-bar-height-large;
   }
 
-  .chamel-paper-container {
-    padding-left: $gutter-less;
-    padding-right: $gutter-less;
-
-    @media #{$device-medium} {
-      padding-left: $gutter-less;
-      padding-right: $gutter;
-    }
-
-    @media #{$device-large} {
-      padding-left: $gutter;
-      padding-right: $gutter;
-    }
-  }
-
-  .appBar-input-search-box {
-    float: left;
-
-    .chamel-text-field-hint {
-      color: white;
-    }
-  }
-
 }
 
 .appBarTitle {

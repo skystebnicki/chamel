@@ -13,6 +13,35 @@ import Events from '../utils/Events';
 class AppBar extends React.Component {
 
     /**
+     * Set accepted properties
+     */
+    static propTypes = {
+        onNavBtnClick: React.PropTypes.func,
+        className: React.PropTypes.string,
+        iconElementLeft: React.PropTypes.element,
+        iconElementRight: React.PropTypes.node,
+        title : React.PropTypes.node,
+        zDepth: React.PropTypes.number,
+        fixed: React.PropTypes.bool
+    };
+
+    /**
+     * Set property defaults
+     */
+    static defaultProps = {
+        title: '',
+        zDepth: 1,
+        fixed: false
+    };
+
+    /**
+     * An alternate theme may be passed down by a provider
+     */
+    static contextTypes = {
+        chamelTheme: React.PropTypes.object
+    };
+
+    /**
      * Class constructor
      *
      * @param {Object} props Properties to send to the render function
@@ -193,13 +222,8 @@ class AppBar extends React.Component {
      */
     _addAppBarStyleToElements = (element, theme) => {
 
-        // If this is not a react element, just return whatever we got
-        if (!element.type) {
-            return element;
-        }
-
         // If an array, iterate over it for each element
-        if (element.constructor === Array) {
+        if (Array.isArray(element)) {
             for (let i in element) {
                 // Apply any appBar custom styles to the elements
                 element[i] = this._addAppBarStyleToElements(
@@ -208,6 +232,12 @@ class AppBar extends React.Component {
             }
             return element;
         } else {
+
+            // If this is not a react element, just return whatever we got
+            if (!element.type) {
+                return element;
+            }
+
             // Get existing className
             let className = (element.props.className) ? element.props.className : "";
             //let className = "";
@@ -230,40 +260,6 @@ class AppBar extends React.Component {
             }
         }
     }
-}
-
-/**
- * Set accepted properties
- */
-AppBar.propTypes = {
-    onNavBtnClick: React.PropTypes.func,
-    className: React.PropTypes.string,
-    iconElementLeft: React.PropTypes.element,
-    iconElementRight: React.PropTypes.element,
-    title : React.PropTypes.node,
-    zDepth: React.PropTypes.number,
-    fixed: React.PropTypes.bool
-}
-
-/**
- * Set property defaults
- */
-AppBar.defaultProps = {
-    title: '',
-    zDepth: 1,
-    fixed: true
-}
-
-/**
- * An alternate theme may be passed down by a provider
- */
-AppBar.contextTypes = {
-    chamelTheme: React.PropTypes.object
-};
-
-// Check for commonjs
-if (module) {
-  module.exports = AppBar;
 }
 
 export default AppBar;
