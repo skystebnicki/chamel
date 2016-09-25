@@ -13,10 +13,15 @@ const FontIcon = (props, context) => {
     let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
         ? context.chamelTheme.fontIcon : {};
 
-    const classes = classnames(theme.fontIcon, props.className);
+    let {
+      className,
+      ...other
+    } = props;
+
+    const classes = classnames(theme.fontIcon, className);
 
     return (
-        <span {...props} className={classes} />
+        <span {...other} className={classes} />
     );
 }
 
