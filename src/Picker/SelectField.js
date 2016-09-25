@@ -6,6 +6,7 @@ import DropDownArrow from '../svg-icons/drop-down-arrow';
 import Paper from '../Paper/Paper';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
+import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Component for displaying dropdowns
