@@ -32,7 +32,7 @@ import NavigationChevronLeft from './svg-icons/navigation-chevron-left';
 import NavigationChevronRight from './svg-icons/navigation-chevron-right';
 import Tab from './Tabs/Tab';
 import Tabs from './Tabs/Tabs';
-import Toggle from './Toggle';
+import Toggle from './Toggle/Switch';
 import Snackbar from './Snackbar/Snackbar';
 import TextField from './Input/TextField';
 import TextFieldRich from './TextFieldRich/TextFieldRich';

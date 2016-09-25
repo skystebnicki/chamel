@@ -1,5 +1,6 @@
 import React from 'react';
 import CheckboxDemo from './Toggle/CheckboxDemo';
+import SwitchDemo from './Toggle/SwitchDemo';
 
 class ToggleDemo extends React.Component {
   render() {
@@ -9,6 +10,8 @@ class ToggleDemo extends React.Component {
           <h2>{"Toggle Components"}</h2>
           <h3>{"Checkbox"}</h3>
           <CheckboxDemo />
+          <h3>{"Switch"}</h3>
+          <SwitchDemo />
         </div>
       </div>
     );

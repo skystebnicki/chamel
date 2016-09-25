@@ -65,3 +65,62 @@ $checkbox-size: 24px;
   vertical-align: top;
   line-height: $checkbox-size;
 }
+
+.switch {
+  padding: 4px 0px 6px 2px;
+  margin-right: $desktop-gutter-mini;
+}
+
+.switchIcon {
+  position: relative;
+  height: $toggle-size;
+  display: inline-block;
+  width: 40px;
+}
+
+.switchText {
+  display: inline-block;
+  height: $toggle-size;
+  vertical-align: top;
+  line-height: $toggle-size;
+}
+
+.switchIconTrack {
+  position: absolute;
+  top: 3.5px;
+  @include ease-out();
+  width: 36px;
+  height: 14px;
+  border-radius: 30px;
+  background-color: $toggle-track-off-color;
+}
+
+.switchIconTrackOn {
+  background-color: $toggle-track-on-color;
+}
+
+.switchIconButton {
+  @include ease-out();
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: $toggle-size;
+  height: $toggle-size;
+  line-height: 24px;
+  border-radius: 50%;
+  background-color: $toggle-thumb-off-color;
+  border-radius: 50%;
+
+  .chamel-touch-ripple,
+  .chamel-focus-ripple-inner {
+    width: 200%;
+    height: 200%;
+    top: -10px;
+    left: -10px;
+  }
+}
+
+.switchIconButtonOn {
+  left: 18px;
+  background-color: $toggle-thumb-on-color;
+}

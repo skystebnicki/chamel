@@ -1,6 +1,6 @@
 import React from 'react';
 import FontIcon from '../FontIcon/FontIcon';
-import Toggle from '../Toggle';
+import Toggle from '../Toggle/Switch';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
@@ -68,7 +68,7 @@ class MenuItem extends React.Component {
                 label,
                 ...other
                 } = this.props;
-            toggle = <Toggle {...other} onToggle={this._handleToggle}/>;
+            toggle = <Toggle {...other} onChange={this._handleToggle}/>;
         }
 
         return (
