@@ -41,8 +41,6 @@ class ToolbarGroup extends React.Component {
         [theme.toolbarGroupRight]: this.props.float === 'right'
       });
 
-      console.log("Toolbar group", theme);
-
       return (
           <div className={classes}>
               {this.props.children}
