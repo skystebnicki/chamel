@@ -55,15 +55,15 @@
 
 .appBarLeft {
   float: left;
-  margin-right: ($gutter-less / 2) - ($icon-size / 2);
+  margin-right: ($gutter-less / 4);
   margin-left: ($icon-size / 2) * -1;
 
   @media #{$device-medium} {
-    margin-right: ($gutter / 2) - ($icon-size / 2);
+    margin-right: ($gutter / 4);
   }
 
   @media #{$device-large} {
-    margin-right: ($gutter / 2) - ($icon-size / 2);
+    margin-right:  ($gutter / 4);
   }
 
 }
