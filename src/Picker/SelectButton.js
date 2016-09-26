@@ -30,14 +30,20 @@ class SelectButton extends React.Component {
     /**
      * Optional additional class for the icon button
      */
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+
+    /**
+     * Optional children can be used to define content
+     */
+    children: React.PropTypes.node
   };
 
   /**
    * Set property defaults
    */
   static defaultProps = {
-    autoWidth: true
+    autoWidth: true,
+    children: null
   };
 
   /**
