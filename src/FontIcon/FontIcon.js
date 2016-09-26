@@ -21,7 +21,7 @@ const FontIcon = (props, context) => {
     const classes = classnames(theme.fontIcon, className);
 
     return (
-        <span {...other} className={classes} />
+        <span className={classes} {...other} />
     );
 }
 

@@ -19,7 +19,10 @@ class AppBar extends React.Component {
         onNavBtnClick: React.PropTypes.func,
         className: React.PropTypes.string,
         iconElementLeft: React.PropTypes.element,
-        iconElementRight: React.PropTypes.node,
+        iconElementRight: React.PropTypes.oneOfType([
+          React.PropTypes.element,
+          React.PropTypes.array
+        ]),
         title : React.PropTypes.node,
         zDepth: React.PropTypes.number,
         fixed: React.PropTypes.bool
@@ -248,7 +251,7 @@ class AppBar extends React.Component {
              */
             switch (element.type.name) {
                 case 'IconButton':
-                case 'DropDownIcon':
+                case 'SelectButton':
                     return React.cloneElement(element, {
                         className: className + " " + theme.appBarIconButton
                     });

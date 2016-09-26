@@ -65,3 +65,10 @@
   max-height: 320px;
   overflow: auto;
 }
+
+
+.selectButtonCon {
+  display: inline-block;
+  height: $icon-size * 2;
+  position: relative;
+}

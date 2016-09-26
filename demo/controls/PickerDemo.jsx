@@ -4,6 +4,7 @@ import Row from 'chamel/Grid/Row';
 import Column from 'chamel/Grid/Column';
 import DatePicker from 'chamel/DatePicker';
 import SelectField from 'chamel/Picker/SelectField';
+import SelectButtonDemo from './Picker/SelectButtonDemo';
 
 class PickerDemo extends React.Component {
 
@@ -49,6 +50,12 @@ class PickerDemo extends React.Component {
           <Column xsmall={12} medium={6}>
             <h3>{"SelectField"}</h3>
             <SelectField menuItems={menuItems} />
+          </Column>
+        </Row>
+        <Row>
+          <Column xsmall={12} medium={6}>
+            <h3>{"SelectButton"}</h3>
+            <SelectButtonDemo />
           </Column>
         </Row>
         <Row>
