@@ -76,6 +76,11 @@ var DatePicker = React.createClass({
     // If we are using the native input then we need to get value when changed
     var inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
 
+    // We need to exclude the preferNative property as it is an unkown props for <input> tag
+    if(other.hasOwnProperty("preferNative")) {
+      delete other.preferNative;
+    }
+
     return (
       <div className={classes}>
         <TextField

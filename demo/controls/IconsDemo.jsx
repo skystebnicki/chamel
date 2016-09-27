@@ -5,7 +5,7 @@ import Column from 'chamel/Grid/Column';
 // Font icons
 import Icons from 'chamel/icons/font';
 
-var EditorDemo = React.createClass({
+var IconDemo = React.createClass({
 
     render: function() {
 
@@ -14,12 +14,12 @@ var EditorDemo = React.createClass({
         var iconsContent = [];
 
         for (var category in Icons) {
-          iconsContent.push(<h3>{category}</h3>);
+          iconsContent.push(<h3 key={"h3" + category}>{category}</h3>);
 
           let fontIcons = [];
           for (var i in Icons[category]) {
             fontIcons.push(
-              <Column small={6} medium={4} large={2} style={{height: "120px"}}>
+              <Column key={i} small={6} medium={4} large={2} style={{height: "120px"}}>
                 <div style={{textAlign: "center"}}>
                   {React.createElement(Icons[category][i].icon)}
                 </div>
@@ -28,7 +28,7 @@ var EditorDemo = React.createClass({
             );
           }
 
-          iconsContent.push(<Row>{fontIcons}</Row>);
+          iconsContent.push(<Row key={"row" + category}>{fontIcons}</Row>);
         }
 
         return (
@@ -40,4 +40,4 @@ var EditorDemo = React.createClass({
 
 });
 
-module.exports = EditorDemo;
+module.exports = IconDemo;
