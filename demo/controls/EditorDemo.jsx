@@ -12,22 +12,26 @@ var EditorDemo = React.createClass({
         return (
             <div>
                 <CodeExample code={code}>
-                    <Editor onFocus={this._handleFocus} onBlur={this._handleBlur} onChange={this._handleChange} />
+                    <Editor
+                        onFocus={this._handleFocus}
+                        onBlur={this._handleBlur}
+                        onChange={this._handleChange}
+                        value="<b>Insert value here...</b>" />
                 </CodeExample>
             </div>
         );
     },
     
-    _handleBlur: function(e) {
-    	console.log("editor on blur");
+    _handleBlur: function(value) {
+        console.log("onBlur event. Editor Value: " + value);
     },
     
-    _handleFocus: function(e) {
-    	console.log("editor on focus");
+    _handleFocus: function(value) {
+        console.log("onFocus event. Editor Value: " + value);
     },
     
-    _handleChange: function(e) {
-    	console.log("editor onChange event");
+    _handleChange: function(value) {
+    	console.log("onChange event. Editor Value: " + value);
     }
 
 });
