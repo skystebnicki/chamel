@@ -4,7 +4,7 @@ export default {
   appBar: require('../../AppBar/theme.scss'),
   ripple: require('../../ripples/theme.scss'),
   menu: require('../../Menu/theme.scss'),
-  fontIcons: require('../../icons/font/theme.scss'),
+  fontIcon: require('../../icons/font/theme.scss'),
   drawer: require('../../Drawer/theme.scss'),
   toolbar: require('../../Toolbar/theme.scss'),
   paper: require('../../Paper/theme.scss'),

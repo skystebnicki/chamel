@@ -3,8 +3,8 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 const SubArrowRightIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcons)
-    ? context.chamelTheme.fontIcons : ThemeService.defaultTheme.fontIcons;
+  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
+    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcons;
 
   return (
     <FontIcon {...props} className={theme.iconSubArrowRight} />

@@ -31,9 +31,10 @@ const ListItem = (props, context) => {
   return (
     <div className={classes} onClick={props.onTap}>
       <TouchRipple />
-      <div className={theme.listItemContent} >
+      <div className={theme.listItemContent}>
         {leftElement}
-        <div className={theme.listItemData}>
+        <div className={theme.listItemData} >
+
           <div className={theme.listItemPrimary}>{props.primaryText}</div>
           <div className={theme.listItemSecondary}>{props.secondaryText}</div>
         </div>

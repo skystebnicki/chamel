@@ -6,38 +6,47 @@ import RefreshIcon from 'chamel/icons/font/RefreshIcon';
 
 var ListDemo = React.createClass({
     render: function () {
-        return (
-            <div className="row">
-                <div className="col-xs-12 col-md-6">
-                    <h2>{"Simple"}</h2>
-                    <List>
-                        <ListItem primaryText={"Primary text goes here 1"} secondaryText={"Secondary text goes here"} />
-                        <ListItem primaryText={"Primary text goes here 2"} secondaryText={"Secondary text goes here"} />
-                    </List>
+      return (
+          <div className="row">
+              <div className="col-xs-12 col-md-6">
+                  <h2>{"Simple"}</h2>
+                  <List>
+                      <ListItem primaryText={"Primary text goes here 1"} secondaryText={"Secondary text goes here"} />
+                      <ListItem primaryText={"Primary text goes here 2"} secondaryText={"Secondary text goes here"} />
+                  </List>
 
-                    <h2>{"Selectable"}</h2>
-                    <List selectable selectedIndex={1}>
-                        <ListItem primaryText={"Test 1"} />
-                        <ListItem primaryText={"Test 2"} />
-                    </List>
+                  <h2>{"Selectable"}</h2>
+                  <List selectable selectedIndex={1}>
+                      <ListItem primaryText={"Test 1"} />
+                      <ListItem primaryText={"Test 2"} />
+                  </List>
 
-                    <h2>{"With Icons"}</h2>
-                    <List>
-                        <ListItem
-                          primaryText={"Primary text goes here 1"}
-                          secondaryText={"Secondary text goes here"}
-                          leftElement={<RefreshIcon />}
-                          rightElement={<MoreVerticon />}
-                        />
-                        <ListItem
-                          primaryText={"Primary text goes here 2"}
-                          secondaryText={"Secondary text goes here"}
-                          leftElement={<RefreshIcon />}
-                          rightElement={<MoreVerticon />}
-                        />
-                    </List>
-                </div>
-            </div>
+                  <h2>{"With Icons"}</h2>
+                  <List>
+                      <ListItem
+                        primaryText={"Primary text goes here 1"}
+                        secondaryText={"Secondary text goes here"}
+                        leftElement={<RefreshIcon />}
+                        rightElement={<MoreVerticon />}
+                      />
+                      <ListItem
+                        primaryText={"Primary text goes here 2"}
+                        secondaryText={"Secondary text goes here"}
+                        leftElement={<RefreshIcon />}
+                        rightElement={<MoreVerticon />}
+                      />
+                  </List>
+
+                  <h2>{"With Checkbox"}</h2>
+                  <List>
+                      <ListItem
+                        primaryText={"Primary text goes here 1"}
+                        secondaryText={"Secondary text goes here"}
+                        leftElement={<RefreshIcon />}
+                      />
+                  </List>
+              </div>
+          </div>
         );
     },
 
