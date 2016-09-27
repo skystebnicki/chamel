@@ -54,7 +54,7 @@ class BlockStyleControls extends React.Component {
         let displayStyleButton = [];
 
         // Loop thru the block types and setup the style button
-        BLOCK_TYPES.map(function (type) {
+        BLOCK_TYPES.map((type) => {
 
             let className = this.props.theme.chamelEditorStyleButton;
             if (type.style === this.props.blockType) {
@@ -70,7 +70,7 @@ class BlockStyleControls extends React.Component {
                     style={type.style}
                 />
             );
-        }.bind(this))
+        });
 
         return (
             <div className={this.props.theme.chamelEditorControls}>

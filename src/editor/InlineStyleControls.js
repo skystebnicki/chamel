@@ -56,7 +56,7 @@ class InlineStyleControls extends React.Component {
         let displayStyles = [];
 
         // Loop thru the inline styles and setup the style button
-        INLINE_STYLES.map(function (type) {
+        INLINE_STYLES.map((type) => {
 
             let className = this.props.theme.chamelEditorStyleButton;
             if (currentStyle.has(type.style)) {
@@ -72,7 +72,7 @@ class InlineStyleControls extends React.Component {
                     style={type.style}
                 />
             );
-        }.bind(this))
+        });
 
         return (
             <div className={this.props.theme.chamelEditorControls}>
