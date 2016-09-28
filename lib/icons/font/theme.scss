@@ -17,7 +17,23 @@
 /* chanel font icon namespace */
 .fontIcon {
   @include fa-icon();
-  font-size: 120%;
+  font-size: 24px;
+}
+
+.iconSize18 {
+  font-size: 18px;
+}
+
+.iconSize24 {
+  font-size: 24px;
+}
+
+.iconSize36 {
+  font-size: 36px;
+}
+
+.iconSize48 {
+  font-size: 48px;
 }
 
 /**
