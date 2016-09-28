@@ -2,7 +2,7 @@
 export default {
   button: require('../../Button/theme.scss'),
   appBar: require('../../AppBar/theme.scss'),
-  editor: require('../../editor/theme.scss'),
+  editor: require('../../Editor/theme.scss'),
   ripple: require('../../ripples/theme.scss'),
   menu: require('../../Menu/theme.scss'),
   fontIcon: require('../../icons/font/theme.scss'),
