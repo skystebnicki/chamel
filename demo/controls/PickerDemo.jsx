@@ -2,7 +2,7 @@ import React from 'react';
 import RadioDemo from './Picker/RadioDemo';
 import Row from 'chamel/Grid/Row';
 import Column from 'chamel/Grid/Column';
-import DatePicker from 'chamel/DatePicker';
+import DatePicker from 'chamel/Picker/DatePicker';
 import SelectField from 'chamel/Picker/SelectField';
 import SelectButtonDemo from './Picker/SelectButtonDemo';
 

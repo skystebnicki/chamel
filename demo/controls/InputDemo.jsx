@@ -21,42 +21,40 @@ var dropDownData = [
 ];
 
 var InputDemo = React.createClass({
-    render: function () {
-        return (
-            <div className="row">
-                <div className="col-xs-12 col-md-6">
-                    <h2>Text</h2>
-                    <TextField onChange={this._handleTextChange} hintText="Hint Text" />
-                    <TextField onChange={this._handleTextChange} floatingLabelText="Floated Label" />
+  render: function () {
+    return (
+      <div className="row">
+        <div className="col-xs-12 col-md-6">
+          <h2>Text</h2>
+          <TextField onChange={this._handleTextChange} hintText="Hint Text" />
+          <TextField onChange={this._handleTextChange} floatingLabelText="Floated Label" />
+          <h2>Multi Line</h2>
+          <div>
+            <TextField multiLine onChange={this._handleTextChange} hintText="Hint Text" />
+          </div>
+          <div>
+            <TextField multiLine onChange={this._handleTextChange} floatingLabelText="Floated Label" />
+          </div>
+        </div>
+      </div>
+    );
+  },
 
+  /**
+   * Log changed value of a DropDown menu
+   */
+  _handleDropDownChange: function(e, key, payload)
+  {
+    console.log("Dropdown value changed to", payload);
+  },
 
-                  <h2>Multi Line</h2>
-                  <div>
-                    <TextField multiLine onChange={this._handleTextChange} hintText="Hint Text" />
-                  </div>
-                  <div>
-                    <TextField multiLine onChange={this._handleTextChange} floatingLabelText="Floated Label" />
-                  </div>
-                </div>
-            </div>
-        );
-    },
-
-    /**
-     * Log changed value of a DropDown menu
-     */
-    _handleDropDownChange: function(e, key, payload)
-    {
-        console.log("Dropdown value changed to", payload);
-    },
-
-    /**
-     * Log changed value of a DropDown menu
-     */
-    _handleTextChange: function(evt)
-    {
-        console.log("Text field value changed to", evt.target.value);
-    }
+  /**
+   * Log changed value of a DropDown menu
+   */
+  _handleTextChange: function(evt)
+  {
+     console.log("Text field value changed to", evt.target.value);
+  }
 });
 
 module.exports = InputDemo;

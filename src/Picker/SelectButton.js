@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
 import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
 import Paper from '../Paper/Paper';
