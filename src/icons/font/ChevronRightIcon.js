@@ -4,7 +4,7 @@ import ThemeService from '../../styles/ChamelThemeService';
 
 const ChevronRightIcon = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcons;
+    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
     <FontIcon {...props} className={theme.iconChevronRight} />
