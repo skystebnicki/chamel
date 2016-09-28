@@ -294,6 +294,20 @@ class TextField extends React.Component {
       inputProps.onChange = this._handleInputChange;
     }
 
+    // We need to remove invalid props before we pass it to <textarea> or <input>
+    for (let prop in other) {
+      switch (prop) {
+        case 'autoCompleteDelimiter':
+        case 'autoCompleteTrigger':
+        case 'autoCompleteTransform':
+        case 'autoCompleteDelimiter':
+        case 'autoCompleteTrigger':
+        case 'autoCompleteTransform':
+          delete other[prop];
+              break;
+      }
+    }
+
     let inputElement = this.props.multiLine ? (
       <textarea
         rows={1}
