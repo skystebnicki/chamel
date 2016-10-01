@@ -47,8 +47,7 @@ class App extends React.Component {
 
       // Try to detect if we are a small device and hide the doc if so
     if (window.innerWidth < 800) {
-      newState.menuDocked = false;
-      this.refs.leftNav.close();
+      newState.menuDocked = true;
     }
 
     this.setState(newState)
@@ -93,7 +92,7 @@ class App extends React.Component {
           <Drawer
             ref="leftNav"
             permanent={this.state.menuDocked}
-            open={true}
+            open={this.state.menuDocked}
             clipped={true}
             zIndex={0}
           >

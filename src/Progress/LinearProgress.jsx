@@ -132,7 +132,7 @@ class LinearProgress extends React.Component {
 
     let {
       style,
-      ...other,
+      ...other
     } = this.props;
 
     let barStyle = {};

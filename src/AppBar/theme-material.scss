@@ -7,7 +7,7 @@
 .appBarOuter {
   width: 100%;
   background-color: $app-bar-color;
-  z-index: 5;
+  z-index: 5000;
   height: $app-bar-height-small;
   padding-left: $gutter-less;
   padding-right: $gutter-less;
@@ -25,7 +25,7 @@
   }
 }
 
-.appBarTitle {
+.appBarCenter {
   @extend .cml-font-style-title;
   color: $app-bar-text-color;
   padding: 0;

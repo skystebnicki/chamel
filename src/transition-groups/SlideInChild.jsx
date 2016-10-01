@@ -50,7 +50,7 @@ const SlideInChild = React.createClass({
     let {
       children,
       className,
-      ...other,
+      ...other
     } = this.props;
 
     var classes = "chamel-transition-slide-in-child";

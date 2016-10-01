@@ -24,7 +24,7 @@ const SlideIn = React.createClass({
       className,
       children,
       direction,
-      ...other,
+      ...other
     } = this.props;
 
     var classes = (this.props.className) ? this.props.className + ' ' : null;
