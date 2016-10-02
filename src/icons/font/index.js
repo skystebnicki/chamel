@@ -23,6 +23,7 @@ import RefreshIcon from './RefreshIcon';
 import SubArrowLeftIcon from './SubArrowLeftIcon';
 import SubArrowRightIcon from './SubArrowRightIcon';
 import ArrowRightIcon from './ArrowRightIcon';
+import MenuIcon from './MenuIcon';
 
 const Icons = {
   navigation: [
@@ -44,6 +45,7 @@ const Icons = {
     {name:"first page", icon: FirstPageIcon},
     {name:"full screen", icon: FullSCreenIcon},
     {name:"exit full screen", icon: FullScreenExitIcon},
+    {name:"menu", icon: MenuIcon},
     {name:"last page", icon: LastPageIcon},
     {name:"more horiz", icon: MoreHorizIcon},
     {name:"more vert", icon: MoreVertIcon},

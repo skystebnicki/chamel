@@ -29,6 +29,7 @@ class DrawerDemo extends React.Component {
   }
 
   _handleClick = (e) => {
+    console.log("Toggle drawer button clicked");
     this.setState({open: !this.state.open})
   }
 };

@@ -1,20 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Home = require('./home');
-var IconButton = require("chamel/Button/IconButton");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Home from './home';
+import IconButton from 'chamel/Button/IconButton';
 import Drawer from 'chamel/Drawer';
 import Container from 'chamel/Grid/Container';
 import ChamelThemeProvider from 'chamel/styles/ChamelThemeProvider';
 import List from 'chamel/List';
 import ListItem from 'chamel/List/ListItem';
-
 import baseTheme from 'chamel/styles/theme/base.js';
 import materialTheme from 'chamel/styles/theme/material.js';
 import humanTheme from 'chamel/styles/theme/human.js';
-
-
-var ReactRouter = require('react-router');
-var RouteLink = ReactRouter.Link;
+import MenuIcon from 'chamel/icons/font/MenuIcon';
+import AppBar from 'chamel/AppBar';
+import SelectButton from 'chamel/Picker/SelectButton';
 
 class App extends React.Component {
 
@@ -35,7 +33,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      menuDocked: true,
+      menuDocked: false,
+      menuOpen: false,
       themeName: 'base'
     }
   }
@@ -45,56 +44,60 @@ class App extends React.Component {
       themeName: localStorage.getItem("theme") || 'base'
     };
 
-      // Try to detect if we are a small device and hide the doc if so
-    if (window.innerWidth < 800) {
+    // Try to detect if we are a small device and hide the doc if so
+    if (window.innerWidth > 800) {
       newState.menuDocked = true;
+      newState.menuOpen = true;
     }
 
     this.setState(newState)
   }
 
   render() {
-    var contentClasses = "demo-maincontent";
+    let mainContainerStyle = {};
     if (this.state.menuDocked) {
-        contentClasses += " with-leftnav";
+      mainContainerStyle.marginLeft = "256px";
     }
-
-    var themeOptionStyle = {
-        float: "right"
-    };
 
     const theme = this.getTheme(this.state.themeName);
     // Get the current path name and skip the preceeding root / char
     const activeRouteName = this.props.location.pathname.substring(1);
 
+    // Set the z-index of the navigation menu (left nav)
+    const drawerZindex = (this.state.menuDocked) ? 0 : 1;
+
+    // Create right icon for closing the left nav if not docked
+    const leftAppBarElement = (!this.state.menuDocked) ? (
+      <IconButton onClick={this.handleMenuToggle_}>
+        <MenuIcon />
+      </IconButton>
+    ) : null;
+
+    const rightAppBarElement = (
+      <SelectButton onChange={this.handleThemeChange_} menuItems={[
+        { theme: 'base', text: 'Base (none)' },
+        { theme: 'material', text: 'Material (android)' },
+        { theme: 'human', text: 'Human (ios)' },
+        { theme: 'modern', text: 'Modern (windows)' }
+      ]} />
+    );
+
     return (
       <ChamelThemeProvider chamelTheme={theme}>
         <div>
-          <Container fluid>
-              <header>
-              <div style={ themeOptionStyle }>
-                  <select ref="themes" value={this.state.themeName} onChange={this.handleThemeChange_}>
-                      <option value='base'>Base (none)</option>
-                      <option value='material'>Material (android)</option>
-                      <option value='human'>Human (ios)</option>
-                      <option value='modern'>Modern (windows)</option>
-                  </select>
-              </div>
-              <span className='visible-xs-inline'>
-              <IconButton
-              iconClassName="fa fa-bars"
-              onClick={this.handleMenuToggle_}/>
-              </span>
-              <h1>Chameleon Demo</h1>
-              </header>
-          </Container>
+          <AppBar
+            iconElementLeft={leftAppBarElement}
+            iconElementRight={rightAppBarElement}
+            title={"Chameleon Demo"}
+          />
 
           <Drawer
             ref="leftNav"
             permanent={this.state.menuDocked}
-            open={this.state.menuDocked}
-            clipped={true}
-            zIndex={0}
+            open={this.state.menuDocked || this.state.menuOpen}
+            clipped={this.state.menuDocked}
+            zIndex={drawerZindex}
+            onClose={this.handleMenuToggle_}
           >
             <List
               onItemClick={this.handleNavChange_}
@@ -102,97 +105,97 @@ class App extends React.Component {
               <ListItem
                 primaryText={"Home"}
                 selected={(activeRouteName == "home")}
-                onTap={(e) => { location.hash = "home"; }}
+                onTap={(e) => { this.handleGoToRoute("home"); }}
               />
               <ListItem
                 primaryText={"AppBar"}
                 selected={(activeRouteName == "appbar")}
-                onTap={(e) => { location.hash = "appbar"; }}
+                onTap={(e) => { this.handleGoToRoute("appbar"); }}
               />
               <ListItem
                 primaryText={"Drawer"}
                 selected={(activeRouteName == "drawer")}
-                onTap={(e) => { location.hash = "drawer"; }}
+                onTap={(e) => { this.handleGoToRoute("drawer"); }}
               />
               <ListItem
                 primaryText={"Button"}
                 selected={(activeRouteName == "button")}
-                onTap={(e) => { location.hash = "button"; }}
+                onTap={(e) => { this.handleGoToRoute("button"); }}
               />
               <ListItem
                 primaryText={"Input"}
                 selected={(activeRouteName == "input")}
-                onTap={(e) => { location.hash = "input"; }}
+                onTap={(e) => { this.handleGoToRoute("input"); }}
               />
               <ListItem
                 primaryText={"Toggle"}
                 selected={(activeRouteName == "toggle")}
-                onTap={(e) => { location.hash = "toggle"; }}
+                onTap={(e) => { this.handleGoToRoute("toggle"); }}
               />
               <ListItem
                 primaryText={"Picker"}
                 selected={(activeRouteName == "picker")}
-                onTap={(e) => { location.hash = "picker"; }}
+                onTap={(e) => { this.handleGoToRoute("picker"); }}
               />
               <ListItem
                 primaryText={"Toolbar"}
                 selected={(activeRouteName == "toolbar")}
-                onTap={(e) => { location.hash = "toolbar"; }}
+                onTap={(e) => { this.handleGoToRoute("toolbar"); }}
               />
               <ListItem
                 primaryText={"Icon"}
                 selected={(activeRouteName == "icon")}
-                onTap={(e) => { location.hash = "icon"; }}
+                onTap={(e) => { this.handleGoToRoute("icon"); }}
               />
               <ListItem
                 primaryText={"Popover"}
                 selected={(activeRouteName == "popover")}
-                onTap={(e) => { location.hash = "popover"; }}
+                onTap={(e) => { this.handleGoToRoute("popover"); }}
               />
               <ListItem
                 primaryText={"List"}
                 selected={(activeRouteName == "list")}
-                onTap={(e) => { location.hash = "list"; }}
+                onTap={(e) => { this.handleGoToRoute("list"); }}
               />
               <ListItem
                 primaryText={"Menu"}
                 selected={(activeRouteName == "menu")}
-                onTap={(e) => { location.hash = "menu"; }}
+                onTap={(e) => { this.handleGoToRoute("menu"); }}
               />
               <ListItem
                 primaryText={"Tabs"}
                 selected={(activeRouteName == "tabs")}
-                onTap={(e) => { location.hash = "tabs"; }}
+                onTap={(e) => { this.handleGoToRoute("tabs"); }}
               />
               <ListItem
                 primaryText={"Dialog"}
                 selected={(activeRouteName == "dialog")}
-                onTap={(e) => { location.hash = "dialog"; }}
+                onTap={(e) => { this.handleGoToRoute("dialog");}}
               />
               <ListItem
                 primaryText={"Editor"}
                 selected={(activeRouteName == "editor")}
-                onTap={(e) => { location.hash = "editor"; }}
+                onTap={(e) => { this.handleGoToRoute("editor"); }}
               />
               <ListItem
                 primaryText={"Progress"}
                 selected={(activeRouteName == "progress")}
-                onTap={(e) => { location.hash = "progress"; }}
+                onTap={(e) => { this.handleGoToRoute("progress"); }}
               />
               <ListItem
                 primaryText={"AutoComplete"}
                 selected={(activeRouteName == "autocomplete")}
-                onTap={(e) => { location.hash = "autocomplete"; }}
+                onTap={(e) => { this.handleGoToRoute("autocomplete"); }}
               />
               <ListItem
                 primaryText={"Snackbar"}
                 selected={(activeRouteName == "snackbar")}
-                onTap={(e) => { location.hash = "snackbar"; }}
+                onTap={(e) => { this.handleGoToRoute("snackbar"); }}
               />
             </List>
           </Drawer>
 
-          <div className={contentClasses}>
+          <div style={mainContainerStyle}>
             <Container fluid>
               {this.props.children}
             </Container>
@@ -224,17 +227,26 @@ class App extends React.Component {
   /**
    * Change the theme css
    */
-  handleThemeChange_ = () => {
-      var themeName = ReactDOM.findDOMNode(this.refs.themes).value;
-      localStorage.setItem("theme", themeName);
-      this.setState({themeName: themeName});
+  handleThemeChange_ = (e, index, payload) => {
+    localStorage.setItem("theme", payload.theme);
+    this.setState({themeName: payload.theme});
   };
 
   /**
    * Handle menu toggle
    */
-  handleMenuToggle_() {
-    this.refs.leftNav.toggle();
+  handleMenuToggle_ = () => {
+    this.setState({menuOpen: !this.state.menuOpen});
+  }
+
+  /**
+   * Change the hash which will load the selected route
+   */
+  handleGoToRoute = (route) => {
+    location.hash = route;
+    if (!this.state.menuDocked) {
+      this.setState({menuOpen: false});
+    }
   }
 }
 

@@ -30,7 +30,7 @@ class TouchRipple extends React.Component {
 
   /**
    * Class constructor
-   * 
+   *
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
@@ -98,12 +98,14 @@ class TouchRipple extends React.Component {
       ending: false
     });
 
-    //Re-render
-    /*
-    this.setState({
-      ripples: ripples
-    });
-    */
+    // Re-render unless this is a mouse event because there is a bug
+    // in the onTap of the plugin 'react-tappable'. - Sky
+    if ('mousedown' != e.type) {
+      this.setState({
+        ripples: ripples
+      });
+    }
+
   };
 
   /**
@@ -172,10 +174,10 @@ class TouchRipple extends React.Component {
     let elHeight = el.offsetHeight;
     let elWidth = el.offsetWidth;
     let offset = Dom.offset(el);
-    let pageX = e.pageX == undefined ? e.nativeEvent.pageX : e.pageX;
-    let pageY = e.pageY == undefined ? e.nativeEvent.pageY : e.pageY;
-    let pointerX = pageX - offset.left;
-    let pointerY = pageY - offset.top;
+    const eventCoordinates = this._getPageXY(e);
+
+    const pointerX = eventCoordinates.x - offset.left;
+    const pointerY = eventCoordinates.y - offset.top;
     let topLeftDiag = this._calcDiag(pointerX, pointerY);
     let topRightDiag = this._calcDiag(elWidth - pointerX, pointerY);
     let botRightDiag = this._calcDiag(elWidth - pointerX, elHeight - pointerY);
@@ -195,6 +197,24 @@ class TouchRipple extends React.Component {
     return style;
   };
 
+  /**
+   * Get x and y coordinates from an event
+   */
+  _getPageXY = (e) => {
+    let out = {};
+
+    if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
+      var touch = e.touches[0] || e.changedTouches[0];
+      out.x = touch.pageX;
+      out.y = touch.pageY;
+    } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {
+      out.x = e.pageX;
+      out.y = e.pageY;
+    }
+
+    return out;
+  };
+
   _calcDiag(a, b) {
     return Math.sqrt((a * a) + (b * b));
   }
@@ -211,11 +231,6 @@ class TouchRipple extends React.Component {
     });
   }
 };
-
-// Check for commonjs
-if (module) {
-    module.exports = TouchRipple;
-}
 
 // ES6
 export default TouchRipple;

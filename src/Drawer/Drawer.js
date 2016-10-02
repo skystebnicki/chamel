@@ -32,12 +32,6 @@ class Drawer extends React.Component {
     clipped: React.PropTypes.bool,
 
     /**
-     * A permanent and floating permanent menu will show up on the 
-     * left without a background color
-     */
-    floating: React.PropTypes.bool,
-
-    /**
      * Optional element to anchor the meny to
      */
     anchorEl: React.PropTypes.object,
@@ -46,10 +40,10 @@ class Drawer extends React.Component {
      * Callback any time the menu should close
      */
     onClose: React.PropTypes.func,
-    
+
     /**
      * Which side to display the drawer on
-     * 
+     *
      * Options
      * left: primary and default navigation
      * right: secondary right side navigation
@@ -65,7 +59,6 @@ class Drawer extends React.Component {
     permanent: false,
     clipped: false,
     anchorEl: null,
-    floating: false,
     side: 'left'
   };
 
@@ -95,7 +88,7 @@ class Drawer extends React.Component {
   }
 
   componentDidMount() {
-    
+
     // Save the original top position of the menu
     if (this.state.open) {
       let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
@@ -179,7 +172,7 @@ class Drawer extends React.Component {
   };
 
   /**
-   * Handle when the document is scrolled while the 
+   * Handle when the document is scrolled while the
    * The starting top of this menu was not 0 so it means
    * the menu is a fixed position and permanent. A menu can be permanent
    * below the top of the page (like below an AppBar) so we
@@ -234,7 +227,7 @@ class Drawer extends React.Component {
         });
       }.bind(this)
     );
-      
+
   };
 
   /**

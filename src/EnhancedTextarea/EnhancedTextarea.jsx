@@ -38,7 +38,7 @@ var EnhancedTextarea = React.createClass({
       textareaClassName,
       rows,
       valueLink,
-      ...other,
+      ...other
     } = this.props;
 
     var classes = this.getClasses('chamel-enhanced-textarea');

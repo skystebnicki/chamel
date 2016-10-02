@@ -11,6 +11,16 @@
   height: $app-bar-height-small;
   padding-left: $gutter-less;
   padding-right: $gutter-less;
+  box-sizing: border-box;
+
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: row; /* Safari */
+  flex-direction:         row;
+  -webkit-flex-wrap: nowrap; /* Safari */
+  flex-wrap:         nowrap;
+  -webkit-align-items: center; /* Safari */
+  align-items:         center;
 
   @media #{$device-medium} {
     height: $app-bar-height-medium;
@@ -30,8 +40,7 @@
   color: $app-bar-text-color;
   padding: 0;
   margin: 0;
-
-  float: left;
+  flex: 1 1 auto;
 
   line-height: $app-bar-height-small;
   @media #{$device-medium} {
@@ -43,8 +52,8 @@
 }
 
 .appBarRight {
-  float: right;
   margin-right: ($icon-size / 2) * -1;
+  flex-basis: content;
 
   @media #{$device-medium} {
   }
@@ -54,9 +63,9 @@
 }
 
 .appBarLeft {
-  float: left;
   margin-right: ($gutter-less / 4);
   margin-left: ($icon-size / 2) * -1;
+  flex-basis: content;
 
   @media #{$device-medium} {
     margin-right: ($gutter / 4);
@@ -68,22 +77,8 @@
 
 }
 
-.appBarClear {
-  clear: both;
-}
-
 .appBarIconButton  {
-  margin-top: (($app-bar-height-small - $icon-button-size) / 2);
   background-color: transparent;
-
-  @media #{$device-medium} {
-    margin-top: (($app-bar-height-medium - $icon-button-size) / 2);
-  }
-
-  @media #{$device-large} {
-    margin-top: (($app-bar-height-large - $icon-button-size) / 2);
-  }
-
   * {
     fill: $app-bar-text-color;
     color: $app-bar-text-color;

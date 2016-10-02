@@ -7,38 +7,43 @@
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-}
-@media (min-width: 768px) {
-  .container {
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
     width: 750px;
   }
-}
-@media (min-width: 992px) {
-  .container {
+
+  @media (min-width: 992px) {
     width: 970px;
   }
-}
-@media (min-width: 1200px) {
-  .container {
+
+  @media (min-width: 1200px) {
     width: 1170px;
   }
 }
+
 .containerFluid {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
+  box-sizing: border-box;
 }
+
 .row {
   margin-left: -15px;
   margin-right: -15px;
+  box-sizing: border-box;
 }
+
 .colSmall1, .colMedium1, .colLarge1, .colXLarge1, .colSmall2, .colMedium2, .colLarge2, .colXLarge2, .colSmall3, .colMedium3, .colLarge3, .colXLarge3, .colSmall4, .colMedium4, .colLarge4, .colXLarge4, .colSmall5, .colMedium5, .colLarge5, .colXLarge5, .colSmall6, .colMedium6, .colLarge6, .colXLarge6, .colSmall7, .colMedium7, .colLarge7, .colXLarge7, .colSmall8, .colMedium8, .colLarge8, .colXLarge8, .colSmall9, .colMedium9, .colLarge9, .colXLarge9, .colSmall10, .colMedium10, .colLarge10, .colXLarge10, .colSmall11, .colMedium11, .colLarge11, .colXLarge11, .colSmall12, .colMedium12, .colLarge12, .colXLarge12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  box-sizing: border-box;
 }
+
 .colSmall1, .colSmall2, .colSmall3, .colSmall4, .colSmall5, .colSmall6, .colSmall7, .colSmall8, .colSmall9, .colSmall10, .colSmall11, .colSmall12 {
   float: left;
 }
@@ -195,6 +200,7 @@
 .colSmalloffset-0 {
   margin-left: 0%;
 }
+
 @media (min-width: 768px) {
   .colMedium1, .colMedium2, .colMedium3, .colMedium4, .colMedium5, .colMedium6, .colMedium7, .colMedium8, .colMedium9, .colMedium10, .colMedium11, .colMedium12 {
     float: left;
@@ -353,6 +359,7 @@
     margin-left: 0%;
   }
 }
+
 @media (min-width: 992px) {
   .colLarge1, .colLarge2, .colLarge3, .colLarge4, .colLarge5, .colLarge6, .colLarge7, .colLarge8, .colLarge9, .colLarge10, .colLarge11, .colLarge12 {
     float: left;
@@ -511,6 +518,7 @@
     margin-left: 0%;
   }
 }
+
 @media (min-width: 1200px) {
   .colXLarge1, .colXLarge2, .colXLarge3, .colXLarge4, .colXLarge5, .colXLarge6, .colXLarge7, .colXLarge8, .colXLarge9, .colXLarge10, .colXLarge11, .colXLarge12 {
     float: left;

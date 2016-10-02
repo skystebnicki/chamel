@@ -14,41 +14,41 @@ import classnames from 'classnames';
  * @constructor
  */
 const Button = (props, context) => {
-    let theme = (context.chamelTheme && context.chamelTheme.button)
-        ? context.chamelTheme.button : ThemeService.defaultTheme.button;
+  let theme = (context.chamelTheme && context.chamelTheme.button)
+    ? context.chamelTheme.button : ThemeService.defaultTheme.button;
 
-    // Setup classes
-    const className = props.className || null;
-    const type = props.type ;
-    const classes = classnames(theme[type], {
-      [theme[type + "primary"]]: props.primary,
-      [theme[type + "accent"]]: props.accent,
-      [theme[type + "disabled"]]: props.disabled,
-      [theme[type + "depressed"]]: props.depressed,
-      [theme[type + "mini"]]: props.mini
-    }, className);
+  // Setup classes
+  const className = props.className || null;
+  const type = props.type ;
+  const classes = classnames(theme[type], {
+    [theme[type + "primary"]]: props.primary,
+    [theme[type + "accent"]]: props.accent,
+    [theme[type + "disabled"]]: props.disabled,
+    [theme[type + "depressed"]]: props.depressed,
+    [theme[type + "mini"]]: props.mini
+  }, className);
 
-    // Determine if the selected type of button is a centered ripple
-    let centerRipple = (type == 'floating' || type == 'icon');
+  // Determine if the selected type of button is a centered ripple
+  let centerRipple = (type == 'floating' || type == 'icon');
 
-    const label = (props.label) ? props.label : props.children;
-    const tapHandler = props.onTap || props.onClick;
+  const label = (props.label) ? props.label : props.children;
+  const tapHandler = props.onTap || props.onClick;
 
-    if (tapHandler && !props.disabled) {
-        return (
-            <Tappable onTap={tapHandler}>
-                <button className={classes}>
-                    <TouchRipple centerRipple={centerRipple} />
-                    <FocusRipple  />
-                    {label}
-                </button>
-            </Tappable>
-        );
-    } else {
-        return (
-            <button disabled={props.disabled} className={classes}>{label}</button>
-        );
-    }
+  if (tapHandler && !props.disabled) {
+    return (
+      <Tappable onTap={tapHandler}>
+        <button className={classes}>
+          <TouchRipple centerRipple={centerRipple} />
+          <FocusRipple  />
+          {label}
+        </button>
+      </Tappable>
+    );
+  } else {
+    return (
+      <button disabled={props.disabled} className={classes}>{label}</button>
+    );
+  }
 };
 
 /**
@@ -144,22 +144,22 @@ Button.propTypes = {
  * Set property defaults
  */
 Button.defaultProps = {
-    accent: false,
-    className: '',
-    flat: false,
-    floating: false,
-    mini: false,
-    neutral: true,
-    primary: false,
-    raised: false,
-    type: "raised"
+  accent: false,
+  className: '',
+  flat: false,
+  floating: false,
+  mini: false,
+  neutral: true,
+  primary: false,
+  raised: false,
+  type: "raised"
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Button.contextTypes = {
-    chamelTheme: React.PropTypes.object
+  chamelTheme: React.PropTypes.object
 };
 
 export default Button;

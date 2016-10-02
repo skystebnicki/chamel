@@ -169,9 +169,8 @@ class AppBar extends React.Component {
         <div style={innerConStyle}>
           <Paper ref="appBarInnerCon" rounded={false} className={classes} zDepth={zDepth}>
             {menuElementLeft}
-            {menuElementRight}
             {elementCenter}
-            <div className={theme.appBarClear} />
+            {menuElementRight}
           </Paper>
         </div>
       </div>

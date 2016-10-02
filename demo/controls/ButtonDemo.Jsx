@@ -43,8 +43,8 @@ var ButtonDemo = React.createClass({
     },
 
     _handleClick: function(e) {
-        console.log("Clicked", e);
-        return false;
+        console.log("Tapped");
+        return true;
     }
 });
 

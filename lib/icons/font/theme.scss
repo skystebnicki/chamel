@@ -164,6 +164,11 @@
   @extend .fa-caret-right;
 }
 
+.iconMenu {
+  @extend .fontIcon;
+  @extend .fa-bars;
+}
+
 /*
  * Something else
  */
@@ -283,4 +288,3 @@
   @extend .fontIcon;
   @extend .fa-chevron-right;
 }
-
