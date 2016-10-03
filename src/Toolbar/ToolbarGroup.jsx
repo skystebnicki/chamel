@@ -21,7 +21,7 @@ class ToolbarGroup extends React.Component {
    * Set accepted properties
    */
   static propTypes = {
-    float: React.PropTypes.string
+    align: React.PropTypes.string
   };
 
   /**
@@ -35,10 +35,10 @@ class ToolbarGroup extends React.Component {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.toolbar)
       ? this.context.chamelTheme.toolbar : ThemeService.defaultTheme.toolbar;
-    
+
       var classes = classnames(theme.toolbarGroup, {
-        [theme.toolbarGroupLeft]: this.props.float === 'left',
-        [theme.toolbarGroupRight]: this.props.float === 'right'
+        [theme.toolbarGroupLeft]: this.props.align === 'left',
+        [theme.toolbarGroupRight]: this.props.align === 'right'
       });
 
       return (
@@ -51,4 +51,3 @@ class ToolbarGroup extends React.Component {
 }
 
 export default ToolbarGroup;
-

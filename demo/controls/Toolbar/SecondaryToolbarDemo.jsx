@@ -20,12 +20,17 @@ class SecondaryToolbarDemo extends React.Component {
     return (
       <div>
         <Toolbar secondary>
-          <ToolbarGroup key={0} float="left">
+          <ToolbarGroup align="left">
             <IconButton onTap={(e) => { console.log("Left close clicked"); }}>
               <CloseIcon />
             </IconButton>
           </ToolbarGroup>
-          <ToolbarGroup key={1} float="right">
+          <ToolbarGroup align="left">
+            <IconButton onTap={(e) => { console.log("Left close clicked"); }}>
+              <CloseIcon />
+            </IconButton>
+          </ToolbarGroup>
+          <ToolbarGroup align="right">
             <IconButton onTap={(e) => { console.log("Right close clicked"); }}>
               <CloseIcon />
             </IconButton>

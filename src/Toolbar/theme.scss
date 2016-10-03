@@ -8,6 +8,15 @@
   padding: 0 $desktop-gutter;
   box-sizing: border-box;
 
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-flex-direction: row; /* Safari */
+  flex-direction: row;
+  -webkit-flex-wrap: wrap; /* Safari */
+  flex-wrap: wrap;
+  -webkit-align-items: center; /* Safari */
+  align-items: center;
+
   .chamel-toolbar-left-arrow {
     float: left;
     margin-left: 10px;
@@ -32,68 +41,17 @@
   height: auto;
 }
 
+.toolbarGroupSeparator {
+  flex-basis: content;
+  width: 1px;
+  background-color: #cccccc;
+}
+
 .toolbarGroup {
-  position: relative;
-
-  .chamel-toolbar-title {
-    padding-right: $desktop-gutter-less;
-    line-height: $toolbar-height;
-  }
-
-  .chamel-toolbar-separator {
-    background-color: $toolbar-separator-color;
-    display: inline-block;
-    height: $desktop-gutter-more;
-    margin-left: $desktop-gutter;
-    position: relative;
-    top: (($toolbar-height - $desktop-gutter-more) / 2);
-    width: 1px;
-  }
-
-  .chamel-raised-button,
-  .chamel-flat-button {
-    margin: 0 $desktop-gutter;
-    margin-top: (($toolbar-height - $button-height) / 2);
-    position: relative;
-  }
-
-  .chamel-drop-down-menu {
-    color: $light-black;
-    display: inline-block;
-    margin-right: $desktop-gutter;
-
-    .chamel-menu-control-bg {
-      background-color: $toolbar-menu-hover-color;
-      border-radius: 0;
-    }
-
-    .chamel-menu-control {
-      .chamel-menu-control-underline {
-        display: none;
-      }
-    }
-
-    .chamel-font-icon {
-      &:hover {
-        color: $toolbar-icon-color;
-      }
-    }
-  }
-
-  .chamel-font-icon {
-    color: $toolbar-icon-color;
-    cursor: pointer;
-    line-height: $toolbar-height;
-    margin-left: $desktop-gutter;
-
-    &:hover {
-      color: $dark-black;
-      z-index: 1;
-    }
-  }
 
   &.toolbarGroupLeft {
-    float: left;
+    text-align: left;
+    flex-basis: content;
 
     &:first-child {
       margin-left: -24px;
@@ -105,11 +63,8 @@
   }
 
   &.toolbarGroupRight {
-    float: right;
-
-    * {
-      vertical-align: top;
-    }
+    text-align: right;
+    flex: 1 1 auto;
 
     &:last-child {
       margin-right: -24px;
