@@ -21,7 +21,7 @@ const styleMap = {
 };
 
 /**
- * Chamel Editor component
+ * Chamel Editor component for editing rich text and source code
  */
 class ChamelEditor extends React.Component {
 

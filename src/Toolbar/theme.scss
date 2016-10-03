@@ -6,6 +6,7 @@
   height: $toolbar-height;
   width: 100%;
   padding: 0 $desktop-gutter;
+  box-sizing: border-box;
 
   .chamel-toolbar-left-arrow {
     float: left;
@@ -30,7 +31,6 @@
   background-color: transparent;
   height: auto;
 }
-
 
 .toolbarGroup {
   position: relative;
