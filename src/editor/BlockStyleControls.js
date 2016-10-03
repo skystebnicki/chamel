@@ -14,6 +14,7 @@ const BLOCK_TYPES = [
     {label: 'UL', style: 'unordered-list-item'},
     {label: 'OL', style: 'ordered-list-item'},
     {label: 'Code Block', style: 'code-block'},
+    {label: 'SRC', style: 'view-source'},
 ];
 
 /**
@@ -56,9 +57,13 @@ class BlockStyleControls extends React.Component {
         // Loop thru the block types and setup the style button
         BLOCK_TYPES.map((type) => {
 
+            let setToActive = true;
             let className = this.props.theme.chamelEditorStyleButton;
-            if (type.style === this.props.blockType) {
+
+            if (type.style === this.props.blockType ||
+                (type.style === "view-source" && this.props.sourceView)) {
                 className += ' ' + this.props.theme.chamelEditorActiveButton;
+                setToActive = false;
             }
 
             displayStyleButton.push(
@@ -66,7 +71,7 @@ class BlockStyleControls extends React.Component {
                     key={type.label}
                     className={className}
                     label={type.label}
-                    onToggle={this.props.onToggle}
+                    onToggle={this.props.onToggle.bind(this, setToActive)}
                     style={type.style}
                 />
             );
