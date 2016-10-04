@@ -137,7 +137,7 @@ class AppBar extends React.Component {
         this.props.title;
     } else if (this.props.children) {
       elementCenter = (
-        <div className={appBarCenter}>{this.props.children}</div>
+        <div className={theme.appBarCenter}>{this.props.children}</div>
       );
     }
 
