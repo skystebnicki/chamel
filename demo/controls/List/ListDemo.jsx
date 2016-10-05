@@ -1,8 +1,10 @@
 import React from 'react';
 import List from 'chamel/List';
 import ListItem from 'chamel/List/ListItem';
+import ListItemCheckbox from 'chamel/List/ListItemCheckbox';
 import MoreVerticon from 'chamel/icons/font/MoreVertIcon';
 import RefreshIcon from 'chamel/icons/font/RefreshIcon';
+import ListItemCheckboxDemo from './ListItemCheckboxDemo';
 
 var ListDemo = React.createClass({
     render: function () {
@@ -44,13 +46,7 @@ var ListDemo = React.createClass({
                   </List>
 
                   <h2>{"With Checkbox"}</h2>
-                  <List>
-                      <ListItem
-                        primaryText={"Primary text goes here 1"}
-                        secondaryText={"Secondary text goes here"}
-                        leftElement={<RefreshIcon />}
-                      />
-                  </List>
+                  <ListItemCheckboxDemo />
               </div>
           </div>
         );
