@@ -89,7 +89,13 @@ class TouchRipple extends React.Component {
    *
    * @param {event} e
    */
-  start = (e) => {
+  start = (e, isRippleTouchGenerated) => {
+
+    if (this.ignoreNextMouseDown && !isRippleTouchGenerated) {
+      this.ignoreNextMouseDown = false;
+      return;
+    }
+
     let ripples = this.state.ripples;
     let nextKey = ripples[ripples.length-1].key + 1;
     let style = !this.props.centerRipple ? this._getRippleStyle(e) : {};
@@ -111,6 +117,9 @@ class TouchRipple extends React.Component {
       started: false,
       ending: false
     });
+
+    // If we just generated a ripple from a touch, ignore the next mouse down
+    this.ignoreNextMouseDown = isRippleTouchGenerated;
 
     // Re-render unless this is a mouse event because there is a bug
     // in the onTap of the plugin 'react-tappable'. - Sky

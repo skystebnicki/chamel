@@ -11,8 +11,14 @@ var ListDemo = React.createClass({
               <div className="col-xs-12 col-md-6">
                   <h2>{"Simple"}</h2>
                   <List>
-                      <ListItem primaryText={"Primary text goes here 1"} secondaryText={"Secondary text goes here"} />
-                      <ListItem primaryText={"Primary text goes here 2"} secondaryText={"Secondary text goes here"} />
+                      <ListItem
+                        primaryText={"Primary text goes here 1"}
+                        secondaryText={"Secondary text goes here"}
+                      />
+                      <ListItem
+                        primaryText={"Primary text goes here 2"}
+                        secondaryText={"Secondary text goes here"}
+                      />
                   </List>
 
                   <h2>{"Selectable"}</h2>
