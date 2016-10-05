@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import Tappable from 'react-tappable';
 import classnames from 'classnames';
+import Checkbox from '../Toggle/Checkbox';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
@@ -12,31 +13,35 @@ import ThemeService from '../styles/ChamelThemeService';
  * @returns {ReactDOM}
  * @constructor
  */
-const ListItem = (props, context) => {
+const ListItemCheckbox = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.list)
       ? context.chamelTheme.list : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listItem, {
-    [theme.listItemSelected]: props.selected
+    [theme.listItemSelected]: props.checked
   });
 
-  // If we have a left element add it
-  const leftElement = (props.leftElement) ?
-    (<div onClick={onTap} className={theme.listItemLeft}>{props.leftElement}</div>)
-    : null;
+  // Create a change function to call in case the user did not pass one
+  const onChange = (e, checked) => {
+    if (props.onChange) {
+      props.onChange(e, checked);
+    }
+  }
 
   // If we have a right element add it
   const rightElement = (props.rightElement) ?
     (<div className={theme.listItemRight}>{props.rightElement}</div>) : null;
 
-  const onTap = (e) => { if (props.onTap) props.onTap(e); }
-
   return (
     <div className={classes}>
-      <TouchRipple />
       <div className={theme.listItemContent}>
-        {leftElement}
-        <div className={theme.listItemData} onClick={onTap}>
+        <div className={theme.listItemLeft}>
+          <Checkbox
+            onChange={onChange}
+            checked={props.checked}
+          />
+        </div>
+        <div className={theme.listItemData} onClick={(e) => { onChange(e, !props.checked)}}>
           <div className={theme.listItemPrimary}>{props.primaryText}</div>
           <div className={theme.listItemSecondary}>{props.secondaryText}</div>
         </div>
@@ -49,7 +54,7 @@ const ListItem = (props, context) => {
 /**
  * Set accepted properties
  */
-ListItem.propTypes = {
+ListItemCheckbox.propTypes = {
 
   /**
    * Primary text/title of the item
@@ -62,47 +67,37 @@ ListItem.propTypes = {
   secondaryText: PropTypes.string,
 
   /**
-   * Optional children to render into the item
-   */
-  children: PropTypes.node,
-
-  /**
-   * Optional flag that can be set to indicate this item is selected
-   */
-  selected: PropTypes.bool,
-
-  /**
-   * Node element to render on the left side
-   */
-  leftElement: PropTypes.node,
-
-  /**
    * Node element to render on the right side
    */
   rightElement: PropTypes.node,
 
   /**
-   * Event called when the primary action is tapped or Clicked
+   * Event called when we select the control
    */
-  onTap: PropTypes.func
+  onChange: PropTypes.func,
+
+  /**
+   * Bool to set whether or not this element is checked
+   */
+  checked: PropTypes.bool
 };
 
 /**
  * Set property defaults
  */
-ListItem.defaultProps = {
+ListItemCheckbox.defaultProps = {
   primaryText: null,
   secondaryText: null,
   leftElement: null,
   rightElement: null,
-  selected: false
+  checked: false
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
-ListItem.contextTypes = {
+ListItemCheckbox.contextTypes = {
   chamelTheme: PropTypes.object
 };
 
-export default ListItem;
+export default ListItemCheckbox;
