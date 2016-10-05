@@ -15,11 +15,12 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  width: 100%;
 
   &:hover {
     &:not(.is-disabled) {
@@ -46,11 +47,6 @@
   color: $list-item-selected-text-color;
 }
 
-.listItemData {
-  vertical-align: top;
-  line-height: 125%;
-}
-
 .listItemPrimary {
 }
 
@@ -58,12 +54,20 @@
   @extend .cml-text-light-black;
 }
 
+.listItemData {
+  flex: 1 1 auto;
+  vertical-align: top;
+  line-height: 125%;
+}
+
 .listItemLeft {
+  flex-basis: content;
   width: $list-item-sides-width;
   margin-right: $gutter;
 }
 
 .listItemRight {
+  flex-basis: content;
   width: $list-item-sides-width;
   text-align: right;
 }

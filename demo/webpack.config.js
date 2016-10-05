@@ -38,7 +38,7 @@ module.exports = {
             },
             {
                 test: /\.(css)$/,
-                loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[local]&sourceMap&importLoaders=1&!sass?sourceMap')
+                loader: ExtractTextPlugin.extract('style', 'css?localIdentName=[local]&sourceMap&importLoaders=1?sourceMap')
             }
         ]
     },
