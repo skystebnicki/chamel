@@ -141,3 +141,50 @@ $error-color: $red-500;
 .floatingLabelDisabled {
   color: rgba($body-text-color, 0.5);
 }
+
+// Draft Js Css
+// ------------
+.richTextContainer {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.richText {
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+  min-height: 100px;
+}
+
+.richText .public-DraftEditorPlaceholder-root,
+.richText .public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+.richText .public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.richTextHidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+.richText .richTextBlockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: 'Hoefler Text', 'Georgia', serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+
+.richText .public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 20px;
+}

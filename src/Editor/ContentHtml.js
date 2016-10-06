@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
-import ContentHtml from './ContentHtml';
-import ContentSource from './ContentSource';
-
-// Types of content views
-const HTML_VIEW = 1;
-const SOURCE_VIEW = 2;
-
+import RichText from '../Input/RichText';
+import EditorToolbar from './EditorToolbar';
 
 /**
- * Chamel Editor component for editing rich text and source code
+ * Contains both the toolbar and an instance of RichText component
  */
-class ChamelEditor extends React.Component {
+class ContentHtml extends React.Component {
 
     /**
      * Set accepted properties
@@ -40,11 +35,11 @@ class ChamelEditor extends React.Component {
         value: React.PropTypes.string,
 
         /**
-         * Determine what is the intial content view to be displayed
+         * Handles the toggling of content view
          *
-         * @type {string}
+         * @type {function}
          */
-        contentView: React.PropTypes.oneOf([HTML_VIEW, SOURCE_VIEW])
+        onContentViewToggle: React.PropTypes.func
     }
 
     /**
@@ -54,21 +49,19 @@ class ChamelEditor extends React.Component {
         chamelTheme: React.PropTypes.object
     };
 
-    static defaultProps = {
-        contentView: HTML_VIEW
-    };
-
     /**
      * Class constructor
      *
      * @param {Object} props Properties to send to the render function
      */
     constructor(props) {
+
         // Call parent constructor
         super(props);
 
         this.state = {
-            contentView: this.props.contentView,
+            toggleStyle: null,
+            toggleType: null,
             value: this.props.value
         };
     }
@@ -76,14 +69,19 @@ class ChamelEditor extends React.Component {
     /**
      * Handle when the editor has changed
      *
-     * @param {obj} editorState  The top-level state object for the editor.
+     * @param {string} value The value of the editor
      * @private
      */
     _onChange = (value) => {
-
         if (this.props.onChange) {
             this.props.onChange(value);
         }
+
+        this.setState({
+            value,
+            toggleStyle: null,
+            toggleType: null
+        });
     }
 
     /**
@@ -93,34 +91,51 @@ class ChamelEditor extends React.Component {
      * @private
      */
     _onBlur = (value) => {
-
         if (this.props.onBlur) {
             this.props.onBlur(value);
+        } else {
+            this.setState({value});
         }
     }
 
     /**
      * Handles when the user set the focus in the editor
-     *
+     * 
      * @param {string} value The value of the editor
      * @private
      */
     _onFocus = (value) => {
-
         if (this.props.onFocus) {
             this.props.onFocus(value);
+        } else {
+            this.setState({value});
         }
+    }
+
+    /**
+     * Handles the toggling of styles in the toolbar icons
+     *
+     * @param {string} style The style that was clicked. It is either block style or inline style
+     * @param {string} type The style type that was toggled. (e.g. bold, italic, underline, h1, h2, h3, ul, ol)
+     * @private
+     */
+    _handleStyleToggle = (style, type) => {
+        this.setState({
+            toggleStyle: style,
+            toggleType: type
+        })
     }
 
     /**
      * Handles the toggling of content view
      *
      * @param {int} contentView The content view we are switching to
-     * @param {string} value The content of the editor
      * @private
      */
-    _handleContentViewToggle = (contentView, value) => {
-        this.setState({contentView, value});
+    _handleContentViewToggle = (contentView) => {
+        if (this.props.onContentViewToggle) {
+            this.props.onContentViewToggle(contentView, this.state.value);
+        }
     }
 
     render() {
@@ -129,42 +144,24 @@ class ChamelEditor extends React.Component {
         let theme = (this.context.chamelTheme && this.context.chamelTheme.editor)
             ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
 
-        let displaySourceView = null;
-
-        switch (this.state.contentView) {
-            case HTML_VIEW:
-                displaySourceView = (
-                    <ContentHtml
-                        onChange={this._onChange}
-                        onBlur={this._onBlur}
-                        onFocus={this._onFocus}
-                        contentViewType={HTML_VIEW}
-                        onContentViewToggle={this._handleContentViewToggle}
-                        value={this.state.value}
-                    />
-                );
-                break;
-
-            case SOURCE_VIEW:
-                displaySourceView = (
-                    <ContentSource
-                        onChange={this._onChange}
-                        onBlur={this._onBlur}
-                        onFocus={this._onFocus}
-                        onContentViewToggle={this._handleContentViewToggle}
-                        contentViewType={SOURCE_VIEW}
-                        value={this.state.value}
-                    />
-                );
-                break;
-        }
-
         return (
             <div>
-                {displaySourceView}
+                <EditorToolbar
+                    contentViewType={this.props.contentViewType}
+                    onStyleToggle={this._handleStyleToggle}
+                    onContentViewToggle={this._handleContentViewToggle}
+                />
+                <RichText
+                    commandToggleType={this.state.toggleType}
+                    commandToggleStyle={this.state.toggleStyle}
+                    onChange={this._onChange}
+                    onBlur={this._onBlur}
+                    onFocus={this._onFocus}
+                    value={this.state.value}
+                />
             </div>
         );
     }
 }
 
-export default ChamelEditor;
+export default ContentHtml;

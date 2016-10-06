@@ -79,6 +79,11 @@
   @extend .fa-arrow-up;
 }
 
+.iconBold {
+  @extend .fontIcon;
+  @extend .fa-bold;
+}
+
 .iconCancel {
   @extend .fontIcon;
   @extend .fa-times-circle;
@@ -104,6 +109,16 @@
   @extend .fa-times;
 }
 
+.iconContentSource {
+  @extend .fontIcon;
+  @extend .fa-code;
+}
+
+.iconContentIcon {
+  @extend .fontIcon;
+  @extend .fa-newspaper-o;
+}
+
 .iconExpandLess {
   @extend .fontIcon;
   @extend .fa-chevron-up;
@@ -127,6 +142,16 @@
 .iconFullScreenExit {
   @extend .fontIcon;
   @extend .fa-compress;
+}
+
+.iconHeader {
+  @extend .fontIcon;
+  @extend .fa-header;
+}
+
+.iconItalic {
+  @extend .fontIcon;
+  @extend .fa-italic;
 }
 
 .iconLastPage {
@@ -167,6 +192,11 @@
 .iconMenu {
   @extend .fontIcon;
   @extend .fa-bars;
+}
+
+.iconUnderline {
+  @extend .fontIcon;
+  @extend .fa-underline;
 }
 
 /*
