@@ -88,6 +88,7 @@ class TouchRipple extends React.Component {
    * Called when a user starts clicking/tapping
    *
    * @param {event} e
+   * @param {bool} isRippleTouchGenerated
    */
   start = (e, isRippleTouchGenerated) => {
 
@@ -184,9 +185,10 @@ class TouchRipple extends React.Component {
   };
 
   _handleTouchStart = (event) => {
-    //this.start(e);
 
-    event.stopPropagation();
+    // Not sure why we need to stop propogation, but commenting it out does nothing
+    //event.stopPropagation();
+
     // If the user is swiping (not just tapping), save the position so we can
     // abort ripples if the user appears to be scrolling.
     if (this.props.abortOnScroll && event.touches) {
@@ -213,6 +215,7 @@ class TouchRipple extends React.Component {
     // If the user is scrolling...
     const deltaY = Math.abs(event.touches[0].clientY - this.firstTouchY);
     const deltaX = Math.abs(event.touches[0].clientX - this.firstTouchX);
+
     // Call it a scroll after an arbitrary 6px (feels reasonable in testing)
     if (deltaY > 6 || deltaX > 6) {
       let currentRipples = this.state.ripples;

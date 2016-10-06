@@ -20,6 +20,9 @@ const ListItem = (props, context) => {
     [theme.listItemSelected]: props.selected
   });
 
+  // Set ontap function
+  const onTap = (props.onTap) ? props.onTap : (e) => {};
+
   // If we have a left element add it
   const leftElement = (props.leftElement) ?
     (<div onClick={onTap} className={theme.listItemLeft}>{props.leftElement}</div>)
@@ -28,8 +31,6 @@ const ListItem = (props, context) => {
   // If we have a right element add it
   const rightElement = (props.rightElement) ?
     (<div className={theme.listItemRight}>{props.rightElement}</div>) : null;
-
-  const onTap = (e) => { if (props.onTap) props.onTap(e); }
 
   return (
     <div className={classes}>
