@@ -74,9 +74,10 @@
 }
 
 .listDivider {
-  height: 1px solid #ccc;
+  height: 1px;
+  background-color: #cccccc;
 }
 
 .listDividerInset {
-
+  margin-left: 72px;
 }
