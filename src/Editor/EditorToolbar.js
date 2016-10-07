@@ -10,7 +10,7 @@ import BoldIcon from 'chamel/icons/font/BoldIcon';
 import ItalicIcon from 'chamel/icons/font/ItalicIcon';
 import UnderlineIcon from 'chamel/icons/font/UnderlineIcon';
 import CodeIcon from 'chamel/icons/font/CodeIcon';
-import NewspaperIcon from 'chamel/icons/font/NewspaperIcon';
+import WebIcon from 'chamel/icons/font/WebIcon';
 
 // Block Types that are used in the editor and displayed in the toolbar
 const BLOCK_TYPES = [
@@ -118,7 +118,7 @@ class EditorToolbar extends React.Component {
             case SOURCE_VIEW:
                 displayConteViewType = (
                     <IconButton onTap={(e) => { this.props.onContentViewToggle(HTML_VIEW); }}>
-                        <NewspaperIcon />
+                        <WebIcon />
                     </IconButton>
                 )
                 break;

@@ -27,10 +27,10 @@ import ListUlIcon from './ListUlIcon';
 import MenuIcon from './MenuIcon';
 import MoreHorizIcon from './MoreHorizIcon';
 import MoreVertIcon from './MoreVertIcon';
-import NewspaperIcon from './NewspaperIcon';
 import RefreshIcon from './RefreshIcon';
 import SubArrowLeftIcon from './SubArrowLeftIcon';
 import SubArrowRightIcon from './SubArrowRightIcon';
+import WebIcon from './WebIcon';
 import UnderlineIcon from './UnderlineIcon';
 
 const Icons = {
@@ -70,7 +70,7 @@ const Icons = {
     {name:"italic", icon: ItalicIcon},
     {name:"list ordered", icon: ListOlIcon},
     {name:"list unordered", icon: ListUlIcon},
-    {name:"newspaper", icon: NewspaperIcon},
+    {name:"web", icon: WebIcon},
     {name:"underline", icon: UnderlineIcon}
   ]
 };

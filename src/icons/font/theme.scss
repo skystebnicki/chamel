@@ -114,11 +114,6 @@
   @extend .fa-code;
 }
 
-.iconNewspaper {
-  @extend .fontIcon;
-  @extend .fa-newspaper-o;
-}
-
 .iconExpandLess {
   @extend .fontIcon;
   @extend .fa-chevron-up;
@@ -202,6 +197,11 @@
 .iconMenu {
   @extend .fontIcon;
   @extend .fa-bars;
+}
+
+.iconWeb {
+  @extend .fontIcon;
+  @extend .fa-newspaper-o;
 }
 
 .iconUnderline {
