@@ -3,7 +3,7 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 /**
- * Close or clear button
+ * Header Icon button
  *
  * @param props
  * @param context
