@@ -5,25 +5,33 @@ import ArrowDropDownIcon from './ArrowDropDownIcon';
 import ArrowDropDownCircleIcon from './ArrowDropDownCircleIcon';
 import ArrowDropUpIcon from './ArrowDropUpIcon';
 import ArrowForwardIcon from './ArrowForwardIcon';
+import ArrowRightIcon from './ArrowRightIcon';
 import ArrowUpIcon from './ArrowUpIcon';
+import BoldIcon from './BoldIcon';
 import CancelIcon from './CancelIcon';
 import CheckIcon from './CheckIcon';
 import ChevronLeftIcon from './ChevronLeftIcon';
 import ChevronRightIcon from './ChevronRightIcon';
 import CloseIcon from './CloseIcon';
+import CodeIcon from './CodeIcon';
 import ExpandLessIcon from './ExpandLessIcon';
 import ExpandMoreIcon from './ExpandMoreIcon';
 import FirstPageIcon from './FirstPageIcon';
 import FullSCreenIcon from './FullScreenIcon';
 import FullScreenExitIcon from './FullScreenExitIcon';
+import HeaderIcon from './HeaderIcon';
+import ItalicIcon from './ItalicIcon';
 import LastPageIcon from './LastPageIcon';
+import ListOlIcon from './ListOlIcon';
+import ListUlIcon from './ListUlIcon';
+import MenuIcon from './MenuIcon';
 import MoreHorizIcon from './MoreHorizIcon';
 import MoreVertIcon from './MoreVertIcon';
+import NewspaperIcon from './NewspaperIcon';
 import RefreshIcon from './RefreshIcon';
 import SubArrowLeftIcon from './SubArrowLeftIcon';
 import SubArrowRightIcon from './SubArrowRightIcon';
-import ArrowRightIcon from './ArrowRightIcon';
-import MenuIcon from './MenuIcon';
+import UnderlineIcon from './UnderlineIcon';
 
 const Icons = {
   navigation: [
@@ -53,6 +61,17 @@ const Icons = {
     {name:"sub arrow left", icon: SubArrowLeftIcon},
     {name:"sub arrow right", icon: SubArrowRightIcon},
     {name:"arrow right", icon: ArrowRightIcon}
+  ],
+
+  editor: [
+    {name:"bold", icon: BoldIcon},
+    {name:"code", icon: CodeIcon},
+    {name:"header", icon: HeaderIcon},
+    {name:"italic", icon: ItalicIcon},
+    {name:"list ordered", icon: ListOlIcon},
+    {name:"list unordered", icon: ListUlIcon},
+    {name:"newspaper", icon: NewspaperIcon},
+    {name:"underline", icon: UnderlineIcon}
   ]
 };
 

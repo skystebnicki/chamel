@@ -60,9 +60,9 @@ class ContentHtml extends React.Component {
         super(props);
 
         this.state = {
+            value: this.props.value,
             toggleStyle: null,
-            toggleType: null,
-            value: this.props.value
+            toggleType: null
         };
     }
 
@@ -73,6 +73,14 @@ class ContentHtml extends React.Component {
      * @private
      */
     _onChange = (value) => {
+        if (this.props.onChange) {
+            this.props.onChange(value);
+        }
+
+        this.setState({value});
+    }
+
+    _onToggle = (value) => {
         if (this.props.onChange) {
             this.props.onChange(value);
         }
@@ -94,13 +102,13 @@ class ContentHtml extends React.Component {
         if (this.props.onBlur) {
             this.props.onBlur(value);
         } else {
-            this.setState({value});
+            //this.setState({value});
         }
     }
 
     /**
      * Handles when the user set the focus in the editor
-     * 
+     *
      * @param {string} value The value of the editor
      * @private
      */
@@ -108,7 +116,7 @@ class ContentHtml extends React.Component {
         if (this.props.onFocus) {
             this.props.onFocus(value);
         } else {
-            this.setState({value});
+            //this.setState({value});
         }
     }
 
@@ -120,6 +128,7 @@ class ContentHtml extends React.Component {
      * @private
      */
     _handleStyleToggle = (style, type) => {
+        console.log('toggle');
         this.setState({
             toggleStyle: style,
             toggleType: type
@@ -154,6 +163,7 @@ class ContentHtml extends React.Component {
                 <RichText
                     commandToggleType={this.state.toggleType}
                     commandToggleStyle={this.state.toggleStyle}
+                    onToggle={this._onToggle}
                     onChange={this._onChange}
                     onBlur={this._onBlur}
                     onFocus={this._onFocus}

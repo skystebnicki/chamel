@@ -24,7 +24,7 @@ const HeaderIcon = (props, context) => {
 
     return (
         <FontIcon {...fontIconProps} className={theme.iconHeader}>
-            {headerType}
+            <span className={theme.iconSize18}>{headerType}</span>
         </FontIcon>
     );
 };

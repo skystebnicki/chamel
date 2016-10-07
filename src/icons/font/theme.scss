@@ -109,12 +109,12 @@
   @extend .fa-times;
 }
 
-.iconContentSource {
+.iconCode {
   @extend .fontIcon;
   @extend .fa-code;
 }
 
-.iconContentIcon {
+.iconNewspaper {
   @extend .fontIcon;
   @extend .fa-newspaper-o;
 }
@@ -157,6 +157,16 @@
 .iconLastPage {
   @extend .fontIcon;
   @extend .fa-fast-forward;
+}
+
+.iconListOrdered {
+  @extend .fontIcon;
+  @extend .fa-list-ol;
+}
+
+.iconListUnordered {
+  @extend .fontIcon;
+  @extend .fa-list-ul;
 }
 
 .iconMoreHoriz {

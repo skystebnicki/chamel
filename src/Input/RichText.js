@@ -32,6 +32,13 @@ class RichText extends React.Component {
         onChange: React.PropTypes.func,
 
         /**
+         * The callback function used when user toggles an icon of the editor
+         *
+         * @type {function}
+         */
+        onToggle: React.PropTypes.func,
+
+        /**
          * The callback function used when user looses the focus of the editor
          *
          * @type {function}
@@ -168,12 +175,15 @@ class RichText extends React.Component {
      * @private
      */
     _toggleBlockType = (blockType) => {
-        this._onChange(
-            RichUtils.toggleBlockType(
-                this.state.editorState,
-                blockType
-            )
-        );
+
+        let editorState = RichUtils.toggleBlockType(this.state.editorState, blockType);
+
+        if (this.props.onToggle) {
+            let content = stateToHTML(editorState.getCurrentContent());
+            this.props.onToggle(content)
+        }
+
+        this.setState({editorState})
     }
 
     /**
@@ -183,12 +193,14 @@ class RichText extends React.Component {
      * @private
      */
     _toggleInlineStyle = (inlineStyle) => {
-        this._onChange(
-            RichUtils.toggleInlineStyle(
-                this.state.editorState,
-                inlineStyle
-            )
-        );
+        let editorState = RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle);
+
+        if (this.props.onToggle) {
+            let content = stateToHTML(editorState.getCurrentContent());
+            this.props.onToggle(content)
+        }
+
+        this.setState({editorState})
     }
 
     /**
@@ -213,7 +225,6 @@ class RichText extends React.Component {
      * Componenent is about to receive new props
      */
     componentWillReceiveProps(nextProps) {
-
         if (nextProps.commandToggleStyle === 'block') {
             this._toggleBlockType(nextProps.commandToggleType);
         } else if (nextProps.commandToggleStyle === 'inline') {

@@ -5,8 +5,8 @@ import ContentHtml from './ContentHtml';
 import ContentSource from './ContentSource';
 
 // Types of content views
-const HTML_VIEW = 1;
-const SOURCE_VIEW = 2;
+const HTML_VIEW = 'html';
+const SOURCE_VIEW = 'source';
 
 
 /**
@@ -44,7 +44,7 @@ class ChamelEditor extends React.Component {
          *
          * @type {string}
          */
-        contentView: React.PropTypes.oneOf([HTML_VIEW, SOURCE_VIEW])
+        contentView: React.PropTypes.oneOf(['html', 'source'])
     }
 
     /**
@@ -82,7 +82,7 @@ class ChamelEditor extends React.Component {
     _onChange = (value) => {
 
         if (this.props.onChange) {
-            this.props.onChange(value);
+            //this.props.onChange(value);
         }
     }
 
@@ -95,7 +95,7 @@ class ChamelEditor extends React.Component {
     _onBlur = (value) => {
 
         if (this.props.onBlur) {
-            this.props.onBlur(value);
+            //this.props.onBlur(value);
         }
     }
 
@@ -108,7 +108,7 @@ class ChamelEditor extends React.Component {
     _onFocus = (value) => {
 
         if (this.props.onFocus) {
-            this.props.onFocus(value);
+            //this.props.onFocus(value);
         }
     }
 

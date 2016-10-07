@@ -9,8 +9,8 @@ import ListUlIcon from 'chamel/icons/font/ListUlIcon';
 import BoldIcon from 'chamel/icons/font/BoldIcon';
 import ItalicIcon from 'chamel/icons/font/ItalicIcon';
 import UnderlineIcon from 'chamel/icons/font/UnderlineIcon';
-import ContentSourceIcon from 'chamel/icons/font/ContentSourceIcon';
-import ContentHtmlIcon from 'chamel/icons/font/ContentHtmlIcon';
+import CodeIcon from 'chamel/icons/font/CodeIcon';
+import NewspaperIcon from 'chamel/icons/font/NewspaperIcon';
 
 // Block Types that are used in the editor and displayed in the toolbar
 const BLOCK_TYPES = [
@@ -32,8 +32,8 @@ const INLINE_STYLES = [
 ];
 
 // Types of content views
-const HTML_VIEW = 1;
-const SOURCE_VIEW = 2;
+const HTML_VIEW = 'html';
+const SOURCE_VIEW = 'source';
 
 /**
  * Handle when displaying the block type controls and
@@ -110,7 +110,7 @@ class EditorToolbar extends React.Component {
 
                 displayConteViewType = (
                     <IconButton onTap={(e) => { this.props.onContentViewToggle(SOURCE_VIEW); }}>
-                        <ContentSourceIcon />
+                        <CodeIcon />
                     </IconButton>
                 )
                 break;
@@ -118,7 +118,7 @@ class EditorToolbar extends React.Component {
             case SOURCE_VIEW:
                 displayConteViewType = (
                     <IconButton onTap={(e) => { this.props.onContentViewToggle(HTML_VIEW); }}>
-                        <ContentHtmlIcon />
+                        <NewspaperIcon />
                     </IconButton>
                 )
                 break;

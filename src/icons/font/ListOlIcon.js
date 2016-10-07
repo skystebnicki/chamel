@@ -15,7 +15,7 @@ const ListOlIcon = (props, context) => {
         ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
     return (
-        <FontIcon {...props} className={theme.listOrdered} />
+        <FontIcon {...props} className={theme.iconListOrdered} />
     );
 };
 

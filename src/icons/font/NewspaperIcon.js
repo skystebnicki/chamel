@@ -10,20 +10,20 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @returns {ReactDOM}
  * @constructor
  */
-const ContentHtmlIcon = (props, context) => {
+const NewspaperIcon = (props, context) => {
     let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
         ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
     return (
-        <FontIcon {...props} className={theme.iconContentIcon} />
+        <FontIcon {...props} className={theme.iconNewspaper} />
     );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
-ContentHtmlIcon.contextTypes = {
+NewspaperIcon.contextTypes = {
     chamelTheme: React.PropTypes.object
 };
 
-export default ContentHtmlIcon;
+export default NewspaperIcon;
