@@ -34,15 +34,16 @@ const ListItem = (props, context) => {
 
   return (
     <div className={classes}>
-      <TouchRipple />
-      <div className={theme.listItemContent}>
-        {leftElement}
-        <div className={theme.listItemData} onClick={onTap}>
-          <div className={theme.listItemPrimary}>{props.primaryText}</div>
-          <div className={theme.listItemSecondary}>{props.secondaryText}</div>
+      <TouchRipple>
+        <div className={theme.listItemContent}>
+          {leftElement}
+          <div className={theme.listItemData} onClick={onTap}>
+            <div className={theme.listItemPrimary}>{props.primaryText}</div>
+            <div className={theme.listItemSecondary}>{props.secondaryText}</div>
+          </div>
+          {rightElement}
         </div>
-        {rightElement}
-      </div>
+      </TouchRipple>
     </div>
   )
 };

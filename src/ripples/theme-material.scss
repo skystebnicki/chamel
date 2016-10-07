@@ -26,7 +26,6 @@
           $start-size: 0.75,
           $end-size: 0.85
   );
-
 }
 
 .rippleShown {
@@ -40,6 +39,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 .rippleCircle {
