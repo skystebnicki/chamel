@@ -38,6 +38,7 @@ const CircularProgress = React.createClass({
   getInitialState () {
     return {
       muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DefaultRawTheme),
+      componentIsMounted: false
     };
   },
 
@@ -63,8 +64,14 @@ const CircularProgress = React.createClass({
     let wrapper = ReactDOM.findDOMNode(this.refs.wrapper);
     let path = ReactDOM.findDOMNode(this.refs.path);
 
+    this.setState({componentIsMounted: true});
+
     this._scalePath(path);
     this._rotateWrapper(wrapper);
+  },
+
+  componentWillUnmount: function() {
+    this.setState({componentIsMounted: false});
   },
 
   _scalePath(path, step) {
@@ -73,7 +80,7 @@ const CircularProgress = React.createClass({
 
     setTimeout(this._scalePath.bind(this, path, step + 1), step ? 750 : 250);
 
-    if (!this.isMounted()) return;
+    if (!this.state.componentIsMounted) return;
     if (this.props.mode !== "indeterminate") return;
 
     if (step === 0) {
@@ -96,7 +103,7 @@ const CircularProgress = React.createClass({
   _rotateWrapper(wrapper) {
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
 
-    if (!this.isMounted()) return;
+    if (!this.state.componentIsMounted) return;
     if (this.props.mode !== "indeterminate") return;
 
     wrapper.style.transform = null;

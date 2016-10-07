@@ -18,6 +18,12 @@ var TextFieldRich = React.createClass({
 		value: React.PropTypes.string,
 	},
 
+	getInitialState () {
+		return {
+			componentIsMounted: false
+		};
+	},
+
 	getDefaultProps: function () {
 		return {
 			autoGrow: true,
@@ -34,6 +40,8 @@ var TextFieldRich = React.createClass({
 			iframe.style.height = height + 'px';
 		}
 
+		this.setState({componentIsMounted: true});
+
 		/*
 		 * We need to delay the settings of the iframe document body because react only renders the iframe
 		 * So after it is mounted, the iframe body is then created.
@@ -43,6 +51,10 @@ var TextFieldRich = React.createClass({
 			this._enableDesign(true);
 			this.setValue(this.props.value);
 		}.bind(this), 1);
+	},
+
+	componentWillUnmount: function() {
+		this.setState({componentIsMounted: false});
 	},
 
 	render: function () {
@@ -59,7 +71,7 @@ var TextFieldRich = React.createClass({
 	_getIframeWindow: function () {
 
 		// We cannot get iframe document if DOM is not yet mounted
-		if (!this.isMounted()) {
+		if (!this.state.componentIsMounted) {
 			return null;
 		}
 
@@ -298,7 +310,7 @@ var TextFieldRich = React.createClass({
 	_enableDesign: function (on) {
 
 		// Only enable after mounted into the dom
-		if (!this.isMounted()) {
+		if (!this.state.componentIsMounted) {
 			return false;
 		}
 
@@ -397,7 +409,7 @@ var TextFieldRich = React.createClass({
 	_autoGrow: function () {
 
 		// We cannot autogrow if we are not mounted in the DOM
-		if (!this.isMounted()) {
+		if (!this.state.componentIsMounted) {
 			return false;
 		}
 

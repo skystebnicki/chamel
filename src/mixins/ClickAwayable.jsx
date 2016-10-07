@@ -5,13 +5,23 @@ import Dom from '../utils/Dom';
 
 module.exports = {
 
+  getInitialState: function () {
+
+    // Return the initial state
+    return {
+      componentIsMounted: false
+    };
+  },
+
   //When the component mounts, listen to click events and check if we need to
   //Call the componentClickAway function.
   componentDidMount: function() {
+    this.setState({componentIsMounted: true});
     if (!this.manuallyBindClickAway) this._bindClickAway();
   },
 
   componentWillUnmount: function() {
+    this.setState({componentIsMounted: false});
     this._unbindClickAway();
   },
 
@@ -19,7 +29,7 @@ module.exports = {
     var el = ReactDOM.findDOMNode(this);
 
     // Check if the target is inside the current component
-    if (this.isMounted() && 
+    if (this.state.componentIsMounted &&
       e.target != el &&
       !Dom.isDescendant(el, e.target) &&
       document.documentElement.contains(e.target)) {

@@ -158,7 +158,8 @@ class TextField extends React.Component {
       caretPos: 0,
       errorText: this.props.errorText,
       hasValue: this.props.value || this.props.defaultValue ||
-      (this.props.valueLink && this.props.valueLink.value)
+      (this.props.valueLink && this.props.valueLink.value),
+      componentIsMounted: false
     }
   }
 
@@ -192,6 +193,8 @@ class TextField extends React.Component {
   }
 
   componentDidMount () {
+    this.setState({componentIsMounted: true});
+
     if (this.props.multiLine) {
       this.handleAutoresize();
     }
@@ -200,6 +203,10 @@ class TextField extends React.Component {
   componentDidUpdate () {
     // resize the textarea, if nessesary
     if (this.props.multiLine) this.handleAutoresize();
+  }
+
+  componentWillUnmount () {
+    this.setState({componentIsMounted: false});
   }
 
   /**
@@ -395,7 +402,7 @@ class TextField extends React.Component {
   }
 
   blur() {
-    if (this.isMounted()) this._getInputNode().blur();
+    if (this.state.componentIsMounted) this._getInputNode().blur();
   }
 
   clearValue() {
@@ -403,11 +410,11 @@ class TextField extends React.Component {
   }
 
   focus() {
-    if (this.isMounted()) this._getInputNode().focus();
+    if (this.state.componentIsMounted) this._getInputNode().focus();
   }
 
   getValue() {
-    return this.isMounted() ? this._getInputNode().value : undefined;
+    return this.state.componentIsMounted ? this._getInputNode().value : undefined;
   }
 
   /**
@@ -510,7 +517,7 @@ class TextField extends React.Component {
     /*
      if (process.NODE_ENV !== 'production' && this._isControlled()) {
      console.error('Cannot call TextField.setValue when value or valueLink is defined as a property.');
-     } else if (this.isMounted()) {
+     } else if (this.state.componentIsMounted) {
      this._getInputNode().value = sanitizedValue;
 
      this.setState({
