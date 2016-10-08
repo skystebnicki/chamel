@@ -7,7 +7,7 @@ import Dom from '../utils/Dom';
 import Events from '../utils/Events';
 
 /**
- * Main popover class handles absolute positioning paper relative to an element
+ * AppBar - the main toolbar for the application
  */
 class AppBar extends React.Component {
   /**

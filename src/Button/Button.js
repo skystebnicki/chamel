@@ -38,9 +38,10 @@ const Button = (props, context) => {
     return (
       <Tappable onTap={tapHandler}>
         <button className={classes}>
-          <TouchRipple centerRipple={centerRipple} />
           <FocusRipple  />
-          {label}
+          <TouchRipple centerRipple={centerRipple}>
+            {label}
+          </TouchRipple>
         </button>
       </Tappable>
     );
