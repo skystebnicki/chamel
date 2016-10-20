@@ -3,46 +3,49 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    context: path.resolve(__dirname + './../'),
-    entry: "./demo/app/main.js",
-    devtool: 'inline-source-map',
-    output: {
-        path: path.join(__dirname, 'build'),
-        filename: 'chamel-demo.js',
-        publicPath: '/build/'
+  context: path.resolve(__dirname + './../'),
+  entry: "./demo/app/main.js",
+  devtool: 'inline-source-map',
+  output: {
+    path: path.join(__dirname, 'build'),
+    filename: 'chamel-demo.js',
+    publicPath: '/build/'
+  },
+  resolve: {
+    extensions: ['', '.scss', '.js', '.jsx'],
+    packageMains: ['browser', 'web', 'main', 'style'],
+    alias: {
+      'chamel': path.resolve(__dirname + './../src')
     },
-    resolve: {
-        extensions: ['', '.scss', '.js', '.jsx'],
-        packageMains: ['browser', 'web', 'main', 'style'],
-        alias: {
-          'chamel': path.resolve(__dirname + './../src')
-        },
-        modulesDirectories: [
-          'node_modules',
-          path.resolve(__dirname, './node_modules'),
-          path.resolve(__dirname, './../node_modules'),
-          path.resolve(__dirname, './../src')
-        ]
-    },
-    module: {
-        loaders: [
-            {
-              test: /\.(js|jsx)$/,
-              loader: 'babel',
-              exclude: /(node_modules)/
-            },
-            {
-                test: /\.(scss)$/,
-                loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[path][name]-[local]-[hash:base64:5]&sourceMap&importLoaders=1&!sass?sourceMap')
-                //loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[local]&sourceMap&importLoaders=1&!sass?sourceMap')
-            },
-            {
-                test: /\.(css)$/,
-                loader: ExtractTextPlugin.extract('style', 'css?localIdentName=[local]&sourceMap&importLoaders=1?sourceMap')
-            }
-        ]
-    },
-    plugins: [
-        new ExtractTextPlugin('docs.css', { allChunks: true })
+    modulesDirectories: [
+      'node_modules',
+      path.resolve(__dirname, './node_modules'),
+      path.resolve(__dirname, './../node_modules'),
+      path.resolve(__dirname, './../src')
     ]
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel',
+        exclude: /(node_modules)/
+      },
+      {
+        test: /\.(scss)$/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[path][name]-[local]-[hash:base64:5]&sourceMap&importLoaders=1&!sass?sourceMap')
+        //loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[local]&sourceMap&importLoaders=1&!sass?sourceMap')
+      },
+      {
+        test: /\.(css)$/,
+        loader: ExtractTextPlugin.extract('style', 'css?localIdentName=[local]&sourceMap&importLoaders=1?sourceMap')
+      }
+    ]
+  },
+  plugins: [
+    new ExtractTextPlugin('docs.css', { allChunks: true })
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };

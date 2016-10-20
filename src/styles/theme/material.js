@@ -5,6 +5,7 @@ import base from './base';
 let themeStyles = Object.assign({}, base);
 
 // Override here
+themeStyles.name = 'material';
 themeStyles.button = require('../../Button/theme-material.scss');
 themeStyles.appBar = require('../../AppBar/theme-material.scss');
 themeStyles.ripple = require('../../ripples/theme-material.scss');

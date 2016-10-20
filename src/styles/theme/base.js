@@ -1,5 +1,6 @@
 // This is where we would import every single component as a key here
 export default {
+  name: 'base',
   button: require('../../Button/theme.scss'),
   appBar: require('../../AppBar/theme.scss'),
   editor: require('../../Editor/theme.scss'),

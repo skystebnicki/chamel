@@ -260,7 +260,6 @@ class Dialog extends React.Component {
 
     if (this.state.open) {
       var clientHeight = ReactDOM.findDOMNode(this).offsetHeight;
-      console.log("Dialog height", clientHeight);
       var dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
       var dialogBody = ReactDOM.findDOMNode(this.refs.dialogBody);
       var minMarginTop = 0;
@@ -277,7 +276,7 @@ class Dialog extends React.Component {
         windowTop = 0;
       } else if (windowTop < minMarginTop) {
         windowTop = minMarginTop;
-      } 
+      }
 
       //Vertically center the dialog window, but make sure it doesn't
       //transition to that position.
@@ -301,7 +300,7 @@ class Dialog extends React.Component {
       }
     }
   }
-  
+
   _focusOnAction() {
     if (this.props.actionFocus) {
       if (ReactDOM.findDOMNode(this.refs[this.props.actionFocus])) {
@@ -309,11 +308,11 @@ class Dialog extends React.Component {
       }
     }
   }
-  
+
   _onShow() {
     if (this.props.onShow) this.props.onShow();
   }
-  
+
   _onDismiss() {
     if (this.props.onDismiss) this.props.onDismiss();
   }

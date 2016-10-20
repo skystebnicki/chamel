@@ -5,6 +5,7 @@ import base from './base';
 let themeStyles = Object.assign({}, base);
 
 // Override here
+themeStyles.name = 'modern';
 themeStyles.button = require('../../Button/theme-modern.scss');
 
 export default themeStyles;

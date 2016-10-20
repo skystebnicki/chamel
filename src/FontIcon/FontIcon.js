@@ -26,8 +26,10 @@ const FontIcon = (props, context) => {
       [theme.iconSize48]: (props.size == 48)
     }, className);
 
+    const content = (theme.name === 'material') ? props.children : null;
+
     return (
-        <span className={classes} {...other} />
+        <span className={classes} {...other}>{content}</span>
     );
 }
 

@@ -7,7 +7,7 @@ const AppsIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconApps} />
+    <FontIcon {...props} className={theme.iconApps}>{"apps"}</FontIcon>
   );
 };
 
