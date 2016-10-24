@@ -129,24 +129,9 @@
   @extend .fa-compress;
 }
 
-.iconHeader {
-  @extend .fontIcon;
-  @extend .fa-header;
-}
-
 .iconLastPage {
   @extend .fontIcon;
   @extend .fa-fast-forward;
-}
-
-.iconListOl {
-  @extend .fontIcon;
-  @extend .fa-list-ol;
-}
-
-.iconListUl {
-  @extend .fontIcon;
-  @extend .fa-list-ul;
 }
 
 .iconMoreHoriz {
