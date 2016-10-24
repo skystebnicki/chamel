@@ -3,27 +3,27 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 /**
- * Close or clear button
+ * Delete button
  *
  * @param props
  * @param context
  * @returns {ReactDOM}
  * @constructor
  */
-const CloseIcon = (props, context) => {
+const DeleteIcon = (props, context) => {
     let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
     return (
-        <FontIcon {...props} className={theme.iconClose}>{"close"}</FontIcon>
+        <FontIcon {...props} className={theme.iconDelete}>{"delete"}</FontIcon>
     );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
-CloseIcon.contextTypes = {
+DeleteIcon.contextTypes = {
     chamelTheme: React.PropTypes.object
 };
 
-export default CloseIcon;
+export default DeleteIcon;

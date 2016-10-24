@@ -3,27 +3,27 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 /**
- * Close or clear button
+ * List Ordered Icon button
  *
  * @param props
  * @param context
  * @returns {ReactDOM}
  * @constructor
  */
-const CloseIcon = (props, context) => {
+const ListNumberedIcon = (props, context) => {
     let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
     return (
-        <FontIcon {...props} className={theme.iconClose}>{"close"}</FontIcon>
+        <FontIcon {...props} className={theme.iconListNumbered}>{"format_list_numbered"}</FontIcon>
     );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
-CloseIcon.contextTypes = {
+ListNumberedIcon.contextTypes = {
     chamelTheme: React.PropTypes.object
 };
 
-export default CloseIcon;
+export default ListNumberedIcon;

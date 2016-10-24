@@ -78,6 +78,26 @@
 /**
  * Navigation Icons
  */
+.iconAccessTime {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconAccessibility {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconAccount {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconAdd {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconApps {
   @extend .fontIcon;
   @extend .material-icons;
@@ -113,7 +133,27 @@
   @extend .material-icons;
 }
 
+.iconArrowRight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconArrowUp {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconAttachment {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconAttachFile {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconBuild {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -124,6 +164,11 @@
 }
 
 .iconCheck {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconCheckCircle {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -143,12 +188,57 @@
   @extend .material-icons;
 }
 
+.iconCode {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconContacts {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconContentPaste {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconDashboard {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconDateRange {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconDelete {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconEdit {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconEmail {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconExpandLess {
   @extend .fontIcon;
   @extend .material-icons;
 }
 
 .iconExpandMore {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconFindPage {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -168,7 +258,42 @@
   @extend .material-icons;
 }
 
+.iconGroup {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconInbox {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconLabel {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconLastPage {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconLibraryBooks {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconLocalOffer {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconMenu {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconMerge {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -183,7 +308,57 @@
   @extend .material-icons;
 }
 
+.iconNote {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconPersonAdd {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconPrint {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconRefresh {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconSearch {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconSend {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconSettings {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconSettingsApplication {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconShuffle {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconStreetView {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconStyle {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -198,12 +373,61 @@
   @extend .material-icons;
 }
 
-.iconArrowRight {
+.iconSwapHoriz {
   @extend .fontIcon;
   @extend .material-icons;
 }
 
-.iconMenu {
+.iconTransform {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconWeb {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconWork {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+/**
+ * Editor Icons
+ */
+
+.iconBold {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconUnderlined {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconItalic {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconLink {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconListNumbered {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconListBulleted {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconTitle {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -212,118 +436,6 @@
  * Something else
  */
 .iconCreate {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-/**
- * Text Icons
- */
-
-.alignCenter {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.alignLeft {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.alignRight {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.bold {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.italic {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.underline {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.font {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.files {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.minus {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.link {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.table {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.listOrdered {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.listUnordered {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.header {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.textHeight {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.eyedropper {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.magic {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.times {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-/**
- * Directional icons
- */
-.caretSquareDown {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.chevronLeft {
-  @extend .fontIcon;
-  @extend .material-icons;
-}
-
-.chevronRight {
   @extend .fontIcon;
   @extend .material-icons;
 }
