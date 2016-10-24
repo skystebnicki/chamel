@@ -7,7 +7,7 @@ const LastPageIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconLastPage} />
+    <FontIcon {...props} className={theme.iconLastPage}>{"last_page"}</FontIcon>
   );
 };
 

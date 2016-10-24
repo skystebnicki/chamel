@@ -7,7 +7,7 @@ const ArrowBackIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowBack} />
+    <FontIcon {...props} className={theme.iconArrowBack}>{"arrow_back"}</FontIcon>
   );
 };
 

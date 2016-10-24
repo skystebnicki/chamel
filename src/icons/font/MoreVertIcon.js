@@ -7,7 +7,7 @@ const MoreVertIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconMoreVert} />
+    <FontIcon {...props} className={theme.iconMoreVert}>{"more_vert"}</FontIcon>
   );
 };
 

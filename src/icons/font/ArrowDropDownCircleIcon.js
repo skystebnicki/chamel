@@ -7,7 +7,7 @@ const ArrowDropDownCircleIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowDropDownCircle} />
+    <FontIcon {...props} className={theme.iconArrowDropDownCircle}>{"arrow_drop_down_circle"}</FontIcon>
   );
 };
 

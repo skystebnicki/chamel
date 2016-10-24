@@ -7,7 +7,7 @@ const ChevronLeftIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconChevronLeft} />
+    <FontIcon {...props} className={theme.iconChevronLeft}>{"chevron_left"}</FontIcon>
   );
 };
 

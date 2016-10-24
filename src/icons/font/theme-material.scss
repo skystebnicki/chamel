@@ -1,26 +1,329 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font-material/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url(./font-material/MaterialIcons-Regular.woff2) format('woff2'),
+  url(./font-material/MaterialIcons-Regular.woff) format('woff'),
+  url(./font-material/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* chanel font icon namespace */
+.fontIcon {
+  font-size: 24px;
+}
+
+/**
+ * Navigation Icons
+ */
+.iconApps {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowBack {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowDown {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowDropDown {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowDropDownCircle {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowDropUp {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowForward {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowUp {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconCancel {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconCheck {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconChevronLeft {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconChevronRight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconClose {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconExpandLess {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconExpandMore {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconFirstPage {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconFullScreen {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconFullScreenExit {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconLastPage {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconMoreHoriz {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconMoreVert {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconRefresh {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconSubArrowLeft {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconSubArrowRight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconArrowRight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconMenu {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 /*
-apps							th
-arrow back						arrow-left
-arrow down						arrow-down
-arrow drop down					caret-down
-arrow drop down circle			chevron-circle-down
-arrow drop up					caret-up
-arrow forward					arrow-right
-arrow upward					arrow-up
-cancel							times-circle
-check							check
-chevron left					chevron-left
-chevron right					chevron-right
-close							times
-expand less						chevron-up
-expand more						chevron-down
-first page						fast-backward
-fullscreen						arrows-alt (fullscreen)
-fullscreen exit					compress
-last page						fast-forward
-more horiz						elipsis-h
-more vert						elipsis-v
-refresh							refresh
-subdirectory arrow left			caret-left
-subdirectory arrow right		caret-right
-*/
+ * Something else
+ */
+.iconCreate {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+/**
+ * Text Icons
+ */
+
+.alignCenter {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.alignLeft {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.alignRight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.bold {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.italic {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.underline {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.font {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.files {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.minus {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.link {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.table {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.listOrdered {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.listUnordered {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.header {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.textHeight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.eyedropper {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.magic {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.times {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+/**
+ * Directional icons
+ */
+.caretSquareDown {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.chevronLeft {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.chevronRight {
+  @extend .fontIcon;
+  @extend .material-icons;
+}

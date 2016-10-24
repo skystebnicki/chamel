@@ -7,7 +7,7 @@ const ArrowDownIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowDown} />
+    <FontIcon {...props} className={theme.iconArrowDown}>{"arrow_downward"}</FontIcon>
   );
 };
 

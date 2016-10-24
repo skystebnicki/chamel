@@ -7,7 +7,7 @@ const FullScreenIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconFullScreen} />
+    <FontIcon {...props} className={theme.iconFullScreen}>{"fullscreen"}</FontIcon>
   );
 };
 

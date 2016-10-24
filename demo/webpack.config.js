@@ -31,6 +31,7 @@ module.exports = {
         loader: 'babel',
         exclude: /(node_modules)/
       },
+      { test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
       {
         test: /\.(scss)$/,
         loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[path][name]-[local]-[hash:base64:5]&sourceMap&importLoaders=1&!sass?sourceMap')

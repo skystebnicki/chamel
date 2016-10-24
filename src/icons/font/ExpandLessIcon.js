@@ -7,7 +7,7 @@ const ExpandLessIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconExpandLess} />
+    <FontIcon {...props} className={theme.iconExpandLess}>{"expand_less"}</FontIcon>
   );
 };
 
