@@ -7,7 +7,7 @@ const MoreHorizIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconMoreHoriz} />
+    <FontIcon {...props} className={theme.iconMoreHoriz}>{"more_horiz"}</FontIcon>
   );
 };
 

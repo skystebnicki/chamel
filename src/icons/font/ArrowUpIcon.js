@@ -7,7 +7,7 @@ const ArrowUpIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowUp} />
+    <FontIcon {...props} className={theme.iconArrowUp}>{"arrow_upward"}</FontIcon>
   );
 };
 

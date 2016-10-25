@@ -7,7 +7,7 @@ const SubArrowLefticon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconSubArrowLeft} />
+    <FontIcon {...props} className={theme.iconSubArrowLeft}>{"subdirectory_arrow_left"}</FontIcon>
   );
 };
 

@@ -11,8 +11,17 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const FontIcon = (props, context) => {
-    let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+    let theme = null,
+        themeName = null;
+
+
+    if (context.chamelTheme && context.chamelTheme.fontIcon) {
+        theme = context.chamelTheme.fontIcon;
+        themeName = context.chamelTheme.name;
+    } else {
+        theme = ThemeService.defaultTheme.fontIcon;
+        themeName = ThemeService.defaultTheme.name;
+    }
 
     let {
       className,
@@ -26,7 +35,7 @@ const FontIcon = (props, context) => {
       [theme.iconSize48]: (props.size == 48)
     }, className);
 
-    const content = (theme.name === 'material') ? props.children : null;
+    const content = (themeName === 'material') ? props.children : null;
 
     return (
         <span className={classes} {...other}>{content}</span>

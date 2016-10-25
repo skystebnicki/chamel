@@ -7,7 +7,7 @@ const CheckIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconCheck} />
+    <FontIcon {...props} className={theme.iconCheck}>{"check"}</FontIcon>
   );
 };
 

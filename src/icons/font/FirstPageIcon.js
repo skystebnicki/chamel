@@ -7,7 +7,7 @@ const FirstPageIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconFirstPage} />
+    <FontIcon {...props} className={theme.iconFirstPage}>{"first_page"}</FontIcon>
   );
 };
 

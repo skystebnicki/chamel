@@ -39,6 +39,26 @@
 /**
  * Navigation Icons
  */
+.iconAccessTime {
+  @extend .fontIcon;
+  @extend .fa-clock-o;
+}
+
+.iconAccessibility {
+  @extend .fontIcon;
+  @extend .fa-child;
+}
+
+.iconAccount {
+  @extend .fontIcon;
+  @extend .fa-user;
+}
+
+.iconAdd {
+  @extend .fontIcon;
+  @extend .fa-plus;
+}
+
 .iconApps {
   @extend .fontIcon;
   @extend .fa-th;
@@ -74,9 +94,34 @@
   @extend .fa-arrow-right;
 }
 
+.iconArrowRight {
+  @extend .fontIcon;
+  @extend .fa-caret-right;
+}
+
 .iconArrowUp {
   @extend .fontIcon;
   @extend .fa-arrow-up;
+}
+
+.iconAttachment {
+  @extend .fontIcon;
+  @extend .fa-paperclip;
+}
+
+.iconAttachFile {
+  @extend .fontIcon;
+  @extend .fa-paperclip;
+}
+
+.iconBold {
+  @extend .fontIcon;
+  @extend .fa-bold;
+}
+
+.iconBuild {
+  @extend .fontIcon;
+  @extend .fa-wrench;
 }
 
 .iconCancel {
@@ -87,6 +132,11 @@
 .iconCheck {
   @extend .fontIcon;
   @extend .fa-check;
+}
+
+.iconCheckCircle {
+  @extend .fontIcon;
+  @extend .fa-check-circle;
 }
 
 .iconChevronLeft {
@@ -104,6 +154,46 @@
   @extend .fa-times;
 }
 
+.iconCode {
+  @extend .fontIcon;
+  @extend .fa-code;
+}
+
+.iconContacts {
+  @extend .fontIcon;
+  @extend .fa-male;
+}
+
+.iconContentPaste {
+  @extend .fontIcon;
+  @extend .fa-clipboard;
+}
+
+.iconDashboard {
+  @extend .fontIcon;
+  @extend .fa-tachometer;
+}
+
+.iconDateRange {
+  @extend .fontIcon;
+  @extend .fa-calendar;
+}
+
+.iconDelete {
+  @extend .fontIcon;
+  @extend .fa-trash;
+}
+
+.iconEdit {
+  @extend .fontIcon;
+  @extend .fa-pencil;
+}
+
+.iconEmail {
+  @extend .fontIcon;
+  @extend .fa-envelope-o;
+}
+
 .iconExpandLess {
   @extend .fontIcon;
   @extend .fa-chevron-up;
@@ -112,6 +202,11 @@
 .iconExpandMore {
   @extend .fontIcon;
   @extend .fa-chevron-down;
+}
+
+.iconFindPage {
+  @extend .fontIcon;
+  @extend .fa-search;
 }
 
 .iconFirstPage {
@@ -129,9 +224,64 @@
   @extend .fa-compress;
 }
 
+.iconGroup {
+  @extend .fontIcon;
+  @extend .fa-users;
+}
+
+.iconInbox {
+  @extend .fontIcon;
+  @extend .fa-inbox;
+}
+
+.iconItalic {
+  @extend .fontIcon;
+  @extend .fa-italic;
+}
+
+.iconLabel {
+  @extend .fontIcon;
+  @extend .fa-tag;
+}
+
 .iconLastPage {
   @extend .fontIcon;
   @extend .fa-fast-forward;
+}
+
+.iconLibraryBooks {
+  @extend .fontIcon;
+  @extend .fa-clipboard;
+}
+
+.iconLink {
+  @extend .fontIcon;
+  @extend .fa-link;
+}
+
+.iconListNumbered {
+  @extend .fontIcon;
+  @extend .fa-list-ol;
+}
+
+.iconListBulleted {
+  @extend .fontIcon;
+  @extend .fa-list-ul;
+}
+
+.iconLocalOffer {
+  @extend .fontIcon;
+  @extend .fa-tag;
+}
+
+.iconMenu {
+  @extend .fontIcon;
+  @extend .fa-bars;
+}
+
+.iconMerge {
+  @extend .fontIcon;
+  @extend .fa-exchange;
 }
 
 .iconMoreHoriz {
@@ -144,9 +294,59 @@
   @extend .fa-ellipsis-v;
 }
 
+.iconNote {
+  @extend .fontIcon;
+  @extend .fa-pencil-square-o;
+}
+
+.iconPersonAdd {
+  @extend .fontIcon;
+  @extend .fa-user-plus;
+}
+
+.iconPrint {
+  @extend .fontIcon;
+  @extend .fa-print;
+}
+
 .iconRefresh {
   @extend .fontIcon;
   @extend .fa-refresh;
+}
+
+.iconSearch {
+  @extend .fontIcon;
+  @extend .fa-search;
+}
+
+.iconSend {
+  @extend .fontIcon;
+  @extend .fa-paper-plane;
+}
+
+.iconSettings {
+  @extend .fontIcon;
+  @extend .fa-cog;
+}
+
+.iconSettingsApplication {
+  @extend .fontIcon;
+  @extend .fa-cogs;
+}
+
+.iconShuffle {
+  @extend .fontIcon;
+  @extend .fa-random;
+}
+
+.iconStreetView {
+  @extend .fontIcon;
+  @extend .fa-street-view;
+}
+
+.iconStyle {
+  @extend .fontIcon;
+  @extend .fa-tags;
 }
 
 .iconSubArrowLeft {
@@ -159,14 +359,34 @@
   @extend .fa-caret-right;
 }
 
-.iconArrowRight {
+.iconSwapHoriz {
   @extend .fontIcon;
-  @extend .fa-caret-right;
+  @extend .fa-exchange;
 }
 
-.iconMenu {
+.iconTitle {
   @extend .fontIcon;
-  @extend .fa-bars;
+  @extend .fa-header;
+}
+
+.iconTransform {
+  @extend .fontIcon;
+  @extend .fa-random;
+}
+
+.iconWeb {
+  @extend .fontIcon;
+  @extend .fa-newspaper-o;
+}
+
+.iconWork {
+  @extend .fontIcon;
+  @extend .fa-briefcase;
+}
+
+.iconUnderlined {
+  @extend .fontIcon;
+  @extend .fa-underline;
 }
 
 /*

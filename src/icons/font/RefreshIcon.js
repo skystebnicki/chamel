@@ -7,7 +7,7 @@ const RefreshIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconRefresh} />
+    <FontIcon {...props} className={theme.iconRefresh}>{"refresh"}</FontIcon>
   );
 };
 

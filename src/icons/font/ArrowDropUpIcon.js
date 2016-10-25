@@ -7,7 +7,7 @@ const ArrowDropUpIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowDropUp} />
+    <FontIcon {...props} className={theme.iconArrowDropUp}>{"arrow_drop_up"}</FontIcon>
   );
 };
 

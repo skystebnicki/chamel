@@ -7,7 +7,7 @@ const ArrowRightIcon = (props, context) => {
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowRight} />
+    <FontIcon {...props} className={theme.iconArrowRight}>{"keyboard_arrow_right"}</FontIcon>
   );
 };
 
