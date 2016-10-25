@@ -4,6 +4,7 @@ var FontIcon = require("../../src/FontIcon");
 var RaisedButton = require("../../src/Button/RaisedButton");
 var CodeExample = require("../CodeExample");
 var LinearProgress = require("../../src/Progress/LinearProgress");
+var CircularProgress = require("../../src/Progress/CircularProgress");
 //var ComponentDoc = require('../../component-doc.jsx');
 
 var ProgressDemoPage = React.createClass({
@@ -49,6 +50,10 @@ var ProgressDemoPage = React.createClass({
                 <LinearProgress mode="determinate" value={this.state.completed} />
                 <br />
                 <LinearProgress mode="indeterminate"  />
+                <h3>Circular</h3>
+                <CircularProgress mode='indeterminate' multicolor />
+                <br />
+                <CircularProgress mode='determinate' value={this.state.completed} />
             </div>
 
         );
