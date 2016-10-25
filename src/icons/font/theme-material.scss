@@ -103,6 +103,11 @@
   @extend .material-icons;
 }
 
+.iconAddCircle {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconApps {
   @extend .fontIcon;
   @extend .material-icons;
@@ -158,6 +163,11 @@
   @extend .material-icons;
 }
 
+.iconBorderColor {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconBuild {
   @extend .fontIcon;
   @extend .material-icons;
@@ -194,6 +204,11 @@
 }
 
 .iconCode {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconComment {
   @extend .fontIcon;
   @extend .material-icons;
 }
@@ -319,6 +334,16 @@
 }
 
 .iconPersonAdd {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconPhoto {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
+.iconPhotoCamera {
   @extend .fontIcon;
   @extend .material-icons;
 }

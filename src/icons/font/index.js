@@ -2,6 +2,7 @@ import AccessTimeIcon from './AccessTimeIcon';
 import AccessibilityIcon from './AccessibilityIcon';
 import AccountIcon from './AccountIcon';
 import AddIcon from './AddIcon';
+import AddCircleIcon from './AddCircleIcon';
 import AppsIcon from './AppsIcon';
 import ArrowBackIcon from './ArrowBackIcon';
 import ArrowDownIcon from './ArrowDownIcon';
@@ -14,6 +15,7 @@ import ArrowUpIcon from './ArrowUpIcon';
 import AttachmentIcon from './AttachmentIcon';
 import AttachFileIcon from './AttachFileIcon';
 import BoldIcon from './BoldIcon';
+import BorderColorIcon from './BorderColorIcon';
 import BuildIcon from './BuildIcon';
 import CancelIcon from './CancelIcon';
 import CheckIcon from './CheckIcon';
@@ -22,6 +24,7 @@ import ChevronLeftIcon from './ChevronLeftIcon';
 import ChevronRightIcon from './ChevronRightIcon';
 import CloseIcon from './CloseIcon';
 import CodeIcon from './CodeIcon';
+import CommentIcon from './CommentIcon';
 import ContactsIcon from './ContactsIcon';
 import ContentPaste from './ContentPaste';
 import DashboardIcon from './DashboardIcon';
@@ -33,7 +36,7 @@ import ExpandLessIcon from './ExpandLessIcon';
 import ExpandMoreIcon from './ExpandMoreIcon';
 import FindPageIcon from './FindPageIcon';
 import FirstPageIcon from './FirstPageIcon';
-import FullSCreenIcon from './FullScreenIcon';
+import FullScreenIcon from './FullScreenIcon';
 import FullScreenExitIcon from './FullScreenExitIcon';
 import GroupIcon from './GroupIcon';
 import InboxIcon from './InboxIcon';
@@ -51,6 +54,8 @@ import MoreHorizIcon from './MoreHorizIcon';
 import MoreVertIcon from './MoreVertIcon';
 import NoteIcon from './NoteIcon';
 import PersonAddIcon from './PersonAddIcon';
+import PhotoIcon from './PhotoIcon';
+import PhotoCameraIcon from './PhotoCameraIcon';
 import PrintIcon from './PrintIcon';
 import RefreshIcon from './RefreshIcon';
 import SearchIcon from './SearchIcon';
@@ -74,6 +79,7 @@ const Icons = {
     {name:"accessibility", icon: AccessibilityIcon},
     {name:"account", icon: AccountIcon},
     {name:"add", icon: AddIcon},
+    {name:"add circle", icon: AddCircleIcon},
     {name:"apps", icon: AppsIcon},
     {name:"arrow back", icon: ArrowBackIcon},
     {name:"arrow down", icon: ArrowDownIcon},
@@ -85,6 +91,7 @@ const Icons = {
     {name:"arrow up", icon: ArrowUpIcon},
     {name:"attachment", icon: AttachmentIcon},
     {name:"attach file", icon: AttachFileIcon},
+    {name:"border color", icon: BorderColorIcon},
     {name:"build", icon: BuildIcon},
     {name:"cancel", icon: CancelIcon},
     {name:"check", icon: CheckIcon},
@@ -93,6 +100,7 @@ const Icons = {
     {name:"chevron right", icon: ChevronRightIcon},
     {name:"close", icon: CloseIcon},
     {name:"clipboard", icon: ContentPaste},
+    {name:"comment", icon: CommentIcon},
     {name:"contacts", icon: ContactsIcon},
     {name:"dashboard", icon: DashboardIcon},
     {name:"date range", icon: DateRangeIcon},
@@ -104,7 +112,7 @@ const Icons = {
     {name:"expand more", icon: ExpandMoreIcon},
     {name:"find page", icon: FindPageIcon},
     {name:"first page", icon: FirstPageIcon},
-    {name:"full screen", icon: FullSCreenIcon},
+    {name:"full screen", icon: FullScreenIcon},
     {name:"group", icon: GroupIcon},
     {name:"inbox", icon: InboxIcon},
     {name:"label", icon: LabelIcon},
@@ -116,6 +124,8 @@ const Icons = {
     {name:"more vert", icon: MoreVertIcon},
     {name:"note", icon: NoteIcon},
     {name:"person add", icon: PersonAddIcon},
+    {name:"photo", icon: PhotoIcon},
+    {name:"photo camera", icon: PhotoCameraIcon},
     {name:"print", icon: PrintIcon},
     {name:"refresh", icon: RefreshIcon},
     {name:"search", icon: SearchIcon},

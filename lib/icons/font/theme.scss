@@ -59,6 +59,11 @@
   @extend .fa-plus;
 }
 
+.iconAddCircle {
+  @extend .fontIcon;
+  @extend .fa-plus-circle;
+}
+
 .iconApps {
   @extend .fontIcon;
   @extend .fa-th;
@@ -119,6 +124,11 @@
   @extend .fa-bold;
 }
 
+.iconBorderColor {
+  @extend .fontIcon;
+  @extend .fa-pencil-square-o;
+}
+
 .iconBuild {
   @extend .fontIcon;
   @extend .fa-wrench;
@@ -157,6 +167,11 @@
 .iconCode {
   @extend .fontIcon;
   @extend .fa-code;
+}
+
+.iconComment {
+  @extend .fontIcon;
+  @extend .fa-comment-o;
 }
 
 .iconContacts {
@@ -302,6 +317,16 @@
 .iconPersonAdd {
   @extend .fontIcon;
   @extend .fa-user-plus;
+}
+
+.iconPhoto {
+  @extend .fontIcon;
+  @extend .fa-picture-o;
+}
+
+.iconPhotoCamera {
+  @extend .fontIcon;
+  @extend .fa-camera;
 }
 
 .iconPrint {
