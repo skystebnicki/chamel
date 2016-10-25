@@ -219,6 +219,11 @@
   @extend .fa-chevron-down;
 }
 
+.iconFilterList {
+  @extend .fontIcon;
+  @extend .fa-filter;
+}
+
 .iconFindPage {
   @extend .fontIcon;
   @extend .fa-search;

@@ -34,6 +34,7 @@ import EditIcon from './EditIcon';
 import EmailIcon from './EmailIcon';
 import ExpandLessIcon from './ExpandLessIcon';
 import ExpandMoreIcon from './ExpandMoreIcon';
+import FilterListIcon from './FilterListIcon';
 import FindPageIcon from './FindPageIcon';
 import FirstPageIcon from './FirstPageIcon';
 import FullScreenIcon from './FullScreenIcon';
@@ -110,6 +111,7 @@ const Icons = {
     {name:"exit full screen", icon: FullScreenExitIcon},
     {name:"expand less", icon: ExpandLessIcon},
     {name:"expand more", icon: ExpandMoreIcon},
+    {name:"filter list", icon: FilterListIcon},
     {name:"find page", icon: FindPageIcon},
     {name:"first page", icon: FirstPageIcon},
     {name:"full screen", icon: FullScreenIcon},
