@@ -16,13 +16,17 @@ const TitleIcon = (props, context) => {
 
     let fontIconProps = {...props};
 
+    var headerType = null;
     if (props.headerType) {
         headerType = props.headerType
         delete fontIconProps.headerType;
     }
 
     return (
-        <FontIcon {...fontIconProps} className={theme.iconTitle}>{"title"}</FontIcon>
+        <div>
+            <FontIcon {...fontIconProps} className={theme.iconTitle}>{"title"}</FontIcon>
+            <span className={theme.iconTitleType}>{headerType}</span>
+        </div>
     );
 };
 

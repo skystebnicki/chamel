@@ -1,260 +1,170 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
-import BlockStyleControls from './BlockStyleControls';
-import InlineStyleControls from './InlineStyleControls';
-import immutable from 'immutable';
-import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
-import {stateToHTML} from 'draft-js-export-html';
-import {stateFromHTML} from 'draft-js-import-html';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import ContentHtml from './ContentHtml';
+import ContentSource from './ContentSource';
 
-// Custom overrides for "code" style.
-const styleMap = {
-  CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 16,
-    padding: 2,
-  },
-};
+// Types of content views
+const HTML_VIEW = 'html';
+const SOURCE_VIEW = 'source';
+
 
 /**
  * Chamel Editor component for editing rich text and source code
  */
 class ChamelEditor extends React.Component {
 
-  /**
-   * Set accepted properties
-   */
-  static propTypes = {
     /**
-     * The callback function used when user changes the content of the editor
-     *
-     * @type {function}
+     * Set accepted properties
      */
-    onChange: React.PropTypes.func,
+    static propTypes = {
+        /**
+         * The callback function used when user changes the content of the editor
+         *
+         * @type {function}
+         */
+        onChange: React.PropTypes.func,
 
-    /**
-     * The callback function used when user looses the focus of the editor
-     *
-     * @type {function}
-     */
-    onBlur: React.PropTypes.func,
+        /**
+         * The callback function used when user looses the focus of the editor
+         *
+         * @type {function}
+         */
+        onBlur: React.PropTypes.func,
 
-    /**
-     * The initial value of the content editor
-     *
-     * @type {string}
-     */
-    value: React.PropTypes.string,
-  }
+        /**
+         * The initial value of the content editor
+         *
+         * @type {string}
+         */
+        value: React.PropTypes.string,
 
-  /**
-   * An alternate theme may be passed down by a provider
-   */
-  static contextTypes = {
-    chamelTheme: React.PropTypes.object
-  };
-
-  /**
-   * Class constructor
-   *
-   * @param {Object} props Properties to send to the render function
-   */
-  constructor(props) {
-    // Call parent constructor
-    super(props);
-
-    let initialEditorState = EditorState.createEmpty();
-
-    // Check if we have a value that we will set in the editor
-    if (props.value) {
-      // Set the EditorState that it will have an existing content
-      initialEditorState = EditorState.createWithContent(stateFromHTML(props.value));
+        /**
+         * Determine what is the intial content view to be displayed
+         *
+         * @type {string}
+         */
+        contentView: React.PropTypes.oneOf(['html', 'source'])
     }
 
-    this.state = {
-      editorState: initialEditorState
+    /**
+     * An alternate theme may be passed down by a provider
+     */
+    static contextTypes = {
+        chamelTheme: React.PropTypes.object
     };
-  }
 
-  /**
-   * Handle when the editor has changed
-   *
-   * @param {obj} editorState  The top-level state object for the editor.
-   * @private
-   */
-  _onChange = (editorState) => {
-    this.setState({editorState})
+    static defaultProps = {
+        contentView: HTML_VIEW
+    };
 
-    if(this.props.onChange) {
-      let content = stateToHTML(editorState.getCurrentContent());
-      this.props.onChange(content)
-    }
-  }
+    /**
+     * Class constructor
+     *
+     * @param {Object} props Properties to send to the render function
+     */
+    constructor(props) {
+        // Call parent constructor
+        super(props);
 
-  /**
-   * Handles when the user set the focus in the editor
-   *
-   * @private
-   */
-  _focus = () => {
-    this.refs.editor.focus();
-
-    if(this.props.onFocus) {
-      let content = stateToHTML(this.state.editorState.getCurrentContent());
-      this.props.onFocus(content)
-    }
-  }
-
-  /**
-   * Handle when the editor looses the focus
-   *
-   * @private
-   */
-  _onBlur= (editorState) => {
-    if(this.props.onBlur) {
-      let content = stateToHTML(this.state.editorState.getCurrentContent());
-      this.props.onBlur(content)
-    }
-  }
-
-  /**
-   * Handle a RETURN keydown event
-   *
-   * @param {string} command The command that was sent
-   * @returns {boolean}
-   * @private
-   */
-  _handleKeyCommand = (command) => {
-    const {editorState} = this.state;
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    if (newState) {
-      this._onChange(newState);
-      return true;
+        this.state = {
+            contentView: this.props.contentView,
+            value: this.props.value
+        };
     }
 
-    return false;
-  }
+    /**
+     * Handle when the editor has changed
+     *
+     * @param {obj} editorState  The top-level state object for the editor.
+     * @private
+     */
+    _onChange = (value) => {
 
-  /**
-   * Handle when user hits the tab button
-   *
-   * @param {DOMEvent} e Reference to the DOM event being sent
-   * @returns {boolean}
-   * @private
-   */
-  _onTab = (e) => {
-    const maxDepth = 4;
-    this._onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
-  }
-
-  /**
-   * Handles the toggling of block types in the toolbar icons
-   *
-   * @param {string} blockType The block type that was clicked
-   * @private
-   */
-  _toggleBlockType = (blockType) => {
-    this._onChange(
-      RichUtils.toggleBlockType(
-        this.state.editorState,
-        blockType
-      )
-    );
-  }
-
-  /**
-   * Handles the toggling of inline styles in the toolbar icons
-   *
-   * @param {string} inlineStyle The inline style that was clicked
-   * @private
-   */
-  _toggleInlineStyle = (inlineStyle) => {
-    this._onChange(
-      RichUtils.toggleInlineStyle(
-        this.state.editorState,
-        inlineStyle
-      )
-    );
-  }
-
-  /**
-   * Handles the getting of block class name
-   *
-   * @param {obj} theme The theme that we are currently using
-   * @param {obj} block Represents the state of the entire document.
-   *
-   * @return {string} Returns the current theme class name
-   * @private
-   */
-  _getBlockStyle(theme, block) {
-    switch (block.getType()) {
-      case 'blockquote':
-        return theme.chamelEditorBlockquote;
-      default:
-        return null;
-    }
-  }
-
-  render() {
-    const {editorState} = this.state;
-
-    // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.editor)
-      ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
-
-    // Set the classes
-    let classes = theme.chamelEditor;
-
-    // Determine if the editor has text
-    let contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        classes += theme.chamelEditorHidePlaceholder;
-      }
+        if (this.props.onChange) {
+            //this.props.onChange(value);
+        }
     }
 
-    // Append the className specified in the this.props
-    if (this.props.className) {
-      classes += " " + this.props.className;
+    /**
+     * Handle when the editor looses the focus
+     *
+     * @param {string} value The value of the editor
+     * @private
+     */
+    _onBlur = (value) => {
+
+        if (this.props.onBlur) {
+            //this.props.onBlur(value);
+        }
     }
 
-    let classContainer = theme.chamelEditorContainer;
-    let selection = editorState.getSelection();
-    let blockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
+    /**
+     * Handles when the user set the focus in the editor
+     *
+     * @param {string} value The value of the editor
+     * @private
+     */
+    _onFocus = (value) => {
 
-    return (
-      <div className={classContainer}>
-        <BlockStyleControls
-          theme={theme}
-          blockType={blockType}
-          onToggle={this._toggleBlockType}
-        />
-        <InlineStyleControls
-          theme={theme}
-          editorState={editorState}
-          onToggle={this._toggleInlineStyle}
-        />
-        <div className={classes} onClick={this._focus}>
-          <Editor
-            blockStyleFn={this._getBlockStyle.bind(this, theme)}
-            customStyleMap={styleMap}
-            editorState={editorState}
-            handleKeyCommand={this._handleKeyCommand}
-            onChange={this._onChange}
-            onBlur={this._onBlur}
-            onTab={this._onTab}
-            ref="editor"
-            spellCheck={true}
-          />
-        </div>
-      </div>
-    );
-  }
+        if (this.props.onFocus) {
+            //this.props.onFocus(value);
+        }
+    }
+
+    /**
+     * Handles the toggling of content view
+     *
+     * @param {int} contentView The content view we are switching to
+     * @param {string} value The content of the editor
+     * @private
+     */
+    _handleContentViewToggle = (contentView, value) => {
+        this.setState({contentView, value});
+    }
+
+    render() {
+
+        // Determine which theme to use
+        let theme = (this.context.chamelTheme && this.context.chamelTheme.editor)
+            ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
+
+        let displaySourceView = null;
+
+        switch (this.state.contentView) {
+            case HTML_VIEW:
+                displaySourceView = (
+                    <ContentHtml
+                        onChange={this._onChange}
+                        onBlur={this._onBlur}
+                        onFocus={this._onFocus}
+                        contentViewType={HTML_VIEW}
+                        onContentViewToggle={this._handleContentViewToggle}
+                        value={this.state.value}
+                    />
+                );
+                break;
+
+            case SOURCE_VIEW:
+                displaySourceView = (
+                    <ContentSource
+                        onChange={this._onChange}
+                        onBlur={this._onBlur}
+                        onFocus={this._onFocus}
+                        onContentViewToggle={this._handleContentViewToggle}
+                        contentViewType={SOURCE_VIEW}
+                        value={this.state.value}
+                    />
+                );
+                break;
+        }
+
+        return (
+            <div>
+                {displaySourceView}
+            </div>
+        );
+    }
 }
 
 export default ChamelEditor;
