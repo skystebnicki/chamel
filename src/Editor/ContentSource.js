@@ -4,7 +4,7 @@ import ThemeService from '../styles/ChamelThemeService';
 import EditorToolbar from './EditorToolbar';
 import Codemirror from 'react-codemirror'
 import 'codemirror/mode/jsx/jsx'
-import '../../node_modules/codemirror/lib/codemirror.css'
+import 'codemirror/lib/codemirror.css'
 
 
 /**
