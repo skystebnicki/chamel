@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Toolbar from 'chamel/Toolbar/Toolbar';
-import ToolbarGroup from 'chamel/Toolbar/ToolbarGroup';
-import IconButton from 'chamel/Button/IconButton';
-import TitleIcon from 'chamel/icons/font/TitleIcon';
-import ListBulletedIcon from 'chamel/icons/font/ListBulletedIcon';
-import ListNumberedIcon from 'chamel/icons/font/ListNumberedIcon';
-import BoldIcon from 'chamel/icons/font/BoldIcon';
-import ItalicIcon from 'chamel/icons/font/ItalicIcon';
-import UnderlinedIcon from 'chamel/icons/font/UnderlinedIcon';
-import CodeIcon from 'chamel/icons/font/CodeIcon';
-import WebIcon from 'chamel/icons/font/WebIcon';
+import Toolbar from '../Toolbar/Toolbar';
+import ToolbarGroup from '../Toolbar/ToolbarGroup';
+import IconButton from '../Button/IconButton';
+import TitleIcon from '../icons/font/TitleIcon';
+import ListBulletedIcon from '../icons/font/ListBulletedIcon';
+import ListNumberedIcon from '../icons/font/ListNumberedIcon';
+import BoldIcon from '../icons/font/BoldIcon';
+import ItalicIcon from '../icons/font/ItalicIcon';
+import UnderlinedIcon from '../icons/font/UnderlinedIcon';
+import CodeIcon from '../icons/font/CodeIcon';
+import WebIcon from '../icons/font/WebIcon';
 
 // Block Types that are used in the editor and displayed in the toolbar
 const BLOCK_TYPES = [
