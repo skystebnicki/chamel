@@ -110,6 +110,12 @@ class Drawer extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.open != this.props.open) {
+      this.setState({open: nextProps.open});
+    }
+  }
+
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.drawer)
