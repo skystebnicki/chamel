@@ -344,6 +344,11 @@
   @extend .fa-refresh;
 }
 
+.iconSave {
+  @extend .fontIcon;
+  @extend .floppy-o;
+}
+
 .iconSearch {
   @extend .fontIcon;
   @extend .fa-search;

@@ -59,6 +59,7 @@ import PhotoIcon from './PhotoIcon';
 import PhotoCameraIcon from './PhotoCameraIcon';
 import PrintIcon from './PrintIcon';
 import RefreshIcon from './RefreshIcon';
+import SaveIcon from './SaveIcon';
 import SearchIcon from './SearchIcon';
 import SendIcon from './SendIcon';
 import SettingsIcon from './SettingsIcon';
@@ -130,6 +131,7 @@ const Icons = {
     {name:"photo camera", icon: PhotoCameraIcon},
     {name:"print", icon: PrintIcon},
     {name:"refresh", icon: RefreshIcon},
+    {name:"save", icon: SaveIcon},
     {name:"search", icon: SearchIcon},
     {name:"send", icon: SendIcon},
     {name:"settings", icon: SettingsIcon},
