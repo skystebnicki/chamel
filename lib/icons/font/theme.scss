@@ -234,6 +234,11 @@
   @extend .fa-fast-backward;
 }
 
+.iconFlag {
+  @extend .fontIcon;
+  @extend .fa-flag;
+}
+
 .iconFullScreen {
   @extend .fontIcon;
   @extend .fa-arrows-alt;
