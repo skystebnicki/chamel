@@ -273,6 +273,11 @@
   @extend .material-icons;
 }
 
+.iconFlag {
+  @extend .fontIcon;
+  @extend .material-icons;
+}
+
 .iconFullScreen {
   @extend .fontIcon;
   @extend .material-icons;

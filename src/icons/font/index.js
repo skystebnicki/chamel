@@ -37,6 +37,7 @@ import ExpandMoreIcon from './ExpandMoreIcon';
 import FilterListIcon from './FilterListIcon';
 import FindPageIcon from './FindPageIcon';
 import FirstPageIcon from './FirstPageIcon';
+import FlagIcon from './FlagIcon';
 import FullScreenIcon from './FullScreenIcon';
 import FullScreenExitIcon from './FullScreenExitIcon';
 import GroupIcon from './GroupIcon';
@@ -115,6 +116,7 @@ const Icons = {
     {name:"filter list", icon: FilterListIcon},
     {name:"find page", icon: FindPageIcon},
     {name:"first page", icon: FirstPageIcon},
+    {name:"flag", icon: FlagIcon},
     {name:"full screen", icon: FullScreenIcon},
     {name:"group", icon: GroupIcon},
     {name:"inbox", icon: InboxIcon},
