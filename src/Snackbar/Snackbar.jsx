@@ -11,7 +11,7 @@ class Snackbar extends React.Component {
   static propTypes = {
     action: React.PropTypes.string,
     message: React.PropTypes.string.isRequired,
-    openOnMount: React.PropTypes.bool,
+    open: React.PropTypes.bool,
     onActionClick: React.PropTypes.func,
     timeout: React.PropTypes.number
   };
@@ -33,13 +33,22 @@ class Snackbar extends React.Component {
     super(props);
 
     this.state = {
-      open: this.props.openOnMount || false
+      open: this.props.open || false
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
 
     if (prevState.open != this.state.open && this.props.timeout) {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      this.timer = setTimeout(() => { this.dismiss(); }, this.props.timeout);
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.open) {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -54,7 +63,7 @@ class Snackbar extends React.Component {
 
     var classes = classnames(theme.snackbar, {
       [theme.snackbarIsOpen]: this.state.open
-    }); 
+    });
     var action;
 
     if (this.props.action) {
@@ -77,7 +86,7 @@ class Snackbar extends React.Component {
   show() {
     this.setState({ open: true });
   }
-  
+
   dismiss() {
     this.setState({ open: false });
   }
