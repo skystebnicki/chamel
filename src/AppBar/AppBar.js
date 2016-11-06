@@ -151,7 +151,8 @@ class AppBar extends React.Component {
       innerConStyle = {
         top: this.state.curTopOffset + "px",
         width: this.state.startWidth + "px",
-        position: "fixed"
+        position: "fixed",
+        zIndex: 100
       };
 
       /*
