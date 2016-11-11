@@ -141,3 +141,13 @@ $error-color: $red-500;
 .floatingLabelDisabled {
   color: rgba($body-text-color, 0.5);
 }
+
+.richText {
+  margin-top: 10px;
+  cursor: text;
+  min-height: 100px;
+}
+
+.richTextContainer {
+  border-top: 1px solid #ddd;
+}
