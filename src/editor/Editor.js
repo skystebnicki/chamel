@@ -82,7 +82,7 @@ class ChamelEditor extends React.Component {
     _onChange = (value) => {
 
         if (this.props.onChange) {
-            //this.props.onChange(value);
+            this.props.onChange(value);
         }
     }
 
@@ -95,7 +95,7 @@ class ChamelEditor extends React.Component {
     _onBlur = (value) => {
 
         if (this.props.onBlur) {
-            //this.props.onBlur(value);
+            this.props.onBlur(value);
         }
     }
 
@@ -108,7 +108,7 @@ class ChamelEditor extends React.Component {
     _onFocus = (value) => {
 
         if (this.props.onFocus) {
-            //this.props.onFocus(value);
+            this.props.onFocus(value);
         }
     }
 

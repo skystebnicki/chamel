@@ -104,7 +104,7 @@ class ContentSource extends React.Component {
         };
 
         return (
-            <div>
+          <div className={theme.richTextContainer}>
                 <EditorToolbar
                     contentViewType={this.props.contentViewType}
                     onContentViewToggle={this._handleContentViewToggle}

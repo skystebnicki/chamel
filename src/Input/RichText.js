@@ -255,12 +255,11 @@ class RichText extends React.Component {
             classes += " " + this.props.className;
         }
 
-        let classContainer = theme.richTextContainer;
         let selection = editorState.getSelection();
         let blockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType();
 
         return (
-            <div className={classContainer} id="test">
+            <div className={theme.richTextContainer}>
                 <div className={classes} onClick={this._focus}>
                     <Editor
                         blockStyleFn={this._getBlockStyle.bind(this, theme)}
