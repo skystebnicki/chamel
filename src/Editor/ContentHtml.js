@@ -154,7 +154,7 @@ class ContentHtml extends React.Component {
             ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
 
         return (
-            <div>
+            <div className={theme.richTextContainer}>
                 <EditorToolbar
                     contentViewType={this.props.contentViewType}
                     onStyleToggle={this._handleStyleToggle}
