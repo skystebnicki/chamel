@@ -73,6 +73,7 @@ import SubArrowRightIcon from './SubArrowRightIcon';
 import SwapHorizIcon from './SwapHorizIcon';
 import TitleIcon from './TitleIcon';
 import TransformIcon from './TransformIcon';
+import ViewListIcon from './ViewListIcon';
 import WebIcon from './WebIcon';
 import WorkIcon from './WorkIcon';
 import UnderlinedIcon from './UnderlinedIcon';
@@ -147,6 +148,7 @@ const Icons = {
     {name:"tags", icon: StyleIcon},
     {name:"transform", icon: TransformIcon},
     {name:"time", icon: AccessTimeIcon},
+    {name:"view list", icon: ViewListIcon},
     {name:"work", icon: WorkIcon},
   ],
 
