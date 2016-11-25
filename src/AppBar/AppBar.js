@@ -113,8 +113,7 @@ class AppBar extends React.Component {
     }
 
     // Set the right elements
-    let rightElements = (this.props.children) ? this.props.children :
-        (this.props.iconElementRight) ? this.props.iconElementRight : null;
+    let rightElements =  (this.props.iconElementRight) ? this.props.iconElementRight : null;
 
     // If right elements exists, wrap in a toolbar
     if (rightElements) {
