@@ -51,25 +51,34 @@ class TouchRipple extends React.Component {
     // to avoid re-rendering when we change it.
     this.ignoreNextMouseDown = false;
 
+
+    // We have a timeout running to clear the ripples using setState
+    // so we ened to prevent calling setState when unmounted
+    this.isStillMounted = false;
+
     this.state = {
       ripples: [{
         key: 0,
         started: false,
         ending: false
-      }],
-      endTimerId: null
+      }]
     }
+  }
+
+  /**
+   * Will entered the dom
+   */
+  componentDidMount() {
+    // See more comments in the constructor
+    this.isStillMounted = true;
   }
 
   /**
    * Will leave the dom
    */
   componetWillUnmount() {
-    // If a timer is waiting clear it so we don't setState on an unmounted component
-    if (this.state.endTimerId) {
-      clearTimeout(this.state.endTimerId);
-      this.setState({endTimerId: null});
-    }
+    // See more comments in the constructor
+    this.isStillMounted = false;
   }
 
   /**
@@ -173,14 +182,13 @@ class TouchRipple extends React.Component {
 
       //Wait 2 seconds and remove the ripple from DOM
       const timerId = setTimeout(() => {
-        ripples.shift();
-        this.setState({
-          ripples: ripples,
-          endTimerId: null
-        });  
+        if (this.isStillMounted) {
+          ripples.shift();
+          this.setState({
+            ripples: ripples,
+          });   
+        }
       }, 2000);
-
-      this.setState({endTimerId: timerId})
     }
   };
 
