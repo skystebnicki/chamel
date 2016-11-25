@@ -51,6 +51,9 @@ class TouchRipple extends React.Component {
     // to avoid re-rendering when we change it.
     this.ignoreNextMouseDown = false;
 
+    // Flag to indicate that this component is still mounted
+    this.isMounted = false;
+
     this.state = {
       ripples: [{
         key: 0,
@@ -58,6 +61,20 @@ class TouchRipple extends React.Component {
         ending: false
       }]
     }
+  }
+
+  /**
+   * Entered the dom
+   */
+  componentDidMount() {
+    this.isMounted = true;
+  }
+
+  /**
+   * Will leave the dom
+   */
+  componetWillUnmount() {
+    this.isMounted = false;
   }
 
   /**
@@ -127,7 +144,7 @@ class TouchRipple extends React.Component {
     if ('mousedown' != e.type) {
       this.setState({
         ripples: ripples
-      });
+      });  
     }
 
   };
@@ -161,10 +178,12 @@ class TouchRipple extends React.Component {
 
       //Wait 2 seconds and remove the ripple from DOM
       setTimeout(() => {
-        ripples.shift();
-        this.setState({
-          ripples: ripples
-        });
+        if (this.isMounted) {
+          ripples.shift();
+          this.setState({
+            ripples: ripples
+          });  
+        }
       }, 2000);
     }
   };
