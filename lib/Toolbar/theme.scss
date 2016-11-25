@@ -5,7 +5,7 @@
   background-color: $toolbar-background-color;
   height: $toolbar-height;
   width: 100%;
-  padding: 0 $desktop-gutter;
+  padding: 0;
   box-sizing: border-box;
 
   display: -webkit-flex; /* Safari */
@@ -17,18 +17,18 @@
   -webkit-align-items: center; /* Safari */
   align-items: center;
 
-  .chamel-toolbar-left-arrow {
-    float: left;
-    margin-left: 10px;
+  .chamelToolbarLeftArrow {
+    text-align: left;
     cursor: pointer;
-    margin-top: ($button-height / 2);
+    width: 45px;
   }
 
-  .chamel-toolbar-right-arrow {
-    float: right;
-    margin-right: 5px;
+  .chamelToolbarRightArrow {
+    text-align: right;
+    flex: 1 1 auto;
     cursor: pointer;
-    margin-top: ($button-height / 2);
+    width: 35px;
+    margin-right: 5px;
   }
 }
 
@@ -54,8 +54,6 @@
     flex-basis: content;
 
     &:first-child {
-      margin-left: -24px;
-
       .chamel-toolbar-title {
         margin-left: 24px;
       }
@@ -65,9 +63,5 @@
   &.toolbarGroupRight {
     text-align: right;
     flex: 1 1 auto;
-
-    &:last-child {
-      margin-right: -24px;
-    }
   }
 }
