@@ -173,13 +173,11 @@ class TouchRipple extends React.Component {
 
       //Wait 2 seconds and remove the ripple from DOM
       const timerId = setTimeout(() => {
-        if (this.isMounted) {
-          ripples.shift();
-          this.setState({
-            ripples: ripples,
-            endTimerId: null
-          });  
-        }
+        ripples.shift();
+        this.setState({
+          ripples: ripples,
+          endTimerId: null
+        });  
       }, 2000);
 
       this.setState({endTimerId: timerId})
