@@ -66,7 +66,7 @@ class TouchRipple extends React.Component {
   }
 
   /**
-   * Will entered the dom
+   * Entered the dom
    */
   componentDidMount() {
     // See more comments in the constructor
@@ -76,7 +76,7 @@ class TouchRipple extends React.Component {
   /**
    * Will leave the dom
    */
-  componetWillUnmount() {
+  componentWillUnmount() {
     // See more comments in the constructor
     this.isStillMounted = false;
   }
