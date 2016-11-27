@@ -236,6 +236,7 @@ class TextField extends React.Component {
       skipGetData,
       autoComplete,
       autoCompleteData,
+      autoCompleteGetData,
       autocompleteTrigger,
       autocompleteDelimiter,
       ...other
