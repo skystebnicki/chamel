@@ -76,15 +76,13 @@ class AppBar extends React.Component {
         });
 
         // Now listen for window scroll events
-        console.log("AppBar listening");
         Events.on(window, 'scroll', this._onWindowScroll);
       }
   }
 
-  componentWillUnmout() {
+  componentWillUnmount() {
     // Remove window scroll event
     if (this.props.fixed) {
-      console.log("AppBar ignoring");
       Events.off(window, 'scroll', this._onWindowScroll);
     }
   }
