@@ -89,6 +89,7 @@
   color: $raised-button-text-color;
   background-color: $raised-button-color;
   text-align: center;
+  vertical-align: middle;
 
   height: $floating-action-button-size;
   width: $floating-action-button-size;
@@ -147,6 +148,8 @@
   min-width: $icon-button-size;
   min-height: $icon-button-size;
   line-height: normal;
+  padding: 0;
+  margin: 0;
 
   &:hover {
     background-color: transparent;

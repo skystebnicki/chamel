@@ -137,6 +137,17 @@ var TabsDemo = React.createClass({
             </Tab>
           </Tabs>
         </div>
+        <div>
+          <h3>{"Secondary"}</h3>
+          <Tabs secondary onChange={this._onChange}>
+            <Tab label='Item One' >
+              <div>Secondary tab one</div>
+            </Tab>
+            <Tab label='Item Two' >
+              <div>Secondary tab two</div>
+            </Tab>
+          </Tabs>
+        </div>
 
       </ComponentDoc>
     );

@@ -1,9 +1,6 @@
-/**
- * Render a single tab
- *
- */
 import React from 'react';
 import ThemeService from '../styles/ChamelThemeService';
+import classnames from 'classnames';
 
 /**
  * Render a tab
@@ -15,7 +12,12 @@ class Tab extends React.Component {
    */
   static propTypes = {
     handleTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool
+    selected: React.PropTypes.bool,
+
+    /**
+     * Secondary or inline tab
+     */
+    secondary: React.PropTypes.bool
   };
 
   /**
@@ -38,16 +40,18 @@ class Tab extends React.Component {
         width: this.props.width
     };
 
-    var classes = theme.tabItem;
-    if (this.props.selected) {
-        classes += " " + theme.tabIsActive;
-    }
+    const classes = classnames(theme.tabItem, {
+      [theme.tabIsActive]: this.props.selected,
+      [theme.tabItemSecondary]: this.props.secondary,
+      [theme.tabItemSecondaryIsActive]: (this.props.selected && this.props.secondary)
+    });
+
 
     return (
         <div
-            className={classes}
-            style={styles}
-            onClick={this.handleTouchTap}
+          className={classes}
+          style={styles}
+          onClick={this.handleTouchTap}
         >
             {this.props.label}
         </div>

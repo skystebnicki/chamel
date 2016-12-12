@@ -1,10 +1,7 @@
-/**
- * Tabs component
- *
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
+import classnames from 'classnames';
 
 /**
  * Outer container for tabs
@@ -14,7 +11,12 @@ class Tabs extends React.Component {
   static propTypes = {
     initialSelectedIndex: React.PropTypes.number,
     onActive: React.PropTypes.func,
-    tabWidth: React.PropTypes.number
+    tabWidth: React.PropTypes.number,
+
+    /**
+     * Used for inline body tabs rather than at the top of the page
+     */
+    secondary: React.PropTypes.bool
   };
 
   /**
@@ -98,6 +100,10 @@ class Tabs extends React.Component {
     var _this = this;
     let width = 100 / this.getTabCount() +'%';
 
+    // Get classes for the tab item container
+    const tabItemContainerClasses = (this.props.secondary) ? theme.tabItemContainerSecondary : theme.tabItemContainer;
+    const tabUnderlineBar = (this.props.secondary) ? theme.tabInkBarSecondary : theme.tabInkBar;
+
     /*
     var width = this.state.fixed ?
     this.state.width/this.props.children.length :
@@ -114,6 +120,7 @@ class Tabs extends React.Component {
           selected: _this.state.selectedIndex === index,
           tabIndex: index,
           width: width,
+          secondary: _this.props.secondary,
           handleTouchTap: _this.handleTouchTap
         });
       } else {
@@ -124,10 +131,10 @@ class Tabs extends React.Component {
 
     return (
       <div className={theme.tabsContainer}>
-        <div className={theme.tabItemContainer}>
+        <div className={tabItemContainerClasses}>
           {tabs}
         </div>
-        <div className={theme.tabInkBar} style={{left: left, width:width}} />
+        <div className={tabUnderlineBar} style={{left: left, width:width}} />
         <div className={theme.tabTemplate}>
           {currentTemplate}
         </div>

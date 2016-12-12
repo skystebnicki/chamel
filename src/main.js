@@ -26,6 +26,7 @@ import RadioButton from './Picker/RadioButton';
 import RadioPicker from './Picker/RadioPicker';
 import RaisedButton from './Button/RaisedButton';
 import LinearProgress from './Progress/LinearProgress';
+import CircularProgress from './Progress/CircularProgress';
 import SvgIcon from './svg-icons/svg-icon';
 import NavigationMenu from './svg-icons/navigation-menu';
 import NavigationChevronLeft from './svg-icons/navigation-chevron-left';
@@ -75,6 +76,7 @@ const Chamel = {
   RadioButtonGroup: RadioPicker,
   RaisedButton: RaisedButton,
   LinearProgress: LinearProgress,
+  CircularProgress: CircularProgress,
   SvgIcon: SvgIcon,
   Icons: {
       NavigationMenu: NavigationMenu,
