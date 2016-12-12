@@ -23,7 +23,7 @@ const RadioButton = (props, context) => {
         className={theme.radioButtonInput}
         name={props.name}
         value={props.value}
-        defaultChecked={props.checked}
+        checked={props.checked}
         onClick={(e) => { if (props.onSelect) {props.onSelect(props.value)}}}
       />
       {props.label}
