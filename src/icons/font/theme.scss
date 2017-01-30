@@ -64,6 +64,11 @@
   @extend .fa-plus-circle;
 }
 
+.iconAnnouncement {
+  @extend .fontIcon;
+  @extend .fa-bullhorn;
+}
+
 .iconApps {
   @extend .fontIcon;
   @extend .fa-th;
