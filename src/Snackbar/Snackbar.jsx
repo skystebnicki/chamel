@@ -13,7 +13,8 @@ class Snackbar extends React.Component {
     message: React.PropTypes.string.isRequired,
     open: React.PropTypes.bool,
     onActionClick: React.PropTypes.func,
-    timeout: React.PropTypes.number
+    timeout: React.PropTypes.number,
+    onDismiss: React.PropTypes.func
   };
 
   /**
@@ -56,6 +57,13 @@ class Snackbar extends React.Component {
     }
   }
 
+  /**
+   * Handle incoming new props
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({ open: nextProps.open || false });
+  }
+
   render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.snackbar)
@@ -89,6 +97,10 @@ class Snackbar extends React.Component {
 
   dismiss() {
     this.setState({ open: false });
+
+    if (this.props.onDismiss) {
+      this.props.onDismiss()
+    }
   }
 
 }
