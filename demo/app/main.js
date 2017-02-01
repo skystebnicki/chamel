@@ -33,6 +33,7 @@ import PopoverDemo from "../controls/popover/PopoverDemo.jsx";
 import ToggleDemo from "../controls/ToggleDemo";
 import PickerDemo from "../controls/PickerDemo";
 import SnackbarDemo from "../controls/SnackbarDemo";
+import RadioButtonGroupDemo from "../controls/RadioButtonGroupDemo.jsx";
 
 class App extends React.Component {
 
@@ -206,6 +207,11 @@ class App extends React.Component {
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
+                  primaryText={"RadioButtonGroup"}
+                  path={"/radiobutton"}
+                />
+                <LeftNavRouteItem
+                  handleGoToRoute={this.handleGoToRoute}
                   primaryText={"Snackbar"}
                   path={"/snackbar"}
                 />
@@ -232,6 +238,7 @@ class App extends React.Component {
                 <Match pattern="/toggle" component={ToggleDemo} />
                 <Match pattern="/picker" component={PickerDemo} />
                 <Match pattern="/snackbar" component={SnackbarDemo} />
+                <Match pattern="/radiobutton" component={RadioButtonGroupDemo} />
                 <Miss component={NoMatch}/>
               </Container>
             </div>
