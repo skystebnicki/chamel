@@ -141,6 +141,12 @@ class Dialog extends React.Component {
       classesWindow += " " + this.props.windowClassName;
     }
 
+    // Set classes for window contents
+    var classesWindowBody = theme.dialogWindowBody;
+    if (this.props.dialogWindowBodyClassName) {
+      classesWindowBody += " " + this.props.dialogWindowBodyClassName;
+    }
+
     // Add title
     var title;
     if (this.props.title) {
@@ -159,7 +165,7 @@ class Dialog extends React.Component {
         <div className={classesWindow}>
           <Paper ref="dialogWindow" zDepth={4}>
             {title}
-            <div ref="dialogBody" className={theme.dialogWindowBody}>
+            <div ref="dialogBody" className={classesWindowBody}>
               {this.props.children}
             </div>
             {actions}

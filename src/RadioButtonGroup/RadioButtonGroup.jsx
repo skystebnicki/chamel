@@ -1,8 +1,7 @@
 import React from 'react';
 import Paper from '../Paper/Paper';
 import Classable from '../mixins/classable';
-import EnhancedSwitch from '../EnhancedSwitch/EnhancedSwitch';
-import RadioButton from '../RadioButton/RadioButton';
+import RadioButton from '../Picker/RadioButton';
 
 var RadioButtonGroup = React.createClass({
 
@@ -78,6 +77,8 @@ var RadioButtonGroup = React.createClass({
 
   render: function() {
 
+    console.log(this.state.selected)
+
     var inline = this.props.inline;
 
     var options = this.props.children.map(function(option) {
@@ -99,7 +100,7 @@ var RadioButtonGroup = React.createClass({
         value={option.props.value}
         label={option.props.label}
         labelPosition={this.props.labelPosition}
-        onCheck={this._onChange}
+        onSelect={this._onChange}
         checked={option.props.value == this.state.selected}/>
 
     }, this);
@@ -121,7 +122,7 @@ var RadioButtonGroup = React.createClass({
     }
   },
 
-  _onChange: function(e, newSelection) {
+  _onChange: function(newSelection) {
     this._updateRadioButtons(newSelection);
 
     // Successful update

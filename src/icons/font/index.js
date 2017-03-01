@@ -3,6 +3,7 @@ import AccessibilityIcon from './AccessibilityIcon';
 import AccountIcon from './AccountIcon';
 import AddIcon from './AddIcon';
 import AddCircleIcon from './AddCircleIcon';
+import AnnouncementIcon from './AnnouncementIcon';
 import AppsIcon from './AppsIcon';
 import ArrowBackIcon from './ArrowBackIcon';
 import ArrowDownIcon from './ArrowDownIcon';
@@ -84,6 +85,7 @@ const Icons = {
     {name:"account", icon: AccountIcon},
     {name:"add", icon: AddIcon},
     {name:"add circle", icon: AddCircleIcon},
+    {name:"Announcement", icon: AnnouncementIcon},
     {name:"apps", icon: AppsIcon},
     {name:"arrow back", icon: ArrowBackIcon},
     {name:"arrow down", icon: ArrowDownIcon},
