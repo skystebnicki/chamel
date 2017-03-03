@@ -40,7 +40,7 @@ class ContentHtml extends React.Component {
          * @type {function}
          */
         onContentViewToggle: React.PropTypes.func
-    }
+    };
 
     /**
      * An alternate theme may be passed down by a provider

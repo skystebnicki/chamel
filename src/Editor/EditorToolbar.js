@@ -126,7 +126,7 @@ class EditorToolbar extends React.Component {
 
     return (
       <div>
-        <Toolbar>
+        <Toolbar secondary={true}>
           <ToolbarGroup key={1} align="left">
             {displayInlineStyles}
           </ToolbarGroup>

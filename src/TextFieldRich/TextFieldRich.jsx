@@ -425,9 +425,4 @@ var TextFieldRich = React.createClass({
 	},
 });
 
-// Check for commonjs
-if (module) {
-  module.exports = TextFieldRich;
-}
-
 export default TextFieldRich;

@@ -166,9 +166,7 @@ class Toolbar extends React.Component {
           </div>
         );
       } else {
-        displayArrowLeft = (
-          <div className={theme.chamelToolbarLeftArrow}/>
-        );
+        displayArrowLeft = null;
       }
 
       // This will determine if we need to display the right arrow icon
