@@ -53,6 +53,32 @@ All the themes can be found in /dist/css/chamel-[themename].cmp.css
 
 ## Developing, Testing & Building
 
+
+### Docker (Preferred)
+
+The simplest way to interact with chamel is through docker because it provides a predictable environment
+across all platforms.
+
+    docker build -t chamel .
+
+Then in Linux/OSX Type
+
+    docker run --rm -v $(pwd):/var/www/app/ -w /var/www/app --name=chamel chamel
+
+Or in Windows PowerShell type
+
+    docker run --rm -v ${PWD}:/var/www/app/ -w /var/www/app --name=chamel chamel
+    
+Or in the Widnows Command prompt type:
+
+    docker run --rm -v %cd%:/var/www/app/ -w /var/www/app --name=chamel chamel
+    
+With the above container running, you can open a new tab/window and run tests with:
+
+    docker exect chamel npm test 
+    
+### Local Node
+
 If you would like to build the project or develop it locally then follow these steps. 
 
 First make sure you have the latest version of node installed and working locally: https://nodejs.org

@@ -58,6 +58,7 @@
     "simple-assign": "^0.1.0",
     "style-loader": "^0.13.1",
     "tmp": "0.0.23",
+    "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
