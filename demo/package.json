@@ -5,7 +5,7 @@
   "author": "Sky Stebnicki",
   "scripts": {
     "prestart": "npm install",
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline",
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline",
     "build": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline",
     "pretest": "npm install",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js",

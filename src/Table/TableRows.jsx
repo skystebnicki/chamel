@@ -2,6 +2,7 @@ import React from 'react';
 import Classable from '../mixins/classable';
 import TableRowsItem from './TableRowsItem';
 
+// TODO: Upgrade this to extends or pure
 var TableRow = React.createClass({
 
     mixins: [Classable],

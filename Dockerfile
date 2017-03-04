@@ -12,5 +12,9 @@ RUN rm -rf build/*
 # Install dependencies for the library
 #RUN npm install
 
+EXPOSE 8081
+EXPOSE 885
+EXPOSE 3001
+
 # Run the server
 CMD rm -rf node_modules/* && npm install && cd ./demo && rm -rf node_modules/* && npm start

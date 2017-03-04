@@ -63,15 +63,15 @@ across all platforms.
 
 Then in Linux/OSX Type
 
-    docker run --rm -v $(pwd):/var/www/app/ -w /var/www/app --name=chamel chamel
+    docker run --rm -v $(pwd):/var/www/app/ -w /var/www/app -p 8081:8081 --name=chamel chamel
 
 Or in Windows PowerShell type
 
-    docker run --rm -v ${PWD}:/var/www/app/ -w /var/www/app --name=chamel chamel
+    docker run --rm -v ${PWD}:/var/www/app/ -w /var/www/app -p 8081:8081 --name=chamel chamel
     
 Or in the Widnows Command prompt type:
 
-    docker run --rm -v %cd%:/var/www/app/ -w /var/www/app --name=chamel chamel
+    docker run --rm -v %cd%:/var/www/app/ -w /var/www/app -p 8081:8081 --name=chamel chamel
     
 With the above container running, you can open a new tab/window and run tests with:
 
