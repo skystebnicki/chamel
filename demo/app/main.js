@@ -12,9 +12,9 @@ import humanTheme from 'chamel/styles/theme/human.js';
 import MenuIcon from 'chamel/icons/font/MenuIcon';
 import AppBar from 'chamel/AppBar';
 import SelectButton from 'chamel/Picker/SelectButton';
-import { HashRouter, Match, Miss, Link } from 'react-router'
+import { HashRouter, Route, Switch, Link } from 'react-router-dom';
 
-// Import pages
+// pages
 import Home from "./home.jsx";
 import AppBarDemo from "../controls/AppBarDemo.jsx";
 import DrawerDemo from "../controls/DrawerDemo.jsx";
@@ -220,26 +220,28 @@ class App extends React.Component {
 
             <div style={mainContainerStyle}>
               <Container fluid>
-                <Match exactly pattern="/" component={Home} />
-                <Match pattern="/appbar" component={AppBarDemo} />
-                <Match pattern="/drawer" component={DrawerDemo} />
-                <Match pattern="/button" component={ButtonDemo} />
-                <Match pattern="/input" component={InputDemo} />
-                <Match pattern="/toolbar" component={ToolbarDemo} />
-                <Match pattern="/editor" component={EditorDemo} />
-                <Match pattern="/icon" component={IconsDemo} />
-                <Match pattern="/dialog" component={DialogDemo} />
-                <Match pattern="/list" component={ListDemo} />
-                <Match pattern="/menu" component={MenuDemo} />
-                <Match pattern="/popover" component={PopoverDemo} />
-                <Match pattern="/progress" component={ProgressDemo} />
-                <Match pattern="/tabs" component={TabsDemo} />
-                <Match pattern="/autocomplete" component={AutoCompleteDemo} />
-                <Match pattern="/toggle" component={ToggleDemo} />
-                <Match pattern="/picker" component={PickerDemo} />
-                <Match pattern="/snackbar" component={SnackbarDemo} />
-                <Match pattern="/radiobutton" component={RadioButtonGroupDemo} />
-                <Miss component={NoMatch}/>
+                <Switch>
+                  <Route exactly pathname="/" component={Home} />
+                  <Route pathname="/appbar" component={AppBarDemo} />
+                  <Route pathname="/drawer" component={DrawerDemo} />
+                  <Route pathname="/button" component={ButtonDemo} />
+                  <Route pathname="/input" component={InputDemo} />
+                  <Route pathname="/toolbar" component={ToolbarDemo} />
+                  <Route pathname="/editor" component={EditorDemo} />
+                  <Route pathname="/icon" component={IconsDemo} />
+                  <Route pathname="/dialog" component={DialogDemo} />
+                  <Route pathname="/list" component={ListDemo} />
+                  <Route pathname="/menu" component={MenuDemo} />
+                  <Route pathname="/popover" component={PopoverDemo} />
+                  <Route pathname="/progress" component={ProgressDemo} />
+                  <Route pathname="/tabs" component={TabsDemo} />
+                  <Route pathname="/autocomplete" component={AutoCompleteDemo} />
+                  <Route pathname="/toggle" component={ToggleDemo} />
+                  <Route pathname="/picker" component={PickerDemo} />
+                  <Route pathname="/snackbar" component={SnackbarDemo} />
+                  <Route pathname="/radiobutton" component={RadioButtonGroupDemo} />
+                  <Route pathname=":missedpath" component={NoMatch} />
+                </Switch>
               </Container>
             </div>
           </div>
@@ -285,8 +287,8 @@ class App extends React.Component {
   /**
    * Change the hash which will load the selected route
    */
-  handleGoToRoute = (route) => {
-    //location.hash = route;
+  handleGoToRoute = (route, path) => {
+    location.hash = path;
     if (!this.state.menuDocked) {
       this.setState({menuOpen: false});
     }
@@ -294,6 +296,12 @@ class App extends React.Component {
 }
 
 const LeftNavRouteItem = ({ activeOnlyWhenExact, handleGoToRoute, primaryText, path }) => (
+  <ListItem
+    primaryText={primaryText}
+    selected={false}
+    onTap={(evt) => {handleGoToRoute(evt, path); }}
+  />
+  /*
   <Link activeOnlyWhenExact={activeOnlyWhenExact} to={path} onClick={handleGoToRoute}>{
       ({ isActive, onClick }) => {
           return (
@@ -305,6 +313,7 @@ const LeftNavRouteItem = ({ activeOnlyWhenExact, handleGoToRoute, primaryText, p
           );
       }
   }</Link>
+  */
 )
 
 const NoMatch = ({ location }) => (

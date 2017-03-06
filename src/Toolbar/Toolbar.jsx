@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import FontIcon from "../FontIcon/FontIcon";
-import ToolbarGroup from "../Toolbar/ToolbarGroup";
 import ThemeService from '../styles/ChamelThemeService';
 import IconButton from '../Button/IconButton';
 import ChevronLeftIcon from '../icons/font/ChevronLeftIcon';
