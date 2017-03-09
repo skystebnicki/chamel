@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from 'chamel/input/TextField';
-import IconButton from 'chamel/button/IconButton';
-import SearchIcon from 'chamel/icons/font/SearchIcon';
+
 
 
 var dropDownData = [
@@ -24,10 +23,7 @@ var dropDownData = [
 ];
 
 var InputDemo = React.createClass({
-  textFieldSearch: null,
-  onFocusTextSearchBox: function () {
-    this.textFieldSearch.focus();
-  },
+
   render: function () {
     return (
       <div className="row">
@@ -45,19 +41,10 @@ var InputDemo = React.createClass({
 
           <div>
 
-              <IconButton
-                key="searchGo"
-                onClick={ (evt) => {
-                  this.onFocusTextSearchBox();
-                }}>
-              <SearchIcon />
-              </IconButton>
-              
               <TextField
+                searchButton={true}
                 hintText="Search"
-                ref={ el => {this.textFieldSearch = el;} }
               />
-
 
           </div>
 

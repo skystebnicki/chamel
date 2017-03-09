@@ -7,6 +7,9 @@ import AutoComplete from '../AutoComplete/AutoComplete';
 import KeyCode from '../utils/KeyCode';
 import ThemeService from '../styles/ChamelThemeService';
 
+import IconButton from 'chamel/button/IconButton';
+import SearchIcon from 'chamel/icons/font/SearchIcon';
+
 /**
  * Plain text input field
  */
@@ -45,6 +48,11 @@ class TextField extends React.Component {
      * Support more than one line
      */
     multiLine: React.PropTypes.bool,
+
+    /**
+     * Button search for text field
+     */
+    searchButton: React.PropTypes.bool,
 
     /**
      * Callback to capture blur event
@@ -227,6 +235,7 @@ class TextField extends React.Component {
       hintText,
       id,
       multiLine,
+      searchButton,
       onBlur,
       onChange,
       onFocus,
@@ -250,6 +259,11 @@ class TextField extends React.Component {
     });
 
     var inputId = this.props.id || UniqueId.generate();
+
+    var searchButtonElement = this.props.searchButton ? 
+      (<IconButton onClick={this._handleInputFocus} key='searchGo'>
+          <SearchIcon />
+        </IconButton>) : null;
 
     var errorTextElement = this.state.errorText ? (
       <div className={theme.errorText}>{this.state.errorText}</div>
@@ -394,7 +408,7 @@ class TextField extends React.Component {
 
           <div className={theme.unfocusUnderline} />
           <div className={focuseUnderlineClasses} />
-
+          {searchButtonElement}
           {errorTextElement}
         </div>
         {autoCompleteDisplay}
@@ -612,6 +626,8 @@ class TextField extends React.Component {
       anchorEl: e.currentTarget
     });
     if (this.props.onFocus) this.props.onFocus(e);
+    console.log('focus');
+    this.focus();
   };
 
   _isControlled() {
@@ -619,7 +635,7 @@ class TextField extends React.Component {
       this.props.hasOwnProperty('valueLink');
   }
 
-  _handleInputClick = (e) => {
+  _handleInputClick = (e) => { 
 
     if (this.props.autoComplete) {
       this.setState({
