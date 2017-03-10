@@ -188,7 +188,10 @@ class TextField extends React.Component {
       newState.hasValue = nextProps.valueLink.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
-    } else if (hasNewAutoFocusValue) {
+    }
+
+    // If autoFocus has new value update the state object
+    if (hasNewAutoFocusValue) {
       newState.autoFocus = nextProps.autoFocus;
     }
 
