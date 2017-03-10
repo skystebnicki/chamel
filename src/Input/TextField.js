@@ -7,9 +7,6 @@ import AutoComplete from '../AutoComplete/AutoComplete';
 import KeyCode from '../utils/KeyCode';
 import ThemeService from '../styles/ChamelThemeService';
 
-import IconButton from 'chamel/button/IconButton';
-import SearchIcon from 'chamel/icons/font/SearchIcon';
-
 /**
  * Plain text input field
  */
@@ -50,9 +47,9 @@ class TextField extends React.Component {
     multiLine: React.PropTypes.bool,
 
     /**
-     * Button search for text field
+     * Flag property to Focus on text field
      */
-    searchButton: React.PropTypes.bool,
+    autoFocus: React.PropTypes.bool,
 
     /**
      * Callback to capture blur event
@@ -208,15 +205,34 @@ class TextField extends React.Component {
     }
   }
 
-  componentDidUpdate () {
+  componentWillUpdate (nextProps, nextState) {
+    if (nextProps.autoFocus) {
+        this.setAutoFocus(nextProps.autoFocus);
+    } else {
+        this.setAutoFocus(false);
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
     // resize the textarea, if nessesary
     if (this.props.multiLine) this.handleAutoresize();
+
+    if (this.autoFocus !== null && this.autoFocus) {
+        this.refs.input.focus();  
+    }
   }
 
   componentWillUnmount () {
     this.setState({componentIsMounted: false});
   }
 
+  autoFocus = null;
+  setAutoFocus (nextAutoFocus) {
+    if (nextAutoFocus !== undefined) {
+      this.autoFocus = nextAutoFocus;
+    }
+  }
+  
   /**
    * Render the component
    *
@@ -235,7 +251,7 @@ class TextField extends React.Component {
       hintText,
       id,
       multiLine,
-      searchButton,
+      isFocus,
       onBlur,
       onChange,
       onFocus,
@@ -259,11 +275,6 @@ class TextField extends React.Component {
     });
 
     var inputId = this.props.id || UniqueId.generate();
-
-    var searchButtonElement = this.props.searchButton ? 
-      (<IconButton onClick={this._handleInputFocus} key='searchGo'>
-          <SearchIcon />
-        </IconButton>) : null;
 
     var errorTextElement = this.state.errorText ? (
       <div className={theme.errorText}>{this.state.errorText}</div>
@@ -408,13 +419,14 @@ class TextField extends React.Component {
 
           <div className={theme.unfocusUnderline} />
           <div className={focuseUnderlineClasses} />
-          {searchButtonElement}
+      
           {errorTextElement}
         </div>
         {autoCompleteDisplay}
       </div>
     );
   }
+  
 
   blur() {
     if (this.state.componentIsMounted) this._getInputNode().blur();
@@ -626,8 +638,6 @@ class TextField extends React.Component {
       anchorEl: e.currentTarget
     });
     if (this.props.onFocus) this.props.onFocus(e);
-    console.log('focus');
-    this.focus();
   };
 
   _isControlled() {
