@@ -164,7 +164,8 @@ class TextField extends React.Component {
       errorText: this.props.errorText,
       hasValue: this.props.value || this.props.defaultValue ||
       (this.props.valueLink && this.props.valueLink.value),
-      componentIsMounted: false
+      componentIsMounted: false,
+      autoFocus: this.props.autoFocus
     }
   }
 
@@ -178,6 +179,7 @@ class TextField extends React.Component {
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
+    var hasNewAutoFocusValue = nextProps.autoFocus !== this.props.autoFocus;
     var newState = {};
 
     if (hasValueProp) {
@@ -186,8 +188,11 @@ class TextField extends React.Component {
       newState.hasValue = nextProps.valueLink.value;
     } else if (hasNewDefaultValue) {
       newState.hasValue = nextProps.defaultValue;
+    } else if (hasNewAutoFocusValue) {
+      newState.autoFocus = nextProps.autoFocus;
     }
 
+    
     // If we changed to a multiline input then attach a listener for window resize
     if (!this.props.multiLine && nextProps.multiLine) {
       this.handleAutoresize();
@@ -205,32 +210,17 @@ class TextField extends React.Component {
     }
   }
 
-  componentWillUpdate (nextProps, nextState) {
-    if (nextProps.autoFocus) {
-        this.setAutoFocus(nextProps.autoFocus);
-    } else {
-        this.setAutoFocus(false);
-    }
-  }
-
   componentDidUpdate (prevProps, prevState) {
     // resize the textarea, if nessesary
     if (this.props.multiLine) this.handleAutoresize();
 
-    if (this.autoFocus !== null && this.autoFocus) {
+    if (this.state.autoFocus) {
         this.refs.input.focus();  
     }
   }
 
   componentWillUnmount () {
     this.setState({componentIsMounted: false});
-  }
-
-  autoFocus = null;
-  setAutoFocus (nextAutoFocus) {
-    if (nextAutoFocus !== undefined) {
-      this.autoFocus = nextAutoFocus;
-    }
   }
   
   /**
