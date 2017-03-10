@@ -47,6 +47,11 @@ class TextField extends React.Component {
     multiLine: React.PropTypes.bool,
 
     /**
+     * Flag property to Focus on text field
+     */
+    autoFocus: React.PropTypes.bool,
+
+    /**
      * Callback to capture blur event
      */
     onBlur: React.PropTypes.func,
@@ -159,7 +164,8 @@ class TextField extends React.Component {
       errorText: this.props.errorText,
       hasValue: this.props.value || this.props.defaultValue ||
       (this.props.valueLink && this.props.valueLink.value),
-      componentIsMounted: false
+      componentIsMounted: false,
+      autoFocus: this.props.autoFocus
     }
   }
 
@@ -173,6 +179,7 @@ class TextField extends React.Component {
     var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
     var hasValueProp = nextProps.hasOwnProperty('value');
     var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
+    var hasNewAutoFocusValue = nextProps.autoFocus !== this.props.autoFocus;
     var newState = {};
 
     if (hasValueProp) {
@@ -183,6 +190,12 @@ class TextField extends React.Component {
       newState.hasValue = nextProps.defaultValue;
     }
 
+    // If autoFocus has new value update the state object
+    if (hasNewAutoFocusValue) {
+      newState.autoFocus = nextProps.autoFocus;
+    }
+
+    
     // If we changed to a multiline input then attach a listener for window resize
     if (!this.props.multiLine && nextProps.multiLine) {
       this.handleAutoresize();
@@ -200,15 +213,19 @@ class TextField extends React.Component {
     }
   }
 
-  componentDidUpdate () {
+  componentDidUpdate (prevProps, prevState) {
     // resize the textarea, if nessesary
     if (this.props.multiLine) this.handleAutoresize();
+
+    if (this.state.autoFocus) {
+        this.refs.input.focus();  
+    }
   }
 
   componentWillUnmount () {
     this.setState({componentIsMounted: false});
   }
-
+  
   /**
    * Render the component
    *
@@ -227,6 +244,7 @@ class TextField extends React.Component {
       hintText,
       id,
       multiLine,
+      isFocus,
       onBlur,
       onChange,
       onFocus,
@@ -394,13 +412,14 @@ class TextField extends React.Component {
 
           <div className={theme.unfocusUnderline} />
           <div className={focuseUnderlineClasses} />
-
+      
           {errorTextElement}
         </div>
         {autoCompleteDisplay}
       </div>
     );
   }
+  
 
   blur() {
     if (this.state.componentIsMounted) this._getInputNode().blur();
@@ -619,7 +638,7 @@ class TextField extends React.Component {
       this.props.hasOwnProperty('valueLink');
   }
 
-  _handleInputClick = (e) => {
+  _handleInputClick = (e) => { 
 
     if (this.props.autoComplete) {
       this.setState({
