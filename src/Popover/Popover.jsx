@@ -11,7 +11,7 @@ class Popover extends React.Component {
 
   /**
    * Class constructor
-   * 
+   *
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
@@ -27,7 +27,7 @@ class Popover extends React.Component {
     open: false,
     anchorEl: null,
     zDepth: 1,
-    relateive: false,
+    relative: false,
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'left'
@@ -117,7 +117,7 @@ class Popover extends React.Component {
     if (this.props.open) {
       classes += " " + theme.popoverVisible;
     }
-    
+
     return (
       <div className={classes}>
         {this.props.children}
@@ -161,7 +161,9 @@ class Popover extends React.Component {
     let anchorPosition = Dom.offset(anchorEl);
 
     // If we are in a relative positioned container, then set top and left to 0
+    targetEl.style.position = 'absolute';
     if (this.props.relative) {
+      targetEl.style.position = 'relative';
       anchorPosition.top = 0;
       anchorPosition.left = 0;
     }
