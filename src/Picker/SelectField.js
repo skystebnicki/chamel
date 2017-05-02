@@ -97,9 +97,9 @@ class SelectField extends React.Component {
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={true}
+          relative={false}
         >
           <Menu
             ref="menuItems"
