@@ -164,7 +164,11 @@ class Popover extends React.Component {
     targetEl.style.position = 'absolute';
     if (this.props.relative) {
       targetEl.style.position = 'relative';
+    }
+    if (targetOrigin.vertical == 'top') {
       anchorPosition.top = 0;
+    }
+    if (targetOrigin.horizontal == 'left') {
       anchorPosition.left = 0;
     }
 
