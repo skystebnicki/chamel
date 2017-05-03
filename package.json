@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "keywords": [
     "react",
     "react-component",
@@ -91,7 +91,7 @@
     "react-codemirror": "^0.2.6",
     "react-dom": "^15.0.1",
     "react-router": "^2.1.1",
-    "react-tappable": "^0.8.3",
+    "react-tappable": "^0.8.4",
     "ua-parser-js": "^0.7.9"
   }
 }
