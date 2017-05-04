@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
-import Tappable from 'react-tappable';
 import ThemeService from '../styles/ChamelThemeService';
 import Paper from '../Paper';
 
@@ -39,13 +38,13 @@ const Switch = (props, context) => {
   }
 
   return (
-      <Tappable onTap={onTap} component={"div"} className={theme.switch}>
+      <div onClick={onTap} className={theme.switch}>
         <div className={theme.switchIcon} >
           <div className={trackClasses} />
           <Paper className={buttonClasses} zDepth={1}/>
         </div>
         {labelElement}
-      </Tappable>
+      </div>
   );
 };
 

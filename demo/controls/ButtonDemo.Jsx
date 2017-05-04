@@ -13,30 +13,30 @@ var ButtonDemo = React.createClass({
                     <h2>{"Buttons"}</h2>
 
                     <h3>{"Flat"}</h3>
-                    <FlatButton onTap={this._handleClick}>Default</FlatButton>
-                    <FlatButton primary onTap={this._handleClick}>Primary</FlatButton>
-                    <FlatButton accent onTap={this._handleClick}>Accent</FlatButton>
-                    <FlatButton disabled onTap={this._handleClick}>Accent</FlatButton>
-                    <FlatButton onTap={this._handleClick}>
+                    <FlatButton onClick={this._handleClick}>Default</FlatButton>
+                    <FlatButton primary onClick={this._handleClick}>Primary</FlatButton>
+                    <FlatButton accent onClick={this._handleClick}>Accent</FlatButton>
+                    <FlatButton disabled onClick={this._handleClick}>Accent</FlatButton>
+                    <FlatButton onClick={this._handleClick}>
                         <CloseIcon />
                         With Icon
                     </FlatButton>
 
                     <h3>{"Raised"}</h3>
-                    <RaisedButton onTap={this._handleClick}>Default</RaisedButton>
-                    <RaisedButton primary onTap={this._handleClick}>Primary</RaisedButton>
-                    <RaisedButton accent onTap={this._handleClick}>Accent</RaisedButton>
-                    <RaisedButton disabled onTap={this._handleClick}>Disabled</RaisedButton>
-                    <RaisedButton onTap={this._handleClick}>With Icon</RaisedButton>
+                    <RaisedButton onClick={this._handleClick}>Default</RaisedButton>
+                    <RaisedButton primary onClick={this._handleClick}>Primary</RaisedButton>
+                    <RaisedButton accent onClick={this._handleClick}>Accent</RaisedButton>
+                    <RaisedButton disabled onClick={this._handleClick}>Disabled</RaisedButton>
+                    <RaisedButton onClick={this._handleClick}>With Icon</RaisedButton>
 
                     <h3>{"Floating"}</h3>
-                    <FloatingButton onTap={this._handleClick}><CloseIcon /></FloatingButton>
-                    <FloatingButton type={'floating'} primary onTap={this._handleClick}><CloseIcon /></FloatingButton>
-                    <FloatingButton type={'floating'} accent onTap={this._handleClick}><CloseIcon /></FloatingButton>
-                    <FloatingButton type={'floating'} disabled onTap={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton onClick={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton type={'floating'} primary onClick={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton type={'floating'} accent onClick={this._handleClick}><CloseIcon /></FloatingButton>
+                    <FloatingButton type={'floating'} disabled onClick={this._handleClick}><CloseIcon /></FloatingButton>
 
                     <h3>{"Icon"}</h3>
-                    <IconButton onTap={this._handleClick}><CloseIcon /></IconButton>
+                    <IconButton onClick={this._handleClick}><CloseIcon /></IconButton>
                 </div>
             </div>
         );

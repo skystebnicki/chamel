@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
-import Tappable from 'react-tappable';
 import ThemeService from '../styles/ChamelThemeService';
 import CheckboxOutline from '../svg-icons/toggle-check-box-outline-blank';
 import CheckboxChecked from '../svg-icons/toggle-check-box-checked';
@@ -42,13 +41,13 @@ const Checkbox = (props, context) => {
   }
 
   return (
-      <Tappable onTap={onTap} component={"div"} className={theme.checkbox}>
+      <div onClick={onTap} className={theme.checkbox}>
         <div className={theme.checkboxIcon}>
           <CheckboxOutline className={outlineClasses} />
           <CheckboxChecked className={checkClasses} />
         </div>
         {labelElement}
-      </Tappable>
+      </div>
   );
 };
 
