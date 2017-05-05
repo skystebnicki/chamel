@@ -78,15 +78,10 @@ class DateDisplay extends Component {
     );
   }
 
-};
+}
 
 DateDisplay.propTypes = {
   selectedDate: PropTypes.object.isRequired
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = DateDisplay;
-}
 
 export default DateDisplay;

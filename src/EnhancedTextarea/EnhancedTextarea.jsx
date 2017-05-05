@@ -133,9 +133,4 @@ EnhancedTextarea.defaultProps = {
   rows: 1
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = EnhancedTextarea;
-}
-
 export default EnhancedTextarea;

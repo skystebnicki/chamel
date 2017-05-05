@@ -56,7 +56,7 @@ const RadioButton = (props) => {
     return this.refs.enhancedSwitch.getValue();
   };
 
-};
+}
 
 RadioButton.propTypes = {
   /**
@@ -83,10 +83,5 @@ RadioButton.propTypes = {
 RadioButton.defaultProps = {
   inline: false
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = RadioButton;
-}
 
 export default RadioButton;

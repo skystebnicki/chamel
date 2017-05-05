@@ -156,7 +156,7 @@ class DatePicker extends Component {
     //TO DO: open the dialog if input has focus
   };
 
-};
+}
 
 DatePicker.propTypes = {
   defaultDate: PropTypes.object,
@@ -180,10 +180,5 @@ DatePicker.defaultProps = {
   autoOk: false,
   preferNative: true
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = DatePicker;
-}
 
 export default DatePicker;

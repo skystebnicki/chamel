@@ -18,9 +18,4 @@ const SvgIcon = (props) => {
 
 }
 
-// Check for commonjs
-if (module) {
-  module.exports = SvgIcon;
-}
-
 export default SvgIcon;

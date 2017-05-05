@@ -16,11 +16,6 @@ const TableRowItem = (props) => {
     </div>
   );
 
-});
-
-// Check for commonjs
-if (module) {
-  module.exports = TableRowItem;
 }
 
 export default TableRowItem;

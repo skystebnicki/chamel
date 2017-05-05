@@ -42,15 +42,10 @@ const TableRow = (props) => {
     return children;
   };
 
-});
+}
 
 TableRow.propTypes = {
   rowItems: PropTypes.array.isRequired
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = TableRow;
-}
 
 export default TableRow;

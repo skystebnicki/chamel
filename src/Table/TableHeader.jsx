@@ -37,15 +37,10 @@ const TableHeader = (props) => {
       return children;
     }
 
-});
+}
 
 TableHeader.propTypes = {
     headerItems: PropTypes.array.isRequired
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = TableHeader;
-}
 
 export default TableHeader;

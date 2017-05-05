@@ -217,9 +217,4 @@ Calendar.propTypes = {
   onSelectedDate: PropTypes.func
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = Calendar;
-}
-
 export default Calendar;

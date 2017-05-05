@@ -139,9 +139,4 @@ DatePickerDialog.propTypes = {
   maxDate: PropTypes.object
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = DatePickerDialog;
-}
-
 export default DatePickerDialog;

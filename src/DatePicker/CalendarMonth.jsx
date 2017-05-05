@@ -75,9 +75,4 @@ CalendarMonth.propTypes: {
   autoOk: PropTypes.bool
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = CalendarMonth;
-}
-
 export default CalendarMonth;

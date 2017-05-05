@@ -109,7 +109,7 @@ class RadioButtonGroup extends Component {
     this.setSelectedValue('');
   };
 
-};
+}
 
 
 RadioButtonGroup.propTypes: {
@@ -149,11 +149,5 @@ RadioButtonGroup.propTypes: {
 RadioButtonGroup.defaultProps = {
   inline: false
 };
-
-
-// Check for commonjs
-if (module) {
-  module.exports = RadioButtonGroup;
-}
 
 export default RadioButtonGroup;

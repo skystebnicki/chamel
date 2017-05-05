@@ -180,10 +180,4 @@ RadioButtonGroup.defaultProps = {
   dragging: false
 };
 
-
-// Check for commonjs
-if (module) {
-  module.exports = Slider;
-}
-
 export default Slider;

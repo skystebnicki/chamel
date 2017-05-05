@@ -84,7 +84,7 @@ class DropDownIcon extends Component {
     });
   }
 
-};
+}
 
 /**
  * Set accepted properties
@@ -104,10 +104,5 @@ DropDownIcon.defaultProps = {
   autoWidth: true,
   closeOnMenuItemClick: true
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = DropDownIcon;
-}
 
 export default DropDownIcon;

@@ -57,9 +57,4 @@ Tooltip.propTypes = {
   touch: PropTypes.bool
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = Tooltip;
-}
-
 export default Tooltip;

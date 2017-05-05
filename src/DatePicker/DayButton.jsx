@@ -47,9 +47,4 @@ DayButton.propTypes = {
   selected: PropTypes.bool
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = DayButton;
-}
-
 export default DayButton;

@@ -37,9 +37,4 @@ LinkMenuItem.defaultProps = {
   disabled: false
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = LinkMenuItem;
-}
-
 export default LinkMenuItem;

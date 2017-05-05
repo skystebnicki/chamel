@@ -306,9 +306,4 @@ Menu.contextTypes = {
   chamelTheme: React.PropTypes.object
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = Menu;
-}
-
 export default Menu;

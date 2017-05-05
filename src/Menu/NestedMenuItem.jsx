@@ -123,9 +123,4 @@ NestedMenuItem.defaultProps = {
   index: -1
 };
 
-// Check for commonjs
-if (module) {
-  module.exports = NestedMenuItem;
-}
-
 export default NestedMenuItem;
