@@ -1,37 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Classable from '../mixins/classable';
 
-var EnhancedTextarea = React.createClass({
+class EnhancedTextarea extends Component {
 
-  mixins: [Classable],
+  // mixins: [Classable],
 
-  propTypes: {
-    onChange: React.PropTypes.func,
-    onHeightChange: React.PropTypes.func,
-    textareaClassName: React.PropTypes.string,
-    rows: React.PropTypes.number
-  },
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  getDefaultProps: function() {
-    return {
-      rows: 1
-    };
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       height: this.props.rows * 24
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._syncHeightWithShadow();
-  },
+  }
 
-  render: function() {
+  render() {
 
-    var {
+    let {
       className,
       onChange,
       onHeightChange,
@@ -41,9 +37,9 @@ var EnhancedTextarea = React.createClass({
       ...other
     } = this.props;
 
-    var classes = this.getClasses('chamel-enhanced-textarea');
-    var textareaClassName = 'chamel-enhanced-textarea-input';
-    var style = {
+    const classes = this.getClasses('chamel-enhanced-textarea');
+    const textareaClassName = 'chamel-enhanced-textarea-input';
+    const style = {
       height: this.state.height + 'px'
     };
 
@@ -89,13 +85,13 @@ var EnhancedTextarea = React.createClass({
           onChange={this._handleChange} />
       </div>
     );
-  },
+  }
 
-  getInputNode: function() {
+  getInputNode = () => {
     return ReactDOM.findDOMNode(this.refs.input);
-  },
+  };
 
-  _syncHeightWithShadow: function(newValue, e) {
+  _syncHeightWithShadow = (newValue, e) => {
     var shadow = ReactDOM.findDOMNode(this.refs.shadow);
     var currentHeight = this.state.height;
     var newHeight;
@@ -107,9 +103,9 @@ var EnhancedTextarea = React.createClass({
       this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
     }
-  },
+  };
 
-  _handleChange: function(e) {
+  _handleChange = (e) => {
     this._syncHeightWithShadow(e.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
@@ -117,14 +113,25 @@ var EnhancedTextarea = React.createClass({
     }
 
     if (this.props.onChange) this.props.onChange(e);
-  },
+  };
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps = (nextProps) => {
     if (nextProps.value != this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
-  }
-});
+  };
+}
+
+EnhancedTextarea.propTypes = {
+  onChange: PropTypes.func,
+  onHeightChange: PropTypes.func,
+  textareaClassName: PropTypes.string,
+  rows: PropTypes.number
+};
+
+EnhancedTextarea.defaultProps = {
+  rows: 1
+};
 
 // Check for commonjs
 if (module) {

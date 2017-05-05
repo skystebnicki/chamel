@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
@@ -12,38 +13,7 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Component for displaying dropdowns
  */
-class SelectButton extends React.Component {
-
-  /**
-   * Set accepted properties
-   */
-  static propTypes = {
-    onChange: React.PropTypes.func,
-    selectedIndex: React.PropTypes.number,
-    icon: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element
-    ]),
-    menuItems: React.PropTypes.array.isRequired,
-
-    /**
-     * Optional additional class for the icon button
-     */
-    className: React.PropTypes.string,
-
-    /**
-     * Optional children can be used to define content
-     */
-    children: React.PropTypes.node
-  };
-
-  /**
-   * Set property defaults
-   */
-  static defaultProps = {
-    autoWidth: true,
-    children: null
-  };
+class SelectButton extends Component {
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -57,13 +27,6 @@ class SelectButton extends React.Component {
       selectedIndex: props.selectedIndex || 0
     };
   }
-
-  /**
-   * An alternate theme may be passed down by a provider
-   */
-  static contextTypes = {
-    chamelTheme: React.PropTypes.object
-  };
 
   /**
    * Popover has entered the dom
@@ -199,5 +162,43 @@ class SelectButton extends React.Component {
     });
   }
 }
+
+/**
+ * Set accepted properties
+ */
+SelectButton.propTypes = {
+  onChange: PropTypes.func,
+  selectedIndex: PropTypes.number,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
+  menuItems: PropTypes.array.isRequired,
+
+  /**
+   * Optional additional class for the icon button
+   */
+  className: PropTypes.string,
+
+  /**
+   * Optional children can be used to define content
+   */
+  children: PropTypes.node
+};
+
+/**
+ * Set property defaults
+ */
+SelectButton.defaultProps = {
+  autoWidth: true,
+  children: null
+};
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+SelectButton.contextTypes = {
+  chamelTheme: PropTypes.object
+};
 
 export default SelectButton;

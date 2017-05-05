@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Classable from '../mixins/classable';
 import WindowListenable from '../mixins/WindowListenable';
 import KeyCode from '../utils/KeyCode';
@@ -6,30 +7,30 @@ import Calendar from './Calendar';
 import Dialog from '../Dialog/Dialog';
 import FlatButton from '../Button/FlatButton';
 
-var DatePickerDialog = React.createClass({
+class DatePickerDialog extends Component {
 
-  mixins: [Classable, WindowListenable],
+  // mixins: [Classable, WindowListenable],
 
-  propTypes: {
-    initialDate: React.PropTypes.object,
-    onAccept: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-  },
+  // windowListeners: {
+  //   'keyup': '_handleWindowKeyUp'
+  // },
 
-  windowListeners: {
-    'keyup': '_handleWindowKeyUp'
-  },
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  getInitialState: function() {
-    return {
+    this.state = {
       isCalendarActive: false
     };
-  },
+  }
 
-  render: function() {
+
+  render() {
     var {
       initialDate,
       onAccept,
@@ -70,34 +71,34 @@ var DatePickerDialog = React.createClass({
           isActive={this.state.isCalendarActive} />
       </Dialog>
     );
-  },
+  }
 
-  show: function() {
+  show = () => {
     this.refs.dialogWindow.show();
-  },
+  };
 
-  dismiss: function() {
+  dismiss = () => {
     this.refs.dialogWindow.dismiss();
-  },
+  }
 
-  _onSelectedDate: function(){
+  _onSelectedDate = () => {
     if(this.props.autoOk){
       setTimeout(this._handleOKTouchTap.bind(this), 300);
     }
-  },
+  };
 
-  _handleCancelTouchTap: function() {
+  _handleCancelTouchTap = () => {
     this.dismiss();
-  },
+  };
 
-  _handleOKTouchTap: function() {
+  _handleOKTouchTap = () => {
     this.dismiss();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
-  },
+  };
 
-  _handleDialogShow: function() {
+  _handleDialogShow = () => {
     this.setState({
       isCalendarActive: true
     });
@@ -105,9 +106,9 @@ var DatePickerDialog = React.createClass({
     if(this.props.onShow) {
       this.props.onShow();
     }
-  },
+  };
 
-  _handleDialogDismiss: function() {
+  _handleDialogDismiss = () => {
     this.setState({
       isCalendarActive: false
     });
@@ -115,9 +116,9 @@ var DatePickerDialog = React.createClass({
     if(this.props.onDismiss) {
       this.props.onDismiss();
     }
-  },
+  };
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp = (e) => {
     if (this.refs.dialogWindow.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
@@ -125,8 +126,22 @@ var DatePickerDialog = React.createClass({
           break;
       }
     }
-  }
+  };
 
-});
+}
 
-module.exports = DatePickerDialog;
+DatePickerDialog.propTypes = {
+  initialDate: PropTypes.object,
+  onAccept: PropTypes.func,
+  onShow: PropTypes.func,
+  onDismiss: PropTypes.func,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object
+};
+
+// Check for commonjs
+if (module) {
+  module.exports = DatePickerDialog;
+}
+
+export default DatePickerDialog;

@@ -1,50 +1,51 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Classable from '../mixins/classable';
 
-var TableHeader = React.createClass({
+const TableHeader = (props) => {
 
-    mixins: [Classable],
+    // mixins: [Classable],
 
-    propTypes: {
-        headerItems: React.PropTypes.array.isRequired
-    },
+    render() {
+      var classes = this.getClasses('chamel-table-header');
 
-    getDefaultProps: function() {
-        return {
-        };
-    },
+      return (
+        <div className={classes}>
+          {this._getChildren()}
+          <div className="chamel-table-header-pagify">
+            (Pagify)
+          </div>
+        </div>
+      );
+    }
 
-    render: function() {
-        var classes = this.getClasses('chamel-table-header');
+    _getChildren = () => {
+      let children = [],
+        headerItem,
+        itemComponent
 
-        return (
-            <div className={classes}>
-                {this._getChildren()}
-                <div className="chamel-table-header-pagify">
-                    (Pagify)
-                </div>
-            </div>
+      for (let i=0; i < this.props.headerItems.length; i++) {
+        headerItem = this.props.headerItems[i];
+
+        itemComponent = (
+          <div key={i} className="chamel-table-header-column">{headerItem.text}</div>
         );
-    },
 
-    _getChildren: function() {
-        var children = [],
-            headerItem,
-            itemComponent
+        children.push(itemComponent);
+      }
 
-        for (var i=0; i < this.props.headerItems.length; i++) {
-            headerItem = this.props.headerItems[i];
-
-            itemComponent = (
-                <div key={i} className="chamel-table-header-column">{headerItem.text}</div>
-            );
-
-            children.push(itemComponent);
-        }
-
-        return children;
+      return children;
     }
 
 });
 
-module.exports = TableHeader;
+TableHeader.propTypes = {
+    headerItems: PropTypes.array.isRequired
+};
+
+// Check for commonjs
+if (module) {
+  module.exports = TableHeader;
+}
+
+export default TableHeader;

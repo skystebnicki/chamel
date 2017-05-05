@@ -1,58 +1,56 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Classable from '../mixins/classable';
 import TableRowsItem from './TableRowsItem';
 
 // TODO: Upgrade this to extends or pure
-var TableRow = React.createClass({
+const TableRow = (props) => {
+    // mixins: [Classable],
 
-    mixins: [Classable],
+  const classes = this.getClasses('chamel-table-rows');
 
-    propTypes: {
-        rowItems: React.PropTypes.array.isRequired
-    },
+  return (
+    <div className={classes}>
+        {this._getChildren()}
+    </div>
+  );
 
-    getDefaultProps: function() {
-        return {
-        };
-    },
+  _getChildren = () => {
+    let children = [],
+      rowItem,
+      itemComponent
 
-    render: function() {
-        var classes = this.getClasses('chamel-table-rows');
+    for (let i=0; i < this.props.rowItems.length; i++) {
+      rowItem = this.props.rowItems[i];
 
-        return (
-            <div className={classes}>
-                {this._getChildren()}
-            </div>
-        );
-    },
+      /*
+       for(var prop in rowItem) {
+       if(rowItem.hasOwnProperty(prop)) {
+       console.log(prop);
+       }
+       }
+       console.log("--");
+       */
 
-    _getChildren: function() {
-        var children = [],
-            rowItem,
-            itemComponent
+      itemComponent = (
+        <TableRowsItem />
+      );
 
-        for (var i=0; i < this.props.rowItems.length; i++) {
-            rowItem = this.props.rowItems[i];
-
-            /*
-             for(var prop in rowItem) {
-             if(rowItem.hasOwnProperty(prop)) {
-             console.log(prop);
-             }
-             }
-             console.log("--");
-             */
-
-            itemComponent = (
-                <TableRowsItem />
-            );
-
-            children.push(itemComponent);
-        }
-
-        return children;
+      children.push(itemComponent);
     }
+
+    return children;
+  };
 
 });
 
-module.exports = TableRow;
+TableRow.propTypes = {
+  rowItems: PropTypes.array.isRequired
+};
+
+// Check for commonjs
+if (module) {
+  module.exports = TableRow;
+}
+
+export default TableRow;

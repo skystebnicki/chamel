@@ -1,27 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Classable from '../mixins/classable';
 import DateTime from '../utils/DateTime';
 import EnhancedButton from '../Button';
 
-var DayButton = React.createClass({
+class DayButton extends Component {
 
-  mixins: [Classable],
+  // mixins: [Classable],
 
-  propTypes: {
-    date: React.PropTypes.object,
-    onClick: React.PropTypes.func,
-    selected: React.PropTypes.bool
-  },
-
-  render: function() {
-    var {
+  render() {
+    let {
       className,
       date,
       onClick,
       selected,
       ...other
     } = this.props;
-    var classes = this.getClasses('chamel-date-picker-day-button', { 
+    const classes = this.getClasses('chamel-date-picker-day-button', {
       'chamel-is-current-date': DateTime.isEqualDate(this.props.date, new Date()),
       'chamel-is-selected': this.props.selected
     });
@@ -38,12 +33,23 @@ var DayButton = React.createClass({
     ) : (
       <span className={classes} />
     );
-  },
-
-  _handleTouchTap: function(e) {
-    if (this.props.onClick) this.props.onClick(e, this.props.date);
   }
 
-});
+  _handleTouchTap = (e) => {
+    if (this.props.onClick) this.props.onClick(e, this.props.date);
+  };
 
-module.exports = DayButton;
+}
+
+DayButton.propTypes = {
+  date: PropTypes.object,
+  onClick: PropTypes.func,
+  selected: PropTypes.bool
+};
+
+// Check for commonjs
+if (module) {
+  module.exports = DayButton;
+}
+
+export default DayButton;
