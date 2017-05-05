@@ -1,24 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Classable from '../mixins/classable';
 import DateTime from '../utils/DateTime';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 
-var DateDisplay = React.createClass({
+class DateDisplay extends Component {
 
-  mixins: [Classable],
+  // mixins: [Classable],
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  propTypes: {
-    selectedDate: React.PropTypes.object.isRequired
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       transitionDirection: 'up'
     };
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
-    var direction;
+  componentWillReceiveProps(nextProps) {
+    let direction;
 
     if (nextProps.selectedDate !== this.props.selectedDate) {
       direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
@@ -26,18 +30,18 @@ var DateDisplay = React.createClass({
         transitionDirection: direction
       });
     }
-  },
+  }
 
-  render: function() {
-    var {
+  render() {
+    let {
       selectedDate,
       ...other
     } = this.props;
-    var classes = this.getClasses('chamel-date-picker-date-display');
-    var dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
-    var month = DateTime.getShortMonth(this.props.selectedDate);
-    var day = this.props.selectedDate.getDate();
-    var year = this.props.selectedDate.getFullYear();
+    const classes = this.getClasses('chamel-date-picker-date-display');
+    const dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
+    const month = DateTime.getShortMonth(this.props.selectedDate);
+    const day = this.props.selectedDate.getDate();
+    const year = this.props.selectedDate.getFullYear();
 
     return (
       <div {...other} className={classes}>
@@ -74,6 +78,10 @@ var DateDisplay = React.createClass({
     );
   }
 
-});
+}
 
-module.exports = DateDisplay;
+DateDisplay.propTypes = {
+  selectedDate: PropTypes.object.isRequired
+};
+
+export default DateDisplay;

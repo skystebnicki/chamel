@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Classable from './mixins/classable';
 import ClickAwayable from './mixins/ClickAwayable';
 import KeyLine from './utils/KeyLine';
@@ -10,7 +11,7 @@ import Popover from './Popover/Popover';
 /**
  * Component for displaying dropdowns from an icon
  */
-class DropDownIcon extends React.Component {
+class DropDownIcon extends Component {
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -83,17 +84,17 @@ class DropDownIcon extends React.Component {
     });
   }
 
-};
+}
 
 /**
  * Set accepted properties
  */
 DropDownIcon.propTypes = {
-  autoWidth: React.PropTypes.bool,
-  selectedIndex: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  menuItems: React.PropTypes.array.isRequired,
-  closeOnMenuItemClick: React.PropTypes.bool
+  autoWidth: PropTypes.bool,
+  selectedIndex: PropTypes.number,
+  onChange: PropTypes.func,
+  menuItems: PropTypes.array.isRequired,
+  closeOnMenuItemClick: PropTypes.bool
 };
 
 /**
@@ -103,10 +104,5 @@ DropDownIcon.defaultProps = {
   autoWidth: true,
   closeOnMenuItemClick: true
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = DropDownIcon;
-}
 
 export default DropDownIcon;
