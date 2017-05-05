@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import ThemeService from '../styles/ChamelThemeService';
-import Tappable from 'react-tappable';
 import classnames from 'classnames';
 
 /**
@@ -19,7 +18,7 @@ const Button = (props, context) => {
 
   // Setup classes
   const className = props.className || null;
-  const type = props.type ;
+  const type = props.type;
   const classes = classnames(theme[type], {
     [theme[type + "primary"]]: props.primary,
     [theme[type + "accent"]]: props.accent,
@@ -30,20 +29,20 @@ const Button = (props, context) => {
 
   // Determine if the selected type of button is a centered ripple
   let centerRipple = (type == 'floating' || type == 'icon');
-
   const label = (props.label) ? props.label : props.children;
-  const tapHandler = props.onTap || props.onClick;
 
-  if (tapHandler && !props.disabled) {
+  const onClickHandler = props.onTap || props.onClick;
+
+  if (onClickHandler && !props.disabled) {
     return (
-      <Tappable onTap={tapHandler}>
-        <button className={classes}>
+      <button
+        className={classes}
+        onClick={onClickHandler}>
           <FocusRipple  />
           <TouchRipple centerRipple={centerRipple}>
             {label}
           </TouchRipple>
-        </button>
-      </Tappable>
+      </button>
     );
   } else {
     return (

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
-import Tappable from 'react-tappable';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
