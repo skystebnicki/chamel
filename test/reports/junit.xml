@@ -1,0 +1,6 @@
+<testsuites name="chamel">
+  <testsuite name="AppBar" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-08T13:32:51" time="2.606">
+    <testcase classname="AppBar should be the default export" name="AppBar should be the default export" time="0.003">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -221,26 +221,26 @@ class App extends React.Component {
             <div style={mainContainerStyle}>
               <Container fluid>
                 <Switch>
-                  <Route exactly pathname="/" component={Home} />
-                  <Route pathname="/appbar" component={AppBarDemo} />
-                  <Route pathname="/drawer" component={DrawerDemo} />
-                  <Route pathname="/button" component={ButtonDemo} />
-                  <Route pathname="/input" component={InputDemo} />
-                  <Route pathname="/toolbar" component={ToolbarDemo} />
-                  <Route pathname="/editor" component={EditorDemo} />
-                  <Route pathname="/icon" component={IconsDemo} />
-                  <Route pathname="/dialog" component={DialogDemo} />
-                  <Route pathname="/list" component={ListDemo} />
-                  <Route pathname="/menu" component={MenuDemo} />
-                  <Route pathname="/popover" component={PopoverDemo} />
-                  <Route pathname="/progress" component={ProgressDemo} />
-                  <Route pathname="/tabs" component={TabsDemo} />
-                  <Route pathname="/autocomplete" component={AutoCompleteDemo} />
-                  <Route pathname="/toggle" component={ToggleDemo} />
-                  <Route pathname="/picker" component={PickerDemo} />
-                  <Route pathname="/snackbar" component={SnackbarDemo} />
-                  <Route pathname="/radiobutton" component={RadioButtonGroupDemo} />
-                  <Route pathname=":missedpath" component={NoMatch} />
+                  <Route exact path="/" component={Home} />
+                  <Route path="/appbar" component={AppBarDemo} />
+                  <Route path="/drawer" component={DrawerDemo} />
+                  <Route path="/button" component={ButtonDemo} />
+                  <Route path="/input" component={InputDemo} />
+                  <Route path="/toolbar" component={ToolbarDemo} />
+                  <Route path="/editor" component={EditorDemo} />
+                  <Route path="/icon" component={IconsDemo} />
+                  <Route path="/dialog" component={DialogDemo} />
+                  <Route path="/list" component={ListDemo} />
+                  <Route path="/menu" component={MenuDemo} />
+                  <Route path="/popover" component={PopoverDemo} />
+                  <Route path="/progress" component={ProgressDemo} />
+                  <Route path="/tabs" component={TabsDemo} />
+                  <Route path="/autocomplete" component={AutoCompleteDemo} />
+                  <Route path="/toggle" component={ToggleDemo} />
+                  <Route path="/picker" component={PickerDemo} />
+                  <Route path="/snackbar" component={SnackbarDemo} />
+                  <Route path="/radiobutton" component={RadioButtonGroupDemo} />
+                  <Route path=":missedpath" component={NoMatch} />
                 </Switch>
               </Container>
             </div>
@@ -296,10 +296,11 @@ class App extends React.Component {
 }
 
 const LeftNavRouteItem = ({ activeOnlyWhenExact, handleGoToRoute, primaryText, path }) => (
+  // TODO: We need to figure out how to handle the selected state, but for now it is working okay
   <ListItem
     primaryText={primaryText}
     selected={false}
-    onTap={(evt) => {handleGoToRoute(evt, path); }}
+    onTap={(evt) => { handleGoToRoute(evt, path); }}
   />
   /*
   <Link activeOnlyWhenExact={activeOnlyWhenExact} to={path} onClick={handleGoToRoute}>{
@@ -314,7 +315,7 @@ const LeftNavRouteItem = ({ activeOnlyWhenExact, handleGoToRoute, primaryText, p
       }
   }</Link>
   */
-)
+);
 
 const NoMatch = ({ location }) => (
   <div>
