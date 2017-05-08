@@ -21,7 +21,7 @@ class AppBar extends React.Component {
       React.PropTypes.element,
       React.PropTypes.array
     ]),
-    title : React.PropTypes.node,
+    title: React.PropTypes.node,
     zDepth: React.PropTypes.number,
     fixed: React.PropTypes.bool
   };
@@ -59,25 +59,25 @@ class AppBar extends React.Component {
   }
 
   componentDidMount() {
-      // If we are working with a device that supports status bar color, then set
-      if (typeof cordova != "undefined" && typeof StatusBar != "undefined") {
-        if (cordova.platformId == 'android') {
-           // StatusBar.backgroundColorByHexString("#fff");
-        }
+    // If we are working with a device that supports status bar color, then set
+    if (typeof cordova != "undefined" && typeof StatusBar != "undefined") {
+      if (cordova.platformId == 'android') {
+        // StatusBar.backgroundColorByHexString("#fff");
       }
+    }
 
-      // Save the original top position of the menu
-      if (this.props.fixed) {
-        let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.appBarInnerCon));
-        this.setState({
-            startTopOffset: offset.top,
-            startWidth: offset.width,
-            startHeight: offset.height
-        });
+    // Save the original top position of the menu
+    if (this.props.fixed) {
+      let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.appBarInnerCon));
+      this.setState({
+        startTopOffset: offset.top,
+        startWidth: offset.width,
+        startHeight: offset.height
+      });
 
-        // Now listen for window scroll events
-        Events.on(window, 'scroll', this._onWindowScroll);
-      }
+      // Now listen for window scroll events
+      Events.on(window, 'scroll', this._onWindowScroll);
+    }
   }
 
   componentWillUnmount() {
@@ -87,10 +87,10 @@ class AppBar extends React.Component {
     }
   }
 
-	render() {
+  render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.appBar)
-        ? this.context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
+      ? this.context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
 
     let classes = theme.appBarOuter, elementCenter, menuElementLeft, menuElementRight;
 
@@ -113,7 +113,7 @@ class AppBar extends React.Component {
     }
 
     // Set the right elements
-    let rightElements =  (this.props.iconElementRight) ? this.props.iconElementRight : null;
+    let rightElements = (this.props.iconElementRight) ? this.props.iconElementRight : null;
 
     // If right elements exists, wrap in a toolbar
     if (rightElements) {
@@ -164,7 +164,7 @@ class AppBar extends React.Component {
       zDepth++;
     }
 
-		return (
+    return (
       <div style={outerConStyle}>
         <div style={innerConStyle}>
           <Paper ref="appBarInnerCon" rounded={false} className={classes} zDepth={zDepth}>
@@ -174,8 +174,8 @@ class AppBar extends React.Component {
           </Paper>
         </div>
       </div>
-		);
-	}
+    );
+  }
 
   /**
    * Handle when the document is scrolled while the
@@ -185,7 +185,7 @@ class AppBar extends React.Component {
    * want to be able to reposition the leftnav when the user scrolls
    * so it scrolls with the document until 0 (top)
    */
-   _onWindowScroll = (e) => {
+  _onWindowScroll = (e) => {
 
     // If the starting state was 0 then do nothing
     if (!this.props.fixed) {
@@ -250,12 +250,12 @@ class AppBar extends React.Component {
         case 'IconButton':
         case 'SelectButton':
           return React.cloneElement(element, {
-              className: className + " " + theme.appBarIconButton
+            className: className + " " + theme.appBarIconButton
           });
         case 'Button':
         default:
           return React.cloneElement(element, {
-              className: className + " " + theme.button
+            className: className + " " + theme.button
           })
       }
     }

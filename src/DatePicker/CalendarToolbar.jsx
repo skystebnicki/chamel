@@ -6,7 +6,6 @@ import NavigationChevronRight from '../svg-icons/navigation-chevron-right';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 
 var CalendarToolbar = React.createClass({
-
   propTypes: {
     displayDate: React.PropTypes.object.isRequired,
     onLeftTouchTap: React.PropTypes.func,
@@ -16,19 +15,19 @@ var CalendarToolbar = React.createClass({
   },
 
   getDefaultProps: function () {
-      return {
-        maxDate: null,
-        minDate: null
-      };
+    return {
+      maxDate: null,
+      minDate: null
+    };
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       transitionDirection: 'up'
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps: function (nextProps) {
     var direction;
 
     if (nextProps.displayDate !== this.props.displayDate) {
@@ -38,27 +37,27 @@ var CalendarToolbar = React.createClass({
       });
     }
   },
-  _isDisabled: function(direction){
-    
+  _isDisabled: function (direction) {
+
     var date = this.props.displayDate;
     var minDate = this.props.minDate;
     var maxDate = this.props.maxDate;
 
-    if(direction == "left" && minDate){      
-      if(date.getFullYear() < minDate.getFullYear()) return true;
-      if(date.getFullYear() == minDate.getFullYear()){
+    if (direction == "left" && minDate) {
+      if (date.getFullYear() < minDate.getFullYear()) return true;
+      if (date.getFullYear() == minDate.getFullYear()) {
         return date.getMonth() <= minDate.getMonth();
       }
-    }else if(direction == "right" && maxDate){
-      if(date.getFullYear() > maxDate.getFullYear()) return true;
-      if(date.getFullYear() == maxDate.getFullYear()){
+    } else if (direction == "right" && maxDate) {
+      if (date.getFullYear() > maxDate.getFullYear()) return true;
+      if (date.getFullYear() == maxDate.getFullYear()) {
         return date.getMonth() >= maxDate.getMonth();
       }
     }
 
     return false;
   },
-  render: function() {
+  render: function () {
     var month = DateTime.getFullMonth(this.props.displayDate);
     var year = this.props.displayDate.getFullYear();
 
@@ -78,20 +77,19 @@ var CalendarToolbar = React.createClass({
           disabled={disableLeft}
           className="chamel-date-picker-calendar-toolbar-button-left"
           onClick={this.props.onLeftTouchTap}>
-            <NavigationChevronLeft/>
+          <NavigationChevronLeft/>
         </IconButton>
 
         <IconButton
-          disabled={disableRight}        
+          disabled={disableRight}
           className="chamel-date-picker-calendar-toolbar-button-right"
           onClick={this.props.onRightTouchTap}>
-            <NavigationChevronRight/>
+          <NavigationChevronRight/>
         </IconButton>
 
       </div>
     );
   }
-
 });
 
 module.exports = CalendarToolbar;

@@ -1,55 +1,55 @@
-import React from 'react';
-import Classable from '../mixins/classable';
-import WindowListenable from '../mixins/WindowListenable';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import KeyCode from '../utils/KeyCode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog/Dialog';
 import FlatButton from '../Button/FlatButton';
 
-var DatePickerDialog = React.createClass({
+class DatePickerDialog extends Component {
 
-  mixins: [Classable, WindowListenable],
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  propTypes: {
-    initialDate: React.PropTypes.object,
-    onAccept: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-  },
-
-  windowListeners: {
-    'keyup': '_handleWindowKeyUp'
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       isCalendarActive: false
     };
-  },
+  }
 
-  render: function() {
+  componentDidMount() {
+    Events.on(window, 'keyup', this._handleWindowKeyUp);
+  };
+
+  componentWillUnmount() {
+    Events.off(window, 'keyup', this._handleWindowKeyUp);
+  };
+
+  render() {
     var {
       initialDate,
       onAccept,
       ...other
-    } = this.props;
+      } = this.props;
     var classes = this.getClasses('chamel-date-picker-dialog');
     var actions = [
       <FlatButton
         key={0}
         label="Cancel"
         secondary={true}
-        onClick={this._handleCancelTouchTap} />,
+        onClick={this._handleCancelTouchTap}/>,
       <FlatButton
         key={1}
         label="OK"
         secondary={true}
-        onClick={this._handleOKTouchTap} />
+        onClick={this._handleOKTouchTap}/>
     ];
 
-    if(this.props.autoOk){
+    if (this.props.autoOk) {
       actions = actions.slice(0, 1);
     }
 
@@ -67,57 +67,57 @@ var DatePickerDialog = React.createClass({
           ref="calendar"
           onSelectedDate={this._onSelectedDate}
           initialDate={this.props.initialDate}
-          isActive={this.state.isCalendarActive} />
+          isActive={this.state.isCalendarActive}/>
       </Dialog>
     );
-  },
+  }
 
-  show: function() {
+  show = () => {
     this.refs.dialogWindow.show();
-  },
+  };
 
-  dismiss: function() {
+  dismiss = () => {
     this.refs.dialogWindow.dismiss();
-  },
+  }
 
-  _onSelectedDate: function(){
-    if(this.props.autoOk){
+  _onSelectedDate = () => {
+    if (this.props.autoOk) {
       setTimeout(this._handleOKTouchTap.bind(this), 300);
     }
-  },
+  };
 
-  _handleCancelTouchTap: function() {
+  _handleCancelTouchTap = () => {
     this.dismiss();
-  },
+  };
 
-  _handleOKTouchTap: function() {
+  _handleOKTouchTap = () => {
     this.dismiss();
     if (this.props.onAccept) {
       this.props.onAccept(this.refs.calendar.getSelectedDate());
     }
-  },
+  };
 
-  _handleDialogShow: function() {
+  _handleDialogShow = () => {
     this.setState({
       isCalendarActive: true
     });
 
-    if(this.props.onShow) {
+    if (this.props.onShow) {
       this.props.onShow();
     }
-  },
+  };
 
-  _handleDialogDismiss: function() {
+  _handleDialogDismiss = () => {
     this.setState({
       isCalendarActive: false
     });
 
-    if(this.props.onDismiss) {
+    if (this.props.onDismiss) {
       this.props.onDismiss();
     }
-  },
+  };
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp = (e) => {
     if (this.refs.dialogWindow.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
@@ -125,8 +125,48 @@ var DatePickerDialog = React.createClass({
           break;
       }
     }
-  }
+  };
 
-});
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
 
-module.exports = DatePickerDialog;
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
+}
+
+DatePickerDialog.propTypes = {
+  initialDate: PropTypes.object,
+  onAccept: PropTypes.func,
+  onShow: PropTypes.func,
+  onDismiss: PropTypes.func,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object
+};
+
+export default DatePickerDialog;

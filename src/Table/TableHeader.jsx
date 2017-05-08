@@ -1,50 +1,69 @@
 import React from 'react';
-import Classable from '../mixins/classable';
+import PropTypes from 'prop-types';
 
-var TableHeader = React.createClass({
+const TableHeader = (props) => {
+  return (
+    <div className="chamel-table-header">
+      {this._getChildren()}
+      <div className="chamel-table-header-pagify">
+        (Pagify)
+      </div>
+    </div>
+  );
 
-    mixins: [Classable],
+  _getChildren = () => {
+    let children = [],
+      headerItem,
+      itemComponent
 
-    propTypes: {
-        headerItems: React.PropTypes.array.isRequired
-    },
+    for (let i = 0; i < this.props.headerItems.length; i++) {
+      headerItem = this.props.headerItems[i];
 
-    getDefaultProps: function() {
-        return {
-        };
-    },
+      itemComponent = (
+        <div key={i} className="chamel-table-header-column">{headerItem.text}</div>
+      );
 
-    render: function() {
-        var classes = this.getClasses('chamel-table-header');
-
-        return (
-            <div className={classes}>
-                {this._getChildren()}
-                <div className="chamel-table-header-pagify">
-                    (Pagify)
-                </div>
-            </div>
-        );
-    },
-
-    _getChildren: function() {
-        var children = [],
-            headerItem,
-            itemComponent
-
-        for (var i=0; i < this.props.headerItems.length; i++) {
-            headerItem = this.props.headerItems[i];
-
-            itemComponent = (
-                <div key={i} className="chamel-table-header-column">{headerItem.text}</div>
-            );
-
-            children.push(itemComponent);
-        }
-
-        return children;
+      children.push(itemComponent);
     }
 
-});
+    return children;
+  };
 
-module.exports = TableHeader;
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
+}
+
+TableHeader.propTypes = {
+  headerItems: PropTypes.array.isRequired
+};
+
+export default TableHeader;

@@ -115,7 +115,7 @@ class AutoComplete extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    var suggestionList = this._getSuggestionList(nextProps.inputDetails, nextProps.suggestionData);
+    let suggestionList = this._getSuggestionList(nextProps.inputDetails, nextProps.suggestionData);
 
     /**
      * If the anchored element and current active element is the same,
@@ -220,8 +220,8 @@ class AutoComplete extends React.Component {
       case KeyCode.RIGHT:
       case KeyCode.DELETE:
       case KeyCode.BACKSPACE:
-          this._getSuggestionList();
-          break;
+        this._getSuggestionList();
+        break;
     }
   }
 
@@ -246,8 +246,8 @@ class AutoComplete extends React.Component {
    */
   _setAutoCompleteValue(selectedIndex) {
 
-    var selectedValue = null;
-    var selectedData = this.state.suggestionList[selectedIndex];
+    const selectedData = this.state.suggestionList[selectedIndex];
+    let selectedValue = null;
 
     if (this.props.transform) {
       selectedValue = this.props.transform(selectedData);
@@ -257,7 +257,7 @@ class AutoComplete extends React.Component {
       selectedValue = selectedData.text;
     }
 
-    var inputDetails = this.props.inputDetails;
+    const inputDetails = this.props.inputDetails;
 
     if (this.props.trigger == null) {
       /**
@@ -267,14 +267,14 @@ class AutoComplete extends React.Component {
        * This is necessary so when replacing the keyword with the selectedValue, we will include the space in between
        */
       if (inputDetails.subValue[inputDetails.startPos] === " ") {
-          inputDetails.startPos += 1;
+        inputDetails.startPos += 1;
       }
     } else {
       inputDetails.startPos -= 1;
     }
 
     // Replace the trigger key with the selected autoComplete value
-    var newValue = inputDetails.subValue.substr(0, inputDetails.startPos);
+    let newValue = inputDetails.subValue.substr(0, inputDetails.startPos);
     newValue += selectedValue;
     newValue += (this.props.delimiter) ? this.props.delimiter : '';
 
@@ -306,48 +306,48 @@ class AutoComplete extends React.Component {
    */
   _getSuggestionList(inputDetails, suggestionData) {
 
-      if (!suggestionData) {
-          suggestionData = this.props.suggestionData;
+    if (!suggestionData) {
+      suggestionData = this.props.suggestionData;
+    }
+
+    let suggestionList = [];
+
+    // If we find an @ in the inputValue, then lets evaluate it inside the if statement
+    if (suggestionData && inputDetails && inputDetails.startPos >= 0) {
+
+      /**
+       * Now lets get the chuncked value from the @ position to caret position
+       * We will not include the @ in the chunkedValue
+       * So we need to increment the value of startPos
+       */
+      var chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
+      if (chunkedValue.length <= inputDetails.minLengthLimit) {
+        return suggestionList;
       }
 
-      var suggestionList = [];
+      // If the data unfiltered, then we need to filter it by using keyword and regular expressions
+      if (this.props.filterData) {
 
-      // If we find an @ in the inputValue, then lets evaluate it inside the if statement
-      if (suggestionData && inputDetails && inputDetails.startPos >= 0) {
+        // Map this.props.suggestionData and find if we have a match of the chunkedValue keyword
+        suggestionData.map(function (suggestion) {
 
-          /**
-           * Now lets get the chuncked value from the @ position to caret position
-           * We will not include the @ in the chunkedValue
-           * So we need to increment the value of startPos
-           */
-          var chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
-          if (chunkedValue.length <= inputDetails.minLengthLimit) {
-              return suggestionList;
+          // We need the keyword to only have alphanumeric characters
+          var keyword = chunkedValue.replace(/[\W\s+]+/g, '');
+
+          var re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
+
+          // If we found a match, then lets push it in suggestionList to be displayed later
+          if (suggestion.text.match(re)) {
+            suggestionList.push(suggestion);
           }
-
-          // If the data unfiltered, then we need to filter it by using keyword and regular expressions
-          if (this.props.filterData) {
-
-              // Map this.props.suggestionData and find if we have a match of the chunkedValue keyword
-              suggestionData.map(function (suggestion) {
-
-                  // We need the keyword to only have alphanumeric characters
-                  var keyword = chunkedValue.replace(/[\W\s+]+/g, '');
-
-                  var re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
-
-                  // If we found a match, then lets push it in suggestionList to be displayed later
-                  if (suggestion.text.match(re)) {
-                      suggestionList.push(suggestion);
-                  }
-              });
-          } else {
-              suggestionList = suggestionData;
-          }
-
+        });
+      } else {
+        suggestionList = suggestionData;
       }
 
-      return suggestionList;
+    }
+
+    return suggestionList;
   }
 }
 

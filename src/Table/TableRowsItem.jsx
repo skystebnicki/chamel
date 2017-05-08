@@ -1,31 +1,16 @@
 import React from 'react';
-import Classable from '../mixins/classable';
 
-var TableRowItem = React.createClass({
+const TableRowItem = (props) => {
 
-    mixins: [Classable],
+  return (
+    <div className="chamel-table-rows-item">
+      (TableRowItem)
+      <div className="chamel-table-rows-actions">
+        (Actions)
+      </div>
+    </div>
+  );
 
-    propTypes: {
-    },
+}
 
-    getDefaultProps: function() {
-        return {
-        };
-    },
-
-    render: function() {
-        var classes = this.getClasses('chamel-table-rows-item');
-
-        return (
-            <div className={classes}>
-                (TableRowItem)
-                <div className="chamel-table-rows-actions">
-                    (Actions)
-                </div>
-            </div>
-        );
-    }
-
-});
-
-module.exports = TableRowItem;
+export default TableRowItem;

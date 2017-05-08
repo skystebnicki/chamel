@@ -1,95 +1,54 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Paper from '../Paper/Paper';
-import Classable from '../mixins/classable';
 import RadioButton from '../Picker/RadioButton';
 
-var RadioButtonGroup = React.createClass({
+class RadioButtonGroup extends Component {
 
-  mixins: [Classable],
-
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    valueSelected: React.PropTypes.string,
-
-    /**
-     * Set which value is 
-    defaultSelected: React.PropTypes.string,
-    
-    /**
-     * Float the label to the left or right of the radio button
-     *
-     * @type {string}
-     */
-    labelPosition: React.PropTypes.oneOf(['left', 'right']),
-
-    /**
-     * Callback trigger fired when a user selects a new radio option
-     *
-     * @type {function}
-     */
-    onChange: React.PropTypes.func,
-
-    /**
-     * Inline is used to determine if the radio buttons s are printed side-by-side
-     *
-     * @default true
-     * @type {bool}
-     */
-    inline: React.PropTypes.bool
-  },
+  _hasCheckAttribute = (radioButton) => {
+    return radioButton.props.hasOwnProperty('checked') &&
+      radioButton.props.checked;
+  };
 
   /**
-   * Set default properties if not set by the calling component
+   * Class constructor takes properties and passes them to the parent/super
    */
-  getDefaultProps: function() {
-    return (
-      {inline: false}
-    );
-  },
+  constructor(props) {
+    super(props);
 
-  _hasCheckAttribute: function(radioButton) {
-    return radioButton.props.hasOwnProperty('checked') && 
-      radioButton.props.checked; 
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       numberCheckedRadioButtons: 0,
       selected: this.props.valueSelected || this.props.defaultSelected || ''
     };
-  },
+  }
 
-  componentWillMount: function() {
-    var cnt = 0;
-    
-    this.props.children.forEach(function(option) {
+  componentWillMount() {
+    let cnt = 0;
+
+    this.props.children.forEach(function (option) {
       if (this._hasCheckAttribute(option)) cnt++;
     }, this);
 
     this.setState({numberCheckedRadioButtons: cnt});
-  }, 
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
       this.setState({selected: nextProps.valueSelected});
     }
-  },
+  }
 
-  render: function() {
+  render() {
+    const inline = this.props.inline;
+    const options = this.props.children.map(function (option) {
 
-    console.log(this.state.selected)
-
-    var inline = this.props.inline;
-
-    var options = this.props.children.map(function(option) {
-      
-      var {
+      let {
         name,
-        value, 
+        value,
         label,
         onCheck,
         ...other
-      } = option.props;
+        } = option.props;
 
       return <RadioButton
         {...other}
@@ -110,44 +69,74 @@ var RadioButtonGroup = React.createClass({
         {options}
       </div>
     );
-  },
+  }
 
-  _updateRadioButtons: function(newSelection) {
+  _updateRadioButtons = (newSelection) => {
     if (this.state.numberCheckedRadioButtons == 0) {
       this.setState({selected: newSelection});
     } else if (process.env.NODE_ENV !== 'production') {
-      var message = "Cannot select a different radio button while another radio button " +
-                    "has the 'checked' property set to true.";
+      const message = "Cannot select a different radio button while another radio button " +
+        "has the 'checked' property set to true.";
       console.error(message);
     }
-  },
+  };
 
-  _onChange: function(newSelection) {
+  _onChange = (newSelection) => {
     this._updateRadioButtons(newSelection);
 
     // Successful update
     if (this.state.numberCheckedRadioButtons == 0) {
       if (this.props.onChange) this.props.onChange(e, newSelection);
     }
-  },
+  };
 
-  getSelectedValue: function() {
+  getSelectedValue = () => {
     return this.state.selected;
-  },
+  };
 
-  setSelectedValue: function(newSelection) {
-    this._updateRadioButtons(newSelection);  
-  },
+  setSelectedValue = (newSelection) => {
+    this._updateRadioButtons(newSelection);
+  };
 
-  clearValue: function() {
-    this.setSelectedValue('');  
-  }
+  clearValue = () => {
+    this.setSelectedValue('');
+  };
 
-});
-
-// Check for commonjs
-if (module) {
-  module.exports = RadioButtonGroup;
 }
+
+
+RadioButtonGroup.propTypes = {
+  name: PropTypes.string.isRequired,
+  valueSelected: PropTypes.string,
+
+  /**
+   * Float the label to the left or right of the radio button
+   *
+   * @type {string}
+   */
+  labelPosition: PropTypes.oneOf(['left', 'right']),
+
+  /**
+   * Callback trigger fired when a user selects a new radio option
+   *
+   * @type {function}
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * Inline is used to determine if the radio buttons s are printed side-by-side
+   *
+   * @default true
+   * @type {bool}
+   */
+  inline: PropTypes.bool
+};
+
+/**
+ * Set default properties if not set by the calling component
+ */
+RadioButtonGroup.defaultProps = {
+  inline: false
+};
 
 export default RadioButtonGroup;

@@ -1,6 +1,5 @@
-import React from 'react';
-import Classable from './mixins/classable';
-import ClickAwayable from './mixins/ClickAwayable';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import KeyLine from './utils/KeyLine';
 import Paper from './Paper/Paper';
 import FontIcon from './FontIcon/FontIcon';
@@ -10,7 +9,7 @@ import Popover from './Popover/Popover';
 /**
  * Component for displaying dropdowns from an icon
  */
-class DropDownIcon extends React.Component {
+class DropDownIcon extends Component {
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -36,27 +35,27 @@ class DropDownIcon extends React.Component {
 
     var icon;
     if (this.props.iconClassName) {
-      icon = (<FontIcon className={this.props.iconClassName} />);
+      icon = (<FontIcon className={this.props.iconClassName}/>);
     }
 
     return (
       <div className={classes}>
-          <div className="chamel-menu-control" onClick={this._onControlClick}>
-              {icon}
-              {this.props.children}
-          </div>
-          <Popover
-            open={this.state.open}
-            anchorEl={this.state.anchorEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-            onRequestClose={this._handleRequestClose}
-          >
-            <Menu
-              ref="menuItems"
-              menuItems={this.props.menuItems}
-              onItemClick={this._onMenuItemClick} />
-          </Popover>
+        <div className="chamel-menu-control" onClick={this._onControlClick}>
+          {icon}
+          {this.props.children}
         </div>
+        <Popover
+          open={this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          onRequestClose={this._handleRequestClose}
+        >
+          <Menu
+            ref="menuItems"
+            menuItems={this.props.menuItems}
+            onItemClick={this._onMenuItemClick}/>
+        </Popover>
+      </div>
     );
   }
 
@@ -73,7 +72,7 @@ class DropDownIcon extends React.Component {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
     if (this.props.closeOnMenuItemClick) {
-      this.setState({ open: false });
+      this.setState({open: false});
     }
   }
 
@@ -83,17 +82,17 @@ class DropDownIcon extends React.Component {
     });
   }
 
-};
+}
 
 /**
  * Set accepted properties
  */
 DropDownIcon.propTypes = {
-  autoWidth: React.PropTypes.bool,
-  selectedIndex: React.PropTypes.number,
-  onChange: React.PropTypes.func,
-  menuItems: React.PropTypes.array.isRequired,
-  closeOnMenuItemClick: React.PropTypes.bool
+  autoWidth: PropTypes.bool,
+  selectedIndex: PropTypes.number,
+  onChange: PropTypes.func,
+  menuItems: PropTypes.array.isRequired,
+  closeOnMenuItemClick: PropTypes.bool
 };
 
 /**
@@ -103,10 +102,5 @@ DropDownIcon.defaultProps = {
   autoWidth: true,
   closeOnMenuItemClick: true
 };
-
-// Check for commonjs
-if (module) {
-  module.exports = DropDownIcon;
-}
 
 export default DropDownIcon;

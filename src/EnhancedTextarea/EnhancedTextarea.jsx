@@ -1,37 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
 
-var EnhancedTextarea = React.createClass({
+class EnhancedTextarea extends Component {
 
-  mixins: [Classable],
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  propTypes: {
-    onChange: React.PropTypes.func,
-    onHeightChange: React.PropTypes.func,
-    textareaClassName: React.PropTypes.string,
-    rows: React.PropTypes.number
-  },
-
-  getDefaultProps: function() {
-    return {
-      rows: 1
-    };
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       height: this.props.rows * 24
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this._syncHeightWithShadow();
-  },
+  }
 
-  render: function() {
+  render() {
 
-    var {
+    let {
       className,
       onChange,
       onHeightChange,
@@ -39,11 +32,11 @@ var EnhancedTextarea = React.createClass({
       rows,
       valueLink,
       ...other
-    } = this.props;
+      } = this.props;
 
-    var classes = this.getClasses('chamel-enhanced-textarea');
-    var textareaClassName = 'chamel-enhanced-textarea-input';
-    var style = {
+    let textareaClassName = 'chamel-enhanced-textarea-input';
+    const classes = this.getClasses('chamel-enhanced-textarea');
+    const style = {
       height: this.state.height + 'px'
     };
 
@@ -51,7 +44,7 @@ var EnhancedTextarea = React.createClass({
       textareaClassName += ' ' + this.props.textareaClassName;
     }
 
-    if(other.hasOwnProperty("value")){
+    if (other.hasOwnProperty("value")) {
 
       /**
        * If we have a value property in the object, we need to remove that
@@ -80,22 +73,22 @@ var EnhancedTextarea = React.createClass({
           tabIndex="-1"
           rows={this.props.rows}
           readOnly={true}
-          defaultValue={other.defaultValue} />
+          defaultValue={other.defaultValue}/>
         <textarea
           ref="input"
           className={textareaClassName}
           rows={this.props.rows}
           style={style}
-          onChange={this._handleChange} />
+          onChange={this._handleChange}/>
       </div>
     );
-  },
+  }
 
-  getInputNode: function() {
+  getInputNode = () => {
     return ReactDOM.findDOMNode(this.refs.input);
-  },
+  };
 
-  _syncHeightWithShadow: function(newValue, e) {
+  _syncHeightWithShadow = (newValue, e) => {
     var shadow = ReactDOM.findDOMNode(this.refs.shadow);
     var currentHeight = this.state.height;
     var newHeight;
@@ -107,9 +100,9 @@ var EnhancedTextarea = React.createClass({
       this.setState({height: newHeight});
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
     }
-  },
+  };
 
-  _handleChange: function(e) {
+  _handleChange = (e) => {
     this._syncHeightWithShadow(e.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
@@ -117,18 +110,57 @@ var EnhancedTextarea = React.createClass({
     }
 
     if (this.props.onChange) this.props.onChange(e);
-  },
+  };
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps = (nextProps) => {
     if (nextProps.value != this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
-  }
-});
+  };
 
-// Check for commonjs
-if (module) {
-  module.exports = EnhancedTextarea;
+
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
+
+EnhancedTextarea.propTypes = {
+  onChange: PropTypes.func,
+  onHeightChange: PropTypes.func,
+  textareaClassName: PropTypes.string,
+  rows: PropTypes.number
+};
+
+EnhancedTextarea.defaultProps = {
+  rows: 1
+};
 
 export default EnhancedTextarea;

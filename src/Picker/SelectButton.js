@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
 import Paper from '../Paper/Paper';
 import Menu from '../Menu/Menu';
@@ -12,38 +12,7 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Component for displaying dropdowns
  */
-class SelectButton extends React.Component {
-
-  /**
-   * Set accepted properties
-   */
-  static propTypes = {
-    onChange: React.PropTypes.func,
-    selectedIndex: React.PropTypes.number,
-    icon: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element
-    ]),
-    menuItems: React.PropTypes.array.isRequired,
-
-    /**
-     * Optional additional class for the icon button
-     */
-    className: React.PropTypes.string,
-
-    /**
-     * Optional children can be used to define content
-     */
-    children: React.PropTypes.node
-  };
-
-  /**
-   * Set property defaults
-   */
-  static defaultProps = {
-    autoWidth: true,
-    children: null
-  };
+class SelectButton extends Component {
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -59,25 +28,12 @@ class SelectButton extends React.Component {
   }
 
   /**
-   * An alternate theme may be passed down by a provider
-   */
-  static contextTypes = {
-    chamelTheme: React.PropTypes.object
-  };
-
-  /**
    * Popover has entered the dom
    */
   componentDidMount() {
     if (this.props.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(this.props);
     }
-  }
-
-  /**
-   * Componenent is about to exit the dom
-   */
-  componentWillUnmount() {
   }
 
   /**
@@ -99,7 +55,7 @@ class SelectButton extends React.Component {
       ? this.context.chamelTheme.picker : ThemeService.defaultTheme.picker;
 
     let icon = (typeof this.props.icon === 'string') ?
-      (<FontIcon className={this.props.icon} />) : this.props.icon;
+      (<FontIcon className={this.props.icon}/>) : this.props.icon;
 
     // Use default dropdown icon
     if (!icon && this.props.children) {
@@ -116,8 +72,7 @@ class SelectButton extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={true}
-        >
+          relative={true}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
@@ -199,5 +154,43 @@ class SelectButton extends React.Component {
     });
   }
 }
+
+/**
+ * Set accepted properties
+ */
+SelectButton.propTypes = {
+  onChange: PropTypes.func,
+  selectedIndex: PropTypes.number,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
+  menuItems: PropTypes.array.isRequired,
+
+  /**
+   * Optional additional class for the icon button
+   */
+  className: PropTypes.string,
+
+  /**
+   * Optional children can be used to define content
+   */
+  children: PropTypes.node
+};
+
+/**
+ * Set property defaults
+ */
+SelectButton.defaultProps = {
+  autoWidth: true,
+  children: null
+};
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+SelectButton.contextTypes = {
+  chamelTheme: PropTypes.object
+};
 
 export default SelectButton;

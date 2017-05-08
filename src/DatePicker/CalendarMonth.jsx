@@ -1,77 +1,70 @@
 import React from 'react';
-import Classable from '../mixins/classable';
+import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import DayButton from './DayButton';
 
-var CalendarMonth = React.createClass({
+const _getDayElements = (week, props) => {
+  let displayDayElements = [];
+  week.forEach((day, i) => {
+    const selected = DateTime.isEqualDate(props.selectedDate, day);
 
-  mixins: [Classable],
+    displayDayElements.pus(
+      <DayButton
+        key={i}
+        date={day}
+        disabled={(day) => {
+          const minDate = props.minDate;
+          const maxDate = props.maxDate;
 
-  propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    onDayTouchTap: React.PropTypes.func,
-    selectedDate: React.PropTypes.object.isRequired,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object,
-    autoOk: React.PropTypes.bool
-  },
+          if (minDate != null && day < minDate) {
+            return true;
+          }
 
-  render: function() {
-    var classes = this.getClasses('chamel-date-picker-calendar-month');
+          if (maxDate != null && day > maxDate) {
+            return true;
+          }
 
-    return (
-      <div className={classes}>
-        {this._getWeekElements()}
+          return false;
+        }}
+        onClick={(e, date) => {
+          if (props.onDayTouchTap) props.onDayTouchTap(e, date);
+        }}
+        selected={selected}/>
+    );
+  });
+
+  return displayDayElements;
+};
+
+const CalendarMonth = (props) => {
+
+  const weekArray = DateTime.getWeekArray(props.displayDate);
+  let displayWeekElements = [];
+
+  weekArray.forEach((week, i) => {
+    displayWeekElements.push(
+      <div
+        key={i}
+        className="chamel-date-picker-calendar-month-week">
+        {_getDayElements(week, props)}
       </div>
     );
-  },
+  });
 
-  _getWeekElements: function() {
-    var weekArray = DateTime.getWeekArray(this.props.displayDate);
+  return (
+    <div className={"chamel-date-picker-calendar-month"}>
+      {displayWeekElements}
+    </div>
+  );
+}
 
-    return weekArray.map(function(week, i) {
-      return (
-        <div
-          key={i}
-          className="chamel-date-picker-calendar-month-week">
-          {this._getDayElements(week)}
-        </div>
-      );
-    }, this);
-  },
-  _isDisabled: function(day){
-    var minDate = this.props.minDate;
-    var maxDate = this.props.maxDate;
+CalendarMonth.propTypes = {
+  displayDate: PropTypes.object.isRequired,
+  onDayTouchTap: PropTypes.func,
+  selectedDate: PropTypes.object.isRequired,
+  maxDate: PropTypes.object,
+  minDate: PropTypes.object,
+  autoOk: PropTypes.bool
+};
 
-    if(minDate != null && day < minDate){
-      return true;
-    }
-
-    if(maxDate != null && day > maxDate){
-      return true;
-    }
-
-    return false;
-  },
-  _getDayElements: function(week) {
-    return week.map(function(day, i) {
-      var selected = DateTime.isEqualDate(this.props.selectedDate, day);
-      var disabled = this._isDisabled(day);
-      return (
-        <DayButton
-          key={i}
-          date={day}
-          disabled={disabled}
-          onClick={this._handleDayTouchTap}
-          selected={selected} />
-      );
-    }, this);
-  },
-
-  _handleDayTouchTap: function(e, date) {
-    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
-  }
-
-});
-
-module.exports = CalendarMonth;
+export default CalendarMonth;

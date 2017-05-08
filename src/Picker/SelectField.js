@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
-import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
 import Paper from '../Paper/Paper';
 import Menu from '../Menu/Menu';
@@ -11,24 +10,7 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Component for displaying dropdowns
  */
-class SelectField extends React.Component {
-
-  /**
-   * Set accepted properties
-   */
-  static propTypes = {
-    autoWidth: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    selectedIndex: React.PropTypes.number,
-    menuItems: React.PropTypes.array.isRequired
-  };
-
-  /**
-   * Set property defaults
-   */
-  static defaultProps = {
-    autoWidth: true
-  };
+class SelectField extends Component {
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -44,25 +26,12 @@ class SelectField extends React.Component {
   }
 
   /**
-   * An alternate theme may be passed down by a provider
-   */
-  static contextTypes = {
-    chamelTheme: React.PropTypes.object
-  };
-
-  /**
    * Popover has entered the dom
    */
   componentDidMount() {
     if (this.props.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(this.props);
     }
-  }
-
-  /**
-   * Componenent is about to exit the dom
-   */
-  componentWillUnmount() {
   }
 
   /**
@@ -86,12 +55,12 @@ class SelectField extends React.Component {
     return (
       <div className={theme.selectField}>
         <div className={theme.selectFieldControl} onClick={this._onControlClick}>
-          <Paper zDepth={0} >
+          <Paper zDepth={0}>
             <div className={theme.selectFieldLabel}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow className={theme.selectFieldIcon} />
-            <div className={theme.selectFieldUnderline} />
+            <DropDownArrow className={theme.selectFieldIcon}/>
+            <div className={theme.selectFieldUnderline}/>
           </Paper>
         </div>
         <Popover
@@ -99,8 +68,7 @@ class SelectField extends React.Component {
           anchorEl={this.state.anchorEl}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={false}
-        >
+          relative={false}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
@@ -120,7 +88,7 @@ class SelectField extends React.Component {
    * @param {Object} props The props we are setting
    */
   _setSelectedIndex = (props) => {
-    var selectedIndex = props.selectedIndex;
+    const selectedIndex = props.selectedIndex;
 
     if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
       console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
@@ -182,5 +150,29 @@ class SelectField extends React.Component {
     });
   }
 }
+
+/**
+ * Set accepted properties
+ */
+SelectField.propTypes = {
+  autoWidth: PropTypes.bool,
+  onChange: PropTypes.func,
+  selectedIndex: PropTypes.number,
+  menuItems: PropTypes.array.isRequired
+};
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+SelectField.contextTypes = {
+  chamelTheme: PropTypes.object
+};
+
+/**
+ * Set property defaults
+ */
+SelectField.defaultProps = {
+  autoWidth: true
+};
 
 export default SelectField;

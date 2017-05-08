@@ -134,11 +134,9 @@ class Popover extends React.Component {
 
     // Check if the target is inside the current component
     if (this.props.open &&
-        e.target != el &&
-        !Dom.isDescendant(el, e.target) &&
-        e.target != anchorEl &&
-        !Dom.isDescendant(anchorEl, e.target) &&
-        document.documentElement.contains(e.target)) {
+      e.target != el && !Dom.isDescendant(el, e.target) &&
+      e.target != anchorEl && !Dom.isDescendant(anchorEl, e.target) &&
+      document.documentElement.contains(e.target)) {
       if (this.props.onRequestClose) {
         this.props.onRequestClose();
       }
@@ -176,12 +174,12 @@ class Popover extends React.Component {
      * Determine relative positions based on the anchor element coords
      */
     const relativeAnchorPosition = {
-        top: anchorPosition.top,
-        middle: anchorPosition.top + (anchorPosition.height / 2),
-        bottom: anchorPosition.top + anchorPosition.height,
-        left: anchorPosition.left,
-        center: anchorPosition.left + (anchorPosition.width / 2),
-        right: anchorPosition.left + anchorPosition.width
+      top: anchorPosition.top,
+      middle: anchorPosition.top + (anchorPosition.height / 2),
+      bottom: anchorPosition.top + anchorPosition.height,
+      left: anchorPosition.left,
+      center: anchorPosition.left + (anchorPosition.width / 2),
+      right: anchorPosition.left + anchorPosition.width
     };
 
     let targetPosition = {

@@ -1,54 +1,39 @@
-import React from 'react';
-import Classable from '../mixins/classable';
-import WindowListenable from '../mixins/WindowListenable';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../Input/TextField';
 import device from '../utils/device';
+import Events from '../utils/Events';
 
-var DatePicker = React.createClass({
+class DatePicker extends Component {
 
-  mixins: [Classable, WindowListenable],
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  propTypes: {
-    defaultDate: React.PropTypes.object,
-    formatDate: React.PropTypes.func,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
-    onFocus: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    autoOk: React.PropTypes.bool,
-    preferNative: React.PropTypes.bool,
-  },
-
-  windowListeners: {
-    'keyup': '_handleWindowKeyUp'
-  },
-
-  getDefaultProps: function() {
-    return {
-      formatDate: DateTime.format,
-      minDate: null,
-      maxDate: null,
-      autoOk: false,
-      preferNative: true
-    };
-  },
-
-  getInitialState: function() {
-    return {
+    this.state = {
       date: this.props.defaultDate,
       dialogDate: new Date()
     };
-  },
+  }
 
-  render: function() {
-    var {
+  componentDidMount() {
+    Events.on(window, 'keyup', this._handleWindowKeyUp);
+  };
+
+  componentWillUnmount() {
+    Events.off(window, 'keyup', this._handleWindowKeyUp);
+  };
+
+  render() {
+    let {
       formatDate,
       mode,
       onChange,
@@ -60,24 +45,24 @@ var DatePicker = React.createClass({
       maxDate,
       autoOk,
       ...other
-    } = this.props;
-    var classes = this.getClasses('chamel-date-picker', {
+      } = this.props;
+    const classes = this.getClasses('chamel-date-picker', {
       'chamel-is-landscape': this.props.mode === 'landscape',
       'chamel-is-inline': this.props.mode === 'inline'
     });
-    var defaultInputValue;
+    let defaultInputValue;
 
     if (this.props.defaultDate) {
       defaultInputValue = this.props.formatDate(this.props.defaultDate);
     }
 
-    var inputType = (this.props.preferNative) ? "date" : "text";
+    const inputType = (this.props.preferNative) ? "date" : "text";
 
     // If we are using the native input then we need to get value when changed
-    var inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
+    const inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
 
     // We need to exclude the preferNative property as it is an unkown props for <input> tag
-    if(other.hasOwnProperty("preferNative")) {
+    if (other.hasOwnProperty("preferNative")) {
       delete other.preferNative;
     }
 
@@ -90,43 +75,43 @@ var DatePicker = React.createClass({
           type={inputType}
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onClick={this._handleInputTouchTap} />
+          onClick={this._handleInputTouchTap}/>
         <DatePickerDialog
-          minDate={minDate} 
-          maxDate={maxDate} 
+          minDate={minDate}
+          maxDate={maxDate}
           autoOk={autoOk}
           ref="dialogWindow"
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={onDismiss} />
+          onDismiss={onDismiss}/>
       </div>
 
     );
-  },
+  }
 
-  getDate: function() {
+  getDate = () => {
     return this.state.date;
-  },
+  };
 
-  setDate: function(d) {
+  setDate = (d) => {
     this.setState({
       date: d
     });
     this.refs.input.setValue(this.props.formatDate(d));
-  },
+  };
 
-  _handleDialogAccept: function(d) {
+  _handleDialogAccept = (d) => {
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
-  },
+  };
 
   /**
    * Handle native date input change
    */
-  _handleInputChange: function(e) {
-    var dateString = e.target.value;
-    var d = null;
+  _handleInputChange = (e) => {
+    let dateString = e.target.value;
+    let d = null;
 
     /*
      * HTML5 date inputs return yyyy-mm-dd which will be parsed as UTC
@@ -136,22 +121,22 @@ var DatePicker = React.createClass({
      * actual date the user selected
      */
     if (dateString) {
-      var parts = dateString.split('-');
+      const parts = dateString.split('-');
       // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
-      
+
       // Make a local date with the date parts
-      d = new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
+      d = new Date(parts[0], parts[1] - 1, parts[2]); // Note: months are 0-based
     }
 
     if (this.props.onChange) this.props.onChange(null, d);
-  },
+  };
 
-  _handleInputFocus: function(e) {
+  _handleInputFocus = (e) => {
     e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
-  },
+  };
 
-  _handleInputTouchTap: function(e) {
+  _handleInputTouchTap = (e) => {
     this.setState({
       dialogDate: this.getDate()
     });
@@ -161,22 +146,71 @@ var DatePicker = React.createClass({
      * then we will only display the window if the browser
      * does not support a native date type
      */
-    if (!this.props.preferNative || !device.test.inputtypes.date){
+    if (!this.props.preferNative || !device.test.inputtypes.date) {
       this.refs.dialogWindow.show();
     }
 
     if (this.props.onClick) this.props.onClick(e);
-  },
+  };
 
-  _handleWindowKeyUp: function(e) {
+  _handleWindowKeyUp = (e) => {
     //TO DO: open the dialog if input has focus
-  }
+  };
 
-});
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
 
-// Check for commonjs
-if (module) {
-  module.exports = DatePicker;
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
+
+DatePicker.propTypes = {
+  defaultDate: PropTypes.object,
+  formatDate: PropTypes.func,
+  mode: PropTypes.oneOf(['portrait', 'landscape', 'inline']),
+  onFocus: PropTypes.func,
+  onClick: PropTypes.func,
+  onChange: PropTypes.func,
+  onShow: PropTypes.func,
+  onDismiss: PropTypes.func,
+  minDate: PropTypes.object,
+  maxDate: PropTypes.object,
+  autoOk: PropTypes.bool,
+  preferNative: PropTypes.bool,
+};
+
+DatePicker.defaultProps = {
+  formatDate: DateTime.format,
+  minDate: null,
+  maxDate: null,
+  autoOk: false,
+  preferNative: true
+};
 
 export default DatePicker;
