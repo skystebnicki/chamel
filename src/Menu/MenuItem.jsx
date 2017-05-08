@@ -4,7 +4,7 @@ import Toggle from '../Toggle/Switch';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
-var Types = {
+const Types = {
   LINK: 'LINK',
   SUBHEADER: 'SUBHEADER',
   NESTED: 'NESTED'
@@ -20,17 +20,17 @@ class MenuItem extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
       ? this.context.chamelTheme.menu : ThemeService.defaultTheme.menu;
 
-    var classes = classnames(theme.menuItem, {
+    const classes = classnames(theme.menuItem, {
       [theme.menuItemSelected]: this.props.selected,
       [theme.menuItemFocused]: this.props.focused,
       [theme.menuItemDisabled]: this.props.disabled
     });
-    var icon;
-    var data;
-    var iconRight;
-    var attribute;
-    var number;
-    var toggle;
+    let icon;
+    let data;
+    let iconRight;
+    let attribute;
+    let number;
+    let toggle;
 
     if (this.props.iconClassName) {
       icon = <FontIcon className={theme.menuItemIcon + ' ' + this.props.iconClassName}/>;
@@ -51,16 +51,16 @@ class MenuItem extends React.Component {
     }
 
     // Add indentations for hierarchical menus
-    var numIndents = this.props.indent || 0;
-    var indentItems = (numIndents) ? [] : null;
-    for (var i = 0; i < numIndents; i++) {
+    const numIndents = this.props.indent || 0;
+    let indentItems = (numIndents) ? [] : null;
+    for (let i = 0; i < numIndents; i++) {
       indentItems.push(
         <span className={theme.menuItemIndent} key={i}>{" "}</span>
       );
     }
 
     if (this.props.toggle) {
-      var {
+      let {
         toggle,
         onClick,
         onToggle,

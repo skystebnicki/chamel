@@ -6,7 +6,7 @@ import device from '../utils/device';
 import classnames from 'classnames';
 
 class DatePicker extends React.Component {
-  
+
   /**
    * Property types we handle
    */
@@ -46,7 +46,7 @@ class DatePicker extends React.Component {
   }
 
   render() {
-    var {
+    const {
       formatDate,
       mode,
       onChange,
@@ -59,20 +59,20 @@ class DatePicker extends React.Component {
       autoOk,
       ...other
     } = this.props;
-    var classes = classnames('chamel-date-picker', {
+    const classes = classnames('chamel-date-picker', {
       'chamel-is-landscape': this.props.mode === 'landscape',
       'chamel-is-inline': this.props.mode === 'inline'
     });
-    var defaultInputValue;
+    let defaultInputValue;
 
     if (this.props.defaultDate) {
       defaultInputValue = this.props.formatDate(this.props.defaultDate);
     }
 
-    var inputType = (this.props.preferNative) ? "date" : "text";
+    const inputType = (this.props.preferNative) ? "date" : "text";
 
     // If we are using the native input then we need to get value when changed
-    var inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
+    const inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
 
     // We need to exclude the preferNative property as it is an unkown props for <input> tag
     if(other.hasOwnProperty("preferNative")) {
@@ -88,7 +88,7 @@ class DatePicker extends React.Component {
           type={inputType}
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onClick={this._handleInputTouchTap} 
+          onClick={this._handleInputTouchTap}
         />
       </div>
 
@@ -115,8 +115,8 @@ class DatePicker extends React.Component {
    * Handle native date input change
    */
   _handleInputChange = (e) => {
-    var dateString = e.target.value;
-    var d = null;
+    const dateString = e.target.value;
+    let d = null;
 
     /*
      * HTML5 date inputs return yyyy-mm-dd which will be parsed as UTC
@@ -126,9 +126,9 @@ class DatePicker extends React.Component {
      * actual date the user selected
      */
     if (dateString) {
-      var parts = dateString.split('-');
+      const parts = dateString.split('-');
       // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
-      
+
       // Make a local date with the date parts
       d = new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
     }

@@ -30,13 +30,13 @@ class DatePickerDialog extends Component {
   };
 
   render() {
-    var {
+    let {
       initialDate,
       onAccept,
       ...other
       } = this.props;
-    var classes = this.getClasses('chamel-date-picker-dialog');
-    var actions = [
+    const classes = this.getClasses('chamel-date-picker-dialog');
+    const actions = [
       <FlatButton
         key={0}
         label="Cancel"
@@ -128,7 +128,7 @@ class DatePickerDialog extends Component {
   };
 
   getClasses = (initialClasses, additionalClassObj) => {
-    var classString = '';
+    let classString = '';
 
     //Initialize the classString with the classNames that were passed in
     if (this.props.className) classString += ' ' + this.props.className;
@@ -148,7 +148,7 @@ class DatePickerDialog extends Component {
   };
 
   getClassSet = (classString) => {
-    var classObj = {};
+    let classObj = {};
 
     if (classString) {
       classString.split(' ').forEach(function (className) {

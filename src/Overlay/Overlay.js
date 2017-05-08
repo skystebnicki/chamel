@@ -37,7 +37,7 @@ class Overlay extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.overlay)
       ? this.context.chamelTheme.overlay : ThemeService.defaultTheme.overlay;
 
-    var
+    const
       {
         className,
         ...other
@@ -60,12 +60,12 @@ class Overlay extends React.Component {
   }
 
   _preventScrolling() {
-    var body = document.getElementsByTagName('body')[0];
+    let body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
   }
 
   _allowScrolling() {
-    var body = document.getElementsByTagName('body')[0];
+    let body = document.getElementsByTagName('body')[0];
     body.style.overflow = '';
   }
 }

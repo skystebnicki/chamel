@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const getClasses = (initialClasses, additionalClassObj) => {
-  var classString = '';
+  let classString = '';
 
   //Initialize the classString with the classNames that were passed in
   if (props.className) classString += ' ' + props.className;
@@ -22,7 +22,7 @@ const getClasses = (initialClasses, additionalClassObj) => {
 };
 
 const getClassSet = (classString) => {
-  var classObj = {};
+  let classObj = {};
 
   if (classString) {
     classString.split(' ').forEach(function (className) {

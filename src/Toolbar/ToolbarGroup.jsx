@@ -36,7 +36,7 @@ class ToolbarGroup extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.toolbar)
       ? this.context.chamelTheme.toolbar : ThemeService.defaultTheme.toolbar;
 
-      var classes = classnames(theme.toolbarGroup, {
+      const classes = classnames(theme.toolbarGroup, {
         [theme.toolbarGroupLeft]: this.props.align === 'left',
         [theme.toolbarGroupRight]: this.props.align === 'right'
       });

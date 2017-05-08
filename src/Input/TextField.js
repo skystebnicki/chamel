@@ -175,12 +175,12 @@ class TextField extends React.Component {
    * @param nextProps
    */
   componentWillReceiveProps(nextProps) {
-    var hasErrorProp = nextProps.hasOwnProperty('errorText');
-    var hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
-    var hasValueProp = nextProps.hasOwnProperty('value');
-    var hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
-    var hasNewAutoFocusValue = nextProps.autoFocus !== this.props.autoFocus;
-    var newState = {};
+    const hasErrorProp = nextProps.hasOwnProperty('errorText');
+    const hasValueLinkProp = nextProps.hasOwnProperty('valueLink');
+    const hasValueProp = nextProps.hasOwnProperty('value');
+    const hasNewDefaultValue = nextProps.defaultValue !== this.props.defaultValue;
+    const hasNewAutoFocusValue = nextProps.autoFocus !== this.props.autoFocus;
+    let newState = {};
 
     if (hasValueProp) {
       newState.hasValue = nextProps.value;
@@ -195,7 +195,7 @@ class TextField extends React.Component {
       newState.autoFocus = nextProps.autoFocus;
     }
 
-    
+
     // If we changed to a multiline input then attach a listener for window resize
     if (!this.props.multiLine && nextProps.multiLine) {
       this.handleAutoresize();
@@ -218,14 +218,14 @@ class TextField extends React.Component {
     if (this.props.multiLine) this.handleAutoresize();
 
     if (this.state.autoFocus) {
-        this.refs.input.focus();  
+        this.refs.input.focus();
     }
   }
 
   componentWillUnmount () {
     this.setState({componentIsMounted: false});
   }
-  
+
   /**
    * Render the component
    *
@@ -260,16 +260,16 @@ class TextField extends React.Component {
       ...other
     } = this.props;
 
-    var classes = classnames(theme.textField, {
+    const classes = classnames(theme.textField, {
       [theme.textFieldHasError]: this.props.errorText,
       [theme.hasValue]: this.state.hasValue,
       [theme.disabled]: this.props.disabled,
       [theme.focused]: this.state.isFocused
     });
 
-    var inputId = this.props.id || UniqueId.generate();
+    const inputId = this.props.id || UniqueId.generate();
 
-    var errorTextElement = this.state.errorText ? (
+    const errorTextElement = this.state.errorText ? (
       <div className={theme.errorText}>{this.state.errorText}</div>
     ) : null;
 
@@ -357,7 +357,7 @@ class TextField extends React.Component {
         console.error('Cannot provide autoCompleteData and autoCompleteGetData properties at the same time.');
       }
 
-      var filterData = false;
+      let filterData = false;
 
       if ((this.state.skipGetData || this.props.autoCompleteData) && this.state.autoCompleteData) {
 
@@ -370,7 +370,7 @@ class TextField extends React.Component {
       } else if (this.props.autoCompleteGetData) {
 
         // Callback function that will be called once the getting of autoComplete data is done
-        var doneGetDataCallback = function (autoCompleteData) {
+        const doneGetDataCallback = function (autoCompleteData) {
 
           // This will allow us to display the autoComplete component using the autoCompleteData as its list
           autoCompleteDisplay = this._getAutoCompleteComponent(autoCompleteData, filterData);
@@ -380,9 +380,9 @@ class TextField extends React.Component {
           })
         }.bind(this);
 
-        var keyword = null;
-        var inputDetails = this._evalInputValue()
-        var chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
+        let keyword = null;
+        const inputDetails = this._evalInputValue()
+        const chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
 
         if (chunkedValue.length > inputDetails.minLengthLimit) {
           keyword = chunkedValue.replace(/[\W\s+]+$/gi, "");
@@ -412,14 +412,14 @@ class TextField extends React.Component {
 
           <div className={theme.unfocusUnderline} />
           <div className={focuseUnderlineClasses} />
-      
+
           {errorTextElement}
         </div>
         {autoCompleteDisplay}
       </div>
     );
   }
-  
+
 
   blur() {
     if (this.state.componentIsMounted) this._getInputNode().blur();
@@ -449,10 +449,10 @@ class TextField extends React.Component {
       return 0;
     }
 
-    var input = this._getInputNode();
+    let input = this._getInputNode();
 
     // Initialize
-    var iCaretPos = 0;
+    let iCaretPos = 0;
 
     // IE Support
     if (document.selection) {
@@ -461,7 +461,7 @@ class TextField extends React.Component {
       input.focus();
 
       // To get cursor position, get empty selection range
-      var oSel = document.selection.createRange();
+      let oSel = document.selection.createRange();
 
       // Move selection start to 0 position
       oSel.moveStart('character', -input.value.length);
@@ -485,7 +485,7 @@ class TextField extends React.Component {
    * @public
    */
   setCaretPos(caretPos) {
-    var input = this._getInputNode();
+    let input = this._getInputNode();
 
     input.value = input.value;
     // ^ this is used to not only get "focus", but
@@ -495,7 +495,7 @@ class TextField extends React.Component {
     if (input !== null) {
 
       if (input.createTextRange) {
-        var range = input.createTextRange();
+        let range = input.createTextRange();
         range.move('character', caretPos);
         range.select();
         return true;
@@ -519,7 +519,7 @@ class TextField extends React.Component {
 
   setValue(newValue) {
     // Make sure the value is good
-    var sanitizedValue = this._sanitizeInputForType(newValue);
+    const sanitizedValue = this._sanitizeInputForType(newValue);
 
     // The value passed was invalid
     if (sanitizedValue === false) {
@@ -568,7 +568,7 @@ class TextField extends React.Component {
     switch (this.props.type) {
       case 'date':
         if (DateTimeUtil.validateDate(checkValue)) {
-          var date = new Date(checkValue);
+          const date = new Date(checkValue);
           // Format as defined in RFC 3339
           return DateTimeUtil.format(date, "yyyy-MM-dd");
         } else {
@@ -610,7 +610,7 @@ class TextField extends React.Component {
   };
 
   _handleInputChange = (e)  =>{
-    var value = e.target.value;
+    const value = e.target.value;
 
     this.setState({
       hasValue: value,
@@ -638,7 +638,7 @@ class TextField extends React.Component {
       this.props.hasOwnProperty('valueLink');
   }
 
-  _handleInputClick = (e) => { 
+  _handleInputClick = (e) => {
 
     if (this.props.autoComplete) {
       this.setState({
@@ -752,14 +752,14 @@ class TextField extends React.Component {
    */
   _evalInputValue() {
 
-    var details = null;
-    var inputValue = this.state.hasValue; // Get the current input value
-    var caretPos = this.state.caretPos; // Get the current caret/cursor position
+    let details = null;
+    const inputValue = this.state.hasValue; // Get the current input value
+    const caretPos = this.state.caretPos; // Get the current caret/cursor position
 
     if (inputValue) {
-      var subValue = inputValue.substr(0, caretPos); // Get the substr of inputValue from index 0 to caretPos
+      const subValue = inputValue.substr(0, caretPos); // Get the substr of inputValue from index 0 to caretPos
 
-      var details = {
+      const details = {
         value: inputValue,
         caretPos: caretPos,
         subValue: subValue,
@@ -775,11 +775,11 @@ class TextField extends React.Component {
        * trigger = @ (mostly used to browse users)
        * trigger = @ (mostly used to browse colors)
        */
-      var triggerDelimiter = this.props.autoCompleteTrigger || this.props.autoCompleteDelimiter
+      const triggerDelimiter = this.props.autoCompleteTrigger || this.props.autoCompleteDelimiter
 
       if (triggerDelimiter) {
-        for (var idx in triggerDelimiter) {
-          var td = triggerDelimiter[idx];
+        for (let idx in triggerDelimiter) {
+          let td = triggerDelimiter[idx];
 
           // If we have found the trigger/delimiter in the string, then lets break the for loop
           if (subValue.lastIndexOf(td) >= 0) {
@@ -813,7 +813,7 @@ class TextField extends React.Component {
    * @private
    */
   _getAutoCompleteComponent(autoCompleteData, filterData) {
-    var component = null,
+    let component = null,
       attribute;
 
     if (autoCompleteData) {

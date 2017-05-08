@@ -73,10 +73,10 @@ class Snackbar extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.snackbar)
       ? this.context.chamelTheme.snackbar : ThemeService.defaultTheme.snackbar;
 
-    var classes = classnames(theme.snackbar, {
+    const classes = classnames(theme.snackbar, {
       [theme.snackbarIsOpen]: this.state.open
     });
-    var action;
+    let action;
 
     if (this.props.action) {
       action = (
