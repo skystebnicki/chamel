@@ -98,7 +98,7 @@ class Menu extends Component {
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
 
-    for (var i = 0; i < this.props.menuItems.length; i++) {
+    for (let i = 0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
       isSelected = i === this.props.selectedIndex;
       isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
@@ -259,7 +259,7 @@ class Menu extends Component {
   };
 
   getClasses = (initialClasses, additionalClassObj) => {
-    var classString = '';
+    let classString = '';
 
     //Initialize the classString with the classNames that were passed in
     if (this.props.className) classString += ' ' + this.props.className;
@@ -279,7 +279,7 @@ class Menu extends Component {
   };
 
   getClassSet = (classString) => {
-    var classObj = {};
+    let classObj = {};
 
     if (classString) {
       classString.split(' ').forEach(function (className) {

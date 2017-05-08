@@ -36,7 +36,7 @@ class Tab extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.tabs)
       ? this.context.chamelTheme.tabs : ThemeService.defaultTheme.tabs;
 
-    var styles = {
+    const styles = {
       width: this.props.width
     };
 

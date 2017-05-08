@@ -148,7 +148,7 @@ class TouchRipple extends React.Component {
     if ('mousedown' != e.type) {
       this.setState({
         ripples: ripples
-      });  
+      });
     }
 
   };
@@ -164,7 +164,7 @@ class TouchRipple extends React.Component {
     let endingRipple;
 
     //End the the next un-ended ripple
-    for (var i = 0; i < ripples.length; i++) {
+    for (let i = 0; i < ripples.length; i++) {
       ripple = ripples[i];
       if (ripple.started && !ripple.ending) {
         ripple.ending = true;
@@ -186,7 +186,7 @@ class TouchRipple extends React.Component {
           ripples.shift();
           this.setState({
             ripples: ripples,
-          });   
+          });
         }
       }, 2000);
     }
@@ -306,7 +306,7 @@ class TouchRipple extends React.Component {
     let out = {};
 
     if(e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel'){
-      var touch = e.touches[0] || e.changedTouches[0];
+      const touch = e.touches[0] || e.changedTouches[0];
       out.x = touch.pageX;
       out.y = touch.pageY;
     } else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover'|| e.type=='mouseout' || e.type=='mouseenter' || e.type=='mouseleave') {

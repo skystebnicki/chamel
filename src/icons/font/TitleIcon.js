@@ -16,7 +16,7 @@ const TitleIcon = (props, context) => {
 
     let fontIconProps = {...props};
 
-    var headerType = null;
+    let headerType = null;
     if (props.headerType) {
         headerType = props.headerType
         delete fontIconProps.headerType;

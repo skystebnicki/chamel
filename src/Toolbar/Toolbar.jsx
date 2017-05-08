@@ -14,7 +14,7 @@ import ChevronRightIcon from '../icons/font/ChevronRightIcon';
  *
  * @type {Array}
  */
-var toolbarIcons = [];
+let toolbarIcons = [];
 
 /**
  * Main popover class handles absolute positioning paper relative to an element
@@ -225,7 +225,7 @@ class Toolbar extends React.Component {
    * @private
    */
   _getIconWidth(element) {
-    var style = element.currentStyle || window.getComputedStyle(element);
+    const style = element.currentStyle || window.getComputedStyle(element);
 
     let width = parseInt(style.width, 10)
       + parseInt(style.marginLeft, 10)
@@ -257,7 +257,7 @@ class Toolbar extends React.Component {
       return;
     }
 
-    for (var idx in children) {
+    for (let idx in children) {
       let child = children[idx];
       let element = elementContainer.childNodes[idx];
 

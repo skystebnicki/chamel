@@ -33,7 +33,7 @@ class DropDownIcon extends Component {
       classes += " chamel-open";
     }
 
-    var icon;
+    let icon;
     if (this.props.iconClassName) {
       icon = (<FontIcon className={this.props.iconClassName}/>);
     }

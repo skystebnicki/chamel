@@ -92,7 +92,7 @@ class SelectButton extends Component {
    * @param {Object} props The props we are setting
    */
   _setSelectedIndex = (props) => {
-    var selectedIndex = props.selectedIndex;
+    const selectedIndex = props.selectedIndex;
 
     if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
       console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);

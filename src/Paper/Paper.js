@@ -40,10 +40,10 @@ class Paper extends React.Component {
   render() {
 
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.paper)
+    const theme = (this.context.chamelTheme && this.context.chamelTheme.paper)
       ? this.context.chamelTheme.paper : ThemeService.defaultTheme.paper;
 
-    var classes = theme.paper;
+    let classes = theme.paper;
 
     if (this.props.className) {
       classes += " " + this.props.className;
@@ -59,7 +59,7 @@ class Paper extends React.Component {
       classes += " " + theme.paperCircle;
     }
 
-    var insideClasses =
+    const insideClasses =
       this.props.innerClassName + ' ' +
       theme.paperContainer + ' ' +
       theme["paperZDepth" + this.props.zDepth + "Bottom"];

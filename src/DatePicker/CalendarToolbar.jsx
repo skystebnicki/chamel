@@ -1,34 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import IconButton from '../Button/IconButton';
 import NavigationChevronLeft from '../svg-icons/navigation-chevron-left';
 import NavigationChevronRight from '../svg-icons/navigation-chevron-right';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 
-var CalendarToolbar = React.createClass({
-  propTypes: {
-    displayDate: React.PropTypes.object.isRequired,
-    onLeftTouchTap: React.PropTypes.func,
-    onRightTouchTap: React.PropTypes.func,
-    maxDate: React.PropTypes.object,
-    minDate: React.PropTypes.object
-  },
+class CalendarToolbar extends Component {
 
-  getDefaultProps: function () {
-    return {
-      maxDate: null,
-      minDate: null
-    };
-  },
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
 
-  getInitialState: function () {
-    return {
+    this.state = {
       transitionDirection: 'up'
     };
-  },
+  }
 
-  componentWillReceiveProps: function (nextProps) {
-    var direction;
+  componentWillReceiveProps(nextProps) {
+    let direction;
 
     if (nextProps.displayDate !== this.props.displayDate) {
       direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
@@ -36,12 +31,13 @@ var CalendarToolbar = React.createClass({
         transitionDirection: direction
       });
     }
-  },
-  _isDisabled: function (direction) {
+  }
 
-    var date = this.props.displayDate;
-    var minDate = this.props.minDate;
-    var maxDate = this.props.maxDate;
+  _isDisabled = (direction) => {
+
+    const date = this.props.displayDate;
+    const minDate = this.props.minDate;
+    const maxDate = this.props.maxDate;
 
     if (direction == "left" && minDate) {
       if (date.getFullYear() < minDate.getFullYear()) return true;
@@ -56,13 +52,14 @@ var CalendarToolbar = React.createClass({
     }
 
     return false;
-  },
-  render: function () {
-    var month = DateTime.getFullMonth(this.props.displayDate);
-    var year = this.props.displayDate.getFullYear();
+  };
 
-    var disableLeft = this._isDisabled("left");
-    var disableRight = this._isDisabled("right");
+  render() {
+    const month = DateTime.getFullMonth(this.props.displayDate);
+    const year = this.props.displayDate.getFullYear();
+
+    const disableLeft = this._isDisabled("left");
+    const disableRight = this._isDisabled("right");
 
     return (
       <div className="chamel-date-picker-calendar-toolbar">
@@ -90,6 +87,20 @@ var CalendarToolbar = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = CalendarToolbar;
+
+CalendarToolbar.propTypes = {
+  displayDate: PropTypes.object.isRequired,
+  onLeftTouchTap: PropTypes.func,
+  onRightTouchTap: PropTypes.func,
+  maxDate: PropTypes.object,
+  minDate: PropTypes.object,
+};
+
+CalendarToolbar.defaultProps = {
+  maxDate: null,
+  minDate: null,
+};
+
+export default CalendarToolbar;

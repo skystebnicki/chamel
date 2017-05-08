@@ -7,7 +7,7 @@ class FocusRipple extends React.Component {
 
   /**
    * Class constructor
-   * 
+   *
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
@@ -38,10 +38,10 @@ class FocusRipple extends React.Component {
    * Try and determine the size of the ripple based on the size of this dom element
    */
   setRippleSize() {
-    var el = ReactDOM.findDOMNode(this);
-    var height = el.offsetHeight;
-    var width = el.offsetWidth;
-    var size = Math.max(height, width);
+    let el = ReactDOM.findDOMNode(this);
+    const height = el.offsetHeight;
+    const width = el.offsetWidth;
+    const size = Math.max(height, width);
 
     el.style.height = size + 'px';
     el.style.top = (size / 2 * -1) + (height / 2) + 'px';
@@ -67,13 +67,9 @@ FocusRipple.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 FocusRipple.contextTypes = {
-    chamelTheme: React.PropTypes.object
+  chamelTheme: React.PropTypes.object
 };
 
-// Check for commonjs
-if (module) {
-    module.exports = FocusRipple;
-}
 
 // ES6
 export default FocusRipple;
