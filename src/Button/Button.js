@@ -19,7 +19,7 @@ const Button = (props, context) => {
 
   // Setup classes
   const className = props.className || null;
-  const type = props.type ;
+  const type = props.type;
   const classes = classnames(theme[type], {
     [theme[type + "primary"]]: props.primary,
     [theme[type + "accent"]]: props.accent,

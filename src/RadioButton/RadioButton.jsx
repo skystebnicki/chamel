@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
 import RadioButtonOff from '../svg-icons/toggle-radio-button-off';
 import RadioButtonOn from '../svg-icons/toggle-radio-button-on';
 
@@ -9,16 +8,15 @@ import RadioButtonOn from '../svg-icons/toggle-radio-button-on';
  */
 const RadioButton = (props) => {
 
-  // mixins: [Classable],
   let {
     onCheck,
     ...other
-  } = this.props;
+    } = this.props;
 
   const radioButtonElement = (
     <div>
-        <RadioButtonOff className="chamel-radio-button-target" />
-        <RadioButtonOn className="chamel-radio-button-fill" />
+      <RadioButtonOff className="chamel-radio-button-target"/>
+      <RadioButtonOn className="chamel-radio-button-fill"/>
     </div>
   );
 

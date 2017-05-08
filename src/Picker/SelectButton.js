@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
 import Paper from '../Paper/Paper';
 import Menu from '../Menu/Menu';
@@ -40,12 +39,6 @@ class SelectButton extends Component {
   /**
    * Componenent is about to exit the dom
    */
-  componentWillUnmount() {
-  }
-
-  /**
-   * Componenent is about to exit the dom
-   */
   componentWillReceiveProps(nextProps) {
     if (this.props.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(nextProps);
@@ -62,7 +55,7 @@ class SelectButton extends Component {
       ? this.context.chamelTheme.picker : ThemeService.defaultTheme.picker;
 
     let icon = (typeof this.props.icon === 'string') ?
-      (<FontIcon className={this.props.icon} />) : this.props.icon;
+      (<FontIcon className={this.props.icon}/>) : this.props.icon;
 
     // Use default dropdown icon
     if (!icon && this.props.children) {
@@ -79,8 +72,7 @@ class SelectButton extends Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={true}
-        >
+          relative={true}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}

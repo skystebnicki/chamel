@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
 
 class Tooltip extends Component {
-
-  // mixins: [Classable],
   componentDidMount() {
     this._setRippleSize();
   }
@@ -20,6 +17,7 @@ class Tooltip extends Component {
       className,
       label,
       ...other } = this.props;
+
     const classes = this.getClasses('chamel-tooltip', {
       'chamel-is-shown': this.props.show,
       'chamel-is-touch': this.props.touch
@@ -27,7 +25,7 @@ class Tooltip extends Component {
 
     return (
       <div className={classes}>
-        <div ref="ripple" className="chamel-tooltip-ripple" />
+        <div ref="ripple" className="chamel-tooltip-ripple"/>
         <span className="chamel-tooltip-label">{this.props.label}</span>
       </div>
     );
@@ -46,8 +44,39 @@ class Tooltip extends Component {
       ripple.style.width = '0px';
       ripple.style.height = '0px';
     }
-  }
+  };
 
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 Tooltip.propTypes = {

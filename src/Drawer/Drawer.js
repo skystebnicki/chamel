@@ -171,8 +171,8 @@ class Drawer extends React.Component {
 
   _onWindowKeyUp = (e) => {
     if (e.keyCode == KeyCode.ESC &&
-        (!this.props.permanent) &&
-        this.state.open) {
+      (!this.props.permanent) &&
+      this.state.open) {
       this.close();
     }
   };

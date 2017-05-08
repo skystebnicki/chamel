@@ -74,12 +74,6 @@ class Paper extends React.Component {
   getInnerContainer() {
     return this.refs.innerContainer;
   }
-
-}
-
-// Check for commonjs
-if (module) {
-  module.exports = Paper;
 }
 
 export default Paper;

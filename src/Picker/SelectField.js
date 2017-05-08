@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import Classable from '../mixins/classable';
-import ClickAwayable from '../mixins/ClickAwayable';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
 import Paper from '../Paper/Paper';
 import Menu from '../Menu/Menu';
@@ -39,12 +37,6 @@ class SelectField extends Component {
   /**
    * Componenent is about to exit the dom
    */
-  componentWillUnmount() {
-  }
-
-  /**
-   * Componenent is about to exit the dom
-   */
   componentWillReceiveProps(nextProps) {
     if (this.props.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(nextProps);
@@ -63,12 +55,12 @@ class SelectField extends Component {
     return (
       <div className={theme.selectField}>
         <div className={theme.selectFieldControl} onClick={this._onControlClick}>
-          <Paper zDepth={0} >
+          <Paper zDepth={0}>
             <div className={theme.selectFieldLabel}>
               {this.props.menuItems[this.state.selectedIndex].text}
             </div>
-            <DropDownArrow className={theme.selectFieldIcon} />
-            <div className={theme.selectFieldUnderline} />
+            <DropDownArrow className={theme.selectFieldIcon}/>
+            <div className={theme.selectFieldUnderline}/>
           </Paper>
         </div>
         <Popover
@@ -76,8 +68,7 @@ class SelectField extends Component {
           anchorEl={this.state.anchorEl}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={false}
-        >
+          relative={false}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}

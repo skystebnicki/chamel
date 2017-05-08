@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
-import WindowListenable from '../mixins/WindowListenable';
+import Events from '../utils/Events';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
 import CalendarMonth from './CalendarMonth';
@@ -10,12 +9,6 @@ import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 
 class Calendar extends Component {
-
-  // mixins: [Classable, WindowListenable],
-  //
-  // windowListeners: {
-  //   'keydown': '_handleWindowKeyDown'
-  // },
 
   /**
    * Class constructor
@@ -38,14 +31,22 @@ class Calendar extends Component {
    */
   componentWillReceiveProps(nextProps) {
 
-     if (nextProps.initialDate !== this.props.initialDate) {
-       const d = nextProps.initialDate || new Date();
-       this.setState({
-         displayDate: DateTime.getFirstDayOfMonth(d),
-         selectedDate: d
-       });
-     }
+    if (nextProps.initialDate !== this.props.initialDate) {
+      const d = nextProps.initialDate || new Date();
+      this.setState({
+        displayDate: DateTime.getFirstDayOfMonth(d),
+        selectedDate: d
+      });
+    }
   }
+
+  componentDidMount() {
+    Events.on(window, 'keydown', this._handleWindowKeyDown);
+  };
+
+  componentWillUnmount() {
+    Events.off(window, 'keydown', this._handleWindowKeyDown);
+  };
 
   /**
    * Render the Calendar action
@@ -62,10 +63,9 @@ class Calendar extends Component {
 
     return (
       <div className={classes}>
-
         <DateDisplay
           className="chamel-date-picker-calendar-date-display"
-          selectedDate={this.state.selectedDate} />
+          selectedDate={this.state.selectedDate}/>
 
         <div
           className="chamel-date-picker-calendar-container">
@@ -74,7 +74,7 @@ class Calendar extends Component {
             maxDate={this.props.maxDate}
             displayDate={this.state.displayDate}
             onLeftTouchTap={this._handleLeftTouchTap}
-            onRightTouchTap={this._handleRightTouchTap} />
+            onRightTouchTap={this._handleRightTouchTap}/>
 
           <ul className="chamel-date-picker-calendar-week-title">
             <li className="chamel-date-picker-calendar-week-title-day">S</li>
@@ -94,7 +94,7 @@ class Calendar extends Component {
               key={this.state.displayDate.toDateString()}
               displayDate={this.state.displayDate}
               onDayTouchTap={this._handleDayTouchTap}
-              selectedDate={this.state.selectedDate} />
+              selectedDate={this.state.selectedDate}/>
           </SlideInTransitionGroup>
         </div>
       </div>
@@ -142,7 +142,7 @@ class Calendar extends Component {
         selectedDate: d
       });
     }
-    if(this.props.onSelectedDate) this.props.onSelectedDate(d);
+    if (this.props.onSelectedDate) this.props.onSelectedDate(d);
   };
 
   _handleDayTouchTap = (e, date) => {
@@ -196,8 +196,39 @@ class Calendar extends Component {
           break;
       }
     }
-  }
+  };
 
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 /**

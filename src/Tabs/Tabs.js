@@ -45,7 +45,7 @@ class Tabs extends React.Component {
     }
   }
 
-  getEvenWidth(){
+  getEvenWidth() {
     return (
       parseInt(
         window.getComputedStyle(ReactDOM.findDOMNode(this))
@@ -55,12 +55,12 @@ class Tabs extends React.Component {
   }
 
   getTabCount() {
-      return React.Children.count(this.props.children);
+    return React.Children.count(this.props.children);
   }
 
-  componentDidMount(){
-    if(this.props.tabWidth) {
-      if(!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())){
+  componentDidMount() {
+    if (this.props.tabWidth) {
+      if (!(this.props.children.length * this.props.tabWidth > this.getEvenWidth())) {
         this.setState({
           width: this.props.tabWidth,
           fixed: false
@@ -83,38 +83,38 @@ class Tabs extends React.Component {
    */
   handleTouchTap = (tabIndex, tab) => {
     if (this.props.onChange && this.state.selectedIndex !== tabIndex) {
-        this.props.onChange(tabIndex, tab);
+      this.props.onChange(tabIndex, tab);
     }
 
     this.setState({selectedIndex: tabIndex});
     //default CB is _onActive. Can be updated in tab
-    if(tab.props.onActive) tab.props.onActive(tab);
+    if (tab.props.onActive) tab.props.onActive(tab);
   };
 
-  render(){
+  render() {
 
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.tabs)
       ? this.context.chamelTheme.tabs : ThemeService.defaultTheme.tabs;
-    
+
     var _this = this;
-    let width = 100 / this.getTabCount() +'%';
+    let width = 100 / this.getTabCount() + '%';
 
     // Get classes for the tab item container
     const tabItemContainerClasses = (this.props.secondary) ? theme.tabItemContainerSecondary : theme.tabItemContainer;
     const tabUnderlineBar = (this.props.secondary) ? theme.tabInkBarSecondary : theme.tabInkBar;
 
     /*
-    var width = this.state.fixed ?
-    this.state.width/this.props.children.length :
-        this.props.tabWidth;*/
+     var width = this.state.fixed ?
+     this.state.width/this.props.children.length :
+     this.props.tabWidth;*/
     let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
     //var left = width * this.state.selectedIndex || 0;
     var currentTemplate = null;
-    var tabs = React.Children.map(this.props.children, function(tab, index){
-      if(tab.type.name === "Tab") {
+    var tabs = React.Children.map(this.props.children, function (tab, index) {
+      if (tab.type.name === "Tab") {
         // Generic UI implementation
-        if(_this.state.selectedIndex === index) currentTemplate = tab.props.children;
+        if (_this.state.selectedIndex === index) currentTemplate = tab.props.children;
         return React.cloneElement(tab, {
           key: index,
           selected: _this.state.selectedIndex === index,
@@ -134,7 +134,7 @@ class Tabs extends React.Component {
         <div className={tabItemContainerClasses}>
           {tabs}
         </div>
-        <div className={tabUnderlineBar} style={{left: left, width:width}} />
+        <div className={tabUnderlineBar} style={{left: left, width:width}}/>
         <div className={theme.tabTemplate}>
           {currentTemplate}
         </div>

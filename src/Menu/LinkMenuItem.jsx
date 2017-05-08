@@ -1,28 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
+
+const getClasses = (initialClasses, additionalClassObj) => {
+  var classString = '';
+
+  //Initialize the classString with the classNames that were passed in
+  if (props.className) classString += ' ' + props.className;
+
+  //Add in initial classes
+  if (typeof initialClasses === 'object') {
+    classString += ' ' + classNames(initialClasses);
+  } else {
+    classString += ' ' + initialClasses;
+  }
+
+  //Add in additional classes
+  if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+  //Convert the class string into an object and run it through the class set
+  return classNames(getClassSet(classString));
+};
+
+const getClassSet = (classString) => {
+  var classObj = {};
+
+  if (classString) {
+    classString.split(' ').forEach(function (className) {
+      if (className) classObj[className] = true;
+    });
+  }
+
+  return classObj;
+};
 
 const LinkMenuItem = (props) => {
 
-  // mixins: [Classable],
-
-  const classes = this.getClasses('chamel-menu-item', {
-    'chamel-is-disabled': this.props.disabled
+  const classes = getClasses('chamel-menu-item', {
+    'chamel-is-disabled': props.disabled
   });
-  const onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
+  const onClickHandler = (props.disabled) ? (event) => {
+    event.preventDefault();
+  } : undefined;
   // Prevent context menu 'Open In New Tab/Window'
-  const linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
+  const linkAttribute = (props.disabled) ? 'data-href' : 'href';
   let link = {};
-  link[linkAttribute] = this.props.payload
+  link[linkAttribute] = props.payload
 
   return (
-      <a key={this.props.index} className={classes} {...link} target={this.props.target} onClick={onClickHandler}>{this.props.text}</a>
+    <a key={props.index} className={classes} {...link} target={props.target} onClick={onClickHandler}>{props.text}</a>
   );
-
-  _stopLink = (event) => {
-    event.preventDefault();
-  };
-
 }
 
 LinkMenuItem.propTypes = {

@@ -26,7 +26,7 @@ class Overlay extends React.Component {
   static contextTypes = {
     chamelTheme: React.PropTypes.object
   };
-  
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.autoLockScrolling) (this.props.show) ? this._preventScrolling() : this._allowScrolling();
   }
@@ -36,43 +36,39 @@ class Overlay extends React.Component {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.overlay)
       ? this.context.chamelTheme.overlay : ThemeService.defaultTheme.overlay;
-    
-    var 
+
+    var
       {
         className,
         ...other
-      } = this.props,
+        } = this.props,
       classes = classnames(theme.overlay, {
         [theme.overlayVisible]: this.props.show
       });
 
     return (
-      <div className={classes} onClick={this.props.onClick} />
+      <div className={classes} onClick={this.props.onClick}/>
     );
   }
-  
+
   preventScrolling() {
     if (!this.props.autoLockScrolling) this._preventScrolling();
   }
-  
+
   allowScrolling() {
     if (!this.props.autoLockScrolling) this._allowScrolling();
   }
-  
+
   _preventScrolling() {
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = 'hidden';
   }
-  
+
   _allowScrolling() {
     var body = document.getElementsByTagName('body')[0];
     body.style.overflow = '';
   }
-};
-
-// Check for commonjs
-if (module) {
-  module.exports = Overlay;
 }
+;
 
 export default Overlay;

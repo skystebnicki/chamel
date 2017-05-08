@@ -1,20 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
-import WindowListenable from '../mixins/WindowListenable';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
 import DatePickerDialog from './DatePickerDialog';
 import TextField from '../Input/TextField';
 import device from '../utils/device';
+import Events from '../utils/Events';
 
 class DatePicker extends Component {
-
-  // mixins: [Classable, WindowListenable],
-
-  // windowListeners: {
-  //   'keyup': '_handleWindowKeyUp'
-  // },
 
   /**
    * Class constructor
@@ -31,6 +24,14 @@ class DatePicker extends Component {
     };
   }
 
+  componentDidMount() {
+    Events.on(window, 'keyup', this._handleWindowKeyUp);
+  };
+
+  componentWillUnmount() {
+    Events.off(window, 'keyup', this._handleWindowKeyUp);
+  };
+
   render() {
     let {
       formatDate,
@@ -44,7 +45,7 @@ class DatePicker extends Component {
       maxDate,
       autoOk,
       ...other
-    } = this.props;
+      } = this.props;
     const classes = this.getClasses('chamel-date-picker', {
       'chamel-is-landscape': this.props.mode === 'landscape',
       'chamel-is-inline': this.props.mode === 'inline'
@@ -61,7 +62,7 @@ class DatePicker extends Component {
     const inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
 
     // We need to exclude the preferNative property as it is an unkown props for <input> tag
-    if(other.hasOwnProperty("preferNative")) {
+    if (other.hasOwnProperty("preferNative")) {
       delete other.preferNative;
     }
 
@@ -74,7 +75,7 @@ class DatePicker extends Component {
           type={inputType}
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onClick={this._handleInputTouchTap} />
+          onClick={this._handleInputTouchTap}/>
         <DatePickerDialog
           minDate={minDate}
           maxDate={maxDate}
@@ -83,7 +84,7 @@ class DatePicker extends Component {
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={onDismiss} />
+          onDismiss={onDismiss}/>
       </div>
 
     );
@@ -124,7 +125,7 @@ class DatePicker extends Component {
       // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
 
       // Make a local date with the date parts
-      d = new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
+      d = new Date(parts[0], parts[1] - 1, parts[2]); // Note: months are 0-based
     }
 
     if (this.props.onChange) this.props.onChange(null, d);
@@ -145,7 +146,7 @@ class DatePicker extends Component {
      * then we will only display the window if the browser
      * does not support a native date type
      */
-    if (!this.props.preferNative || !device.test.inputtypes.date){
+    if (!this.props.preferNative || !device.test.inputtypes.date) {
       this.refs.dialogWindow.show();
     }
 
@@ -156,6 +157,37 @@ class DatePicker extends Component {
     //TO DO: open the dialog if input has focus
   };
 
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 DatePicker.propTypes = {

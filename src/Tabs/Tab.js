@@ -31,13 +31,13 @@ class Tab extends React.Component {
     this.props.handleTouchTap(this.props.tabIndex, this);
   };
 
-  render(){
+  render() {
     // Determine which theme to use
     let theme = (this.context.chamelTheme && this.context.chamelTheme.tabs)
       ? this.context.chamelTheme.tabs : ThemeService.defaultTheme.tabs;
 
     var styles = {
-        width: this.props.width
+      width: this.props.width
     };
 
     const classes = classnames(theme.tabItem, {
@@ -48,13 +48,13 @@ class Tab extends React.Component {
 
 
     return (
-        <div
-          className={classes}
-          style={styles}
-          onClick={this.handleTouchTap}
-        >
-            {this.props.label}
-        </div>
+      <div
+        className={classes}
+        style={styles}
+        onClick={this.handleTouchTap}
+      >
+        {this.props.label}
+      </div>
     );
   }
 }

@@ -44,7 +44,9 @@ class Snackbar extends React.Component {
       if (this.timer) {
         clearTimeout(this.timer);
       }
-      this.timer = setTimeout(() => { this.dismiss(); }, this.props.timeout);
+      this.timer = setTimeout(() => {
+        this.dismiss();
+      }, this.props.timeout);
     }
   }
 
@@ -53,7 +55,9 @@ class Snackbar extends React.Component {
       if (this.timer) {
         clearTimeout(this.timer);
       }
-      this.timer = setTimeout(() => { this.dismiss(); }, this.props.timeout);
+      this.timer = setTimeout(() => {
+        this.dismiss();
+      }, this.props.timeout);
     }
   }
 
@@ -61,7 +65,7 @@ class Snackbar extends React.Component {
    * Handle incoming new props
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({ open: nextProps.open || false });
+    this.setState({open: nextProps.open || false});
   }
 
   render() {
@@ -79,7 +83,7 @@ class Snackbar extends React.Component {
         <FlatButton
           className={theme.snackbarAction}
           label={this.props.action}
-          onClick={this.props.onActionClick} />
+          onClick={this.props.onActionClick}/>
       );
     }
 
@@ -92,11 +96,11 @@ class Snackbar extends React.Component {
   }
 
   show() {
-    this.setState({ open: true });
+    this.setState({open: true});
   }
 
   dismiss() {
-    this.setState({ open: false });
+    this.setState({open: false});
 
     if (this.props.onDismiss) {
       this.props.onDismiss()

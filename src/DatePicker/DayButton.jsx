@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
 import DateTime from '../utils/DateTime';
 import EnhancedButton from '../Button';
 
 class DayButton extends Component {
-
-  // mixins: [Classable],
 
   render() {
     let {
@@ -15,7 +12,8 @@ class DayButton extends Component {
       onClick,
       selected,
       ...other
-    } = this.props;
+      } = this.props;
+
     const classes = this.getClasses('chamel-date-picker-day-button', {
       'chamel-is-current-date': DateTime.isEqualDate(this.props.date, new Date()),
       'chamel-is-selected': this.props.selected
@@ -27,11 +25,11 @@ class DayButton extends Component {
         disableFocusRipple={true}
         disableTouchRipple={true}
         onClick={this._handleTouchTap}>
-        <div className="chamel-date-picker-day-button-select" />
+        <div className="chamel-date-picker-day-button-select"/>
         <span className="chamel-date-picker-day-button-label">{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span className={classes} />
+      <span className={classes}/>
     );
   }
 
@@ -39,6 +37,37 @@ class DayButton extends Component {
     if (this.props.onClick) this.props.onClick(e, this.props.date);
   };
 
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 DayButton.propTypes = {

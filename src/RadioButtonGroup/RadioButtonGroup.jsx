@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Paper from '../Paper/Paper';
-import Classable from '../mixins/classable';
 import RadioButton from '../Picker/RadioButton';
 
 class RadioButtonGroup extends Component {
-
-  // mixins: [Classable],
 
   _hasCheckAttribute = (radioButton) => {
     return radioButton.props.hasOwnProperty('checked') &&
@@ -28,7 +25,7 @@ class RadioButtonGroup extends Component {
   componentWillMount() {
     let cnt = 0;
 
-    this.props.children.forEach(function(option) {
+    this.props.children.forEach(function (option) {
       if (this._hasCheckAttribute(option)) cnt++;
     }, this);
 
@@ -42,20 +39,16 @@ class RadioButtonGroup extends Component {
   }
 
   render() {
-
-    console.log(this.state.selected)
-
     const inline = this.props.inline;
+    const options = this.props.children.map(function (option) {
 
-    const options = this.props.children.map(function(option) {
-
-    let {
+      let {
         name,
         value,
         label,
         onCheck,
         ...other
-      } = option.props;
+        } = option.props;
 
       return <RadioButton
         {...other}
@@ -83,7 +76,7 @@ class RadioButtonGroup extends Component {
       this.setState({selected: newSelection});
     } else if (process.env.NODE_ENV !== 'production') {
       const message = "Cannot select a different radio button while another radio button " +
-                    "has the 'checked' property set to true.";
+        "has the 'checked' property set to true.";
       console.error(message);
     }
   };
@@ -112,13 +105,9 @@ class RadioButtonGroup extends Component {
 }
 
 
-RadioButtonGroup.propTypes: {
+RadioButtonGroup.propTypes = {
   name: PropTypes.string.isRequired,
   valueSelected: PropTypes.string,
-
-  /**
-   * Set which value is
-  defaultSelected: React.PropTypes.string,
 
   /**
    * Float the label to the left or right of the radio button

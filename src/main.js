@@ -18,9 +18,6 @@ import Drawer from './Drawer';
 import Menu from './Menu/Menu';
 import MenuItem from './Menu/Menu';
 import NestedMenuItem from './Menu/NestedMenuItem';
-import Classable from './mixins/classable';
-import ClickAwayable from './mixins/ClickAwayable';
-import WindowListenable from './mixins/WindowListenable';
 import Paper from './Paper/Paper';
 import RadioButton from './Picker/RadioButton';
 import RadioPicker from './Picker/RadioPicker';
@@ -64,12 +61,7 @@ const Chamel = {
   Drawer: Drawer,
   Menu: Menu,
   MenuItem: MenuItem, 
-  NestedMenuItem: NestedMenuItem, 
-  Mixins: {
-      Classable: Classable,
-      ClickAwayable: ClickAwayable,
-      WindowListenable: WindowListenable 
-  },
+  NestedMenuItem: NestedMenuItem,
   Paper: Paper,
   Popover: Popover,
   RadioButton: RadioButton,

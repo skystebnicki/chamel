@@ -1,46 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
 
 const TableHeader = (props) => {
+  return (
+    <div className="chamel-table-header">
+      {this._getChildren()}
+      <div className="chamel-table-header-pagify">
+        (Pagify)
+      </div>
+    </div>
+  );
 
-    // mixins: [Classable],
+  _getChildren = () => {
+    let children = [],
+      headerItem,
+      itemComponent
 
-    render() {
-      var classes = this.getClasses('chamel-table-header');
+    for (let i = 0; i < this.props.headerItems.length; i++) {
+      headerItem = this.props.headerItems[i];
 
-      return (
-        <div className={classes}>
-          {this._getChildren()}
-          <div className="chamel-table-header-pagify">
-            (Pagify)
-          </div>
-        </div>
+      itemComponent = (
+        <div key={i} className="chamel-table-header-column">{headerItem.text}</div>
       );
+
+      children.push(itemComponent);
     }
 
-    _getChildren = () => {
-      let children = [],
-        headerItem,
-        itemComponent
+    return children;
+  };
 
-      for (let i=0; i < this.props.headerItems.length; i++) {
-        headerItem = this.props.headerItems[i];
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
 
-        itemComponent = (
-          <div key={i} className="chamel-table-header-column">{headerItem.text}</div>
-        );
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
 
-        children.push(itemComponent);
-      }
-
-      return children;
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
     }
 
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 TableHeader.propTypes = {
-    headerItems: PropTypes.array.isRequired
+  headerItems: PropTypes.array.isRequired
 };
 
 export default TableHeader;

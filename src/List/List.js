@@ -11,7 +11,7 @@ import ThemeService from '../styles/ChamelThemeService';
  */
 const List = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.list)
-      ? context.chamelTheme.list : ThemeService.defaultTheme.list;
+    ? context.chamelTheme.list : ThemeService.defaultTheme.list;
 
   let currentIndex = 0;
   let childElements = Children.map(props.children, (child) => {
@@ -26,13 +26,13 @@ const List = (props, context) => {
     currentIndex++;
 
     return retChild;
-  /*
-    return isValidElement(child) ? (
-        cloneElement(child, {
-            nestedLevel: nestedLevel + 1,
-        })
-    ) : child;
-    */
+    /*
+     return isValidElement(child) ? (
+     cloneElement(child, {
+     nestedLevel: nestedLevel + 1,
+     })
+     ) : child;
+     */
   });
 
   return (

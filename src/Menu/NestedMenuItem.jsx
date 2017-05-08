@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
 import Dom from '../utils/Dom';
 import KeyLine from '../utils/KeyLine';
-import Classable from '../mixins/classable';
-import ClickAwayable from '../mixins/ClickAwayable';
 import Paper from '../Paper/Paper';
 import Menu from './Menu';
 import MenuItem from './MenuItem';
@@ -16,8 +14,6 @@ import SubheaderMenuItem from './SubheaderMenuItem';
  * Nested Menu Component
  ***********************/
 class NestedMenuItem extends Component {
-
-  // mixins: [Classable, ClickAwayable],
 
   /**
    * Class constructor
@@ -105,6 +101,37 @@ class NestedMenuItem extends Component {
     this._closeNestedMenu();
   };
 
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 NestedMenuItem.propTypes = {

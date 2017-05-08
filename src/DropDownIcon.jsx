@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Classable from './mixins/classable';
-import ClickAwayable from './mixins/ClickAwayable';
 import KeyLine from './utils/KeyLine';
 import Paper from './Paper/Paper';
 import FontIcon from './FontIcon/FontIcon';
@@ -37,27 +35,27 @@ class DropDownIcon extends Component {
 
     var icon;
     if (this.props.iconClassName) {
-      icon = (<FontIcon className={this.props.iconClassName} />);
+      icon = (<FontIcon className={this.props.iconClassName}/>);
     }
 
     return (
       <div className={classes}>
-          <div className="chamel-menu-control" onClick={this._onControlClick}>
-              {icon}
-              {this.props.children}
-          </div>
-          <Popover
-            open={this.state.open}
-            anchorEl={this.state.anchorEl}
-            anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-            onRequestClose={this._handleRequestClose}
-          >
-            <Menu
-              ref="menuItems"
-              menuItems={this.props.menuItems}
-              onItemClick={this._onMenuItemClick} />
-          </Popover>
+        <div className="chamel-menu-control" onClick={this._onControlClick}>
+          {icon}
+          {this.props.children}
         </div>
+        <Popover
+          open={this.state.open}
+          anchorEl={this.state.anchorEl}
+          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          onRequestClose={this._handleRequestClose}
+        >
+          <Menu
+            ref="menuItems"
+            menuItems={this.props.menuItems}
+            onItemClick={this._onMenuItemClick}/>
+        </Popover>
+      </div>
     );
   }
 
@@ -74,7 +72,7 @@ class DropDownIcon extends Component {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
     if (this.props.closeOnMenuItemClick) {
-      this.setState({ open: false });
+      this.setState({open: false});
     }
   }
 

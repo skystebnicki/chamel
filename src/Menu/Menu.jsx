@@ -4,8 +4,6 @@ import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
 import Dom from '../utils/Dom';
 import KeyLine from '../utils/KeyLine';
-import Classable from '../mixins/classable';
-import ClickAwayable from '../mixins/ClickAwayable';
 import Paper from '../Paper/Paper';
 import MenuItem from './MenuItem';
 import LinkMenuItem from './LinkMenuItem';
@@ -55,7 +53,7 @@ class Menu extends Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
       ? this.context.chamelTheme.menu : ThemeService.defaultTheme.menu;
 
-    const classes = classnames(theme.menu, {
+    let classes = classnames(theme.menu, {
       [theme.menuHideable]: this.props.hideable,
       [theme.menuVisible]: this.props.visible
     });
@@ -86,16 +84,16 @@ class Menu extends Component {
    * @private
    */
   _handleMouseEnter = () => {
-      this.setState({focusedIndex: null})
+    this.setState({focusedIndex: null})
   }
 
-  _getChildren () {
+  _getChildren() {
     let children = [],
-        menuItem,
-        itemComponent,
-        isSelected,
-        isDisabled,
-        isFocused;
+      menuItem,
+      itemComponent,
+      isSelected,
+      isDisabled,
+      isFocused;
 
     //This array is used to keep track of all nested menu refs
     this._nestedChildren = [];
@@ -133,7 +131,7 @@ class Menu extends Component {
               text={menuItem.text}
               disabled={isDisabled}/>
           );
-            break;
+          break;
 
         case MenuItem.Types.SUBHEADER:
           itemComponent = (
@@ -186,10 +184,10 @@ class Menu extends Component {
     return children;
   }
 
-  _setKeyWidth (el) {
+  _setKeyWidth(el) {
     const menuWidth = this.props.autoWidth ?
     KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
-        '100%';
+      '100%';
 
     //Update the menu width
     Dom.withoutTransition(el, function () {
@@ -202,7 +200,7 @@ class Menu extends Component {
     });
   }
 
-  _renderVisibility () {
+  _renderVisibility() {
     let el;
 
     if (this.props.hideable) {
@@ -224,9 +222,9 @@ class Menu extends Component {
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
         CssEvent.onTransitionEnd(el, function () {
-            //Make sure the menu is open before setting the overflow.
-            //This is to accout for fast clicks
-            if (this.props.visible) innerContainer.style.overflow = 'visible';
+          //Make sure the menu is open before setting the overflow.
+          //This is to accout for fast clicks
+          if (this.props.visible) innerContainer.style.overflow = 'visible';
         }.bind(this));
 
       } else {
@@ -258,8 +256,39 @@ class Menu extends Component {
 
   _onItemToggle = (e, index, toggled) => {
     if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
-  }
+  };
 
+  getClasses = (initialClasses, additionalClassObj) => {
+    var classString = '';
+
+    //Initialize the classString with the classNames that were passed in
+    if (this.props.className) classString += ' ' + this.props.className;
+
+    //Add in initial classes
+    if (typeof initialClasses === 'object') {
+      classString += ' ' + classNames(initialClasses);
+    } else {
+      classString += ' ' + initialClasses;
+    }
+
+    //Add in additional classes
+    if (additionalClassObj) classString += ' ' + classNames(additionalClassObj);
+
+    //Convert the class string into an object and run it through the class set
+    return classNames(this.getClassSet(classString));
+  };
+
+  getClassSet = (classString) => {
+    var classObj = {};
+
+    if (classString) {
+      classString.split(' ').forEach(function (className) {
+        if (className) classObj[className] = true;
+      });
+    }
+
+    return classObj;
+  };
 }
 
 Menu.propTypes = {

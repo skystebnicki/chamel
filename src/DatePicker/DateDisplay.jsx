@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
 import DateTime from '../utils/DateTime';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 
 class DateDisplay extends Component {
-
-  // mixins: [Classable],
   /**
    * Class constructor
    *
@@ -36,15 +33,14 @@ class DateDisplay extends Component {
     let {
       selectedDate,
       ...other
-    } = this.props;
-    const classes = this.getClasses('chamel-date-picker-date-display');
+      } = this.props;
     const dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
     const month = DateTime.getShortMonth(this.props.selectedDate);
     const day = this.props.selectedDate.getDate();
     const year = this.props.selectedDate.getFullYear();
 
     return (
-      <div {...other} className={classes}>
+      <div {...other} className="chamel-date-picker-date-display">
 
         <SlideInTransitionGroup
           className="chamel-date-picker-date-display-dow"

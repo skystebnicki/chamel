@@ -81,7 +81,7 @@ class Dialog extends React.Component {
     chamelTheme: React.PropTypes.object
   };
 
-  static defaultProps =  {
+  static defaultProps = {
     autoDetectWindowHeight: false,
     autoScrollBodyContent: false,
     actions: [],
@@ -186,11 +186,11 @@ class Dialog extends React.Component {
   }
 
   dismiss = () => {
-    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), function() {
+    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), function () {
       this.refs.dialogOverlay.allowScrolling();
     }.bind(this));
 
-    this.setState({ open: false });
+    this.setState({open: false});
     this._onDismiss();
   };
 
@@ -198,7 +198,7 @@ class Dialog extends React.Component {
     this.refs.dialogOverlay.preventScrolling();
     this._focusOnAction();
 
-    this.setState({ open: true });
+    this.setState({open: true});
     this._onShow();
   };
 
@@ -213,7 +213,7 @@ class Dialog extends React.Component {
     var originalClassName = reactObject.props.className;
     var newClassname = originalClassName ? originalClassName + ' ' + className : className;
 
-    return React.cloneElement(reactObject, { className: newClassname });
+    return React.cloneElement(reactObject, {className: newClassname});
   }
 
   _getAction(actionJSON, key) {
@@ -250,7 +250,8 @@ class Dialog extends React.Component {
 
         currentAction = this._addClassName(currentAction, theme.dialogWindowAction);
         actionObjects.push(currentAction);
-      };
+      }
+      ;
 
       actionContainer = (
         <div className={theme.dialogWindowActions}>

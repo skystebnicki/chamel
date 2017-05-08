@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
 import TableRowsItem from './TableRowsItem';
 
-// TODO: Upgrade this to extends or pure
 const TableRow = (props) => {
-    // mixins: [Classable],
-
-  const classes = this.getClasses('chamel-table-rows');
-
   return (
-    <div className={classes}>
-        {this._getChildren()}
+    <div className="chamel-table-rows">
+      {this._getChildren()}
     </div>
   );
 
@@ -20,17 +14,8 @@ const TableRow = (props) => {
       rowItem,
       itemComponent
 
-    for (let i=0; i < this.props.rowItems.length; i++) {
+    for (let i = 0; i < this.props.rowItems.length; i++) {
       rowItem = this.props.rowItems[i];
-
-      /*
-       for(var prop in rowItem) {
-       if(rowItem.hasOwnProperty(prop)) {
-       console.log(prop);
-       }
-       }
-       console.log("--");
-       */
 
       itemComponent = (
         <TableRowsItem />

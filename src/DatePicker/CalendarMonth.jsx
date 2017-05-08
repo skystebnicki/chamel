@@ -1,72 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Classable from '../mixins/classable';
 import DateTime from '../utils/DateTime';
 import DayButton from './DayButton';
 
+const _getDayElements = (week, props) => {
+  let displayDayElements = [];
+  week.forEach((day, i) => {
+    const selected = DateTime.isEqualDate(props.selectedDate, day);
+
+    displayDayElements.pus(
+      <DayButton
+        key={i}
+        date={day}
+        disabled={(day) => {
+          const minDate = props.minDate;
+          const maxDate = props.maxDate;
+
+          if (minDate != null && day < minDate) {
+            return true;
+          }
+
+          if (maxDate != null && day > maxDate) {
+            return true;
+          }
+
+          return false;
+        }}
+        onClick={(e, date) => {
+          if (props.onDayTouchTap) props.onDayTouchTap(e, date);
+        }}
+        selected={selected}/>
+    );
+  });
+
+  return displayDayElements;
+};
+
 const CalendarMonth = (props) => {
 
-  // mixins: [Classable],
+  const weekArray = DateTime.getWeekArray(props.displayDate);
+  let displayWeekElements = [];
 
-  const classes = this.getClasses('chamel-date-picker-calendar-month');
+  weekArray.forEach((week, i) => {
+    displayWeekElements.push(
+      <div
+        key={i}
+        className="chamel-date-picker-calendar-month-week">
+        {_getDayElements(week, props)}
+      </div>
+    );
+  });
 
   return (
-    <div className={classes}>
-      {this._getWeekElements()}
+    <div className={"chamel-date-picker-calendar-month"}>
+      {displayWeekElements}
     </div>
   );
-
-  _getWeekElements = () => {
-    let weekArray = DateTime.getWeekArray(this.props.displayDate);
-
-    return weekArray.map(function(week, i) {
-      return (
-        <div
-          key={i}
-          className="chamel-date-picker-calendar-month-week">
-          {this._getDayElements(week)}
-        </div>
-      );
-    }, this);
-  };
-
-  _isDisabled = (day) => {
-    const minDate = this.props.minDate;
-    const maxDate = this.props.maxDate;
-
-    if(minDate != null && day < minDate){
-      return true;
-    }
-
-    if(maxDate != null && day > maxDate){
-      return true;
-    }
-
-    return false;
-  };
-
-  _getDayElements = (week) => {
-    return week.map(function(day, i) {
-      const selected = DateTime.isEqualDate(this.props.selectedDate, day);
-      const disabled = this._isDisabled(day);
-      return (
-        <DayButton
-          key={i}
-          date={day}
-          disabled={disabled}
-          onClick={this._handleDayTouchTap}
-          selected={selected} />
-      );
-    }, this);
-  };
-
-  _handleDayTouchTap = (e, date) => {
-    if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
-  };
-
 }
 
-CalendarMonth.propTypes: {
+CalendarMonth.propTypes = {
   displayDate: PropTypes.object.isRequired,
   onDayTouchTap: PropTypes.func,
   selectedDate: PropTypes.object.isRequired,
