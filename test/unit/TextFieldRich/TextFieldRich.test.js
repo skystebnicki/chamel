@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactShallowRenderer from 'react-test-renderer/shallow';
-import SlideInChild from 'chamel/transition-groups/SlideInChild';
+import TextFieldRich from 'chamel/TextFieldRich/TextFieldRich';
 
 /**
- * Test rendering the SlideInChild
+ * Test rendering the TextFieldRich
  */
-describe("SlideInChild Component", () => {
+describe("TextFieldRich Component", () => {
 
   // Basic validation that render works in edit mode and returns children
   it("Should render", () => {
 
     const renderer = new ReactShallowRenderer();
     const renderedDocument = renderer.render(
-      <SlideInChild />
+      <TextFieldRich
+        value="jest-test"
+        id="jest-TextFieldRich"
+      />
     );
 
-    expect(renderedDocument.props.className).toBe('chamel-transition-slide-in-child');
+    expect(renderedDocument.props.className).toBe('chamel-text-field-rich');
   });
 });

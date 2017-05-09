@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactShallowRenderer from 'react-test-renderer/shallow';
-import SlideInChild from 'chamel/transition-groups/SlideInChild';
+import TouchRipple from 'chamel/ripples/TouchRipple';
 
 /**
- * Test rendering the SlideInChild
+ * Test rendering the TouchRipple
  */
-describe("SlideInChild Component", () => {
+describe("TouchRipple Component", () => {
 
   // Basic validation that render works in edit mode and returns children
   it("Should render", () => {
 
     const renderer = new ReactShallowRenderer();
     const renderedDocument = renderer.render(
-      <SlideInChild />
+      <TouchRipple
+        className="jest-touchripple"
+      />
     );
 
-    expect(renderedDocument.props.className).toBe('chamel-transition-slide-in-child');
+    expect(renderedDocument.type).toBe("div");
+    expect(renderedDocument.props.children.length).toBeGreaterThan(0);
   });
 });

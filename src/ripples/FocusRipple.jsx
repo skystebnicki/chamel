@@ -70,10 +70,5 @@ FocusRipple.contextTypes = {
     chamelTheme: React.PropTypes.object
 };
 
-// Check for commonjs
-if (module) {
-    module.exports = FocusRipple;
-}
-
 // ES6
 export default FocusRipple;

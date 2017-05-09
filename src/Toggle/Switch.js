@@ -56,7 +56,6 @@ Switch.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   label: PropTypes.string,
-  onTape: PropTypes.func,
 
   /**
    * This is the function calling components should use to check status
