@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import ThemeService from '../styles/ChamelThemeService';
@@ -80,7 +80,7 @@ Switch.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 Switch.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default Switch;

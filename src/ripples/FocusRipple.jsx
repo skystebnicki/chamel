@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
-class FocusRipple extends React.Component {
+class FocusRipple extends Component {
 
   /**
    * Class constructor
@@ -53,7 +53,7 @@ class FocusRipple extends React.Component {
  * Set accepted properties
  */
 FocusRipple.propTypes = {
-  show: React.PropTypes.bool
+  show: PropTypes.bool
 }
 
 /**
@@ -67,7 +67,7 @@ FocusRipple.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 FocusRipple.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 

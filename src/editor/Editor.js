@@ -12,7 +12,7 @@ const SOURCE_VIEW = 'source';
 /**
  * Chamel Editor component for editing rich text and source code
  */
-class ChamelEditor extends React.Component {
+class ChamelEditor extends Component {
 
   /**
    * Set accepted properties
@@ -23,35 +23,35 @@ class ChamelEditor extends React.Component {
      *
      * @type {function}
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * The callback function used when user looses the focus of the editor
      *
      * @type {function}
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * The initial value of the content editor
      *
      * @type {string}
      */
-    value: React.PropTypes.string,
+    value: PropTypes.string,
 
     /**
      * Determine what is the intial content view to be displayed
      *
      * @type {string}
      */
-    contentView: React.PropTypes.oneOf(['html', 'source'])
+    contentView: PropTypes.oneOf(['html', 'source'])
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-      chamelTheme: React.PropTypes.object
+      chamelTheme: PropTypes.object
   };
 
   static defaultProps = {

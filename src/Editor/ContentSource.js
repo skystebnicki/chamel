@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import EditorToolbar from './EditorToolbar';
@@ -10,7 +10,7 @@ import 'codemirror/lib/codemirror.css'
 /**
  * Contains codemirror and the toolbar for viewing source
  */
-class ContentSource extends React.Component {
+class ContentSource extends Component {
 
     /**
      * Set accepted properties
@@ -21,35 +21,35 @@ class ContentSource extends React.Component {
          *
          * @type {function}
          */
-        onChange: React.PropTypes.func,
+        onChange: PropTypes.func,
 
         /**
          * The callback function used when user looses the focus of the editor
          *
          * @type {function}
          */
-        onBlur: React.PropTypes.func,
+        onBlur: PropTypes.func,
 
         /**
          * The initial value of the content editor
          *
          * @type {string}
          */
-        value: React.PropTypes.string,
+        value: PropTypes.string,
 
         /**
          * Handles the toggling of content view
          *
          * @type {function}
          */
-        onContentViewToggle: React.PropTypes.func
+        onContentViewToggle: PropTypes.func
     }
 
     /**
      * An alternate theme may be passed down by a provider
      */
     static contextTypes = {
-        chamelTheme: React.PropTypes.object
+        chamelTheme: PropTypes.object
     };
 
     /**

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Events from '../utils/Events';
 import Dom from '../utils/Dom';
@@ -7,7 +7,7 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Main popover class handles absolute positioning paper relative to an element
  */
-class Popover extends React.Component {
+class Popover extends Component {
 
   /**
    * Class constructor
@@ -43,14 +43,14 @@ class Popover extends React.Component {
    * Set accepted properties
    */
   static propTypes = {
-    open: React.PropTypes.bool,
-    anchorEl: React.PropTypes.object,
-    zDepth: React.PropTypes.number,
+    open: PropTypes.bool,
+    anchorEl: PropTypes.object,
+    zDepth: PropTypes.number,
 
     /**
      * If true, then position elements relative to parent and not document
      */
-    relative: React.PropTypes.bool,
+    relative: PropTypes.bool,
 
     /**
      * This is the point on the anchor where the popover
@@ -59,9 +59,9 @@ class Popover extends React.Component {
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right]
      */
-    anchorOrigin: React.PropTypes.shape({
-      vertical: React.PropTypes.oneOf(['top', 'middle', 'bottom']),
-      horizontal: React.PropTypes.oneOf(['left', 'center', 'right'])
+    anchorOrigin: PropTypes.shape({
+      vertical: PropTypes.oneOf(['top', 'middle', 'bottom']),
+      horizontal: PropTypes.oneOf(['left', 'center', 'right'])
     }),
 
     /**
@@ -71,9 +71,9 @@ class Popover extends React.Component {
      * vertical: [top, middle, bottom]
      * horizontal: [left, center, right]
      */
-    targetOrigin: React.PropTypes.shape({
-      vertical: React.PropTypes.oneOf(['top', 'middle', 'bottom']),
-      horizontal: React.PropTypes.oneOf(['left', 'center', 'right'])
+    targetOrigin: PropTypes.shape({
+      vertical: PropTypes.oneOf(['top', 'middle', 'bottom']),
+      horizontal: PropTypes.oneOf(['left', 'center', 'right'])
     })
   };
 
@@ -81,7 +81,7 @@ class Popover extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

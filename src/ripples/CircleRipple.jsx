@@ -1,24 +1,24 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
-class CircleRipple extends React.Component {
+class CircleRipple extends Component {
 
   /**
    * Set accepted properties
    */
   static propTypes = {
-    className: React.PropTypes.string,
-    started: React.PropTypes.bool,
-    ending: React.PropTypes.bool,
-    style: React.PropTypes.object
+    className: PropTypes.string,
+    started: PropTypes.bool,
+    ending: PropTypes.bool,
+    style: PropTypes.object
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   render() {

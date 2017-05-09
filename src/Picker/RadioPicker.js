@@ -55,7 +55,7 @@ RadioPicker.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 RadioPicker.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default RadioPicker;

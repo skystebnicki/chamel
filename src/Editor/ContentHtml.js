@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import RichText from '../Input/RichText';
@@ -7,7 +7,7 @@ import EditorToolbar from './EditorToolbar';
 /**
  * Contains both the toolbar and an instance of RichText component
  */
-class ContentHtml extends React.Component {
+class ContentHtml extends Component {
 
   /**
    * Set accepted properties
@@ -18,35 +18,35 @@ class ContentHtml extends React.Component {
      *
      * @type {function}
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * The callback function used when user looses the focus of the editor
      *
      * @type {function}
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * The initial value of the content editor
      *
      * @type {string}
      */
-    value: React.PropTypes.string,
+    value: PropTypes.string,
 
     /**
      * Handles the toggling of content view
      *
      * @type {function}
      */
-    onContentViewToggle: React.PropTypes.func
+    onContentViewToggle: PropTypes.func
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

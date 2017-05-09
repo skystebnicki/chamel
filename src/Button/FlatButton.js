@@ -49,7 +49,7 @@ FlatButton.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 FlatButton.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 

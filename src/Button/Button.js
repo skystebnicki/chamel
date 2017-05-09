@@ -159,7 +159,7 @@ Button.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 Button.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default Button;

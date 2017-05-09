@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
@@ -31,7 +31,7 @@ Row.propTypes = {
  * An alternate theme may be passed down by a provider
  */
 Row.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default Row;

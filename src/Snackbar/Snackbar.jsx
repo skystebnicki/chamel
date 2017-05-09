@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import classnames from 'classnames';
 import FlatButton from '../Button/FlatButton';
 import ThemeService from '../styles/ChamelThemeService';
@@ -6,22 +6,22 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Create a snackbar notice
  */
-class Snackbar extends React.Component {
+class Snackbar extends Component {
 
   static propTypes = {
-    action: React.PropTypes.string,
-    message: React.PropTypes.string.isRequired,
-    open: React.PropTypes.bool,
-    onActionClick: React.PropTypes.func,
-    timeout: React.PropTypes.number,
-    onDismiss: React.PropTypes.func
+    action: PropTypes.string,
+    message: PropTypes.string.isRequired,
+    open: PropTypes.bool,
+    onActionClick: PropTypes.func,
+    timeout: PropTypes.number,
+    onDismiss: PropTypes.func
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

@@ -63,7 +63,7 @@ RadioButton.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 RadioButton.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default RadioButton;

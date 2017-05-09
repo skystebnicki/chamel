@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import Paper from '../Paper/Paper'
@@ -9,21 +9,21 @@ import Events from '../utils/Events';
 /**
  * AppBar - the main toolbar for the application
  */
-class AppBar extends React.Component {
+class AppBar extends Component {
   /**
    * Set accepted properties
    */
   static propTypes = {
-    onNavBtnClick: React.PropTypes.func,
-    className: React.PropTypes.string,
-    iconElementLeft: React.PropTypes.element,
-    iconElementRight: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.array
+    onNavBtnClick: PropTypes.func,
+    className: PropTypes.string,
+    iconElementLeft: PropTypes.element,
+    iconElementRight: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.array
     ]),
-    title: React.PropTypes.node,
-    zDepth: React.PropTypes.number,
-    fixed: React.PropTypes.bool
+    title: PropTypes.node,
+    zDepth: PropTypes.number,
+    fixed: PropTypes.bool
   };
 
   /**
@@ -39,7 +39,7 @@ class AppBar extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**
