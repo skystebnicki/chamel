@@ -1,6 +1,6 @@
-import React from'react';
-import ReactCSSTransitionGroup from'react-addons-css-transition-group';
-import SlideInChild from'./SlideInChild';
+import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import SlideInChild from './SlideInChild';
 
 
 const SlideIn = React.createClass({
@@ -27,7 +27,7 @@ const SlideIn = React.createClass({
       ...other
     } = this.props;
 
-    var classes = (this.props.className) ? this.props.className + ' ' : null;
+    let classes = (this.props.className) ? this.props.className + ' ' : null;
     classes += 'chamel-transition-slide-in chamel-is-' + this.props.direction;
     //var classes = 'chamel-transition-slide-in chamel-is-' + this.props.direction;
 

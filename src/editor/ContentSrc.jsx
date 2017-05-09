@@ -1,31 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextFieldRich from "../TextFieldRich/TextFieldRich";
 
-var ContentRte = React.createClass({
+const ContentRte = (props) => {
 
-	propTypes: {
-		onBlur: React.PropTypes.func,
-		onChange: React.PropTypes.func,
-		onFocus: React.PropTypes.func,
-		value: React.PropTypes.string,
-	},
-
-	getDefaultProps: function() {
-		return {
-			value: "",
-		};
-	},
-
-	render: function() {
-		return (
-			<TextFieldRich
-				ref="textFieldRich"
-				onFocus={this._handleFocus}
-				onBlur={this._handleBlur}
-				onChange={this._handleChange}
-				value={this.props.value} />
-		);
-	},
+	return (
+		<TextFieldRich
+			ref="textFieldRich"
+			onFocus={_handleFocus}
+			onBlur={_handleBlur}
+			onChange={_handleChange}
+			value={props.value} />
+	);
 
 	/**
 	 * Sends a command to the TextFieldRich component which executes an editor command
@@ -34,9 +20,9 @@ var ContentRte = React.createClass({
 	 * @param {string} option 	The option when executing a certain command. e.g. changing the font/background colors
 	 * @public
 	 */
-	sendCommand: function (command, option) {
+	sendCommand = (command, option) => {
 		this.refs.textFieldRich.sendCommand(command, option);
-	},
+	};
 
 	/**
 	 * Sends a command to the TextFieldRich to change the font/background color
@@ -45,9 +31,9 @@ var ContentRte = React.createClass({
 	 * @param {string} color	The color that was selected
 	 * @public
 	 */
-	setColor: function (type, color) {
+	setColor = (type, color) => {
 		this.refs.textFieldRich.setColor(type, color);
-	},
+	};
 
 	/**
 	 * Calls a function in the TextFieldRich which insert the a href link
@@ -55,9 +41,9 @@ var ContentRte = React.createClass({
 	 * @param {string} path		The url path to be linked on text
 	 * @public
 	 */
-	insertLink: function(path) {
+	insertLink = (path) => {
 		this.refs.textFieldRich.insertLink("createlink", path);
-	},
+	};
 
 	/**
 	 * Calls a function in the TextFieldRich which insert the html string to the editor
@@ -65,27 +51,27 @@ var ContentRte = React.createClass({
 	 * @param {string} html		The string that will be inserted
 	 * @public
 	 */
-	insertHtml: function(html) {
+	insertHtml = (html) => {
 		this.refs.textFieldRich.insertHtml(html);
-	},
+	};
 
 	/**
 	 * Clears the value of the textFieldRich
 	 *
 	 * @public
 	 */
-	clearValue: function() {
+	clearValue = () => {
 		this.refs.textFieldRich.clearValue();
-	},
+	};
 
 	/**
 	 * Gets the value of the textFieldRich
 	 *
 	 * @public
 	 */
-	getValue: function() {
+	getValue = () => {
 		return this.refs.textFieldRich.getValue();
-	},
+	};
 
 	/**
 	 * Sets the value of the textFieldRich
@@ -93,9 +79,9 @@ var ContentRte = React.createClass({
 	 * @param {string} newValue		The value to be saved in the editor
 	 * @public
 	 */
-	setValue: function(newValue) {
+	setValue = (newValue) => {
 		this.refs.textFieldRich.setValu(neValue);
-	},
+	};
 
 	/**
 	 * Callback used to handle onblur
@@ -103,9 +89,9 @@ var ContentRte = React.createClass({
 	 * @param {DOMEvent} e 		Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleBlur: function(e) {
-		if (this.props.onBlur) this.props.onBlur(e);
-	},
+	_handleBlur = (e) => {
+		if (props.onBlur) props.onBlur(e);
+	};
 
 	/**
 	 * Callback used to handle onfocus
@@ -113,9 +99,9 @@ var ContentRte = React.createClass({
 	 * @param {DOMEvent} e 		Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleFocus: function(e) {
-		if (this.props.onFocus) this.props.onFocus(e);
-	},
+	_handleFocus = (e) => {
+		if (props.onFocus) props.onFocus(e);
+	};
 
 	/**
 	 * Callback used to handle onchange
@@ -123,9 +109,21 @@ var ContentRte = React.createClass({
 	 * @param {DOMEvent} e 		Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleChange: function(e) {
-		if (this.props.onChange) this.props.onChange(e);
-	}
-});
+	_handleChange = (e) => {
+		if (props.onChange) props.onChange(e);
+	};
+}
 
-module.exports = ContentRte;
+ContentRte.propTypes = {
+	onBlur: React.PropTypes.func,
+	onChange: React.PropTypes.func,
+	onFocus: React.PropTypes.func,
+	value: React.PropTypes.string,
+};
+
+ContentRte.defaultProps = {
+	value: "",
+};
+
+
+export default ContentRte;

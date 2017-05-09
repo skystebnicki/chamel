@@ -38,7 +38,7 @@ class DayButton extends Component {
   };
 
   getClasses = (initialClasses, additionalClassObj) => {
-    var classString = '';
+    let classString = '';
 
     //Initialize the classString with the classNames that were passed in
     if (this.props.className) classString += ' ' + this.props.className;
@@ -58,7 +58,7 @@ class DayButton extends Component {
   };
 
   getClassSet = (classString) => {
-    var classObj = {};
+    let classObj = {};
 
     if (classString) {
       classString.split(' ').forEach(function (className) {

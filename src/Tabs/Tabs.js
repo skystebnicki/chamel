@@ -97,7 +97,7 @@ class Tabs extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.tabs)
       ? this.context.chamelTheme.tabs : ThemeService.defaultTheme.tabs;
 
-    var _this = this;
+    const _this = this;
     let width = 100 / this.getTabCount() + '%';
 
     // Get classes for the tab item container
@@ -110,8 +110,8 @@ class Tabs extends React.Component {
      this.props.tabWidth;*/
     let left = 'calc(' + width + '*' + this.state.selectedIndex + ')';
     //var left = width * this.state.selectedIndex || 0;
-    var currentTemplate = null;
-    var tabs = React.Children.map(this.props.children, function (tab, index) {
+    let currentTemplate = null;
+    const tabs = React.Children.map(this.props.children, function (tab, index) {
       if (tab.type.name === "Tab") {
         // Generic UI implementation
         if (_this.state.selectedIndex === index) currentTemplate = tab.props.children;
@@ -124,7 +124,7 @@ class Tabs extends React.Component {
           handleTouchTap: _this.handleTouchTap
         });
       } else {
-        var type = tab.type.displayName || tab.type;
+        const type = tab.type.displayName || tab.type;
         throw "Tabs only accepts Tab Components as children. Found " + type + " as child number " + (index + 1) + " of Tabs";
       }
     });

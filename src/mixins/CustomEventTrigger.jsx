@@ -6,7 +6,7 @@
 /**
  * Handle triggering custom events
  */
-var CustomEventTrigger = {
+const CustomEventTrigger = {
 
     /**
      * Trigger a custom event
@@ -16,7 +16,7 @@ var CustomEventTrigger = {
      * @param {bool} bubble If true (default) then bubble up to parent
      */
     triggerCustomEvent: function(type, opt_data, bubble) {
-        var evtData = opt_data || {};
+        const evtData = opt_data || {};
         if (this.props.eventsObj) {
             alib.events.triggerEvent(this.props.eventsObj, type, evtData);
         } else {
@@ -26,4 +26,4 @@ var CustomEventTrigger = {
 
 };
 
-module.exports = CustomEventTrigger;
+export default CustomEventTrigger;
