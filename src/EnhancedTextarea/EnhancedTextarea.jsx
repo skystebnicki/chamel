@@ -89,9 +89,9 @@ class EnhancedTextarea extends Component {
   };
 
   _syncHeightWithShadow = (newValue, e) => {
-    var shadow = ReactDOM.findDOMNode(this.refs.shadow);
-    var currentHeight = this.state.height;
-    var newHeight;
+    const shadow = ReactDOM.findDOMNode(this.refs.shadow);
+    const currentHeight = this.state.height;
+    let newHeight;
 
     if (newValue !== undefined) shadow.value = newValue;
     newHeight = shadow.scrollHeight;
@@ -120,7 +120,7 @@ class EnhancedTextarea extends Component {
 
 
   getClasses = (initialClasses, additionalClassObj) => {
-    var classString = '';
+    let classString = '';
 
     //Initialize the classString with the classNames that were passed in
     if (this.props.className) classString += ' ' + this.props.className;
@@ -140,7 +140,7 @@ class EnhancedTextarea extends Component {
   };
 
   getClassSet = (classString) => {
-    var classObj = {};
+    let classObj = {};
 
     if (classString) {
       classString.split(' ').forEach(function (className) {

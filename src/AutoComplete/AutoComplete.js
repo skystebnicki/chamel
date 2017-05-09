@@ -123,7 +123,7 @@ class AutoComplete extends React.Component {
      */
     if (nextProps.anchorEl == document.activeElement) {
 
-      var openMenu = true;
+      let openMenu = true;
 
       // If suggestionList is empty, there is no need to display the popover menu list
       if (suggestionList.length == 0) {
@@ -278,7 +278,7 @@ class AutoComplete extends React.Component {
     newValue += selectedValue;
     newValue += (this.props.delimiter) ? this.props.delimiter : '';
 
-    var newCaretPos = newValue.length;
+    const newCaretPos = newValue.length;
 
     // If the trigger key is in the middle of text, then we need to append the last part of substr value
     newValue += inputDetails.value.substr(inputDetails.caretPos, inputDetails.value.length);
@@ -320,7 +320,7 @@ class AutoComplete extends React.Component {
        * We will not include the @ in the chunkedValue
        * So we need to increment the value of startPos
        */
-      var chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
+      let chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
       if (chunkedValue.length <= inputDetails.minLengthLimit) {
         return suggestionList;
       }
@@ -332,9 +332,9 @@ class AutoComplete extends React.Component {
         suggestionData.map(function (suggestion) {
 
           // We need the keyword to only have alphanumeric characters
-          var keyword = chunkedValue.replace(/[\W\s+]+/g, '');
+          const keyword = chunkedValue.replace(/[\W\s+]+/g, '');
 
-          var re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
+          const re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
 
           // If we found a match, then lets push it in suggestionList to be displayed later
           if (suggestion.text.match(re)) {

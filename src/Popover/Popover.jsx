@@ -113,7 +113,7 @@ class Popover extends React.Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.popover)
       ? this.context.chamelTheme.popover : ThemeService.defaultTheme.popover;
 
-    var classes = theme.popover;
+    const classes = theme.popover;
     if (this.props.open) {
       classes += " " + theme.popoverVisible;
     }

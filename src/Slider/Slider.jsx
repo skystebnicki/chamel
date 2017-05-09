@@ -38,7 +38,7 @@ class Slider extends Component {
       'chamel-disabled': this.props.disabled
     });
 
-    var percent = this.state.percent;
+    const percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     return (
@@ -153,7 +153,7 @@ class Slider extends Component {
   };
 
   getClasses = (initialClasses, additionalClassObj) => {
-    var classString = '';
+    let classString = '';
 
     //Initialize the classString with the classNames that were passed in
     if (this.props.className) classString += ' ' + this.props.className;
@@ -173,7 +173,7 @@ class Slider extends Component {
   };
 
   getClassSet = (classString) => {
-    var classObj = {};
+    let classObj = {};
 
     if (classString) {
       classString.split(' ').forEach(function (className) {

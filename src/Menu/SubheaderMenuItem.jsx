@@ -1,18 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import ThemeService from '../styles/ChamelThemeService';
 
-var SubheaderMenuItem = React.createClass({
-    
-    propTypes: {
-        index: React.PropTypes.number.isRequired,
-        text: React.PropTypes.string.isRequired
-    },
-    
-    render: function() {
-        return (
-            <div key={this.props.index} className="chamel-subheader">{this.props.text}</div>
-        );
-    }
-    
-});
+const SubheaderMenuItem = (props) => {
+  let theme = ThemeService.defaultTheme.menu;
+  return (
+    <div key={props.index} className={theme.menuSubheader}>{props.text}</div>
+  );
+}
 
-module.exports = SubheaderMenuItem;
+SubheaderMenuItem.propTypes = {
+    index: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+};
+
+export default SubheaderMenuItem;

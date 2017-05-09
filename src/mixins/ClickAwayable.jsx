@@ -26,7 +26,7 @@ module.exports = {
   },
 
   _checkClickAway: function(e) {
-    var el = ReactDOM.findDOMNode(this);
+    const el = ReactDOM.findDOMNode(this);
 
     // Check if the target is inside the current component
     if (this.state.componentIsMounted &&

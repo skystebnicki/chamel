@@ -1,16 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from './svg-icon';
 
-var DropDownArrow = React.createClass({
+const DropDownArrow = (props) => {
 
-  render: function() {
-    return (
-      <SvgIcon {...this.props}>
-        <polygon points="7,9.5 12,14.5 17,9.5 "/>
-      </SvgIcon>
-    );
-  }
+  return (
+    <SvgIcon {...props}>
+      <polygon points="7,9.5 12,14.5 17,9.5 "/>
+    </SvgIcon>
+  );
 
-});
+}
 
-module.exports = DropDownArrow;
+export default DropDownArrow;

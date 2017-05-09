@@ -127,7 +127,7 @@ class Dialog extends React.Component {
       ? this.context.chamelTheme.dialog : ThemeService.defaultTheme.dialog;
 
     // Set classes for dialog window
-    var classesDialog = theme.dialog;
+    let classesDialog = theme.dialog;
     if (this.state.open) {
       classesDialog += ' ' + theme.dialogIsShown;
     }
@@ -136,19 +136,19 @@ class Dialog extends React.Component {
     }
 
     // Set classes for window contents
-    var classesWindow = theme.dialogWindow;
+    let classesWindow = theme.dialogWindow;
     if (this.props.windowClassName) {
       classesWindow += " " + this.props.windowClassName;
     }
 
     // Set classes for window contents
-    var classesWindowBody = theme.dialogWindowBody;
+    let classesWindowBody = theme.dialogWindowBody;
     if (this.props.dialogWindowBodyClassName) {
       classesWindowBody += " " + this.props.dialogWindowBodyClassName;
     }
 
     // Add title
-    var title;
+    let title;
     if (this.props.title) {
       // If the title is a string, wrap in an h3 tag.
       // If not, just use it as a node.
@@ -158,7 +158,7 @@ class Dialog extends React.Component {
     }
 
     // Get actions to display at the bottom
-    var actions = this._getActionsContainer(this.props.actions, theme);
+    const actions = this._getActionsContainer(this.props.actions, theme);
 
     return (
       <div className={classesDialog}>
@@ -210,14 +210,14 @@ class Dialog extends React.Component {
   }
 
   _addClassName(reactObject, className) {
-    var originalClassName = reactObject.props.className;
-    var newClassname = originalClassName ? originalClassName + ' ' + className : className;
+    const originalClassName = reactObject.props.className;
+    const newClassname = originalClassName ? originalClassName + ' ' + className : className;
 
     return React.cloneElement(reactObject, {className: newClassname});
   }
 
   _getAction(actionJSON, key) {
-    var props = {
+    const props = {
       key: key,
       secondary: true,
       onClick: actionJSON.onClick ? actionJSON.onClick : this.dismiss,
@@ -236,12 +236,12 @@ class Dialog extends React.Component {
 
   _getActionsContainer(actions, theme) {
 
-    var actionContainer;
-    var actionObjects = [];
+    let actionContainer;
+    let actionObjects = [];
 
     if (actions.length) {
-      for (var i = 0; i < actions.length; i++) {
-        var currentAction = actions[i];
+      for (let i = 0; i < actions.length; i++) {
+        let currentAction = actions[i];
 
         //if the current action isn't a react object, create one
         if (!React.isValidElement(currentAction)) {
@@ -266,17 +266,17 @@ class Dialog extends React.Component {
   _positionDialog() {
 
     if (this.state.open) {
-      var clientHeight = ReactDOM.findDOMNode(this).offsetHeight;
-      var dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
-      var dialogBody = ReactDOM.findDOMNode(this.refs.dialogBody);
-      var minMarginTop = 0;
+      const clientHeight = ReactDOM.findDOMNode(this).offsetHeight;
+      let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
+      let dialogBody = ReactDOM.findDOMNode(this.refs.dialogBody);
+      const minMarginTop = 0;
 
       //Reset the height in case the window was resized.
       dialogWindow.style.height = '';
       dialogBody.style.height = '';
 
-      var dialogWindowHeight = dialogWindow.offsetHeight;
-      var windowTop = ((clientHeight - dialogWindowHeight) / 2) - 2 * (64);
+      const dialogWindowHeight = dialogWindow.offsetHeight;
+      let windowTop = ((clientHeight - dialogWindowHeight) / 2) - 2 * (64);
 
       // Set to full-height if we are in auto-detect
       if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
@@ -293,7 +293,7 @@ class Dialog extends React.Component {
 
       // Force a height if the dialog is taller than clientHeight
       if (this.props.autoDetectWindowHeight || this.props.autoScrollBodyContent) {
-        var maxDialogContentHeight = clientHeight - 2 * (64);
+        let maxDialogContentHeight = clientHeight - 2 * (64);
 
         if (this.props.title) {
           maxDialogContentHeight -= dialogBody.previousSibling.offsetHeight;

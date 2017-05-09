@@ -1,38 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import UAParser from 'ua-parser-js';
 
-var uaParser = new UAParser();
+const uaParser = new UAParser();
 
-var TextFieldRich = React.createClass({
+class TextFieldRich extends Component {
 
-	propTypes: {
-		id: React.PropTypes.string,
-		onBlur: React.PropTypes.func,
-		onChange: React.PropTypes.func,
-		onFocus: React.PropTypes.func,
-		onKeyUp: React.PropTypes.func,
-		onEnterKeyDown: React.PropTypes.func,
-		autoGrow: React.PropTypes.bool,
-		height: React.PropTypes.number,
-		value: React.PropTypes.string,
-	},
+	/**
+	 * Class constructor
+	 *
+	 * @param {Object} props Properties to send to the render function
+	 */
+	constructor(props) {
+		// Call parent constructor
+		super(props);
 
-	getInitialState () {
-		return {
+		this.state = {
 			componentIsMounted: false
 		};
-	},
+	}
 
-	getDefaultProps: function () {
-		return {
-			autoGrow: true,
-			value: "",
-		};
-	},
-
-	componentDidMount: function () {
-		var iframe = ReactDOM.findDOMNode(this.refs.rte);
+	componentDidMount() {
+		const iframe = ReactDOM.findDOMNode(this.refs.rte);
 		iframe.style.width = "100%";
 
 		// If height has been passed then set the iframe height
@@ -51,33 +41,33 @@ var TextFieldRich = React.createClass({
 			this._enableDesign(true);
 			this.setValue(this.props.value);
 		}.bind(this), 1);
-	},
+	}
 
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		this.setState({componentIsMounted: false});
-	},
+	}
 
-	render: function () {
+	render() {
 		return (<div className="chamel-text-field-rich">
 			<iframe ref="rte" src="about:blank"/>
 		</div>);
-	},
+	}
 
 	/**
 	 * Get the iframe window document
 	 *
 	 * @private
 	 */
-	_getIframeWindow: function () {
+	_getIframeWindow = () => {
 
 		// We cannot get iframe document if DOM is not yet mounted
 		if (!this.state.componentIsMounted) {
 			return null;
 		}
 
-		var ifrm = ReactDOM.findDOMNode(this.refs.rte);
+		const ifrm = ReactDOM.findDOMNode(this.refs.rte);
 		return ifrm.contentWindow || ifrm.contentDocument;
-	},
+	};
 
 	/**
 	 * Public interface to send commands to the RTE
@@ -86,10 +76,10 @@ var TextFieldRich = React.createClass({
 	 * @param {string} option    The option when executing a certain command. e.g. changing the font/background colors
 	 * @public
 	 */
-	sendCommand: function (command, option) {
+	sendCommand = (command, option) => {
 		try {
-			var ifrmWindow = this._getIframeWindow();
-			var idoc = ifrmWindow.document || null;
+			const ifrmWindow = this._getIframeWindow();
+			const idoc = ifrmWindow.document || null;
 
 			if (idoc) {
 				ifrmWindow.focus();
@@ -101,7 +91,7 @@ var TextFieldRich = React.createClass({
 		catch (e) {
 			throw new Error('Error while executing the ' + command + ' command');
 		}
-	},
+	};
 
 	/**
 	 * Sets the color of the current selection in the iframe document
@@ -110,10 +100,10 @@ var TextFieldRich = React.createClass({
 	 * @param {string} color    The color that was selected
 	 * @public
 	 */
-	setColor: function (type, color) {
+	setColor = (type, color) => {
 		this._setRange();
 		this.sendCommand(type, color);
-	},
+	};
 
 	/**
 	 * Inserts the html string
@@ -121,7 +111,7 @@ var TextFieldRich = React.createClass({
 	 * @param {string} html        The string that will be inserted
 	 * @public
 	 */
-	insertHtml: function (html) {
+	insertHtml = (html) => {
 		this._setRange();
 
 		if (uaParser.getBrowser().name == "IE") {
@@ -130,7 +120,7 @@ var TextFieldRich = React.createClass({
 		else {
 			this.sendCommand('insertHtml', html);
 		}
-	},
+	};
 
 	/**
 	 * Prompts the dialog box for user input
@@ -138,20 +128,20 @@ var TextFieldRich = React.createClass({
 	 * @param {string} path        The url path to be linked on text
 	 * @public
 	 */
-	insertLink: function (path) {
+	insertLink = (path) => {
 		this._setRange();
 		this.sendCommand("unlink", null);
 		this.sendCommand("createlink", path);
-	},
+	};
 
 	/**
 	 * Clear the value of the iframe document
 	 *
 	 * @public
 	 */
-	clearValue: function () {
+	clearValue = () => {
 		this.setValue('');
-	},
+	};
 
 
 	/**
@@ -159,13 +149,13 @@ var TextFieldRich = React.createClass({
 	 *
 	 * @public
 	 */
-	getValue: function () {
-		var ifrmWindow = this._getIframeWindow();
-		var idoc = ifrmWindow.document || null;
-		var value = idoc.body.innerHTML || "";
+	getValue = () => {
+		const ifrmWindow = this._getIframeWindow();
+		const idoc = ifrmWindow.document || null;
+		let value = idoc.body.innerHTML || "";
 
 		return value;
-	},
+	};
 
 	/**
 	 * Set the value of the iframe document / code mirror editor
@@ -173,30 +163,30 @@ var TextFieldRich = React.createClass({
 	 * @param {string} newValue        The value to be saved in the editor
 	 * @public
 	 */
-	setValue: function (newValue) {
-		var ifrmWindow = this._getIframeWindow();
-		var idoc = ifrmWindow.document || null;
+	setValue = (newValue) => {
+		const ifrmWindow = this._getIframeWindow();
+		const idoc = ifrmWindow.document || null;
 
 		if (idoc) {
 			idoc.body.innerHTML = newValue;
 			this._autoGrow();
 		}
-	},
+	};
 
 	/**
 	 * Set the range of the iframe document
 	 *
 	 * @private
 	 */
-	_setRange: function () {
-		var ifrmWindow = this._getIframeWindow();
-		var idoc = ifrmWindow.document || null;
+	_setRange = () => {
+		const ifrmWindow = this._getIframeWindow();
+		const idoc = ifrmWindow.document || null;
 
 		if (idoc && uaParser.getBrowser().name == "IE") {
-			var selection = idoc.selection;
+			let selection = idoc.selection;
 			if (selection != null) this._rangeSelection = selection.createRange();
 		} else if (ifrmWindow) {
-			var selection = ifrmWindow.getSelection();
+			let selection = ifrmWindow.getSelection();
 			this._rangeSelection = selection.getRangeAt(selection.rangeCount - 1).cloneRange();
 		}
 
@@ -204,14 +194,14 @@ var TextFieldRich = React.createClass({
 			ifrmWindow.focus()
 
 			// retrieve selected range
-			var sel = idoc.selection;
+			let sel = idoc.selection;
 			if (sel != null) {
-				var newRng = sel.createRange();
+				let newRng = sel.createRange();
 				newRng = this._rangeSelection;
 				newRng.select();
 			}
 		}
-	},
+	};
 
 	/**
 	 * Handles the input blur event of the text area
@@ -219,11 +209,11 @@ var TextFieldRich = React.createClass({
 	 * @param {DOMEvent} e        Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleInputBlur: function (e) {
-		var result = {target: {value: this.getValue()}};
+	_handleInputBlur = (e) => {
+		let result = {target: {value: this.getValue()}};
 
 		if (this.props.onBlur) this.props.onBlur(result);
-	},
+	};
 
 	/**
 	 * Handles the input change event of the text area
@@ -231,10 +221,10 @@ var TextFieldRich = React.createClass({
 	 * @param {DOMEvent} e        Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleInputChange: function (e) {
-		var result = {target: {value: this.getValue()}};
+	_handleInputChange = (e) => {
+		let result = {target: {value: this.getValue()}};
 		if (this.props.onChange) this.props.onChange(result);
-	},
+	};
 
 	/**
 	 * Handles the input focus of the text area
@@ -242,13 +232,13 @@ var TextFieldRich = React.createClass({
 	 * @param {DOMEvent} e        Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleInputFocus: function (e) {
-		var result = {target: {value: this.getValue()}};
+	_handleInputFocus = (e) => {
+		let result = {target: {value: this.getValue()}};
 
 		if (this.props.onFocus) {
 			this.props.onFocus(result);
 		}
-	},
+	};
 
 	/**
 	 * Handles the input key down of the text area
@@ -256,8 +246,8 @@ var TextFieldRich = React.createClass({
 	 * @param {DOMEvent} e        Reference to the DOM event being sent
 	 * @private
 	 */
-	_handleInputKeyUp: function (e) {
-		var result = {target: {value: this.getValue()}};
+	_handleInputKeyUp = (e) => {
+		let result = {target: {value: this.getValue()}};
 
 		if (this.props.autoGrow) {
 			this._autoGrow();
@@ -276,7 +266,7 @@ var TextFieldRich = React.createClass({
 		if (this.props.onChange) {
 			this.props.onChange(result);
 		}
-	},
+	};
 
 	/**
 	 * Handles the change of height event of the text area
@@ -285,29 +275,29 @@ var TextFieldRich = React.createClass({
 	 * @param {int} height    T    The height to be set
 	 * @private
 	 */
-	_handleTextAreaHeightChange: function (e, height) {
-		var newHeight = height + 24;
+	_handleTextAreaHeightChange = (e, height) => {
+		let newHeight = height + 24;
 		if (this.props.floatingLabelText) {
 			newHeight += 24;
 		}
 		ReactDOM.findDOMNode(this).style.height = newHeight + 'px';
-	},
+	};
 
 	/**
 	 * Check if the component is controlled
 	 *
 	 * @private
 	 */
-	_isControlled: function () {
+	_isControlled = () => {
 		return this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink');
-	},
+	};
 
 	/**
 	 * Enables the editor if it is already mounted
 	 *
 	 * @private
 	 */
-	_enableDesign: function (on) {
+	_enableDesign = (on) => {
 
 		// Only enable after mounted into the dom
 		if (!this.state.componentIsMounted) {
@@ -315,17 +305,17 @@ var TextFieldRich = React.createClass({
 		}
 
 		// Get the iframe document
-		var ifrmWindow = this._getIframeWindow();
-		var idoc = ifrmWindow.document || null;
+		const ifrmWindow = this._getIframeWindow();
+		const idoc = ifrmWindow.document || null;
 
 		// Make sure document is defined
 		if (!idoc) {
 			throw "Could not get the document of the iframe";
 		}
 
-		var designModeOn = on || true;
+		let designModeOn = on || true;
 
-		var editorBody = idoc.body;
+		let editorBody = idoc.body;
 
 		// Turn on spellcheck if available
 		if ('spellcheck' in editorBody && designModeOn) {
@@ -345,7 +335,7 @@ var TextFieldRich = React.createClass({
 		}
 
 		// Set document events
-		var evtObj = (uaParser.getBrowser().name == "IE") ? ReactDOM.findDOMNode(this.refs.rte) : this._getIframeWindow();
+		let evtObj = (uaParser.getBrowser().name == "IE") ? ReactDOM.findDOMNode(this.refs.rte) : this._getIframeWindow();
 
 		if (evtObj.addEventListener) { // W3C DOM
 
@@ -399,30 +389,47 @@ var TextFieldRich = React.createClass({
 		}
 
 		return true;
-	},
+	};
 
 	/**
 	 * Autogrow the editor to match the contents
 	 *
 	 * @private
 	 */
-	_autoGrow: function () {
+	_autoGrow = () => {
 
 		// We cannot autogrow if we are not mounted in the DOM
 		if (!this.state.componentIsMounted) {
 			return false;
 		}
 
-		var ifrmWindow = this._getIframeWindow();
-		var idoc = ifrmWindow.document || null;
+		const ifrmWindow = this._getIframeWindow();
+		const idoc = ifrmWindow.document || null;
 
 		if (idoc) {
-			var contentHeight = idoc.body.scrollHeight;
+			const contentHeight = idoc.body.scrollHeight;
 
-			var iframe = ReactDOM.findDOMNode(this.refs.rte);
+			let iframe = ReactDOM.findDOMNode(this.refs.rte);
 			iframe.style.height = contentHeight + "px";
 		}
-	},
-});
+	};
+}
+
+TextFieldRich.propTypes = {
+	id: PropTypes.string,
+	onBlur: PropTypes.func,
+	onChange: PropTypes.func,
+	onFocus: PropTypes.func,
+	onKeyUp: PropTypes.func,
+	onEnterKeyDown: PropTypes.func,
+	autoGrow: PropTypes.bool,
+	height: PropTypes.number,
+	value: PropTypes.string,
+};
+
+TextFieldRich.defaultProps = {
+	autoGrow: true,
+	value: "",
+};
 
 export default TextFieldRich;

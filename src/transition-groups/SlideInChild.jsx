@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const SlideInChild = React.createClass({
+const SlideInChild = (props) => {
 
   componentWillEnter(callback) {
     /*
@@ -18,7 +18,7 @@ const SlideInChild = React.createClass({
       if (this.isMounted()) callback();
     }, this.props.enterDelay);
     */
-  },
+  }
 
   componentDidEnter() {
     /*
@@ -26,7 +26,7 @@ const SlideInChild = React.createClass({
     style.opacity = '1';
     AutoPrefix.set(style, 'transform', 'translate3d(0,0,0)');
     */
-  },
+  }
 
   componentWillLeave(callback) {
     /*
@@ -44,26 +44,24 @@ const SlideInChild = React.createClass({
       if (this.isMounted()) callback();
     }, 450);
     */
-  },
+  }
 
-  render() {
-    let {
-      children,
-      className,
-      ...other
-    } = this.props;
+  let {
+    children,
+    className,
+    ...other
+  } = props;
 
-    var classes = "chamel-transition-slide-in-child";
-    if (this.props.className)
-      classes += " " + this.props.className;
+  let classes = "chamel-transition-slide-in-child";
+  if (props.className)
+    classes += " " + props.className;
 
-    return (
-      <div className={classes}>
-        {children}
-      </div>
-    );
-  },
+  return (
+    <div className={classes}>
+      {children}
+    </div>
+  );
 
-});
+}
 
-module.exports = SlideInChild;
+export default SlideInChild;
