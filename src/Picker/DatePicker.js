@@ -1,28 +1,28 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
 import TextField from '../Input/TextField';
 import device from '../utils/device';
 import classnames from 'classnames';
 
-class DatePicker extends React.Component {
+class DatePicker extends Component {
 
   /**
    * Property types we handle
    */
   static propTypes = {
-    defaultDate: React.PropTypes.object,
-    formatDate: React.PropTypes.func,
-    mode: React.PropTypes.oneOf(['portrait', 'landscape', 'inline']),
-    onFocus: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onShow: React.PropTypes.func,
-    onDismiss: React.PropTypes.func,
-    minDate: React.PropTypes.object,
-    maxDate: React.PropTypes.object,
-    autoOk: React.PropTypes.bool,
-    preferNative: React.PropTypes.bool,
+    defaultDate: PropTypes.object,
+    formatDate: PropTypes.func,
+    mode: PropTypes.oneOf(['portrait', 'landscape', 'inline']),
+    onFocus: PropTypes.func,
+    onClick: PropTypes.func,
+    onChange: PropTypes.func,
+    onShow: PropTypes.func,
+    onDismiss: .PropTypes.func,
+    minDate: PropTypes.object,
+    maxDate: PropTypes.object,
+    autoOk: PropTypes.bool,
+    preferNative: PropTypes.bool,
   };
 
   static defaultProps = {

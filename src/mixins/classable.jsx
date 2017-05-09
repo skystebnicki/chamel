@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
 module.exports = {
 
   propTypes: {
-    className: React.PropTypes.string
+    className: PropTypes.string
   },
 
   getClasses: function(initialClasses, additionalClassObj) {

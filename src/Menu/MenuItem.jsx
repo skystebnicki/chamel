@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import FontIcon from '../FontIcon/FontIcon';
 import Toggle from '../Toggle/Switch';
 import classnames from 'classnames';
@@ -11,7 +11,7 @@ const Types = {
 };
 
 
-class MenuItem extends React.Component {
+class MenuItem extends Component {
 
   static Types = Types;
 
@@ -110,18 +110,18 @@ class MenuItem extends React.Component {
  * Set accepted properties
  */
 MenuItem.propTypes = {
-  index: React.PropTypes.number,
-  iconClassName: React.PropTypes.string,
-  iconRightClassName: React.PropTypes.string,
-  attribute: React.PropTypes.string,
-  number: React.PropTypes.string,
-  data: React.PropTypes.string,
-  toggle: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
-  onToggle: React.PropTypes.func,
-  selected: React.PropTypes.bool,
-  indent: React.PropTypes.number
+  index: PropTypes.number,
+  iconClassName: PropTypes.string,
+  iconRightClassName: PropTypes.string,
+  attribute: PropTypes.string,
+  number: PropTypes.string,
+  data: PropTypes.string,
+  toggle: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  onToggle: PropTypes.func,
+  selected: PropTypes.bool,
+  indent: PropTypes.number
 }
 
 /**
@@ -137,7 +137,7 @@ MenuItem.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 MenuItem.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default MenuItem;

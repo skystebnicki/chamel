@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SlideInChild from './SlideInChild';
 
@@ -6,10 +6,10 @@ import SlideInChild from './SlideInChild';
 const SlideIn = React.createClass({
 
   propTypes: {
-    className: React.PropTypes.string,
-    enterDelay: React.PropTypes.number,
-    childStyle: React.PropTypes.object,
-    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down'])
+    className: PropTypes.string,
+    enterDelay: PropTypes.number,
+    childStyle: PropTypes.object,
+    direction: PropTypes.oneOf(['left', 'right', 'up', 'down'])
   },
 
   getDefaultProps() {

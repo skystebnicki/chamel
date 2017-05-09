@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
@@ -34,7 +34,7 @@ const TitleIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 TitleIcon.contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
 };
 
 export default TitleIcon;

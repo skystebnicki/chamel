@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Button from './Button';
 
 /**
@@ -45,7 +45,7 @@ RaisedButton.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 RaisedButton.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 

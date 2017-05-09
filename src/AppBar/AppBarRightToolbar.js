@@ -44,7 +44,7 @@ AppBarRightToolbar.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 AppBarRightToolbar.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default AppBarRightToolbar;

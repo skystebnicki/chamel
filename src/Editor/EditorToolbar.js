@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Toolbar from '../Toolbar/Toolbar';
 import ToolbarGroup from '../Toolbar/ToolbarGroup';
@@ -39,7 +39,7 @@ const SOURCE_VIEW = 'source';
  * Handle when displaying the block type controls and
  * Set the styles of the controls if it is toggled or not
  */
-class EditorToolbar extends React.Component {
+class EditorToolbar extends Component {
   static propTypes = {
 
     /**
@@ -47,21 +47,21 @@ class EditorToolbar extends React.Component {
      *
      * @var {int}
      */
-    contentViewType: React.PropTypes.oneOf([HTML_VIEW, SOURCE_VIEW]),
+    contentViewType: PropTypes.oneOf([HTML_VIEW, SOURCE_VIEW]),
 
     /**
      * The callback function used when user toggles the styles in the toolbar buttons
      *
      * @var {func}
      */
-    onStyleToggle: React.PropTypes.func,
+    onStyleToggle: PropTypes.func,
 
     /**
      * The callback function used when user toggles content view of the editor
      *
      * @var {func}
      */
-    onContentViewToggle: React.PropTypes.func
+    onContentViewToggle: PropTypes.func
   }
 
   /**

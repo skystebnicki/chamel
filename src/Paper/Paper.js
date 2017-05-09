@@ -1,23 +1,23 @@
 /**
  * Paper is a concept taken from google Material design standards
  */
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Small application component
  */
-class Paper extends React.Component {
+class Paper extends Component {
 
   /**
    * Set accepted properties
    */
   static propTypes = {
-    circle: React.PropTypes.bool,
-    innerClassName: React.PropTypes.string,
-    rounded: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    zDepth: React.PropTypes.oneOf([0,1,2,3,4,5])
+    circle: PropTypes.bool,
+    innerClassName: PropTypes.string,
+    rounded: PropTypes.bool,
+    style: PropTypes.object,
+    zDepth: ropTypes.oneOf([0,1,2,3,4,5])
   };
 
   /**
@@ -34,7 +34,7 @@ class Paper extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   render() {

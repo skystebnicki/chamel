@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
@@ -46,7 +46,7 @@ Column.propTypes = {
  * An alternate theme may be passed down by a provider
  */
 Column.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default Column;

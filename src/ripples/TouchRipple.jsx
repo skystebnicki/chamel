@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Dom from '../utils/Dom';
 import RippleCircle from './CircleRipple';
@@ -10,15 +10,15 @@ const shift = ([, ...newArray]) => newArray;
 /**
  * A touch ripple origninates from where the user touches/clicks
  */
-class TouchRipple extends React.Component {
+class TouchRipple extends Component {
 
   /**
    * Set accepted properties
    */
   static propTypes = {
-    abortOnScroll: React.PropTypes.bool,
-    centerRipple: React.PropTypes.bool,
-    className: React.PropTypes.string
+    abortOnScroll: PropTypes.bool,
+    centerRipple: PropTypes.bool,
+    className: PropTypes.string
   };
 
   /**
@@ -33,7 +33,7 @@ class TouchRipple extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

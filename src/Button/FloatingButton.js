@@ -45,7 +45,7 @@ FloatingButton.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 FloatingButton.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 

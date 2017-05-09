@@ -23,7 +23,7 @@ const AddCircleIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 AddCircleIcon.contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
 };
 
 export default AddCircleIcon;
