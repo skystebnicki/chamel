@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ThemeService from '../styles/ChamelThemeService';
 import prefixer from '../utils/prefixer.js';
-import classnames from 'classnames';
 import Progress from './Progress';
 
 const LinearProgress = (props, context) => {

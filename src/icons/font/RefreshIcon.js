@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 

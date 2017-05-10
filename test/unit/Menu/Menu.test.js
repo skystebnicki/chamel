@@ -15,7 +15,6 @@ describe("Menu Component", () => {
       <Menu
         zDepth={0}/>
     );
-    console.log(renderedDocument);
 
     expect(renderedDocument.props.zDepth).toBe(0);
   });

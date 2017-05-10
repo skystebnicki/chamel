@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
 import TextField from '../Input/TextField';
