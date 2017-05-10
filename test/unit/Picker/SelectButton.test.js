@@ -12,7 +12,9 @@ describe("SelectButton Component", () => {
 
     const renderer = new ReactShallowRenderer();
     const renderedDocument = renderer.render(
-      <SelectButton/>
+      <SelectButton
+        menuItems={[{payload:1, text: 1}]}
+      />
     );
     
     expect(renderedDocument.type).toBe('div');
