@@ -9,6 +9,6 @@ const RadioButtonOn = (props) => {
     </SvgIcon>
   );
 
-});
+};
 
 export default RadioButtonOn;
