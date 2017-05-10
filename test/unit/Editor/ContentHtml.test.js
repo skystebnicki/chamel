@@ -16,7 +16,7 @@ describe("ContentHtml Component", () => {
         value={'content string here'}
       />
     );
-    
+
     expect(renderedDocument.type).toBe('div');
   });
 });
