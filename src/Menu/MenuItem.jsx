@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import FontIcon from '../FontIcon/FontIcon';
 import Toggle from '../Toggle/Switch';
 import classnames from 'classnames';

@@ -10,7 +10,7 @@ describe("ToolbarGroup Component", () => {
   // Basic validation that render works in edit mode and returns children
   it("Should render", () => {
 
-  });    const renderer = new ReactShallowRenderer();
+  const renderer = new ReactShallowRenderer();
   const renderedDocument = renderer.render(
     <ToolbarGroup
       align="left">
@@ -19,5 +19,5 @@ describe("ToolbarGroup Component", () => {
   );
 
   expect(renderedDocument.props.children.type).toBe('div');
-
+  });
 });

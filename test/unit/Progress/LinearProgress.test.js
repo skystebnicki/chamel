@@ -13,12 +13,12 @@ describe("LinearProgress Component", () => {
     const renderer = new ReactShallowRenderer();
     const renderedDocument = renderer.render(
       <LinearProgress
-        value={'test value'}
+        value={100}
       />
     );
-    
+
     expect(renderedDocument.props.type).toBe('linear');
-    expect(renderedDocument.props.value).toBe('test value');
+    expect(renderedDocument.props.value).toBe(100);
 
   });
 });

@@ -1,7 +1,8 @@
 /**
  * Paper is a concept taken from google Material design standards
  */
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
