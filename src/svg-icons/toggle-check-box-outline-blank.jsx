@@ -8,6 +8,6 @@ const ToggleCheckBoxOutlineBlank = (props) => {
     </SvgIcon>
   );
 
-});
+};
 
 export default ToggleCheckBoxOutlineBlank;

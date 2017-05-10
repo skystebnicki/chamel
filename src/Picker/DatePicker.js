@@ -18,7 +18,7 @@ class DatePicker extends Component {
     onClick: PropTypes.func,
     onChange: PropTypes.func,
     onShow: PropTypes.func,
-    onDismiss: .PropTypes.func,
+    onDismiss: PropTypes.func,
     minDate: PropTypes.object,
     maxDate: PropTypes.object,
     autoOk: PropTypes.bool,

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ThemeService from '../styles/ChamelThemeService';
 import prefixer from '../utils/prefixer.js';
-import classnames from 'classnames';
 import Progress from './Progress';
 
 const LinearProgress = (props, context) => {

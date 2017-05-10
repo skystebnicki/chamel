@@ -8,7 +8,7 @@ const _getDayElements = (week, props) => {
   week.forEach((day, i) => {
     const selected = DateTime.isEqualDate(props.selectedDate, day);
 
-    displayDayElements.pus(
+    displayDayElements.push(
       <DayButton
         key={i}
         date={day}

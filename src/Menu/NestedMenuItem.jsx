@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
 import Dom from '../utils/Dom';
@@ -9,6 +8,7 @@ import Menu from './Menu';
 import MenuItem from './MenuItem';
 import LinkMenuItem from './LinkMenuItem';
 import SubheaderMenuItem from './SubheaderMenuItem';
+import classNames from 'classnames';
 
 /***********************
  * Nested Menu Component

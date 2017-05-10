@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 
-const getClasses = (initialClasses, additionalClassObj) => {
+const getClasses = (initialClasses, additionalClassObj, props) => {
   let classString = '';
 
   //Initialize the classString with the classNames that were passed in
@@ -37,7 +37,7 @@ const LinkMenuItem = (props) => {
 
   const classes = getClasses('chamel-menu-item', {
     'chamel-is-disabled': props.disabled
-  });
+  }, props);
   const onClickHandler = (props.disabled) ? (event) => {
     event.preventDefault();
   } : undefined;

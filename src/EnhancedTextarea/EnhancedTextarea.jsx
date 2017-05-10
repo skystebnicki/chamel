@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
 class EnhancedTextarea extends Component {
 
@@ -34,7 +35,7 @@ class EnhancedTextarea extends Component {
       ...other
       } = this.props;
 
-    let textareaClassName = 'chamel-enhanced-textarea-input';
+    textareaClassName = 'chamel-enhanced-textarea-input';
     const classes = this.getClasses('chamel-enhanced-textarea');
     const style = {
       height: this.state.height + 'px'
