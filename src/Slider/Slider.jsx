@@ -38,7 +38,7 @@ class Slider extends Component {
       'chamel-disabled': this.props.disabled
     });
 
-    const percent = this.state.percent;
+    let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     return (

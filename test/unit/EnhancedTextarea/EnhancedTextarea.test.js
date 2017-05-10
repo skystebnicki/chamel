@@ -17,7 +17,7 @@ describe("EnhancedTextarea Component", () => {
       />
     );
 
-    expect(renderedDocument.props.className).toBe('chamel-enhanced-textarea');
+    expect(renderedDocument.props.className).toBe('chamel-enhanced-textarea-input test textareaClassName');
     expect(renderedDocument.type).toBe('div');
   });
 });

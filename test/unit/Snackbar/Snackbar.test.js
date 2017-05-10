@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactShallowRenderer from 'react-test-renderer/shallow';
-import Snackbar from 'chamel/Snackbar/Snackbar';
+import Snackbar from 'chamel/Snackbar';
 
 /**
  * Test rendering the Snackbar

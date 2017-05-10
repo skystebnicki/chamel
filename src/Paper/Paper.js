@@ -17,7 +17,7 @@ class Paper extends Component {
     innerClassName: PropTypes.string,
     rounded: PropTypes.bool,
     style: PropTypes.object,
-    zDepth: ropTypes.oneOf([0,1,2,3,4,5])
+    zDepth: PropTypes.oneOf([0,1,2,3,4,5])
   };
 
   /**
