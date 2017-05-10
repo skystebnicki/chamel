@@ -1,6 +1,26 @@
 <testsuites name="chamel">
-  <testsuite name="AppBar" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-08T13:32:51" time="2.606">
-    <testcase classname="AppBar should be the default export" name="AppBar should be the default export" time="0.003">
+  <testsuite name="AppBar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-10T14:34:39" time="2.733">
+    <testcase classname="AppBar Component Should render" name="AppBar Component Should render" time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="Drop Down Icon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-10T14:34:39" time="2.99">
+    <testcase classname="Drop Down Icon Component Should render" name="Drop Down Icon Component Should render" time="0.033">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppBarRightToolbar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-10T14:34:42" time="1.112">
+    <testcase classname="AppBarRightToolbar Component Should render" name="AppBarRightToolbar Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContentHtml Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-10T14:34:39" time="3.716">
+    <testcase classname="ContentHtml Component Should render" name="ContentHtml Component Should render" time="0.035">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppBar" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-10T14:34:42" time="1.255">
+    <testcase classname="AppBar should be the default export" name="AppBar should be the default export" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContentSource Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-10T14:34:43" time="2.143">
+    <testcase classname="ContentSource Component Should render" name="ContentSource Component Should render" time="0.005">
     </testcase>
   </testsuite>
 </testsuites>
