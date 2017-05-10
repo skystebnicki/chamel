@@ -13,7 +13,7 @@ describe("ContentSource Component", () => {
     const renderer = new ReactShallowRenderer();
     const renderedDocument = renderer.render(
       <ContentSource
-        value={true}
+        value={'test'}
       />
     );
 

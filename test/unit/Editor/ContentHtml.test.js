@@ -13,10 +13,10 @@ describe("ContentHtml Component", () => {
     const renderer = new ReactShallowRenderer();
     const renderedDocument = renderer.render(
       <ContentHtml
-        value={true}
+        value={'test'}
       />
     );
-    
+
     expect(renderedDocument.type).toBe('div');
   });
 });
