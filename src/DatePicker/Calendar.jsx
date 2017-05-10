@@ -7,6 +7,7 @@ import CalendarMonth from './CalendarMonth';
 import CalendarToolbar from './CalendarToolbar';
 import DateDisplay from './DateDisplay';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
+import classNames from 'classnames';
 
 class Calendar extends Component {
 

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * Main popover class handles absolute positioning paper relative to an element
  */
-class ToolbarGroup extends React.Component {
+class ToolbarGroup extends Component {
 
   /**
    * Class constructor
@@ -21,14 +22,14 @@ class ToolbarGroup extends React.Component {
    * Set accepted properties
    */
   static propTypes = {
-    align: React.PropTypes.string
+    align: PropTypes.string
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   render() {

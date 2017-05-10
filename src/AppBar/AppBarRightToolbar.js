@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
@@ -44,7 +45,7 @@ AppBarRightToolbar.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 AppBarRightToolbar.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default AppBarRightToolbar;

@@ -1,3 +1,7 @@
+/**
+ * DEPRECATED - We are now currently using Picker/RadioPicker.js - Marl Tumulak 05/09/2017
+ */
+
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Paper from '../Paper/Paper';
@@ -25,9 +29,9 @@ class RadioButtonGroup extends Component {
   componentWillMount() {
     let cnt = 0;
 
-    this.props.children.forEach(function (option) {
+    this.props.children.forEach((option) => {
       if (this._hasCheckAttribute(option)) cnt++;
-    }, this);
+    });
 
     this.setState({numberCheckedRadioButtons: cnt});
   }
@@ -101,9 +105,7 @@ class RadioButtonGroup extends Component {
   clearValue = () => {
     this.setSelectedValue('');
   };
-
 }
-
 
 RadioButtonGroup.propTypes = {
   name: PropTypes.string.isRequired,

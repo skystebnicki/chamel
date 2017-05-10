@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
@@ -12,7 +13,7 @@ import ThemeService from '../styles/ChamelThemeService';
 const Container = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.grid)
     ? context.chamelTheme.grid : ThemeService.defaultTheme.grid;
-  
+
   const classes = (props.fluid) ? theme.containerFluid : theme.container;
 
   return (
@@ -33,7 +34,7 @@ Container.propTypes = {
  * An alternate theme may be passed down by a provider
  */
 Container.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default Container;

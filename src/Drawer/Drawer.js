@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Paper from '../Paper/Paper';
 import Overlay from '../Overlay/Overlay';
@@ -10,7 +11,7 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Navigation drawer component
  */
-class Drawer extends React.Component {
+class Drawer extends Component {
 
   /**
    * Set accepted properties
@@ -19,27 +20,27 @@ class Drawer extends React.Component {
     /**
      * Flag to indicate if the drawer is open
      */
-    open: React.PropTypes.bool,
+    open: PropTypes.bool,
 
     /**
      * If permanent we cannot close the drawer
      */
-    permanent: React.PropTypes.bool,
+    permanent: PropTypes.bool,
 
     /**
      * If permanent and clipped then the drawer will show up under the appBar
      */
-    clipped: React.PropTypes.bool,
+    clipped: PropTypes.bool,
 
     /**
      * Optional element to anchor the meny to
      */
-    anchorEl: React.PropTypes.object,
+    anchorEl: PropTypes.object,
 
     /**
      * Callback any time the menu should close
      */
-    onClose: React.PropTypes.func,
+    onClose: PropTypes.func,
 
     /**
      * Which side to display the drawer on
@@ -48,7 +49,7 @@ class Drawer extends React.Component {
      * left: primary and default navigation
      * right: secondary right side navigation
      */
-    side: React.PropTypes.oneOf(['left', 'right'])
+    side: PropTypes.oneOf(['left', 'right'])
   };
 
   /**
@@ -66,7 +67,7 @@ class Drawer extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

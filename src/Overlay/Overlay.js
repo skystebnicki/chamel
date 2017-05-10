@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
-class Overlay extends React.Component {
+class Overlay extends Component {
 
   /**
    * Set accepted properties
    */
   static propTypes = {
-    show: React.PropTypes.bool,
-    autoLockScrolling: React.PropTypes.bool,
-    onClick: React.PropTypes.func
+    show: PropTypes.bool,
+    autoLockScrolling: PropTypes.bool,
+    onClick: PropTypes.func
   };
 
   /**
@@ -24,7 +25,7 @@ class Overlay extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   componentDidUpdate(prevProps, prevState) {

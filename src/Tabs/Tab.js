@@ -1,30 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ThemeService from '../styles/ChamelThemeService';
 import classnames from 'classnames';
 
 /**
  * Render a tab
  */
-class Tab extends React.Component {
+class Tab extends Component {
 
   /**
    * Define the types of properties the component will receive
    */
   static propTypes = {
-    handleTouchTap: React.PropTypes.func,
-    selected: React.PropTypes.bool,
+    handleTouchTap: PropTypes.func,
+    selected: PropTypes.bool,
 
     /**
      * Secondary or inline tab
      */
-    secondary: React.PropTypes.bool
+    secondary: PropTypes.bool
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   handleTouchTap = (e) => {

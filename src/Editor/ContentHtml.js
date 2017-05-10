@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import RichText from '../Input/RichText';
@@ -7,47 +8,7 @@ import EditorToolbar from './EditorToolbar';
 /**
  * Contains both the toolbar and an instance of RichText component
  */
-class ContentHtml extends React.Component {
-
-  /**
-   * Set accepted properties
-   */
-  static propTypes = {
-    /**
-     * The callback function used when user changes the content of the editor
-     *
-     * @type {function}
-     */
-    onChange: React.PropTypes.func,
-
-    /**
-     * The callback function used when user looses the focus of the editor
-     *
-     * @type {function}
-     */
-    onBlur: React.PropTypes.func,
-
-    /**
-     * The initial value of the content editor
-     *
-     * @type {string}
-     */
-    value: React.PropTypes.string,
-
-    /**
-     * Handles the toggling of content view
-     *
-     * @type {function}
-     */
-    onContentViewToggle: React.PropTypes.func
-  };
-
-  /**
-   * An alternate theme may be passed down by a provider
-   */
-  static contextTypes = {
-    chamelTheme: React.PropTypes.object
-  };
+class ContentHtml extends Component {
 
   /**
    * Class constructor
@@ -173,5 +134,48 @@ class ContentHtml extends React.Component {
     );
   }
 }
+
+
+
+/**
+ * Set accepted properties
+ */
+ContentHtml. propTypes = {
+  /**
+   * The callback function used when user changes the content of the editor
+   *
+   * @type {function}
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * The callback function used when user looses the focus of the editor
+   *
+   * @type {function}
+   */
+  onBlur: PropTypes.func,
+
+  /**
+   * The initial value of the content editor
+   *
+   * @type {string}
+   */
+  value: PropTypes.string,
+
+  /**
+   * Handles the toggling of content view
+   *
+   * @type {function}
+   */
+  onContentViewToggle: PropTypes.func
+};
+
+/**
+ * An alternate theme may be passed down by a provider
+ */
+ContentHtml.contextTypes = {
+  chamelTheme: PropTypes.object
+};
+
 
 export default ContentHtml;

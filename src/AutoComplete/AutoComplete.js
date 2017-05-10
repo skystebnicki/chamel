@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import KeyCode from '../utils/KeyCode';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 
-class AutoComplete extends React.Component {
+class AutoComplete extends Component {
 
   static propTypes = {
     /**
@@ -12,7 +13,7 @@ class AutoComplete extends React.Component {
      *
      * @var {array}
      */
-    suggestionData: React.PropTypes.array,
+    suggestionData: PropTypes.array,
 
     /**
      * Determine if we need to filter the suggestionData when user types a keyword.
@@ -22,7 +23,7 @@ class AutoComplete extends React.Component {
      *
      * @var {array}
      */
-    filterData: React.PropTypes.bool,
+    filterData: PropTypes.bool,
 
     /**
      * The trigger key to display the menu list. Default value is null
@@ -33,14 +34,14 @@ class AutoComplete extends React.Component {
      *
      * @var {any}
      */
-    trigger: React.PropTypes.any,
+    trigger: PropTypes.any,
 
     /**
      * Delimiter will give us the ability to make it ';' or ',' for things like email input but defaults to space/words
      *
      * @var {string}
      */
-    delimiter: React.PropTypes.string,
+    delimiter: PropTypes.string,
 
     /**
      * The details of input that will be used to determine if we are displaying the suggestion list
@@ -55,35 +56,35 @@ class AutoComplete extends React.Component {
      *
      * @var {object}
      */
-    inputDetails: React.PropTypes.object,
+    inputDetails: PropTypes.object,
 
     /**
      * The keypress value from the input (textField/editor)
      *
      * @var {int}
      */
-    keyPressedValue: React.PropTypes.number,
+    keyPressedValue: PropTypes.number,
 
     /**
      * The callback function used when user selects the suggestion list item
      *
      * @var {func}
      */
-    onSelect: React.PropTypes.func,
+    onSelect: PropTypes.func,
 
     /**
      * The callback function used when displaying a selcted suggestion list item
      *
      * @var {func}
      */
-    transform: React.PropTypes.func,
+    transform: PropTypes.func,
 
     /**
      * The anchored element that will be used as a reference on where to display the popover
      *
      * @var {DOMElement}
      */
-    anchorEl: React.PropTypes.object
+    anchorEl: PropTypes.object
   };
 
   static defaultProps = {

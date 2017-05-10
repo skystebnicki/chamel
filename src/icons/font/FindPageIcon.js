@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
@@ -23,7 +24,7 @@ const FindPageIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 FindPageIcon.contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
 };
 
 export default FindPageIcon;

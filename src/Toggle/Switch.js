@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import ThemeService from '../styles/ChamelThemeService';
@@ -56,7 +57,6 @@ Switch.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   label: PropTypes.string,
-  onTape: PropTypes.func,
 
   /**
    * This is the function calling components should use to check status
@@ -81,7 +81,7 @@ Switch.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 Switch.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default Switch;

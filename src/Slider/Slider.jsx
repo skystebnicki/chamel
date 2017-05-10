@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Paper from '../Paper/Paper';
 import Draggable from 'react-draggable2';
+import classNames from 'classnames';
 
 class Slider extends Component {
 
@@ -37,7 +38,7 @@ class Slider extends Component {
       'chamel-disabled': this.props.disabled
     });
 
-    const percent = this.state.percent;
+    let percent = this.state.percent;
     if (percent > 1) percent = 1; else if (percent < 0) percent = 0;
 
     return (
@@ -184,8 +185,7 @@ class Slider extends Component {
   };
 }
 
-
-RadioButtonGroup.propTypes = {
+Slider.propTypes = {
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   min: PropTypes.number,
@@ -199,7 +199,7 @@ RadioButtonGroup.propTypes = {
   onDragStop: PropTypes.func
 };
 
-RadioButtonGroup.defaultProps = {
+Slider.defaultProps = {
   required: true,
   disabled: false,
   defaultValue: 0,

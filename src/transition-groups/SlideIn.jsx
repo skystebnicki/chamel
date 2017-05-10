@@ -1,63 +1,60 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SlideInChild from './SlideInChild';
 
 
-const SlideIn = React.createClass({
+const SlideIn = (props) => {
 
-  propTypes: {
-    className: React.PropTypes.string,
-    enterDelay: React.PropTypes.number,
-    childStyle: React.PropTypes.object,
-    direction: React.PropTypes.oneOf(['left', 'right', 'up', 'down'])
-  },
+  let {
+    className,
+    children,
+    direction,
+    ...other
+  } = props;
 
-  getDefaultProps() {
-    return {
-      enterDelay: 0,
-      direction: 'left',
-    };
-  },
+  let classes = (props.className) ? props.className + ' ' : null;
+  classes += 'chamel-transition-slide-in chamel-is-' + props.direction;
+  //var classes = 'chamel-transition-slide-in chamel-is-' + this.props.direction;
 
-  render() {
-    let {
-      className,
-      children,
-      direction,
-      ...other
-    } = this.props;
-
-    let classes = (this.props.className) ? this.props.className + ' ' : null;
-    classes += 'chamel-transition-slide-in chamel-is-' + this.props.direction;
-    //var classes = 'chamel-transition-slide-in chamel-is-' + this.props.direction;
-
-    let newChildren = React.Children.map(children, (child) => {
-      return (
-        <SlideInChild
-          key={child.key}
-          direction={direction}
-          getLeaveDirection={this._getLeaveDirection}>
-          {child}
-        </SlideInChild>
-      );
-    }, this);
-
+  let newChildren = React.Children.map(children, (child) => {
     return (
-      <ReactCSSTransitionGroup
-        className={classes}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
-        transitionName="chamel-transition-slide-in"
-        component="div">
-        {newChildren}
-      </ReactCSSTransitionGroup>
+      <SlideInChild
+        key={child.key}
+        direction={direction}
+        getLeaveDirection={this._getLeaveDirection}>
+        {child}
+      </SlideInChild>
     );
-  },
+  }, this);
 
-  _getLeaveDirection() {
-    return this.props.direction;
-  },
+  return (
+    <ReactCSSTransitionGroup
+      className={classes}
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={500}
+      transitionName="chamel-transition-slide-in"
+      component="div">
+      {newChildren}
+    </ReactCSSTransitionGroup>
+  );
 
-});
+  _getLeaveDirection = () => {
+    return props.direction;
+  };
 
-module.exports = SlideIn;
+}
+
+SlideIn.propTypes = {
+  className: PropTypes.string,
+  enterDelay: PropTypes.number,
+  childStyle: PropTypes.object,
+  direction: PropTypes.oneOf(['left', 'right', 'up', 'down'])
+};
+
+SlideIn.defaultProps = {
+  enterDelay: 0,
+  direction: 'left'
+};
+
+export default SlideIn;

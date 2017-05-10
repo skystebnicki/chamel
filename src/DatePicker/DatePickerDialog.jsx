@@ -4,6 +4,7 @@ import KeyCode from '../utils/KeyCode';
 import Calendar from './Calendar';
 import Dialog from '../Dialog/Dialog';
 import FlatButton from '../Button/FlatButton';
+import classNames from 'classnames';
 
 class DatePickerDialog extends Component {
 
@@ -36,7 +37,7 @@ class DatePickerDialog extends Component {
       ...other
       } = this.props;
     const classes = this.getClasses('chamel-date-picker-dialog');
-    const actions = [
+    let actions = [
       <FlatButton
         key={0}
         label="Cancel"

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
 class EnhancedTextarea extends Component {
 
@@ -34,14 +35,14 @@ class EnhancedTextarea extends Component {
       ...other
       } = this.props;
 
-    let textareaClassName = 'chamel-enhanced-textarea-input';
+    let divClassName = 'chamel-enhanced-textarea-input';
     const classes = this.getClasses('chamel-enhanced-textarea');
     const style = {
       height: this.state.height + 'px'
     };
 
     if (this.props.textareaClassName) {
-      textareaClassName += ' ' + this.props.textareaClassName;
+      divClassName += ' ' + this.props.textareaClassName;
     }
 
     if (other.hasOwnProperty("value")) {
@@ -66,7 +67,7 @@ class EnhancedTextarea extends Component {
      * https://facebook.github.io/react/docs/forms.html
      */
     return (
-      <div className={classes}>
+      <div className={divClassName}>
         <textarea
           ref="shadow"
           className="chamel-enhanced-textarea-shadow"
@@ -76,7 +77,7 @@ class EnhancedTextarea extends Component {
           defaultValue={other.defaultValue}/>
         <textarea
           ref="input"
-          className={textareaClassName}
+          className={className}
           rows={this.props.rows}
           style={style}
           onChange={this._handleChange}/>

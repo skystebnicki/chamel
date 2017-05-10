@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import UniqueId from '../utils/UniqueId';
@@ -10,7 +11,7 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Plain text input field
  */
-class TextField extends React.Component {
+class TextField extends Component {
 
   /**
    * Set accepted properties
@@ -19,83 +20,83 @@ class TextField extends React.Component {
     /**
      * String value of the input
      */
-    value: React.PropTypes.string,
+    value: PropTypes.string,
 
     /**
      * Any error text for this field
      */
-    errorText: React.PropTypes.string,
+    errorText: PropTypes.string,
 
     /**
      * Label text that should float on focus (depending on theme)
      */
-    floatingLabelText: React.PropTypes.string,
+    floatingLabelText: PropTypes.string,
 
     /**
      * Hint that is displayed until a value is entered
      */
-    hintText: React.PropTypes.string,
+    hintText: PropTypes.string,
 
     /**
      * Unique id of this text field
      */
-    id: React.PropTypes.string,
+    id: PropTypes.string,
 
     /**
      * Support more than one line
      */
-    multiLine: React.PropTypes.bool,
+    multiLine: PropTypes.bool,
 
     /**
      * Flag property to Focus on text field
      */
-    autoFocus: React.PropTypes.bool,
+    autoFocus: PropTypes.bool,
 
     /**
      * Callback to capture blur event
      */
-    onBlur: React.PropTypes.func,
+    onBlur: PropTypes.func,
 
     /**
      * Callback triggered when the value changes
      */
-    onChange: React.PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
      * Callback triggered when focus is given to the input
      */
-    onFocus: React.PropTypes.func,
+    onFocus: PropTypes.func,
 
     /**
      * Callback triggered when a user presses a key
      */
-    onKeyDown: React.PropTypes.func,
+    onKeyDown: PropTypes.func,
 
     /**
      * Callback triggered when a user releses a key
      */
-    onEnterKeyDown: React.PropTypes.func,
+    onEnterKeyDown: PropTypes.func,
 
     /**
      * Callback triggered when a user clicks on the field
      */
-    onClick: React.PropTypes.func,
+    onClick: PropTypes.func,
 
     /**
      * Type of input can be any supported HTML input type
      * such as date, number, or text
      */
-    type: React.PropTypes.string,
+    type: PropTypes.string,
 
     /**
      * If true then add autocomplete to the input
      */
-    autoComplete: React.PropTypes.bool,
+    autoComplete: PropTypes.bool,
 
     /**
      * Array of data to use for autocomplete
      */
-    autoCompleteData: React.PropTypes.array,
+    autoCompleteData: PropTypes.array,
 
     /**
      * An optional character that is used to open autocomplete
@@ -103,30 +104,30 @@ class TextField extends React.Component {
      * A common usage for this would be something like the '@'
      * symbol invoking a user select list for tagging people.
      */
-    autoCompleteTrigger: React.PropTypes.any,
+    autoCompleteTrigger: PropTypes.any,
 
     /**
      * An optional character for separating autocomplete terms
      */
-    autoCompleteDelimiter: React.PropTypes.string,
+    autoCompleteDelimiter: PropTypes.string,
 
     /**
      * Callback used to interpret the selection before inserting
      * it into the input.
      */
-    autoCompleteTransform: React.PropTypes.func,
+    autoCompleteTransform: PropTypes.func,
 
     /**
      * Optional alternative to autoComplete date which waits for a
      * callback to complete (usually an ajax request to the server)
      */
-    autoCompleteGetData: React.PropTypes.func,
+    autoCompleteGetData: PropTypes.func,
 
     /**
      * Callback that can be optionally called any time a user selects
      * an entiry from the autocomplete dropdown
      */
-    autoCompleteSelected: React.PropTypes.func
+    autoCompleteSelected: PropTypes.func
   };
 
   /**
@@ -145,7 +146,7 @@ class TextField extends React.Component {
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 import FontIcon from '../FontIcon';
 
@@ -52,7 +53,7 @@ IconButton.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 IconButton.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default IconButton;

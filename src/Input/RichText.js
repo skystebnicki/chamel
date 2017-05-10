@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import {stateToHTML} from 'draft-js-export-html';
@@ -18,7 +19,7 @@ const styleMap = {
 /**
  * Chamel Editor component for editing rich text and source code
  */
-class RichText extends React.Component {
+class RichText extends Component {
 
     /**
      * Set accepted properties
@@ -29,49 +30,49 @@ class RichText extends React.Component {
          *
          * @type {function}
          */
-        onChange: React.PropTypes.func,
+        onChange: PropTypes.func,
 
         /**
          * The callback function used when user toggles an icon of the editor
          *
          * @type {function}
          */
-        onToggle: React.PropTypes.func,
+        onToggle: PropTypes.func,
 
         /**
          * The callback function used when user looses the focus of the editor
          *
          * @type {function}
          */
-        onBlur: React.PropTypes.func,
+        onBlur: PropTypes.func,
 
         /**
          * The initial value of the content editor
          *
          * @type {string}
          */
-        value: React.PropTypes.string,
+        value: PropTypes.string,
 
         /**
          * The command that will be executed based on the type that was provided
          *
          * @type {string}
          */
-        commandToggleType: React.PropTypes.string,
+        commandToggleType: PropTypes.string,
 
         /**
          * This will determine what style to toggle
          *
          * @type {string}
          */
-        commandToggleStyle: React.PropTypes.oneOf(['block', 'inline'])
+        commandToggleStyle: PropTypes.oneOf(['block', 'inline'])
     }
 
     /**
      * An alternate theme may be passed down by a provider
      */
     static contextTypes = {
-        chamelTheme: React.PropTypes.object
+        chamelTheme: PropTypes.object
     };
 
     /**

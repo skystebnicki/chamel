@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 
 /**
@@ -49,7 +50,7 @@ FlatButton.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 FlatButton.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 

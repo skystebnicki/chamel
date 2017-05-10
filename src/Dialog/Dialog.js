@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
 import KeyCode from '../utils/KeyCode';
@@ -10,75 +11,75 @@ import ThemeService from '../styles/ChamelThemeService';
 /**
  * Dialog window component
  */
-class Dialog extends React.Component {
+class Dialog extends Component {
 
   static propTypes = {
     /**
      * Array of possible actions to create buttons for
      */
-    actions: React.PropTypes.array,
+    actions: PropTypes.array,
 
     /**
      * Which action should get focus when loaded
      */
-    actionFocus: React.PropTypes.string,
+    actionFocus: PropTypes.string,
 
     /**
      * Automatically detect the ideal height of the window
      */
-    autoDetectWindowHeight: React.PropTypes.bool,
+    autoDetectWindowHeight: PropTypes.bool,
 
     /**
      * Automatically scroll the body of the window if larger than viewable area
      */
-    autoScrollBodyContent: React.PropTypes.bool,
+    autoScrollBodyContent: PropTypes.bool,
 
     /**
      * Class to theme the content container
      */
-    contentClassName: React.PropTypes.string,
+    contentClassName: PropTypes.string,
 
     /**
      * If true, open as soon as we mount into the dom
      */
-    openImmediately: React.PropTypes.bool,
+    openImmediately: PropTypes.bool,
 
     /**
      * Action to perform when a user clicks away from the dialog
      */
-    onClickAway: React.PropTypes.func,
+    onClickAway: PropTypes.func,
 
     /**
      * Callback to call when the dialog is dismissed
      */
-    onDismiss: React.PropTypes.func,
+    onDismiss: PropTypes.func,
 
     /**
      * Callback to call when the dialog is shown
      */
-    onShow: React.PropTypes.func,
+    onShow: PropTypes.func,
 
     /**
      * Automatically reposition the dialog if the contents change
      */
-    repositionOnUpdate: React.PropTypes.bool,
+    repositionOnUpdate: PropTypes.bool,
 
     /**
      * Do not allow the user to dismiss by clicking off the dialog
      */
-    modal: React.PropTypes.bool,
+    modal: PropTypes.bool,
 
     /**
      * The title for the dialog window
      */
-    title: React.PropTypes.node
+    title: PropTypes.node
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   static defaultProps = {

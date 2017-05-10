@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from "react-dom";
 import ThemeService from '../styles/ChamelThemeService';
 import IconButton from '../Button/IconButton';
@@ -19,7 +20,7 @@ let toolbarIcons = [];
 /**
  * Main popover class handles absolute positioning paper relative to an element
  */
-class Toolbar extends React.Component {
+class Toolbar extends Component {
 
   /**
    * Class constructor
@@ -54,14 +55,14 @@ class Toolbar extends React.Component {
     /**
      * If this is a secondary menu then it might be used inline in the document
      */
-    secondary: React.PropTypes.bool
+    secondary: PropTypes.bool
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   componentDidMount() {

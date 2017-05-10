@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import classnames from 'classnames';
@@ -6,24 +7,24 @@ import classnames from 'classnames';
 /**
  * Outer container for tabs
  */
-class Tabs extends React.Component {
+class Tabs extends Component {
 
   static propTypes = {
-    initialSelectedIndex: React.PropTypes.number,
-    onActive: React.PropTypes.func,
-    tabWidth: React.PropTypes.number,
+    initialSelectedIndex: PropTypes.number,
+    onActive: PropTypes.func,
+    tabWidth: PropTypes.number,
 
     /**
      * Used for inline body tabs rather than at the top of the page
      */
-    secondary: React.PropTypes.bool
+    secondary: PropTypes.bool
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: React.PropTypes.object
+    chamelTheme: PropTypes.object
   };
 
   /**

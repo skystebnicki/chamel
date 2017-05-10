@@ -115,10 +115,10 @@ const ContentRte = (props) => {
 }
 
 ContentRte.propTypes = {
-	onBlur: React.PropTypes.func,
-	onChange: React.PropTypes.func,
-	onFocus: React.PropTypes.func,
-	value: React.PropTypes.string,
+	onBlur: PropTypes.func,
+	onChange: PropTypes.func,
+	onFocus: PropTypes.func,
+	value: PropTypes.string,
 };
 
 ContentRte.defaultProps = {

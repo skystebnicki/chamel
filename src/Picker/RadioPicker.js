@@ -1,4 +1,5 @@
-import React, { Component, PropTypes, Children } from 'react';
+import React, { Component, Children } from 'react';
+import PropTypes from 'prop-types';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
 import ThemeService from '../styles/ChamelThemeService';
@@ -55,7 +56,7 @@ RadioPicker.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 RadioPicker.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default RadioPicker;

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
@@ -62,7 +63,7 @@ FontIcon.defaultProps = {
  * An alternate theme may be passed down by a provider
  */
 FontIcon.contextTypes = {
-  chamelTheme: React.PropTypes.object
+  chamelTheme: PropTypes.object
 };
 
 export default FontIcon;

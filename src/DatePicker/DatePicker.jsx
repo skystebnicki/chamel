@@ -6,6 +6,7 @@ import DatePickerDialog from './DatePickerDialog';
 import TextField from '../Input/TextField';
 import device from '../utils/device';
 import Events from '../utils/Events';
+import classNames from 'classnames';
 
 class DatePicker extends Component {
 
