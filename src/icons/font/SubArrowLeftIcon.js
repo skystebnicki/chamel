@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
-const SubArrowLefticon = (props, context) => {
+const SubArrowLeftIcon = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
@@ -15,8 +15,8 @@ const SubArrowLefticon = (props, context) => {
 /**
  * An alternate theme may be passed down by a provider
  */
-SubArrowLefticon.contextTypes = {
+SubArrowLeftIcon.contextTypes = {
   chamelTheme: PropTypes.object
 };
 
-export default SubArrowLefticon;
+export default SubArrowLeftIcon;
