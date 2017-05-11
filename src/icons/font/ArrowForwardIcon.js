@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
-const ArrowForwardicon = (props, context) => {
+const ArrowForwardIcon = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
@@ -15,8 +15,8 @@ const ArrowForwardicon = (props, context) => {
 /**
  * An alternate theme may be passed down by a provider
  */
-ArrowForwardicon.contextTypes = {
+ArrowForwardIcon.contextTypes = {
   chamelTheme: PropTypes.object
 };
 
-export default ArrowForwardicon;
+export default ArrowForwardIcon;

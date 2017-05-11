@@ -11,7 +11,7 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @returns {ReactDOM}
  * @constructor
  */
-const StyleIcon = (props, context) => {
+const ViewListIcon = (props, context) => {
   let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
     ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
 
@@ -23,8 +23,8 @@ const StyleIcon = (props, context) => {
 /**
  * An alternate theme may be passed down by a provider
  */
-StyleIcon.contextTypes = {
+ViewListIcon.contextTypes = {
   chamelTheme: PropTypes.object
 };
 
-export default StyleIcon;
+export default ViewListIcon;
