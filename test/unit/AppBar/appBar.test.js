@@ -1,8 +1,25 @@
+import React from 'react';
+import ReactShallowRenderer from 'react-test-renderer/shallow';
 import AppBar from 'chamel/AppBar';
 
-describe('AppBar', () => {
+/**
+ * Test rendering the AppBar
+ */
+describe("AppBar Component", () => {
 
-  it('should be the default export', function () {
-    expect(AppBar).not.toBeNull();
+  // Basic validation that render works in edit mode and returns children
+  it("Should render", () => {
+
+    const renderer = new ReactShallowRenderer();
+    const renderedDocument = renderer.render(
+      <AppBar
+        fixed={true}
+        title={"Test title"}
+        zDepth={0}>
+      </AppBar>
+    );
+
+    expect(renderedDocument.type).toBe('div');
+
   });
 });
