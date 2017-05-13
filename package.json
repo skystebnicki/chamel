@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.2.27",
+  "version": "0.2.26",
   "keywords": [
     "react",
     "react-component",
@@ -61,6 +61,9 @@
     "object-hash": "^0.8.0",
     "process": "^0.11.2",
     "protractor": "~1.0.0",
+    "react-tap-event-plugin": "^1.0.0",
+    "react-test-renderer": "^15.5.4",
+    "sass-loader": "^4.0.0",
     "shelljs": "^0.2.6",
     "style-loader": "^0.13.1",
     "tmp": "0.0.23",
