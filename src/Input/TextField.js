@@ -196,6 +196,9 @@ class TextField extends Component {
       newState.autoFocus = nextProps.autoFocus;
     }
 
+    if (newState.hasValue) {
+      this.setValue(newState.hasValue);
+    }
 
     // If we changed to a multiline input then attach a listener for window resize
     if (!this.props.multiLine && nextProps.multiLine) {
