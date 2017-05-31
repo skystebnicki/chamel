@@ -187,10 +187,7 @@ class Dialog extends Component {
   }
 
   dismiss = () => {
-    CssEvent.onTransitionEnd(ReactDOM.findDOMNode(this), function () {
-      this.refs.dialogOverlay.allowScrolling();
-    }.bind(this));
-
+    this.refs.dialogOverlay.allowScrolling();
     this.setState({open: false});
     this._onDismiss();
   };
