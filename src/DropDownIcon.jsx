@@ -5,11 +5,19 @@ import Paper from './Paper/Paper';
 import FontIcon from './FontIcon/FontIcon';
 import Menu from './Menu/Menu';
 import Popover from './Popover/Popover';
+import ThemeService from './styles/ChamelThemeService';
 
 /**
  * Component for displaying dropdowns from an icon
  */
 class DropDownIcon extends Component {
+
+  /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: PropTypes.object
+  };
 
   /**
    * Class constructor takes properties and passes them to the parent/super
@@ -28,9 +36,12 @@ class DropDownIcon extends Component {
    * Render Componenent
    */
   render() {
-    let classes = 'chamel-drop-down-icon';
+    // Determine which theme to use
+    let theme = ThemeService.defaultTheme.dropDownIcon;
+
+    let classes = theme['chamel-drop-down-icon'];
     if (this.state.open) {
-      classes += " chamel-open";
+      classes += " " + theme['chamel-open'];
     }
 
     let icon;
@@ -40,7 +51,7 @@ class DropDownIcon extends Component {
 
     return (
       <div className={classes}>
-        <div className="chamel-menu-control" onClick={this._onControlClick}>
+        <div className={theme['chamel-menu-control']} onClick={this._onControlClick}>
           {icon}
           {this.props.children}
         </div>
@@ -49,6 +60,8 @@ class DropDownIcon extends Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
+          pushToLeft={this.props.pushToLeft}
+          relative={true}
         >
           <Menu
             ref="menuItems"
@@ -92,7 +105,8 @@ DropDownIcon.propTypes = {
   selectedIndex: PropTypes.number,
   onChange: PropTypes.func,
   menuItems: PropTypes.array.isRequired,
-  closeOnMenuItemClick: PropTypes.bool
+  closeOnMenuItemClick: PropTypes.bool,
+  pushToLeft: PropTypes.bool
 };
 
 /**
@@ -100,7 +114,8 @@ DropDownIcon.propTypes = {
  */
 DropDownIcon.defaultProps = {
   autoWidth: true,
-  closeOnMenuItemClick: true
+  closeOnMenuItemClick: true,
+  pushToLeft: false
 };
 
 export default DropDownIcon;
