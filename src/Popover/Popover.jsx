@@ -36,7 +36,8 @@ class Popover extends Component {
     targetOrigin: {
       vertical: 'top',
       horizontal: 'left'
-    }
+    },
+    pushToLeft: false
   };
 
 
@@ -75,7 +76,11 @@ class Popover extends Component {
     targetOrigin: PropTypes.shape({
       vertical: PropTypes.oneOf(['top', 'middle', 'bottom']),
       horizontal: PropTypes.oneOf(['left', 'center', 'right'])
-    })
+    }),
+    /**
+     * If true, then position elements will push to left to show the popover without covering the trigger button.
+     */
+    pushToLeft: PropTypes.bool
   };
 
   /**
@@ -117,6 +122,9 @@ class Popover extends Component {
     let classes = theme.popover;
     if (this.props.open) {
       classes += " " + theme.popoverVisible;
+      if (this.props.pushToLeft) {
+        classes += " " + theme.pushToLeft;
+      }
     }
 
     return (
@@ -192,6 +200,7 @@ class Popover extends Component {
     targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
     targetEl.style.maxHeight = `${window.innerHeight}px`;
     targetEl.style.maxWidth = `${window.innerWidth}px`;
+    targetEl.style.width = "auto";
 
     // Update position if out of viewing bounds
     this._applyAutoPositionIfNeeded(targetPosition, targetEl);
