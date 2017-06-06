@@ -23,4 +23,7 @@
     left: -160px !important;
     top: -13px !important;
   }
+  &.addScrollBar {
+    overflow: auto;
+  }
 }
