@@ -31,6 +31,7 @@ class SelectField extends Component {
   componentDidMount() {
     if (this.props.hasOwnProperty('selectedIndex')) {
       this._setSelectedIndex(this.props);
+      this._onMenuItemClick(null, null, this.props.menuItems[this.state.selectedIndex]);
     }
   }
 
