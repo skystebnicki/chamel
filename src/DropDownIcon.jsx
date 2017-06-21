@@ -60,7 +60,6 @@ class DropDownIcon extends Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={false}
         >
           <Menu
             ref="menuItems"
