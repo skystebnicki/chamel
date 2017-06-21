@@ -37,7 +37,7 @@ class Popover extends Component {
       vertical: 'top',
       horizontal: 'left'
     },
-    pushToLeft: false
+    rePositionToBottomRight: false
   };
 
 
@@ -80,7 +80,7 @@ class Popover extends Component {
     /**
      * If true, then position elements will push to left to show the popover without covering the trigger button.
      */
-    pushToLeft: PropTypes.bool
+    rePositionToBottomRight: PropTypes.bool
   };
 
   /**
@@ -122,8 +122,8 @@ class Popover extends Component {
     let classes = theme.popover;
     if (this.props.open) {
       classes += " " + theme.popoverVisible;
-      if (this.props.pushToLeft) {
-        classes += " " + theme.pushToLeft;
+      if (this.props.rePositionToBottomRight) {
+        classes += " " + theme.addMarginTop;
       }
     }
 
@@ -188,11 +188,13 @@ class Popover extends Component {
     /*
      * Determine relative positions based on the anchor element coords
      */
+
     const relativeAnchorPosition = {
       top: anchorPosition.top,
       middle: anchorPosition.top + (anchorPosition.height / 2),
       bottom: anchorPosition.top + anchorPosition.height,
-      left: anchorPosition.left,
+      left: anchorPosition.left + (this.props.rePositionToBottomRight ?
+        (targetEl.clientWidth * -1 + anchorPosition.width) : 0),
       center: anchorPosition.left + (anchorPosition.width / 2),
       right: anchorPosition.left + anchorPosition.width
     };
@@ -203,13 +205,10 @@ class Popover extends Component {
     };
 
     targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
-    targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
+    targetEl.style.left = `${targetPosition.left}px`;
     targetEl.style.maxHeight = `${window.innerHeight}px`;
     targetEl.style.maxWidth = `${window.innerWidth}px`;
     targetEl.style.width = "auto";
-
-    // Update position if out of viewing bounds
-    this._applyAutoPositionIfNeeded(targetPosition, targetEl);
   }
 
   /**

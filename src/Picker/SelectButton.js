@@ -70,9 +70,10 @@ class SelectButton extends Component {
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+          rePositionToBottomRight={true}
           onRequestClose={this._handleRequestClose}
-          relative={true}>
+          relative={false}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
