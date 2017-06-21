@@ -72,7 +72,7 @@ class SelectButton extends Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          relative={true}>
+          relative={false}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
