@@ -28,7 +28,6 @@ class Popover extends Component {
     open: false,
     anchorEl: null,
     zDepth: 1,
-    relative: false,
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'left'
@@ -47,11 +46,6 @@ class Popover extends Component {
     open: PropTypes.bool,
     anchorEl: PropTypes.object,
     zDepth: PropTypes.number,
-
-    /**
-     * If true, then position elements relative to parent and not document
-     */
-    relative: PropTypes.bool,
 
     /**
      * This is the point on the anchor where the popover
@@ -167,9 +161,7 @@ class Popover extends Component {
 
     // If we are in a relative positioned container, then set top and left to 0
     targetEl.style.position = 'absolute';
-    if (this.props.relative) {
-      targetEl.style.position = 'relative';
-    }
+
     if (targetOrigin.vertical == 'top') {
       anchorPosition.top = 0;
     }
