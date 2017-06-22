@@ -60,8 +60,6 @@ class DropDownIcon extends Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this._handleRequestClose}
-          pushToLeft={this.props.pushToLeft}
-          relative={true}
         >
           <Menu
             ref="menuItems"
@@ -105,8 +103,7 @@ DropDownIcon.propTypes = {
   selectedIndex: PropTypes.number,
   onChange: PropTypes.func,
   menuItems: PropTypes.array.isRequired,
-  closeOnMenuItemClick: PropTypes.bool,
-  pushToLeft: PropTypes.bool
+  closeOnMenuItemClick: PropTypes.bool
 };
 
 /**
@@ -114,8 +111,7 @@ DropDownIcon.propTypes = {
  */
 DropDownIcon.defaultProps = {
   autoWidth: true,
-  closeOnMenuItemClick: true,
-  pushToLeft: false
+  closeOnMenuItemClick: true
 };
 
 export default DropDownIcon;

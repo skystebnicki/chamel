@@ -28,7 +28,6 @@ class Popover extends Component {
     open: false,
     anchorEl: null,
     zDepth: 1,
-    relative: false,
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'left'
@@ -36,8 +35,7 @@ class Popover extends Component {
     targetOrigin: {
       vertical: 'top',
       horizontal: 'left'
-    },
-    pushToLeft: false
+    }
   };
 
 
@@ -48,11 +46,6 @@ class Popover extends Component {
     open: PropTypes.bool,
     anchorEl: PropTypes.object,
     zDepth: PropTypes.number,
-
-    /**
-     * If true, then position elements relative to parent and not document
-     */
-    relative: PropTypes.bool,
 
     /**
      * This is the point on the anchor where the popover
@@ -76,11 +69,7 @@ class Popover extends Component {
     targetOrigin: PropTypes.shape({
       vertical: PropTypes.oneOf(['top', 'middle', 'bottom']),
       horizontal: PropTypes.oneOf(['left', 'center', 'right'])
-    }),
-    /**
-     * If true, then position elements will push to left to show the popover without covering the trigger button.
-     */
-    pushToLeft: PropTypes.bool
+    })
   };
 
   /**
@@ -122,9 +111,6 @@ class Popover extends Component {
     let classes = theme.popover;
     if (this.props.open) {
       classes += " " + theme.popoverVisible;
-      if (this.props.pushToLeft) {
-        classes += " " + theme.pushToLeft;
-      }
     }
 
     if (this.props.children.props.hasOwnProperty("menuItems")) {
@@ -175,9 +161,7 @@ class Popover extends Component {
 
     // If we are in a relative positioned container, then set top and left to 0
     targetEl.style.position = 'absolute';
-    if (this.props.relative) {
-      targetEl.style.position = 'relative';
-    }
+
     if (targetOrigin.vertical == 'top') {
       anchorPosition.top = 0;
     }
@@ -225,14 +209,13 @@ class Popover extends Component {
    */
   _applyAutoPositionIfNeeded(relativeTargetPosition, targetEl) {
     const targetPosition = Dom.offset(targetEl);
-
     // Movethe target position up so it is not scrolling past the bottom
     if (targetPosition.top + targetPosition.height > window.innerHeight) {
       // Initialize new top position
       let newTop = relativeTargetPosition.top;
 
       // Subtract enough pixels to get it inside the bounds of the window
-      newTop -= (targetPosition.top + targetPosition.height) - window.innerHeight;
+      newTop -= (targetPosition.height) - window.innerHeight;
 
       // Apply the new position
       targetEl.style.top = `${newTop}px`;
