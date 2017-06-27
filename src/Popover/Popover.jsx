@@ -226,13 +226,27 @@ class Popover extends Component {
   _applyAutoPositionIfNeeded(relativeTargetPosition, targetEl) {
     const targetPosition = Dom.offset(targetEl);
 
+    /*
+     * We need to get the scroll top so we can offset it with the target position top
+     * After getting the offset top, we can now properly compute for the proper top position value
+     */
+    const doc = document.documentElement;
+    const scrollTop = (window.pageYOffset || doc.scrollTop)
+    const offsetTop = (targetPosition.top - scrollTop);
+
+    // Move target position just to the top if the display will be out of bounds
+    if (offsetTop < 0) {
+      // Apply the new position
+      targetEl.style.top = `${targetPosition.middle}px`;
+    }
+
     // Movethe target position up so it is not scrolling past the bottom
-    if (targetPosition.top + targetPosition.height > window.innerHeight) {
+    if (offsetTop + targetPosition.height > window.innerHeight) {
       // Initialize new top position
       let newTop = relativeTargetPosition.top;
 
       // Subtract enough pixels to get it inside the bounds of the window
-      newTop -= (targetPosition.top + targetPosition.height) - window.innerHeight;
+      newTop -= (offsetTop + targetPosition.height) - window.innerHeight;
 
       // Apply the new position
       targetEl.style.top = `${newTop}px`;
