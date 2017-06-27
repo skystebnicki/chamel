@@ -236,8 +236,10 @@ class Popover extends Component {
 
     // Move target position just to the top if the display will be out of bounds
     if (offsetTop < 0) {
+
       // Apply the new position
-      targetEl.style.top = `${targetPosition.middle}px`;
+      const archorPos = Dom.offset(this.props.anchorEl);
+      targetEl.style.top = `${Math.abs(archorPos.top)}px`;
     }
 
     // Movethe target position up so it is not scrolling past the bottom

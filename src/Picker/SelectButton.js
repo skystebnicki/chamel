@@ -66,7 +66,13 @@ class SelectButton extends Component {
 
     return (
       <div className={theme.selectButtonCon}>
-        <IconButton className={this.props.className} onTap={this._onControlClick}>{icon}</IconButton>
+        <div style={{align: "top"}}>
+          <IconButton
+            className={this.props.className}
+            onTap={this._onControlClick}>
+            {icon}
+          </IconButton>
+        </div>
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
