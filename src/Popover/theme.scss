@@ -19,9 +19,8 @@
     z-index: 99;
     display: block;
   }
-  &.pushToLeft{
-    left: -160px !important;
-    top: -13px !important;
+  &.addMarginTop{
+    top: 45px !important;
   }
   &.addScrollBar {
     overflow: auto;
