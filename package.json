@@ -77,7 +77,7 @@
     "browserify": "*",
     "classnames": "^1.2.2",
     "codemirror": "^5.7.0",
-    "draft-js": "^0.9.1",
+    "draft-js": "^0.10.1",
     "draft-js-export-html": "^0.5.0",
     "draft-js-import-html": "^0.3.0",
     "fbjs": "^0.2.1",

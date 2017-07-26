@@ -6,7 +6,7 @@ var Home = React.createClass({
   		<div>
   			<h2>Welcome to Chameleon (aka chamel)!</h2>
   			<p>This demo application exists to demonstrate the capabilites of each chamel component.</p>
-  			<p>Simply select a componenet to the left to see it in action.</p>
+  			<p>Simply select a componenet to the left to see it in action...</p>
     	</div>
     );
   }

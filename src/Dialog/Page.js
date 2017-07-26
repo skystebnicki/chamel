@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import KeyCode from '../utils/KeyCode';
-import FlatButton from '../Button/FlatButton';
 import Overlay from '../Overlay/Overlay';
-import Paper from '../Paper/Paper';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
- * Dialog window component
+ * Float a DIV above the DOM like a virtual page
  */
-class Dialog extends Component {
+class Page extends Component {
 
   static propTypes = {
     /**
@@ -86,6 +84,11 @@ class Dialog extends Component {
     chamelTheme: PropTypes.object
   };
 
+  /**
+   * Set some sane defaults
+   *
+   * @type {Object}
+   */
   static defaultProps = {
     autoDetectWindowHeight: false,
     autoScrollBodyContent: false,
@@ -117,13 +120,11 @@ class Dialog extends Component {
     if (this.props.openImmediately) {
       this.refs.dialogOverlay.preventScrolling();
       this._onShow();
-      this._focusOnAction();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     this._positionDialog();
-    this._focusOnAction();
   }
 
   render() {
@@ -141,45 +142,15 @@ class Dialog extends Component {
     }
 
     // Set classes for window contents
-    let classesWindow = theme.dialogWindow;
-    if (this.props.windowClassName) {
-      classesWindow += " " + this.props.windowClassName;
+    let classesPage = theme.dialogPage;
+    if (this.props.className) {
+      classesPage += " " + this.props.className;
     }
-    if (this.props.fullPage) {
-      classesWindow += " " + theme.dialogWindowFullPage;
-    }
-
-    // Set classes for window contents
-    let classesWindowBody = theme.dialogWindowBody;
-    if (this.props.dialogWindowBodyClassName) {
-      classesWindowBody += " " + this.props.dialogWindowBodyClassName;
-    }
-
-    // Add title
-    let title;
-    if (this.props.title) {
-      // If the title is a string, wrap in an h3 tag.
-      // If not, just use it as a node.
-      title = Object.prototype.toString.call(this.props.title) === '[object String]' ?
-        <h3 className={theme.dialogWindowTitle}>{this.props.title}</h3> :
-        this.props.title;
-    }
-
-    // Get actions to display at the bottom
-    const actions = this._getActionsContainer(this.props.actions, theme);
 
     return (
       <div className={classesDialog}>
-        <div className={classesWindow}>
-          <Paper ref="dialogWindow" zDepth={4}>
-            {title}
-            <div ref="dialogBody" className={classesWindowBody}>
-              {this.props.children}
-            </div>
-            <div ref="dialogActions">
-              {actions}
-            </div>
-          </Paper>
+        <div className={classesPage} ref="dialogPage">
+          {this.props.children}
         </div>
         <Overlay
           ref="dialogOverlay"
@@ -203,7 +174,6 @@ class Dialog extends Component {
 
   show = () => {
     this.refs.dialogOverlay.preventScrolling();
-    this._focusOnAction();
 
     this.setState({open: true});
     this._onShow();
@@ -216,70 +186,16 @@ class Dialog extends Component {
     this._positionDialog();
   }
 
-  _addClassName(reactObject, className) {
-    const originalClassName = reactObject.props.className;
-    const newClassname = originalClassName ? originalClassName + ' ' + className : className;
-
-    return React.cloneElement(reactObject, {className: newClassname});
-  }
-
-  _getAction(actionJSON, key) {
-    const props = {
-      key: key,
-      secondary: true,
-      onClick: actionJSON.onClick ? actionJSON.onClick : this.dismiss,
-      label: actionJSON.text
-    };
-    if (actionJSON.ref) {
-      props.ref = actionJSON.ref;
-      props.keyboardFocused = actionJSON.ref === this.props.actionFocus;
-    }
-
-    return (
-      <FlatButton
-        {...props} />
-    );
-  }
-
-  _getActionsContainer(actions, theme) {
-
-    let actionContainer;
-    let actionObjects = [];
-
-    if (actions.length) {
-      for (let i = 0; i < actions.length; i++) {
-        let currentAction = actions[i];
-
-        //if the current action isn't a react object, create one
-        if (!React.isValidElement(currentAction)) {
-          currentAction = this._getAction(currentAction, i);
-        }
-
-        currentAction = this._addClassName(currentAction, theme.dialogWindowAction);
-        actionObjects.push(currentAction);
-      };
-
-      actionContainer = (
-        <div className={theme.dialogWindowActions}>
-          {actionObjects}
-        </div>
-      );
-    }
-
-    return actionContainer;
-  }
-
   _positionDialog() {
 
     if (this.state.open) {
       const clientHeight = ReactDOM.findDOMNode(this).offsetHeight;
-      let dialogWindow = ReactDOM.findDOMNode(this.refs.dialogWindow);
-      let dialogBody = ReactDOM.findDOMNode(this.refs.dialogBody);
+      let dialogPage = ReactDOM.findDOMNode(this.refs.dialogPage);
       const minMarginTop = 0;
 
+      /*
       // Reset the height in case the window was resized.
-      dialogWindow.style.height = '';
-      dialogBody.style.height = '';
+      dialogPage.style.height = '';
 
       const dialogWindowHeight = dialogWindow.offsetHeight;
       let windowTop = ((clientHeight - dialogWindowHeight) / 2) - 2 * (64);
@@ -289,12 +205,6 @@ class Dialog extends Component {
         windowTop = 0;
       } else if (windowTop < minMarginTop) {
         windowTop = minMarginTop;
-      }
-
-      //Vertically center the dialog window, but make sure it doesn't
-      //transition to that position.
-      if (this.props.repositionOnUpdate || !dialogWindow.style.marginTop) {
-        dialogWindow.style.marginTop = windowTop + 'px';
       }
 
       // Force a height if the dialog is taller than clientHeight
@@ -311,14 +221,7 @@ class Dialog extends Component {
 
         dialogBody.style.maxHeight = maxDialogContentHeight + 'px';
       }
-    }
-  }
-
-  _focusOnAction() {
-    if (this.props.actionFocus) {
-      if (ReactDOM.findDOMNode(this.refs[this.props.actionFocus])) {
-        ReactDOM.findDOMNode(this.refs[this.props.actionFocus]).focus();
-      }
+      */
     }
   }
 
@@ -335,14 +238,14 @@ class Dialog extends Component {
       this.dismiss();
       if (this.props.onClickAway) this.props.onClickAway();
     }
-  }
+  };
 
   _handleWindowKeyUp = (e) => {
-    if (!this.props.modal && e.keyCode == KeyCode.ESC) {
+    if (!this.props.modal && e.keyCode === KeyCode.ESC) {
       this.dismiss();
     }
   };
 
 }
 
-export default Dialog;
+export default Page;
