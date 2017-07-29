@@ -17,7 +17,8 @@ const ListItem = (props, context) => {
       ? context.chamelTheme.list : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listItem, {
-    [theme.listItemSelected]: props.selected
+    [theme.listItemSelected]: props.selected,
+    [theme.listItemEmphasized]: props.emphasized
   });
 
   // Set ontap function
@@ -74,6 +75,11 @@ ListItem.propTypes = {
   selected: PropTypes.bool,
 
   /**
+   * Used to highlight an entry - often used to mark a new entry
+   */
+  emphasized: PropTypes.bool,
+
+  /**
    * Node element to render on the left side
    */
   leftElement: PropTypes.node,
@@ -97,7 +103,8 @@ ListItem.defaultProps = {
   secondaryText: null,
   leftElement: null,
   rightElement: null,
-  selected: false
+  selected: false,
+  emphasized: false
 };
 
 /**
