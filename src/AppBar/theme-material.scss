@@ -41,6 +41,7 @@
   padding: 0;
   margin: 0;
   flex: 1 1 auto;
+  white-space: nowrap;
 
   line-height: $app-bar-height-small;
   @media #{$device-medium} {
@@ -54,6 +55,10 @@
 .appBarRight {
   margin-right: ($icon-size / 2) * -1;
   flex-basis: content;
+
+  @media screen and (max-width: $media-device-small) {
+    display: flex;
+  }
 
   @media #{$device-medium} {
   }

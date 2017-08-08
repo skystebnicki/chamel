@@ -25,6 +25,7 @@
   color: $app-bar-text-color;
   padding: 0;
   margin: 0;
+  white-space: nowrap;
 
   float: left;
 
@@ -40,6 +41,10 @@
 .appBarRight {
   float: right;
   margin: 0 ($gutter-less * -1) 0 $gutter-less;
+
+  @media screen and (max-width: $media-device-small) {
+    display: flex;
+  }
 
   @media #{$device-medium} {
     margin: 0 ($gutter * -1) 0 $gutter;
