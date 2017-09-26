@@ -130,7 +130,7 @@ class SelectButton extends Component {
    * @param {Object} payload Whatever payload was passed to the menu
    */
   _onMenuItemClick = (e, key, payload) => {
-    if (this.props.onChange && this.state.selectedIndex !== key) {
+    if (this.props.onChange && (this.state.selectedIndex !== key || this.props.allowSelectSameKey)) {
       this.props.onChange(e, key, payload);
     }
 
@@ -180,7 +180,12 @@ SelectButton.propTypes = {
   /**
    * Optional children can be used to define content
    */
-  children: PropTypes.node
+  children: PropTypes.node,
+
+  /**
+   * Flag that allows the SelectButton to select same key and it will call the callback function
+   */
+  allowSelectSameKey: PropTypes.boolean
 };
 
 /**
@@ -188,7 +193,8 @@ SelectButton.propTypes = {
  */
 SelectButton.defaultProps = {
   autoWidth: true,
-  children: null
+  children: null,
+  allowSelectSameKey: false
 };
 
 /**
