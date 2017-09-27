@@ -130,7 +130,7 @@ class SelectButton extends Component {
    * @param {Object} payload Whatever payload was passed to the menu
    */
   _onMenuItemClick = (e, key, payload) => {
-    if (this.props.onChange && this.state.selectedIndex !== key) {
+    if (this.props.onChange) {
       this.props.onChange(e, key, payload);
     }
 
