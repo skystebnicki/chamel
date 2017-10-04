@@ -9,6 +9,9 @@ COPY ./ .
 RUN rm -rf node_modules/*
 RUN rm -rf build/*
 
+# Add configurable NPM key
+RUN echo '${NPM_TOKEN} > /./npmrc'
+
 # Install dependencies for the library
 #RUN npm install
 

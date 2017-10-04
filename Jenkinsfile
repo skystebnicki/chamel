@@ -25,7 +25,7 @@ node {
                     'npm_config_cache=/tmp/npm/',
                 ]) {
                     /*sh 'npm install'*/
-                    sh 'cd ~ && pwd'
+                    /*sh 'cd ~ && pwd'*/
                 }   
             }
         }
