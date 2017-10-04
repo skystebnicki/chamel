@@ -16,15 +16,15 @@ node {
                     'npm_config_cache=/tmp/npm/',
                     'NPM_TOKEN=ef16319c-fcec-42d2-abac-96e6abb71d6b'
                 ]) {
-                    sh 'npm install'
-                    
+                    /*sh 'npm install'*/
+                    sh 'pwd'
                 }   
             }
         }
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh "git push github HEAD:${env.BRANCH_NAME}"
+                sh "git push ${GIT_USERNAME}:${GIT_PASSWORD}@github HEAD:${env.BRANCH_NAME}"
             }
         }
 
