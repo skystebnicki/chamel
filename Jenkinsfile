@@ -23,8 +23,9 @@ node {
         }
 
         stage('Push to github') {
-            git credentialsId: 'sky-github', url: 'https://github.com/skystebnicki/chamel'
-            sh 'git push github ${env.BRANCH_NAME}'
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sky-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+                sh 'git push github ${env.BRANCH_NAME}'
+            }
         }
 
         stage('Publish') {
