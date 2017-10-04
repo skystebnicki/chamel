@@ -5,7 +5,7 @@ node {
     try {
         stage('Build') {
             checkout scm
-            dockerImage = docker.build('chamel', , '--no-cache')
+            dockerImage = docker.build('chamel', '--no-cache')
 
             /* Run tests inside the docker container */
             dockerImage.inside {
