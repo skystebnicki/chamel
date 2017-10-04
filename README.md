@@ -53,29 +53,15 @@ All the themes can be found in /dist/css/chamel-[themename].cmp.css
 
 ## Developing, Testing & Building
 
-
 ### Docker (Preferred)
 
-The simplest way to interact with chamel is through docker because it provides a predictable environment
-across all platforms.
+The simplest way to interact with chamel is through docker because it provides a predictable environment across all platforms.
 
-    docker build -t chamel .
-
-Then in Linux/OSX Type
-
-    docker run --rm -v $(pwd):/var/www/app/ -w /var/www/app -p 8081:8081 --name=chamel chamel
-
-Or in Windows PowerShell type
-
-    docker run --rm -v ${PWD}:/var/www/app/ -w /var/www/app -p 8081:8081 --name=chamel chamel
-
-Or in the Windows Command prompt type:
-
-    docker run --rm -v %cd%:/var/www/app/ -w /var/www/app -p 8081:8081 --name=chamel chamel
+    docker-compose up
 
 With the above container running, you can open a new tab/window and run tests with:
 
-    docker exect chamel npm test
+    docker exec -it chamel npm test
 
 ### Local Node
 
@@ -96,12 +82,14 @@ First make sure you have the latest version of node installed and working locall
 
     npm start
 
-This will start a development server that can be accessed at http://localhost:8081
-
-### Testing
-All components should have at least a basic level of unit test coverage. Unit tests are written in jasmin
-and run through karma.
-
-To run the suite and watch for changes as you work simply type:
+###$ 4. Run tests
 
     npm test
+
+This will start a development server that can be accessed at http://localhost:8081
+
+## Building and Publishing
+
+1. Bump the version number
+2. npm run build
+3. npm publish
