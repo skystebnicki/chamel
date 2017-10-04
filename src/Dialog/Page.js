@@ -90,8 +90,8 @@ class Page extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    autoDetectWindowHeight: false,
-    autoScrollBodyContent: false,
+    autoDetectWindowHeight: true,
+    autoScrollBodyContent: true,
     actions: [],
     repositionOnUpdate: true,
     modal: false
@@ -118,7 +118,6 @@ class Page extends Component {
     // 'keyup': '_handleWindowKeyUp'
 
     if (this.props.openImmediately) {
-      this.refs.dialogOverlay.preventScrolling();
       this._onShow();
     }
   }
@@ -155,7 +154,7 @@ class Page extends Component {
         <Overlay
           ref="dialogOverlay"
           show={this.state.open}
-          autoLockScrolling={false}
+          autoLockScrolling={true}
           onClick={this._handleOverlayTouchTap}
         />
       </div>
@@ -167,14 +166,11 @@ class Page extends Component {
   }
 
   dismiss = () => {
-    this.refs.dialogOverlay.allowScrolling();
     this.setState({open: false});
     this._onDismiss();
   };
 
   show = () => {
-    this.refs.dialogOverlay.preventScrolling();
-
     this.setState({open: true});
     this._onShow();
   };
