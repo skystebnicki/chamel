@@ -24,7 +24,7 @@ node {
 
         stage('Push to github') {
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sky-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
-                sh 'git push github ${env.BRANCH_NAME}'
+                sh 'git push github'
             }
         }
 
