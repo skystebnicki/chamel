@@ -24,6 +24,7 @@ node {
                 withEnv([
                     'npm_config_cache=/tmp/npm/',
                 ]) {
+                    sh 'cat ~/.npmrc'
                     /*sh 'npm install'*/
                     /*sh 'cd ~ && pwd'*/
                 }   
@@ -40,8 +41,7 @@ node {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([
-                    'npm_config_cache=/tmp/npm/',
-                    'NPM_TOKEN=ef16319c-fcec-42d2-abac-96e6abb71d6b'
+                    'npm_config_cache=/tmp/npm/'
                 ]) {
                     if (env.BRANCH_NAME == 'master') {
                         sh 'npm publish'
