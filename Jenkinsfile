@@ -24,7 +24,7 @@ node {
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh "git push ${GIT_USERNAME}:${GIT_PASSWORD}@github HEAD:${env.BRANCH_NAME}"
+                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"
             }
         }
 
