@@ -6,18 +6,26 @@ node {
         stage('Build') {
             checkout scm
             dockerImage = docker.build('chamel')
+
+            /* Run tests inside the docker container */
+            dockerImage.inside {
+                withEnv([
+                    /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
+                    'npm_config_cache=/tmp/npm/',
+                ]) {
+                    sh 'npm run build'
+                }   
+            }
         }
 
         stage('Test') {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([
-                    /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
                     'npm_config_cache=/tmp/npm/',
-                    'NPM_TOKEN=ef16319c-fcec-42d2-abac-96e6abb71d6b'
                 ]) {
                     /*sh 'npm install'*/
-                    sh 'echo $NPM_TOKEN'
+                    sh 'pwd'
                 }   
             }
         }
@@ -32,11 +40,10 @@ node {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([
-                    /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
                     'npm_config_cache=/tmp/npm/',
                     'NPM_TOKEN=ef16319c-fcec-42d2-abac-96e6abb71d6b'
                 ]) {
-                    sh 'npm run build'
+                    sh "echo /registry.npmjs.org/:_authToken=ef16319c-fcec-42d2-abac-96e6abb71d6b > .npmrc"
                     if (env.BRANCH_NAME == 'master') {
                         sh 'npm publish'
                     } else {
