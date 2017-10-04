@@ -13,7 +13,7 @@ node {
                     /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
                     'npm_config_cache=/tmp/npm/',
                 ]) {
-                    sh 'npm run build'
+                    /*sh 'npm run build'*/
                 }   
             }
         }
