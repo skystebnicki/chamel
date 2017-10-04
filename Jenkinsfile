@@ -24,7 +24,7 @@ node {
 
         stage('Push to github') {
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sky-github', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
-                sh 'git push github'
+                sh "git push github ${env.BRANCH_NAME}"
             }
         }
 
@@ -50,7 +50,7 @@ node {
             echo 'prune and cleanup'
             sh 'docker system prune -f'
 
-            mail body: 'project build successful: ${env.BUILD_URL}',
+            mail body: "project build successful: ${env.BUILD_URL}",
                 from: 'builds@aereus.com',
                 subject: 'project build successful',
                 to: 'sky.stebnicki@aereus.com'
