@@ -25,14 +25,14 @@ node {
                     'npm_config_cache=/tmp/npm/',
                 ]) {
                     /*sh 'npm install'*/
-                    sh 'pwd'
+                    sh 'cd ~ && pwd'
                 }   
             }
         }
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"
+                /*sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"*/
             }
         }
 
