@@ -43,6 +43,7 @@ export default class PopoverExampleSimple extends React.Component {
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={this.handleRequestClose}
+          relative={true}
         >
           <div style={{backgroundColor: "#fff", border: "1px solid red", padding: "20px"}}>
             Test

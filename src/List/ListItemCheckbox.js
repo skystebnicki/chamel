@@ -26,7 +26,7 @@ const ListItemCheckbox = (props, context) => {
     if (props.onChange) {
       props.onChange(e, checked);
     }
-  }
+  };
 
   // If we have a right element add it
   const rightElement = (props.rightElement) ?

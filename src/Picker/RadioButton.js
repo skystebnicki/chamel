@@ -24,7 +24,7 @@ const RadioButton = (props, context) => {
         name={props.name}
         value={props.value}
         checked={props.checked}
-        onClick={(e) => { if (props.onSelect) {props.onSelect(props.value)}}}
+        onChange={(e) => { if (props.onSelect) {props.onSelect(props.value)}}}
       />
       {props.label}
     </label>

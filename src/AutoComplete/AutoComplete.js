@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import KeyCode from '../utils/KeyCode';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
+import ThemeService from '../styles/ChamelThemeService';
 
 class AutoComplete extends Component {
 
@@ -97,6 +98,13 @@ class AutoComplete extends Component {
   };
 
   /**
+   * An alternate theme may be passed down by a provider
+   */
+  static contextTypes = {
+    chamelTheme: PropTypes.object
+  };
+
+  /**
    * Class constructor
    *
    * @param {Object} props Properties to send to the render function
@@ -152,15 +160,21 @@ class AutoComplete extends Component {
    * @returns {JSX}
    */
   render() {
+    // Determine which theme to use
+    let theme = (this.context.chamelTheme && this.context.chamelTheme.input)
+      ? this.context.chamelTheme.input : ThemeService.defaultTheme.input;
+
     return (
-      <div className='chamel-autoComplete'>
+      <div className={theme.autoCompleteContainer}>
         <Popover
           open={this.state.openMenu}
           anchorEl={this.props.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          onRequestClose={this._handlePopoverRequestClose}>
+          onRequestClose={() => {
+            this.setState({openMenu: false});
+          }}
+          relative={true}>
           <Menu
-            classes="autocomplete-menu"
             menuItems={this.state.suggestionList}
             focusedIndex={this.state.focusedIndex}
             onItemClick={this._handleItemClick}
@@ -171,22 +185,12 @@ class AutoComplete extends Component {
   }
 
   /**
-   * Callback used to close the popover
-   *
-   * @private
-   */
-  _handlePopoverRequestClose() {
-    this.setState({openMenu: false});
-  }
-
-  /**
    * Callback used to handle the input keydown
    *
    * @param {DOMEvent} evt    Reference to the DOM event being sent
    * @private
    */
   _handleInputKeyPress = (keyCode) => {
-
     switch (keyCode) {
       case KeyCode.ENTER:
         this._setAutoCompleteValue(this.state.focusedIndex);
@@ -306,7 +310,6 @@ class AutoComplete extends Component {
    * @private
    */
   _getSuggestionList(inputDetails, suggestionData) {
-
     if (!suggestionData) {
       suggestionData = this.props.suggestionData;
     }
@@ -333,7 +336,7 @@ class AutoComplete extends Component {
         suggestionData.map(function (suggestion) {
 
           // We need the keyword to only have alphanumeric characters
-          const keyword = chunkedValue.replace(/[\W\s+]+/g, '');
+          const keyword = chunkedValue.replace(/[!@#$%^&*]+/g, '');
 
           const re = new RegExp(keyword, 'gi'); // Create a regex using the chunkedValue keyword
 

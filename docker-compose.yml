@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  chamel:
+    build: .
+    container_name: chamel
+    ports:
+      - 8081:8081
+    volumes:
+      - .:/var/www/app

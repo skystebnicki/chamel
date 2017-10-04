@@ -1,7 +1,7 @@
 import React from 'react';
-import TextField from 'chamel/input/TextField';
+import TextField from 'chamel/Input/TextField';
 
-import IconButton from 'chamel/button/IconButton';
+import IconButton from 'chamel/Button/IconButton';
 import SearchIcon from 'chamel/icons/font/SearchIcon';
 
 
@@ -42,7 +42,7 @@ var InputDemo = React.createClass({
     return {
       autoFocus: false
     };
-  }, 
+  },
 
   render: function () {
     return (

@@ -5,6 +5,7 @@ var FlatButton = Chamel.FlatButton;
 var RaisedButton = Chamel.RaisedButton;
 var Toggle = Chamel.Toggle;
 var CodeExample = require("../CodeExample");
+import Page from '../../src/Dialog/Page';
 
 var DialogPage = React.createClass({
 
@@ -52,6 +53,8 @@ var DialogPage = React.createClass({
                 <RaisedButton onTap={this.handleScrollableialogTouchTap}>{"Scrollable Actions"}</RaisedButton>
                 <br/><br/>
                 <RaisedButton onTap={this.handleNestedDialogTouchTap}>{"Nested Dialogs"}</RaisedButton>
+              <br/><br/>
+              <RaisedButton onTap={this.handleFullPageDialogTouchTap}>{"Full Page"}</RaisedButton>
 
                 <Dialog
                     ref="standardDialog"
@@ -94,14 +97,22 @@ var DialogPage = React.createClass({
                     </Dialog>
                     <RaisedButton label="Show Child" onClick={this.handleNestedChildDialogTouchTap} />
                 </Dialog>
+              <Page
+                ref="fullPageDialog"
+                title="Fill the entire page"
+                autoDetectWindowHeight={true}
+                autoScrollBodyContent={true}
+                fullPage={true}
+              >
+                <div style={{height: '20000px'}}>
+                  {"Really long content"}
+                  <RaisedButton label="Close" onClick={this.handleFullPageDialogClose} />
+                </div>
+              </Page>
 
             </CodeExample>
         );
 
-    },
-
-    _handleCustomDialogCancel: function() {
-        this.refs.customDialog.dismiss();
     },
 
     _handleCustomDialogCancel: function() {
@@ -138,7 +149,15 @@ var DialogPage = React.createClass({
 
     handleNestedChildDialogTouchTap: function() {
         this.refs.nestedChildDialog.show();
-    }
+    },
+
+  handleFullPageDialogTouchTap: function() {
+    this.refs.fullPageDialog.show();
+  },
+
+  handleFullPageDialogClose: function() {
+    this.refs.fullPageDialog.dismiss();
+  }
 
 });
 

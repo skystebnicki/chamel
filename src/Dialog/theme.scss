@@ -3,10 +3,13 @@
 @import "../styles/mixins/transitions";
 @import "../styles/core/typography";
 
+/**
+ * Outer container for the dialog
+ */
 .dialog {
   position: fixed;
   z-index: 10;
-  top: 0px;
+  top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
@@ -14,20 +17,34 @@
 
   @include transition(left 0ms $ease-out-function 450ms);
 
-
-
   &.dialogIsShown {
-    left: 0px;
+    left: 0;
     @include transition(left 0ms $ease-out-function 0ms);
 
     >.dialogWindow {
       opacity: 1;
-      top: 0px;
+      top: 0;
       @include transform(translate3d(0, $desktop-keyline-increment, 0));
     }
   }
 }
 
+/**
+ * A full page version of a dialog
+ */
+.dialogPage {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  z-index: 10;
+  background-color: white;
+  opacity: 1;
+  position: absolute;
+}
+
+/**
+ * The window for the dialog
+ */
 .dialogWindow {
   @include ease-out();
   position: relative;
@@ -38,6 +55,12 @@
   background: $canvas-color;
   opacity: 0;
   box-sizing: border-box;
+}
+
+.dialogWindowFullPage {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
 }
 
 .dialogWindowTitle {

@@ -71,6 +71,7 @@ class Menu extends Component {
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         zDepth={this.props.zDepth}
+        style={{maxHeight: "460px", overflow: "auto"}}
         className={classes}
       >
         {children}

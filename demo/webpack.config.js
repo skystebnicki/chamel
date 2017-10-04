@@ -56,6 +56,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true,
+    watchOptions: { poll: true },
     publicPath: "/",
     stats: { colors: true }
   }

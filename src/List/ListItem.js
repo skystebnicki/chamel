@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TouchRipple from '../ripples/TouchRipple';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
+import Checkbox from '../Toggle/Checkbox';
 
 /**
  * Functional component for any button
@@ -17,16 +18,24 @@ const ListItem = (props, context) => {
       ? context.chamelTheme.list : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listItem, {
-    [theme.listItemSelected]: props.selected
+    [theme.listItemSelected]: props.selected,
+    [theme.listItemEmphasized]: props.emphasized
   });
 
-  // Set ontap function
+  // Set ontap functions
   const onTap = (props.onTap) ? props.onTap : (e) => {};
+  const onLeftElementTap = props.onLeftElementTap || onTap;
 
   // If we have a left element add it
-  const leftElement = (props.leftElement) ?
-    (<div onClick={onTap} className={theme.listItemLeft}>{props.leftElement}</div>)
-    : null;
+  let leftElement = null;
+  if (props.leftElement) {
+    const leftIcon = (props.selected) ? <Checkbox checked={true} /> : props.leftElement;
+    leftElement = (
+      <div onClick={onLeftElementTap} className={theme.listItemLeft}>
+        {leftIcon}
+      </div>
+    );
+  }
 
   // If we have a right element add it
   const rightElement = (props.rightElement) ?
@@ -74,6 +83,11 @@ ListItem.propTypes = {
   selected: PropTypes.bool,
 
   /**
+   * Used to highlight an entry - often used to mark a new entry
+   */
+  emphasized: PropTypes.bool,
+
+  /**
    * Node element to render on the left side
    */
   leftElement: PropTypes.node,
@@ -86,7 +100,12 @@ ListItem.propTypes = {
   /**
    * Event called when the primary action is tapped or Clicked
    */
-  onTap: PropTypes.func
+  onTap: PropTypes.func,
+
+  /**
+   * Event called when the left element is tapped or Clicked
+   */
+  onLeftElementTap: PropTypes.func
 };
 
 /**
@@ -97,7 +116,8 @@ ListItem.defaultProps = {
   secondaryText: null,
   leftElement: null,
   rightElement: null,
-  selected: false
+  selected: false,
+  emphasized: false
 };
 
 /**

@@ -196,6 +196,9 @@ class TextField extends Component {
       newState.autoFocus = nextProps.autoFocus;
     }
 
+    if (newState.hasValue) {
+      this.setValue(newState.hasValue);
+    }
 
     // If we changed to a multiline input then attach a listener for window resize
     if (!this.props.multiLine && nextProps.multiLine) {
@@ -752,7 +755,6 @@ class TextField extends Component {
    * @private
    */
   _evalInputValue() {
-
     let details = null;
     const inputValue = this.state.hasValue; // Get the current input value
     const caretPos = this.state.caretPos; // Get the current caret/cursor position
@@ -760,7 +762,7 @@ class TextField extends Component {
     if (inputValue) {
       const subValue = inputValue.substr(0, caretPos); // Get the substr of inputValue from index 0 to caretPos
 
-      const details = {
+      details = {
         value: inputValue,
         caretPos: caretPos,
         subValue: subValue,

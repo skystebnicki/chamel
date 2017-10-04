@@ -162,7 +162,9 @@ class AppBar extends Component {
       outerConStyle = {height: this.state.startHeight + "px"}
 
       // Increment zDepth to indicate floating
-      zDepth++;
+      // TODO: Commenting this out since it is creating visual problems in netric
+      // with side-by-side toolbars. We should probably change  that and then bring this back
+      //zDepth++;
     }
 
     return (

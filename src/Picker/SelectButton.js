@@ -66,13 +66,18 @@ class SelectButton extends Component {
 
     return (
       <div className={theme.selectButtonCon}>
-        <IconButton className={this.props.className} onTap={this._onControlClick}>{icon}</IconButton>
+        <div style={{align: "top"}}>
+          <IconButton
+            className={this.props.className}
+            onTap={this._onControlClick}>
+            {icon}
+          </IconButton>
+        </div>
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
           anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this._handleRequestClose}
-          relative={true}>
+          onRequestClose={this._handleRequestClose}>
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
@@ -125,7 +130,7 @@ class SelectButton extends Component {
    * @param {Object} payload Whatever payload was passed to the menu
    */
   _onMenuItemClick = (e, key, payload) => {
-    if (this.props.onChange && this.state.selectedIndex !== key) {
+    if (this.props.onChange) {
       this.props.onChange(e, key, payload);
     }
 

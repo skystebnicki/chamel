@@ -37,14 +37,9 @@
   display: flex;
   -webkit-flex-flow: row wrap;
   align-items: center;
-
+  overflow: hidden;
   white-space: nowrap;
-  padding: 0 $list-item-padding 0 $list-item-padding;
-}
-
-.listItemSelected {
-  background-color: $list-item-hover-color;
-  color: $list-item-selected-text-color;
+  margin: 0 $list-item-padding 0 $list-item-padding;
 }
 
 .listItemPrimary {
@@ -52,6 +47,17 @@
 
 .listItemSecondary {
   @extend .cml-text-light-black;
+}
+
+.listItemSelected {
+  background-color: $list-item-hover-color;
+  color: $list-item-selected-text-color;
+}
+
+.listItemEmphasized {
+  .listItemPrimary {
+    font-weight: bold;
+  }
 }
 
 .listItemData {
