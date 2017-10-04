@@ -17,8 +17,7 @@ node {
                     'NPM_TOKEN=ef16319c-fcec-42d2-abac-96e6abb71d6b'
                 ]) {
                     sh 'npm install'
-                    sh 'npm run test-jenkins'
-                    junit 'test/reports/**/*.xml'
+                    
                 }   
             }
         }
