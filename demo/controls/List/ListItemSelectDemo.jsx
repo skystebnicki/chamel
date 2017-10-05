@@ -28,6 +28,7 @@ class ListItemSelectDemo extends React.Component {
           leftElement={<RefreshIcon />}
           selected={this.state.firstChecked}
           onLeftElementTap={() => { this.setState({firstChecked: !this.state.firstChecked});}}
+          selectedShowCheckbox={true}
         />
         <ListItem
           primaryText={"Primary text goes here 2"}
@@ -35,6 +36,7 @@ class ListItemSelectDemo extends React.Component {
           leftElement={<RefreshIcon />}
           selected={this.state.secondChecked}
           onLeftElementTap={() => { this.setState({secondChecked: !this.state.secondChecked});}}
+          selectedShowCheckbox={true}
         />
       </List>
     );

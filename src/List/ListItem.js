@@ -29,7 +29,9 @@ const ListItem = (props, context) => {
   // If we have a left element add it
   let leftElement = null;
   if (props.leftElement) {
-    const leftIcon = (props.selected) ? <Checkbox checked={true} /> : props.leftElement;
+    const leftIcon = (props.selected && props.selectedShowCheckbox) ? 
+      (<Checkbox checked={true} />) : props.leftElement;
+
     leftElement = (
       <div onClick={onLeftElementTap} className={theme.listItemLeft}>
         {leftIcon}
@@ -81,6 +83,11 @@ ListItem.propTypes = {
    * Optional flag that can be set to indicate this item is selected
    */
   selected: PropTypes.bool,
+
+  /**
+   * Show a checkbox if this item is slected (or on mouse hover to indicate it can be)
+   */
+  selectedShowCheckbox: PropTypes.bool,
 
   /**
    * Used to highlight an entry - often used to mark a new entry
