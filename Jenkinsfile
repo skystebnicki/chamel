@@ -11,7 +11,7 @@ node {
             dockerImage.inside {
                 withEnv([
                     /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-                    'npm_config_cache=/tmp/npm/',
+                    'HOME=.',
                 ]) {
                     /*sh 'npm run build'*/
                 }   
@@ -22,7 +22,7 @@ node {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([
-                    'npm_config_cache=/tmp/npm/',
+                    'HOME=.',
                 ]) {
                     /*sh 'npm install'*/
                     /*sh 'cd ~ && pwd'*/
@@ -40,7 +40,7 @@ node {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([
-                    'npm_config_cache=/tmp/npm/'
+                    'HOME=.'
                 ]) {
                     if (env.BRANCH_NAME == 'master') {
                         sh 'npm publish'

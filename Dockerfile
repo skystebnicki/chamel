@@ -10,7 +10,6 @@ RUN rm -rf node_modules/*
 RUN rm -rf build/*
 
 # Install dependencies for the library
-#RUN npm install
 
 EXPOSE 8081
 EXPOSE 885
