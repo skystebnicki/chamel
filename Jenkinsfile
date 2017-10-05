@@ -42,7 +42,6 @@ node {
                 withEnv([
                     'npm_config_cache=/tmp/npm/'
                 ]) {
-                    sh "echo '//registry.npmjs.org/:_authToken=ef16319c-fcec-42d2-abac-96e6abb71d6b' > .npmrc"
                     if (env.BRANCH_NAME == 'master') {
                         sh 'npm publish'
                     } else {
