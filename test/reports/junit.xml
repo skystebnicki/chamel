@@ -1,6 +1,680 @@
 <testsuites name="chamel">
-  <testsuite name="AppBar" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-05-08T13:32:51" time="2.606">
-    <testcase classname="AppBar should be the default export" name="AppBar should be the default export" time="0.003">
+  <testsuite name="SlideIn Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:01" time="6.086">
+    <testcase classname="SlideIn Component Should render" name="SlideIn Component Should render" time="0.025">
+    </testcase>
+  </testsuite>
+  <testsuite name="DayButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:01" time="12.175">
+    <testcase classname="DayButton Component Should render" name="DayButton Component Should render" time="0.038">
+    </testcase>
+  </testsuite>
+  <testsuite name="CalendarMonth Component" tests="1" errors="0" failures="1" skipped="0" timestamp="2017-10-05T13:29:01" time="12.177">
+    <testcase classname="CalendarMonth Component Should render" name="CalendarMonth Component Should render" time="0.017">
+      <failure message="TypeError: Cannot read property &apos;props&apos; of undefined
+    at CalendarMonth._this.getClasses (/var/www/app/src/DatePicker/CalendarMonth.jsx:69:97)
+    at CalendarMonth.render (/var/www/app/src/DatePicker/CalendarMonth.jsx:95:264)
+    at /var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:793:21
+    at measureLifeCyclePerf (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:73:12)
+    at ShallowComponentWrapper._renderValidatedComponentWithoutOwnerOrContext (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:792:25)
+    at ShallowComponentWrapper.performInitialMount (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:359:30)
+    at ShallowComponentWrapper.mountComponent (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:255:21)
+    at Object.mountComponent (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactReconciler.js:43:35)
+    at ReactShallowRenderer._render (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:136:23)
+    at _batchedRender (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:83:12)
+    at ReactDefaultBatchingStrategyTransaction.perform (/var/www/app/node_modules/react-test-renderer/lib/shallow/Transaction.js:141:20)
+    at Object.batchedUpdates (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactDefaultBatchingStrategy.js:60:26)
+    at Object.batchedUpdates (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactUpdates.js:95:27)
+    at ReactShallowRenderer.render (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:110:18)
+    at Object.&lt;anonymous&gt; (/var/www/app/test/unit/DatePicker/CalendarMonth.test.js:17:37)
+    at Object.asyncFn (/var/www/app/node_modules/jest-jasmine2/build/jasmine_async.js:124:345)
+    at e (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:46:12)
+    at mapper (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:34:499)
+    at promise.then (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:74:39)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="CalendarToolbar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:07" time="6.521">
+    <testcase classname="CalendarToolbar Component Should render" name="CalendarToolbar Component Should render" time="0.013">
+    </testcase>
+  </testsuite>
+  <testsuite name="DateDisplay Component" tests="1" errors="0" failures="1" skipped="0" timestamp="2017-10-05T13:29:13" time="1.343">
+    <testcase classname="DateDisplay Component Should render" name="DateDisplay Component Should render" time="0.023">
+      <failure message="TypeError: Cannot read property &apos;transitionDirection&apos; of null
+    at DateDisplay.render (/var/www/app/src/DatePicker/DateDisplay.jsx:103:2231)
+    at /var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:793:21
+    at measureLifeCyclePerf (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:73:12)
+    at ShallowComponentWrapper._renderValidatedComponentWithoutOwnerOrContext (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:792:25)
+    at ShallowComponentWrapper.performInitialMount (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:359:30)
+    at ShallowComponentWrapper.mountComponent (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:255:21)
+    at Object.mountComponent (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactReconciler.js:43:35)
+    at ReactShallowRenderer._render (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:136:23)
+    at _batchedRender (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:83:12)
+    at ReactDefaultBatchingStrategyTransaction.perform (/var/www/app/node_modules/react-test-renderer/lib/shallow/Transaction.js:141:20)
+    at Object.batchedUpdates (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactDefaultBatchingStrategy.js:60:26)
+    at Object.batchedUpdates (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactUpdates.js:95:27)
+    at ReactShallowRenderer.render (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:110:18)
+    at Object.&lt;anonymous&gt; (/var/www/app/test/unit/DatePicker/DateDisplay.test.js:16:37)
+    at Object.asyncFn (/var/www/app/node_modules/jest-jasmine2/build/jasmine_async.js:124:345)
+    at e (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:46:12)
+    at mapper (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:34:499)
+    at promise.then (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:74:39)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Tabs Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:14" time="1.828">
+    <testcase classname="Tabs Component Should render" name="Tabs Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="LinkMenuItem Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:16" time="0.454">
+    <testcase classname="LinkMenuItem Component Should render" name="LinkMenuItem Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="DatePickerDialog Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:13" time="3.518">
+    <testcase classname="DatePickerDialog Component Should render" name="DatePickerDialog Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="EnhancedTextarea Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:16" time="1.609">
+    <testcase classname="EnhancedTextarea Component Should render" name="EnhancedTextarea Component Should render" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppBarRightToolbar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:17" time="1.131">
+    <testcase classname="AppBarRightToolbar Component Should render" name="AppBarRightToolbar Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Switch Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:18" time="1.16">
+    <testcase classname="Switch Component Should render" name="Switch Component Should render" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="Checkbox Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:18" time="1.517">
+    <testcase classname="Checkbox Component Should render" name="Checkbox Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Tooltip Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:19" time="1.065">
+    <testcase classname="Tooltip Component Should render" name="Tooltip Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="SubheaderMenuItem Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:19" time="1.465">
+    <testcase classname="SubheaderMenuItem Component Should render" name="SubheaderMenuItem Component Should render" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="DatePicker Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:15" time="6.816">
+    <testcase classname="DatePicker Component Should render" name="DatePicker Component Should render" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="Toolbar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:21" time="1.691">
+    <testcase classname="Toolbar Component Should render" name="Toolbar Component Should render" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="Drop Down Icon Component" tests="1" errors="0" failures="1" skipped="0" timestamp="2017-10-05T13:29:20" time="2.113">
+    <testcase classname="Drop Down Icon Component Should render" name="Drop Down Icon Component Should render" time="0.01">
+      <failure message="Error: [2mexpect([22m[31mreceived[39m[2m).toBe([22m[32mexpected[39m[2m)[22m
+
+Expected value to be (using ===):
+  [32m&quot;chamel-drop-down-icon&quot;[39m
+Received:
+  [31mundefined[39m
+
+Difference:
+
+  Comparing two different types of values. Expected [32mstring[39m but received [31mundefined[39m.
+    at Object.&lt;anonymous&gt; (/var/www/app/test/unit/DropDownIcon.test.js:21:46)
+    at Object.asyncFn (/var/www/app/node_modules/jest-jasmine2/build/jasmine_async.js:124:345)
+    at e (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:46:12)
+    at mapper (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:34:499)
+    at promise.then (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:74:39)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="NestedMenuItem Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:22" time="1.766">
+    <testcase classname="NestedMenuItem Component Should render" name="NestedMenuItem Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Calendar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:22" time="0.918">
+    <testcase classname="Calendar Component Should render" name="Calendar Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="CircularProgress Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:22" time="1.361">
+    <testcase classname="CircularProgress Component Should render" name="CircularProgress Component Should render" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="TextFieldRich Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:24" time="0.757">
+    <testcase classname="TextFieldRich Component Should render" name="TextFieldRich Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="TouchRipple Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:23" time="1.683">
+    <testcase classname="TouchRipple Component Should render" name="TouchRipple Component Should render" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="Snackbar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:23" time="1.627">
+    <testcase classname="Snackbar Component Should render" name="Snackbar Component Should render" time="0.017">
+    </testcase>
+  </testsuite>
+  <testsuite name="FontIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:25" time="0.749">
+    <testcase classname="FontIcon Component Should render" name="FontIcon Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="LinearProgress Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:25" time="0.858">
+    <testcase classname="LinearProgress Component Should render" name="LinearProgress Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Slider Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:25" time="0.887">
+    <testcase classname="Slider Component Should render" name="Slider Component Should render" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="AutoComplete Component" tests="1" errors="0" failures="1" skipped="0" timestamp="2017-10-05T13:29:25" time="0.653">
+    <testcase classname="AutoComplete Component Should render" name="AutoComplete Component Should render" time="0.013">
+      <failure message="Error: [2mexpect([22m[31mreceived[39m[2m).toBe([22m[32mexpected[39m[2m)[22m
+
+Expected value to be (using ===):
+  [32m&quot;chamel-autoComplete&quot;[39m
+Received:
+  [31mundefined[39m
+
+Difference:
+
+  Comparing two different types of values. Expected [32mstring[39m but received [31mundefined[39m.
+    at Object.&lt;anonymous&gt; (/var/www/app/test/unit/AutoComplete/AutoComplete.test.js:20:46)
+    at Object.asyncFn (/var/www/app/node_modules/jest-jasmine2/build/jasmine_async.js:124:345)
+    at e (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:46:12)
+    at mapper (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:34:499)
+    at promise.then (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:74:39)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Tab Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:26" time="0.725">
+    <testcase classname="Tab Component Should render" name="Tab Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="ColorPicker Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:26" time="1.018">
+    <testcase classname="ColorPicker Component Should render" name="ColorPicker Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="FloatingButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:26" time="1.073">
+    <testcase classname="FloatingButton Component Should render" name="FloatingButton Component Should render" time="0.027">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowDropDownCircleIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:27" time="0.355">
+    <testcase classname="ArrowDropDownCircleIcon Component Should render" name="ArrowDropDownCircleIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="FlatButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:27" time="0.86">
+    <testcase classname="FlatButton Component Should render" name="FlatButton Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SettingsApplicationIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:27" time="0.827">
+    <testcase classname="SettingsApplicationIcon Component Should render" name="SettingsApplicationIcon Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="RaisedButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:27" time="0.942">
+    <testcase classname="RaisedButton Component Should render" name="RaisedButton Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="ToolbarGroup Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:28" time="0.532">
+    <testcase classname="ToolbarGroup Component Should render" name="ToolbarGroup Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="IconButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:28" time="0.562">
+    <testcase classname="IconButton Component Should render" name="IconButton Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Button Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:28" time="0.774">
+    <testcase classname="Button Component Should render" name="Button Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Progress Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:28" time="0.755">
+    <testcase classname="Progress Component Should render" name="Progress Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="DatePicker Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:28" time="1.418">
+    <testcase classname="DatePicker Component Should render" name="DatePicker Component Should render" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="CircleRipple Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:29" time="0.478">
+    <testcase classname="CircleRipple Component Should render" name="CircleRipple Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SubArrowRightIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:29" time="0.491">
+    <testcase classname="SubArrowRightIcon Component Should render" name="SubArrowRightIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="FullScreenExitIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:29" time="0.638">
+    <testcase classname="FullScreenExitIcon Component Should render" name="FullScreenExitIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="SubArrowLeftIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:30" time="0.612">
+    <testcase classname="SubArrowLeftIcon Component Should render" name="SubArrowLeftIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="MenuItem Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:30" time="0.938">
+    <testcase classname="MenuItem Component Should render" name="MenuItem Component Should render" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="SelectButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:30" time="1.31">
+    <testcase classname="SelectButton Component Should render" name="SelectButton Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="AccessibilityIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:31" time="0.471">
+    <testcase classname="AccessibilityIcon Component Should render" name="AccessibilityIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SlideInChild Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:31" time="0.482">
+    <testcase classname="SlideInChild Component Should render" name="SlideInChild Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowDropDownIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:31" time="0.757">
+    <testcase classname="ArrowDropDownIcon Component Should render" name="ArrowDropDownIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListNumberedIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:31" time="0.702">
+    <testcase classname="ListNumberedIcon Component Should render" name="ListNumberedIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListBulletedIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:31" time="0.622">
+    <testcase classname="ListBulletedIcon Component Should render" name="ListBulletedIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowForwardIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:32" time="1.182">
+    <testcase classname="ArrowForwardIcon Component Should render" name="ArrowForwardIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppBar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:32" time="1.228">
+    <testcase classname="AppBar Component Should render" name="AppBar Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContentSource Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:32" time="2.118">
+    <testcase classname="ContentSource Component Should render" name="ContentSource Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="LibraryBooksIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:33" time="1.145">
+    <testcase classname="LibraryBooksIcon Component Should render" name="LibraryBooksIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="AnnouncementIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:33" time="1.146">
+    <testcase classname="AnnouncementIcon Component Should render" name="AnnouncementIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowRightIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:34" time="0.398">
+    <testcase classname="ArrowRightIcon Component Should render" name="ArrowRightIcon Component Should render" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowDropUpIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:34" time="0.542">
+    <testcase classname="ArrowDropUpIcon Component Should render" name="ArrowDropUpIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContentPasteIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:34" time="0.682">
+    <testcase classname="ContentPasteIcon Component Should render" name="ContentPasteIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="PhotoCameraIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:35" time="0.614">
+    <testcase classname="PhotoCameraIcon Component Should render" name="PhotoCameraIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="UnderlinedIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:35" time="0.612">
+    <testcase classname="UnderlinedIcon Component Should render" name="UnderlinedIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContentHtml Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:34" time="2.432">
+    <testcase classname="ContentHtml Component Should render" name="ContentHtml Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="FocusRipple Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:36" time="1.56">
+    <testcase classname="FocusRipple Component Should render" name="FocusRipple Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="CheckCircleIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:36" time="1.585">
+    <testcase classname="CheckCircleIcon Component Should render" name="CheckCircleIcon Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="AccessTimeIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:37" time="1.214">
+    <testcase classname="AccessTimeIcon Component Should render" name="AccessTimeIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="ChevronRightIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:37" time="0.778">
+    <testcase classname="ChevronRightIcon Component Should render" name="ChevronRightIcon Component Should render" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="SelectField Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:37" time="0.764">
+    <testcase classname="SelectField Component Should render" name="SelectField Component Should render" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="ExpandMoreIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:38" time="1.143">
+    <testcase classname="ExpandMoreIcon Component Should render" name="ExpandMoreIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="AttachFileIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:38" time="1.125">
+    <testcase classname="AttachFileIcon Component Should render" name="AttachFileIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="FilterListIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:38" time="1.143">
+    <testcase classname="FilterListIcon Component Should render" name="FilterListIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="ExpandLessIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:39" time="1.602">
+    <testcase classname="ExpandLessIcon Component Should render" name="ExpandLessIcon Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="LocalOfferIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:39" time="1.604">
+    <testcase classname="LocalOfferIcon Component Should render" name="LocalOfferIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="AttachmentIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:39" time="1.601">
+    <testcase classname="AttachmentIcon Component Should render" name="AttachmentIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ChevronLeftIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:41" time="0.924">
+    <testcase classname="ChevronLeftIcon Component Should render" name="ChevronLeftIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="StreetViewIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:41" time="0.946">
+    <testcase classname="StreetViewIcon Component Should render" name="StreetViewIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="BorderColorIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:41" time="0.944">
+    <testcase classname="BorderColorIcon Component Should render" name="BorderColorIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="FullScreenIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:42" time="0.476">
+    <testcase classname="FullScreenIcon Component Should render" name="FullScreenIcon Component Should render" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowDownIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:42" time="0.472">
+    <testcase classname="ArrowDownIcon Component Should render" name="ArrowDownIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="SwapHorizIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:42" time="0.474">
+    <testcase classname="SwapHorizIcon Component Should render" name="SwapHorizIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="MoreHorizIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:42" time="1.173">
+    <testcase classname="MoreHorizIcon Component Should render" name="MoreHorizIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="FirstPageIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:42" time="1.184">
+    <testcase classname="FirstPageIcon Component Should render" name="FirstPageIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowBackIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:42" time="1.191">
+    <testcase classname="ArrowBackIcon Component Should render" name="ArrowBackIcon Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="AddCircleIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:43" time="1.336">
+    <testcase classname="AddCircleIcon Component Should render" name="AddCircleIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="PersonAddIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:43" time="1.314">
+    <testcase classname="PersonAddIcon Component Should render" name="PersonAddIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="DateRangeIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:43" time="1.36">
+    <testcase classname="DateRangeIcon Component Should render" name="DateRangeIcon Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="TransformIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:45" time="0.828">
+    <testcase classname="TransformIcon Component Should render" name="TransformIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="FindPageIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:45" time="0.836">
+    <testcase classname="FindPageIcon Component Should render" name="FindPageIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="DashboardIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:45" time="0.901">
+    <testcase classname="DashboardIcon Component Should render" name="DashboardIcon Component Should render" time="0.026">
+    </testcase>
+  </testsuite>
+  <testsuite name="ViewListIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:46" time="0.345">
+    <testcase classname="ViewListIcon Component Should render" name="ViewListIcon Component Should render" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="MoreVertIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:46" time="0.395">
+    <testcase classname="MoreVertIcon Component Should render" name="MoreVertIcon Component Should render" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="LastPageIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:46" time="0.329">
+    <testcase classname="LastPageIcon Component Should render" name="LastPageIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SettingsIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:46" time="0.795">
+    <testcase classname="SettingsIcon Component Should render" name="SettingsIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListItemCheckbox Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:46" time="0.803">
+    <testcase classname="ListItemCheckbox Component Should render" name="ListItemCheckbox Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="AccountIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:46" time="0.764">
+    <testcase classname="AccountIcon Component Should render" name="AccountIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="ContactsIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:47" time="0.356">
+    <testcase classname="ContactsIcon Component Should render" name="ContactsIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArrowUpIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:47" time="0.347">
+    <testcase classname="ArrowUpIcon Component Should render" name="ArrowUpIcon Component Should render" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="ShuffleIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:47" time="0.36">
+    <testcase classname="ShuffleIcon Component Should render" name="ShuffleIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="ItalicIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:47" time="0.766">
+    <testcase classname="ItalicIcon Component Should render" name="ItalicIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="CommentIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:47" time="0.74">
+    <testcase classname="CommentIcon Component Should render" name="CommentIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="RefreshIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:47" time="0.774">
+    <testcase classname="RefreshIcon Component Should render" name="RefreshIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="CreateIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:48" time="0.383">
+    <testcase classname="CreateIcon Component Should render" name="CreateIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="CancelIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:48" time="0.385">
+    <testcase classname="CancelIcon Component Should render" name="CancelIcon Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="EmailIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:48" time="0.391">
+    <testcase classname="EmailIcon Component Should render" name="EmailIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="DeleteIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:48" time="0.788">
+    <testcase classname="DeleteIcon Component Should render" name="DeleteIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="SearchIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:48" time="0.822">
+    <testcase classname="SearchIcon Component Should render" name="SearchIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="EditorToolbar Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:48" time="0.836">
+    <testcase classname="EditorToolbar Component Should render" name="EditorToolbar Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="LinkIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:49" time="0.31">
+    <testcase classname="LinkIcon Component Should render" name="LinkIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="BoldIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:49" time="0.348">
+    <testcase classname="BoldIcon Component Should render" name="BoldIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Popover Component" tests="1" errors="0" failures="1" skipped="0" timestamp="2017-10-05T13:29:49" time="0.411">
+    <testcase classname="Popover Component Should render" name="Popover Component Should render" time="0.006">
+      <failure message="TypeError: Cannot read property &apos;props&apos; of undefined
+    at Popover.render (/var/www/app/src/Popover/Popover.jsx:174:1056)
+    at /var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:793:21
+    at measureLifeCyclePerf (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:73:12)
+    at ShallowComponentWrapper._renderValidatedComponentWithoutOwnerOrContext (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:792:25)
+    at ShallowComponentWrapper.performInitialMount (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:359:30)
+    at ShallowComponentWrapper.mountComponent (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactCompositeComponent.js:255:21)
+    at Object.mountComponent (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactReconciler.js:43:35)
+    at ReactShallowRenderer._render (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:136:23)
+    at _batchedRender (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:83:12)
+    at ReactDefaultBatchingStrategyTransaction.perform (/var/www/app/node_modules/react-test-renderer/lib/shallow/Transaction.js:141:20)
+    at Object.batchedUpdates (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactDefaultBatchingStrategy.js:60:26)
+    at Object.batchedUpdates (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactUpdates.js:95:27)
+    at ReactShallowRenderer.render (/var/www/app/node_modules/react-test-renderer/lib/shallow/ReactShallowRenderer.js:110:18)
+    at Object.&lt;anonymous&gt; (/var/www/app/test/unit/Popover/Popover.test.js:14:37)
+    at Object.asyncFn (/var/www/app/node_modules/jest-jasmine2/build/jasmine_async.js:124:345)
+    at e (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:46:12)
+    at mapper (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:34:499)
+    at promise.then (/var/www/app/node_modules/jest-jasmine2/build/queue_runner.js:74:39)
+    at process._tickCallback (internal/process/next_tick.js:109:7)">
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Overlay Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:49" time="0.7">
+    <testcase classname="Overlay Component Should render" name="Overlay Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="RadioButton Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:49" time="0.759">
+    <testcase classname="RadioButton Component Should render" name="RadioButton Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="BuildIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:49" time="0.745">
+    <testcase classname="BuildIcon Component Should render" name="BuildIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="PhotoIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:50" time="0.427">
+    <testcase classname="PhotoIcon Component Should render" name="PhotoIcon Component Should render" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="PrintIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:50" time="0.431">
+    <testcase classname="PrintIcon Component Should render" name="PrintIcon Component Should render" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="CloseIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:50" time="0.472">
+    <testcase classname="CloseIcon Component Should render" name="CloseIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="CheckIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:51" time="0.685">
+    <testcase classname="CheckIcon Component Should render" name="CheckIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="LabelIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:51" time="0.699">
+    <testcase classname="LabelIcon Component Should render" name="LabelIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="MergeIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:51" time="0.704">
+    <testcase classname="MergeIcon Component Should render" name="MergeIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="StyleIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:51" time="0.448">
+    <testcase classname="StyleIcon Component Should render" name="StyleIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="InboxIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:51" time="0.454">
+    <testcase classname="InboxIcon Component Should render" name="InboxIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="GroupIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:51" time="0.483">
+    <testcase classname="GroupIcon Component Should render" name="GroupIcon Component Should render" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="CodeIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:52" time="0.744">
+    <testcase classname="CodeIcon Component Should render" name="CodeIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="RadioPicker Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:52" time="0.772">
+    <testcase classname="RadioPicker Component Should render" name="RadioPicker Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Dialog Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:52" time="0.811">
+    <testcase classname="Dialog Component Should render" name="Dialog Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="MenuIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:53" time="0.483">
+    <testcase classname="MenuIcon Component Should render" name="MenuIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="FlagIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:53" time="0.528">
+    <testcase classname="FlagIcon Component Should render" name="FlagIcon Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="EditIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:53" time="0.557">
+    <testcase classname="EditIcon Component Should render" name="EditIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="WorkIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:53" time="0.791">
+    <testcase classname="WorkIcon Component Should render" name="WorkIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="NoteIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:53" time="0.81">
+    <testcase classname="NoteIcon Component Should render" name="NoteIcon Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="SaveIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:53" time="0.799">
+    <testcase classname="SaveIcon Component Should render" name="SaveIcon Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="SendIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:54" time="0.47">
+    <testcase classname="SendIcon Component Should render" name="SendIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppsIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:54" time="0.465">
+    <testcase classname="AppsIcon Component Should render" name="AppsIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="TitleIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:54" time="0.462">
+    <testcase classname="TitleIcon Component Should render" name="TitleIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="WebIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:54" time="0.747">
+    <testcase classname="WebIcon Component Should render" name="WebIcon Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListDivider Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:54" time="0.787">
+    <testcase classname="ListDivider Component Should render" name="ListDivider Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="Drawer Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:54" time="1.104">
+    <testcase classname="Drawer Component Should render" name="Drawer Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="TextField Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:55" time="0.346">
+    <testcase classname="TextField Component Should render" name="TextField Component Should render" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="AddIcon Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:55" time="0.46">
+    <testcase classname="AddIcon Component Should render" name="AddIcon Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Container Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:56" time="1.203">
+    <testcase classname="Container Component Should render" name="Container Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="ListItem Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:56" time="1.074">
+    <testcase classname="ListItem Component Should render" name="ListItem Component Should render" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="RichText Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:56" time="1.707">
+    <testcase classname="RichText Component Should render" name="RichText Component Should render" time="0.02">
+    </testcase>
+  </testsuite>
+  <testsuite name="Column Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:57" time="0.665">
+    <testcase classname="Column Component Should render" name="Column Component Should render" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Menu Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:57" time="0.68">
+    <testcase classname="Menu Component Should render" name="Menu Component Should render" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Row Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:57" time="0.456">
+    <testcase classname="Row Component Should render" name="Row Component Should render" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Paper Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:57" time="0.579">
+    <testcase classname="Paper Component Should render" name="Paper Component Should render" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="List Component" tests="1" errors="0" failures="0" skipped="0" timestamp="2017-10-05T13:29:57" time="0.444">
+    <testcase classname="List Component Should render" name="List Component Should render" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
