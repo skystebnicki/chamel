@@ -24,7 +24,6 @@ node {
                 withEnv([
                     'npm_config_cache=/tmp/npm/',
                 ]) {
-                    sh 'cat ~/.npmrc'
                     /*sh 'npm install'*/
                     /*sh 'cd ~ && pwd'*/
                 }   
