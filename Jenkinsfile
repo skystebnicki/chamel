@@ -9,11 +9,10 @@ node {
 
             /* Run tests inside the docker container */
             dockerImage.inside {
-                withEnv([
-                    /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-                    'HOME=.',
-                ]) {
-                    /*sh 'npm run build'*/
+                /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
+                withEnv([ 'HOME=.' ]) {
+                    sh 'npm install'
+                    sh 'npm run build'
                 }   
             }
         }
@@ -21,30 +20,24 @@ node {
         stage('Test') {
             /* Run tests inside the docker container */
             dockerImage.inside {
-                withEnv([
-                    'HOME=.',
-                ]) {
-                    /*sh 'npm install'*/
-                    /*sh 'cd ~ && pwd'*/
+                withEnv([ 'HOME=.' ]) {
+                    sh 'npm run test-single-run'
+                    junit 'test/reports/junit.xml'
                 }   
             }
         }
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                /*sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"*/
+                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"
             }
         }
 
         stage('Publish') {
             /* Run tests inside the docker container */
             dockerImage.inside {
-                withEnv([
-                    'HOME=.'
-                ]) {
+                withEnv([ 'HOME=.' ]) {
                     sh "echo '//registry.npmjs.org/:_authToken=ef16319c-fcec-42d2-abac-96e6abb71d6b' > .npmrc"
-                    sh "cat .npmrc"
-                    sh "cat ~/.npmrc"
                     if (env.BRANCH_NAME == 'master') {
                         sh 'npm publish'
                     } else {
