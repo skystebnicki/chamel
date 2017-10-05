@@ -13,7 +13,6 @@ RUN rm -rf build/*
 RUN echo '//registry.npmjs.org/:_authToken=ef16319c-fcec-42d2-abac-96e6abb71d6b' > /.npmrc
 
 # Install dependencies for the library
-#RUN npm install
 
 EXPOSE 8081
 EXPOSE 885
