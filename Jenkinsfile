@@ -50,6 +50,7 @@ node {
         stage('Cleanup') {
             echo 'prune and cleanup'
             sh 'docker system prune -f'
+            sh 'docker volume rm $(docker volume ls -f dangling=true -q)'
 
             mail body: "project build successful: ${env.BUILD_URL}",
                 from: 'builds@aereus.com',
