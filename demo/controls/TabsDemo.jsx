@@ -1,6 +1,6 @@
 var React = require('react');
-var Tabs = require("../../src/Tabs");
-var Tab = require("../../src/Tabs/Tab");
+var Tabs = require("chamel/Tabs");
+var Tab = require("chamel/Tabs/Tab");
 var CodeExample = require("../CodeExample");
 var ComponentDoc = require("../ComponentDoc");
 

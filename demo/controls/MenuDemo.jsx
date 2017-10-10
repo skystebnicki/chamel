@@ -1,7 +1,7 @@
 var React = require("react");
-var Menu = require("../../src/Menu");
-var MenuItem = require("../../src/Menu/MenuItem");
-var NestedMenuItem = require("../../src/Menu/NestedMenuItem");
+var Menu = require("chamel/Menu");
+var MenuItem = require("chamel/Menu/MenuItem");
+var NestedMenuItem = require("chamel/Menu/NestedMenuItem");
 var CodeExample = require("../CodeExample");
 
 var labelMenuItems = [

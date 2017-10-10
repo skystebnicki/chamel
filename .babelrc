@@ -12,6 +12,7 @@
             "root": ["./src"],
             "alias": {
                 "chamel": "./src",
+                "demo": "./demo"
             }
         }]
     ]

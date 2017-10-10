@@ -1,5 +1,5 @@
 var React = require('react');
-var DatePicker = require("../../src/DatePicker");
+var DatePicker = require("chamel/DatePicker");
 var ComponentDoc = require('../ComponentDoc');
 
 var DatePickerPage = React.createClass({

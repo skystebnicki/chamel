@@ -1,6 +1,6 @@
 import React from 'react';
-import Popover from '../../../src/Popover';
-var RaisedButton = require("../../../src/Button/RaisedButton");
+import Popover from 'chamel/Popover';
+var RaisedButton = require("chamel/Button/RaisedButton");
 
 export default class PopoverExampleSimple extends React.Component {
 

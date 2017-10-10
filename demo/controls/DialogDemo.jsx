@@ -1,11 +1,11 @@
 var React = require('react');
-var Chamel = require("../../src/main");
+var Chamel = require("chamel/main");
 var Dialog = Chamel.Dialog;
 var FlatButton = Chamel.FlatButton;
 var RaisedButton = Chamel.RaisedButton;
 var Toggle = Chamel.Toggle;
 var CodeExample = require("../CodeExample");
-import Page from '../../src/Dialog/Page';
+import Page from 'chamel/Dialog/Page';
 
 var DialogPage = React.createClass({
 

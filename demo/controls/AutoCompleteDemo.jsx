@@ -1,6 +1,6 @@
 var React = require('react');
-var TextField = require("../../src/Input/TextField");
-var AutoComplete = require("../../src/AutoComplete");
+var TextField = require("chamel/Input/TextField");
+var AutoComplete = require("chamel/AutoComplete");
 var CodeExample = require("../CodeExample.jsx");
 var ComponentDoc = require('../ComponentDoc.jsx');
 

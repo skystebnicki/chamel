@@ -1,5 +1,5 @@
 var React = require('react');
-var Editor = require("../../src/Editor");
+var Editor = require("chamel/Editor");
 var CodeExample = require("../CodeExample");
 
 var code =

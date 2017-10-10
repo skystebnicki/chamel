@@ -1,5 +1,5 @@
 var React = require('react');
-var Checkbox = require("../../src/Checkbox");
+var Checkbox = require("chamel/Checkbox");
 var CodeExample = require("../CodeExample");
 
 var code =

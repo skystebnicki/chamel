@@ -1,10 +1,10 @@
 var React = require('react');
-var DropDownIcon = require("../../src/DropDownIcon");
-var FontIcon = require("../../src/FontIcon");
-var RaisedButton = require("../../src/Button/RaisedButton");
+var DropDownIcon = require("chamel/DropDownIcon");
+var FontIcon = require("chamel/FontIcon");
+var RaisedButton = require("chamel/Button/RaisedButton");
 var CodeExample = require("../CodeExample");
-var LinearProgress = require("../../src/Progress/LinearProgress");
-var CircularProgress = require("../../src/Progress/CircularProgress");
+var LinearProgress = require("chamel/Progress/LinearProgress");
+var CircularProgress = require("chamel/Progress/CircularProgress");
 //var ComponentDoc = require('../../component-doc.jsx');
 
 var ProgressDemoPage = React.createClass({

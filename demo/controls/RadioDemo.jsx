@@ -1,6 +1,6 @@
 var React = require('react');
-var RadioButtonGroup = require("../../src/RadioButtonGroup");
-var RadioButton = require("../../src/RadioButton");
+var RadioButtonGroup = require("chamel/RadioButtonGroup");
+var RadioButton = require("chamel/RadioButton");
 var CodeExample = require("../CodeExample");
 
 var code =

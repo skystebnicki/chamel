@@ -27,7 +27,7 @@
     "test": "NODE_ENV=test jest --watch --coverage",
     "test-single-run": "NODE_ENV=test jest --coverage",
     "prestart": "npm install",
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline"
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8081 --config ./demo/webpack.config --colors --profile --progress --hot --inline"
   },
   "dependencies": {
     "classnames": "^2.2.5",
