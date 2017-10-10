@@ -7,6 +7,16 @@
     "prestart": "npm install",
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline"
   },
+  "dependencies": {
+    "classnames": "^1.2.2",
+    "codemirror": "^5.7.0",
+    "fbjs": "^0.8.16",
+    "react": "^15.0.1",
+    "react-addons-css-transition-group": "^15.0.1",
+    "react-addons-transition-group": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "ua-parser-js": "^0.7.9"
+  },
   "devDependencies": {
     "babel-cli": "^6.3.17",
     "babel-core": "^6.3.21",
@@ -69,15 +79,5 @@
         }
       ]
     ]
-  },
-  "dependencies": {
-    "classnames": "^1.2.2",
-    "codemirror": "^5.7.0",
-    "fbjs": "^0.8.16",
-    "react": "^15.0.1",
-    "react-addons-css-transition-group": "^15.0.1",
-    "react-addons-transition-group": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "ua-parser-js": "^0.7.9"
   }
 }
