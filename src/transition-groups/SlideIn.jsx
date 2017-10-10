@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransition } from 'react-transition-group'
 import SlideInChild from './SlideInChild';
 
 
@@ -29,14 +29,13 @@ const SlideIn = (props) => {
   }, this);
 
   return (
-    <ReactCSSTransitionGroup
+    <CSSTransition
       className={classes}
-      transitionEnterTimeout={500}
-      transitionLeaveTimeout={500}
-      transitionName="chamel-transition-slide-in"
+      timeout={{enter: 500, exit: 500}}
+      classNames="chamel-transition-slide-in"
       component="div">
       {newChildren}
-    </ReactCSSTransitionGroup>
+    </CSSTransition>
   );
 
   _getLeaveDirection = () => {

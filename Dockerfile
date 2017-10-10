@@ -19,4 +19,4 @@ EXPOSE 885
 EXPOSE 3001
 
 # Run the server
-CMD rm -rf node_modules/* && npm install && cd ./demo && rm -rf node_modules/* && npm start
+CMD rm -rf node_modules/* && npm install && npm start

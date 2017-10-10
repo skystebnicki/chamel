@@ -69,14 +69,13 @@ If you would like to build the project or develop it locally then follow these s
 
 First make sure you have the latest version of node installed and working locally: https://nodejs.org
 
-#### 1. Open your terminal or command prompt and go to the demo subdirectory
-
-    cd demo
-
-#### 2. Install node dependencies
+#### 1. Open your terminal or command prompt and type
 
     npm install
 
+#### 2. Install Build Tools (ONLY if running windows)
+
+    npm install --global --production windows-build-tools
 
 ###$ 3. Run the server
 
