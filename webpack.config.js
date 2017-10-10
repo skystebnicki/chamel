@@ -4,24 +4,24 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname),
-  entry: "./demo/app/main.js",
+  context: __dirname,
+  entry: {netric: __dirname + "/demo/app/main.js"},
   devtool: 'inline-source-map',
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'build/js/chamel-demo.js',
+    path: __dirname,
+    filename: 'js/chamel-demo.js',
     publicPath: '/'
   },
   resolve: {
     extensions: ['.scss', '.js', '.jsx'],
     aliasFields: ['browser', 'web', 'main', 'style'],
     alias: {
-      'chamel': path.resolve(__dirname + './src')
+      'chamel': __dirname + '/src',
+      'chamel/lib': __dirname + '/src'
     },
     modules: [
       'node_modules',
-      path.resolve(__dirname, './node_modules'),
-      path.resolve(__dirname, './src')
+      __dirname + '/src'
     ]
   },
   module: {
@@ -34,7 +34,7 @@ module.exports = {
             {
               loader: "css-loader",
               options: {
-                sourceMap: true,
+                sourceMap: 'inline',
                 modules: true,
                 importLoaders: true,
                 localIdentName: "[name]__[local]___[hash:base64:5]"
@@ -43,6 +43,7 @@ module.exports = {
             {
               loader: "postcss-loader",
               options: {
+                sourceMap: true,
                 plugins: function () {
                   return [
                     require("autoprefixer")
