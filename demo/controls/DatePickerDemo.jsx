@@ -1,16 +1,23 @@
-var React = require('react');
+import React, { Component } from 'react';
 var DatePicker = require("chamel/DatePicker");
 var ComponentDoc = require('../ComponentDoc');
 
-var DatePickerPage = React.createClass({
+class DatePickerPage extends Component {
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call paprent constructor
+    super(props);
 
-  getInitialState: function() {
-    return {
+    this.state = {
       dateValue: "11/19/2015"
     }
-  },
+  }
 
-  render: function() {
+  render() {
 
     var code =
       '//Portrait Dialog\n' +
@@ -102,15 +109,15 @@ var DatePickerPage = React.createClass({
 
       </ComponentDoc>
     );
-  },
+  }
 
-  _handleDateChange: function(evt, date) {
+  _handleDateChange = (evt, date) => {
     console.log("Change date to", date);
     this.setState({
       dateValue: (date.getMonth() + 1 ) + "/" + date.getDate() + "/" + date.getFullYear()
     })
   }
 
-});
+}
 
 module.exports = DatePickerPage;

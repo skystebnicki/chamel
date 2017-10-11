@@ -1,4 +1,4 @@
-var React = require('react');
+import React, { Component } from 'react';
 var Chamel = require("chamel/main");
 var Dialog = Chamel.Dialog;
 var FlatButton = Chamel.FlatButton;
@@ -7,15 +7,23 @@ var Toggle = Chamel.Toggle;
 var CodeExample = require("../CodeExample");
 import Page from 'chamel/Dialog/Page';
 
-var DialogPage = React.createClass({
+class DialogPage extends Component {
 
-    getInitialState: function() {
-        return {
-            modal: false
-        };
-    },
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call paprent constructor
+    super(props);
 
-    render: function() {
+    this.state = {
+        modal: false
+    }
+  }
+
+    render() {
 
         var code = '';
 
@@ -113,52 +121,52 @@ var DialogPage = React.createClass({
             </CodeExample>
         );
 
-    },
+    }
 
-    _handleCustomDialogCancel: function() {
+    _handleCustomDialogCancel = () => {
         this.refs.customDialog.dismiss();
-    },
+    }
 
-    _handleCustomDialogSubmit: function() {
+    _handleCustomDialogSubmit = () => {
         this.refs.customDialog.dismiss();
-    },
+    }
 
-    _handleScrollableDialogSubmit: function() {
+    _handleScrollableDialogSubmit = () => {
         this.refs.scrollableDialog.dismiss();
-    },
+    }
 
-    _handleToggleChange: function(e, toggled) {
+    _handleToggleChange = (e, toggled) => {
         this.setState({modal: toggled});
-    },
+    }
 
-    handleCustomDialogTouchTap: function() {
+    handleCustomDialogTouchTap = () => {
         this.refs.customDialog.show();
-    },
+    }
 
-    handleStandardDialogTouchTap: function() {
+    handleStandardDialogTouchTap = () => {
         this.refs.standardDialog.show();
-    },
+    }
 
-    handleScrollableialogTouchTap: function() {
+    handleScrollableialogTouchTap = () => {
         this.refs.scrollableDialog.show();
-    },
+    }
 
-    handleNestedDialogTouchTap: function() {
+    handleNestedDialogTouchTap = () => {
         this.refs.nestedDialog.show();
-    },
+    }
 
-    handleNestedChildDialogTouchTap: function() {
+    handleNestedChildDialogTouchTap = () => {
         this.refs.nestedChildDialog.show();
-    },
+    }
 
-  handleFullPageDialogTouchTap: function() {
+  handleFullPageDialogTouchTap = () => {
     this.refs.fullPageDialog.show();
-  },
+  }
 
-  handleFullPageDialogClose: function() {
+  handleFullPageDialogClose = () => {
     this.refs.fullPageDialog.dismiss();
   }
 
-});
+}
 
 module.exports = DialogPage;

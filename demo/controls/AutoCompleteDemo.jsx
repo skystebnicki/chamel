@@ -1,12 +1,12 @@
-var React = require('react');
+import React, { Component } from 'react';
 var TextField = require("chamel/Input/TextField");
 var AutoComplete = require("chamel/AutoComplete");
 var CodeExample = require("../CodeExample.jsx");
 var ComponentDoc = require('../ComponentDoc.jsx');
 
-var EditorDemo = React.createClass({
+class EditorDemo extends Component {
 
-  render: function () {
+  render() {
 
     var suggestions = [
         {payload: 1, text: 'banna'},
@@ -41,12 +41,12 @@ var EditorDemo = React.createClass({
           />
       </div>
     );
-  },
+  }
 
-  _handleChange: function (e) {
+  _handleChange = (e) => {
       console.log('input changed');
   }
 
-});
+}
 
 export default EditorDemo;

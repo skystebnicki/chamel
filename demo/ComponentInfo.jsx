@@ -1,13 +1,15 @@
-var React = require('react');
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 var CodeExample = require('./CodeExample.jsx');
-var ComponentInfo = React.createClass({
 
-    propTypes: {
-        name: React.PropTypes.string.isRequired,
-        infoArray: React.PropTypes.array.isRequired,
-    },
+class ComponentInfo extends Component {
 
-    render: function () {
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        infoArray: PropTypes.array.isRequired,
+    }
+
+    render() {
         var propElements = [],
             typesSpan,
             sampleDisplay;
@@ -50,6 +52,6 @@ var ComponentInfo = React.createClass({
         );
     }
 
-});
+}
 
 module.exports = ComponentInfo;

@@ -1,20 +1,21 @@
-var React = require('react');
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 var CodeExample = require('./CodeExample.jsx');
 var ComponentInfo = require('./ComponentInfo.jsx');
 
-var ComponentDoc = React.createClass({
+class ComponentDoc extends Component {
 
-  propTypes: {
-    code: React.PropTypes.string.isRequired,
-    desc: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.element
+  static propTypes = {
+    code: PropTypes.string.isRequired,
+    desc: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
     ]),
-    name: React.PropTypes.string.isRequired,
-    componentInfo: React.PropTypes.array.isRequired
-  },
+    name: PropTypes.string.isRequired,
+    componentInfo: PropTypes.array.isRequired
+  }
 
-  render: function() {
+  render() {
     var classes = "component-doc";
 
     var componentInfo = this.props.componentInfo.map(function(info, i) {
@@ -58,6 +59,6 @@ var ComponentDoc = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = ComponentDoc;

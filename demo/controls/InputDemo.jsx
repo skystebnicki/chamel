@@ -38,10 +38,18 @@ class InputDemo extends Component {
     });
   }
 
-  getInitialState() {
-    return {
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call paprent constructor
+    super(props);
+
+    this.state = {
       autoFocus: false
-    };
+    }
   }
 
   render() {

@@ -33,7 +33,6 @@ import PopoverDemo from "../controls/popover/PopoverDemo.jsx";
 import ToggleDemo from "../controls/ToggleDemo";
 import PickerDemo from "../controls/PickerDemo";
 import SnackbarDemo from "../controls/SnackbarDemo";
-import RadioButtonGroupDemo from "../controls/RadioButtonGroupDemo.jsx";
 
 class App extends React.Component {
 
@@ -49,13 +48,13 @@ class App extends React.Component {
     this.state = {
       menuDocked: false,
       menuOpen: false,
-      themeName: 'base'
+      themeName: 'material'
     }
   }
 
   componentDidMount() {
     let newState = {
-      themeName: localStorage.getItem("theme") || 'base'
+      themeName: localStorage.getItem("theme") || 'material'
     };
 
     // Try to detect if we are a small device and hide the doc if so
@@ -207,11 +206,6 @@ class App extends React.Component {
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"RadioButtonGroup"}
-                  path={"/radiobutton"}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
                   primaryText={"Snackbar"}
                   path={"/snackbar"}
                 />
@@ -239,7 +233,6 @@ class App extends React.Component {
                   <Route path="/toggle" component={ToggleDemo} />
                   <Route path="/picker" component={PickerDemo} />
                   <Route path="/snackbar" component={SnackbarDemo} />
-                  <Route path="/radiobutton" component={RadioButtonGroupDemo} />
                   <Route path=":missedpath" component={NoMatch} />
                 </Switch>
               </Container>

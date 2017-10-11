@@ -1,4 +1,4 @@
-var React = require('react');
+import React, { Component } from 'react';
 var DropDownIcon = require("chamel/DropDownIcon");
 var FontIcon = require("chamel/FontIcon");
 var RaisedButton = require("chamel/Button/RaisedButton");
@@ -9,12 +9,20 @@ var CircularProgress = require("chamel/Progress/CircularProgress");
 
 class ProgressDemoPage extends Component {
 
-    getInitialState () {
-        return {
-            completed: 0,
-            timer: null
-        };
+    /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call paprent constructor
+    super(props);
+
+    this.state = {
+        completed: 0,
+        timer: null
     }
+  }
 
     componentDidMount() {
         let self = this;

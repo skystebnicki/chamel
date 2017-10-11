@@ -24,7 +24,7 @@ const Checkbox = (props, context) => {
     } else if (props.onCheck) {
       props.onCheck(evt, !props.checked);
     }
-  } : false;
+  } : null;
 
   let labelElement = null;
   if (props.label) {

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FlatButton from 'chamel/Button/FlatButton';
 import RaisedButton from 'chamel/Button/RaisedButton';
 import FloatingButton from 'chamel/Button/FloatingButton';
 import IconButton from 'chamel/Button/IconButton';
 import CloseIcon from 'chamel/icons/font/CloseIcon';
 
-var ButtonDemo = React.createClass({
-    render: function () {
+class ButtonDemo extends Component {
+    render() {
         return (
             <div className="row">
                 <div className="col-xs-12 col-md-6">
@@ -40,12 +40,12 @@ var ButtonDemo = React.createClass({
                 </div>
             </div>
         );
-    },
+    }
 
-    _handleClick: function(e) {
+    _handleClick = (e) => {
         console.log("Tapped");
         return true;
     }
-});
+}
 
 module.exports = ButtonDemo;

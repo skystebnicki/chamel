@@ -1,4 +1,4 @@
-var React = require('react');
+import React, { Component } from 'react';
 var Checkbox = require("chamel/Checkbox");
 var CodeExample = require("../CodeExample");
 
@@ -50,9 +50,8 @@ var code =
     '  label="initiate self-destruct sequence"\n' +
     '  disabled={true} />\n\n';
 
-var EditorDemo = React.createClass({
-
-    render: function() {
+class EditorDemo extends Component {
+    render() {
 
         return (
             <div>
@@ -64,7 +63,6 @@ var EditorDemo = React.createClass({
             </div>
         );
     }
-
-});
+}
 
 module.exports = EditorDemo;

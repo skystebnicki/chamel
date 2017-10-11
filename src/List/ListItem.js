@@ -112,7 +112,7 @@ ListItem.propTypes = {
   /**
    * Event called when the left element is tapped or Clicked
    */
-  onLeftElementTap: PropTypes.func
+  onLeftElementTap: PropTypes.func,
 };
 
 /**

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 import Row from 'chamel/Grid/Row';
 import Column from 'chamel/Grid/Column';
 
@@ -7,9 +6,9 @@ import AppBarFixedDemo from './AppBar/AppBarFixedDemo';
 
 var CodeExample = require("../CodeExample");
 
-var AppBarDemo = React.createClass({
+class AppBarDemo extends Component {
 
-    render: function() {
+    render() {
         return (
             <Row>
                 <Column small={12}>
@@ -19,6 +18,6 @@ var AppBarDemo = React.createClass({
         );
     }
 
-});
+}
 
 module.exports = AppBarDemo;

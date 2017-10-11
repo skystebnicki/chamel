@@ -1,16 +1,16 @@
-var React = require('react');
+import React, { Component } from 'react';
 
-var CodeBlock = React.createClass({
+class CodeBlock extends Component {
 
-    componentDidMount: function() {
+    componentDidMount() {
         //hljs.highlightBlock(React.findDOMNode(this));
-    },
+    }
 
-    componentDidUpdate: function(prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
         //hljs.highlightBlock(React.findDOMNode(this));
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <pre className="code-block">
                 <code>{this.props.children}</code>
@@ -18,6 +18,6 @@ var CodeBlock = React.createClass({
         );
     }
 
-});
+}
 
 module.exports = CodeBlock;

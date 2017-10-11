@@ -1,14 +1,15 @@
-var React = require('react'),
-    CodeBlock = require('./CodeBlock'),
+var CodeBlock = require('./CodeBlock'),
     Paper = require("../src/Paper");
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-var CodeExample = React.createClass({
+class CodeExample extends Component {
 
-    propTypes: {
-        code: React.PropTypes.string.isRequired
-    },
+    static propTypes = {
+        code: PropTypes.string.isRequired
+    }
 
-    render: function() {
+    render() {
         return (
             <div>
                 <h6>Example</h6>
@@ -20,6 +21,6 @@ var CodeExample = React.createClass({
         );
     }
 
-});
+}
 
 module.exports = CodeExample;

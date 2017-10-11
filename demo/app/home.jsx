@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-var Home = React.createClass({
-  render: function () {
+class Home extends Component {
+  render() {
     return (
   		<div>
   			<h2>Welcome to Chameleon (aka chamel)!</h2>
@@ -10,6 +10,6 @@ var Home = React.createClass({
     	</div>
     );
   }
-});
+}
 
 export default Home;
