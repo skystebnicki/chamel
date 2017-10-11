@@ -4,8 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname + './../'),
-  entry: "./demo/app/main.js",
+  context: path.resolve(__dirname, "../"),
+  entry: {chamel: __dirname + "/app/main.js"},
   devtool: 'inline-source-map',
   output: {
     path: path.join(__dirname, 'build'),
@@ -16,11 +16,12 @@ module.exports = {
     extensions: ['.scss', '.js', '.jsx'],
     aliasFields: ['browser', 'web', 'main', 'style'],
     alias: {
-      'chamel': path.resolve(__dirname + './../src')
+      'chamel': path.resolve(__dirname, 'src'),
+      'chamel/lib': path.resolve(__dirname, '/src')
     },
     modules: [
-      path.resolve(__dirname, './../node_modules'),
-      path.resolve(__dirname, './../src')
+      path.resolve(__dirname, '../node_modules'),
+      path.resolve(__dirname, '../src')
     ]
   },
   module: {
@@ -33,7 +34,7 @@ module.exports = {
             {
               loader: "css-loader",
               options: {
-                sourceMap: 'inline',
+                sourceMap: true,
                 modules: true,
                 importLoaders: true,
                 localIdentName: "[name]__[local]___[hash:base64:5]"
