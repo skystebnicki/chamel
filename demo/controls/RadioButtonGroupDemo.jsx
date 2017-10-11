@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RadioButtonGroup from 'chamel/RadioButtonGroup/RadioButtonGroup';
 import RadioButton from 'chamel/RadioButton/RadioButton';
 
-var RadioButtonGroupDemo = React.createClass({
-  render: function () {
+class RadioButtonGroupDemo extends Component {
+
+  render() {
     return (
       <div className="row">
         <div className="col-xs-12 col-md-6">
@@ -22,6 +23,6 @@ var RadioButtonGroupDemo = React.createClass({
       </div>
     );
   }
-});
+}
 
 module.exports = RadioButtonGroupDemo;

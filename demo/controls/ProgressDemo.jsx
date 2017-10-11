@@ -7,14 +7,14 @@ var LinearProgress = require("chamel/Progress/LinearProgress");
 var CircularProgress = require("chamel/Progress/CircularProgress");
 //var ComponentDoc = require('../../component-doc.jsx');
 
-var ProgressDemoPage = React.createClass({
+class ProgressDemoPage extends Component {
 
     getInitialState () {
         return {
             completed: 0,
             timer: null
         };
-    },
+    }
 
     componentDidMount() {
         let self = this;
@@ -33,15 +33,15 @@ var ProgressDemoPage = React.createClass({
         }, 1000);
 
         this.setState({timer: id});
-    },
+    }
 
     componentWillUnmount() {
         if (this.state.timer) {
             clearInterval(this.state.timer);
         }
-    },
+    }
 
-    render: function() {
+    render() {
 
         return (
 
@@ -59,6 +59,6 @@ var ProgressDemoPage = React.createClass({
         );
     }
 
-});
+}
 
 module.exports = ProgressDemoPage;

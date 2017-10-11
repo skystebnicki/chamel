@@ -1,13 +1,13 @@
-var React = require('react');
+import React, { Component } from 'react';
 var Editor = require("chamel/Editor");
 var CodeExample = require("../CodeExample");
 
 var code =
     '<Editor onChange={this.handleChange_} />';
 
-var EditorDemo = React.createClass({
+class EditorDemo extends Component {
 
-    render: function() {
+    render() {
 
         return (
             <div>
@@ -20,20 +20,20 @@ var EditorDemo = React.createClass({
                 </CodeExample>
             </div>
         );
-    },
+    }
     
-    _handleBlur: function(value) {
+    _handleBlur = (value) => {
         console.log("onBlur event. Editor Value: " + value);
-    },
+    }
     
-    _handleFocus: function(value) {
+    _handleFocus = (value) => {
         console.log("onFocus event. Editor Value: " + value);
-    },
+    }
     
-    _handleChange: function(value) {
+    _handleChange = (value) => {
     	console.log("onChange event. Editor Value: " + value);
     }
 
-});
+}
 
 module.exports = EditorDemo;

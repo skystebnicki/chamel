@@ -1,12 +1,12 @@
-var React = require('react');
+import React, { Component } from 'react';
 var Tabs = require("chamel/Tabs");
 var Tab = require("chamel/Tabs/Tab");
 var CodeExample = require("../CodeExample");
 var ComponentDoc = require("../ComponentDoc");
 
-var TabsDemo = React.createClass({
+class TabsDemo extends Component {
 
-  render: function(){
+  render() {
     var code =  '<Tabs> \n' +
                 '  <Tab label="Item One" > \n' +
                 '    <div className="tab-template-container"> \n' +
@@ -151,11 +151,11 @@ var TabsDemo = React.createClass({
 
       </ComponentDoc>
     );
-  },
+  }
 
-  _onActive: function(tab){
+  _onActive(tab){
     //this.context.router.transitionTo(tab.props.route);
   }
-});
+}
 
 module.exports = TabsDemo;

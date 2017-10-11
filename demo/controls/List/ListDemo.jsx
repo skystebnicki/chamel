@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import List from 'chamel/List';
 import ListItem from 'chamel/List/ListItem';
 import ListItemCheckbox from 'chamel/List/ListItemCheckbox';
@@ -9,8 +9,8 @@ import Checkbox from 'chamel/Toggle/Checkbox';
 import ListItemCheckboxDemo from './ListItemCheckboxDemo';
 import ListItemSelectDemo from './ListItemSelectDemo';
 
-var ListDemo = React.createClass({
-    render: function () {
+class ListDemo extends Component {
+    render() {
       return (
         <div className="row">
           <div className="col-xs-12 col-md-6">
@@ -62,12 +62,12 @@ var ListDemo = React.createClass({
           </div>
         </div>
         );
-    },
+    }
 
-    _handleClick: function(e) {
+    _handleClick = (e) => {
         console.log("Clicked", e);
         return false;
     }
-});
+}
 
 module.exports = ListDemo;

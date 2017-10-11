@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Row from 'chamel/Grid/Row';
 import Column from 'chamel/Grid/Column';
 
 // Font icons
 import Icons from 'chamel/icons/font';
 
-var IconDemo = React.createClass({
-
-    render: function() {
+class IconDemo extends Component {
+  render() {
 
         var code = '// TODO: put code example here';
 
@@ -38,6 +37,6 @@ var IconDemo = React.createClass({
         );
     }
 
-});
+}
 
 module.exports = IconDemo;

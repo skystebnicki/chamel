@@ -16,8 +16,7 @@ module.exports = {
     extensions: ['.scss', '.js', '.jsx'],
     aliasFields: ['browser', 'web', 'main', 'style'],
     alias: {
-      'chamel': path.resolve(__dirname, 'src'),
-      'chamel/lib': path.resolve(__dirname, '/src')
+      'chamel': path.resolve(__dirname, 'src')
     },
     modules: [
       path.resolve(__dirname, '../node_modules'),
@@ -83,6 +82,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true,
+    disableHostCheck: true, // Without this local.aereusdev.com gets 'Invalid Host header'
     watchOptions: { poll: true },
     publicPath: "/",
     stats: { colors: true }

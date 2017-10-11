@@ -1,4 +1,4 @@
-var React = require('react');
+import React, { Component } from 'react';
 var RadioButtonGroup = require("chamel/RadioButtonGroup");
 var RadioButton = require("chamel/RadioButton");
 var CodeExample = require("../CodeExample");
@@ -51,9 +51,9 @@ var code =
     '  label="initiate self-destruct sequence"\n' +
     '  disabled={true} />\n\n';
 
-var EditorDemo = React.createClass({
+class EditorDemo extends Component {
 
-    render: function() {
+  render() {
 
         return (
             <div>
@@ -71,7 +71,6 @@ var EditorDemo = React.createClass({
             </div>
         );
     }
-
-});
+}
 
 module.exports = EditorDemo;

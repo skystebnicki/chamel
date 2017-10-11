@@ -1,4 +1,4 @@
-var React = require("react");
+import React, { Component } from 'react';
 var Menu = require("chamel/Menu");
 var MenuItem = require("chamel/Menu/MenuItem");
 var NestedMenuItem = require("chamel/Menu/NestedMenuItem");
@@ -57,9 +57,8 @@ var nestedMenuItems = [
 ];
 
 
-var MenusPage = React.createClass({
-
-    render: function() {
+class MenusPage extends Component {
+    render() {
         return (
             <div className="row">
                 <div className="col-md-3">
@@ -95,9 +94,9 @@ var MenusPage = React.createClass({
 
             </div>
         );
-    },
+    }
 
-    _getLabelMenuExample: function() {
+    _getLabelMenuExample() {
         var code =
             "var labelMenuItems = [\n" +
             "   { payload: '1', text: 'ID', data: '1234567890', icon: 'home' },\n" +
@@ -114,9 +113,9 @@ var MenusPage = React.createClass({
                 </div>
             </CodeExample>
         );
-    },
+    }
 
-    _getNumberMenuExample: function() {
+    _getNumberMenuExample() {
         var code =
             "var numberMenuItems = [\n" +
             "   { payload: '1', text: 'All', number: '22' },\n" +
@@ -132,9 +131,9 @@ var MenusPage = React.createClass({
                 </div>
             </CodeExample>
         );
-    },
+    }
 
-    _getIconMenuExample: function() {
+    _getIconMenuExample() {
         var code =
             "//iconClassName is the classname for our icon that will get passed into mui.FontIcon\n" +
             "iconMenuItems = [\n" +
@@ -152,9 +151,9 @@ var MenusPage = React.createClass({
                 </div>
             </CodeExample>
         );
-    },
+    }
 
-    _getFilterMenuExample: function() {
+    _getFilterMenuExample() {
         var code =
             "// Include toggle properties as keys so that they are passed into the toggle component\n" +
             "filterMenuItems = [\n" +
@@ -171,9 +170,9 @@ var MenusPage = React.createClass({
                 </div>
             </CodeExample>
         );
-    },
+    }
 
-    _getNestedMenuExample: function() {
+    _getNestedMenuExample() {
         var code =
             "nestedMenuItems = [\n" +
             "    { type: MenuItem.Types.NESTED, text: 'Reports', items: [\n" +
@@ -210,20 +209,20 @@ var MenusPage = React.createClass({
                 </div>
             </CodeExample>
         );
-    },
+    }
 
-    _onFilterMenuToggle: function(e, key, menuItem, toggled) {
+    _onFilterMenuToggle = (e, key, menuItem, toggled) => {
         console.log('Filter Menu Toggled: ', key, menuItem, toggled)
-    },
+    }
 
-    _onItemClick: function(e, key, menuItem) {
+    _onItemClick = (e, key, menuItem) => {
         console.log("Menu Item Click: ", menuItem);
-    },
+    }
 
-    _onItemTap: function(e, key, menuItem) {
+    _onItemTap = (e, key, menuItem) => {
         console.log("Menu Item Tap: ", menuItem);
     }
 
-});
+}
 
 module.exports = MenusPage;

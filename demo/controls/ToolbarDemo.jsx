@@ -1,12 +1,12 @@
 var CodeExample = require("../CodeExample");
-import React from 'react';
+import React, { Component } from 'react';
 import PrimaryToolbarDemo from './Toolbar/PrimaryToolBarDemo';
 import SecondaryToolbarDemo from './Toolbar/SecondaryToolbarDemo';
 //var ComponentDoc = require('../../component-doc.jsx');
 
-var ToolbarPage = React.createClass({
+class ToolbarPage extends Component {
 
-  render: function() {
+  render() {
     return (
       <div>
         <h1>{"Toolbar"}</h1>
@@ -21,6 +21,6 @@ var ToolbarPage = React.createClass({
     );
   }
 
-});
+}
 
 module.exports = ToolbarPage;

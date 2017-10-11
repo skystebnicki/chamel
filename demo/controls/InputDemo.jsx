@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TextField from 'chamel/Input/TextField';
 
 import IconButton from 'chamel/Button/IconButton';
@@ -24,27 +24,27 @@ var dropDownData = [
     { value: 'test16', text: 'Test Entry 16 Test Entry 1 Test Entry 1' }
 ];
 
-var InputDemo = React.createClass({
+class InputDemo extends Component {
 
-  _handleInputFocus: function () {
+  _handleInputFocus() {
     this.setState({
       autoFocus: true
     });
-  },
+  }
 
-  _handleTextBlur: function () {
+  _handleTextBlur() {
     this.setState({
       autoFocus: false
     });
-  },
+  }
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       autoFocus: false
     };
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <div className="row">
         <div className="col-xs-12 col-md-6">
@@ -75,23 +75,21 @@ var InputDemo = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
   /**
    * Log changed value of a DropDown menu
    */
-  _handleDropDownChange: function(e, key, payload)
-  {
+  _handleDropDownChange = (e, key, payload) => {
     console.log("Dropdown value changed to", payload);
-  },
+  }
 
   /**
    * Log changed value of a DropDown menu
    */
-  _handleTextChange: function(evt)
-  {
+  _handleTextChange = (evt) => {
      console.log("Text field value changed to", evt.target.value);
   }
-});
+}
 
 module.exports = InputDemo;

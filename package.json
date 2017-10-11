@@ -37,7 +37,7 @@
     "draft-js-import-html": "^1.2.1",
     "fbjs": "^0.8.16",
     "immutable": "^3.8.1",
-    "prop-types": "^15.5.9",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-codemirror": "^0.2.6",
     "react-dom": "^16.0.0",

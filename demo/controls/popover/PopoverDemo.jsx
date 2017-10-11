@@ -1,13 +1,12 @@
-var React = require("react");
+import React, { Component } from 'react';
 var AppBar = require("chamel/AppBar");
 import { HashRouter, Match, Miss, Link } from 'react-router'
 
 var CodeExample = require("../../CodeExample");
 import ExampleSimple from './ExampleSimple';
 
-var PopoverDemo = React.createClass({
-
-  render: function() {
+class PopoverDemo extends Component {
+  render() {
     let pathname = this.props.pathname;
 
     return (
@@ -18,7 +17,6 @@ var PopoverDemo = React.createClass({
       </div>
     );
   }
-
-});
+}
 
 module.exports = PopoverDemo;
