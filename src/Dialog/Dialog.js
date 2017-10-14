@@ -278,10 +278,10 @@ class Dialog extends Component {
       const minMarginTop = 0;
 
       // If we are running server-side or in automated tests element.style is not set
-      if (dialogWindow.style === undefined) {
+      if (!dialogWindow.style) {
         dialogWindow.style = {};
       }
-      if (dialogBody.style === undefined) {
+      if (!dialogBody.style) {
         dialogBody.style = {};
       }
 
