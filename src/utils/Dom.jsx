@@ -92,6 +92,7 @@ module.exports = {
     // it is almost never set for unit tests or server-side rendering
     if (typeof el.style === "undefined") {
       callback();
+      return;
     }
 
     //turn off transition
