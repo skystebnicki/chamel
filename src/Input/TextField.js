@@ -591,14 +591,18 @@ class TextField extends Component {
   handleAutoresize = () => {
     const element = this.refs.input;
     // compute the height difference between inner height and outer height
-    const style = getComputedStyle(element, null);
-    const heightOffset = style.boxSizing === 'content-box'
-      ? -(parseFloat(style.paddingTop) + parseFloat(style.paddingBottom))
-      : parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+    try {
+      const style = getComputedStyle(element, null);
+      const heightOffset = style.boxSizing === 'content-box'
+        ? -(parseFloat(style.paddingTop) + parseFloat(style.paddingBottom))
+        : parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
 
-    // resize the input to its content size
-    element.style.height = 'auto';
-    element.style.height = `${element.scrollHeight + heightOffset}px`;
+      // resize the input to its content size
+      element.style.height = 'auto';
+      element.style.height = `${element.scrollHeight + heightOffset}px`;
+    } catch (e) {
+      log.error("Could not get the current style", e);
+    }
   }
 
   _getInputNode() {
