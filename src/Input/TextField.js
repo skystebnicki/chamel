@@ -601,7 +601,8 @@ class TextField extends Component {
       element.style.height = 'auto';
       element.style.height = `${element.scrollHeight + heightOffset}px`;
     } catch (e) {
-      log.error("Could not get the current style", e);
+      // We do nothing because if the component is not yet mounted
+      // and running server-side or in a test then el.style will not exist
     }
   }
 

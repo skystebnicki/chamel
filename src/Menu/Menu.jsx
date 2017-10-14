@@ -194,10 +194,11 @@ class Menu extends Component {
     Dom.withoutTransition(el, function () {
       // Changed the below to use auto width because
       // it was causing text to extnd beyond the menu
-      // if items were added after the fact.
-      // - Sky Stebnicki
-      // el.style.width = menuWidth;
-      el.style.width = "auto";
+      // if items were added after the transition.
+      if (el.style) {
+        // Make sure we are mounted
+        el.style.width = "auto";
+      }
     });
   }
 
