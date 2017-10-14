@@ -277,12 +277,9 @@ class Dialog extends Component {
       let dialogBody = ReactDOM.findDOMNode(this.refs.dialogBody);
       const minMarginTop = 0;
 
-      // If we are running server-side or in automated tests element.style is not set
-      if (!dialogWindow.style) {
-        dialogWindow.style = {};
-      }
-      if (!dialogBody.style) {
-        dialogBody.style = {};
+      // If we are running server-side or in automated tests element is not mounted
+      if (!dialogWindow || !dialogBody) {
+        return;
       }
 
       // Reset the height in case the window was resized.
