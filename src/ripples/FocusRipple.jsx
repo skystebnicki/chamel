@@ -44,8 +44,11 @@ class FocusRipple extends Component {
     const width = el.offsetWidth;
     const size = Math.max(height, width);
 
-    el.style.height = size + 'px';
-    el.style.top = (size / 2 * -1) + (height / 2) + 'px';
+    // If element is mounted then set the size
+    if (el.style) {
+      el.style.height = size + 'px';
+      el.style.top = (size / 2 * -1) + (height / 2) + 'px';
+    }
   }
 };
 
