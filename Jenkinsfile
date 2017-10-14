@@ -4,6 +4,7 @@ node {
 
     try {
         stage('Build') {
+            deleteDir()
             checkout scm
             dockerImage = docker.build('chamel')
 
@@ -13,7 +14,7 @@ node {
                 withEnv([ 'HOME=.' ]) {
                     sh 'npm install'
                     sh 'npm run build'
-                }   
+                }
             }
         }
 
@@ -25,7 +26,7 @@ node {
                     sh 'npm run test-single-run'
                     junit 'test/reports/junit.xml'
                     */
-                }   
+                }
             }
         }
 
@@ -43,7 +44,7 @@ node {
                     if (env.BRANCH_NAME == 'master') {
                         sh 'npm publish'
                     }
-                }   
+                }
             }
         }
 
