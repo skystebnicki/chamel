@@ -1,6 +1,6 @@
 {
   "name": "chamel",
-  "version": "0.2.42",
+  "version": "0.3.42",
   "keywords": [
     "react",
     "react-component",
@@ -24,10 +24,10 @@
     "pretest": "npm install",
     "build": "babel ./src --out-dir ./lib && npm run sass",
     "sass": "cpx './src/**/*.scss' ./lib",
-    "test": "NODE_ENV=test jest --watch --coverage",
-    "test-single-run": "NODE_ENV=test jest --coverage",
+    "test": "cross-env NODE_ENV=test jest --watch --coverage",
+    "test-single-run": "cross-env NODE_ENV=test jest --coverage",
     "prestart": "npm install",
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline"
   },
   "dependencies": {
     "classnames": "^2.2.5",
