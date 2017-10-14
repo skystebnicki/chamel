@@ -87,6 +87,13 @@ module.exports = {
   },
 
   withoutTransition: function(el, callback) {
+
+    // We only need to do this if el.style was set
+    // it is almost never set for unit tests or server-side rendering
+    if (!el.style) {
+      callback();
+    }
+
     //turn off transition
     el.style.transition = 'none';
 
