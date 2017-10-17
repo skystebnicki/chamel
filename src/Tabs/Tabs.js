@@ -10,8 +10,25 @@ import classnames from 'classnames';
 class Tabs extends Component {
 
   static propTypes = {
+    /**
+     * Which index to select first after render is done
+     *
+     * Defaults to 0. This is good for thins like saving the
+     * state of the UI re-opening a page back to the selected tab
+     */
     initialSelectedIndex: PropTypes.number,
-    onActive: PropTypes.func,
+
+    /**
+     * Callback to notify listener when the selected index changes
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * Set a static tab width.
+     *
+     * If not set all tabs will be automatically computed to evenly fill
+     * 100% of the container width
+     */
     tabWidth: PropTypes.number,
 
     /**
@@ -113,21 +130,16 @@ class Tabs extends Component {
     //var left = width * this.state.selectedIndex || 0;
     let currentTemplate = null;
     const tabs = React.Children.map(this.props.children, function (tab, index) {
-      if (tab.type.name === "Tab") {
-        // Generic UI implementation
-        if (_this.state.selectedIndex === index) currentTemplate = tab.props.children;
-        return React.cloneElement(tab, {
-          key: index,
-          selected: _this.state.selectedIndex === index,
-          tabIndex: index,
-          width: width,
-          secondary: _this.props.secondary,
-          handleTouchTap: _this.handleTouchTap
-        });
-      } else {
-        const type = tab.type.displayName || tab.type;
-        throw "Tabs only accepts Tab Components as children. Found " + type + " as child number " + (index + 1) + " of Tabs";
-      }
+      // Generic UI implementation
+      if (_this.state.selectedIndex === index) currentTemplate = tab.props.children;
+      return React.cloneElement(tab, {
+        key: index,
+        selected: _this.state.selectedIndex === index,
+        tabIndex: index,
+        width: width,
+        secondary: _this.props.secondary,
+        handleTouchTap: _this.handleTouchTap
+      });
     });
 
     return (
