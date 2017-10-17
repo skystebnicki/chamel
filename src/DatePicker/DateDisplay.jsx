@@ -6,10 +6,18 @@ import classNames from 'classnames';
 
 class DateDisplay extends Component {
 
-  getInitialState() {
-    return {
+  /**
+   * Class constructor
+   *
+   * @param {Object} props Properties to send to the render function
+   */
+  constructor(props) {
+    // Call parent constructor
+    super(props);
+
+    this.state = {
       transitionDirection: 'up'
-    };
+    }
   }
 
   componentWillReceiveProps(nextProps) {

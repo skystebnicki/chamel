@@ -66,7 +66,7 @@ class CalendarMonth extends Component {
     let classString = '';
 
     //Initialize the classString with the classNames that were passed in
-    if (this.this.props.className) classString += ' ' + this.this.props.className;
+    if (this.props.className) classString += ' ' + this.props.className;
 
     //Add in initial classes
     if (typeof initialClasses === 'object') {

@@ -18,9 +18,9 @@ describe("SlideIn Component", () => {
         enterDelay={100}
       />
     );
-
+    
     expect(renderedDocument.props.className).toBe('jest-test chamel-transition-slide-in chamel-is-up');
     expect(renderedDocument.props.component).toBe('div');
-    expect(renderedDocument.props.transitionName).toBe('chamel-transition-slide-in');
+    expect(renderedDocument.props.classNames).toBe('chamel-transition-slide-in');
   });
 });
