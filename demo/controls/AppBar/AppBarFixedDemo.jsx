@@ -1,10 +1,10 @@
 import React from 'react';
 import AppBar from 'chamel/AppBar';
 import AppBarRightToolbar from 'chamel/AppBar/AppBarRightToolbar';
-import IconButton from 'chamel/Button/IconButton';
+import IconButton from 'chamel/AppBar/IconButton';
 import CloseIcon from 'chamel/icons/font/CloseIcon';
 import ArrowDownIcon from 'chamel/icons/font/ArrowDownIcon';
-import SelectButton from 'chamel/Picker/SelectButton';
+import SelectButton from 'chamel/AppBar/SelectButton';
 
 class AppBarFixedDemo extends React.Component {
 

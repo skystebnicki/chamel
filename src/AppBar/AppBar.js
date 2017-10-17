@@ -102,9 +102,10 @@ class AppBar extends Component {
     // Set the left elements
     if (this.props.iconElementLeft) {
       // Add any appBar custom styles to the icon
-      let iconElementLeft = this._addAppBarStyleToElements(
+      let iconElementLeft = this.props.iconElementLeft; 
+      /*this._addAppBarStyleToElements(
         this.props.iconElementLeft, theme
-      );
+      );*/
 
       menuElementLeft = (
         <div className={theme.appBarLeft}>
@@ -119,9 +120,9 @@ class AppBar extends Component {
     // If right elements exists, wrap in a toolbar
     if (rightElements) {
       // Add any appBar custom styles to the icon
-      rightElements = this._addAppBarStyleToElements(
+      /*rightElements = this._addAppBarStyleToElements(
         rightElements, theme
-      );
+      );*/
 
       menuElementRight = (
         <div className={theme.appBarRight}>{rightElements}</div>
