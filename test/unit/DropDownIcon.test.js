@@ -18,6 +18,7 @@ describe("Drop Down Icon Component", () => {
       />
     );
 
-    expect(renderedDocument.props.className).toBe("chamel-drop-down-icon");
+    expect(typeof renderedDocument.props).toBe('object');
+    expect(renderedDocument.type).toBe('div');
   });
 });

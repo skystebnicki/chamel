@@ -127,7 +127,7 @@ class Popover extends Component {
       }
     }
 
-    if (this.props.children.props.hasOwnProperty("menuItems")) {
+    if (this.props.children && this.props.children.props.hasOwnProperty("menuItems")) {
       if (this.props.children.props.menuItems.length > 12) {
         classes += " " + theme.addScrollBar;
       }
