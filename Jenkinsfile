@@ -41,7 +41,11 @@ node {
                 withEnv([ 'HOME=.' ]) {
                     if (env.BRANCH_NAME == 'master') {
                         withCredentials([usernamePassword(credentialsId: 'sky-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
-                            sh "npm adduser << !\n${NPM_USERNAME}\n${NPM_PASSWORD}\nsky@stebnicki.net\n!"
+                            sh "npm adduser << !"
+                            sh "${NPM_USERNAME}"
+                            sh "${NPM_PASSWORD}"
+                            sh "sky@stebnicki.net"
+                            sh '!'
                             sh 'npm publish'
                         }
                     }
