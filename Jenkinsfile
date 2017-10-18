@@ -22,10 +22,8 @@ node {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([ 'HOME=.' ]) {
-                    /*
                     sh 'npm run test-single-run'
                     junit 'test/reports/junit.xml'
-                    */
                 }
             }
         }
@@ -38,11 +36,14 @@ node {
 
         stage('Publish') {
             /* Run tests inside the docker container */
+            // TODO: Maybe change to https://stackoverflow.com/questions/24143973/npm-adduser-via-bash
             dockerImage.inside {
                 withEnv([ 'HOME=.' ]) {
-                    sh "echo '//registry.npmjs.org/:_authToken=ef16319c-fcec-42d2-abac-96e6abb71d6b' > .npmrc"
                     if (env.BRANCH_NAME == 'master') {
-                        sh 'npm publish'
+                        withCredentials([usernamePassword(credentialsId: 'sky-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
+                            sh "npm adduser << !\n${NPM_USERNAME}\n${NPM_PASSWORD}\nsky@stebnicki.net\n!"
+                            sh 'npm publish'
+                        }
                     }
                 }
             }
@@ -60,6 +61,7 @@ node {
         }
 
     } catch (err) {
+        deleteDir()
         currentBuild.result = "FAILURE"
         mail body: "project build error is here: ${env.BUILD_URL}" ,
         subject: 'project build failed',
