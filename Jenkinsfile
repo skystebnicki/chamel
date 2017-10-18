@@ -10,7 +10,7 @@ node {
 
             dockerImage.inside {
                 /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
-                withEnv([ 'HOME=.' ]) {
+                withEnv([ 'HOME=/tmp' ]) {
                     sh 'npm install'
                     sh 'npm run build'
                 }
@@ -20,7 +20,7 @@ node {
         stage('Test') {
             /* Run tests inside the docker container */
             dockerImage.inside {
-                withEnv([ 'HOME=.' ]) {
+                withEnv([ 'HOME=/tmp' ]) {
                     /*
                     sh 'npm run test-single-run'
                     junit 'test/reports/junit.xml'
