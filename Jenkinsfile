@@ -8,7 +8,6 @@ node {
             checkout scm
             dockerImage = docker.build('chamel')
 
-            /* Run tests inside the docker container */
             dockerImage.inside {
                 /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
                 withEnv([ 'HOME=.' ]) {
@@ -35,8 +34,7 @@ node {
         }
 
         stage('Publish') {
-            /* Run tests inside the docker container */
-            // TODO: Maybe change to https://stackoverflow.com/questions/24143973/npm-adduser-via-bash
+            /* Publish in docker container */
             dockerImage.inside {
                 withEnv([ 'HOME=.' ]) {
                     if (env.BRANCH_NAME == 'master') {
