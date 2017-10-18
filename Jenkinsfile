@@ -40,11 +40,8 @@ node {
             dockerImage.inside {
                 withEnv([ 'HOME=.' ]) {
                     if (env.BRANCH_NAME == 'master') {
-                        withCredentials([usernamePassword(credentialsId: 'sky-npm', passwordVariable: 'NPM_PASSWORD', usernameVariable: 'NPM_USERNAME')]) {
-                            sh "npm adduser << ! ${NPM_USERNAME}"
-                            sh "${NPM_PASSWORD}"
-                            sh "sky@stebnicki.net"
-                            sh '!'
+                        withCredentials([string(credentialsId: 'npmjsauth', variable: 'NPM_TOKEN', usernameVariable: 'NPM_USERNAME')]) {
+                            sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
                             sh 'npm publish'
                         }
                     }
