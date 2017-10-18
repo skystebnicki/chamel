@@ -38,7 +38,7 @@ node {
         stage('Publish') {
             /* Publish in docker container */
             dockerImage.inside {
-                withEnv([ 'HOME=.' ]) {
+                withEnv([ 'HOME=/tmp' ]) {
                     if (env.BRANCH_NAME == 'master') {
                         withCredentials([string(credentialsId: 'npmjsauth', variable: 'NPM_TOKEN', usernameVariable: 'NPM_USERNAME')]) {
                             sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
