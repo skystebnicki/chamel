@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
@@ -7,7 +7,6 @@ import device from '../utils/device';
 import classnames from 'classnames';
 
 class DatePicker extends Component {
-
   /**
    * Property types we handle
    */
@@ -31,7 +30,7 @@ class DatePicker extends Component {
     minDate: null,
     maxDate: null,
     autoOk: false,
-    preferNative: true
+    preferNative: true,
   };
 
   /**
@@ -42,7 +41,7 @@ class DatePicker extends Component {
 
     this.state = {
       date: this.props.defaultDate,
-      dialogDate: new Date()
+      dialogDate: new Date(),
     };
   }
 
@@ -62,7 +61,7 @@ class DatePicker extends Component {
     } = this.props;
     const classes = classnames('chamel-date-picker', {
       'chamel-is-landscape': this.props.mode === 'landscape',
-      'chamel-is-inline': this.props.mode === 'inline'
+      'chamel-is-inline': this.props.mode === 'inline',
     });
     let defaultInputValue;
 
@@ -70,13 +69,13 @@ class DatePicker extends Component {
       defaultInputValue = this.props.formatDate(this.props.defaultDate);
     }
 
-    const inputType = (this.props.preferNative) ? "date" : "text";
+    const inputType = this.props.preferNative ? 'date' : 'text';
 
     // If we are using the native input then we need to get value when changed
-    const inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
+    const inpHndleOnChange = 'date' === inputType ? this._handleInputChange : null;
 
     // We need to exclude the preferNative property as it is an unkown props for <input> tag
-    if(other.hasOwnProperty("preferNative")) {
+    if (other.hasOwnProperty('preferNative')) {
       delete other.preferNative;
     }
 
@@ -92,7 +91,6 @@ class DatePicker extends Component {
           onClick={this._handleInputTouchTap}
         />
       </div>
-
     );
   }
 
@@ -102,7 +100,7 @@ class DatePicker extends Component {
 
   setDate(d) {
     this.setState({
-      date: d
+      date: d,
     });
     this.refs.input.setValue(this.props.formatDate(d));
   }
@@ -115,7 +113,7 @@ class DatePicker extends Component {
   /**
    * Handle native date input change
    */
-  _handleInputChange = (e) => {
+  _handleInputChange = e => {
     const dateString = e.target.value;
     let d = null;
 
@@ -131,20 +129,20 @@ class DatePicker extends Component {
       // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
 
       // Make a local date with the date parts
-      d = new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
+      d = new Date(parts[0], parts[1] - 1, parts[2]); // Note: months are 0-based
     }
 
     if (this.props.onChange) this.props.onChange(null, d);
   };
 
-  _handleInputFocus = (e) => {
+  _handleInputFocus = e => {
     e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
-  }
+  };
 
-  _handleInputTouchTap = (e) => {
+  _handleInputTouchTap = e => {
     this.setState({
-      dialogDate: this.getDate()
+      dialogDate: this.getDate(),
     });
 
     /*
@@ -152,13 +150,12 @@ class DatePicker extends Component {
      * then we will only display the window if the browser
      * does not support a native date type
      */
-    if (!this.props.preferNative || !device.test.inputtypes.date){
+    if (!this.props.preferNative || !device.test.inputtypes.date) {
       this.refs.dialogWindow.show();
     }
 
     if (this.props.onClick) this.props.onClick(e);
-  }
-
+  };
 }
 
 export default DatePicker;

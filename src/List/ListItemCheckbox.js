@@ -14,11 +14,13 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const ListItemCheckbox = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.list)
-      ? context.chamelTheme.list : ThemeService.defaultTheme.list;
+  let theme =
+    context.chamelTheme && context.chamelTheme.list
+      ? context.chamelTheme.list
+      : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listItem, {
-    [theme.listItemSelected]: props.checked
+    [theme.listItemSelected]: props.checked,
   });
 
   // Create a change function to call in case the user did not pass one
@@ -29,33 +31,35 @@ const ListItemCheckbox = (props, context) => {
   };
 
   // If we have a right element add it
-  const rightElement = (props.rightElement) ?
-    (<div className={theme.listItemRight}>{props.rightElement}</div>) : null;
+  const rightElement = props.rightElement ? (
+    <div className={theme.listItemRight}>{props.rightElement}</div>
+  ) : null;
 
   return (
     <div className={classes}>
       <div className={theme.listItemContent}>
         <div className={theme.listItemLeft}>
-          <Checkbox
-            onChange={onChange}
-            checked={props.checked}
-          />
+          <Checkbox onChange={onChange} checked={props.checked} />
         </div>
-        <div className={theme.listItemData} onClick={(e) => { onChange(e, !props.checked)}}>
+        <div
+          className={theme.listItemData}
+          onClick={e => {
+            onChange(e, !props.checked);
+          }}
+        >
           <div className={theme.listItemPrimary}>{props.primaryText}</div>
           <div className={theme.listItemSecondary}>{props.secondaryText}</div>
         </div>
         {rightElement}
       </div>
     </div>
-  )
+  );
 };
 
 /**
  * Set accepted properties
  */
 ListItemCheckbox.propTypes = {
-
   /**
    * Primary text/title of the item
    */
@@ -79,7 +83,7 @@ ListItemCheckbox.propTypes = {
   /**
    * Bool to set whether or not this element is checked
    */
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
 };
 
 /**
@@ -90,14 +94,14 @@ ListItemCheckbox.defaultProps = {
   secondaryText: null,
   leftElement: null,
   rightElement: null,
-  checked: false
+  checked: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 ListItemCheckbox.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ListItemCheckbox;

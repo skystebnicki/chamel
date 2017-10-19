@@ -1,8 +1,4 @@
 import Button from './Button';
-import IconButton from './Button';
-import RaisedButton from './RaisedButton';
-import FlatButton from './FlatButton';
-import FloatingButton from './FloatingButton';
 
 export default Button;
 export { Button };

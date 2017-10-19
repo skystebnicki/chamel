@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
 class EnhancedTextarea extends Component {
-
   /**
    * Class constructor
    *
@@ -15,7 +14,7 @@ class EnhancedTextarea extends Component {
     super(props);
 
     this.state = {
-      height: this.props.rows * 24
+      height: this.props.rows * 24,
     };
   }
 
@@ -24,7 +23,6 @@ class EnhancedTextarea extends Component {
   }
 
   render() {
-
     let {
       className,
       onChange,
@@ -33,20 +31,19 @@ class EnhancedTextarea extends Component {
       rows,
       valueLink,
       ...other
-      } = this.props;
+    } = this.props;
 
     let divClassName = 'chamel-enhanced-textarea-input';
     const classes = this.getClasses('chamel-enhanced-textarea');
     const style = {
-      height: this.state.height + 'px'
+      height: this.state.height + 'px',
     };
 
     if (this.props.textareaClassName) {
       divClassName += ' ' + this.props.textareaClassName;
     }
 
-    if (other.hasOwnProperty("value")) {
-
+    if (other.hasOwnProperty('value')) {
       /**
        * If we have a value property in the object, we need to remove that
        * We are gonna use the defaultValue instead. https://facebook.github.io/react/docs/forms.html
@@ -56,7 +53,6 @@ class EnhancedTextarea extends Component {
       // Set the default value
       other.defaultValue = this.props.value;
     } else if (this.props.hasOwnProperty('valueLink')) {
-
       // Set the default value
       other.defaultValue = this.props.valueLink.value;
     }
@@ -74,13 +70,15 @@ class EnhancedTextarea extends Component {
           tabIndex="-1"
           rows={this.props.rows}
           readOnly={true}
-          defaultValue={other.defaultValue}/>
+          defaultValue={other.defaultValue}
+        />
         <textarea
           ref="input"
           className={className}
           rows={this.props.rows}
           style={style}
-          onChange={this._handleChange}/>
+          onChange={this._handleChange}
+        />
       </div>
     );
   }
@@ -98,12 +96,12 @@ class EnhancedTextarea extends Component {
     newHeight = shadow.scrollHeight;
 
     if (currentHeight !== newHeight) {
-      this.setState({height: newHeight});
+      this.setState({ height: newHeight });
       if (this.props.onHeightChange) this.props.onHeightChange(e, newHeight);
     }
   };
 
-  _handleChange = (e) => {
+  _handleChange = e => {
     this._syncHeightWithShadow(e.target.value);
 
     if (this.props.hasOwnProperty('valueLink')) {
@@ -113,12 +111,11 @@ class EnhancedTextarea extends Component {
     if (this.props.onChange) this.props.onChange(e);
   };
 
-  componentWillReceiveProps = (nextProps) => {
+  componentWillReceiveProps = nextProps => {
     if (nextProps.value != this.props.value) {
       this._syncHeightWithShadow(nextProps.value);
     }
   };
-
 
   getClasses = (initialClasses, additionalClassObj) => {
     let classString = '';
@@ -140,11 +137,11 @@ class EnhancedTextarea extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -157,11 +154,11 @@ EnhancedTextarea.propTypes = {
   onChange: PropTypes.func,
   onHeightChange: PropTypes.func,
   textareaClassName: PropTypes.string,
-  rows: PropTypes.number
+  rows: PropTypes.number,
 };
 
 EnhancedTextarea.defaultProps = {
-  rows: 1
+  rows: 1,
 };
 
 export default EnhancedTextarea;

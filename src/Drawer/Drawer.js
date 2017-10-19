@@ -12,7 +12,6 @@ import ThemeService from '../styles/ChamelThemeService';
  * Navigation drawer component
  */
 class Drawer extends Component {
-
   /**
    * Set accepted properties
    */
@@ -49,7 +48,7 @@ class Drawer extends Component {
      * left: primary and default navigation
      * right: secondary right side navigation
      */
-    side: PropTypes.oneOf(['left', 'right'])
+    side: PropTypes.oneOf(['left', 'right']),
   };
 
   /**
@@ -60,14 +59,14 @@ class Drawer extends Component {
     permanent: false,
     clipped: false,
     anchorEl: null,
-    side: 'left'
+    side: 'left',
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -81,22 +80,21 @@ class Drawer extends Component {
 
     this.state = {
       open: this.props.permanent,
-      selected: "",
+      selected: '',
       startTopOffset: 0,
       curTopOffset: -1,
-      height: null
-    }
+      height: null,
+    };
   }
 
   componentDidMount() {
-
     // Save the original top position of the menu
     if (this.state.open) {
       let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
       if (offset.top > 0) {
         this.setState({
           startTopOffset: offset.top,
-          height: window.innerHeight - offset.top
+          height: window.innerHeight - offset.top,
         });
 
         // Now listen for window scroll events
@@ -113,41 +111,49 @@ class Drawer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open != this.props.open) {
-      this.setState({open: nextProps.open});
+      this.setState({ open: nextProps.open });
     }
   }
 
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.drawer)
-      ? this.context.chamelTheme.drawer : ThemeService.defaultTheme.drawer;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.drawer
+        ? this.context.chamelTheme.drawer
+        : ThemeService.defaultTheme.drawer;
 
     // Set the classes
-    const classes = classnames(theme.drawer, {
-      [theme.drawerClosed]: (!this.props.open && !this.state.open),
-      [theme.drawerClipped]: this.props.clipped,
-      [theme.drawerPermanent]: this.props.permanent,
-      [theme.drawerFloating]: !this.props.permanent,
-      [theme.drawerTransparent]: (this.props.zIndex == 0)
-    }, this.props.className);
+    const classes = classnames(
+      theme.drawer,
+      {
+        [theme.drawerClosed]: !this.props.open && !this.state.open,
+        [theme.drawerClipped]: this.props.clipped,
+        [theme.drawerPermanent]: this.props.permanent,
+        [theme.drawerFloating]: !this.props.permanent,
+        [theme.drawerTransparent]: this.props.zIndex == 0,
+      },
+      this.props.className,
+    );
 
     let overlay;
 
     if (!this.props.permanent)
-      overlay = <Overlay show={(this.props.open || this.state.open)} onClick={this._onOverlayTouchTap}/>;
+      overlay = (
+        <Overlay show={this.props.open || this.state.open} onClick={this._onOverlayTouchTap} />
+      );
 
     // Determine the depth of the background
-    let zDept = (this.props.permanent) ? 0 : 2;
+    let zDept = this.props.permanent ? 0 : 2;
 
     // Handle offset when the document scrolls and the menu is not already at the top
     let topStyle = {};
     if (this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
-      topStyle.top = this.state.curTopOffset + "px";
+      topStyle.top = this.state.curTopOffset + 'px';
     }
 
     // Manually set the height
     if (this.state.height) {
-      topStyle.height = this.state.height + "px";
+      topStyle.height = this.state.height + 'px';
     }
 
     return (
@@ -158,7 +164,8 @@ class Drawer extends Component {
           ref="clickAwayableElement"
           className={classes}
           zDepth={zDept}
-          rounded={false}>
+          rounded={false}
+        >
           {this.props.children}
         </Paper>
       </div>
@@ -166,14 +173,11 @@ class Drawer extends Component {
   }
 
   _onOverlayTouchTap = () => {
-    if (this.props.onClose)
-      this.props.onClose();
+    if (this.props.onClose) this.props.onClose();
   };
 
-  _onWindowKeyUp = (e) => {
-    if (e.keyCode == KeyCode.ESC &&
-      (!this.props.permanent) &&
-      this.state.open) {
+  _onWindowKeyUp = e => {
+    if (e.keyCode == KeyCode.ESC && !this.props.permanent && this.state.open) {
       this.close();
     }
   };
@@ -186,8 +190,7 @@ class Drawer extends Component {
    * want to be able to reposition the leftnav when the user scrolls
    * so it scrolls with the document until 0 (top)
    */
-  _onWindowScroll = (e) => {
-
+  _onWindowScroll = e => {
     // If the starting state was 0 then do nothing
     if (this.state.startTopOffset == 0) {
       return;
@@ -221,7 +224,7 @@ class Drawer extends Component {
     }
 
     // Recalculate height
-    const height = (newTop > 0) ? (window.innerHeight - newTop) : null;
+    const height = newTop > 0 ? window.innerHeight - newTop : null;
 
     // Set state without transition to make the scroll faster
     Dom.withoutTransition(
@@ -230,18 +233,17 @@ class Drawer extends Component {
         this.setState({
           curTopOffset: newTop,
           startTopOffset: drawerStartTop,
-          height: height
+          height: height,
         });
-      }.bind(this)
+      }.bind(this),
     );
-
   };
 
   /**
    * Toggle this opened and closed
    */
   toggle() {
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   }
 }
 

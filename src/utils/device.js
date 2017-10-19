@@ -1,21 +1,20 @@
 /**
  * Device is an object that is used to represent a physical device and browser
  */
- import modernizr from './modernizr.custom';
+import modernizr from './modernizr.custom';
 
- var device = {}
+var device = {};
 
 /**
  * Setup device tests
  */
- if (modernizr) {
- 	device.test = modernizr;
- } else {
- 	// Modernizr can't load so make empty props or set defaults here
- 	device.test = {
- 		inputtypes: {}
- 	}
- }
+if (modernizr) {
+  device.test = modernizr;
+} else {
+  // Modernizr can't load so make empty props or set defaults here
+  device.test = {
+    inputtypes: {},
+  };
+}
 
-
- module.exports = device;
+module.exports = device;

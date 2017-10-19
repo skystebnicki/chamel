@@ -1,40 +1,35 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import EnhancedButton from '../Button';
 import classNames from 'classnames';
 
 class DayButton extends Component {
-
   render() {
-    let {
-      className,
-      date,
-      onClick,
-      selected,
-      ...other
-      } = this.props;
+    let { className, date, onClick, selected, ...other } = this.props;
 
     const classes = this.getClasses('chamel-date-picker-day-button', {
       'chamel-is-current-date': DateTime.isEqualDate(this.props.date, new Date()),
-      'chamel-is-selected': this.props.selected
+      'chamel-is-selected': this.props.selected,
     });
 
     return this.props.date ? (
-      <EnhancedButton {...other}
+      <EnhancedButton
+        {...other}
         className={classes}
         disableFocusRipple={true}
         disableTouchRipple={true}
-        onClick={this._handleTouchTap}>
-        <div className="chamel-date-picker-day-button-select"/>
+        onClick={this._handleTouchTap}
+      >
+        <div className="chamel-date-picker-day-button-select" />
         <span className="chamel-date-picker-day-button-label">{this.props.date.getDate()}</span>
       </EnhancedButton>
     ) : (
-      <span className={classes}/>
+      <span className={classes} />
     );
   }
 
-  _handleTouchTap = (e) => {
+  _handleTouchTap = e => {
     if (this.props.onClick) this.props.onClick(e, this.props.date);
   };
 
@@ -58,11 +53,11 @@ class DayButton extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -74,7 +69,7 @@ class DayButton extends Component {
 DayButton.propTypes = {
   date: PropTypes.object,
   onClick: PropTypes.func,
-  selected: PropTypes.bool
+  selected: PropTypes.bool,
 };
 
 export default DayButton;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import DropDownArrow from '../svg-icons/drop-down-arrow';
@@ -13,7 +13,6 @@ import ThemeService from '../styles/ChamelThemeService';
  * Component for displaying dropdowns
  */
 class SelectButton extends Component {
-
   /**
    * Class constructor takes properties and passes them to the parent/super
    */
@@ -23,7 +22,7 @@ class SelectButton extends Component {
     this.state = {
       open: false,
       anchorEl: null,
-      selectedIndex: props.selectedIndex || 0
+      selectedIndex: props.selectedIndex || 0,
     };
   }
 
@@ -49,13 +48,18 @@ class SelectButton extends Component {
    * Render Componenent
    */
   render() {
-
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.picker)
-      ? this.context.chamelTheme.picker : ThemeService.defaultTheme.picker;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.picker
+        ? this.context.chamelTheme.picker
+        : ThemeService.defaultTheme.picker;
 
-    let icon = (typeof this.props.icon === 'string') ?
-      (<FontIcon className={this.props.icon}/>) : this.props.icon;
+    let icon =
+      typeof this.props.icon === 'string' ? (
+        <FontIcon className={this.props.icon} />
+      ) : (
+        this.props.icon
+      );
 
     // Use default dropdown icon
     if (!icon && this.props.children) {
@@ -66,18 +70,17 @@ class SelectButton extends Component {
 
     return (
       <div className={theme.selectButtonCon}>
-        <div style={{align: "top"}}>
-          <IconButton
-            className={this.props.className}
-            onTap={this._onControlClick}>
+        <div style={{ align: 'top' }}>
+          <IconButton className={this.props.className} onTap={this._onControlClick}>
             {icon}
           </IconButton>
         </div>
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this._handleRequestClose}>
+          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+          onRequestClose={this._handleRequestClose}
+        >
           <Menu
             ref="menuItems"
             autoWidth={this.props.autoWidth}
@@ -96,15 +99,15 @@ class SelectButton extends Component {
    * @private
    * @param {Object} props The props we are setting
    */
-  _setSelectedIndex = (props) => {
+  _setSelectedIndex = props => {
     const selectedIndex = props.selectedIndex;
 
     if (process.env.NODE_ENV !== 'production' && selectedIndex < 0) {
       console.warn('Cannot set selectedIndex to a negative index.', selectedIndex);
     }
 
-    this.setState({selectedIndex: (selectedIndex > -1) ? selectedIndex : 0});
-  }
+    this.setState({ selectedIndex: selectedIndex > -1 ? selectedIndex : 0 });
+  };
 
   /**
    * Meny control clicked handler
@@ -112,12 +115,12 @@ class SelectButton extends Component {
    * @private
    * @param {DOMEvent} e The click event fired
    */
-  _onControlClick = (e) => {
+  _onControlClick = e => {
     e.preventDefault();
 
     this.setState({
       open: !this.state.open,
-      anchorEl: e.currentTarget
+      anchorEl: e.currentTarget,
     });
   };
 
@@ -136,7 +139,7 @@ class SelectButton extends Component {
 
     this.setState({
       selectedIndex: key,
-      open: false
+      open: false,
     });
 
     // Prevent ghost clicks
@@ -145,7 +148,7 @@ class SelectButton extends Component {
 
     // TODO: Not sure if this is needed with the above being called
     e.nativeEvent.stopImmediatePropagation();
-  }
+  };
 
   /**
    * Handle when the popover gets closed
@@ -153,11 +156,11 @@ class SelectButton extends Component {
    * @private
    * @param {DOMEvent} e The click event fired
    */
-  _handleRequestClose = (e) => {
+  _handleRequestClose = e => {
     this.setState({
       open: false,
     });
-  }
+  };
 }
 
 /**
@@ -166,10 +169,7 @@ class SelectButton extends Component {
 SelectButton.propTypes = {
   onChange: PropTypes.func,
   selectedIndex: PropTypes.number,
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   menuItems: PropTypes.array.isRequired,
 
   /**
@@ -180,7 +180,7 @@ SelectButton.propTypes = {
   /**
    * Optional children can be used to define content
    */
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 /**
@@ -188,14 +188,14 @@ SelectButton.propTypes = {
  */
 SelectButton.defaultProps = {
   autoWidth: true,
-  children: null
+  children: null,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 SelectButton.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default SelectButton;

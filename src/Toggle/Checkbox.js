@@ -15,40 +15,45 @@ import CheckboxChecked from '../svg-icons/toggle-check-box-checked';
  * @constructor
  */
 const Checkbox = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.toggle)
-    ? context.chamelTheme.toggle : ThemeService.defaultTheme.toggle;
+  let theme =
+    context.chamelTheme && context.chamelTheme.toggle
+      ? context.chamelTheme.toggle
+      : ThemeService.defaultTheme.toggle;
 
-  const onTap = (props.onChange && !props.disabled) ? (evt) => {
-    if (props.onChange) {
-      props.onChange(evt, !props.checked);
-    } else if (props.onCheck) {
-      props.onCheck(evt, !props.checked);
-    }
-  } : null;
+  const onTap =
+    props.onChange && !props.disabled
+      ? evt => {
+          if (props.onChange) {
+            props.onChange(evt, !props.checked);
+          } else if (props.onCheck) {
+            props.onCheck(evt, !props.checked);
+          }
+        }
+      : null;
 
   let labelElement = null;
   if (props.label) {
-    labelElement = (<div className={theme.checkboxText}>{props.label}</div>);
+    labelElement = <div className={theme.checkboxText}>{props.label}</div>;
   }
 
   let outlineClasses = theme.checkboxIconBox;
   if (props.checked) {
-    outlineClasses += " " + theme.checkboxIconBoxOn;
+    outlineClasses += ' ' + theme.checkboxIconBoxOn;
   }
 
   let checkClasses = theme.checkboxIconCheck;
   if (props.checked) {
-    checkClasses += " " + theme.checkboxIconCheckOn;
+    checkClasses += ' ' + theme.checkboxIconCheckOn;
   }
 
   return (
-      <div onClick={onTap} className={theme.checkbox}>
-        <div className={theme.checkboxIcon}>
-          <CheckboxOutline className={outlineClasses} />
-          <CheckboxChecked className={checkClasses} />
-        </div>
-        {labelElement}
+    <div onClick={onTap} className={theme.checkbox}>
+      <div className={theme.checkboxIcon}>
+        <CheckboxOutline className={outlineClasses} />
+        <CheckboxChecked className={checkClasses} />
       </div>
+      {labelElement}
+    </div>
   );
 };
 
@@ -74,7 +79,7 @@ Checkbox.propTypes = {
   /**
    * Flag indicates whether or not the input box is checked
    */
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
 };
 
 /**
@@ -82,14 +87,14 @@ Checkbox.propTypes = {
  */
 Checkbox.defaultProps = {
   className: '',
-  checked: false
+  checked: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Checkbox.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default Checkbox;

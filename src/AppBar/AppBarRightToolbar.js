@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import ThemeService from '../styles/ChamelThemeService';
 
 /**
  * The right toolbar for an AppBar
@@ -10,13 +9,8 @@ import ThemeService from '../styles/ChamelThemeService';
  * @returns {ReactDOM}
  * @constructor
  */
-const AppBarRightToolbar = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.appBar)
-    ? context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
-
-  return (
-    <div className={props.className}>{props.children}</div>
-  );
+const AppBarRightToolbar = props => {
+  return <div className={props.className}>{props.children}</div>;
 };
 
 /**
@@ -38,14 +32,14 @@ AppBarRightToolbar.propTypes = {
  * Set property defaults
  */
 AppBarRightToolbar.defaultProps = {
-  className: null
+  className: null,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 AppBarRightToolbar.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default AppBarRightToolbar;

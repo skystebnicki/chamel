@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const ListNumberedIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconListNumbered}>{"format_list_numbered"}</FontIcon>
+    <FontIcon {...props} className={theme.iconListNumbered}>
+      {'format_list_numbered'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const ListNumberedIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 ListNumberedIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ListNumberedIcon;

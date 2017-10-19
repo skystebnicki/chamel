@@ -49,18 +49,18 @@ const Chamel = {
   AppBar: AppBar,
   AutoComplete: AutoComplete,
   Checkbox: Checkbox,
-  DatePicker: DatePicker, 
+  DatePicker: DatePicker,
   Dialog: Dialog,
   DropDownIcon: DropDownIcon,
   SelectField: SelectField,
   Editor: Editor,
   EnhancedButton: EnhancedButton,
-  FlatButton: FlatButton, 
+  FlatButton: FlatButton,
   FontIcon: FontIcon,
   IconButton: IconButton,
   Drawer: Drawer,
   Menu: Menu,
-  MenuItem: MenuItem, 
+  MenuItem: MenuItem,
   NestedMenuItem: NestedMenuItem,
   Paper: Paper,
   Popover: Popover,
@@ -71,9 +71,9 @@ const Chamel = {
   CircularProgress: CircularProgress,
   SvgIcon: SvgIcon,
   Icons: {
-      NavigationMenu: NavigationMenu,
-      NavigationChevronLeft: NavigationChevronLeft,
-      NavigationChevronRight: NavigationChevronRight
+    NavigationMenu: NavigationMenu,
+    NavigationChevronLeft: NavigationChevronLeft,
+    NavigationChevronRight: NavigationChevronRight,
   },
   Tab: Tab,
   Tabs: Tabs,
@@ -84,12 +84,12 @@ const Chamel = {
   Toolbar: Toolbar,
   ToolbarGroup: ToolbarGroup,
   Utils: {
-      CssEvent: CssEvent, 
-      Dom: Dom,
-      Events: Events,
-      KeyCode: KeyCode,
-      KeyLine: KeyLine
-  }
+    CssEvent: CssEvent,
+    Dom: Dom,
+    Events: Events,
+    KeyCode: KeyCode,
+    KeyLine: KeyLine,
+  },
 };
 
 // ES6

@@ -5,7 +5,6 @@ import Toolbar from 'chamel/Toolbar/Toolbar';
 import ToolbarGroup from 'chamel/Toolbar/ToolbarGroup';
 
 class PrimaryToolbarDemo extends React.Component {
-
   /**
    * Class constructor
    *
@@ -16,17 +15,25 @@ class PrimaryToolbarDemo extends React.Component {
     super(props);
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Toolbar>
           <ToolbarGroup key={0} align="left">
-            <IconButton onTap={(e) => { console.log("Left close clicked"); }}>
+            <IconButton
+              onTap={e => {
+                console.log('Left close clicked');
+              }}
+            >
               <CloseIcon />
             </IconButton>
           </ToolbarGroup>
           <ToolbarGroup key={1} align="right">
-            <IconButton onTap={(e) => { console.log("Right close clicked"); }}>
+            <IconButton
+              onTap={e => {
+                console.log('Right close clicked');
+              }}
+            >
               <CloseIcon />
             </IconButton>
           </ToolbarGroup>

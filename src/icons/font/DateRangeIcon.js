@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const DateRangeIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconDateRange}>{"date_range"}</FontIcon>
+    <FontIcon {...props} className={theme.iconDateRange}>
+      {'date_range'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const DateRangeIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 DateRangeIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default DateRangeIcon;

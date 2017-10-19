@@ -5,9 +5,7 @@ import prefixer from '../utils/prefixer.js';
 import Progress from './Progress';
 
 const LinearProgress = (props, context) => {
-  return (
-    <Progress type='linear' {...props} />
-  );
+  return <Progress type="linear" {...props} />;
 };
 
 LinearProgress.PropTypes = {
@@ -18,7 +16,7 @@ LinearProgress.PropTypes = {
   min: PropTypes.number,
   mode: PropTypes.oneOf(['determinate', 'indeterminate']),
   multicolor: PropTypes.bool,
-  value: PropTypes.number
-}
+  value: PropTypes.number,
+};
 
 export default LinearProgress;

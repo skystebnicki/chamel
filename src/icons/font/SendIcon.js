@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const SendIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconSend}>{"send"}</FontIcon>
+    <FontIcon {...props} className={theme.iconSend}>
+      {'send'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const SendIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 SendIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default SendIcon;

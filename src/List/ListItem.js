@@ -14,23 +14,29 @@ import Checkbox from '../Toggle/Checkbox';
  * @constructor
  */
 const ListItem = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.list)
-      ? context.chamelTheme.list : ThemeService.defaultTheme.list;
+  let theme =
+    context.chamelTheme && context.chamelTheme.list
+      ? context.chamelTheme.list
+      : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listItem, {
     [theme.listItemSelected]: props.selected,
-    [theme.listItemEmphasized]: props.emphasized
+    [theme.listItemEmphasized]: props.emphasized,
   });
 
   // Set ontap functions
-  const onTap = (props.onTap) ? props.onTap : (e) => {};
+  const onTap = props.onTap ? props.onTap : e => {};
   const onLeftElementTap = props.onLeftElementTap || onTap;
 
   // If we have a left element add it
   let leftElement = null;
   if (props.leftElement) {
-    const leftIcon = (props.selected && props.selectedShowCheckbox) ? 
-      (<Checkbox checked={true} />) : props.leftElement;
+    const leftIcon =
+      props.selected && props.selectedShowCheckbox ? (
+        <Checkbox checked={true} />
+      ) : (
+        props.leftElement
+      );
 
     leftElement = (
       <div onClick={onLeftElementTap} className={theme.listItemLeft}>
@@ -40,8 +46,9 @@ const ListItem = (props, context) => {
   }
 
   // If we have a right element add it
-  const rightElement = (props.rightElement) ?
-    (<div className={theme.listItemRight}>{props.rightElement}</div>) : null;
+  const rightElement = props.rightElement ? (
+    <div className={theme.listItemRight}>{props.rightElement}</div>
+  ) : null;
 
   return (
     <div className={classes}>
@@ -56,14 +63,13 @@ const ListItem = (props, context) => {
         </div>
       </TouchRipple>
     </div>
-  )
+  );
 };
 
 /**
  * Set accepted properties
  */
 ListItem.propTypes = {
-
   /**
    * Primary text/title of the item
    */
@@ -124,14 +130,14 @@ ListItem.defaultProps = {
   leftElement: null,
   rightElement: null,
   selected: false,
-  emphasized: false
+  emphasized: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 ListItem.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ListItem;

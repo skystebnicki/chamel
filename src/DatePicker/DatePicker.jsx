@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import KeyCode from '../utils/KeyCode';
@@ -9,7 +9,6 @@ import Events from '../utils/Events';
 import classNames from 'classnames';
 
 class DatePicker extends Component {
-
   /**
    * Class constructor
    *
@@ -21,17 +20,17 @@ class DatePicker extends Component {
 
     this.state = {
       date: this.props.defaultDate,
-      dialogDate: new Date()
+      dialogDate: new Date(),
     };
   }
 
   componentDidMount() {
     Events.on(window, 'keyup', this._handleWindowKeyUp);
-  };
+  }
 
   componentWillUnmount() {
     Events.off(window, 'keyup', this._handleWindowKeyUp);
-  };
+  }
 
   render() {
     let {
@@ -46,10 +45,10 @@ class DatePicker extends Component {
       maxDate,
       autoOk,
       ...other
-      } = this.props;
+    } = this.props;
     const classes = this.getClasses('chamel-date-picker', {
       'chamel-is-landscape': this.props.mode === 'landscape',
-      'chamel-is-inline': this.props.mode === 'inline'
+      'chamel-is-inline': this.props.mode === 'inline',
     });
     let defaultInputValue;
 
@@ -57,13 +56,13 @@ class DatePicker extends Component {
       defaultInputValue = this.props.formatDate(this.props.defaultDate);
     }
 
-    const inputType = (this.props.preferNative) ? "date" : "text";
+    const inputType = this.props.preferNative ? 'date' : 'text';
 
     // If we are using the native input then we need to get value when changed
-    const inpHndleOnChange = ('date' === inputType) ? this._handleInputChange : null;
+    const inpHndleOnChange = 'date' === inputType ? this._handleInputChange : null;
 
     // We need to exclude the preferNative property as it is an unkown props for <input> tag
-    if (other.hasOwnProperty("preferNative")) {
+    if (other.hasOwnProperty('preferNative')) {
       delete other.preferNative;
     }
 
@@ -76,7 +75,8 @@ class DatePicker extends Component {
           type={inputType}
           defaultValue={defaultInputValue}
           onFocus={this._handleInputFocus}
-          onClick={this._handleInputTouchTap}/>
+          onClick={this._handleInputTouchTap}
+        />
         <DatePickerDialog
           minDate={minDate}
           maxDate={maxDate}
@@ -85,9 +85,9 @@ class DatePicker extends Component {
           initialDate={this.state.dialogDate}
           onAccept={this._handleDialogAccept}
           onShow={onShow}
-          onDismiss={onDismiss}/>
+          onDismiss={onDismiss}
+        />
       </div>
-
     );
   }
 
@@ -95,14 +95,14 @@ class DatePicker extends Component {
     return this.state.date;
   };
 
-  setDate = (d) => {
+  setDate = d => {
     this.setState({
-      date: d
+      date: d,
     });
     this.refs.input.setValue(this.props.formatDate(d));
   };
 
-  _handleDialogAccept = (d) => {
+  _handleDialogAccept = d => {
     this.setDate(d);
     if (this.props.onChange) this.props.onChange(null, d);
   };
@@ -110,7 +110,7 @@ class DatePicker extends Component {
   /**
    * Handle native date input change
    */
-  _handleInputChange = (e) => {
+  _handleInputChange = e => {
     let dateString = e.target.value;
     let d = null;
 
@@ -132,14 +132,14 @@ class DatePicker extends Component {
     if (this.props.onChange) this.props.onChange(null, d);
   };
 
-  _handleInputFocus = (e) => {
+  _handleInputFocus = e => {
     e.target.blur();
     if (this.props.onFocus) this.props.onFocus(e);
   };
 
-  _handleInputTouchTap = (e) => {
+  _handleInputTouchTap = e => {
     this.setState({
-      dialogDate: this.getDate()
+      dialogDate: this.getDate(),
     });
 
     /*
@@ -154,7 +154,7 @@ class DatePicker extends Component {
     if (this.props.onClick) this.props.onClick(e);
   };
 
-  _handleWindowKeyUp = (e) => {
+  _handleWindowKeyUp = e => {
     //TO DO: open the dialog if input has focus
   };
 
@@ -178,11 +178,11 @@ class DatePicker extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -211,7 +211,7 @@ DatePicker.defaultProps = {
   minDate: null,
   maxDate: null,
   autoOk: false,
-  preferNative: true
+  preferNative: true,
 };
 
 export default DatePicker;

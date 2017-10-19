@@ -1,7 +1,6 @@
 import Events from './Events';
 
 module.exports = {
-
   _testSupportedProps: function(props) {
     var i,
       undefined,
@@ -17,23 +16,23 @@ module.exports = {
   //Returns the correct event name to use
   transitionEndEventName: function() {
     return this._testSupportedProps({
-      'transition':'transitionend',
-      'OTransition':'otransitionend',  
-      'MozTransition':'transitionend',
-      'WebkitTransition':'webkitTransitionEnd'
+      transition: 'transitionend',
+      OTransition: 'otransitionend',
+      MozTransition: 'transitionend',
+      WebkitTransition: 'webkitTransitionEnd',
     });
   },
 
   animationEndEventName: function() {
     return this._testSupportedProps({
-      'animation': 'animationend',
+      animation: 'animationend',
       '-o-animation': 'oAnimationEnd',
       '-moz-animation': 'animationend',
-      '-webkit-animation': 'webkitAnimationEnd'
+      '-webkit-animation': 'webkitAnimationEnd',
     });
   },
 
-  onTransitionEnd: function (el, callback) {
+  onTransitionEnd: function(el, callback) {
     var transitionEnd = this.transitionEndEventName();
 
     Events.once(el, transitionEnd, function() {
@@ -41,12 +40,11 @@ module.exports = {
     });
   },
 
-  onAnimationEnd: function (el, callback) {
+  onAnimationEnd: function(el, callback) {
     var animationEnd = this.animationEndEventName();
 
     Events.once(el, animationEnd, function() {
       return callback();
     });
-  }
-
+  },
 };

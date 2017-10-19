@@ -1,9 +1,8 @@
-var React = require("react");
+var React = require('react');
 
 import Switch from 'chamel/Toggle/Switch';
 
 class SwitchDemo extends React.Component {
-
   /**
    * Class constructor
    *
@@ -14,25 +13,25 @@ class SwitchDemo extends React.Component {
     super(props);
 
     this.state = {
-      checked: false
-    }
+      checked: false,
+    };
   }
 
-  render () {
+  render() {
     return (
       <div>
         <Switch
           checked={this.state.checked}
           onChange={this._handleChange}
-          label={"Switch with label"}
+          label={'Switch with label'}
         />
       </div>
     );
   }
 
   _handleChange = (e, checked) => {
-    this.setState({checked: checked});
-  }
-};
+    this.setState({ checked: checked });
+  };
+}
 
 export default SwitchDemo;

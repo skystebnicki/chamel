@@ -1,10 +1,9 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 module.exports = {
-
   propTypes: {
-    className: PropTypes.string
+    className: PropTypes.string,
   },
 
   getClasses: function(initialClasses, additionalClassObj) {
@@ -37,6 +36,5 @@ module.exports = {
     }
 
     return classObj;
-  }
-
-}
+  },
+};

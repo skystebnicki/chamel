@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Events from '../utils/Events';
 import DateTime from '../utils/DateTime';
@@ -10,7 +10,6 @@ import SlideInTransitionGroup from '../transition-groups/SlideIn';
 import classNames from 'classnames';
 
 class Calendar extends Component {
-
   /**
    * Class constructor
    *
@@ -23,7 +22,7 @@ class Calendar extends Component {
     this.state = {
       displayDate: DateTime.getFirstDayOfMonth(this.props.initialDate),
       selectedDate: this.props.initialDate,
-      transitionDirection: 'left'
+      transitionDirection: 'left',
     };
   }
 
@@ -31,23 +30,22 @@ class Calendar extends Component {
    * Handle incoming new props
    */
   componentWillReceiveProps(nextProps) {
-
     if (nextProps.initialDate !== this.props.initialDate) {
       const d = nextProps.initialDate || new Date();
       this.setState({
         displayDate: DateTime.getFirstDayOfMonth(d),
-        selectedDate: d
+        selectedDate: d,
       });
     }
   }
 
   componentDidMount() {
     Events.on(window, 'keydown', this._handleWindowKeyDown);
-  };
+  }
 
   componentWillUnmount() {
     Events.off(window, 'keydown', this._handleWindowKeyDown);
-  };
+  }
 
   /**
    * Render the Calendar action
@@ -59,23 +57,24 @@ class Calendar extends Component {
     const classes = this.getClasses('chamel-date-picker-calendar', {
       'chamel-is-4week': weekCount === 4,
       'chamel-is-5week': weekCount === 5,
-      'chamel-is-6week': weekCount === 6
+      'chamel-is-6week': weekCount === 6,
     });
 
     return (
       <div className={classes}>
         <DateDisplay
           className="chamel-date-picker-calendar-date-display"
-          selectedDate={this.state.selectedDate}/>
+          selectedDate={this.state.selectedDate}
+        />
 
-        <div
-          className="chamel-date-picker-calendar-container">
+        <div className="chamel-date-picker-calendar-container">
           <CalendarToolbar
             minDate={this.props.minDate}
             maxDate={this.props.maxDate}
             displayDate={this.state.displayDate}
             onLeftTouchTap={this._handleLeftTouchTap}
-            onRightTouchTap={this._handleRightTouchTap}/>
+            onRightTouchTap={this._handleRightTouchTap}
+          />
 
           <ul className="chamel-date-picker-calendar-week-title">
             <li className="chamel-date-picker-calendar-week-title-day">S</li>
@@ -87,15 +86,15 @@ class Calendar extends Component {
             <li className="chamel-date-picker-calendar-week-title-day">S</li>
           </ul>
 
-          <SlideInTransitionGroup
-            direction={this.state.transitionDirection}>
+          <SlideInTransitionGroup direction={this.state.transitionDirection}>
             <CalendarMonth
               minDate={this.props.minDate}
               maxDate={this.props.maxDate}
               key={this.state.displayDate.toDateString()}
               displayDate={this.state.displayDate}
               onDayTouchTap={this._handleDayTouchTap}
-              selectedDate={this.state.selectedDate}/>
+              selectedDate={this.state.selectedDate}
+            />
           </SlideInTransitionGroup>
         </div>
       </div>
@@ -106,17 +105,17 @@ class Calendar extends Component {
     return this.state.selectedDate;
   };
 
-  _addDisplayDate = (m) => {
+  _addDisplayDate = m => {
     let newDisplayDate = DateTime.clone(this.state.displayDate);
     newDisplayDate.setMonth(newDisplayDate.getMonth() + m);
     this._setDisplayDate(newDisplayDate);
   };
 
-  _addSelectedDays = (days) => {
+  _addSelectedDays = days => {
     this._setSelectedDate(DateTime.addDays(this.state.selectedDate, days));
   };
 
-  _addSelectedMonths = (months) => {
+  _addSelectedMonths = months => {
     this._setSelectedDate(DateTime.addMonths(this.state.selectedDate, months));
   };
 
@@ -128,19 +127,19 @@ class Calendar extends Component {
       this.setState({
         displayDate: newDisplayDate,
         transitionDirection: direction,
-        selectedDate: newSelectedDate || this.state.selectedDate
+        selectedDate: newSelectedDate || this.state.selectedDate,
       });
     }
   };
 
-  _setSelectedDate = (d) => {
+  _setSelectedDate = d => {
     const newDisplayDate = DateTime.getFirstDayOfMonth(d);
 
     if (newDisplayDate !== this.state.displayDate) {
       this._setDisplayDate(newDisplayDate, d);
     } else {
       this.setState({
-        selectedDate: d
+        selectedDate: d,
       });
     }
     if (this.props.onSelectedDate) this.props.onSelectedDate(d);
@@ -158,12 +157,9 @@ class Calendar extends Component {
     this._addDisplayDate(1);
   };
 
-  _handleWindowKeyDown = (e) => {
-
+  _handleWindowKeyDown = e => {
     if (this.props.isActive) {
-
       switch (e.keyCode) {
-
         case KeyCode.UP:
           if (e.shiftKey) {
             this._addSelectedMonths(-1);
@@ -219,11 +215,11 @@ class Calendar extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -238,7 +234,7 @@ class Calendar extends Component {
 Calendar.defaultProps = {
   initialDate: new Date(),
   maxDate: null,
-  minDate: null
+  minDate: null,
 };
 
 Calendar.propTypes = {
@@ -246,7 +242,7 @@ Calendar.propTypes = {
   isActive: PropTypes.bool,
   maxDate: PropTypes.object,
   minDate: PropTypes.object,
-  onSelectedDate: PropTypes.func
+  onSelectedDate: PropTypes.func,
 };
 
 export default Calendar;

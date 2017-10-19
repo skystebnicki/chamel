@@ -1,1 +1,1 @@
-export {default} from './EnhancedTextarea';
+export { default } from './EnhancedTextarea';

@@ -4,21 +4,18 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname, '../'),
-  entry: { chamel: __dirname + '/app/main.js' },
+  context: __dirname,
+  entry: {
+    demo: './demo/app/main.js',
+  },
   devtool: 'inline-source-map',
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'build/js/chamel-demo.js',
+    path: __dirname + '/build',
+    filename: 'js/chamel-demo.js',
     publicPath: '/',
   },
   resolve: {
     extensions: ['.scss', '.js', '.jsx'],
-    aliasFields: ['browser', 'web', 'main', 'style'],
-    alias: {
-      chamel: path.resolve(__dirname, 'src'),
-    },
-    modules: [path.resolve(__dirname, '../node_modules'), path.resolve(__dirname, '../src')],
   },
   module: {
     rules: [
@@ -75,11 +72,12 @@ module.exports = {
     ]),
   ],
   devServer: {
+    inline: true,
     historyApiFallback: true,
     hot: true,
+    publicPath: '/build/',
     disableHostCheck: true, // Without this local.aereusdev.com gets 'Invalid Host header'
-    watchOptions: { poll: true },
-    publicPath: '/',
     stats: { colors: true },
+    watchOptions: { poll: true },
   },
 };

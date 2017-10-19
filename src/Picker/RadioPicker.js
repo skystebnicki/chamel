@@ -13,22 +13,26 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const RadioPicker = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.toggle)
-    ? context.chamelTheme.toggle : ThemeService.defaultTheme.toggle;
+  let theme =
+    context.chamelTheme && context.chamelTheme.toggle
+      ? context.chamelTheme.toggle
+      : ThemeService.defaultTheme.toggle;
 
-  let childElements = Children.map(props.children, (child) => {
-    return React.isValidElement(child) ? (
-      React.cloneElement(child, {
-        name: "test",
-        checked: (props.value === child.props.value),
-        onSelect: (value) => { if (props.onChange) {props.onChange(value)} }
-      })
-    ) : child;
+  let childElements = Children.map(props.children, child => {
+    return React.isValidElement(child)
+      ? React.cloneElement(child, {
+          name: 'test',
+          checked: props.value === child.props.value,
+          onSelect: value => {
+            if (props.onChange) {
+              props.onChange(value);
+            }
+          },
+        })
+      : child;
   });
 
-  return (
-    <div>{childElements}</div>
-  );
+  return <div>{childElements}</div>;
 };
 
 /**
@@ -41,7 +45,7 @@ RadioPicker.propTypes = {
   label: PropTypes.string,
   onTape: PropTypes.func,
   onChange: PropTypes.func,
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
 };
 
 /**
@@ -49,14 +53,14 @@ RadioPicker.propTypes = {
  */
 RadioPicker.defaultProps = {
   className: '',
-  checked: false
+  checked: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 RadioPicker.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default RadioPicker;

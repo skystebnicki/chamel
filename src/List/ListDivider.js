@@ -13,16 +13,16 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const ListDivider = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.list)
-      ? context.chamelTheme.list : ThemeService.defaultTheme.list;
+  let theme =
+    context.chamelTheme && context.chamelTheme.list
+      ? context.chamelTheme.list
+      : ThemeService.defaultTheme.list;
 
   let classes = classnames(theme.listDivider, {
-    [theme.listDividerInset]: props.inset
+    [theme.listDividerInset]: props.inset,
   });
 
-  return (
-    <div className={classes} />
-  )
+  return <div className={classes} />;
 };
 
 /**
@@ -32,21 +32,21 @@ ListDivider.propTypes = {
   /**
    * Optional flag that can be set to indicate this item is selected
    */
-  inset: PropTypes.bool
+  inset: PropTypes.bool,
 };
 
 /**
  * Set property defaults
  */
 ListDivider.defaultProps = {
-  inset: false
+  inset: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 ListDivider.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ListDivider;

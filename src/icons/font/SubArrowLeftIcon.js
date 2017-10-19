@@ -4,11 +4,15 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 const SubArrowLeftIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconSubArrowLeft}>{"subdirectory_arrow_left"}</FontIcon>
+    <FontIcon {...props} className={theme.iconSubArrowLeft}>
+      {'subdirectory_arrow_left'}
+    </FontIcon>
   );
 };
 
@@ -16,7 +20,7 @@ const SubArrowLeftIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 SubArrowLeftIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default SubArrowLeftIcon;

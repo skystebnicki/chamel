@@ -11,15 +11,17 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const List = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.list)
-    ? context.chamelTheme.list : ThemeService.defaultTheme.list;
+  let theme =
+    context.chamelTheme && context.chamelTheme.list
+      ? context.chamelTheme.list
+      : ThemeService.defaultTheme.list;
 
   let currentIndex = 0;
-  let childElements = Children.map(props.children, (child) => {
+  let childElements = Children.map(props.children, child => {
     let retChild = child;
     if (React.isValidElement(child) && props.selectable) {
       retChild = React.cloneElement(child, {
-        selected: (props.selectedIndex === currentIndex)
+        selected: props.selectedIndex === currentIndex,
       });
     }
 
@@ -36,9 +38,7 @@ const List = (props, context) => {
      */
   });
 
-  return (
-    <div>{childElements}</div>
-  )
+  return <div>{childElements}</div>;
 };
 
 /**
@@ -47,7 +47,7 @@ const List = (props, context) => {
 List.propTypes = {
   children: PropTypes.node,
   selectable: PropTypes.bool,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.string,
 };
 
 /**
@@ -55,14 +55,14 @@ List.propTypes = {
  */
 List.defaultProps = {
   selectable: false,
-  defaultValue: null
+  defaultValue: null,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 List.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default List;

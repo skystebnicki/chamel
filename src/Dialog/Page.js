@@ -9,7 +9,6 @@ import ThemeService from '../styles/ChamelThemeService';
  * Float a DIV above the DOM like a virtual page
  */
 class Page extends Component {
-
   static propTypes = {
     /**
      * Array of possible actions to create buttons for
@@ -74,14 +73,14 @@ class Page extends Component {
     /**
      * Flag to set this dialog to take up 100% of the page
      */
-    fullPage: PropTypes.bool
+    fullPage: PropTypes.bool,
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -94,7 +93,7 @@ class Page extends Component {
     autoScrollBodyContent: true,
     actions: [],
     repositionOnUpdate: true,
-    modal: false
+    modal: false,
   };
 
   /**
@@ -107,8 +106,8 @@ class Page extends Component {
     super(props);
 
     this.state = {
-      open: this.props.openImmediately || false
-    }
+      open: this.props.openImmediately || false,
+    };
   }
 
   componentDidMount() {
@@ -128,8 +127,10 @@ class Page extends Component {
 
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.dialog)
-      ? this.context.chamelTheme.dialog : ThemeService.defaultTheme.dialog;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.dialog
+        ? this.context.chamelTheme.dialog
+        : ThemeService.defaultTheme.dialog;
 
     // Set classes for dialog window
     let classesDialog = theme.dialog;
@@ -143,7 +144,7 @@ class Page extends Component {
     // Set classes for window contents
     let classesPage = theme.dialogPage;
     if (this.props.className) {
-      classesPage += " " + this.props.className;
+      classesPage += ' ' + this.props.className;
     }
 
     return (
@@ -166,12 +167,12 @@ class Page extends Component {
   }
 
   dismiss = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
     this._onDismiss();
   };
 
   show = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
     this._onShow();
   };
 
@@ -183,7 +184,6 @@ class Page extends Component {
   }
 
   _positionDialog() {
-
     if (this.state.open) {
       const clientHeight = ReactDOM.findDOMNode(this).offsetHeight;
       let dialogPage = ReactDOM.findDOMNode(this.refs.dialogPage);
@@ -229,19 +229,18 @@ class Page extends Component {
     if (this.props.onDismiss) this.props.onDismiss();
   }
 
-  _handleOverlayTouchTap = (e) => {
+  _handleOverlayTouchTap = e => {
     if (!this.props.modal) {
       this.dismiss();
       if (this.props.onClickAway) this.props.onClickAway();
     }
   };
 
-  _handleWindowKeyUp = (e) => {
+  _handleWindowKeyUp = e => {
     if (!this.props.modal && e.keyCode === KeyCode.ESC) {
       this.dismiss();
     }
   };
-
 }
 
 export default Page;

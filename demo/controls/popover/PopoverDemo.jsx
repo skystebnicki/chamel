@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-var AppBar = require("chamel/AppBar");
-import { HashRouter, Match, Miss, Link } from 'react-router'
+var AppBar = require('../../../AppBar');
+import { HashRouter, Match, Miss, Link } from 'react-router';
 
-var CodeExample = require("../../CodeExample");
+var CodeExample = require('../../CodeExample');
 import ExampleSimple from './ExampleSimple';
 
 class PopoverDemo extends Component {

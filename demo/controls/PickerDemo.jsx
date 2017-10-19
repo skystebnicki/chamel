@@ -7,7 +7,6 @@ import SelectField from 'chamel/Picker/SelectField';
 import SelectButtonDemo from './Picker/SelectButtonDemo';
 
 class PickerDemo extends React.Component {
-
   /**
    * Class constructor
    *
@@ -18,12 +17,11 @@ class PickerDemo extends React.Component {
     super(props);
 
     this.state = {
-      dateValue: null
-    }
+      dateValue: null,
+    };
   }
 
   render() {
-
     var menuItems = [
       { payload: '1', text: 'Never' },
       { payload: '2', text: 'Every Night' },
@@ -36,42 +34,46 @@ class PickerDemo extends React.Component {
       <div>
         <Row>
           <Column xsmall={12} medium={12}>
-            <h2>{"Picker Components"}</h2>
+            <h2>{'Picker Components'}</h2>
             <p>Picker components are used to select an option from a list of pre-defined options</p>
           </Column>
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"Radio Button"}</h3>
+            <h3>{'Radio Button'}</h3>
             <RadioDemo />
           </Column>
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"SelectField"}</h3>
+            <h3>{'SelectField'}</h3>
             <SelectField menuItems={menuItems} />
           </Column>
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"SelectButton"}</h3>
+            <h3>{'SelectButton'}</h3>
             <SelectButtonDemo />
           </Column>
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"Color Picker"}</h3>
+            <h3>{'Color Picker'}</h3>
           </Column>
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"Date Picker"}</h3>
-            <DatePicker value={this.state.dateValue} required={true} onChange={this._handleDateChange} />
+            <h3>{'Date Picker'}</h3>
+            <DatePicker
+              value={this.state.dateValue}
+              required={true}
+              onChange={this._handleDateChange}
+            />
           </Column>
         </Row>
         <Row>
           <Column xsmall={12} medium={6}>
-            <h3>{"Time Picker"}</h3>
+            <h3>{'Time Picker'}</h3>
           </Column>
         </Row>
       </div>
@@ -79,11 +81,11 @@ class PickerDemo extends React.Component {
   }
 
   _handleDateChange = (evt, date) => {
-    console.log("Change date to", date);
+    console.log('Change date to', date);
     this.setState({
-      dateValue: (date.getMonth() + 1 ) + "/" + date.getDate() + "/" + date.getFullYear()
-    })
-  }
+      dateValue: date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear(),
+    });
+  };
 }
 
 export default PickerDemo;

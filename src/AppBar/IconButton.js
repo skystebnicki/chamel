@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../Button/IconButton';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
@@ -11,18 +10,22 @@ import ThemeService from '../styles/ChamelThemeService';
  * @returns {ReactDOM}
  */
 const AppBarIconButton = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.appBar)
-    ? context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
+  let theme =
+    context.chamelTheme && context.chamelTheme.appBar
+      ? context.chamelTheme.appBar
+      : ThemeService.defaultTheme.appBar;
 
   // Get className and children, and put the rest in other to forward below
   let { className, children, ...other } = props;
   if (className) {
-    className += " ";
+    className += ' ';
   }
   className += theme.appBarIconButton;
 
   return (
-    <IconButton className={className} {...other}>{children}</IconButton>
+    <IconButton className={className} {...other}>
+      {children}
+    </IconButton>
   );
 };
 
@@ -45,15 +48,15 @@ AppBarIconButton.propTypes = {
  * Set property defaults
  */
 AppBarIconButton.defaultProps = {
-  className: "",
-  children: null
+  className: '',
+  children: null,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 AppBarIconButton.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default AppBarIconButton;

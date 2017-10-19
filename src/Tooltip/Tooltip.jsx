@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
@@ -13,20 +13,16 @@ class Tooltip extends Component {
   }
 
   render() {
-
-    let {
-      className,
-      label,
-      ...other } = this.props;
+    let { className, label, ...other } = this.props;
 
     const classes = this.getClasses('chamel-tooltip', {
       'chamel-is-shown': this.props.show,
-      'chamel-is-touch': this.props.touch
+      'chamel-is-touch': this.props.touch,
     });
 
     return (
       <div className={classes}>
-        <div ref="ripple" className="chamel-tooltip-ripple"/>
+        <div ref="ripple" className="chamel-tooltip-ripple" />
         <span className="chamel-tooltip-label">{this.props.label}</span>
       </div>
     );
@@ -67,11 +63,11 @@ class Tooltip extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -84,7 +80,7 @@ Tooltip.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
   show: PropTypes.bool,
-  touch: PropTypes.bool
+  touch: PropTypes.bool,
 };
 
 export default Tooltip;

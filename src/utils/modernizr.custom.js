@@ -1,4 +1,4 @@
-  /*!
+/*!
  * modernizr v3.2.0
  * Build http://modernizr.com/download?-animation-borderradius-boxshadow-csstransforms-csstransforms3d-csstransitions-inputtypes-opacity-svg-video-websockets-domprefixes-prefixed-prefixes-testallprops-testprop-teststyles-dontmin
  *
@@ -13,9 +13,6 @@
 
  * MIT License
  */
-;
-
-
 /*
  * Modernizr tests which native CSS3 and HTML5 features are available in the
  * current UA and makes the results available to you in two ways: as properties on
@@ -23,10 +20,8 @@
  * information allows you to progressively enhance your pages with a granular level
  * of control over the experience.
 */
-module.exports = (function(window, document, undefined){
-
+module.exports = (function(window, document, undefined) {
   var classes = [];
-  
 
   /**
    * docElement is a convenience wrapper to grab the root element of the document
@@ -36,7 +31,6 @@ module.exports = (function(window, document, undefined){
    */
 
   var docElement = document.documentElement;
-  
 
   /**
    * A convenience helper to check if the document we are running in is an SVG document
@@ -46,10 +40,8 @@ module.exports = (function(window, document, undefined){
    */
 
   var isSVG = docElement.nodeName.toLowerCase() === 'svg';
-  
 
   var tests = [];
-  
 
   /**
    *
@@ -66,10 +58,10 @@ module.exports = (function(window, document, undefined){
     // Any settings that don't work as separate modules
     // can go in here as configuration.
     _config: {
-      'classPrefix' : '',
-      'enableClasses' : true,
-      'enableJSClass' : true,
-      'usePrefixes' : true
+      classPrefix: '',
+      enableClasses: true,
+      enableJSClass: true,
+      usePrefixes: true,
     },
 
     // Queue of tests
@@ -90,15 +82,13 @@ module.exports = (function(window, document, undefined){
     },
 
     addTest: function(name, fn, options) {
-      tests.push({name : name, fn : fn, options : options});
+      tests.push({ name: name, fn: fn, options: options });
     },
 
     addAsyncTest: function(fn) {
-      tests.push({name : null, fn : fn});
-    }
+      tests.push({ name: null, fn: fn });
+    },
   };
-
-  
 
   // Fake some of Object.create so we can force non test results to be non "own" properties.
   var Modernizr = function() {};
@@ -107,8 +97,6 @@ module.exports = (function(window, document, undefined){
   // Leak modernizr globally when you `require` it rather than force it here.
   // Overwrite name so constructor name is nicer :D
   Modernizr = new Modernizr();
-
-  
 
   /**
    * setClasses takes an array of class names and adds them to the root element
@@ -138,13 +126,11 @@ module.exports = (function(window, document, undefined){
     if (Modernizr._config.enableClasses) {
       // Add the new classes
       className += ' ' + classPrefix + classes.join(' ' + classPrefix);
-      isSVG ? docElement.className.baseVal = className : docElement.className = className;
+      isSVG ? (docElement.className.baseVal = className) : (docElement.className = className);
     }
-
   }
 
-  ;
-/*!
+  /*!
 {
   "name": "SVG",
   "property": "svg",
@@ -163,13 +149,17 @@ module.exports = (function(window, document, undefined){
   ]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for SVG in `<embed>` or `<object>` elements.
 */
 
-  Modernizr.addTest('svg', !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
+  Modernizr.addTest(
+    'svg',
+    !!document.createElementNS &&
+      !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect,
+  );
 
-/*!
+  /*!
 {
   "name": "WebSockets Support",
   "property": "websockets",
@@ -197,7 +187,6 @@ Detects support for SVG in `<embed>` or `<object>` elements.
 !*/
 
   Modernizr.addTest('websockets', 'WebSocket' in window && window.WebSocket.CLOSING === 2);
-
 
   /**
    * List of property values to set for css tests. See ticket #21
@@ -231,12 +220,10 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    * ```
    */
 
-  var prefixes = (ModernizrProto._config.usePrefixes ? ' -webkit- -moz- -o- -ms- '.split(' ') : []);
+  var prefixes = ModernizrProto._config.usePrefixes ? ' -webkit- -moz- -o- -ms- '.split(' ') : [];
 
   // expose these for the plugin API. Look in the source for how to join() them against your input
   ModernizrProto._prefixes = prefixes;
-
-  
 
   /**
    * is returns a boolean if the typeof an obj is exactly type.
@@ -251,8 +238,6 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   function is(obj, type) {
     return typeof obj === type;
   }
-  ;
-
   /**
    * Run through all tests and detect their support in the current UA.
    *
@@ -293,7 +278,6 @@ Detects support for SVG in `<embed>` or `<object>` elements.
         // Run the test, or use the raw value if it's not a function
         result = is(feature.fn, 'function') ? feature.fn() : feature.fn;
 
-
         // Set each of the names on the Modernizr object
         for (nameIdx = 0; nameIdx < featureNames.length; nameIdx++) {
           featureName = featureNames[nameIdx];
@@ -310,7 +294,10 @@ Detects support for SVG in `<embed>` or `<object>` elements.
           } else {
             // cast to a Boolean, if not one already
             /* jshint -W053 */
-            if (Modernizr[featureNameSplit[0]] && !(Modernizr[featureNameSplit[0]] instanceof Boolean)) {
+            if (
+              Modernizr[featureNameSplit[0]] &&
+              !(Modernizr[featureNameSplit[0]] instanceof Boolean)
+            ) {
               Modernizr[featureNameSplit[0]] = new Boolean(Modernizr[featureNameSplit[0]]);
             }
 
@@ -322,8 +309,6 @@ Detects support for SVG in `<embed>` or `<object>` elements.
       }
     }
   }
-  ;
-
   /**
    * If the browsers follow the spec, then they would expose vendor-specific style as:
    *   elem.style.WebkitBorderRadius
@@ -341,7 +326,6 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   var omPrefixes = 'Moz O ms Webkit';
-  
 
   /**
    * List of JavaScript DOM values used for tests
@@ -361,9 +345,8 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    * ```
    */
 
-  var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
+  var domPrefixes = ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : [];
   ModernizrProto._domPrefixes = domPrefixes;
-  
 
   /**
    * cssToDOM takes a kebab-case string and converts it to camelCase
@@ -376,12 +359,12 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    */
 
   function cssToDOM(name) {
-    return name.replace(/([a-z])-([a-z])/g, function(str, m1, m2) {
-      return m1 + m2.toUpperCase();
-    }).replace(/^-/, '');
+    return name
+      .replace(/([a-z])-([a-z])/g, function(str, m1, m2) {
+        return m1 + m2.toUpperCase();
+      })
+      .replace(/^-/, '');
   }
-  ;
-
   /**
    * createElement is a convenience wrapper around document.createElement. Since we
    * use createElement all over the place, this allows for (slightly) smaller code
@@ -405,8 +388,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
     }
   }
 
-  ;
-/*!
+  /*!
 {
   "name": "HTML5 Video",
   "property": "video",
@@ -425,7 +407,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   ]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for the video element, as well as testing what types of content it supports.
 
 Subproperties are provided to describe support for `ogg`, `h264` and `webm` formats, e.g.:
@@ -450,7 +432,7 @@ Modernizr.video.ogg     // 'probably'
 
     // IE9 Running on Windows Server SKU can cause an exception to be thrown, bug #224
     try {
-      if (bool = !!elem.canPlayType) {
+      if ((bool = !!elem.canPlayType)) {
         bool = new Boolean(bool);
         bool.ogg = elem.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, '');
 
@@ -461,14 +443,16 @@ Modernizr.video.ogg     // 'probably'
 
         bool.vp9 = elem.canPlayType('video/webm; codecs="vp9"').replace(/^no$/, '');
 
-        bool.hls = elem.canPlayType('application/x-mpegURL; codecs="avc1.42E01E"').replace(/^no$/, '');
+        bool.hls = elem
+          .canPlayType('application/x-mpegURL; codecs="avc1.42E01E"')
+          .replace(/^no$/, '');
       }
     } catch (e) {}
 
     return bool;
   });
 
-/*!
+  /*!
 {
   "name": "Web Animation API",
   "property": "animation",
@@ -480,13 +464,13 @@ Modernizr.video.ogg     // 'probably'
   }]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for the Web Animation API, a way to create css animations in js
 */
 
   Modernizr.addTest('webanimations', 'animate' in createElement('div'));
 
-/*!
+  /*!
 {
   "name": "CSS Opacity",
   "caniuse": "css-opacity",
@@ -506,9 +490,8 @@ Detects support for the Web Animation API, a way to create css animations in js
     // The non-literal . in this regex is intentional:
     // German Chrome returns this value as 0,55
     // github.com/Modernizr/Modernizr/issues/#issue/59/comment/516632
-    return (/^0.55$/).test(style.opacity);
+    return /^0.55$/.test(style.opacity);
   });
-
 
   /**
    * since we have a fairly large number of input tests that don't mutate the input
@@ -519,8 +502,8 @@ Detects support for the Web Animation API, a way to create css animations in js
    * @returns {HTMLInputElement}
    */
   var inputElem = createElement('input');
-  
-/*!
+
+  /*!
 {
   "name": "Form input types",
   "property": "inputtypes",
@@ -543,7 +526,7 @@ Detects support for the Web Animation API, a way to create css animations in js
   ]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for HTML5 form input types and exposes Boolean subproperties with the results:
 
 ```javascript
@@ -569,7 +552,9 @@ Modernizr.inputtypes.week
   //   containing each input type with its corresponding true/false value
 
   // Big thanks to @miketaylr for the html5 forms expertise. miketaylr.com/
-  var inputtypes = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
+  var inputtypes = 'search tel url email datetime date month week time datetime-local number range color'.split(
+    ' ',
+  );
   var inputs = {};
 
   Modernizr['inputtypes'] = (function(props) {
@@ -580,55 +565,49 @@ Modernizr.inputtypes.week
     var bool;
 
     for (var i = 0; i < len; i++) {
-
-      inputElem.setAttribute('type', inputElemType = props[i]);
+      inputElem.setAttribute('type', (inputElemType = props[i]));
       bool = inputElem.type !== 'text' && 'style' in inputElem;
 
       // We first check to see if the type we give it sticks..
       // If the type does, we feed it a textual value, which shouldn't be valid.
       // If the value doesn't stick, we know there's input sanitization which infers a custom UI
       if (bool) {
-
-        inputElem.value         = smile;
+        inputElem.value = smile;
         inputElem.style.cssText = 'position:absolute;visibility:hidden;';
 
         if (/^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined) {
-
           docElement.appendChild(inputElem);
           defaultView = document.defaultView;
 
           // Safari 2-4 allows the smiley as a value, despite making a slider
-          bool =  defaultView.getComputedStyle &&
+          bool =
+            defaultView.getComputedStyle &&
             defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
             // Mobile android web browser has false positive, so must
             // check the height to see if the widget is actually there.
-            (inputElem.offsetHeight !== 0);
+            inputElem.offsetHeight !== 0;
 
           docElement.removeChild(inputElem);
-
         } else if (/^(search|tel)$/.test(inputElemType)) {
           // Spec doesn't define any special parsing or detectable UI
           //   behaviors so we pass these through as true
-
           // Interestingly, opera fails the earlier test, so it doesn't
           //  even make it here.
-
         } else if (/^(url|email|number)$/.test(inputElemType)) {
           // Real url and email support comes with prebaked validation.
           bool = inputElem.checkValidity && inputElem.checkValidity() === false;
-
         } else {
           // If the upgraded input compontent rejects the :) text, we got a winner
           bool = inputElem.value != smile;
         }
       }
 
-      inputs[ props[i] ] = !!bool;
+      inputs[props[i]] = !!bool;
     }
     return inputs;
   })(inputtypes);
 
-/*!
+  /*!
 {
   "name": "CSS Supports",
   "property": "supports",
@@ -652,10 +631,8 @@ Modernizr.inputtypes.week
   var oldSyntax = 'supportsCSS' in window;
   Modernizr.addTest('supports', newSyntax || oldSyntax);
 
-
-  var cssomPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.split(' ') : []);
+  var cssomPrefixes = ModernizrProto._config.usePrefixes ? omPrefixes.split(' ') : [];
   ModernizrProto._cssomPrefixes = cssomPrefixes;
-  
 
   /**
    * atRule returns a given CSS property at-rule (eg @keyframes), possibly in
@@ -722,9 +699,6 @@ Modernizr.inputtypes.week
 
   ModernizrProto.atRule = atRule;
 
-  
-
-
   /**
    * contains checks to see if a string contains another string
    *
@@ -738,8 +712,6 @@ Modernizr.inputtypes.week
   function contains(str, substr) {
     return !!~('' + str).indexOf(substr);
   }
-
-  ;
 
   /**
    * getBody returns the body of a document, or an element that can stand in for
@@ -763,8 +735,6 @@ Modernizr.inputtypes.week
 
     return body;
   }
-
-  ;
 
   /**
    * injectElementWithStyles injects an element with style element and some CSS rules
@@ -835,10 +805,7 @@ Modernizr.inputtypes.week
     }
 
     return !!ret;
-
   }
-
-  ;
 
   /**
    * testStyles injects an element with style element and some CSS rules
@@ -897,8 +864,7 @@ Modernizr.inputtypes.week
    *
    */
 
-  var testStyles = ModernizrProto.testStyles = injectElementWithStyles;
-  
+  var testStyles = (ModernizrProto.testStyles = injectElementWithStyles);
 
   /**
    * fnBind is a super small [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) polyfill.
@@ -916,8 +882,6 @@ Modernizr.inputtypes.week
     };
   }
 
-  ;
-
   /**
    * testDOMProps is a generic DOM property test; if a browser supports
    *   a certain property, it won't return undefined for it.
@@ -927,7 +891,6 @@ Modernizr.inputtypes.week
 
     for (var i in props) {
       if (props[i] in obj) {
-
         // return the property name as a string
         if (elem === false) {
           return props[i];
@@ -948,8 +911,6 @@ Modernizr.inputtypes.week
     return false;
   }
 
-  ;
-
   /**
    * Create our "modernizr" element that we do most feature tests on.
    *
@@ -957,7 +918,7 @@ Modernizr.inputtypes.week
    */
 
   var modElem = {
-    elem : createElement('modernizr')
+    elem: createElement('modernizr'),
   };
 
   // Clean up this element
@@ -965,10 +926,8 @@ Modernizr.inputtypes.week
     delete modElem.elem;
   });
 
-  
-
   var mStyle = {
-    style : modElem.elem.style
+    style: modElem.elem.style,
   };
 
   // kill ref for gc, must happen before mod.elem is removed, so we unshift on to
@@ -976,8 +935,6 @@ Modernizr.inputtypes.week
   Modernizr._q.unshift(function() {
     delete mStyle.style;
   });
-
-  
 
   /**
    * domToCSS takes a camelCase string and converts it to kebab-case
@@ -990,12 +947,12 @@ Modernizr.inputtypes.week
    */
 
   function domToCSS(name) {
-    return name.replace(/([A-Z])/g, function(str, m1) {
-      return '-' + m1.toLowerCase();
-    }).replace(/^ms-/, '-ms-');
+    return name
+      .replace(/([A-Z])/g, function(str, m1) {
+        return '-' + m1.toLowerCase();
+      })
+      .replace(/^ms-/, '-ms-');
   }
-  ;
-
   /**
    * nativeTestProps allows for us to use native feature detection functionality if available.
    * some prefixed form, or false, in the case of an unsupported rule
@@ -1009,7 +966,7 @@ Modernizr.inputtypes.week
 
   // Accepts a list of property names and a single value
   // Returns `undefined` if native detection not available
-  function nativeTestProps (props, value) {
+  function nativeTestProps(props, value) {
     var i = props.length;
     // Start with the JS API: http://www.w3.org/TR/css3-conditional/#the-css-interface
     if ('CSS' in window && 'supports' in window.CSS) {
@@ -1020,23 +977,23 @@ Modernizr.inputtypes.week
         }
       }
       return false;
-    }
-    // Otherwise fall back to at-rule (for Opera 12.x)
-    else if ('CSSSupportsRule' in window) {
+    } else if ('CSSSupportsRule' in window) {
+      // Otherwise fall back to at-rule (for Opera 12.x)
       // Build a condition string for every prefixed variant
       var conditionText = [];
       while (i--) {
         conditionText.push('(' + domToCSS(props[i]) + ':' + value + ')');
       }
       conditionText = conditionText.join(' or ');
-      return injectElementWithStyles('@supports (' + conditionText + ') { #modernizr { position: absolute; } }', function(node) {
-        return getComputedStyle(node, null).position == 'absolute';
-      });
+      return injectElementWithStyles(
+        '@supports (' + conditionText + ') { #modernizr { position: absolute; } }',
+        function(node) {
+          return getComputedStyle(node, null).position == 'absolute';
+        },
+      );
     }
     return undefined;
   }
-  ;
-
   // testProps is a generic CSS / DOM property test.
 
   // In testing support for a given CSS property, it's legit to test:
@@ -1095,12 +1052,10 @@ Modernizr.inputtypes.week
       }
 
       if (mStyle.style[prop] !== undefined) {
-
         // If value to test has been passed in, do a set-and-check test.
         // 0 (integer) is a valid property value, so check that `value` isn't
         // undefined, rather than just checking it's truthy.
         if (!skipValueTest && !is(value, 'undefined')) {
-
           // Needs a try catch block because of old IE. This is slow, but will
           // be avoided in most cases because `skipValueTest` will be used.
           try {
@@ -1115,10 +1070,9 @@ Modernizr.inputtypes.week
             cleanElems();
             return prefixed == 'pfx' ? prop : true;
           }
-        }
-        // Otherwise just return true, or the property name if this is a
-        // `prefixed()` call
-        else {
+        } else {
+          // Otherwise just return true, or the property name if this is a
+          // `prefixed()` call
           cleanElems();
           return prefixed == 'pfx' ? prop : true;
         }
@@ -1127,8 +1081,6 @@ Modernizr.inputtypes.week
     cleanElems();
     return false;
   }
-
-  ;
 
   /**
    * testProp() investigates whether a given style property is recognized
@@ -1164,10 +1116,9 @@ Modernizr.inputtypes.week
    * ```
    */
 
-  var testProp = ModernizrProto.testProp = function(prop, value, useValue) {
+  var testProp = (ModernizrProto.testProp = function(prop, value, useValue) {
     return testProps([prop], undefined, value, useValue);
-  };
-  
+  });
 
   /**
    * testPropsAll tests a list of DOM properties we want to check against.
@@ -1176,9 +1127,8 @@ Modernizr.inputtypes.week
    * compatibility.
    */
   function testPropsAll(prop, prefixed, elem, value, skipValueTest) {
-
     var ucProp = prop.charAt(0).toUpperCase() + prop.slice(1),
-    props = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
+      props = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
 
     // did they call .prefixed('boxSizing') or are we just testing a prop?
     if (is(prefixed, 'string') || is(prefixed, 'undefined')) {
@@ -1186,7 +1136,7 @@ Modernizr.inputtypes.week
 
       // otherwise, they called .prefixed('requestAnimationFrame', window[, elem])
     } else {
-      props = (prop + ' ' + (domPrefixes).join(ucProp + ' ') + ucProp).split(' ');
+      props = (prop + ' ' + domPrefixes.join(ucProp + ' ') + ucProp).split(' ');
       return testDOMProps(props, prefixed, elem);
     }
   }
@@ -1197,8 +1147,6 @@ Modernizr.inputtypes.week
   // Note that the property names must be provided in the camelCase variant.
   // Modernizr.testAllProps('boxSizing')
   ModernizrProto.testAllProps = testPropsAll;
-
-  
 
   /**
    * prefixed returns the prefixed or nonprefixed property name variant of your input
@@ -1264,7 +1212,7 @@ Modernizr.inputtypes.week
    * If you want a similar lookup, but in kebab-case, you can use [prefixedCSS](#modernizr-prefixedcss).
    */
 
-  var prefixed = ModernizrProto.prefixed = function(prop, obj, elem) {
+  var prefixed = (ModernizrProto.prefixed = function(prop, obj, elem) {
     if (prop.indexOf('@') === 0) {
       return atRule(prop);
     }
@@ -1279,9 +1227,7 @@ Modernizr.inputtypes.week
       // Testing DOM property e.g. Modernizr.prefixed('requestAnimationFrame', window) // 'mozRequestAnimationFrame'
       return testPropsAll(prop, obj, elem);
     }
-  };
-
-  
+  });
 
   /**
    * testAllProps determines whether a given CSS property is supported in the browser
@@ -1320,12 +1266,12 @@ Modernizr.inputtypes.week
    * ```
    */
 
-  function testAllProps (prop, value, skipValueTest) {
+  function testAllProps(prop, value, skipValueTest) {
     return testPropsAll(prop, undefined, undefined, value, skipValueTest);
   }
   ModernizrProto.testAllProps = testAllProps;
-  
-/*!
+
+  /*!
 {
   "name": "Box Shadow",
   "property": "boxshadow",
@@ -1340,7 +1286,7 @@ Modernizr.inputtypes.week
 
   Modernizr.addTest('boxshadow', testAllProps('boxShadow', '1px 1px', true));
 
-/*!
+  /*!
 {
   "name": "CSS Transforms 3D",
   "property": "csstransforms3d",
@@ -1385,7 +1331,7 @@ Modernizr.inputtypes.week
     return ret;
   });
 
-/*!
+  /*!
 {
   "name": "Border Radius",
   "property": "borderradius",
@@ -1401,7 +1347,7 @@ Modernizr.inputtypes.week
 
   Modernizr.addTest('borderradius', testAllProps('borderRadius', '0px', true));
 
-/*!
+  /*!
 {
   "name": "CSS Transforms",
   "property": "csstransforms",
@@ -1413,11 +1359,13 @@ Modernizr.inputtypes.week
   Modernizr.addTest('csstransforms', function() {
     // Android < 3.0 is buggy, so we sniff and blacklist
     // http://git.io/hHzL7w
-    return navigator.userAgent.indexOf('Android 2.') === -1 &&
-           testAllProps('transform', 'scale(1)', true);
+    return (
+      navigator.userAgent.indexOf('Android 2.') === -1 &&
+      testAllProps('transform', 'scale(1)', true)
+    );
   });
 
-/*!
+  /*!
 {
   "name": "CSS Transitions",
   "property": "csstransitions",
@@ -1427,7 +1375,6 @@ Modernizr.inputtypes.week
 !*/
 
   Modernizr.addTest('csstransitions', testAllProps('transition', 'all', true));
-
 
   // Run each test
   testRunner();
@@ -1445,8 +1392,4 @@ Modernizr.inputtypes.week
 
   // Leak Modernizr namespace
   return Modernizr;
-
-
-;
-
 })(window, window.document);

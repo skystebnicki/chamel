@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import KeyLine from './utils/KeyLine';
 import Paper from './Paper/Paper';
@@ -11,12 +11,11 @@ import ThemeService from './styles/ChamelThemeService';
  * Component for displaying dropdowns from an icon
  */
 class DropDownIcon extends Component {
-
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -28,7 +27,7 @@ class DropDownIcon extends Component {
     this.state = {
       open: false,
       anchorEl: null,
-      selectedIndex: props.selectedIndex || 0
+      selectedIndex: props.selectedIndex || 0,
     };
   }
 
@@ -41,12 +40,12 @@ class DropDownIcon extends Component {
 
     let classes = theme['chamel-drop-down-icon'];
     if (this.state.open) {
-      classes += " " + theme['chamel-open'];
+      classes += ' ' + theme['chamel-open'];
     }
 
     let icon;
     if (this.props.iconClassName) {
-      icon = (<FontIcon className={this.props.iconClassName}/>);
+      icon = <FontIcon className={this.props.iconClassName} />;
     }
 
     return (
@@ -58,7 +57,7 @@ class DropDownIcon extends Component {
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
           onRequestClose={this._handleRequestClose}
           pushToLeft={this.props.pushToLeft}
           relative={true}
@@ -66,35 +65,35 @@ class DropDownIcon extends Component {
           <Menu
             ref="menuItems"
             menuItems={this.props.menuItems}
-            onItemClick={this._onMenuItemClick}/>
+            onItemClick={this._onMenuItemClick}
+          />
         </Popover>
       </div>
     );
   }
 
-  _onControlClick = (e) => {
+  _onControlClick = e => {
     e.preventDefault();
 
     this.setState({
       open: this.state.open ? false : true,
-      anchorEl: e.currentTarget
+      anchorEl: e.currentTarget,
     });
-  }
+  };
 
   _onMenuItemClick = (e, key, payload) => {
     if (this.props.onChange) this.props.onChange(e, key, payload);
 
     if (this.props.closeOnMenuItemClick) {
-      this.setState({open: false});
+      this.setState({ open: false });
     }
-  }
+  };
 
-  _handleRequestClose = (e) => {
+  _handleRequestClose = e => {
     this.setState({
       open: false,
     });
-  }
-
+  };
 }
 
 /**
@@ -106,7 +105,7 @@ DropDownIcon.propTypes = {
   onChange: PropTypes.func,
   menuItems: PropTypes.array.isRequired,
   closeOnMenuItemClick: PropTypes.bool,
-  pushToLeft: PropTypes.bool
+  pushToLeft: PropTypes.bool,
 };
 
 /**
@@ -115,7 +114,7 @@ DropDownIcon.propTypes = {
 DropDownIcon.defaultProps = {
   autoWidth: true,
   closeOnMenuItemClick: true,
-  pushToLeft: false
+  pushToLeft: false,
 };
 
 export default DropDownIcon;

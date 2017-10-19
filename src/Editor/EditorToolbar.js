@@ -15,21 +15,21 @@ import WebIcon from '../icons/font/WebIcon';
 
 // Block Types that are used in the editor and displayed in the toolbar
 const BLOCK_TYPES = [
-  {label: 'H1', style: 'header-one', class: TitleIcon, props: {headerType: 1}},
-  {label: 'H2', style: 'header-two', class: TitleIcon, props: {headerType: 2}},
-  {label: 'H3', style: 'header-three', class: TitleIcon, props: {headerType: 3}},
-  {label: 'H4', style: 'header-four', class: TitleIcon, props: {headerType: 4}},
-  {label: 'H5', style: 'header-five', class: TitleIcon, props: {headerType: 5}},
-  {label: 'H6', style: 'header-six', class: TitleIcon, props: {headerType: 6}},
-  {label: 'OL', style: 'ordered-list-item', class: ListBulletedIcon, props: {}},
-  {label: 'UL', style: 'unordered-list-item', class: ListNumberedIcon, props: {}}
+  { label: 'H1', style: 'header-one', class: TitleIcon, props: { headerType: 1 } },
+  { label: 'H2', style: 'header-two', class: TitleIcon, props: { headerType: 2 } },
+  { label: 'H3', style: 'header-three', class: TitleIcon, props: { headerType: 3 } },
+  { label: 'H4', style: 'header-four', class: TitleIcon, props: { headerType: 4 } },
+  { label: 'H5', style: 'header-five', class: TitleIcon, props: { headerType: 5 } },
+  { label: 'H6', style: 'header-six', class: TitleIcon, props: { headerType: 6 } },
+  { label: 'OL', style: 'ordered-list-item', class: ListBulletedIcon, props: {} },
+  { label: 'UL', style: 'unordered-list-item', class: ListNumberedIcon, props: {} },
 ];
 
 // Inline Styles that are used in the editor and displayed in the toolbar
 const INLINE_STYLES = [
-  {label: 'Bold', style: 'BOLD', class: BoldIcon, props: {}},
-  {label: 'Italic', style: 'ITALIC', class: ItalicIcon, props: {}},
-  {label: 'Underline', style: 'UNDERLINE', class: UnderlinedIcon, props: {}}
+  { label: 'Bold', style: 'BOLD', class: BoldIcon, props: {} },
+  { label: 'Italic', style: 'ITALIC', class: ItalicIcon, props: {} },
+  { label: 'Underline', style: 'UNDERLINE', class: UnderlinedIcon, props: {} },
 ];
 
 // Types of content views
@@ -42,7 +42,6 @@ const SOURCE_VIEW = 'source';
  */
 class EditorToolbar extends Component {
   static propTypes = {
-
     /**
      * Determines which toolbar should we display for current type of content view
      *
@@ -62,8 +61,8 @@ class EditorToolbar extends Component {
      *
      * @var {func}
      */
-    onContentViewToggle: PropTypes.func
-  }
+    onContentViewToggle: PropTypes.func,
+  };
 
   /**
    * Class constructor
@@ -71,57 +70,66 @@ class EditorToolbar extends Component {
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
-
     // Call parent constructor
     super(props);
   }
 
   render() {
-
     let displayBlockStyles = [];
     let displayInlineStyles = [];
     let displayConteViewType = [];
 
     switch (this.props.contentViewType) {
       case HTML_VIEW:
-
         // Loop thru the block types and setup the style button
         BLOCK_TYPES.map((blockType, idx) => {
-
           displayBlockStyles.push(
-            <IconButton key={"block" + idx} onTap={(e) => { this.props.onStyleToggle("block", blockType.style); }}>
-              <blockType.class
-                {...blockType.props}
-              />
-            </IconButton>
+            <IconButton
+              key={'block' + idx}
+              onTap={e => {
+                this.props.onStyleToggle('block', blockType.style);
+              }}
+            >
+              <blockType.class {...blockType.props} />
+            </IconButton>,
           );
         });
 
         // Loop thru the inline styles and setup the style button
         INLINE_STYLES.map((inlineType, idx) => {
-
           displayInlineStyles.push(
-            <IconButton key={"inline" + idx} onTap={(e) => { this.props.onStyleToggle("inline", inlineType.style); }}>
-              <inlineType.class
-                {...inlineType.props}
-              />
-            </IconButton>
+            <IconButton
+              key={'inline' + idx}
+              onTap={e => {
+                this.props.onStyleToggle('inline', inlineType.style);
+              }}
+            >
+              <inlineType.class {...inlineType.props} />
+            </IconButton>,
           );
         });
 
         displayConteViewType = (
-          <IconButton onTap={(e) => { this.props.onContentViewToggle(SOURCE_VIEW); }}>
+          <IconButton
+            onTap={e => {
+              this.props.onContentViewToggle(SOURCE_VIEW);
+            }}
+          >
             <CodeIcon />
           </IconButton>
-        )
+        );
         break;
 
       case SOURCE_VIEW:
         displayConteViewType = (
-          <IconButton onTap={(e) => { this.props.onContentViewToggle(HTML_VIEW); }}>
+          <IconButton
+            onTap={e => {
+              this.props.onContentViewToggle(HTML_VIEW);
+            }}
+          >
             <WebIcon />
           </IconButton>
-        )
+        );
         break;
     }
 

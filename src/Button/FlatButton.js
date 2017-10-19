@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 
@@ -6,13 +6,14 @@ import Button from './Button';
  * Functional component for any flat button
  *
  * @param props
- * @param context
  * @returns {ReactDOM}
  * @constructor
  */
-const FlatButton = (props, context) => {
+const FlatButton = props => {
   return (
-    <Button type={'flat'} {...props}>{props.children}</Button>
+    <Button type={'flat'} {...props}>
+      {props.children}
+    </Button>
   );
 };
 
@@ -24,10 +25,7 @@ FlatButton.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   href: PropTypes.string,
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   inverse: PropTypes.bool,
   label: PropTypes.string,
   onMouseLeave: PropTypes.func,
@@ -36,22 +34,21 @@ FlatButton.propTypes = {
   /**
    * Alias for onTap for backwards compatibility
    */
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 /**
  * Set property defaults
  */
 FlatButton.defaultProps = {
-  className: ''
+  className: '',
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 FlatButton.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
-
 
 export default FlatButton;

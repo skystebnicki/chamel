@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-var Chamel = require("chamel/main");
+var Chamel = require('chamel/main');
 var Dialog = Chamel.Dialog;
 var FlatButton = Chamel.FlatButton;
 var RaisedButton = Chamel.RaisedButton;
 var Toggle = Chamel.Toggle;
-var CodeExample = require("../CodeExample");
+var CodeExample = require('../CodeExample');
 import Page from 'chamel/Dialog/Page';
 
 class DialogPage extends Component {
-
   /**
    * Class constructor
    *
@@ -19,154 +18,146 @@ class DialogPage extends Component {
     super(props);
 
     this.state = {
-        modal: false
-    }
+      modal: false,
+    };
   }
 
-    render() {
+  render() {
+    var code = '';
 
-        var code = '';
+    var componentInfo = [];
 
-        var componentInfo = [];
+    var standardActions = [{ text: 'Cancel' }];
 
-        var standardActions = [
-            { text: 'Cancel' }
-        ];
+    var customActions = [
+      <FlatButton key={1} label="Cancel" secondary onClick={this._handleCustomDialogCancel} />,
+      <FlatButton key={2} label="Submit" primary onClick={this._handleCustomDialogSubmit}>
+        {'Submit'}
+      </FlatButton>,
+    ];
 
-        var customActions = [
-            <FlatButton
-                key={1}
-                label="Cancel"
-                secondary
-                onClick={this._handleCustomDialogCancel} />,
-            <FlatButton
-                key={2}
-                label="Submit"
-                primary
-                onClick={this._handleCustomDialogSubmit}>
-              {"Submit"}
-            </FlatButton>
-        ];
+    return (
+      <CodeExample name="Dialog" code={code} componentInfo={componentInfo}>
+        <RaisedButton onTap={this.handleStandardDialogTouchTap}>{'Standard Actions'}</RaisedButton>
+        <br />
+        <br />
+        <RaisedButton onTap={this.handleCustomDialogTouchTap}>{'Custom Actions'}</RaisedButton>
+        <br />
+        <br />
+        <RaisedButton onTap={this.handleScrollableialogTouchTap}>
+          {'Scrollable Actions'}
+        </RaisedButton>
+        <br />
+        <br />
+        <RaisedButton onTap={this.handleNestedDialogTouchTap}>{'Nested Dialogs'}</RaisedButton>
+        <br />
+        <br />
+        <RaisedButton onTap={this.handleFullPageDialogTouchTap}>{'Full Page'}</RaisedButton>
 
-        return (
-            <CodeExample
-                name="Dialog"
-                code={code}
-                componentInfo={componentInfo}>
+        <Dialog
+          ref="standardDialog"
+          title="Dialog With Standard Actions"
+          actions={standardActions}
+          actionFocus="submit"
+          modal={this.state.modal}
+        >
+          The actions in this window are created from the json that's passed in.
+        </Dialog>
 
-                <RaisedButton onTap={this.handleStandardDialogTouchTap}>{"Standard Actions"}</RaisedButton>
-                <br/><br/>
-                <RaisedButton onTap={this.handleCustomDialogTouchTap}>{"Custom Actions"}</RaisedButton>
-                <br/><br/>
-                <RaisedButton onTap={this.handleScrollableialogTouchTap}>{"Scrollable Actions"}</RaisedButton>
-                <br/><br/>
-                <RaisedButton onTap={this.handleNestedDialogTouchTap}>{"Nested Dialogs"}</RaisedButton>
-              <br/><br/>
-              <RaisedButton onTap={this.handleFullPageDialogTouchTap}>{"Full Page"}</RaisedButton>
+        <Dialog
+          ref="customDialog"
+          title="Dialog With Custom Actions"
+          actions={customActions}
+          modal={this.state.modal}
+        >
+          The actions in this window were passed in as an array of react objects.
+        </Dialog>
 
-                <Dialog
-                    ref="standardDialog"
-                    title="Dialog With Standard Actions"
-                    actions={standardActions}
-                    actionFocus="submit"
-                    modal={this.state.modal}>
-                    The actions in this window are created from the json that's passed in.
-                </Dialog>
+        <Dialog
+          ref="scrollableDialog"
+          title="Dialog With Scrollable Content"
+          actions={standardActions}
+          autoDetectWindowHeight={true}
+          autoScrollBodyContent={true}
+        >
+          <div style={{ height: '2000px' }}>Really long content</div>
+        </Dialog>
 
-                <Dialog
-                    ref="customDialog"
-                    title="Dialog With Custom Actions"
-                    actions={customActions}
-                    modal={this.state.modal}>
-                    The actions in this window were passed in as an array of react objects.
-                </Dialog>
+        <Dialog
+          ref="nestedDialog"
+          title="Dialog With a Child"
+          actions={standardActions}
+          modal={this.state.modal}
+        >
+          <Dialog
+            ref="nestedChildDialog"
+            title="Child Dialog"
+            actions={standardActions}
+            modal={this.state.modal}
+          >
+            Child Content
+          </Dialog>
+          <RaisedButton label="Show Child" onClick={this.handleNestedChildDialogTouchTap} />
+        </Dialog>
+        <Page
+          ref="fullPageDialog"
+          title="Fill the entire page"
+          autoDetectWindowHeight={true}
+          autoScrollBodyContent={true}
+          fullPage={true}
+        >
+          <div style={{ height: '20000px' }}>
+            {'Really long content'}
+            <RaisedButton label="Close" onClick={this.handleFullPageDialogClose} />
+          </div>
+        </Page>
+      </CodeExample>
+    );
+  }
 
-                <Dialog 
-                    ref="scrollableDialog"
-                    title="Dialog With Scrollable Content" 
-                    actions={standardActions}
-                    autoDetectWindowHeight={true} 
-                    autoScrollBodyContent={true}>
-                    <div style={{height: '2000px'}}>Really long content</div>
-                </Dialog>
+  _handleCustomDialogCancel = () => {
+    this.refs.customDialog.dismiss();
+  };
 
-                 <Dialog
-                    ref="nestedDialog"
-                    title="Dialog With a Child"
-                    actions={standardActions}
-                    modal={this.state.modal}>
-                    <Dialog
-                        ref="nestedChildDialog"
-                        title="Child Dialog"
-                        actions={standardActions}
-                        modal={this.state.modal}
-                    >
-                        Child Content
-                    </Dialog>
-                    <RaisedButton label="Show Child" onClick={this.handleNestedChildDialogTouchTap} />
-                </Dialog>
-              <Page
-                ref="fullPageDialog"
-                title="Fill the entire page"
-                autoDetectWindowHeight={true}
-                autoScrollBodyContent={true}
-                fullPage={true}
-              >
-                <div style={{height: '20000px'}}>
-                  {"Really long content"}
-                  <RaisedButton label="Close" onClick={this.handleFullPageDialogClose} />
-                </div>
-              </Page>
+  _handleCustomDialogSubmit = () => {
+    this.refs.customDialog.dismiss();
+  };
 
-            </CodeExample>
-        );
+  _handleScrollableDialogSubmit = () => {
+    this.refs.scrollableDialog.dismiss();
+  };
 
-    }
+  _handleToggleChange = (e, toggled) => {
+    this.setState({ modal: toggled });
+  };
 
-    _handleCustomDialogCancel = () => {
-        this.refs.customDialog.dismiss();
-    }
+  handleCustomDialogTouchTap = () => {
+    this.refs.customDialog.show();
+  };
 
-    _handleCustomDialogSubmit = () => {
-        this.refs.customDialog.dismiss();
-    }
+  handleStandardDialogTouchTap = () => {
+    this.refs.standardDialog.show();
+  };
 
-    _handleScrollableDialogSubmit = () => {
-        this.refs.scrollableDialog.dismiss();
-    }
+  handleScrollableialogTouchTap = () => {
+    this.refs.scrollableDialog.show();
+  };
 
-    _handleToggleChange = (e, toggled) => {
-        this.setState({modal: toggled});
-    }
+  handleNestedDialogTouchTap = () => {
+    this.refs.nestedDialog.show();
+  };
 
-    handleCustomDialogTouchTap = () => {
-        this.refs.customDialog.show();
-    }
-
-    handleStandardDialogTouchTap = () => {
-        this.refs.standardDialog.show();
-    }
-
-    handleScrollableialogTouchTap = () => {
-        this.refs.scrollableDialog.show();
-    }
-
-    handleNestedDialogTouchTap = () => {
-        this.refs.nestedDialog.show();
-    }
-
-    handleNestedChildDialogTouchTap = () => {
-        this.refs.nestedChildDialog.show();
-    }
+  handleNestedChildDialogTouchTap = () => {
+    this.refs.nestedChildDialog.show();
+  };
 
   handleFullPageDialogTouchTap = () => {
     this.refs.fullPageDialog.show();
-  }
+  };
 
   handleFullPageDialogClose = () => {
     this.refs.fullPageDialog.dismiss();
-  }
-
+  };
 }
 
 module.exports = DialogPage;

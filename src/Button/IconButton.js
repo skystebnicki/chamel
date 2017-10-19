@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import FontIcon from '../FontIcon';
@@ -7,10 +7,9 @@ import FontIcon from '../FontIcon';
  * Functional component for any icon button
  *
  * @param props
- * @param context
  * @returns {ReactDOM}
  */
-const IconButton = (props, context) => {
+const IconButton = props => {
   const children =
     props.iconClassName && !props.children ? (
       <FontIcon className={props.iconClassName} />
