@@ -9,16 +9,19 @@ import FontIcon from '../FontIcon';
  * @param props
  * @param context
  * @returns {ReactDOM}
- * @constructor
  */
 const IconButton = (props, context) => {
-
-  const children = (props.iconClassName && !props.children) ? (
-    <FontIcon className={props.iconClassName}/>
-  ) : props.children;
+  const children =
+    props.iconClassName && !props.children ? (
+      <FontIcon className={props.iconClassName} />
+    ) : (
+      props.children
+    );
 
   return (
-    <Button type={'icon'} {...props}>{children}</Button>
+    <Button type={'icon'} {...props}>
+      {children}
+    </Button>
   );
 };
 
@@ -30,30 +33,27 @@ IconButton.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   href: PropTypes.string,
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   inverse: PropTypes.bool,
   label: PropTypes.string,
   onMouseLeave: PropTypes.func,
   onMouseUp: PropTypes.func,
   onTap: PropTypes.func,
-  iconClassName: PropTypes.string
+  iconClassName: PropTypes.string,
 };
 
 /**
  * Set property defaults
  */
 IconButton.defaultProps = {
-  className: ''
+  className: '',
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 IconButton.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default IconButton;
