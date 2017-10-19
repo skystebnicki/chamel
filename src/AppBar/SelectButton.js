@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../Picker/SelectButton';
+import SelectButton from '../Picker/SelectButton';
 import ThemeService from '../styles/ChamelThemeService';
 
 /**
@@ -19,10 +19,12 @@ const AppBarSelectButton = (props, context) => {
   if (className) {
     className += " ";
   }
-  className += theme.appBarIconButton;
+  className += theme.appBarSelectButton;
 
   return (
-    <IconButton className={className} {...other}>{children}</IconButton>
+    <SelectButton className={className} {...other}>
+      {children}
+    </SelectButton>
   );
 };
 

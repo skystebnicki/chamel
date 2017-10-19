@@ -54,14 +54,12 @@ class SelectButton extends Component {
     let theme = (this.context.chamelTheme && this.context.chamelTheme.picker)
       ? this.context.chamelTheme.picker : ThemeService.defaultTheme.picker;
 
-    let icon = (typeof this.props.icon === 'string') ?
-      (<FontIcon className={this.props.icon}/>) : this.props.icon;
-
     // Use default dropdown icon
-    if (!icon && this.props.children) {
-      icon = this.props.children;
-    } else {
-      icon = <DropDownArrow />;
+    let icon = <DropDownArrow />;
+
+    if (this.props.icon) {
+      icon = (typeof this.props.icon === 'string') ?
+        (<FontIcon className={this.props.icon}/>) : this.props.icon
     }
 
     return (
@@ -83,8 +81,9 @@ class SelectButton extends Component {
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            onItemClick={this._onMenuItemClick}
-          />
+            onItemClick={this._onMenuItemClick}>
+            {this.props.children}
+          </Menu>
         </Popover>
       </div>
     );
@@ -170,7 +169,7 @@ SelectButton.propTypes = {
     PropTypes.string,
     PropTypes.element
   ]),
-  menuItems: PropTypes.array.isRequired,
+  menuItems: PropTypes.array,
 
   /**
    * Optional additional class for the icon button

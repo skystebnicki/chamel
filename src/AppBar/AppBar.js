@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import Paper from '../Paper/Paper'
 import IconButton from '../Button/IconButton';
+import AppBarRightToolbar from './AppBarRightToolbar';
 import Dom from '../utils/Dom';
 import Events from '../utils/Events';
 
@@ -102,10 +103,10 @@ class AppBar extends Component {
     // Set the left elements
     if (this.props.iconElementLeft) {
       // Add any appBar custom styles to the icon
-      let iconElementLeft = this.props.iconElementLeft; 
+      let iconElementLeft = this.props.iconElementLeft;
       /*this._addAppBarStyleToElements(
-        this.props.iconElementLeft, theme
-      );*/
+       this.props.iconElementLeft, theme
+       );*/
 
       menuElementLeft = (
         <div className={theme.appBarLeft}>
@@ -121,11 +122,11 @@ class AppBar extends Component {
     if (rightElements) {
       // Add any appBar custom styles to the icon
       /*rightElements = this._addAppBarStyleToElements(
-        rightElements, theme
-      );*/
+       rightElements, theme
+       );*/
 
       menuElementRight = (
-        <div className={theme.appBarRight}>{rightElements}</div>
+        <AppBarRightToolbar>{rightElements}</AppBarRightToolbar>
       )
     }
 

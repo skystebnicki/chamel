@@ -16,11 +16,11 @@
   display: -webkit-flex; /* Safari */
   display: flex;
   -webkit-flex-direction: row; /* Safari */
-  flex-direction:         row;
+  flex-direction: row;
   -webkit-flex-wrap: nowrap; /* Safari */
-  flex-wrap:         nowrap;
+  flex-wrap: nowrap;
   -webkit-align-items: center; /* Safari */
-  align-items:         center;
+  align-items: center;
 
   @media #{$device-medium} {
     height: $app-bar-height-medium;
@@ -53,6 +53,7 @@
 }
 
 .appBarRight {
+  overflow: hidden;
   margin-right: ($icon-size / 2) * -1;
   flex-basis: content;
 
@@ -77,12 +78,18 @@
   }
 
   @media #{$device-large} {
-    margin-right:  ($gutter / 4);
+    margin-right: ($gutter / 4);
   }
-
 }
 
-.appBarIconButton  {
+.appBarSelectButtonCon .appBarIconButton {
+  * {
+    fill: $body-text-color !important;
+    color: $body-text-color !important;
+  }
+}
+
+.appBarIconButton {
   background-color: transparent;
   * {
     fill: $app-bar-text-color;
