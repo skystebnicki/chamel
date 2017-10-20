@@ -89,6 +89,13 @@
   }
 }
 
+.appBarSelectButtonCon .menuItem {
+  * {
+    fill: $body-text-color;
+    color: $body-text-color;
+  }
+}
+
 .appBarIconButton {
   background-color: transparent;
   * {

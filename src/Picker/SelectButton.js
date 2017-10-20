@@ -62,8 +62,21 @@ class SelectButton extends Component {
         (<FontIcon className={this.props.icon}/>) : this.props.icon
     }
 
+    let style = null;
+    if (this.state.open) {
+      style = {
+        position: "fixed"
+      }
+    }
+
+    let { className } = this.props;
+    if (className) {
+      className += " ";
+    }
+    className += theme.selectButtonCon;
+
     return (
-      <div className={theme.selectButtonCon}>
+      <div className={className} style={style}>
         <div style={{align: "top"}}>
           <IconButton
             className={this.props.className}

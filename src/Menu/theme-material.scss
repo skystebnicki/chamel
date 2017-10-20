@@ -62,6 +62,8 @@
   padding-left: $menu-item-padding;
   padding-right: $menu-item-padding;
   background-color: rgba($menu-item-hover-color, 0);
+  fill: $body-text-color;
+  color: $body-text-color;
 
   &:hover {
     &:not(.is-disabled) {

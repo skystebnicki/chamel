@@ -19,7 +19,7 @@ const AppBarSelectButton = (props, context) => {
   if (className) {
     className += " ";
   }
-  className += theme.appBarSelectButton;
+  className += theme.appBarSelectButtonCon;
 
   return (
     <SelectButton className={className} {...other}>
