@@ -125,9 +125,7 @@ class AppBarRightToolbar extends Component {
       iconButtons = (
         <AppBarSelectButton
           icon={selectButtonIcon}>
-          <div className={theme.appBarSelectButtonCon}>
-            {iconButtons}
-          </div>
+          {iconButtons}
         </AppBarSelectButton>
       )
     }
