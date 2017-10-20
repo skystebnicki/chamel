@@ -13,18 +13,24 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const RadioButton = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.picker)
-    ? context.chamelTheme.picker : ThemeService.defaultTheme.picker;
+  let theme =
+    context.chamelTheme && context.chamelTheme.picker
+      ? context.chamelTheme.picker
+      : ThemeService.defaultTheme.picker;
 
   return (
     <label className={theme.radioButton}>
       <input
-        type={"radio"}
+        type={'radio'}
         className={theme.radioButtonInput}
         name={props.name}
         value={props.value}
         checked={props.checked}
-        onChange={(e) => { if (props.onSelect) {props.onSelect(props.value)}}}
+        onChange={e => {
+          if (props.onSelect) {
+            props.onSelect(props.value);
+          }
+        }}
       />
       {props.label}
     </label>
@@ -49,7 +55,7 @@ RadioButton.propTypes = {
   /**
    * Radio group name
    */
-  name: PropTypes.string
+  name: PropTypes.string,
 };
 
 /**
@@ -57,14 +63,14 @@ RadioButton.propTypes = {
  */
 RadioButton.defaultProps = {
   className: '',
-  checked: false
+  checked: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 RadioButton.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default RadioButton;

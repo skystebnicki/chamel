@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
@@ -15,7 +15,6 @@ import classNames from 'classnames';
  * Nested Menu Component
  ***********************/
 class NestedMenuItem extends Component {
-
   /**
    * Class constructor
    *
@@ -26,8 +25,8 @@ class NestedMenuItem extends Component {
     super(props);
 
     this.state = {
-      open: false
-    }
+      open: false,
+    };
   }
 
   componentDidMount() {
@@ -41,13 +40,21 @@ class NestedMenuItem extends Component {
   render() {
     const classes = this.getClasses('chamel-nested-menu-item', {
       'chamel-open': this.state.open,
-      'chamel-is-disabled': this.props.disabled
+      'chamel-is-disabled': this.props.disabled,
     });
 
     return (
-      <div className={classes} onMouseEnter={this._openNestedMenu} onMouseLeave={this._closeNestedMenu}>
-        <MenuItem index={this.props.index} disabled={this.props.disabled}
-                  iconRightClassName="chamel-icon-custom-arrow-drop-right" onClick={this._onParentItemClick}>
+      <div
+        className={classes}
+        onMouseEnter={this._openNestedMenu}
+        onMouseLeave={this._closeNestedMenu}
+      >
+        <MenuItem
+          index={this.props.index}
+          disabled={this.props.disabled}
+          iconRightClassName="chamel-icon-custom-arrow-drop-right"
+          onClick={this._onParentItemClick}
+        >
           {this.props.text}
         </MenuItem>
         <Menu
@@ -77,15 +84,15 @@ class NestedMenuItem extends Component {
   };
 
   _openNestedMen = () => {
-    if (!this.props.disabled) this.setState({open: true});
+    if (!this.props.disabled) this.setState({ open: true });
   };
 
   _closeNestedMenu = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   _toggleNestedMenu = () => {
-    if (!this.props.disabled) this.setState({open: !this.state.open});
+    if (!this.props.disabled) this.setState({ open: !this.state.open });
   };
 
   _onParentItemClick = () => {
@@ -122,11 +129,11 @@ class NestedMenuItem extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -142,13 +149,13 @@ NestedMenuItem.propTypes = {
   zDepth: PropTypes.number,
   disabled: PropTypes.bool,
   onItemClick: PropTypes.func,
-  onItemTap: PropTypes.func
+  onItemTap: PropTypes.func,
 };
 
 NestedMenuItem.defaultProps = {
   disabled: false,
   zDepth: 1,
-  index: -1
+  index: -1,
 };
 
 export default NestedMenuItem;

@@ -30,20 +30,20 @@ class AppBarRightToolbar extends Component {
      * Child elements (text and icon)
      */
     children: PropTypes.node,
-  }
+  };
 
   /**
    * Set property defaults
    */
   static defaultProps = {
-    className: null
+    className: null,
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -56,8 +56,8 @@ class AppBarRightToolbar extends Component {
     super(props);
 
     this.state = {
-      useSelectButton: false
-    }
+      useSelectButton: false,
+    };
   }
 
   componentDidMount() {
@@ -66,20 +66,21 @@ class AppBarRightToolbar extends Component {
 
     // Check if the scrollable width of the div is bigger than the actual width
     if (domAppBarRight.scrollWidth > offset.width) {
-
       // If so, then we need to set the state so it will use the SelectButton to display the icons
-      this.setState({useSelectButton: true});
+      this.setState({ useSelectButton: true });
     }
   }
 
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.appBar)
-      ? this.context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.appBar
+        ? this.context.chamelTheme.appBar
+        : ThemeService.defaultTheme.appBar;
 
     let classes = theme.appBarRight;
     if (this.props.className) {
-      classes += " " + this.props.className;
+      classes += ' ' + this.props.className;
     }
 
     // Primary Icon will be always displayed and will not be included in the SelectButton
@@ -88,18 +89,12 @@ class AppBarRightToolbar extends Component {
     let iconButtons = [];
 
     for (let idx in this.props.children) {
-
       let currentIcon = this.props.children[idx];
       const isPrimaryIcon = currentIcon.props.isPrimary || false;
 
       // If the currentIcon is not encapsulated with AppBarIconButton, then we need to wrap it with <AppBarIconButton>
-      if (currentIcon.type.name !== "AppBarIconButton" || currentIcon.type.name !== "IconButton") {
-        currentIcon = (
-          <AppBarIconButton
-            key={idx}>
-            {currentIcon}
-          </AppBarIconButton>
-        );
+      if (currentIcon.type.name !== 'AppBarIconButton' || currentIcon.type.name !== 'IconButton') {
+        currentIcon = <AppBarIconButton key={idx}>{currentIcon}</AppBarIconButton>;
       }
 
       // If we are dealing with primary icon and we dont have one, then we need to display it separately
@@ -114,29 +109,22 @@ class AppBarRightToolbar extends Component {
     // We only need to use the select button if we are dealing with 2 or more icon buttons
     let divStyle = null;
     if (this.state.useSelectButton && iconButtons.length > minIconCountForSelectButton) {
-
       const selectButtonIcon = (
         <AppBarIconButton>
           <DropDownArrow />
         </AppBarIconButton>
-      )
+      );
 
-      divStyle = {overflow: "unset"};
+      divStyle = { overflow: 'unset' };
       iconButtons = (
-        <AppBarSelectButton
-          icon={selectButtonIcon}>
-          <div className={theme.appBarSelectButtonCon}>
-            {iconButtons}
-          </div>
+        <AppBarSelectButton icon={selectButtonIcon}>
+          <div className={theme.appBarSelectButtonCon}>{iconButtons}</div>
         </AppBarSelectButton>
-      )
+      );
     }
 
     return (
-      <div
-        ref={"appBarRightContainer"}
-        style={divStyle}
-        className={classes}>
+      <div ref={'appBarRightContainer'} style={divStyle} className={classes}>
         {primaryIconButton}
         {iconButtons}
       </div>

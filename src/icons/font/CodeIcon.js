@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const CodeIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconCode}>{"code"}</FontIcon>
+    <FontIcon {...props} className={theme.iconCode}>
+      {'code'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const CodeIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 CodeIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default CodeIcon;

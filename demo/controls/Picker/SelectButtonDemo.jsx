@@ -2,7 +2,6 @@ import React from 'react';
 import SelectButton from 'chamel/Picker/SelectButton';
 
 class SelectButtonDemo extends React.Component {
-
   /**
    * Class constructor
    *
@@ -13,12 +12,11 @@ class SelectButtonDemo extends React.Component {
     super(props);
 
     this.state = {
-      value: "2"
-    }
+      value: '2',
+    };
   }
 
-  render () {
-
+  render() {
     const menuItems = [
       { payload: '1', text: 'Never' },
       { payload: '2', text: 'Every Night' },
@@ -26,7 +24,7 @@ class SelectButtonDemo extends React.Component {
       { payload: '4', text: 'Weekends' },
       { payload: '5', text: 'Weekly' },
     ];
-    
+
     return (
       <div>
         <SelectButton menuItems={menuItems} />
@@ -34,9 +32,9 @@ class SelectButtonDemo extends React.Component {
     );
   }
 
-  _handleChange = (value) => {
-    this.setState({value: value});
-  }
-};
+  _handleChange = value => {
+    this.setState({ value: value });
+  };
+}
 
 export default SelectButtonDemo;

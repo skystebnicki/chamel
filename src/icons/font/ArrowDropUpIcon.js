@@ -4,11 +4,15 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 const ArrowDropUpIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowDropUp}>{"arrow_drop_up"}</FontIcon>
+    <FontIcon {...props} className={theme.iconArrowDropUp}>
+      {'arrow_drop_up'}
+    </FontIcon>
   );
 };
 
@@ -16,7 +20,7 @@ const ArrowDropUpIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 ArrowDropUpIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ArrowDropUpIcon;

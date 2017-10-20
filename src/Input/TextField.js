@@ -12,7 +12,6 @@ import ThemeService from '../styles/ChamelThemeService';
  * Plain text input field
  */
 class TextField extends Component {
-
   /**
    * Set accepted properties
    */
@@ -127,7 +126,7 @@ class TextField extends Component {
      * Callback that can be optionally called any time a user selects
      * an entiry from the autocomplete dropdown
      */
-    autoCompleteSelected: PropTypes.func
+    autoCompleteSelected: PropTypes.func,
   };
 
   /**
@@ -139,14 +138,14 @@ class TextField extends Component {
     autoComplete: false,
     autoCompleteData: null,
     autocompleteTrigger: ['@'],
-    autocompleteDelimiter: ''
+    autocompleteDelimiter: '',
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -163,11 +162,13 @@ class TextField extends Component {
       keyPressedValue: null,
       caretPos: 0,
       errorText: this.props.errorText,
-      hasValue: this.props.value || this.props.defaultValue ||
-      (this.props.valueLink && this.props.valueLink.value),
+      hasValue:
+        this.props.value ||
+        this.props.defaultValue ||
+        (this.props.valueLink && this.props.valueLink.value),
       componentIsMounted: false,
-      autoFocus: this.props.autoFocus
-    }
+      autoFocus: this.props.autoFocus,
+    };
   }
 
   /**
@@ -209,25 +210,25 @@ class TextField extends Component {
     if (newState) this.setState(newState);
   }
 
-  componentDidMount () {
-    this.setState({componentIsMounted: true});
+  componentDidMount() {
+    this.setState({ componentIsMounted: true });
 
     if (this.props.multiLine) {
       this.handleAutoresize();
     }
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     // resize the textarea, if nessesary
     if (this.props.multiLine) this.handleAutoresize();
 
     if (this.state.autoFocus) {
-        this.refs.input.focus();
+      this.refs.input.focus();
     }
   }
 
-  componentWillUnmount () {
-    this.setState({componentIsMounted: false});
+  componentWillUnmount() {
+    this.setState({ componentIsMounted: false });
   }
 
   /**
@@ -236,10 +237,11 @@ class TextField extends Component {
    * @returns {JSX}
    */
   render() {
-
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.input)
-      ? this.context.chamelTheme.input : ThemeService.defaultTheme.input;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.input
+        ? this.context.chamelTheme.input
+        : ThemeService.defaultTheme.input;
 
     let {
       className,
@@ -268,7 +270,7 @@ class TextField extends Component {
       [theme.textFieldHasError]: this.props.errorText,
       [theme.hasValue]: this.state.hasValue,
       [theme.disabled]: this.props.disabled,
-      [theme.focused]: this.state.isFocused
+      [theme.focused]: this.state.isFocused,
     });
 
     const inputId = this.props.id || UniqueId.generate();
@@ -280,34 +282,32 @@ class TextField extends Component {
     // Setup hint text label
     const hintTextClasses = classnames(theme.hint, {
       [theme.hintDisabled]: this.props.disabled,
-      [theme.hintHasValue]: this.state.hasValue
+      [theme.hintHasValue]: this.state.hasValue,
     });
     const hintTextElement = this.props.hintText ? (
-      <label htmlFor={inputId} className={hintTextClasses}>{this.props.hintText}</label>
+      <label htmlFor={inputId} className={hintTextClasses}>
+        {this.props.hintText}
+      </label>
     ) : null;
 
     // Setup floating text label
     const floatingLabelClasses = classnames(theme.floatingLabel, {
-        [theme.floatingLabelFloated]: (this.state.isFocused || ("date" === type) || this.state.hasValue),
-        [theme.floatingLabelError]: this.state.errorText
+      [theme.floatingLabelFloated]: this.state.isFocused || 'date' === type || this.state.hasValue,
+      [theme.floatingLabelError]: this.state.errorText,
     });
     const floatingLabelTextElement = this.props.floatingLabelText ? (
-      <label
-        className={floatingLabelClasses}
-        htmlFor={inputId}>
+      <label className={floatingLabelClasses} htmlFor={inputId}>
         {this.props.floatingLabelText}
       </label>
     ) : null;
 
     // Define props for the input element
-    const inputClasses = classnames(
-      {
-        [theme.textarea]: this.props.multiLine,
-        [theme.textareaDisabled]: (this.props.multiLine && this.props.disabled),
-        [theme.input]: !this.props.multiLine,
-        [theme.inputDisabled]: (!this.props.multiLine && this.props.disabled)
-      }
-    );
+    const inputClasses = classnames({
+      [theme.textarea]: this.props.multiLine,
+      [theme.textareaDisabled]: this.props.multiLine && this.props.disabled,
+      [theme.input]: !this.props.multiLine,
+      [theme.inputDisabled]: !this.props.multiLine && this.props.disabled,
+    });
     let inputProps = {
       ref: 'input',
       className: inputClasses,
@@ -317,7 +317,7 @@ class TextField extends Component {
       onKeyDown: this._handleInputKeyDown,
       onKeyUp: this._handleInputKeyUp,
       onClick: this._handleInputClick,
-      defaultValue: (value) ? this._sanitizeInputForType(value) : ''
+      defaultValue: value ? this._sanitizeInputForType(value) : '',
     };
 
     if (!this.props.hasOwnProperty('valueLink')) {
@@ -334,62 +334,56 @@ class TextField extends Component {
         case 'autoCompleteTrigger':
         case 'autoCompleteTransform':
           delete other[prop];
-              break;
+          break;
       }
     }
 
     let inputElement = this.props.multiLine ? (
-      <textarea
-        rows={1}
-        {...other}
-        {...inputProps}
-       />
+      <textarea rows={1} {...other} {...inputProps} />
     ) : (
-      <input
-        {...other}
-        {...inputProps}
-        type={this.props.type}
-      />
+      <input {...other} {...inputProps} type={this.props.type} />
     );
 
     // Check if autoComplete is set before we try to display autoComplete component
     let autoCompleteDisplay = null;
     if (this.props.autoComplete && this.state.hasValue) {
-
       // Throw an error if the user have provided both data and getData properties
       if (this.props.autoCompleteData && this.props.autoCompleteGetData) {
-        console.error('Cannot provide autoCompleteData and autoCompleteGetData properties at the same time.');
+        console.error(
+          'Cannot provide autoCompleteData and autoCompleteGetData properties at the same time.',
+        );
       }
 
       let filterData = false;
 
       if ((this.state.skipGetData || this.props.autoCompleteData) && this.state.autoCompleteData) {
-
         // If the autoComplete data is coming from the props, then we need to set the filterData to true
-        if (this.props.autoCompleteData)
-          filterData = true;
+        if (this.props.autoCompleteData) filterData = true;
 
-        autoCompleteDisplay = this._getAutoCompleteComponent(this.state.autoCompleteData, filterData);
-
+        autoCompleteDisplay = this._getAutoCompleteComponent(
+          this.state.autoCompleteData,
+          filterData,
+        );
       } else if (this.props.autoCompleteGetData) {
-
         // Callback function that will be called once the getting of autoComplete data is done
-        const doneGetDataCallback = function (autoCompleteData) {
-
+        const doneGetDataCallback = function(autoCompleteData) {
           // This will allow us to display the autoComplete component using the autoCompleteData as its list
           autoCompleteDisplay = this._getAutoCompleteComponent(autoCompleteData, filterData);
           this.setState({
             autoCompleteData: autoCompleteData,
-            skipGetData: true
-          })
+            skipGetData: true,
+          });
         }.bind(this);
 
         let keyword = null;
-        const inputDetails = this._evalInputValue()
-        const chunkedValue = inputDetails.subValue.substr(inputDetails.startPos, inputDetails.caretPos);
+        const inputDetails = this._evalInputValue();
+        const chunkedValue = inputDetails.subValue.substr(
+          inputDetails.startPos,
+          inputDetails.caretPos,
+        );
 
         if (chunkedValue.length > inputDetails.minLengthLimit) {
-          keyword = chunkedValue.replace(/[\W\s+]+$/gi, "");
+          keyword = chunkedValue.replace(/[\W\s+]+$/gi, '');
         }
 
         // Process the getting of autoComplete data
@@ -403,13 +397,12 @@ class TextField extends Component {
     const focuseUnderlineClasses = classnames(theme.focusUnderline, {
       [theme.focusUnderlineOn]: this.state.isFocused,
       [theme.focusUnderlineDisabled]: this.props.disabled,
-      [theme.focusUnderlineError]: this.props.errorText
+      [theme.focusUnderlineError]: this.props.errorText,
     });
 
     return (
       <div>
         <div className={classes}>
-
           {floatingLabelTextElement}
           {hintTextElement}
           {inputElement}
@@ -423,7 +416,6 @@ class TextField extends Component {
       </div>
     );
   }
-
 
   blur() {
     if (this.state.componentIsMounted) this._getInputNode().blur();
@@ -460,7 +452,6 @@ class TextField extends Component {
 
     // IE Support
     if (document.selection) {
-
       // Set focus on the element
       input.focus();
 
@@ -472,10 +463,8 @@ class TextField extends Component {
 
       // The caret position is selection length
       iCaretPos = oSel.text.length;
-    }
-
-    // Firefox support
-    else if (input.selectionStart || input.selectionStart == '0')
+    } else if (input.selectionStart || input.selectionStart == '0')
+      // Firefox support
       iCaretPos = input.selectionStart;
 
     // Return results
@@ -497,23 +486,19 @@ class TextField extends Component {
     // (it causes an issue in chrome, and having it doesn't hurt any other browser)
 
     if (input !== null) {
-
       if (input.createTextRange) {
         let range = input.createTextRange();
         range.move('character', caretPos);
         range.select();
         return true;
-      }
-
-      else {
+      } else {
         // (input.sinputectionStart === 0 added for Firefox bug)
         if (input.selectionStart || input.selectionStart === 0) {
           input.focus();
           input.setSelectionRange(caretPos, caretPos);
           return true;
-        }
-
-        else { // If all else fail, then just focus the input
+        } else {
+          // If all else fail, then just focus the input
           input.focus();
           return false;
         }
@@ -527,7 +512,7 @@ class TextField extends Component {
 
     // The value passed was invalid
     if (sanitizedValue === false) {
-      this.setState({errorText: newValue + " is invalid for type=" + this.props.type})
+      this.setState({ errorText: newValue + ' is invalid for type=' + this.props.type });
 
       // Do not set anything
       return;
@@ -559,7 +544,7 @@ class TextField extends Component {
       hasValue: sanitizedValue,
       caretPos: this.getCaretPos(),
       keyPressedValue: null,
-      skipGetData: false
+      skipGetData: false,
     });
   }
 
@@ -574,7 +559,7 @@ class TextField extends Component {
         if (DateTimeUtil.validateDate(checkValue)) {
           const date = new Date(checkValue);
           // Format as defined in RFC 3339
-          return DateTimeUtil.format(date, "yyyy-MM-dd");
+          return DateTimeUtil.format(date, 'yyyy-MM-dd');
         } else {
           return false;
         }
@@ -593,9 +578,10 @@ class TextField extends Component {
     // compute the height difference between inner height and outer height
     try {
       const style = getComputedStyle(element, null);
-      const heightOffset = style.boxSizing === 'content-box'
-        ? -(parseFloat(style.paddingTop) + parseFloat(style.paddingBottom))
-        : parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+      const heightOffset =
+        style.boxSizing === 'content-box'
+          ? -(parseFloat(style.paddingTop) + parseFloat(style.paddingBottom))
+          : parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
 
       // resize the input to its content size
       element.style.height = 'auto';
@@ -604,21 +590,21 @@ class TextField extends Component {
       // We do nothing because if the component is not yet mounted
       // and running server-side or in a test then el.style will not exist
     }
-  }
+  };
 
   _getInputNode() {
     return ReactDOM.findDOMNode(this.refs.input);
   }
 
-  _handleInputBlur = (e) => {
+  _handleInputBlur = e => {
     this.setState({
-      isFocused: false
+      isFocused: false,
     });
 
     if (this.props.onBlur) this.props.onBlur(e);
   };
 
-  _handleInputChange = (e)  =>{
+  _handleInputChange = e => {
     const value = e.target.value;
 
     this.setState({
@@ -626,7 +612,7 @@ class TextField extends Component {
       caretPos: this.getCaretPos(),
       keyPressedValue: null,
       skipGetData: false,
-      anchorEl: e.currentTarget
+      anchorEl: e.currentTarget,
     });
 
     if (this.props.onChange) {
@@ -634,27 +620,25 @@ class TextField extends Component {
     }
   };
 
-  _handleInputFocus = (e) => {
+  _handleInputFocus = e => {
     this.setState({
       isFocused: true,
-      anchorEl: e.currentTarget
+      anchorEl: e.currentTarget,
     });
     if (this.props.onFocus) this.props.onFocus(e);
   };
 
   _isControlled() {
-    return this.props.hasOwnProperty('value') ||
-      this.props.hasOwnProperty('valueLink');
+    return this.props.hasOwnProperty('value') || this.props.hasOwnProperty('valueLink');
   }
 
-  _handleInputClick = (e) => {
-
+  _handleInputClick = e => {
     if (this.props.autoComplete) {
       this.setState({
         caretPos: this.getCaretPos(),
         keyPressedValue: null,
         skipGetData: true,
-        anchorEl: e.currentTarget
+        anchorEl: e.currentTarget,
       });
     }
 
@@ -667,8 +651,7 @@ class TextField extends Component {
    * @param {DOMEvent} evt    Reference to the DOM event being sent
    * @private
    */
-  _handleInputKeyDown = (evt) => {
-
+  _handleInputKeyDown = evt => {
     switch (evt.keyCode) {
       case KeyCode.ENTER:
         if (this.props.onEnterKeyDown) {
@@ -682,10 +665,10 @@ class TextField extends Component {
           this.setState({
             keyPressedValue: evt.keyCode,
             caretPos: this.getCaretPos(),
-            skipGetData: true
+            skipGetData: true,
           });
 
-          if(!this.props.multiLine) {
+          if (!this.props.multiLine) {
             evt.preventDefault();
           }
         }
@@ -708,7 +691,7 @@ class TextField extends Component {
    * @param {DOMEvent} evt    Reference to the DOM event being sent
    * @private
    */
-  _handleInputKeyUp = (evt) => {
+  _handleInputKeyUp = evt => {
     switch (evt.keyCode) {
       case KeyCode.LEFT:
       case KeyCode.RIGHT:
@@ -718,7 +701,7 @@ class TextField extends Component {
           this.setState({
             keyPressedValue: evt.keyCode,
             caretPos: this.getCaretPos(),
-            skipGetData: true
+            skipGetData: true,
           });
         }
         break;
@@ -741,7 +724,7 @@ class TextField extends Component {
     this.setValue(value);
     this.setCaretPos(caretPos);
 
-    if(this.props.autoCompleteSelected) {
+    if (this.props.autoCompleteSelected) {
       this.props.autoCompleteSelected(selectedData);
     }
   };
@@ -772,7 +755,7 @@ class TextField extends Component {
         caretPos: caretPos,
         subValue: subValue,
         minLengthLimit: this.props.autoCompleteTrigger ? 0 : 2,
-        startPos: -1
+        startPos: -1,
       };
 
       /**
@@ -783,7 +766,7 @@ class TextField extends Component {
        * trigger = @ (mostly used to browse users)
        * trigger = @ (mostly used to browse colors)
        */
-      const triggerDelimiter = this.props.autoCompleteTrigger || this.props.autoCompleteDelimiter
+      const triggerDelimiter = this.props.autoCompleteTrigger || this.props.autoCompleteDelimiter;
 
       if (triggerDelimiter) {
         for (let idx in triggerDelimiter) {
@@ -798,13 +781,11 @@ class TextField extends Component {
       }
 
       if (this.props.autoCompleteTrigger == null && details.startPos == -1) {
-
         /**
          * If trigger is null and startPos is -1, this means that the user is just typing letters without a trigger key
          * We are setting the startPos to 0 since we need to check the input value from start to the current caret position
          */
         details.startPos = 0;
-
       } else if (this.props.autoCompleteTrigger && details.startPos >= 0) {
         details.startPos += 1;
       }
@@ -827,14 +808,14 @@ class TextField extends Component {
     if (autoCompleteData) {
       attribute = {
         suggestionData: autoCompleteData,
-        filterData: filterData
+        filterData: filterData,
       };
     }
 
     component = (
       <AutoComplete
-        {... attribute}
-        ref='autoComplete'
+        {...attribute}
+        ref="autoComplete"
         anchorEl={this.state.anchorEl}
         inputDetails={this._evalInputValue()}
         keyPressedValue={this.state.keyPressedValue}

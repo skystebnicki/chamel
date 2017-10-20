@@ -12,15 +12,17 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const Column = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.grid)
-    ? context.chamelTheme.grid : ThemeService.defaultTheme.grid;
+  let theme =
+    context.chamelTheme && context.chamelTheme.grid
+      ? context.chamelTheme.grid
+      : ThemeService.defaultTheme.grid;
 
   const classes = classnames({
-    [theme["colXSmall" + props.xsmall]]: props.xsmall,
-    [theme["colSmall" + props.small]]: props.small,
-    [theme["colMedium" + props.medium]]: props.medium,
-    [theme["colLarge" + props.large]]: props.large,
-    [theme["colXLarge" + props.xlarge]]: props.xlarge
+    [theme['colXSmall' + props.xsmall]]: props.xsmall,
+    [theme['colSmall' + props.small]]: props.small,
+    [theme['colMedium' + props.medium]]: props.medium,
+    [theme['colLarge' + props.large]]: props.large,
+    [theme['colXLarge' + props.xlarge]]: props.xlarge,
   });
 
   return (
@@ -40,14 +42,14 @@ Column.propTypes = {
   large: PropTypes.number,
   xlarge: PropTypes.number,
   children: PropTypes.node,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Column.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default Column;

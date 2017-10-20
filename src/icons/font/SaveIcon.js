@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const SaveIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconSave}>{"save"}</FontIcon>
+    <FontIcon {...props} className={theme.iconSave}>
+      {'save'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const SaveIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 SaveIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default SaveIcon;

@@ -9,21 +9,19 @@ import EditorToolbar from './EditorToolbar';
  * Contains both the toolbar and an instance of RichText component
  */
 class ContentHtml extends Component {
-
   /**
    * Class constructor
    *
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
-
     // Call parent constructor
     super(props);
 
     this.state = {
       value: this.props.value,
       toggleStyle: null,
-      toggleType: null
+      toggleType: null,
     };
   }
 
@@ -33,15 +31,15 @@ class ContentHtml extends Component {
    * @param {string} value The value of the editor
    * @private
    */
-  _onChange = (value) => {
+  _onChange = value => {
     if (this.props.onChange) {
       this.props.onChange(value);
     }
 
-    this.setState({value});
-  }
+    this.setState({ value });
+  };
 
-  _onToggle = (value) => {
+  _onToggle = value => {
     if (this.props.onChange) {
       this.props.onChange(value);
     }
@@ -49,9 +47,9 @@ class ContentHtml extends Component {
     this.setState({
       value,
       toggleStyle: null,
-      toggleType: null
+      toggleType: null,
     });
-  }
+  };
 
   /**
    * Handle when the editor looses the focus
@@ -59,13 +57,13 @@ class ContentHtml extends Component {
    * @param {string} value The value of the editor
    * @private
    */
-  _onBlur = (value) => {
+  _onBlur = value => {
     if (this.props.onBlur) {
       this.props.onBlur(value);
     } else {
       //this.setState({value});
     }
-  }
+  };
 
   /**
    * Handles when the user set the focus in the editor
@@ -73,13 +71,13 @@ class ContentHtml extends Component {
    * @param {string} value The value of the editor
    * @private
    */
-  _onFocus = (value) => {
+  _onFocus = value => {
     if (this.props.onFocus) {
       this.props.onFocus(value);
     } else {
       //this.setState({value});
     }
-  }
+  };
 
   /**
    * Handles the toggling of styles in the toolbar icons
@@ -92,9 +90,9 @@ class ContentHtml extends Component {
     console.log('toggle');
     this.setState({
       toggleStyle: style,
-      toggleType: type
-    })
-  }
+      toggleType: type,
+    });
+  };
 
   /**
    * Handles the toggling of content view
@@ -102,17 +100,18 @@ class ContentHtml extends Component {
    * @param {int} contentView The content view we are switching to
    * @private
    */
-  _handleContentViewToggle = (contentView) => {
+  _handleContentViewToggle = contentView => {
     if (this.props.onContentViewToggle) {
       this.props.onContentViewToggle(contentView, this.state.value);
     }
-  }
+  };
 
   render() {
-
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.editor)
-      ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.editor
+        ? this.context.chamelTheme.editor
+        : ThemeService.defaultTheme.editor;
 
     return (
       <div className={theme.richTextContainer}>
@@ -135,12 +134,10 @@ class ContentHtml extends Component {
   }
 }
 
-
-
 /**
  * Set accepted properties
  */
-ContentHtml. propTypes = {
+ContentHtml.propTypes = {
   /**
    * The callback function used when user changes the content of the editor
    *
@@ -167,15 +164,14 @@ ContentHtml. propTypes = {
    *
    * @type {function}
    */
-  onContentViewToggle: PropTypes.func
+  onContentViewToggle: PropTypes.func,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 ContentHtml.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
-
 
 export default ContentHtml;

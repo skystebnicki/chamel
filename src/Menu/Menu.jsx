@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import CssEvent from '../utils/CssEvent';
@@ -12,7 +12,6 @@ import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
 class Menu extends Component {
-
   /**
    * Class constructor
    *
@@ -24,12 +23,12 @@ class Menu extends Component {
 
     this.state = {
       nestedMenuShown: false,
-      focusedIndex: props.focusedIndex
-    }
+      focusedIndex: props.focusedIndex,
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({focusedIndex: nextProps.focusedIndex})
+    this.setState({ focusedIndex: nextProps.focusedIndex });
   }
 
   componentDidMount() {
@@ -50,20 +49,22 @@ class Menu extends Component {
   }
 
   render() {
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.menu)
-      ? this.context.chamelTheme.menu : ThemeService.defaultTheme.menu;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.menu
+        ? this.context.chamelTheme.menu
+        : ThemeService.defaultTheme.menu;
 
     let classes = classnames(theme.menu, {
       [theme.menuHideable]: this.props.hideable,
-      [theme.menuVisible]: this.props.visible
+      [theme.menuVisible]: this.props.visible,
     });
 
     // If we have custom classes in the props, then let's include it
     if (this.props.classes) {
-      classes += " " + this.props.classes;
+      classes += ' ' + this.props.classes;
     }
 
-    const children = (this.props.menuItems.length) ? this._getChildren() : this.props.children;
+    const children = this.props.menuItems.length ? this._getChildren() : this.props.children;
 
     return (
       <Paper
@@ -71,7 +72,7 @@ class Menu extends Component {
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         zDepth={this.props.zDepth}
-        style={{maxHeight: "460px", overflow: "auto"}}
+        style={{ maxHeight: '460px', overflow: 'auto' }}
         className={classes}
       >
         {children}
@@ -85,8 +86,8 @@ class Menu extends Component {
    * @private
    */
   _handleMouseEnter = () => {
-    this.setState({focusedIndex: null})
-  }
+    this.setState({ focusedIndex: null });
+  };
 
   _getChildren() {
     let children = [],
@@ -102,7 +103,7 @@ class Menu extends Component {
     for (let i = 0; i < this.props.menuItems.length; i++) {
       menuItem = this.props.menuItems[i];
       isSelected = i === this.props.selectedIndex;
-      isDisabled = (menuItem.disabled === undefined) ? false : menuItem.disabled;
+      isDisabled = menuItem.disabled === undefined ? false : menuItem.disabled;
 
       if (this.state.focusedIndex == null) {
         isFocused = false;
@@ -110,18 +111,9 @@ class Menu extends Component {
         isFocused = i === this.props.focusedIndex;
       }
 
-      let {
-        icon,
-        data,
-        attribute,
-        number,
-        toggle,
-        onClick,
-        ...other
-        } = menuItem;
+      let { icon, data, attribute, number, toggle, onClick, ...other } = menuItem;
 
       switch (menuItem.type) {
-
         case MenuItem.Types.LINK:
           itemComponent = (
             <LinkMenuItem
@@ -130,21 +122,17 @@ class Menu extends Component {
               payload={menuItem.payload}
               target={menuItem.target}
               text={menuItem.text}
-              disabled={isDisabled}/>
+              disabled={isDisabled}
+            />
           );
           break;
 
         case MenuItem.Types.SUBHEADER:
-          itemComponent = (
-            <SubheaderMenuItem
-              key={i}
-              index={i}
-              text={menuItem.text}/>
-          );
+          itemComponent = <SubheaderMenuItem key={i} index={i} text={menuItem.text} />;
           break;
 
         case MenuItem.Types.NESTED:
-          let NestedMenuItem = require("./NestedMenuItem");
+          let NestedMenuItem = require('./NestedMenuItem');
           itemComponent = (
             <NestedMenuItem
               ref={i}
@@ -155,7 +143,8 @@ class Menu extends Component {
               menuItems={menuItem.items}
               zDepth={this.props.zDepth}
               onItemClick={this._onNestedItemClick}
-              onItemTap={this._onNestedItemClick}/>
+              onItemTap={this._onNestedItemClick}
+            />
           );
           this._nestedChildren.push(i);
           break;
@@ -174,7 +163,8 @@ class Menu extends Component {
               number={menuItem.number}
               toggle={menuItem.toggle}
               disabled={isDisabled}
-              onClick={this._onItemClick}>
+              onClick={this._onItemClick}
+            >
               {menuItem.text}
             </MenuItem>
           );
@@ -186,18 +176,18 @@ class Menu extends Component {
   }
 
   _setKeyWidth(el) {
-    const menuWidth = this.props.autoWidth ?
-    KeyLine.getIncrementalDim(el.offsetWidth) + 'px' :
-      '100%';
+    const menuWidth = this.props.autoWidth
+      ? KeyLine.getIncrementalDim(el.offsetWidth) + 'px'
+      : '100%';
 
     //Update the menu width
-    Dom.withoutTransition(el, function () {
+    Dom.withoutTransition(el, function() {
       // Changed the below to use auto width because
       // it was causing text to extnd beyond the menu
       // if items were added after the transition.
       if (el.style) {
         // Make sure we are mounted
-        el.style.width = "auto";
+        el.style.width = 'auto';
       }
     });
   }
@@ -219,18 +209,19 @@ class Menu extends Component {
          to auto to fix the problems.
          - Sky Stebnicki
          */
-        el.style.height = "auto"; //this._initialMenuHeight + 'px';
+        el.style.height = 'auto'; //this._initialMenuHeight + 'px';
 
         //Set the overflow to visible after the animation is done so
         //that other nested menus can be shown
-        CssEvent.onTransitionEnd(el, function () {
-          //Make sure the menu is open before setting the overflow.
-          //This is to accout for fast clicks
-          if (this.props.visible) innerContainer.style.overflow = 'visible';
-        }.bind(this));
-
+        CssEvent.onTransitionEnd(
+          el,
+          function() {
+            //Make sure the menu is open before setting the overflow.
+            //This is to accout for fast clicks
+            if (this.props.visible) innerContainer.style.overflow = 'visible';
+          }.bind(this),
+        );
       } else {
-
         //Close the menu
         el.style.height = '0px';
 
@@ -242,22 +233,23 @@ class Menu extends Component {
 
   _onNestedItemClick = (e, index, menuItem) => {
     if (this.props.onItemClick) this.props.onItemClick(e, index, menuItem);
-  }
+  };
 
   _onNestedItemTap = (e, index, menuItem) => {
     if (this.props.onItemTap) this.props.onItemTap(e, index, menuItem);
-  }
+  };
 
   _onItemClick = (e, index) => {
     if (this.props.onItemClick) this.props.onItemClick(e, index, this.props.menuItems[index]);
-  }
+  };
 
   _onItemTap = (e, index) => {
     if (this.props.onItemTap) this.props.onItemTap(e, index, this.props.menuItems[index]);
-  }
+  };
 
   _onItemToggle = (e, index, toggled) => {
-    if (this.props.onItemToggle) this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
+    if (this.props.onItemToggle)
+      this.props.onItemToggle(e, index, this.props.menuItems[index], toggled);
   };
 
   getClasses = (initialClasses, additionalClassObj) => {
@@ -280,11 +272,11 @@ class Menu extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -318,7 +310,7 @@ Menu.propTypes = {
    *
    * @param {string}
    */
-  classes: PropTypes.string
+  classes: PropTypes.string,
 };
 
 Menu.defaultProps = {
@@ -327,14 +319,14 @@ Menu.defaultProps = {
   hideable: false,
   visible: true,
   zDepth: 1,
-  menuItems: []
+  menuItems: [],
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Menu.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default Menu;

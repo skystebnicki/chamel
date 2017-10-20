@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TouchRipple from '../ripples/TouchRipple';
 import FocusRipple from '../ripples/FocusRipple';
@@ -14,40 +14,44 @@ import classnames from 'classnames';
  * @constructor
  */
 const Button = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.button)
-    ? context.chamelTheme.button : ThemeService.defaultTheme.button;
+  let theme =
+    context.chamelTheme && context.chamelTheme.button
+      ? context.chamelTheme.button
+      : ThemeService.defaultTheme.button;
 
   // Setup classes
   const className = props.className || null;
   const type = props.type;
-  const classes = classnames(theme[type], {
-    [theme[type + "primary"]]: props.primary,
-    [theme[type + "accent"]]: props.accent,
-    [theme[type + "disabled"]]: props.disabled,
-    [theme[type + "depressed"]]: props.depressed,
-    [theme[type + "mini"]]: props.mini
-  }, className);
+  const classes = classnames(
+    theme[type],
+    {
+      [theme[type + 'primary']]: props.primary,
+      [theme[type + 'accent']]: props.accent,
+      [theme[type + 'disabled']]: props.disabled,
+      [theme[type + 'depressed']]: props.depressed,
+      [theme[type + 'mini']]: props.mini,
+    },
+    className,
+  );
 
   // Determine if the selected type of button is a centered ripple
-  let centerRipple = (type == 'floating' || type == 'icon');
-  const label = (props.label) ? props.label : props.children;
+  let centerRipple = type == 'floating' || type == 'icon';
+  const label = props.label ? props.label : props.children;
 
   const onClickHandler = props.onTap || props.onClick;
 
   if (onClickHandler && !props.disabled) {
     return (
-      <button
-        className={classes}
-        onClick={onClickHandler}>
-          <FocusRipple  />
-          <TouchRipple centerRipple={centerRipple}>
-            {label}
-          </TouchRipple>
+      <button className={classes} onClick={onClickHandler}>
+        <FocusRipple />
+        <TouchRipple centerRipple={centerRipple}>{label}</TouchRipple>
       </button>
     );
   } else {
     return (
-      <button disabled={props.disabled} className={classes}>{label}</button>
+      <button disabled={props.disabled} className={classes}>
+        {label}
+      </button>
     );
   }
 };
@@ -104,10 +108,7 @@ Button.propTypes = {
   /**
    * Optional icon to display to the left of the text
    */
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 
   /**
    * Optional property in place of child text
@@ -138,7 +139,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
 
   raised: PropTypes.bool,
-  type: PropTypes.oneOf(['raised', 'flat', 'floating', 'icon'])
+  type: PropTypes.oneOf(['raised', 'flat', 'floating', 'icon']),
 };
 
 /**
@@ -153,14 +154,14 @@ Button.defaultProps = {
   neutral: true,
   primary: false,
   raised: false,
-  type: "raised"
+  type: 'raised',
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Button.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default Button;

@@ -1,19 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
 
 class FocusRipple extends Component {
-
   /**
    * Class constructor
    *
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
-      // Call paprent constructor
-      super(props);
+    // Call paprent constructor
+    super(props);
   }
 
   componentDidMount() {
@@ -21,11 +20,13 @@ class FocusRipple extends Component {
   }
 
   render() {
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.ripple)
-        ? this.context.chamelTheme.ripple : ThemeService.defaultTheme.ripple;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.ripple
+        ? this.context.chamelTheme.ripple
+        : ThemeService.defaultTheme.ripple;
 
     let classes = classnames(theme.rippleFocus, {
-      [theme.rippleShown]: this.props.show
+      [theme.rippleShown]: this.props.show,
     });
 
     return (
@@ -47,33 +48,31 @@ class FocusRipple extends Component {
     // If element is mounted then set the size
     if (el.style) {
       el.style.height = size + 'px';
-      el.style.top = (size / 2 * -1) + (height / 2) + 'px';
+      el.style.top = size / 2 * -1 + height / 2 + 'px';
     }
   }
-};
-
+}
 
 /**
  * Set accepted properties
  */
 FocusRipple.propTypes = {
-  show: PropTypes.bool
-}
+  show: PropTypes.bool,
+};
 
 /**
  * Set property defaults
  */
 FocusRipple.defaultProps = {
-  show: false
-}
+  show: false,
+};
 
 /**
  * An alternate theme may be passed down by a provider
  */
 FocusRipple.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
-
 
 // ES6
 export default FocusRipple;

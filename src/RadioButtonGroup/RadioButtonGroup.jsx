@@ -2,16 +2,14 @@
  * DEPRECATED - We are now currently using Picker/RadioPicker.js - Marl Tumulak 05/09/2017
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Paper from '../Paper/Paper';
 import RadioButton from '../Picker/RadioButton';
 
 class RadioButtonGroup extends Component {
-
-  _hasCheckAttribute = (radioButton) => {
-    return radioButton.props.hasOwnProperty('checked') &&
-      radioButton.props.checked;
+  _hasCheckAttribute = radioButton => {
+    return radioButton.props.hasOwnProperty('checked') && radioButton.props.checked;
   };
 
   /**
@@ -22,70 +20,62 @@ class RadioButtonGroup extends Component {
 
     this.state = {
       numberCheckedRadioButtons: 0,
-      selected: this.props.valueSelected || this.props.defaultSelected || ''
+      selected: this.props.valueSelected || this.props.defaultSelected || '',
     };
   }
 
   componentWillMount() {
     let cnt = 0;
 
-    this.props.children.forEach((option) => {
+    this.props.children.forEach(option => {
       if (this._hasCheckAttribute(option)) cnt++;
     });
 
-    this.setState({numberCheckedRadioButtons: cnt});
+    this.setState({ numberCheckedRadioButtons: cnt });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('valueSelected')) {
-      this.setState({selected: nextProps.valueSelected});
+      this.setState({ selected: nextProps.valueSelected });
     }
   }
 
   render() {
     const inline = this.props.inline;
-    const options = this.props.children.map(function (option) {
+    const options = this.props.children.map(function(option) {
+      let { name, value, label, onCheck, ...other } = option.props;
 
-      let {
-        name,
-        value,
-        label,
-        onCheck,
-        ...other
-        } = option.props;
-
-      return <RadioButton
-        {...other}
-        inline={inline}
-        ref={option.props.value}
-        name={this.props.name}
-        key={option.props.value}
-        value={option.props.value}
-        label={option.props.label}
-        labelPosition={this.props.labelPosition}
-        onSelect={this._onChange}
-        checked={option.props.value == this.state.selected}/>
-
+      return (
+        <RadioButton
+          {...other}
+          inline={inline}
+          ref={option.props.value}
+          name={this.props.name}
+          key={option.props.value}
+          value={option.props.value}
+          label={option.props.label}
+          labelPosition={this.props.labelPosition}
+          onSelect={this._onChange}
+          checked={option.props.value == this.state.selected}
+        />
+      );
     }, this);
 
-    return (
-      <div>
-        {options}
-      </div>
-    );
+    return <div>{options}</div>;
   }
 
-  _updateRadioButtons = (newSelection) => {
+  _updateRadioButtons = newSelection => {
     if (this.state.numberCheckedRadioButtons == 0) {
-      this.setState({selected: newSelection});
+      this.setState({ selected: newSelection });
     } else if (process.env.NODE_ENV !== 'production') {
-      const message = "Cannot select a different radio button while another radio button " +
+      const message =
+        'Cannot select a different radio button while another radio button ' +
         "has the 'checked' property set to true.";
       console.error(message);
     }
   };
 
-  _onChange = (newSelection) => {
+  _onChange = newSelection => {
     this._updateRadioButtons(newSelection);
 
     // Successful update
@@ -98,7 +88,7 @@ class RadioButtonGroup extends Component {
     return this.state.selected;
   };
 
-  setSelectedValue = (newSelection) => {
+  setSelectedValue = newSelection => {
     this._updateRadioButtons(newSelection);
   };
 
@@ -131,14 +121,14 @@ RadioButtonGroup.propTypes = {
    * @default true
    * @type {bool}
    */
-  inline: PropTypes.bool
+  inline: PropTypes.bool,
 };
 
 /**
  * Set default properties if not set by the calling component
  */
 RadioButtonGroup.defaultProps = {
-  inline: false
+  inline: false,
 };
 
 export default RadioButtonGroup;

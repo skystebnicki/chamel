@@ -4,11 +4,15 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 const ArrowRightIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconArrowRight}>{"keyboard_arrow_right"}</FontIcon>
+    <FontIcon {...props} className={theme.iconArrowRight}>
+      {'keyboard_arrow_right'}
+    </FontIcon>
   );
 };
 
@@ -16,7 +20,7 @@ const ArrowRightIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 ArrowRightIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ArrowRightIcon;

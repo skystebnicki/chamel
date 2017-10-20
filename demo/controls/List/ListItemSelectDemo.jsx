@@ -4,7 +4,6 @@ import ListItem from 'chamel/List/ListItem';
 import RefreshIcon from 'chamel/icons/font/RefreshIcon';
 
 class ListItemSelectDemo extends React.Component {
-
   /**
    * Class constructor
    *
@@ -15,27 +14,31 @@ class ListItemSelectDemo extends React.Component {
 
     this.state = {
       firstChecked: true,
-      secondChecked: false
-    }
+      secondChecked: false,
+    };
   }
 
-  render () {
+  render() {
     return (
       <List>
         <ListItem
-          primaryText={"Primary text goes here 1"}
-          secondaryText={"Secondary text goes here"}
+          primaryText={'Primary text goes here 1'}
+          secondaryText={'Secondary text goes here'}
           leftElement={<RefreshIcon />}
           selected={this.state.firstChecked}
-          onLeftElementTap={() => { this.setState({firstChecked: !this.state.firstChecked});}}
+          onLeftElementTap={() => {
+            this.setState({ firstChecked: !this.state.firstChecked });
+          }}
           selectedShowCheckbox={true}
         />
         <ListItem
-          primaryText={"Primary text goes here 2"}
-          secondaryText={"Secondary text goes here"}
+          primaryText={'Primary text goes here 2'}
+          secondaryText={'Secondary text goes here'}
           leftElement={<RefreshIcon />}
           selected={this.state.secondChecked}
-          onLeftElementTap={() => { this.setState({secondChecked: !this.state.secondChecked});}}
+          onLeftElementTap={() => {
+            this.setState({ secondChecked: !this.state.secondChecked });
+          }}
           selectedShowCheckbox={true}
         />
       </List>
@@ -43,8 +46,8 @@ class ListItemSelectDemo extends React.Component {
   }
 
   _handleChange = (e, checked) => {
-    this.setState({checked: checked});
-  }
-};
+    this.setState({ checked: checked });
+  };
+}
 
 export default ListItemSelectDemo;

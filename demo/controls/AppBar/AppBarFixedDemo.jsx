@@ -1,16 +1,18 @@
 import React from 'react';
 import AppBar from 'chamel/AppBar';
-import AppBarRightToolbar from 'chamel/AppBar/AppBarRightToolbar';
 import IconButton from 'chamel/AppBar/IconButton';
 import CloseIcon from 'chamel/icons/font/CloseIcon';
 import ArrowDownIcon from 'chamel/icons/font/ArrowDownIcon';
 import SelectButton from 'chamel/AppBar/SelectButton';
 
 class AppBarFixedDemo extends React.Component {
-
-  render () {
+  render() {
     const leftIcon = (
-      <IconButton onTap={(e) => { console.log("Left close clicked"); }}>
+      <IconButton
+        onTap={e => {
+          console.log('Left close clicked');
+        }}
+      >
         <CloseIcon />
       </IconButton>
     );
@@ -24,32 +26,37 @@ class AppBarFixedDemo extends React.Component {
     ];
 
     const rightIcon = [
-      <IconButton key={"icon2"} onTap={(e) => { console.log("Right close clicked"); }}>
+      <IconButton
+        key={'icon2'}
+        onTap={e => {
+          console.log('Right close clicked');
+        }}
+      >
         <CloseIcon />
       </IconButton>,
-      <IconButton key={"icon3"} onTap={(e) => { console.log("Right close clicked"); }}>
+      <IconButton
+        key={'icon3'}
+        onTap={e => {
+          console.log('Right close clicked');
+        }}
+      >
         <CloseIcon />
       </IconButton>,
-      <SelectButton key={"dropdown"} menuItems={menuItems}>
+      <SelectButton key={'dropdown'} menuItems={menuItems}>
         <ArrowDownIcon />
-      </SelectButton>
+      </SelectButton>,
     ];
 
     // Make the div scrollable so that we can test the fixed behavior
-    let scrollStyle = {height: "3000px"};
+    let scrollStyle = { height: '3000px' };
 
     return (
       <div>
-          <AppBar
-            title="Test"
-            iconElementLeft={leftIcon}
-            iconElementRight={rightIcon}
-            fixed={true}
-          />
-          <div style={scrollStyle}>Long scrolled content container</div>
+        <AppBar title="Test" iconElementLeft={leftIcon} iconElementRight={rightIcon} fixed={true} />
+        <div style={scrollStyle}>Long scrolled content container</div>
       </div>
     );
   }
-};
+}
 
 export default AppBarFixedDemo;

@@ -21,5 +21,5 @@ export default {
   popover: require('../../Popover/theme.scss'),
   progress: require('../../Progress/theme.scss'),
   snackbar: require('../../Snackbar/theme.scss'),
-  dropDownIcon: require('../components/_drop-down-icon.scss')
+  dropDownIcon: require('../components/_drop-down-icon.scss'),
 }

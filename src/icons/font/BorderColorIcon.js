@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const BorderColorIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconBorderColor}>{"border_color"}</FontIcon>
+    <FontIcon {...props} className={theme.iconBorderColor}>
+      {'border_color'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const BorderColorIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 BorderColorIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default BorderColorIcon;

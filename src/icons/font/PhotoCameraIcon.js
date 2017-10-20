@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const PhotoCameraIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconPhotoCamera}>{"photo_camera"}</FontIcon>
+    <FontIcon {...props} className={theme.iconPhotoCamera}>
+      {'photo_camera'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const PhotoCameraIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 PhotoCameraIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default PhotoCameraIcon;

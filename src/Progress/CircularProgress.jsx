@@ -6,9 +6,7 @@ import classnames from 'classnames';
 import Progress from './Progress';
 
 const CircularProgress = (props, context) => {
-  return (
-    <Progress type='circular' {...props} />
-  );
+  return <Progress type="circular" {...props} />;
 };
 
 CircularProgress.PropTypes = {
@@ -19,7 +17,7 @@ CircularProgress.PropTypes = {
   min: PropTypes.number,
   mode: PropTypes.oneOf(['determinate', 'indeterminate']),
   multicolor: PropTypes.bool,
-  value: PropTypes.number
-}
+  value: PropTypes.number,
+};
 
 export default CircularProgress;

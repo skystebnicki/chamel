@@ -11,28 +11,26 @@ import ThemeService from '../styles/ChamelThemeService';
  * @constructor
  */
 const Row = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.grid)
-    ? context.chamelTheme.grid : ThemeService.defaultTheme.grid;
+  let theme =
+    context.chamelTheme && context.chamelTheme.grid
+      ? context.chamelTheme.grid
+      : ThemeService.defaultTheme.grid;
 
-  return (
-    <div className={theme.row}>
-      {props.children}
-    </div>
-  );
+  return <div className={theme.row}>{props.children}</div>;
 };
 
 /**
  * Set accepted properties
  */
 Row.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Row.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default Row;

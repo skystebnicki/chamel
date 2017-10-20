@@ -12,19 +12,23 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const CommentIcon = (props, context) => {
-    let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
-    return (
-        <FontIcon {...props} className={theme.iconComment}>{"comment"}</FontIcon>
-    );
+  return (
+    <FontIcon {...props} className={theme.iconComment}>
+      {'comment'}
+    </FontIcon>
+  );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 CommentIcon.contextTypes = {
-    chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default CommentIcon;

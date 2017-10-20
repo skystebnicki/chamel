@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Events from '../utils/Events';
@@ -9,14 +9,12 @@ import ThemeService from '../styles/ChamelThemeService';
  * Main popover class handles absolute positioning paper relative to an element
  */
 class Popover extends Component {
-
   /**
    * Class constructor
    *
    * @param {Object} props Properties to send to the render function
    */
   constructor(props) {
-
     // Call paprent constructor
     super(props);
   }
@@ -31,15 +29,14 @@ class Popover extends Component {
     relative: false,
     anchorOrigin: {
       vertical: 'bottom',
-      horizontal: 'left'
+      horizontal: 'left',
     },
     targetOrigin: {
       vertical: 'top',
-      horizontal: 'left'
+      horizontal: 'left',
     },
-    pushToLeft: false
+    pushToLeft: false,
   };
-
 
   /**
    * Set accepted properties
@@ -63,7 +60,7 @@ class Popover extends Component {
      */
     anchorOrigin: PropTypes.shape({
       vertical: PropTypes.oneOf(['top', 'middle', 'bottom']),
-      horizontal: PropTypes.oneOf(['left', 'center', 'right'])
+      horizontal: PropTypes.oneOf(['left', 'center', 'right']),
     }),
 
     /**
@@ -75,19 +72,19 @@ class Popover extends Component {
      */
     targetOrigin: PropTypes.shape({
       vertical: PropTypes.oneOf(['top', 'middle', 'bottom']),
-      horizontal: PropTypes.oneOf(['left', 'center', 'right'])
+      horizontal: PropTypes.oneOf(['left', 'center', 'right']),
     }),
     /**
      * If true, then position elements will push to left to show the popover without covering the trigger button.
      */
-    pushToLeft: PropTypes.bool
+    pushToLeft: PropTypes.bool,
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -116,47 +113,49 @@ class Popover extends Component {
    */
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.popover)
-      ? this.context.chamelTheme.popover : ThemeService.defaultTheme.popover;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.popover
+        ? this.context.chamelTheme.popover
+        : ThemeService.defaultTheme.popover;
 
     let classes = theme.popover;
     if (this.props.open) {
-      classes += " " + theme.popoverVisible;
+      classes += ' ' + theme.popoverVisible;
       if (this.props.pushToLeft) {
-        classes += " " + theme.pushToLeft;
+        classes += ' ' + theme.pushToLeft;
       }
     }
 
-    if (this.props.children && this.props.children.props.hasOwnProperty("menuItems")) {
+    if (this.props.children && this.props.children.props.hasOwnProperty('menuItems')) {
       if (this.props.children.props.menuItems.length > 12) {
-        classes += " " + theme.addScrollBar;
+        classes += ' ' + theme.addScrollBar;
       }
     }
 
-    return (
-      <div className={classes}>
-        {this.props.children}
-      </div>
-    );
+    return <div className={classes}>{this.props.children}</div>;
   }
 
   /**
    * Handle when the user clicks away from the popup
    */
-  _checkClickAway = (e) => {
+  _checkClickAway = e => {
     let el = ReactDOM.findDOMNode(this);
     let anchorEl = ReactDOM.findDOMNode(this.props.anchorEl);
 
     // Check if the target is inside the current component
-    if (this.props.open &&
-      e.target != el && !Dom.isDescendant(el, e.target) &&
-      e.target != anchorEl && !Dom.isDescendant(anchorEl, e.target) &&
-      document.documentElement.contains(e.target)) {
+    if (
+      this.props.open &&
+      e.target != el &&
+      !Dom.isDescendant(el, e.target) &&
+      e.target != anchorEl &&
+      !Dom.isDescendant(anchorEl, e.target) &&
+      document.documentElement.contains(e.target)
+    ) {
       if (this.props.onRequestClose) {
         this.props.onRequestClose();
       }
     }
-  }
+  };
 
   /**
    * Reposition the popover on the page
@@ -169,7 +168,7 @@ class Popover extends Component {
     let targetEl = ReactDOM.findDOMNode(this);
     let anchorEl = ReactDOM.findDOMNode(this.props.anchorEl);
 
-    const {targetOrigin, anchorOrigin} = this.props;
+    const { targetOrigin, anchorOrigin } = this.props;
 
     let anchorPosition = Dom.offset(anchorEl);
 
@@ -190,23 +189,23 @@ class Popover extends Component {
      */
     const relativeAnchorPosition = {
       top: anchorPosition.top,
-      middle: anchorPosition.top + (anchorPosition.height / 2),
+      middle: anchorPosition.top + anchorPosition.height / 2,
       bottom: anchorPosition.top + anchorPosition.height,
       left: anchorPosition.left,
-      center: anchorPosition.left + (anchorPosition.width / 2),
-      right: anchorPosition.left + anchorPosition.width
+      center: anchorPosition.left + anchorPosition.width / 2,
+      right: anchorPosition.left + anchorPosition.width,
     };
 
     let targetPosition = {
       top: relativeAnchorPosition[anchorOrigin.vertical],
-      left: relativeAnchorPosition[anchorOrigin.horizontal]
+      left: relativeAnchorPosition[anchorOrigin.horizontal],
     };
 
     targetEl.style.top = `${Math.max(0, targetPosition.top)}px`;
     targetEl.style.left = `${Math.max(0, targetPosition.left)}px`;
     targetEl.style.maxHeight = `${window.innerHeight}px`;
     targetEl.style.maxWidth = `${window.innerWidth}px`;
-    targetEl.style.width = "auto";
+    targetEl.style.width = 'auto';
 
     // Update position if out of viewing bounds
     this._applyAutoPositionIfNeeded(targetPosition, targetEl);
@@ -231,12 +230,11 @@ class Popover extends Component {
      * After getting the offset top, we can now properly compute for the proper top position value
      */
     const doc = document.documentElement;
-    const scrollTop = (window.pageYOffset || doc.scrollTop)
-    const offsetTop = (targetPosition.top - scrollTop);
+    const scrollTop = window.pageYOffset || doc.scrollTop;
+    const offsetTop = targetPosition.top - scrollTop;
 
     // Move target position just to the top if the display will be out of bounds
     if (offsetTop < 0) {
-
       // Apply the new position
       const archorPos = Dom.offset(this.props.anchorEl);
       targetEl.style.top = `${Math.abs(archorPos.top)}px`;
@@ -248,7 +246,7 @@ class Popover extends Component {
       let newTop = relativeTargetPosition.top;
 
       // Subtract enough pixels to get it inside the bounds of the window
-      newTop -= (offsetTop + targetPosition.height) - window.innerHeight;
+      newTop -= offsetTop + targetPosition.height - window.innerHeight;
 
       // Apply the new position
       targetEl.style.top = `${newTop}px`;
@@ -260,7 +258,7 @@ class Popover extends Component {
       let newLeft = relativeTargetPosition.left;
 
       // Subtract enough pixels to get it inside the bounds of the window
-      newLeft -= (targetPosition.right) - window.innerWidth;
+      newLeft -= targetPosition.right - window.innerWidth;
 
       // Apply the new position
       targetEl.style.left = `${newLeft}px`;

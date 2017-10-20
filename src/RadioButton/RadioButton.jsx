@@ -6,38 +6,30 @@ import RadioButtonOn from '../svg-icons/toggle-radio-button-on';
 /**
  * Radio button switch
  */
-const RadioButton = (props) => {
-
-  let {
-    onCheck,
-    ...other
-    } = this.props;
+const RadioButton = props => {
+  let { onCheck, ...other } = this.props;
 
   const radioButtonElement = (
     <div>
-      <RadioButtonOff className="chamel-radio-button-target"/>
-      <RadioButtonOn className="chamel-radio-button-fill"/>
+      <RadioButtonOff className="chamel-radio-button-target" />
+      <RadioButtonOn className="chamel-radio-button-fill" />
     </div>
   );
 
   const enhancedSwitchProps = {
-    ref: "enhancedSwitch",
-    inputType: "radio",
+    ref: 'enhancedSwitch',
+    inputType: 'radio',
     switchElement: radioButtonElement,
-    className: "chamel-radio-button",
-    iconClassName: "chamel-radio-button-icon",
+    className: 'chamel-radio-button',
+    iconClassName: 'chamel-radio-button-icon',
     onSwitch: this._handleCheck,
-    labelPosition: (this.props.labelPosition) ? this.props.labelPosition : "right"
+    labelPosition: this.props.labelPosition ? this.props.labelPosition : 'right',
   };
 
-  return (
-    <EnhancedSwitch
-      {...other}
-      {...enhancedSwitchProps}/>
-  );
+  return <EnhancedSwitch {...other} {...enhancedSwitchProps} />;
 
   // Only called when selected, not when unselected.
-  _handleCheck = (e) => {
+  _handleCheck = e => {
     if (this.props.onCheck) this.props.onCheck(e, this.props.value);
   };
 
@@ -45,16 +37,15 @@ const RadioButton = (props) => {
     return this.refs.enhancedSwitch.isSwitched();
   };
 
-  setChecked = (newCheckedValue) => {
+  setChecked = newCheckedValue => {
     this.refs.enhancedSwitch.setSwitched(newCheckedValue);
-    this.setState({switched: newCheckedValue});
+    this.setState({ switched: newCheckedValue });
   };
 
   getValue = () => {
     return this.refs.enhancedSwitch.getValue();
   };
-
-}
+};
 
 RadioButton.propTypes = {
   /**
@@ -71,15 +62,14 @@ RadioButton.propTypes = {
    *
    * @type {bool}
    */
-  inline: PropTypes.bool
-
+  inline: PropTypes.bool,
 };
 
 /**
  * Set default properties if not set by the calling component
  */
 RadioButton.defaultProps = {
-  inline: false
+  inline: false,
 };
 
 export default RadioButton;

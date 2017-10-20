@@ -1,10 +1,9 @@
 import React from 'react';
 
 module.exports = {
-
   once: function(el, type, callback) {
     var typeArray = type.split(' ');
-    var recursiveFunction = function(e){
+    var recursiveFunction = function(e) {
       e.target.removeEventListener(e.type, recursiveFunction);
       return callback(e);
     };
@@ -16,7 +15,7 @@ module.exports = {
 
   // IE8+ Support
   on: function(el, type, callback) {
-    if(el.addEventListener) {
+    if (el.addEventListener) {
       el.addEventListener(type, callback);
     } else {
       el.attachEvent('on' + type, function() {
@@ -27,10 +26,10 @@ module.exports = {
 
   // IE8+ Support
   off: function(el, type, callback) {
-    if(el.removeEventListener) {
+    if (el.removeEventListener) {
       el.removeEventListener(type, callback);
     } else {
       el.detachEvent('on' + type, callback);
     }
-  }
+  },
 };

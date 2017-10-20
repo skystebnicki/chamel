@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import IconButton from '../Button/IconButton';
@@ -7,7 +7,6 @@ import NavigationChevronRight from '../svg-icons/navigation-chevron-right';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 
 class CalendarToolbar extends Component {
-
   /**
    * Class constructor
    *
@@ -18,7 +17,7 @@ class CalendarToolbar extends Component {
     super(props);
 
     this.state = {
-      transitionDirection: 'up'
+      transitionDirection: 'up',
     };
   }
 
@@ -28,23 +27,22 @@ class CalendarToolbar extends Component {
     if (nextProps.displayDate !== this.props.displayDate) {
       direction = nextProps.displayDate > this.props.displayDate ? 'up' : 'down';
       this.setState({
-        transitionDirection: direction
+        transitionDirection: direction,
       });
     }
   }
 
-  _isDisabled = (direction) => {
-
+  _isDisabled = direction => {
     const date = this.props.displayDate;
     const minDate = this.props.minDate;
     const maxDate = this.props.maxDate;
 
-    if (direction == "left" && minDate) {
+    if (direction == 'left' && minDate) {
       if (date.getFullYear() < minDate.getFullYear()) return true;
       if (date.getFullYear() == minDate.getFullYear()) {
         return date.getMonth() <= minDate.getMonth();
       }
-    } else if (direction == "right" && maxDate) {
+    } else if (direction == 'right' && maxDate) {
       if (date.getFullYear() > maxDate.getFullYear()) return true;
       if (date.getFullYear() == maxDate.getFullYear()) {
         return date.getMonth() >= maxDate.getMonth();
@@ -58,37 +56,39 @@ class CalendarToolbar extends Component {
     const month = DateTime.getFullMonth(this.props.displayDate);
     const year = this.props.displayDate.getFullYear();
 
-    const disableLeft = this._isDisabled("left");
-    const disableRight = this._isDisabled("right");
+    const disableLeft = this._isDisabled('left');
+    const disableRight = this._isDisabled('right');
 
     return (
       <div className="chamel-date-picker-calendar-toolbar">
-
         <SlideInTransitionGroup
           className="chamel-date-picker-calendar-toolbar-title"
-          direction={this.state.transitionDirection}>
-          <div key={month + '_' + year}>{month} {year}</div>
+          direction={this.state.transitionDirection}
+        >
+          <div key={month + '_' + year}>
+            {month} {year}
+          </div>
         </SlideInTransitionGroup>
 
         <IconButton
           disabled={disableLeft}
           className="chamel-date-picker-calendar-toolbar-button-left"
-          onClick={this.props.onLeftTouchTap}>
-          <NavigationChevronLeft/>
+          onClick={this.props.onLeftTouchTap}
+        >
+          <NavigationChevronLeft />
         </IconButton>
 
         <IconButton
           disabled={disableRight}
           className="chamel-date-picker-calendar-toolbar-button-right"
-          onClick={this.props.onRightTouchTap}>
-          <NavigationChevronRight/>
+          onClick={this.props.onRightTouchTap}
+        >
+          <NavigationChevronRight />
         </IconButton>
-
       </div>
     );
   }
 }
-
 
 CalendarToolbar.propTypes = {
   displayDate: PropTypes.object.isRequired,

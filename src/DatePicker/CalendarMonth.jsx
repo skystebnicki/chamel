@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import DayButton from './DayButton';
 import classNames from 'classnames';
 
 class CalendarMonth extends Component {
-
   render() {
     const classes = this.getClasses('chamel-date-picker-calendar-month-week');
 
@@ -14,22 +13,16 @@ class CalendarMonth extends Component {
 
     weekArray.forEach((week, i) => {
       displayWeekElements.push(
-        <div
-          key={i}
-          className={classes}>
+        <div key={i} className={classes}>
           {this._getDayElements(week)}
-        </div>
+        </div>,
       );
     });
 
-    return (
-      <div className={"chamel-date-picker-calendar-month"}>
-        {displayWeekElements}
-      </div>
-    );
-  };
+    return <div className={'chamel-date-picker-calendar-month'}>{displayWeekElements}</div>;
+  }
 
-  _getDayElements = (week) => {
+  _getDayElements = week => {
     let displayDayElements = [];
     week.forEach((day, i) => {
       const selected = DateTime.isEqualDate(this.props.selectedDate, day);
@@ -38,24 +31,25 @@ class CalendarMonth extends Component {
         <DayButton
           key={i}
           date={day}
-          disabled={(day) => {
-          const minDate = this.props.minDate;
-          const maxDate = this.props.maxDate;
+          disabled={day => {
+            const minDate = this.props.minDate;
+            const maxDate = this.props.maxDate;
 
-          if (minDate != null && day < minDate) {
-            return true;
-          }
+            if (minDate != null && day < minDate) {
+              return true;
+            }
 
-          if (maxDate != null && day > maxDate) {
-            return true;
-          }
+            if (maxDate != null && day > maxDate) {
+              return true;
+            }
 
-          return false;
-        }}
+            return false;
+          }}
           onClick={(e, date) => {
-          if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
-        }}
-          selected={selected}/>
+            if (this.props.onDayTouchTap) this.props.onDayTouchTap(e, date);
+          }}
+          selected={selected}
+        />,
       );
     });
 
@@ -82,11 +76,11 @@ class CalendarMonth extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -101,7 +95,7 @@ CalendarMonth.propTypes = {
   selectedDate: PropTypes.object.isRequired,
   maxDate: PropTypes.object,
   minDate: PropTypes.object,
-  autoOk: PropTypes.bool
+  autoOk: PropTypes.bool,
 };
 
 export default CalendarMonth;

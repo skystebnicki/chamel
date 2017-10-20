@@ -13,25 +13,20 @@ class PickerDemo extends React.Component {
     super(props);
 
     this.state = {
-      open: false
-    }
+      open: false,
+    };
   }
 
   render() {
     return (
       <div>
         <FlatButton onTap={this.toggleSnackbar}>Show Snackbar</FlatButton>
-        <Snackbar
-          ref='snackbar'
-          message={"Test notification"}
-          timeout={3000}
-          action={"Undo"}
-        />
+        <Snackbar ref="snackbar" message={'Test notification'} timeout={3000} action={'Undo'} />
       </div>
     );
   }
 
-  toggleSnackbar = (e) => {
+  toggleSnackbar = e => {
     this.refs.snackbar.show();
   };
 }

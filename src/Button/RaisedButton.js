@@ -6,13 +6,14 @@ import Button from './Button';
  * Functional component for any raised button
  *
  * @param props
- * @param context
  * @returns {ReactDOM}
  * @constructor
  */
-const RaisedButton = (props, context) => {
+const RaisedButton = props => {
   return (
-    <Button type={'raised'} {...props}>{props.children}</Button>
+    <Button type={'raised'} {...props}>
+      {props.children}
+    </Button>
   );
 };
 
@@ -24,30 +25,26 @@ RaisedButton.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   href: PropTypes.string,
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   inverse: PropTypes.bool,
   label: PropTypes.string,
   onMouseLeave: PropTypes.func,
   onMouseUp: PropTypes.func,
-  onTap: PropTypes.func
+  onTap: PropTypes.func,
 };
 
 /**
  * Set property defaults
  */
 RaisedButton.defaultProps = {
-  className: ''
+  className: '',
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 RaisedButton.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
-
 
 export default RaisedButton;

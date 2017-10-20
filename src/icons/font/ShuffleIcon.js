@@ -12,19 +12,23 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const ShuffleIcon = (props, context) => {
-    let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
-    return (
-        <FontIcon {...props} className={theme.iconShuffle}>{"shuffle"}</FontIcon>
-    );
+  return (
+    <FontIcon {...props} className={theme.iconShuffle}>
+      {'shuffle'}
+    </FontIcon>
+  );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 ShuffleIcon.contextTypes = {
-    chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ShuffleIcon;

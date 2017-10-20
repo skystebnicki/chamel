@@ -12,19 +12,23 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const BuildIcon = (props, context) => {
-    let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
-    return (
-        <FontIcon {...props} className={theme.iconBuild}>{"build"}</FontIcon>
-    );
+  return (
+    <FontIcon {...props} className={theme.iconBuild}>
+      {'build'}
+    </FontIcon>
+  );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 BuildIcon.contextTypes = {
-    chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default BuildIcon;

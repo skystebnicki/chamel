@@ -3,7 +3,6 @@ import List from 'chamel/List/List';
 import ListItemCheckbox from 'chamel/List/ListItemCheckbox';
 
 class ListItemCheckboxDemo extends React.Component {
-
   /**
    * Class constructor
    *
@@ -14,26 +13,26 @@ class ListItemCheckboxDemo extends React.Component {
     super(props);
 
     this.state = {
-      checked: false
-    }
+      checked: false,
+    };
   }
 
-  render () {
+  render() {
     return (
       <List>
         <ListItemCheckbox
           checked={this.state.checked}
           onChange={this._handleChange}
-          primaryText={"Primary text goes here 1"}
-          secondaryText={"Secondary text goes here"}
+          primaryText={'Primary text goes here 1'}
+          secondaryText={'Secondary text goes here'}
         />
       </List>
     );
   }
 
   _handleChange = (e, checked) => {
-    this.setState({checked: checked});
-  }
-};
+    this.setState({ checked: checked });
+  };
+}
 
 export default ListItemCheckboxDemo;

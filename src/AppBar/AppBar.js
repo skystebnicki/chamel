@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
-import Paper from '../Paper/Paper'
+import Paper from '../Paper/Paper';
 import IconButton from '../Button/IconButton';
 import AppBarRightToolbar from './AppBarRightToolbar';
 import Dom from '../utils/Dom';
 import Events from '../utils/Events';
+import Paper from '../Paper';
 
 /**
  * AppBar - the main toolbar for the application
@@ -19,13 +20,10 @@ class AppBar extends Component {
     onNavBtnClick: PropTypes.func,
     className: PropTypes.string,
     iconElementLeft: PropTypes.element,
-    iconElementRight: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.array
-    ]),
+    iconElementRight: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
     title: PropTypes.node,
     zDepth: PropTypes.number,
-    fixed: PropTypes.bool
+    fixed: PropTypes.bool,
   };
 
   /**
@@ -34,14 +32,14 @@ class AppBar extends Component {
   static defaultProps = {
     title: '',
     zDepth: 1,
-    fixed: false
+    fixed: false,
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -56,13 +54,13 @@ class AppBar extends Component {
     this.state = {
       startTopOffset: 0,
       startWidth: 0,
-      curTopOffset: -1
-    }
+      curTopOffset: -1,
+    };
   }
 
   componentDidMount() {
     // If we are working with a device that supports status bar color, then set
-    if (typeof cordova != "undefined" && typeof StatusBar != "undefined") {
+    if (typeof cordova != 'undefined' && typeof StatusBar != 'undefined') {
       if (cordova.platformId == 'android') {
         // StatusBar.backgroundColorByHexString("#fff");
       }
@@ -74,7 +72,7 @@ class AppBar extends Component {
       this.setState({
         startTopOffset: offset.top,
         startWidth: offset.width,
-        startHeight: offset.height
+        startHeight: offset.height,
       });
 
       // Now listen for window scroll events
@@ -91,13 +89,18 @@ class AppBar extends Component {
 
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.appBar)
-      ? this.context.chamelTheme.appBar : ThemeService.defaultTheme.appBar;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.appBar
+        ? this.context.chamelTheme.appBar
+        : ThemeService.defaultTheme.appBar;
 
-    let classes = theme.appBarOuter, elementCenter, menuElementLeft, menuElementRight;
+    let classes = theme.appBarOuter,
+      elementCenter,
+      menuElementLeft,
+      menuElementRight;
 
     if (this.props.className) {
-      classes += " " + this.props.className;
+      classes += ' ' + this.props.className;
     }
 
     // Set the left elements
@@ -108,15 +111,11 @@ class AppBar extends Component {
        this.props.iconElementLeft, theme
        );*/
 
-      menuElementLeft = (
-        <div className={theme.appBarLeft}>
-          {iconElementLeft}
-        </div>
-      );
+      menuElementLeft = <div className={theme.appBarLeft}>{iconElementLeft}</div>;
     }
 
     // Set the right elements
-    let rightElements = (this.props.iconElementRight) ? this.props.iconElementRight : null;
+    let rightElements = this.props.iconElementRight ? this.props.iconElementRight : null;
 
     // If right elements exists, wrap in a toolbar
     if (rightElements) {
@@ -125,22 +124,21 @@ class AppBar extends Component {
        rightElements, theme
        );*/
 
-      menuElementRight = (
-        <AppBarRightToolbar>{rightElements}</AppBarRightToolbar>
-      )
+      menuElementRight = <AppBarRightToolbar>{rightElements}</AppBarRightToolbar>;
     }
 
     // Add main content which is normally the title
     if (this.props.title) {
       // If the title is a string, wrap in an h1 tag.
       // If not, just use it as a node.
-      elementCenter = toString.call(this.props.title) === '[object String]' ?
-        <h1 className={theme.appBarCenter}>{this.props.title}</h1> :
-        this.props.title;
+      elementCenter =
+        toString.call(this.props.title) === '[object String]' ? (
+          <h1 className={theme.appBarCenter}>{this.props.title}</h1>
+        ) : (
+          this.props.title
+        );
     } else if (this.props.children) {
-      elementCenter = (
-        <div className={theme.appBarCenter}>{this.props.children}</div>
-      );
+      elementCenter = <div className={theme.appBarCenter}>{this.props.children}</div>;
     }
 
     // Get the zDepth passed - we may increment if we are floating
@@ -151,17 +149,17 @@ class AppBar extends Component {
     let outerConStyle = null;
     if (this.props.fixed && this.state.curTopOffset !== -1) {
       innerConStyle = {
-        top: this.state.curTopOffset + "px",
-        width: this.state.startWidth + "px",
-        position: "fixed",
-        zIndex: 100
+        top: this.state.curTopOffset + 'px',
+        width: this.state.startWidth + 'px',
+        position: 'fixed',
+        zIndex: 100,
       };
 
       /*
        * Set the outer con style since a fixed element will cause it to shrink
        * which makes the UX pretty bad when elements suddenly jump
        */
-      outerConStyle = {height: this.state.startHeight + "px"}
+      outerConStyle = { height: this.state.startHeight + 'px' };
 
       // Increment zDepth to indicate floating
       // TODO: Commenting this out since it is creating visual problems in netric
@@ -190,8 +188,7 @@ class AppBar extends Component {
    * want to be able to reposition the leftnav when the user scrolls
    * so it scrolls with the document until 0 (top)
    */
-  _onWindowScroll = (e) => {
-
+  _onWindowScroll = () => {
     // If the starting state was 0 then do nothing
     if (!this.props.fixed) {
       return;
@@ -217,7 +214,7 @@ class AppBar extends Component {
     }
 
     // Set state
-    this.setState({curTopOffset: newTop})
+    this.setState({ curTopOffset: newTop });
   };
 
   /**
@@ -233,9 +230,7 @@ class AppBar extends Component {
     if (Array.isArray(element)) {
       for (let i in element) {
         // Apply any appBar custom styles to the elements
-        element[i] = this._addAppBarStyleToElements(
-          element[i], theme
-        );
+        element[i] = this._addAppBarStyleToElements(element[i], theme);
       }
       return element;
     } else {
@@ -245,7 +240,7 @@ class AppBar extends Component {
       }
 
       // Get existing className
-      let className = (element.props.className) ? element.props.className : "";
+      let className = element.props.className ? element.props.className : '';
 
       /*
        * If the element is supported, then clone a new element and
@@ -255,16 +250,16 @@ class AppBar extends Component {
         case 'IconButton':
         case 'SelectButton':
           return React.cloneElement(element, {
-            className: className + " " + theme.appBarIconButton
+            className: className + ' ' + theme.appBarIconButton,
           });
         case 'Button':
         default:
           return React.cloneElement(element, {
-            className: className + " " + theme.button
-          })
+            className: className + ' ' + theme.button,
+          });
       }
     }
-  }
+  };
 }
 
 export default AppBar;

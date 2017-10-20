@@ -26,8 +26,8 @@
     "sass": "cpx './src/**/*.scss' ./lib",
     "test": "cross-env NODE_ENV=test jest --watch --coverage",
     "test-single-run": "cross-env NODE_ENV=test jest --coverage",
-    "prestart": "npm install",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline"
+    
+    "start": "cd demo && cross-env NODE_ENV=development ../node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 8081 --config ./webpack.config --colors --profile --progress --hot --inline"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -38,6 +38,7 @@
     "fbjs": "^0.8.16",
     "immutable": "^3.8.1",
     "prop-types": "^15.6.0",
+    "raf": "^3.4.0",
     "react": "^16.0.0",
     "react-codemirror": "^1.0.0",
     "react-dom": "^16.0.0",
@@ -67,6 +68,8 @@
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
@@ -106,7 +109,10 @@
       "/sass/"
     ],
     "testResultsProcessor": "./node_modules/jest-junit",
-    "coverageDirectory": "./test/reports/coverage"
+    "coverageDirectory": "./test/reports/coverage",
+    "setupFiles": [
+      "raf/polyfill"
+    ]
   },
   "jest-junit": {
     "suiteName": "chamel",

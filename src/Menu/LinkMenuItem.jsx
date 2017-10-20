@@ -1,26 +1,32 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 class LinkMenuItem extends Component {
-
   render() {
     const classes = this.getClasses('chamel-menu-item', {
-      'chamel-is-disabled': this.props.disabled
+      'chamel-is-disabled': this.props.disabled,
     });
-    var onClickHandler = (this.props.disabled) ? this._stopLink : undefined;
+    var onClickHandler = this.props.disabled ? this._stopLink : undefined;
     // Prevent context menu 'Open In New Tab/Window'
-    var linkAttribute = (this.props.disabled) ? 'data-href' : 'href';
+    var linkAttribute = this.props.disabled ? 'data-href' : 'href';
     let link = {};
-    link[linkAttribute] = this.props.payload
+    link[linkAttribute] = this.props.payload;
 
     return (
-      <a key={this.props.index} className={classes} {...link} target={this.props.target}
-         onClick={onClickHandler}>{this.props.text}</a>
+      <a
+        key={this.props.index}
+        className={classes}
+        {...link}
+        target={this.props.target}
+        onClick={onClickHandler}
+      >
+        {this.props.text}
+      </a>
     );
-  };
+  }
 
-  _stopLink = (event) => {
+  _stopLink = event => {
     event.preventDefault();
   };
 
@@ -44,11 +50,11 @@ class LinkMenuItem extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -62,12 +68,11 @@ LinkMenuItem.propTypes = {
   payload: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   target: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 LinkMenuItem.defaultProps = {
-  disabled: false
+  disabled: false,
 };
 
 export default LinkMenuItem;
-

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import KeyCode from '../utils/KeyCode';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 import ThemeService from '../styles/ChamelThemeService';
 
 class AutoComplete extends Component {
-
   static propTypes = {
     /**
      * Suggestion list that will be displayed as menu list
@@ -85,7 +83,7 @@ class AutoComplete extends Component {
      *
      * @var {DOMElement}
      */
-    anchorEl: PropTypes.object
+    anchorEl: PropTypes.object,
   };
 
   static defaultProps = {
@@ -94,14 +92,14 @@ class AutoComplete extends Component {
     delimiter: '',
     trigger: null,
     filterData: true,
-    anchorEl: null
+    anchorEl: null,
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-    chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   /**
@@ -119,8 +117,8 @@ class AutoComplete extends Component {
     this.state = {
       focusedIndex: 0,
       suggestionList: suggestionList,
-      openMenu: false
-    }
+      openMenu: false,
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -131,7 +129,6 @@ class AutoComplete extends Component {
      *  then let's evaluate the suggestionList if we want to display the suggested list for autocomplete
      */
     if (nextProps.anchorEl == document.activeElement) {
-
       let openMenu = true;
 
       // If suggestionList is empty, there is no need to display the popover menu list
@@ -140,13 +137,13 @@ class AutoComplete extends Component {
       }
 
       this.setState({
-        openMenu: openMenu
-      })
+        openMenu: openMenu,
+      });
     }
 
     this.setState({
       suggestionList: suggestionList,
-      focusedIndex: 0
+      focusedIndex: 0,
     });
 
     if (suggestionList.length > 0) {
@@ -161,19 +158,22 @@ class AutoComplete extends Component {
    */
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.input)
-      ? this.context.chamelTheme.input : ThemeService.defaultTheme.input;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.input
+        ? this.context.chamelTheme.input
+        : ThemeService.defaultTheme.input;
 
     return (
       <div className={theme.autoCompleteContainer}>
         <Popover
           open={this.state.openMenu}
           anchorEl={this.props.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           onRequestClose={() => {
-            this.setState({openMenu: false});
+            this.setState({ openMenu: false });
           }}
-          relative={true}>
+          relative={true}
+        >
           <Menu
             menuItems={this.state.suggestionList}
             focusedIndex={this.state.focusedIndex}
@@ -190,7 +190,7 @@ class AutoComplete extends Component {
    * @param {DOMEvent} evt    Reference to the DOM event being sent
    * @private
    */
-  _handleInputKeyPress = (keyCode) => {
+  _handleInputKeyPress = keyCode => {
     switch (keyCode) {
       case KeyCode.ENTER:
         this._setAutoCompleteValue(this.state.focusedIndex);
@@ -200,24 +200,23 @@ class AutoComplete extends Component {
         this.setState({
           openMenu: false,
           focusedIndex: 0,
-          suggestionList: []
+          suggestionList: [],
         });
         break;
 
       case KeyCode.UP:
         if (this.state.focusedIndex > 0) {
           this.setState({
-            focusedIndex: this.state.focusedIndex - 1
-          })
+            focusedIndex: this.state.focusedIndex - 1,
+          });
         }
         break;
 
       case KeyCode.DOWN:
-
-        if (this.state.focusedIndex < (this.state.suggestionList.length - 1)) {
+        if (this.state.focusedIndex < this.state.suggestionList.length - 1) {
           this.setState({
-            focusedIndex: this.state.focusedIndex + 1
-          })
+            focusedIndex: this.state.focusedIndex + 1,
+          });
         }
         break;
 
@@ -228,7 +227,7 @@ class AutoComplete extends Component {
         this._getSuggestionList();
         break;
     }
-  }
+  };
 
   /**
    * Callback used to handle the clicking of suggestion item list
@@ -250,7 +249,6 @@ class AutoComplete extends Component {
    * @private
    */
   _setAutoCompleteValue(selectedIndex) {
-
     const selectedData = this.state.suggestionList[selectedIndex];
     let selectedValue = null;
 
@@ -271,7 +269,7 @@ class AutoComplete extends Component {
        * If all of these are conditions are met, then we will increment the startPos by 1
        * This is necessary so when replacing the keyword with the selectedValue, we will include the space in between
        */
-      if (inputDetails.subValue[inputDetails.startPos] === " ") {
+      if (inputDetails.subValue[inputDetails.startPos] === ' ') {
         inputDetails.startPos += 1;
       }
     } else {
@@ -281,7 +279,7 @@ class AutoComplete extends Component {
     // Replace the trigger key with the selected autoComplete value
     let newValue = inputDetails.subValue.substr(0, inputDetails.startPos);
     newValue += selectedValue;
-    newValue += (this.props.delimiter) ? this.props.delimiter : '';
+    newValue += this.props.delimiter ? this.props.delimiter : '';
 
     const newCaretPos = newValue.length;
 
@@ -291,11 +289,11 @@ class AutoComplete extends Component {
     this.setState({
       openMenu: false,
       focusedIndex: 0,
-      suggestionList: []
+      suggestionList: [],
     });
 
     if (this.props.onSelect) {
-      this.props.onSelect(newValue, newCaretPos, selectedData)
+      this.props.onSelect(newValue, newCaretPos, selectedData);
     }
   }
 
@@ -318,7 +316,6 @@ class AutoComplete extends Component {
 
     // If we find an @ in the inputValue, then lets evaluate it inside the if statement
     if (suggestionData && inputDetails && inputDetails.startPos >= 0) {
-
       /**
        * Now lets get the chuncked value from the @ position to caret position
        * We will not include the @ in the chunkedValue
@@ -331,10 +328,8 @@ class AutoComplete extends Component {
 
       // If the data unfiltered, then we need to filter it by using keyword and regular expressions
       if (this.props.filterData) {
-
         // Map this.props.suggestionData and find if we have a match of the chunkedValue keyword
-        suggestionData.map(function (suggestion) {
-
+        suggestionData.map(function(suggestion) {
           // We need the keyword to only have alphanumeric characters
           const keyword = chunkedValue.replace(/[!@#$%^&*]+/g, '');
 
@@ -348,7 +343,6 @@ class AutoComplete extends Component {
       } else {
         suggestionList = suggestionData;
       }
-
     }
 
     return suggestionList;

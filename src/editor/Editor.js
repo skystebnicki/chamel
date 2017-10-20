@@ -9,12 +9,10 @@ import ContentSource from './ContentSource';
 const HTML_VIEW = 'html';
 const SOURCE_VIEW = 'source';
 
-
 /**
  * Chamel Editor component for editing rich text and source code
  */
 class ChamelEditor extends Component {
-
   /**
    * Set accepted properties
    */
@@ -45,18 +43,18 @@ class ChamelEditor extends Component {
      *
      * @type {string}
      */
-    contentView: PropTypes.oneOf(['html', 'source'])
+    contentView: PropTypes.oneOf(['html', 'source']),
   };
 
   /**
    * An alternate theme may be passed down by a provider
    */
   static contextTypes = {
-      chamelTheme: PropTypes.object
+    chamelTheme: PropTypes.object,
   };
 
   static defaultProps = {
-      contentView: HTML_VIEW
+    contentView: HTML_VIEW,
   };
 
   /**
@@ -70,7 +68,7 @@ class ChamelEditor extends Component {
 
     this.state = {
       contentView: this.props.contentView,
-      value: this.props.value
+      value: this.props.value,
     };
   }
 
@@ -80,7 +78,7 @@ class ChamelEditor extends Component {
    * @param {obj} editorState  The top-level state object for the editor.
    * @private
    */
-  _onChange = (value) => {
+  _onChange = value => {
     if (this.props.onChange) {
       this.props.onChange(value);
     }
@@ -92,7 +90,7 @@ class ChamelEditor extends Component {
    * @param {string} value The value of the editor
    * @private
    */
-  _onBlur = (value) => {
+  _onBlur = value => {
     if (this.props.onBlur) {
       this.props.onBlur(value);
     }
@@ -104,7 +102,7 @@ class ChamelEditor extends Component {
    * @param {string} value The value of the editor
    * @private
    */
-  _onFocus = (value) => {
+  _onFocus = value => {
     if (this.props.onFocus) {
       this.props.onFocus(value);
     }
@@ -118,7 +116,7 @@ class ChamelEditor extends Component {
    * @private
    */
   _handleContentViewToggle = (contentView, value) => {
-    this.setState({contentView, value});
+    this.setState({ contentView, value });
   };
 
   /**
@@ -128,8 +126,10 @@ class ChamelEditor extends Component {
    */
   render() {
     // Determine which theme to use
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.editor)
-        ? this.context.chamelTheme.editor : ThemeService.defaultTheme.editor;
+    let theme =
+      this.context.chamelTheme && this.context.chamelTheme.editor
+        ? this.context.chamelTheme.editor
+        : ThemeService.defaultTheme.editor;
 
     let displaySourceView = null;
 
@@ -161,11 +161,7 @@ class ChamelEditor extends Component {
         break;
     }
 
-    return (
-        <div>
-            {displaySourceView}
-        </div>
-    );
+    return <div>{displaySourceView}</div>;
   }
 }
 

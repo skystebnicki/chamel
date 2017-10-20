@@ -12,19 +12,23 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const FindPageIcon = (props, context) => {
-    let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-        ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
-    return (
-        <FontIcon {...props} className={theme.iconFindPage}>{"find_in_page"}</FontIcon>
-    );
+  return (
+    <FontIcon {...props} className={theme.iconFindPage}>
+      {'find_in_page'}
+    </FontIcon>
+  );
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 FindPageIcon.contextTypes = {
-    chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default FindPageIcon;

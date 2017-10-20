@@ -4,11 +4,15 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 const MoreHorizIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconMoreHoriz}>{"more_horiz"}</FontIcon>
+    <FontIcon {...props} className={theme.iconMoreHoriz}>
+      {'more_horiz'}
+    </FontIcon>
   );
 };
 
@@ -16,7 +20,7 @@ const MoreHorizIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 MoreHorizIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default MoreHorizIcon;

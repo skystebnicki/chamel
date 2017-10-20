@@ -15,27 +15,26 @@ import SelectButton from 'chamel/AppBar/SelectButton';
 import { HashRouter, Route, Switch, Link } from 'react-router-dom';
 
 // pages
-import Home from "./home.jsx";
-import AppBarDemo from "../controls/AppBarDemo.jsx";
-import DrawerDemo from "../controls/DrawerDemo.jsx";
-import ButtonDemo from "../controls/ButtonDemo.jsx";
-import ToolbarDemo from "../controls/ToolbarDemo.jsx";
-import EditorDemo from "../controls/EditorDemo.jsx";
-import IconsDemo from "../controls/IconsDemo.jsx";
-import InputDemo from "../controls/InputDemo.jsx";
-import DialogDemo from "../controls/DialogDemo.jsx";
-import MenuDemo from "../controls/MenuDemo.jsx";
-import ListDemo from "../controls/List/ListDemo.jsx";
-import ProgressDemo from "../controls/ProgressDemo.jsx";
-import TabsDemo from "../controls/TabsDemo.jsx";
-import AutoCompleteDemo from "../controls/AutoCompleteDemo.jsx";
-import PopoverDemo from "../controls/popover/PopoverDemo.jsx";
-import ToggleDemo from "../controls/ToggleDemo";
-import PickerDemo from "../controls/PickerDemo";
-import SnackbarDemo from "../controls/SnackbarDemo";
+import Home from './home.jsx';
+import AppBarDemo from '../controls/AppBarDemo.jsx';
+import DrawerDemo from '../controls/DrawerDemo.jsx';
+import ButtonDemo from '../controls/ButtonDemo.jsx';
+import ToolbarDemo from '../controls/ToolbarDemo.jsx';
+import EditorDemo from '../controls/EditorDemo.jsx';
+import IconsDemo from '../controls/IconsDemo.jsx';
+import InputDemo from '../controls/InputDemo.jsx';
+import DialogDemo from '../controls/DialogDemo.jsx';
+import MenuDemo from '../controls/MenuDemo.jsx';
+import ListDemo from '../controls/List/ListDemo.jsx';
+import ProgressDemo from '../controls/ProgressDemo.jsx';
+import TabsDemo from '../controls/TabsDemo.jsx';
+import AutoCompleteDemo from '../controls/AutoCompleteDemo.jsx';
+import PopoverDemo from '../controls/popover/PopoverDemo.jsx';
+import ToggleDemo from '../controls/ToggleDemo';
+import PickerDemo from '../controls/PickerDemo';
+import SnackbarDemo from '../controls/SnackbarDemo';
 
 class App extends React.Component {
-
   /**
    * Class constructor
    *
@@ -48,13 +47,13 @@ class App extends React.Component {
     this.state = {
       menuDocked: false,
       menuOpen: false,
-      themeName: 'material'
-    }
+      themeName: 'material',
+    };
   }
 
   componentDidMount() {
     let newState = {
-      themeName: localStorage.getItem("theme") || 'material'
+      themeName: localStorage.getItem('theme') || 'material',
     };
 
     // Try to detect if we are a small device and hide the doc if so
@@ -63,38 +62,40 @@ class App extends React.Component {
       newState.menuOpen = true;
     }
 
-    this.setState(newState)
+    this.setState(newState);
   }
 
   render() {
-
     let mainContainerStyle = {};
     if (this.state.menuDocked) {
-      mainContainerStyle.marginLeft = "256px";
+      mainContainerStyle.marginLeft = '256px';
     }
 
     const theme = this.getTheme(this.state.themeName);
 
     // Get the current path name and skip the preceeding root / char
-    const activeRouteName = ""; //this.props.location.pathname.substring(1);
+    const activeRouteName = ''; //this.props.location.pathname.substring(1);
 
     // Set the z-index of the navigation menu (left nav)
-    const drawerZindex = (this.state.menuDocked) ? 0 : 1;
+    const drawerZindex = this.state.menuDocked ? 0 : 1;
 
     // Create right icon for closing the left nav if not docked
-    const leftAppBarElement = (!this.state.menuDocked) ? (
+    const leftAppBarElement = !this.state.menuDocked ? (
       <IconButton onClick={this.handleMenuToggle_}>
         <MenuIcon />
       </IconButton>
     ) : null;
 
     const rightAppBarElement = (
-      <SelectButton onChange={this.handleThemeChange_} menuItems={[
-        { theme: 'base', text: 'Base (none)' },
-        { theme: 'material', text: 'Material (android)' },
-        { theme: 'human', text: 'Human (ios)' },
-        { theme: 'modern', text: 'Modern (windows)' }
-      ]} />
+      <SelectButton
+        onChange={this.handleThemeChange_}
+        menuItems={[
+          { theme: 'base', text: 'Base (none)' },
+          { theme: 'material', text: 'Material (android)' },
+          { theme: 'human', text: 'Human (ios)' },
+          { theme: 'modern', text: 'Modern (windows)' },
+        ]}
+      />
     );
 
     return (
@@ -104,7 +105,7 @@ class App extends React.Component {
             <AppBar
               iconElementLeft={leftAppBarElement}
               iconElementRight={rightAppBarElement}
-              title={"Chameleon Demo"}
+              title={'Chameleon Demo'}
             />
 
             <Drawer
@@ -115,99 +116,97 @@ class App extends React.Component {
               zIndex={drawerZindex}
               onClose={this.handleMenuToggle_}
             >
-              <List
-                onItemClick={this.handleNavChange_}
-              >
+              <List onItemClick={this.handleNavChange_}>
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
                   activeOnlyWhenExact
-                  primaryText={"Home"}
-                  path={"/"}
+                  primaryText={'Home'}
+                  path={'/'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"AppBar"}
-                  path={"/appbar"}
+                  primaryText={'AppBar'}
+                  path={'/appbar'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Drawer"}
-                  path={"/drawer"}
+                  primaryText={'Drawer'}
+                  path={'/drawer'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Button"}
-                  path={"/button"}
+                  primaryText={'Button'}
+                  path={'/button'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Input"}
-                  path={"/input"}
+                  primaryText={'Input'}
+                  path={'/input'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Toggle"}
-                  path={"/toggle"}
+                  primaryText={'Toggle'}
+                  path={'/toggle'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Picker"}
-                  path={"/picker"}
+                  primaryText={'Picker'}
+                  path={'/picker'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Toolbar"}
-                  path={"/toolbar"}
+                  primaryText={'Toolbar'}
+                  path={'/toolbar'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Icon"}
-                  path={"/icon"}
+                  primaryText={'Icon'}
+                  path={'/icon'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Popover"}
-                  path={"/popover"}
+                  primaryText={'Popover'}
+                  path={'/popover'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"List"}
-                  path={"/list"}
+                  primaryText={'List'}
+                  path={'/list'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Menu"}
-                  path={"/menu"}
+                  primaryText={'Menu'}
+                  path={'/menu'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Tabs"}
-                  path={"/tabs"}
+                  primaryText={'Tabs'}
+                  path={'/tabs'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Dialog"}
-                  path={"/dialog"}
+                  primaryText={'Dialog'}
+                  path={'/dialog'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Editor"}
-                  path={"/editor"}
+                  primaryText={'Editor'}
+                  path={'/editor'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Progress"}
-                  path={"/progress"}
+                  primaryText={'Progress'}
+                  path={'/progress'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"AutoComplete"}
-                  path={"/autocomplete"}
+                  primaryText={'AutoComplete'}
+                  path={'/autocomplete'}
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
-                  primaryText={"Snackbar"}
-                  path={"/snackbar"}
+                  primaryText={'Snackbar'}
+                  path={'/snackbar'}
                 />
               </List>
             </Drawer>
@@ -250,15 +249,15 @@ class App extends React.Component {
    */
   getTheme(themeName) {
     switch (themeName) {
-        case 'material':
-            return materialTheme;
-        case 'human':
-            return humanTheme;
-        case 'modern':
-            return modernTheme;
-        case 'base':
-        default:
-            return baseTheme;
+      case 'material':
+        return materialTheme;
+      case 'human':
+        return humanTheme;
+      case 'modern':
+        return modernTheme;
+      case 'base':
+      default:
+        return baseTheme;
     }
   }
 
@@ -266,16 +265,16 @@ class App extends React.Component {
    * Change the theme css
    */
   handleThemeChange_ = (e, index, payload) => {
-    localStorage.setItem("theme", payload.theme);
-    this.setState({themeName: payload.theme});
+    localStorage.setItem('theme', payload.theme);
+    this.setState({ themeName: payload.theme });
   };
 
   /**
    * Handle menu toggle
    */
   handleMenuToggle_ = () => {
-    this.setState({menuOpen: !this.state.menuOpen});
-  }
+    this.setState({ menuOpen: !this.state.menuOpen });
+  };
 
   /**
    * Change the hash which will load the selected route
@@ -283,9 +282,9 @@ class App extends React.Component {
   handleGoToRoute = (route, path) => {
     location.hash = path;
     if (!this.state.menuDocked) {
-      this.setState({menuOpen: false});
+      this.setState({ menuOpen: false });
     }
-  }
+  };
 }
 
 const LeftNavRouteItem = ({ activeOnlyWhenExact, handleGoToRoute, primaryText, path }) => (
@@ -293,7 +292,9 @@ const LeftNavRouteItem = ({ activeOnlyWhenExact, handleGoToRoute, primaryText, p
   <ListItem
     primaryText={primaryText}
     selected={false}
-    onTap={(evt) => { handleGoToRoute(evt, path); }}
+    onTap={evt => {
+      handleGoToRoute(evt, path);
+    }}
   />
   /*
   <Link activeOnlyWhenExact={activeOnlyWhenExact} to={path} onClick={handleGoToRoute}>{
@@ -315,6 +316,6 @@ const NoMatch = ({ location }) => (
     <h2>Whoops</h2>
     <p>Sorry but {location.pathname} didn’t match any pages</p>
   </div>
-)
+);
 
-ReactDOM.render(<App />, document.querySelector("#app-main"));
+ReactDOM.render(<App />, document.querySelector('#app-main'));

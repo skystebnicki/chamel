@@ -14,38 +14,43 @@ import Paper from '../Paper';
  * @constructor
  */
 const Switch = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.toggle)
-    ? context.chamelTheme.toggle : ThemeService.defaultTheme.toggle;
+  let theme =
+    context.chamelTheme && context.chamelTheme.toggle
+      ? context.chamelTheme.toggle
+      : ThemeService.defaultTheme.toggle;
 
-  const onTap = (props.onChange && !props.disabled) ? (evt) => {
-    if (props.onChange) {
-      props.onChange(evt, !props.checked);
-    }
-  } : false;
+  const onTap =
+    props.onChange && !props.disabled
+      ? evt => {
+          if (props.onChange) {
+            props.onChange(evt, !props.checked);
+          }
+        }
+      : false;
 
   let labelElement = null;
   if (props.label) {
-    labelElement = (<div className={theme.switchText}>{props.label}</div>);
+    labelElement = <div className={theme.switchText}>{props.label}</div>;
   }
 
   let buttonClasses = theme.switchIconButton;
   if (props.checked) {
-    buttonClasses += " " + theme.switchIconButtonOn;
+    buttonClasses += ' ' + theme.switchIconButtonOn;
   }
 
   let trackClasses = theme.switchIconTrack;
   if (props.checked) {
-    trackClasses += " " + theme.switchIconTrackOn;
+    trackClasses += ' ' + theme.switchIconTrackOn;
   }
 
   return (
-      <div onClick={onTap} className={theme.switch}>
-        <div className={theme.switchIcon} >
-          <div className={trackClasses} />
-          <Paper className={buttonClasses} zDepth={1}/>
-        </div>
-        {labelElement}
+    <div onClick={onTap} className={theme.switch}>
+      <div className={theme.switchIcon}>
+        <div className={trackClasses} />
+        <Paper className={buttonClasses} zDepth={1} />
       </div>
+      {labelElement}
+    </div>
   );
 };
 
@@ -66,7 +71,7 @@ Switch.propTypes = {
   /**
    * Flag indicates whether or not the input box is checked
    */
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
 };
 
 /**
@@ -74,14 +79,14 @@ Switch.propTypes = {
  */
 Switch.defaultProps = {
   className: '',
-  checked: false
+  checked: false,
 };
 
 /**
  * An alternate theme may be passed down by a provider
  */
 Switch.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default Switch;

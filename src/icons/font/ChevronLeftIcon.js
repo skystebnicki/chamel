@@ -4,11 +4,15 @@ import FontIcon from '../../FontIcon';
 import ThemeService from '../../styles/ChamelThemeService';
 
 const ChevronLeftIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconChevronLeft}>{"chevron_left"}</FontIcon>
+    <FontIcon {...props} className={theme.iconChevronLeft}>
+      {'chevron_left'}
+    </FontIcon>
   );
 };
 
@@ -16,7 +20,7 @@ const ChevronLeftIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 ChevronLeftIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default ChevronLeftIcon;

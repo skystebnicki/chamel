@@ -4,20 +4,18 @@ import Column from 'chamel/Grid/Column';
 
 import AppBarFixedDemo from './AppBar/AppBarFixedDemo';
 
-var CodeExample = require("../CodeExample");
+var CodeExample = require('../CodeExample');
 
 class AppBarDemo extends Component {
-
-    render() {
-        return (
-            <Row>
-                <Column small={12}>
-                  <AppBarFixedDemo />
-                </Column>
-            </Row>
-        );
-    }
-
+  render() {
+    return (
+      <Row>
+        <Column small={12}>
+          <AppBarFixedDemo />
+        </Column>
+      </Row>
+    );
+  }
 }
 
 module.exports = AppBarDemo;

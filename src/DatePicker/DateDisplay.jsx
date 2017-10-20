@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateTime from '../utils/DateTime';
 import SlideInTransitionGroup from '../transition-groups/SlideIn';
 import classNames from 'classnames';
 
 class DateDisplay extends Component {
-
   /**
    * Class constructor
    *
@@ -16,8 +15,8 @@ class DateDisplay extends Component {
     super(props);
 
     this.state = {
-      transitionDirection: 'up'
-    }
+      transitionDirection: 'up',
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,16 +25,13 @@ class DateDisplay extends Component {
     if (nextProps.selectedDate !== this.props.selectedDate) {
       direction = nextProps.selectedDate > this.props.selectedDate ? 'up' : 'down';
       this.setState({
-        transitionDirection: direction
+        transitionDirection: direction,
       });
     }
   }
 
   render() {
-    let {
-      selectedDate,
-      ...other
-      } = this.props;
+    let { selectedDate, ...other } = this.props;
 
     const classes = this.getClasses('chamel-date-picker-date-display');
     const dayOfWeek = DateTime.getDayOfWeek(this.props.selectedDate);
@@ -45,38 +41,38 @@ class DateDisplay extends Component {
 
     return (
       <div {...other} className={classes}>
-
         <SlideInTransitionGroup
           className="chamel-date-picker-date-display-dow"
-          direction={this.state.transitionDirection}>
+          direction={this.state.transitionDirection}
+        >
           <div key={dayOfWeek}>{dayOfWeek}</div>
         </SlideInTransitionGroup>
 
         <div className="chamel-date-picker-date-display-date">
-
           <SlideInTransitionGroup
             className="chamel-date-picker-date-display-month"
-            direction={this.state.transitionDirection}>
+            direction={this.state.transitionDirection}
+          >
             <div key={month}>{month}</div>
           </SlideInTransitionGroup>
 
           <SlideInTransitionGroup
             className="chamel-date-picker-date-display-day"
-            direction={this.state.transitionDirection}>
+            direction={this.state.transitionDirection}
+          >
             <div key={day}>{day}</div>
           </SlideInTransitionGroup>
 
           <SlideInTransitionGroup
             className="chamel-date-picker-date-display-year"
-            direction={this.state.transitionDirection}>
+            direction={this.state.transitionDirection}
+          >
             <div key={year}>{year}</div>
           </SlideInTransitionGroup>
-
         </div>
-
       </div>
     );
-  };
+  }
 
   getClasses = (initialClasses, additionalClassObj) => {
     let classString = '';
@@ -98,11 +94,11 @@ class DateDisplay extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -112,7 +108,7 @@ class DateDisplay extends Component {
 }
 
 DateDisplay.propTypes = {
-  selectedDate: PropTypes.object.isRequired
+  selectedDate: PropTypes.object.isRequired,
 };
 
 module.exports = DateDisplay;

@@ -12,11 +12,15 @@ import ThemeService from '../../styles/ChamelThemeService';
  * @constructor
  */
 const FilterListIcon = (props, context) => {
-  let theme = (context.chamelTheme && context.chamelTheme.fontIcon)
-    ? context.chamelTheme.fontIcon : ThemeService.defaultTheme.fontIcon;
+  let theme =
+    context.chamelTheme && context.chamelTheme.fontIcon
+      ? context.chamelTheme.fontIcon
+      : ThemeService.defaultTheme.fontIcon;
 
   return (
-    <FontIcon {...props} className={theme.iconFilterList}>{"filter_list"}</FontIcon>
+    <FontIcon {...props} className={theme.iconFilterList}>
+      {'filter_list'}
+    </FontIcon>
   );
 };
 
@@ -24,7 +28,7 @@ const FilterListIcon = (props, context) => {
  * An alternate theme may be passed down by a provider
  */
 FilterListIcon.contextTypes = {
-  chamelTheme: PropTypes.object
+  chamelTheme: PropTypes.object,
 };
 
 export default FilterListIcon;

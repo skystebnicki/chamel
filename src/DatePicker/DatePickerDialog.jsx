@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import KeyCode from '../utils/KeyCode';
 import Calendar from './Calendar';
@@ -7,7 +7,6 @@ import FlatButton from '../Button/FlatButton';
 import classNames from 'classnames';
 
 class DatePickerDialog extends Component {
-
   /**
    * Class constructor
    *
@@ -18,36 +17,24 @@ class DatePickerDialog extends Component {
     super(props);
 
     this.state = {
-      isCalendarActive: false
+      isCalendarActive: false,
     };
   }
 
   componentDidMount() {
     Events.on(window, 'keyup', this._handleWindowKeyUp);
-  };
+  }
 
   componentWillUnmount() {
     Events.off(window, 'keyup', this._handleWindowKeyUp);
-  };
+  }
 
   render() {
-    let {
-      initialDate,
-      onAccept,
-      ...other
-      } = this.props;
+    let { initialDate, onAccept, ...other } = this.props;
     const classes = this.getClasses('chamel-date-picker-dialog');
     let actions = [
-      <FlatButton
-        key={0}
-        label="Cancel"
-        secondary={true}
-        onClick={this._handleCancelTouchTap}/>,
-      <FlatButton
-        key={1}
-        label="OK"
-        secondary={true}
-        onClick={this._handleOKTouchTap}/>
+      <FlatButton key={0} label="Cancel" secondary={true} onClick={this._handleCancelTouchTap} />,
+      <FlatButton key={1} label="OK" secondary={true} onClick={this._handleOKTouchTap} />,
     ];
 
     if (this.props.autoOk) {
@@ -55,20 +42,23 @@ class DatePickerDialog extends Component {
     }
 
     return (
-      <Dialog {...other}
+      <Dialog
+        {...other}
         ref="dialogWindow"
         className={classes}
         actions={actions}
         onDismiss={this._handleDialogDismiss}
         onShow={this._handleDialogShow}
-        repositionOnUpdate={false}>
+        repositionOnUpdate={false}
+      >
         <Calendar
           minDate={this.props.minDate}
           maxDate={this.props.maxDate}
           ref="calendar"
           onSelectedDate={this._onSelectedDate}
           initialDate={this.props.initialDate}
-          isActive={this.state.isCalendarActive}/>
+          isActive={this.state.isCalendarActive}
+        />
       </Dialog>
     );
   }
@@ -79,7 +69,7 @@ class DatePickerDialog extends Component {
 
   dismiss = () => {
     this.refs.dialogWindow.dismiss();
-  }
+  };
 
   _onSelectedDate = () => {
     if (this.props.autoOk) {
@@ -100,7 +90,7 @@ class DatePickerDialog extends Component {
 
   _handleDialogShow = () => {
     this.setState({
-      isCalendarActive: true
+      isCalendarActive: true,
     });
 
     if (this.props.onShow) {
@@ -110,7 +100,7 @@ class DatePickerDialog extends Component {
 
   _handleDialogDismiss = () => {
     this.setState({
-      isCalendarActive: false
+      isCalendarActive: false,
     });
 
     if (this.props.onDismiss) {
@@ -118,7 +108,7 @@ class DatePickerDialog extends Component {
     }
   };
 
-  _handleWindowKeyUp = (e) => {
+  _handleWindowKeyUp = e => {
     if (this.refs.dialogWindow.isOpen()) {
       switch (e.keyCode) {
         case KeyCode.ENTER:
@@ -148,11 +138,11 @@ class DatePickerDialog extends Component {
     return classNames(this.getClassSet(classString));
   };
 
-  getClassSet = (classString) => {
+  getClassSet = classString => {
     let classObj = {};
 
     if (classString) {
-      classString.split(' ').forEach(function (className) {
+      classString.split(' ').forEach(function(className) {
         if (className) classObj[className] = true;
       });
     }
@@ -167,7 +157,7 @@ DatePickerDialog.propTypes = {
   onShow: PropTypes.func,
   onDismiss: PropTypes.func,
   minDate: PropTypes.object,
-  maxDate: PropTypes.object
+  maxDate: PropTypes.object,
 };
 
 export default DatePickerDialog;
