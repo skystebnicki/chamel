@@ -116,11 +116,7 @@ class AppBarRightToolbar extends Component {
       );
 
       divStyle = { overflow: 'unset' };
-      iconButtons = (
-        <AppBarSelectButton icon={selectButtonIcon}>
-          <div className={theme.appBarSelectButtonCon}>{iconButtons}</div>
-        </AppBarSelectButton>
-      );
+      iconButtons = <AppBarSelectButton icon={selectButtonIcon}>{iconButtons}</AppBarSelectButton>;
     }
 
     return (
