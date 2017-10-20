@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var AppBar = require('../../../AppBar');
+import AppBar from 'chamel/AppBar';
 import { HashRouter, Match, Miss, Link } from 'react-router';
 
 var CodeExample = require('../../CodeExample');

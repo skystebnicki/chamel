@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ThemeService from '../styles/ChamelThemeService';
+import IconButton from '../Button/IconButton';
 
 /**
  * Wrapper for an IconButton in the AppBar

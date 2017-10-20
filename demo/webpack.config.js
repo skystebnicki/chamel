@@ -14,11 +14,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.scss', '.js', '.jsx'],
-    aliasFields: ['browser', 'web', 'main', 'style'],
     alias: {
-      chamel: path.resolve(__dirname, 'src'),
+      chamel: path.resolve(__dirname, '/../src'),
     },
-    modules: [path.resolve(__dirname, '../node_modules'), path.resolve(__dirname, '../src')],
+    modules: [path.resolve(__dirname, '../node_modules')],
   },
   module: {
     rules: [

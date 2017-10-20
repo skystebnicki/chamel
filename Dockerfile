@@ -9,14 +9,10 @@ COPY ./ .
 RUN rm -rf node_modules/*
 RUN rm -rf build/*
 
-# Auth NPM
-RUN echo '//registry.npmjs.org/:_authToken=ef16319c-fcec-42d2-abac-96e6abb71d6b' > /.npmrc
-
 # Install dependencies for the library
-
 EXPOSE 8081
 EXPOSE 885
 EXPOSE 3001
 
 # Run the server
-CMD rm -rf node_modules/* && npm install && npm start
+CMD rm -rf node_modules/* && npm start
