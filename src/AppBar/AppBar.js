@@ -7,7 +7,6 @@ import IconButton from '../Button/IconButton';
 import AppBarRightToolbar from './AppBarRightToolbar';
 import Dom from '../utils/Dom';
 import Events from '../utils/Events';
-import Paper from '../Paper';
 
 /**
  * AppBar - the main toolbar for the application

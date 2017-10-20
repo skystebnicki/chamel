@@ -49,29 +49,21 @@ class SelectButton extends Component {
    */
   render() {
     // Determine which theme to use
-<<<<<<< HEAD
-    let theme = (this.context.chamelTheme && this.context.chamelTheme.picker)
-      ? this.context.chamelTheme.picker : ThemeService.defaultTheme.picker;
-=======
     let theme =
       this.context.chamelTheme && this.context.chamelTheme.picker
         ? this.context.chamelTheme.picker
         : ThemeService.defaultTheme.picker;
 
-    let icon =
-      typeof this.props.icon === 'string' ? (
-        <FontIcon className={this.props.icon} />
-      ) : (
-        this.props.icon
-      );
->>>>>>> sky-windows
-
     // Use default dropdown icon
-    let icon = <DropDownArrow />;
+    icon = <DropDownArrow />;
 
     if (this.props.icon) {
-      icon = (typeof this.props.icon === 'string') ?
-        (<FontIcon className={this.props.icon}/>) : this.props.icon
+      icon =
+        typeof this.props.icon === 'string' ? (
+          <FontIcon className={this.props.icon} />
+        ) : (
+          this.props.icon
+        );
     }
 
     return (
@@ -92,7 +84,8 @@ class SelectButton extends Component {
             autoWidth={this.props.autoWidth}
             selectedIndex={this.state.selectedIndex}
             menuItems={this.props.menuItems}
-            onItemClick={this._onMenuItemClick}>
+            onItemClick={this._onMenuItemClick}
+          >
             {this.props.children}
           </Menu>
         </Popover>
@@ -176,16 +169,8 @@ class SelectButton extends Component {
 SelectButton.propTypes = {
   onChange: PropTypes.func,
   selectedIndex: PropTypes.number,
-<<<<<<< HEAD
-  icon: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
-  menuItems: PropTypes.array,
-=======
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   menuItems: PropTypes.array.isRequired,
->>>>>>> sky-windows
 
   /**
    * Optional additional class for the icon button
