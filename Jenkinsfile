@@ -21,11 +21,20 @@ node {
             /* Run tests inside the docker container */
             dockerImage.inside {
                 withEnv([ 'HOME=/tmp' ]) {
-                    /*
                     sh 'npm run test-single-run'
                     junit 'test/reports/junit.xml'
-                    */
                 }
+            }
+        }
+
+        stage('Bump Verison and Push') {
+            if (env.BRANCH_NAME == 'master') {
+                dockerImage.inside {
+                    withEnv([ 'HOME=/tmp' ]) {
+                        sh 'npm version point'
+                    }
+                }
+                sh 'git push'
             }
         }
 
