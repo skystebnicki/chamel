@@ -28,10 +28,10 @@ node {
         }
 
         stage('Bump Verison and Push') {
-            if (env.BRANCH_NAME == 'master') {
+            if (env.BRANCH_NAME == 'develop') {
                 dockerImage.inside {
                     withEnv([ 'HOME=/tmp' ]) {
-                        sh 'npm version point'
+                        sh 'npm version patch'
                     }
                 }
                 sh 'git push'
