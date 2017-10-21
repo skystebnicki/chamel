@@ -27,6 +27,7 @@ node {
             }
         }
 
+        /*
         stage('Bump Verison and Push') {
             if (env.BRANCH_NAME == 'develop') {
                 dockerImage.inside {
@@ -37,6 +38,7 @@ node {
                 sh 'git push'
             }
         }
+        &/
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
