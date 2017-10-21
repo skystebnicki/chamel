@@ -10,6 +10,11 @@ const SlideIn = props => {
   classes += 'chamel-transition-slide-in chamel-is-' + props.direction;
   //var classes = 'chamel-transition-slide-in chamel-is-' + this.props.direction;
 
+  // If the slide-in has no children then just return an empty div
+  if (!children) {
+    return <div />;
+  }
+
   let newChildren = React.Children.map(
     children,
     child => {
@@ -17,7 +22,9 @@ const SlideIn = props => {
         <SlideInChild
           key={child.key}
           direction={direction}
-          getLeaveDirection={this._getLeaveDirection}
+          getLeaveDirection={() => {
+            return props.direction;
+          }}
         >
           {child}
         </SlideInChild>
@@ -36,10 +43,6 @@ const SlideIn = props => {
       {newChildren}
     </CSSTransition>
   );
-
-  _getLeaveDirection = () => {
-    return props.direction;
-  };
 };
 
 SlideIn.propTypes = {

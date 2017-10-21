@@ -78,7 +78,7 @@ class AppBarRightToolbar extends Component {
         ? this.context.chamelTheme.appBar
         : ThemeService.defaultTheme.appBar;
 
-    let classes = theme.appBarRight;
+    let classes = theme.appBarRight || '';
     if (this.props.className) {
       classes += ' ' + this.props.className;
     }

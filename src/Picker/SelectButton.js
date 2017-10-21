@@ -55,7 +55,7 @@ class SelectButton extends Component {
         : ThemeService.defaultTheme.picker;
 
     // Use default dropdown icon
-    icon = <DropDownArrow />;
+    let icon = <DropDownArrow />;
 
     if (this.props.icon) {
       icon =
