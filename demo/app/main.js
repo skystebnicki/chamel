@@ -33,6 +33,7 @@ import PopoverDemo from '../controls/popover/PopoverDemo.jsx';
 import ToggleDemo from '../controls/ToggleDemo';
 import PickerDemo from '../controls/PickerDemo';
 import SnackbarDemo from '../controls/SnackbarDemo';
+import GroupingDemo from '../controls/Grouping/GroupingDemo.jsx';
 
 class App extends React.Component {
   /**
@@ -130,6 +131,11 @@ class App extends React.Component {
                 />
                 <LeftNavRouteItem
                   handleGoToRoute={this.handleGoToRoute}
+                  primaryText={'Grouping'}
+                  path={'/grouping'}
+                />
+                <LeftNavRouteItem
+                  handleGoToRoute={this.handleGoToRoute}
                   primaryText={'Drawer'}
                   path={'/drawer'}
                 />
@@ -216,6 +222,7 @@ class App extends React.Component {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <Route path="/appbar" component={AppBarDemo} />
+                  <Route path="/grouping" component={GroupingDemo} />
                   <Route path="/drawer" component={DrawerDemo} />
                   <Route path="/button" component={ButtonDemo} />
                   <Route path="/input" component={InputDemo} />

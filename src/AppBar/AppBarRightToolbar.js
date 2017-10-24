@@ -6,7 +6,7 @@ import ThemeService from '../styles/ChamelThemeService';
 import AppBarSelectButton from './SelectButton';
 import AppBarIconButton from './IconButton';
 
-import DropDownArrow from '../svg-icons/drop-down-arrow';
+import ExpandMoreIcon from '../icons/font/ExpandMoreIcon';
 
 /**
  * The right toolbar for an AppBar
@@ -67,7 +67,7 @@ class AppBarRightToolbar extends Component {
     // Check if the scrollable width of the div is bigger than the actual width
     if (domAppBarRight.scrollWidth > offset.width) {
       // If so, then we need to set the state so it will use the SelectButton to display the icons
-      this.setState({ useSelectButton: true });
+      this.setState({useSelectButton: true});
     }
   }
 
@@ -90,14 +90,19 @@ class AppBarRightToolbar extends Component {
 
     for (let idx in this.props.children) {
       let currentIcon = this.props.children[idx];
-      const isPrimaryIcon = currentIcon.props.isPrimary || false;
+
+      // Let's verify if the currentIcon is a valid react element
+      if (!currentIcon || !currentIcon.props) {
+        continue;
+      }
 
       // If the currentIcon is not encapsulated with AppBarIconButton, then we need to wrap it with <AppBarIconButton>
-      if (currentIcon.type.name !== 'AppBarIconButton' || currentIcon.type.name !== 'IconButton') {
+      if (currentIcon.type.name !== 'AppBarIconButton') {
         currentIcon = <AppBarIconButton key={idx}>{currentIcon}</AppBarIconButton>;
       }
 
       // If we are dealing with primary icon and we dont have one, then we need to display it separately
+      const isPrimaryIcon = currentIcon.props.isPrimary || false;
       if (isPrimaryIcon && !primaryIconButton) {
         minIconCountForSelectButton = 1;
         primaryIconButton = currentIcon;
@@ -111,11 +116,11 @@ class AppBarRightToolbar extends Component {
     if (this.state.useSelectButton && iconButtons.length > minIconCountForSelectButton) {
       const selectButtonIcon = (
         <AppBarIconButton>
-          <DropDownArrow />
+          <ExpandMoreIcon />
         </AppBarIconButton>
       );
 
-      divStyle = { overflow: 'unset' };
+      divStyle = {overflow: 'unset'};
       iconButtons = <AppBarSelectButton icon={selectButtonIcon}>{iconButtons}</AppBarSelectButton>;
     }
 
