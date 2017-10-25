@@ -22,4 +22,5 @@ export default {
   progress: require('../../Progress/theme.scss'),
   snackbar: require('../../Snackbar/theme.scss'),
   dropDownIcon: require('../components/_drop-down-icon.scss'),
+  grouping: require('../../Grouping/theme-material.scss'),
 }

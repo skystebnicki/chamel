@@ -1,0 +1,31 @@
+@import "../styles/variables/colors";
+@import "../styles/variables/spacing";
+@import "../styles/variables/media-queries";
+@import "../styles/variables/theme-variables";
+@import "../styles/core/typography";
+
+.chip {
+  background-color: $chip-background-color;
+  border-radius: 5px;
+  margin: 5px;
+  overflow: hidden;
+  position: relative;
+  min-height: 25px;
+  display: inline-block;
+
+  .chipChildren {
+    font-size: $chip-font-size;
+    color: $chip-text-color;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 5px;
+    display: inline-block;
+  }
+
+  .deletable {
+    margin-left: 5px;
+    cursor: pointer;
+    padding-right: 5px;
+  }
+}
