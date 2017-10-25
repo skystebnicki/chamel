@@ -41,20 +41,21 @@
 }
 
 /* Rules for sizing the icon. */
-.material-icons.md-18 {
-  font-size: 18px;
+
+.material-icons .md-18, .iconSize18 {
+  font-size: 18px !important;
 }
 
-.material-icons.md-24 {
-  font-size: 24px;
+.material-icons .md-24, .iconSize24 {
+  font-size: 24px !important;
 }
 
-.material-icons.md-36 {
-  font-size: 36px;
+.material-icons .md-36, .iconSize36 {
+  font-size: 36px !important;
 }
 
-.material-icons.md-48 {
-  font-size: 48px;
+.material-icons .md-48, .iconSize48 {
+  font-size: 48px !important;
 }
 
 /* Rules for using icons as black on a light background. */
