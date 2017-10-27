@@ -55,7 +55,7 @@ node {
                         if (env.BRANCH_NAME == 'master') {
                           sh 'npm publish'
                         } else if (env.BRANCH_NAME == 'develop') {
-                          sh 'npm publish@next'
+                          sh 'npm publish --tag next'
                         }
                     }
                 }
