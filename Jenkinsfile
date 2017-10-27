@@ -27,18 +27,15 @@ node {
             }
         }
 
-        /*
-        stage('Bump Verison and Push') {
+        stage('Bump Verison') {
             if (env.BRANCH_NAME == 'develop') {
                 dockerImage.inside {
                     withEnv([ 'HOME=/tmp' ]) {
                         sh 'npm version patch'
                     }
                 }
-                sh 'git push'
             }
         }
-        */
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
@@ -50,10 +47,13 @@ node {
             /* Publish in docker container */
             dockerImage.inside {
                 withEnv([ 'HOME=/tmp' ]) {
-                    if (env.BRANCH_NAME == 'master') {
-                        withCredentials([string(credentialsId: 'npmjsauth', variable: 'NPM_TOKEN', usernameVariable: 'NPM_USERNAME')]) {
-                            sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
-                            sh 'npm publish'
+                    withCredentials([string(credentialsId: 'npmjsauth', variable: 'NPM_TOKEN', usernameVariable: 'NPM_USERNAME')]) {
+                        sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
+
+                        if (env.BRANCH_NAME == 'master') {
+                          sh 'npm publish'
+                        } else if (env.BRANCH_NAME == 'develop') {
+                          sh 'npm publish@next'
                         }
                     }
                 }
@@ -63,11 +63,6 @@ node {
         stage('Cleanup') {
             echo 'prune and cleanup'
             sh 'docker system prune -a'
-
-            mail body: "project build successful: ${env.BUILD_URL}",
-                from: 'builds@aereus.com',
-                subject: 'project build successful',
-                to: 'sky.stebnicki@aereus.com'
         }
 
     } catch (err) {
