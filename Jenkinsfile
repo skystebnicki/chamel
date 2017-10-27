@@ -27,18 +27,6 @@ node {
             }
         }
 
-        /*
-        stage('Bump Verison') {
-            if (env.BRANCH_NAME == 'develop') {
-                dockerImage.inside {
-                    withEnv([ 'HOME=/tmp' ]) {
-                        sh 'npm version patch'
-                    }
-                }
-            }
-        }
-        */
-
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"
