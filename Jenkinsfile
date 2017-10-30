@@ -6,7 +6,7 @@ node {
         stage('Build') {
             deleteDir()
             checkout scm
-            dockerImage = docker.build('chamel')
+            dockerImage = docker.build('chamel', '--no-cache .')
 
             dockerImage.inside {
                 /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
