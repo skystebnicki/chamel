@@ -41,9 +41,9 @@ node {
                         sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
 
                         if (env.BRANCH_NAME == 'master') {
-                          sh 'npm publish'
+                          //sh 'npm publish'
                         } else if (env.BRANCH_NAME == 'develop') {
-                          sh 'npm publish'
+                          //sh 'npm publish'
                         }
                     }
                 }
