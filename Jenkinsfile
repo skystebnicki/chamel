@@ -13,12 +13,14 @@ node {
                 CURRENT_BRANCH = scmVars.GIT_BRANCH;
             }
 
+            // Create a version bump for publishing
+            sh 'npm version patch'
+
             dockerImage = docker.build('chamel', '--no-cache .')
 
             dockerImage.inside {
                 /* Override the npm cache directory to avoid: EACCES: permission denied, mkdir '/.npm' */
                 withEnv([ 'HOME=/tmp' ]) {
-                    sh 'npm version patch'
                     sh 'npm install'
                     sh 'npm run build'
                 }
