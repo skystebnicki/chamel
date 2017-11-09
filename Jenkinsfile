@@ -16,9 +16,6 @@ node {
             // Create a version bump for publishing
             sh('git checkout -b build')
             sh('npm version patch')
-            sh('git add package.json')
-            sh('git status')
-            sh('git commit -m "Bumped the version"')
 
             dockerImage = docker.build('chamel', '--no-cache .')
 
