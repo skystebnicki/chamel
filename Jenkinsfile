@@ -14,6 +14,7 @@ node {
             }
 
             // Create a version bump for publishing
+            sh('git checkout -b build')
             sh('npm version patch')
             sh('git add package.json')
             sh('git status')
