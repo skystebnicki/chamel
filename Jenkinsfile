@@ -63,7 +63,7 @@ node {
             /* If in CI branch (develop) then updated version */
            if (CURRENT_BRANCH == 'develop') {
                sshagent (credentials: ['9862b4cf-a692-43c5-9614-9d93114f93a7']) {
-                   sh("git push ssh://git@src.aereusdev.com/source/chamel HEAD:develop")
+                   sh("git push origin HEAD:develop")
                }
            }
         }
