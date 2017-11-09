@@ -14,7 +14,10 @@ node {
             }
 
             // Create a version bump for publishing
-            sh 'npm version patch'
+            sh('npm version patch')
+            sh('git add package.json')
+            sh('git status')
+            sh('git commit -m "Bumped the version"')
 
             dockerImage = docker.build('chamel', '--no-cache .')
 
@@ -25,10 +28,6 @@ node {
                     sh 'npm run build'
                 }
             }
-
-            // Commit the version bump
-            sh('git add package.json')
-            sh('git commit -m "Bumped the version"')
         }
 
         stage('Test') {
@@ -66,7 +65,7 @@ node {
             /* If in CI branch (develop) then updated version */
            if (CURRENT_BRANCH == 'develop') {
                sshagent (credentials: ['9862b4cf-a692-43c5-9614-9d93114f93a7']) {
-                   sh("git push ssh://git@src.aereusdev.com/source/chamel develop")
+                   sh("git push ssh://git@src.aereusdev.com/source/chamel HEAD:develop")
                }
            }
         }
