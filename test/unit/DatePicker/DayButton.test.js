@@ -18,9 +18,9 @@ describe("DayButton Component", () => {
         date={date}
         selected={true}/>
     );
-    
+
     expect(renderedDocument.props.className)
-      .toBe('chamel-date-picker-day-button chamel-is-current-date chamel-is-selected');
+      .toContain('chamel-date-picker-day-button chamel-is-selected');
     expect(renderedDocument.props.type).toBe('raised');
   });
 });
