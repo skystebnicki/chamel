@@ -87,8 +87,8 @@ First make sure you have the latest version of node installed and working locall
 
 This will start a development server that can be accessed at http://localhost:8081
 
-## Building and Publishing
+## Building and Publishing (from develop)
 
-1. Bump the version number
-2. npm run build
-3. npm publish
+1. Bump the version number (npm run patch)
+2. Merge develop to master
+3. Push
