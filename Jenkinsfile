@@ -1,17 +1,11 @@
 node {
     def dockerImage;
     currentBuild.result = "SUCCESS"
-    def CURRENT_BRANCH = env.BRANCH_NAME;
 
     try {
         stage('Build') {
             deleteDir()
             def scmVars = checkout scm
-
-            // If not set by the job then get the local branch name
-            if (!CURRENT_BRANCH) {
-                CURRENT_BRANCH = scmVars.GIT_BRANCH;
-            }
 
             // Create a version bump for publishing
             sh('git checkout -b build')
@@ -40,7 +34,7 @@ node {
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${CURRENT_BRANCH}"
+                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"
             }
         }
 
@@ -50,20 +44,12 @@ node {
                 withEnv([ 'HOME=/tmp' ]) {
                     withCredentials([string(credentialsId: 'npmjsauth', variable: 'NPM_TOKEN', usernameVariable: 'NPM_USERNAME')]) {
                         sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
-                        if (CURRENT_BRANCH == 'origin/develop') {
+                        if (env.BRANCH_NAME == 'master') {
                           sh 'npm publish'
                         }
                     }
                 }
             }
-
-            /* If in CI branch (develop) then updated version */
-           if (CURRENT_BRANCH == 'origin/develop') {
-               sshagent (credentials: ['9862b4cf-a692-43c5-9614-9d93114f93a7']) {
-                   sh("git pull origin HEAD:develop")
-                   sh("git push origin HEAD:develop")
-               }
-           }
         }
 
         stage('Cleanup') {
