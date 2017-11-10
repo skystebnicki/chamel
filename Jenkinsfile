@@ -7,10 +7,6 @@ node {
             deleteDir()
             def scmVars = checkout scm
 
-            // Create a version bump for publishing
-            sh('git checkout -b build')
-            sh('npm version patch')
-
             dockerImage = docker.build('chamel', '--no-cache .')
 
             dockerImage.inside {
