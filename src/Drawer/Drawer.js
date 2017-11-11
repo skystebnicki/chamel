@@ -192,9 +192,13 @@ class Drawer extends Component {
    * so it scrolls with the document until 0 (top)
    */
   positionFixed = e => {
+    // Only adjust if mounted AND open
+    if (!window || !this.state.open) {
+      return 0;
+    }
+
     // Get the scroll offset of the window
     let windowOffset = Dom.scrollOffset();
-
     let drawerStartTop = this.state.startTopOffset;
 
     // Get startTopOffset if this is the first run
@@ -249,7 +253,6 @@ class Drawer extends Component {
       height -= this.state.curTopOffset;
     }
 
-    console.log('getHeight', height, this.state);
     return height;
   }
 
