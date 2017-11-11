@@ -89,29 +89,29 @@ class Drawer extends Component {
 
   componentDidMount() {
     // Save the original top position of the menu
-    if (this.state.open) {
-      let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
-      if (offset.top > 0) {
-        this.setState({
-          startTopOffset: offset.top,
-          height: window.innerHeight - offset.top,
-        });
-
-        // Now listen for window scroll events
-        Events.on(window, 'scroll', this._onWindowScroll);
-      }
+    let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
+    if (offset.top > 0) {
+      this.setState({
+        startTopOffset: offset.top,
+      });
     }
+
+    // Listen for window scroll events
+    Events.on(window, 'scroll', this.positionFixed);
   }
 
   componentWillUnmout() {
-    if (this.state.startTopOffset > 0) {
-      Events.off(window, 'scroll', this._onWindowScroll);
-    }
+    Events.off(window, 'scroll', this.positionFixed);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.open != this.props.open) {
-      this.setState({ open: nextProps.open });
+      let isOpen = nextProps.open;
+      // Ignore open if permanent is set
+      if (nextProps.permanent) {
+        isOpen = true;
+      }
+      this.setState({ open: isOpen });
     }
   }
 
@@ -152,8 +152,9 @@ class Drawer extends Component {
     }
 
     // Manually set the height
-    if (this.state.height) {
-      topStyle.height = this.state.height + 'px';
+    const heightToUse = this.getHeight();
+    if (heightToUse > 0) {
+      topStyle.height = heightToUse + 'px';
     }
 
     return (
@@ -190,12 +191,7 @@ class Drawer extends Component {
    * want to be able to reposition the leftnav when the user scrolls
    * so it scrolls with the document until 0 (top)
    */
-  _onWindowScroll = e => {
-    // If the starting state was 0 then do nothing
-    if (this.state.startTopOffset == 0) {
-      return;
-    }
-
+  positionFixed = e => {
     // Get the scroll offset of the window
     let windowOffset = Dom.scrollOffset();
 
@@ -238,6 +234,24 @@ class Drawer extends Component {
       }.bind(this),
     );
   };
+
+  /**
+   * Determine the height needed based on props
+   */
+  getHeight() {
+    // Only adjust if mounted AND open
+    if (!window || !this.state.open) {
+      return 0;
+    }
+
+    let height = window.innerHeight;
+    if (this.state.curTopOffset > 0) {
+      height -= this.state.curTopOffset;
+    }
+
+    console.log('getHeight', height, this.state);
+    return height;
+  }
 
   /**
    * Toggle this opened and closed
