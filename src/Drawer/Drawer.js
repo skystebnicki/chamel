@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import Paper from '../Paper/Paper';
 import Overlay from '../Overlay/Overlay';
 import Dom from '../utils/Dom';
-import Events from '../utils/Events';
 import classnames from 'classnames';
 import ThemeService from '../styles/ChamelThemeService';
+import KeyCode from '../utils/KeyCode';
 
 /**
  * Navigation drawer component
@@ -49,6 +49,21 @@ class Drawer extends Component {
      * right: secondary right side navigation
      */
     side: PropTypes.oneOf(['left', 'right']),
+
+    /**
+     * Optioanl class name override
+     */
+    className: PropTypes.string,
+
+    /**
+     * Optioanl zIndex to load for the drawer - defautls to 200 in CSS
+     */
+    zIndex: PropTypes.number,
+
+    /**
+     * Child elements to be rendered into the Drawer
+     */
+    children: PropTypes.node,
   };
 
   /**
@@ -81,29 +96,22 @@ class Drawer extends Component {
     this.state = {
       open: this.props.permanent,
       selected: '',
-      startTopOffset: 0,
       curTopOffset: -1,
-      height: null,
     };
   }
 
+  /**
+   * Called once the drawer enters the DOM
+   */
   componentDidMount() {
-    // Save the original top position of the menu
-    let offset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
-    if (offset.top > 0) {
-      this.setState({
-        startTopOffset: offset.top,
-      });
-    }
-
-    // Listen for window scroll events
-    Events.on(window, 'scroll', this.positionFixed);
+    this.updateOffsetFromTop();
   }
 
-  componentWillUnmout() {
-    Events.off(window, 'scroll', this.positionFixed);
-  }
-
+  /**
+   * Handle changes needed before changes to props are applied
+   * 
+   * @param {Object} nextProps 
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.open != this.props.open) {
       let isOpen = nextProps.open;
@@ -111,10 +119,23 @@ class Drawer extends Component {
       if (nextProps.permanent) {
         isOpen = true;
       }
+
       this.setState({ open: isOpen });
     }
   }
 
+  /**
+   * Component props changed
+   */
+  componentDidUpdate() {
+    if (this.state.curTopOffset === -1) {
+      this.updateOffsetFromTop();
+    }
+  }
+
+  /**
+   * Render the component
+   */
   render() {
     // Determine which theme to use
     let theme =
@@ -147,9 +168,6 @@ class Drawer extends Component {
 
     // Handle offset when the document scrolls and the menu is not already at the top
     let topStyle = {};
-    if (this.state.startTopOffset > 0 && this.state.curTopOffset !== -1) {
-      topStyle.top = this.state.curTopOffset + 'px';
-    }
 
     // Manually set the height
     const heightToUse = this.getHeight();
@@ -184,62 +202,6 @@ class Drawer extends Component {
   };
 
   /**
-   * Handle when the document is scrolled while the
-   * The starting top of this menu was not 0 so it means
-   * the menu is a fixed position and permanent. A menu can be permanent
-   * below the top of the page (like below an AppBar) so we
-   * want to be able to reposition the leftnav when the user scrolls
-   * so it scrolls with the document until 0 (top)
-   */
-  positionFixed = e => {
-    // Only adjust if mounted AND open
-    if (!window || !this.state.open) {
-      return 0;
-    }
-
-    // Get the scroll offset of the window
-    let windowOffset = Dom.scrollOffset();
-    let drawerStartTop = this.state.startTopOffset;
-
-    // Get startTopOffset if this is the first run
-    if (this.state.curTopOffset == -1) {
-      const drawerOffset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
-      drawerStartTop = drawerOffset.top;
-    }
-
-    /*
-     * If we have scrolled, then follow the scroll.
-     * Because the left nav div is position:fixed, then we
-     * can move all the way to 0 to be at the top no matter how
-     * far down the page they scroll
-     */
-    let newTop = drawerStartTop - windowOffset.top;
-    if (newTop < 0) {
-      newTop = 0;
-    }
-
-    // It should never ever be less than the original offset
-    if (windowOffset.top === 0 && newTop < drawerStartTop) {
-      newTop = -1; // Reset
-    }
-
-    // Recalculate height
-    const height = newTop > 0 ? window.innerHeight - newTop : null;
-
-    // Set state without transition to make the scroll faster
-    Dom.withoutTransition(
-      ReactDOM.findDOMNode(this.refs.clickAwayableElement),
-      function setOffsetTopState() {
-        this.setState({
-          curTopOffset: newTop,
-          startTopOffset: drawerStartTop,
-          height: height,
-        });
-      }.bind(this),
-    );
-  };
-
-  /**
    * Determine the height needed based on props
    */
   getHeight() {
@@ -249,11 +211,30 @@ class Drawer extends Component {
     }
 
     let height = window.innerHeight;
-    if (this.state.curTopOffset > 0) {
+
+    // Get the offset if the drawer is clipped
+    if (this.props.clipped && this.state.curTopOffset) {
       height -= this.state.curTopOffset;
     }
 
     return height;
+  }
+
+  /**
+   * Any time the offset of the drawer from the top of the page changed we should update it
+   */
+  updateOffsetFromTop() {
+    // Only adjust if mounted, open, and clipped
+    if (!window || !this.state.open || !this.props.clipped) {
+      return;
+    }
+
+    const drawerOffset = Dom.offset(ReactDOM.findDOMNode(this.refs.clickAwayableElement));
+    if (drawerOffset.top > 0) {
+      this.setState({
+        curTopOffset: drawerOffset.top,
+      });
+    }
   }
 
   /**
