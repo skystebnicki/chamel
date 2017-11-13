@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/skystebnicki/chamel/issues"
   },
-  "homepage": "http://www.skystebnicki.com/",
+  "homepage": "https://github.com/skystebnicki/chamel",
   "scripts": {
     "pretest": "npm install",
     "build": "babel ./src --out-dir ./lib && npm run sass",
