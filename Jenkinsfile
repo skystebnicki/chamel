@@ -51,11 +51,12 @@ node {
         }
 
         stage('Cleanup') {
-            echo 'prune and cleanup'
+            deleteDir();
             sh 'docker system prune -a'
         }
 
     } catch (err) {
+        deleteDir();
         currentBuild.result = "FAILURE"
         mail body: "project build error is here: ${env.BUILD_URL}" ,
         subject: 'project build failed',
