@@ -7,6 +7,8 @@ node {
             deleteDir()
             def scmVars = checkout scm
 
+            sh 'ls -la src/Editor/'
+
             dockerImage = docker.build('chamel', '--no-cache .')
 
             dockerImage.inside {
@@ -17,7 +19,6 @@ node {
                 }
             }
 
-            sh 'cat package.json'
             sh 'ls -la src/Editor/'
             sh 'ls -la lib/Editor/'
         }
