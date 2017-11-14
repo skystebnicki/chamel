@@ -17,6 +17,7 @@ node {
                 }
             }
 
+            sh 'echo cat package.json'
             sh 'ls -la src/Editor/'
             sh 'ls -la lib/Editor/'
         }
