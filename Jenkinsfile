@@ -14,6 +14,7 @@ node {
                 withEnv([ 'HOME=/tmp' ]) {
                     sh 'npm install'
                     sh 'npm run build'
+                    sh 'ls -la src/Editor/'
                     sh 'npm run sass'
                     sh 'ls -la lib/Editor/'
                 }
