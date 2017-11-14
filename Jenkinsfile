@@ -4,9 +4,9 @@ node {
 
     try {
         stage('Build') {
-            deleteDir()
             def scmVars = checkout scm
 
+            /* Test */
             sh 'ls -la src/Editor/'
 
             dockerImage = docker.build('chamel', '--no-cache .')
@@ -18,9 +18,6 @@ node {
                     sh 'npm run build'
                 }
             }
-
-            sh 'ls -la src/Editor/'
-            sh 'ls -la lib/Editor/'
         }
 
         stage('Test') {
@@ -59,7 +56,6 @@ node {
         }
 
     } catch (err) {
-        deleteDir()
         currentBuild.result = "FAILURE"
         mail body: "project build error is here: ${env.BUILD_URL}" ,
         subject: 'project build failed',
