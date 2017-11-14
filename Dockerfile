@@ -1,6 +1,6 @@
 FROM node:6
 
-WORKDIR /var/www/app
+WORKDIR /app
 
 # Copy over source
 COPY ./ .
@@ -9,7 +9,7 @@ COPY ./ .
 RUN rm -rf node_modules/*
 RUN rm -rf build/*
 
-# Install dependencies for the library
+# Expose ports needed to server http and handle hot reloads in webpack
 EXPOSE 8081
 EXPOSE 885
 EXPOSE 3001
