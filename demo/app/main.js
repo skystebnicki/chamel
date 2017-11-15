@@ -68,14 +68,13 @@ class App extends React.Component {
 
   render() {
     let mainContainerStyle = {};
+    let navContainerStyle = {};
     if (this.state.menuDocked) {
       mainContainerStyle.marginLeft = '256px';
+      navContainerStyle.float = 'left';
     }
 
     const theme = this.getTheme(this.state.themeName);
-
-    // Get the current path name and skip the preceeding root / char
-    const activeRouteName = ''; //this.props.location.pathname.substring(1);
 
     // Set the z-index of the navigation menu (left nav)
     const drawerZindex = this.state.menuDocked ? 0 : 1;
@@ -107,116 +106,117 @@ class App extends React.Component {
               iconElementLeft={leftAppBarElement}
               iconElementRight={rightAppBarElement}
               title={'Chameleon Demo'}
+              fixed={true}
             />
-
-            <Drawer
-              ref="leftNav"
-              permanent={this.state.menuDocked}
-              open={this.state.menuDocked || this.state.menuOpen}
-              clipped={this.state.menuDocked}
-              zIndex={drawerZindex}
-              onClose={this.handleMenuToggle_}
-            >
-              <List onItemClick={this.handleNavChange_}>
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  activeOnlyWhenExact
-                  primaryText={'Home'}
-                  path={'/'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'AppBar'}
-                  path={'/appbar'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Grouping'}
-                  path={'/grouping'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Drawer'}
-                  path={'/drawer'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Button'}
-                  path={'/button'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Input'}
-                  path={'/input'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Toggle'}
-                  path={'/toggle'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Picker'}
-                  path={'/picker'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Toolbar'}
-                  path={'/toolbar'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Icon'}
-                  path={'/icon'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Popover'}
-                  path={'/popover'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'List'}
-                  path={'/list'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Menu'}
-                  path={'/menu'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Tabs'}
-                  path={'/tabs'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Dialog'}
-                  path={'/dialog'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Editor'}
-                  path={'/editor'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Progress'}
-                  path={'/progress'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'AutoComplete'}
-                  path={'/autocomplete'}
-                />
-                <LeftNavRouteItem
-                  handleGoToRoute={this.handleGoToRoute}
-                  primaryText={'Snackbar'}
-                  path={'/snackbar'}
-                />
-              </List>
-            </Drawer>
-
+            <div style={navContainerStyle}>
+              <Drawer
+                ref="leftNav"
+                permanent={this.state.menuDocked}
+                open={this.state.menuDocked || this.state.menuOpen}
+                clipped={this.state.menuDocked}
+                zIndex={drawerZindex}
+                onClose={this.handleMenuToggle_}
+              >
+                <List onItemClick={this.handleNavChange_}>
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    activeOnlyWhenExact
+                    primaryText={'Home'}
+                    path={'/'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'AppBar'}
+                    path={'/appbar'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Grouping'}
+                    path={'/grouping'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Drawer'}
+                    path={'/drawer'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Button'}
+                    path={'/button'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Input'}
+                    path={'/input'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Toggle'}
+                    path={'/toggle'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Picker'}
+                    path={'/picker'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Toolbar'}
+                    path={'/toolbar'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Icon'}
+                    path={'/icon'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Popover'}
+                    path={'/popover'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'List'}
+                    path={'/list'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Menu'}
+                    path={'/menu'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Tabs'}
+                    path={'/tabs'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Dialog'}
+                    path={'/dialog'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Editor'}
+                    path={'/editor'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Progress'}
+                    path={'/progress'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'AutoComplete'}
+                    path={'/autocomplete'}
+                  />
+                  <LeftNavRouteItem
+                    handleGoToRoute={this.handleGoToRoute}
+                    primaryText={'Snackbar'}
+                    path={'/snackbar'}
+                  />
+                </List>
+              </Drawer>
+            </div>
             <div style={mainContainerStyle}>
               <Container fluid>
                 <Switch>

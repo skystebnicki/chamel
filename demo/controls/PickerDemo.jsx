@@ -3,6 +3,7 @@ import RadioDemo from './Picker/RadioDemo';
 import Row from 'chamel/Grid/Row';
 import Column from 'chamel/Grid/Column';
 import DatePicker from 'chamel/Picker/DatePicker';
+import TimePicker from 'chamel/Picker/TimePicker';
 import SelectField from 'chamel/Picker/SelectField';
 import SelectButtonDemo from './Picker/SelectButtonDemo';
 
@@ -17,7 +18,7 @@ class PickerDemo extends React.Component {
     super(props);
 
     this.state = {
-      dateValue: null,
+      dateValue: new Date(),
     };
   }
 
@@ -74,6 +75,13 @@ class PickerDemo extends React.Component {
         <Row>
           <Column xsmall={12} medium={6}>
             <h3>{'Time Picker'}</h3>
+            <TimePicker
+              value={'13:00'}
+              required={true}
+              onChange={time => {
+                console.log('Changed time to', time);
+              }}
+            />
           </Column>
         </Row>
       </div>

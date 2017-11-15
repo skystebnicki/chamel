@@ -27,13 +27,13 @@ class SelectButtonDemo extends React.Component {
 
     return (
       <div>
-        <SelectButton menuItems={menuItems} />
+        <SelectButton onChange={this._handleChange} menuItems={menuItems} />
       </div>
     );
   }
 
-  _handleChange = value => {
-    this.setState({ value: value });
+  _handleChange = (event, selectedIndex, payload) => {
+    this.setState({ value: payload });
   };
 }
 

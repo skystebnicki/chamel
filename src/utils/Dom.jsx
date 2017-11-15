@@ -33,6 +33,24 @@ module.exports = {
     return points;
   },
 
+  /**
+   * Get the cumulative absolute offset of an element
+   */
+  offsetAbsolute: function(element) {
+    let top = 0,
+      left = 0;
+    do {
+      top += element.offsetTop || 0;
+      left += element.offsetLeft || 0;
+      element = element.offsetParent;
+    } while (element);
+
+    return {
+      top: top,
+      left: left,
+    };
+  },
+
   scrollOffset: function(el) {
     // If we passed an element, return scroll positions of the element
     if (el) {
