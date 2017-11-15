@@ -67,7 +67,7 @@ class AppBarRightToolbar extends Component {
     // Check if the scrollable width of the div is bigger than the actual width
     if (domAppBarRight.scrollWidth > offset.width) {
       // If so, then we need to set the state so it will use the SelectButton to display the icons
-      this.setState({useSelectButton: true});
+      this.setState({ useSelectButton: true });
     }
   }
 
@@ -96,11 +96,6 @@ class AppBarRightToolbar extends Component {
         continue;
       }
 
-      // If the currentIcon is not encapsulated with AppBarIconButton, then we need to wrap it with <AppBarIconButton>
-      if (currentIcon.type.name !== 'AppBarIconButton') {
-        currentIcon = <AppBarIconButton key={idx}>{currentIcon}</AppBarIconButton>;
-      }
-
       // If we are dealing with primary icon and we dont have one, then we need to display it separately
       const isPrimaryIcon = currentIcon.props.isPrimary || false;
       if (isPrimaryIcon && !primaryIconButton) {
@@ -120,7 +115,7 @@ class AppBarRightToolbar extends Component {
         </AppBarIconButton>
       );
 
-      divStyle = {overflow: 'unset'};
+      divStyle = { overflow: 'unset' };
       iconButtons = <AppBarSelectButton icon={selectButtonIcon}>{iconButtons}</AppBarSelectButton>;
     }
 

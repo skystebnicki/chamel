@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ThemeService from '../styles/ChamelThemeService';
 import Paper from '../Paper/Paper';
-import IconButton from '../Button/IconButton';
 import AppBarRightToolbar from './AppBarRightToolbar';
 import Dom from '../utils/Dom';
 import Events from '../utils/Events';
@@ -114,15 +113,10 @@ class AppBar extends Component {
     }
 
     // Set the right elements
-    let rightElements = this.props.iconElementRight ? this.props.iconElementRight : null;
+    let rightElements = this.props.iconElementRight || null;
 
     // If right elements exists, wrap in a toolbar
     if (rightElements) {
-      // Add any appBar custom styles to the icon
-      /*rightElements = this._addAppBarStyleToElements(
-       rightElements, theme
-       );*/
-
       menuElementRight = <AppBarRightToolbar>{rightElements}</AppBarRightToolbar>;
     }
 

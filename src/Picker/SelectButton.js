@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import DropDownArrow from '../svg-icons/drop-down-arrow';
-import Paper from '../Paper/Paper';
+import ArrowDropDownIcon from '../icons/font/ArrowDropDownIcon';
 import Menu from '../Menu/Menu';
 import Popover from '../Popover/Popover';
 import FontIcon from '../FontIcon';
@@ -55,7 +53,7 @@ class SelectButton extends Component {
         : ThemeService.defaultTheme.picker;
 
     // Use default dropdown icon
-    let icon = <DropDownArrow />;
+    let icon = <ArrowDropDownIcon />;
 
     if (this.props.icon) {
       icon =
@@ -66,21 +64,13 @@ class SelectButton extends Component {
         );
     }
 
-    let style = null;
-    if (this.state.open) {
-      style = {
-        position: 'fixed',
-      };
+    let className = theme.selectButtonCon;
+    if (this.props.className) {
+      className += ' ' + this.props.className;
     }
-
-    let { className } = this.props;
-    if (className) {
-      className += ' ';
-    }
-    className += theme.selectButtonCon;
 
     return (
-      <div className={className} style={style}>
+      <div className={className}>
         <div style={{ align: 'top' }}>
           <IconButton className={this.props.className} onTap={this._onControlClick}>
             {icon}
