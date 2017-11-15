@@ -4,10 +4,8 @@ node {
 
     try {
         stage('Build') {
+            deleteDir()
             def scmVars = checkout scm
-
-            /* Test */
-            sh 'ls -la src/Editor/'
 
             dockerImage = docker.build('chamel', '--no-cache .')
 
@@ -36,9 +34,7 @@ node {
                 withEnv([ 'HOME=/tmp' ]) {
                     withCredentials([string(credentialsId: 'npmjsauth', variable: 'NPM_TOKEN', usernameVariable: 'NPM_USERNAME')]) {
                         sh "echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> ~/.npmrc"
-                        if (env.BRANCH_NAME == 'master') {
-                          sh 'npm publish'
-                        }
+                        sh 'npm publish'
                     }
                 }
             }
@@ -46,17 +42,17 @@ node {
 
         stage('Push to github') {
             withCredentials([usernamePassword(credentialsId: 'sky-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:${env.BRANCH_NAME}"
+                sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/skystebnicki/chamel HEAD:master"
             }
         }
 
         stage('Cleanup') {
-            deleteDir();
+            deleteDir()
             sh 'docker system prune -a'
         }
 
     } catch (err) {
-        deleteDir();
+        deleteDir()
         currentBuild.result = "FAILURE"
         mail body: "project build error is here: ${env.BUILD_URL}" ,
         subject: 'project build failed',
